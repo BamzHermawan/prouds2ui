@@ -1,4 +1,4 @@
-# PRouDS UI Template
+# PRouDS 2 UI Template
 
 Projects ini menggunakan [Parcel Bundler](https://parceljs.org) - [PUG](https://pugjs.org) - [SCSS](https://sass-lang.com/). Dan berikut adalah JS Plugins yang digunakan:
 
@@ -9,7 +9,8 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org) - [PUG](https://
 
 ## Getting started
 
-> **⚠ Perhatian!**. Project ini menggunakan yarn. Jangan tercampur dengan NPM. Silakan lihat **Code Of Conduct** untuk informasi lebih detil.
+> **⚠ Perhatian!**.
+> Project ini menggunakan yarn. Jangan tercampur dengan NPM.
 
 * Clone Repositori ini 👌.
 * Buka terminal pada direktori project ini, kemudian jalankan perintah berikut ini: `yarn install`.
@@ -19,7 +20,7 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org) - [PUG](https://
     * `yarn bersih`: Hapus dist folder untuk Project buil yang **Bersih** dan **Sempurna** 🤣.
 
 > **⚠ Note:**
-> * `yarn ngoding` Perintah ini hanya untuk Development saja. **JANGAN** gunakan pada server production!.
+> `yarn ngoding` Perintah ini hanya untuk Development saja. **JANGAN** gunakan pada server production!.
 
 Last Edit: 11 Juni 2019.
 Oleh: [Ario Widiatmoko](https://github.com/ariomoklo)
