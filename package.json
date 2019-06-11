@@ -1,0 +1,33 @@
+{
+  "name": "prouds2ui",
+  "version": "1.0.0",
+  "description": "Front-end HTML/CSS/JS for PRouDS",
+  "scripts": {
+    "bersih": "rm -r dist",
+    "ngoding": "parcel src/index.pug -p 5500",
+    "mantap": "parcel build src/*.pug"
+  },
+  "author": "PMO Telkomsigma",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-markdown": "^0.3.1",
+    "parcel-plugin-markdown-string": "^1.3.5",
+    "pug": "^2.0.3",
+    "sass": "^1.21.0"
+  },
+  "marked": {
+    "breaks": true,
+    "pedantic": false,
+    "gfm": true,
+    "tables": true,
+    "sanitize": false,
+    "smartLists": true,
+    "smartypants": false,
+    "xhtml": false
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  }
+}
