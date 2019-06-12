@@ -28,7 +28,7 @@ Dokumen Code of Standart ini adalah kumpulan kesepakatan bersama dalam penulisan
 * Git Commit Format
     bebas dengan isi jelas menjelaskan code apa yang kamu tambahkan.
 
-### Using GitHub Issue Fun and Organized 🐱‍👤
+#### Using GitHub Issue Fun and Organized 🐱‍👤
 
 GitHub Issue bisa dibilang sebagai Project Management Tool yang mudah karena sudah terintegrasi dengan repository github. Penggunaannya mudah dan menjelaskan secara detil dan jelas progress tugas dan pengerjaan program. Berikut adalah F.A.Q singkat mengenai penggunaan GitHub Issue:
 
@@ -39,7 +39,7 @@ GitHub Issue bisa dibilang sebagai Project Management Tool yang mudah karena sud
 * Gunakan Project tab
     Gunakan Project [PRouDS 2 UI](Github-Projects) untuk detail progress dari Project ini 😊.
 
-### How to debug
+#### How to debug
 
 > Not sure to add this though 🤷‍
 
