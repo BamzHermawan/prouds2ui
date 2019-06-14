@@ -1,7 +1,12 @@
 {
-    "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
     "prettier.requireConfig": true,
     "prettier.tabWidth": 4,
-    "prettier.useTabs": true
+    "prettier.useTabs": true,
+    "editor.formatOnSave": true,
+    "vetur.format.defaultFormatter.html": "prettier",
+    "editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"vetur.format.options.useTabs": true,
+	"vetur.format.options.tabSize": 4
 }
