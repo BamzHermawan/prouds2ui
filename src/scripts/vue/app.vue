@@ -3,17 +3,16 @@
 		<main class="layout-wrapper">
 			<header class="layout-header header">
 				<div class="header-logo logo">
-					<div class="logo_v">v</div>
+					<div class="logo_v">P</div>
 					<div class="logo_rest">
-						<a target="_blank" href="https://vuejs.org/">uejs</a> +
 						<a
 							target="_blank"
-							href="https://github.com/parcel-bundler/parcel"
-							>Parcel-bundle</a
+							href="https://prouds.telkomsigma.co.id/"
+							>PRouDs</a
 						>
 					</div>
 				</div>
-				<router-link to="/">Go to home page</router-link>
+				<router-link to="/">Go to home page |</router-link>
 				<router-link to="/details">Go to details page</router-link>
 			</header>
 			<transition name="fade" mode="out-in">
@@ -23,7 +22,8 @@
 		<footer class="layout-footer">
 			<i class="fa fa-github-alt" aria-hidden="true"></i>
 			<a
-				href="https://github.com/noveogroup-amorgunov/parcel-vuejs-starterkit"
+				target="_blank"
+				href="https://github.com/papang/prouds2ui/tree/master"
 				>See on github</a
 			>
 			<small
@@ -34,13 +34,13 @@
 	</div>
 </template>
 <style lang="less">
-@vue-color: #41b883;
+@vue-color: #c00989;
 .app {
 	display: flex;
 	min-height: 100vh;
 	height: 100%;
 	flex-direction: column;
-	max-width: 760px;
+	max-width: 100%;
 	margin: 0 auto;
 }
 .layout-wrapper {
@@ -63,7 +63,7 @@
 	padding: 30px;
 }
 .logo {
-	padding-bottom: 50px;
+	padding-bottom: 20px;
 	&_v {
 		display: inline-block;
 		border: 2px solid white;
@@ -109,9 +109,7 @@ export default {
 	methods: {
 		fetchGithubStarts() {
 			this.githubStars = 5;
-			return fetch(
-				"https://api.github.com/repos/noveogroup-amorgunov/parcel-vuejs-starterkit"
-			)
+			return fetch("https://github.com/papang/prouds2ui/tree/master")
 				.then(response => response.json())
 				.then(data => (this.githubStars = data.stargazers_count));
 		}
