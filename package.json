@@ -30,6 +30,8 @@
     "xhtml": false
   },
   "dependencies": {
+    "buefy": "^0.7.10",
+    "highcharts": "^7.1.2",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.3"
   }

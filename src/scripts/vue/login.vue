@@ -33,7 +33,7 @@ const APP_EL = document.querySelector("#app");
 export default {
 	data() {
 		return {
-			post: '',
+			post: "",
 			names: {
 				email: "email",
 				password: "password"
