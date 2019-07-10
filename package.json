@@ -31,9 +31,9 @@
     "xhtml": false
   },
   "dependencies": {
-    "bulma": "^0.7.5",
+    "buefy": "^0.7.10",
     "vue": "^2.6.10",
-    "vue-hot-reload-api": "^2.3.3",
-    "vue-router": "^3.0.6"
+	"vue-hot-reload-api": "^2.3.3",
+	"highcharts": "^7.1.2"
   }
 }
