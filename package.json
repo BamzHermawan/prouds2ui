@@ -4,8 +4,9 @@
   "description": "Front-end HTML/CSS/JS for PRouDS",
   "scripts": {
     "bersih": "rm -r dist",
+    "ngoding:login": "parcel src/pages/login.html -p 5500",
     "ngoding": "parcel src/pages/login.html -p 5500",
-    "mantap": "parcel build src/*.pug"
+    "mantap": "parcel build src/pages/*.html"
   },
   "author": "PMO Telkomsigma",
   "devDependencies": {
@@ -30,7 +31,9 @@
     "xhtml": false
   },
   "dependencies": {
+    "bulma": "^0.7.5",
     "vue": "^2.6.10",
-    "vue-hot-reload-api": "^2.3.3"
+    "vue-hot-reload-api": "^2.3.3",
+    "vue-router": "^3.0.6"
   }
 }

@@ -1,0 +1,12 @@
+// Font Import from google Font
+@import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed&display=swap');
+@import "../../node_modules/bulma/bulma.sass";
+
+$p_font: 'Roboto Condensed', sans-serif;
+$h1_font: 'Crete Round', serif;
+$h2_font: 'DM Serif Text', serif;
+
+// Color Style Variable
+$primary: #D36464;
+$link: $link;
+$info: $info;
