@@ -5,7 +5,9 @@
 			:style="'background-image: url(' + getAttr('bg-image') + ');'"
 		>
 			<div class="welcoming">
-				<p>👋 Selamat Datang | Welcome Back 👋</p>
+				<p class="is-hidden-mobile">
+					👋 Selamat Datang | Welcome Back 👋
+				</p>
 				<!-- <h1>PROUDS</h1>
 				<p class="sub-title">
 					Project Management and Resource Delivery System
@@ -31,8 +33,25 @@
 				:passwordName="getAttr('passwordName')"
 				:action="getAttr('action')"
 				:loginAlert="getAttr('loginAlert')"
+				class="login-form"
 			/>
 		</section>
+		<img
+			class="logo-telkomsigma"
+			src="../../../images/telkomsigma.png"
+			alt="Logo Telkomsigma"
+		/>
+		<b-notification
+			class="con-alert has-text-centered"
+			type="is-info"
+			role="alert"
+			:closable="false"
+			v-if="!iconn"
+		>
+			😢 Sepertinya koneksi internet anda telah terputus, mohon untuk
+			menghubungkan komputer anda ke koneksi internet dengan koneksi yang
+			stabil. terimakasih 👍.
+		</b-notification>
 	</div>
 </template>
 
@@ -40,8 +59,23 @@
 @import "../../../styles/_variable.scss";
 
 .prouds-logo {
-	width: 540px;
+	width: 40%;
 	margin-top: 15px;
+}
+
+.logo-telkomsigma {
+	position: fixed;
+	bottom: 10px;
+	width: 150px;
+	right: 10px;
+}
+
+.con-alert {
+	position: fixed;
+	top: 0px;
+	width: 100% - 10%;
+	margin: 1% 5%;
+	padding: 10px 15px;
 }
 
 .loginPage {
@@ -89,9 +123,9 @@
 					text-align: center;
 					font-size: 1.5em;
 					margin-bottom: 0px;
-					color: $warning;
+					color: #333;
 					font-weight: bold;
-					text-shadow: 2px 3px 1px #333;
+					text-shadow: 2px 2px lighten(gray, 20%);
 
 					&.sub-title {
 						font-size: 1em;
@@ -110,6 +144,40 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 770px) {
+	.loginPage {
+		grid-template-columns: 1.3fr 0.7fr;
+	}
+
+	.prouds-logo {
+		width: 70%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.loginPage {
+		grid-template-columns: 1fr;
+		grid-template-rows: 140px 1fr;
+
+		section.banner {
+			grid-template-rows: 1fr 50px;
+
+			.banner-footer {
+				font-size: 12px;
+			}
+		}
+	}
+
+	.prouds-logo {
+		width: 70%;
+		margin-top: 35px;
+	}
+
+	.login-form {
+		margin-bottom: 30px;
+	}
+}
 </style>
 
 <script>
@@ -120,10 +188,24 @@ export default {
 	components: {
 		loginForm
 	},
+	data() {
+		return {
+			iconn: true
+		};
+	},
 	methods: {
 		getAttr(attrName) {
 			return APP_EL.getAttribute(attrName);
+		},
+
+		checkConnection() {
+			this.iconn = window.navigator.onLine;
 		}
+	},
+	mounted() {
+		this.iconn = window.navigator.onLine;
+		window.addEventListener("online", this.checkConnection);
+		window.addEventListener("offline", this.checkConnection);
 	}
 };
 </script>
