@@ -1,5 +1,14 @@
 @charset "utf-8";
 @import "../../node_modules/bulma/bulma.sass";
 
-// Color Style Variable
-$primary: #D36464;
+.input {
+	box-shadow: 4px 3px 3px rgba(10, 10, 10, 0.1);
+}
+
+.button:hover {
+	opacity: .9;
+}
+
+.button, .input{
+	border-radius: 0px;
+}

@@ -1,0 +1,17 @@
+[
+	{
+		"path": "$ROOTPATH$\\src\\scripts\\vue\\login.vue",
+		"bookmarks": [
+			{
+				"line": 9,
+				"column": 9,
+				"label": "Login Form"
+			},
+			{
+				"line": 49,
+				"column": 10,
+				"label": "Login Styling"
+			}
+		]
+	}
+]
