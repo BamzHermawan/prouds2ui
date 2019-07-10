@@ -108,6 +108,10 @@ export default {
 			if (!this.validation)
 				this.errors.push("Password Tidak Boleh Kosong");
 
+			this.validation = window.navigator.onLine;
+			if (!this.validation)
+				this.errors.push("Koneksi Internet Tidak Terdeteksi");
+
 			if (!this.validation) {
 				e.preventDefault();
 			}
