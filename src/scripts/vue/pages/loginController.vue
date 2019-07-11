@@ -15,7 +15,7 @@
 				<p class="has-text-centered">
 					<img
 						class="prouds-logo"
-						src="../../../images/full-logo.png"
+						:src="logo.prouds"
 						alt="Prouds Logo"
 					/>
 				</p>
@@ -38,7 +38,7 @@
 		</section>
 		<img
 			class="logo-telkomsigma"
-			src="../../../images/telkomsigma.png"
+			:src="logo.sigma"
 			alt="Logo Telkomsigma"
 		/>
 		<b-notification
@@ -190,7 +190,11 @@ export default {
 	},
 	data() {
 		return {
-			iconn: true
+			iconn: true,
+			logo: {
+				prouds: "",
+				sigma: ""
+			}
 		};
 	},
 	methods: {
@@ -206,6 +210,13 @@ export default {
 		this.iconn = window.navigator.onLine;
 		window.addEventListener("online", this.checkConnection);
 		window.addEventListener("offline", this.checkConnection);
+
+		this.logo.prouds = document
+			.getElementById("logo-prouds")
+			.getAttribute("data-url");
+		this.logo.sigma = document
+			.getElementById("logo-sigma")
+			.getAttribute("data-url");
 	}
 };
 </script>

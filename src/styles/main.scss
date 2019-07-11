@@ -1,5 +1,40 @@
 // @charset "utf-8";
-// @import "../../node_modules/bulma/bulma.sass";
+@import "~bulma/sass/utilities/_all";
+
+// ---------------------------------------------
+
+// Font Import from google Font
+@import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed&display=swap');
+
+$roboto: 'Roboto Condensed', sans-serif;
+$crete: 'Crete Round', serif;
+$dmserif: 'DM Serif Text', serif;
+
+$p_font: $roboto;
+$h1_font: $crete;
+$h2_font: $dmserif;
+
+// Set your colors
+$primary: #D36464;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "twitter": ($twitter, $twitter-invert)
+);
+
+// ----------------------------------------------
 
 .input {
 	box-shadow: 4px 3px 3px rgba(10, 10, 10, 0.1);
@@ -12,3 +47,19 @@
 .button, .input{
 	border-radius: 0px;
 }
+
+.mdi {
+	margin-left: 5px;
+	margin-right: 5px;
+
+	&.in-right {
+		margin-right: 0px;
+	}
+
+	&.in-left {
+		margin-left: 0px;
+	}
+}
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
