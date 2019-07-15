@@ -16,8 +16,8 @@
 			:pagination-simple="isPaginationSimple"
 			:pagination-position="paginationPosition"
 			:default-sort-direction="defaultSortDirection"
-			aria-next-label="Next page"
-			aria-previous-label="Previous page"
+			aria-next-label="mdi-chevron-right"
+			aria-previous-label="mdi-chevron-left"
 			aria-page-label="Page"
 			aria-current-label="Current page"
 			:data="filteredlist"
@@ -49,38 +49,16 @@ export default {
 			required: true
 		}
 	},
-	methods: {
-		searching() {
-			return NULL;
-		}
-	},
+	methods: {},
 	computed: {
 		filteredlist() {
 			let self = this;
 			return self.data.filter(post => {
-				let iwoFilter = post.iwo
-					.toLowerCase()
-					.includes(self.search.toLowerCase());
-				let projectNameFilter = post.project_name
-					.toLowerCase()
-					.includes(self.search.toLowerCase());
-				let pmFilter = post.pm
-					.toLowerCase()
-					.includes(self.search.toLowerCase());
-				let statusFilter = post.status
-					.toLowerCase()
-					.includes(self.search.toLowerCase());
-				let progressFilter = post.progress
-					.toLowerCase()
-					.includes(self.search.toLowerCase());
-
-				return (
-					iwoFilter ||
-					projectNameFilter ||
-					pmFilter ||
-					statusFilter ||
-					progressFilter
+				let found = Object.keys(post).find(key =>
+					post[key].toLowerCase().includes(self.search.toLowerCase())
 				);
+
+				return found;
 			});
 		}
 	}

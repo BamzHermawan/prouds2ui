@@ -882,6 +882,11 @@
   dependencies:
     "@types/babel-types" "*"
 
+"@types/node@^12.0.10":
+  version "12.6.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.2.tgz#a5ccec6abb6060d5f20d256fb03ed743e9774999"
+  integrity sha512-gojym4tX0FWeV2gsW4Xmzo5wxGjXGm550oVUII7f7G5o4BV6c7DBdiG1RRQd+y1bvqRyYtPfMK85UM95vsapqQ==
+
 "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
@@ -3275,6 +3280,13 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   integrity sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=
+
+jsgantt-improved@^2.2.11:
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/jsgantt-improved/-/jsgantt-improved-2.2.11.tgz#e79f55bdc896d3a950ac2c61ee6d5afe496d2a1e"
+  integrity sha512-opdZ0Fb7kRP0xAemqOdqowqxKLGpxLxaqwtfO6IALXP96KTPZcaPJY3Q2g/Qz6ByukBnx4G+Rw37sVSrY2mqJg==
+  dependencies:
+    "@types/node" "^12.0.10"
 
 json-parse-better-errors@^1.0.1:
   version "1.0.2"
