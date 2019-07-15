@@ -34,7 +34,13 @@ $colors: (
     "twitter": ($twitter, $twitter-invert)
 );
 
+$tablet: 719px;
+
 // ----------------------------------------------
+
+body {
+	font-family: $roboto;
+}
 
 .input {
 	box-shadow: 4px 3px 3px rgba(10, 10, 10, 0.1);
