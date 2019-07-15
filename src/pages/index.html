@@ -1,17 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+		<meta name="description" content="HOME for PROUDS 2 Web Application">
+		<title>HOME | PROUDS 2</title>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
-	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<title>HOME | PROUDS 2</title>
-</head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+		<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	</head>
 
-<body>
-	<h1>Haiiii~</h1>
-</body>
+	<body>
+		<div id="vapp">
+			<nav-bar :left-menu="[
+				{ label: 'opportunity', link: '#oppty', icon:'' },
+				{ label: 'projects', link: '#project', icon:'' },
+				{ label: 'financial', link: '#financial', icon:'' },
+				{ label: 'operation', link: '#opperation', icon:'' },
+			]" :right-menu="[
+				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+				{ label: '🔒 logout', link: '#logout', icon:'' },
+			]" home-link="http://mantap:8080/"></nav-bar>
+			
+			<dashboard 
+				image-profile="http://mantap:8080/media/user.jpeg"
+				username="Ade Wiranata Putra" 
+				nik="CRS2019000" 
+				bu="Project Management Office" 
+				show-newproject-notif 
+				show-timesheet-notif
+			>
+				<div slot="new-project-notification">
+					Ada sebanyak <b>10 IWO BARU</b>. Silakan
+					Assign PM pada Project IWO tersebut.
+					<a href="#" class="has-text-info">Menuju Halaman Project.</a>
+				</div>
 
+				<div slot="timesheet-notification">
+					<ul>
+						<li>📅 8 Juli 2019 [8 Jam] - Belajar Pentaho</li>
+						<li>📅 9 Juli 2019 [8 Jam] - Front-end Prouds</li>
+						<li>📅 10 Juli 2019 [8 Jam] - Belajar Oracle</li>
+					</ul>
+				</div>
+
+				<ul slot="recent-project" class="project-list">
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project PMO</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
+					</li>
+					<li>
+						<a href="#project" class="button is-info is-small is-fullwidth">List All My Projects</a>
+					</li>
+				</ul>
+
+				<ul slot="today-task" class="project-list">
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-info is-small is-fullwidth">List All Task</a>
+					</li>
+				</ul>
+			</dashboard>
+		</div>
+
+		<script src="../scripts/index.js"></script>
+	</body>
 </html>
