@@ -33,7 +33,7 @@
 					v-for="(menu, index) in showLeftMenu"
 					:key="index"
 					:href="menu.link"
-					class="navbar-item"
+					:class="'navbar-item ' + (menu.active ? 'is-active':'')"
 				>
 					<span
 						v-if="menu.icon != ''"

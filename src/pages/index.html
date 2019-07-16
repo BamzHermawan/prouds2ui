@@ -15,14 +15,14 @@
 	<body>
 		<div id="vapp">
 			<nav-bar :left-menu="[
-				{ label: 'opportunity', link: '#oppty', icon:'' },
-				{ label: 'projects', link: '#project', icon:'' },
-				{ label: 'financial', link: '#financial', icon:'' },
-				{ label: 'operation', link: '#opperation', icon:'' },
+				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+				{ label: 'projects', link: 'projects.html', icon:'', active: false },
+				{ label: 'financial', link: '#financial', icon:'', active: false },
+				{ label: 'operation', link: '#opperation', icon:'', active: false },
 			]" :right-menu="[
 				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="http://mantap:8080/"></nav-bar>
+			]" home-link="index.html"></nav-bar>
 			
 			<dashboard 
 				image-profile="http://mantap:8080/media/user.jpeg"

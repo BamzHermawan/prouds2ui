@@ -67,5 +67,20 @@ body {
 	}
 }
 
+section.info {
+	padding: 9px 32px;
+	margin-top: 9px;
+	font-family: $roboto;
+}
+
+section.main-content {
+	padding: 32px 32px;
+}
+
+[disabled] {
+	background-color: #a5a5a5 !important;
+	border-color: #a5a5a5 !important;
+}
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

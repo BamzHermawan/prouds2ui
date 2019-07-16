@@ -223,12 +223,6 @@
 	overflow: hidden;
 }
 
-section.info {
-	padding: 9px 32px;
-	margin-top: 9px;
-	font-family: $roboto;
-}
-
 section.activity {
 	padding: 18px 32px;
 }

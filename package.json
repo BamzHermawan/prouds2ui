@@ -3,9 +3,14 @@
 	"version": "1.0.0",
 	"description": "Front-end HTML/CSS/JS for PRouDS",
 	"scripts": {
-		"bersih": "rm -r dist",
-		"ngoding": "parcel src/pages/*.html -p 5500",
-		"mantap": "parcel build src/pages/*.html"
+		"bersih": "rm -rf dist",
+		"ngoding": "parcel src/login/login.html src/pages/*.html -p 5500",
+		"ngoding:pages": "parcel src/pages/*.html -d dist/pages -p 5500",
+		"ngoding:login": "parcel src/login/login.html -d dist/login -p 5500",
+		"mantap": "rm -rf release/{login,pages,src} && yarn run mantap:login && yarn run mantap:pages && yarn run mantap:assamble",
+		"mantap:login": "parcel build src/login/login.html -d release/login --public-url ./src --no-minify --no-source-maps",
+		"mantap:pages": "parcel build src/pages/*.html -d release/pages --public-url ./src --no-minify --no-source-maps",
+		"mantap:assamble": "cd release && mkdir src && mv ./pages/*.js ./src && mv ./pages/*.css ./src"
 	},
 	"author": "PMO Telkomsigma",
 	"devDependencies": {
