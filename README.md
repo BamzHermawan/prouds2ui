@@ -23,6 +23,7 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 
 ## Project Hierarchy
 
+```
 .
 +-- .vscode (Visual Studio Configuration)
 +-- dist (Development Server Root) *May not exist in first cloning
@@ -45,6 +46,7 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 +-- README.md
 +-- yarn-error.log
 +-- yarn.lock
+```
 
 Last Edit: 16 Juli 2019.
 Oleh: [Ario Widiatmoko](https://github.com/ariomoklo)
