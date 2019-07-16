@@ -25,8 +25,8 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 
 ```
 📦 prouds2ui
-├─ 📁 .vscode [Visual Studio Configuration]
-|  📁 .dist [Development Server Root] *May not exist in first cloning
+├─ 📄 .vscode [Visual Studio Configuration]
+|  📄 .dist [Development Server Root] *May not exist in first cloning
 ├─ 📂 release [Build Output Directory]
 |	├─ 📁 login [Login Page Directory]
 |	├─ 📁 pages [HTML Page Directory]
@@ -40,12 +40,12 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 |   |		├─ 📁 components
 |   |		└─ 📁 pages
 |   └─ 📁 styles
-├─ 📁 .gitignore
-├─ 📁 .CONTRIBUTING.md
-├─ 📁 package.json
-├─ 📁 README.md
-├─ 📁 yarn-error.log
-└─ 📁 yarn.lock
+├─ 📄 .gitignore
+├─ 📄 .CONTRIBUTING.md
+├─ 📄 package.json
+├─ 📄 README.md
+├─ 📄 yarn-error.log
+└─ 📄 yarn.lock
 ```
 
 Last Edit: 16 Juli 2019.
