@@ -24,28 +24,28 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 ## Project Hierarchy
 
 ```
-.
-+-- .vscode (Visual Studio Configuration)
-+-- dist (Development Server Root) *May not exist in first cloning
-+-- release (Build Output Directory)
-|   +-- login (Login Page Directory)
-|   +-- pages (HTML Page Directory)
-|   +-- src (JS and CSS Directory)
-|   +-- media (Images Directory)
-+-- src (Working Directory)
-|   +-- login
-|   +-- pages
-|   +-- scripts
-|   |	+-- vue
-|   |	|	+-- components
-|   |	|	+-- pages
-|   +-- styles
-+-- .gitignore
-+-- .CONTRIBUTING.md
-+-- package.json
-+-- README.md
-+-- yarn-error.log
-+-- yarn.lock
+📦 prouds2ui
+├─ 📁 .vscode [Visual Studio Configuration]
+|  📁 .dist [Development Server Root] *May not exist in first cloning
+├─ 📂 release [Build Output Directory]
+|	├─ 📁 login [Login Page Directory]
+|	├─ 📁 pages [HTML Page Directory]
+|	├─ 📁 src [JS and CSS Directory]
+| 	└─ 📁 media [Images Directory]
+├─ 📂 src [Working Directory]
+|	├─ 📁 login
+|	├─ 📁 pages
+|	├─ 📂 scripts
+|   |	└─ 📂 vue
+|   |		├─ 📁 components
+|   |		└─ 📁 pages
+|   └─ 📁 styles
+├─ 📁 .gitignore
+├─ 📁 .CONTRIBUTING.md
+├─ 📁 package.json
+├─ 📁 README.md
+├─ 📁 yarn-error.log
+└─ 📁 yarn.lock
 ```
 
 Last Edit: 16 Juli 2019.
