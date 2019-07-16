@@ -1,5 +1,5 @@
 <template>
-	<v-chart :dataBaru="dataBaru"></v-chart>
+	<v-chart></v-chart>
 </template>
 
 <script>
@@ -10,9 +10,7 @@ export default {
 		vChart
 	},
 	data() {
-		return {
-			dataBaru: DATA
-		};
+		return {};
 	}
 };
 </script>

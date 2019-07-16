@@ -31,9 +31,24 @@
 						type="is-dark"
 						:closable="false"
 					>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Fusce id fermentum quam. Proin sagittis, nibh id
-						hendrerit imperdiet, elit sapien laoreet elit
+						<v-chart
+							:data="entry"
+							id="container"
+							title="Entry"
+							:color="['#d36464', '#333']"
+						></v-chart>
+					</b-message>
+					<b-message
+						title="📈 My Performance"
+						type="is-dark"
+						:closable="false"
+					>
+						<v-chart
+							:data="utilization"
+							id="container2"
+							title="Utilization"
+							:color="['#d36464', '#333']"
+						></v-chart>
 					</b-message>
 				</section>
 			</div>
@@ -99,7 +114,7 @@
 						:key="n"
 						title="Belajar Pentaho"
 						subtitle="@adewiranata - 11 juli 19 : 09.20"
-						thumbnail="http://mantap:8080/media/user.jpeg"
+						thumbnail=""
 					>
 						<div slot="body">
 							Hari ini saya dengan senang hati belajar pentaho.
@@ -257,10 +272,10 @@ section.activity {
 }
 </style>
 
-
 <script>
 import "../../../styles/main.scss";
 import log from "../components/mediaLog";
+import vChart from "../components/highchart";
 export default {
 	props: {
 		showNewprojectNotif: Boolean,
@@ -268,15 +283,19 @@ export default {
 		imageProfile: String,
 		username: String,
 		nik: String,
-		bu: String
+		bu: String,
+		color: String
 	},
 	components: {
-		log
+		log,
+		vChart
 	},
 	data() {
 		return {
 			showInfo: false,
-			showAction: false
+			showAction: false,
+			entry: ENTRY,
+			utilization: UTILIZATION
 		};
 	}
 };
