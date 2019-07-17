@@ -33,7 +33,7 @@
 					v-for="(menu, index) in showLeftMenu"
 					:key="index"
 					:href="menu.link"
-					:class="'navbar-item ' + (menu.active ? 'is-active':'')"
+					:class="'navbar-item ' + (menu.active ? 'is-active' : '')"
 				>
 					<span
 						v-if="menu.icon != ''"
@@ -61,40 +61,7 @@
 	</nav>
 </template>
 
-<style lang="scss">
-@import "../../../styles/main.scss";
-
-.navbar {
-	margin-bottom: 10px;
-}
-
-.navbar-item {
-	font-family: $roboto;
-	text-transform: uppercase;
-}
-
-.navbar-burger {
-	cursor: pointer;
-}
-
-@media only screen and (max-width: 480px) {
-	.navbar {
-		margin-bottom: 20px;
-	}
-
-	.navbar-end {
-		padding-top: 10px;
-		margin-top: 10px;
-		border-top-color: $primary;
-		border-top-width: 2px;
-		border-top-style: solid;
-	}
-}
-</style>
-
-
 <script>
-import "../../../styles/main.scss";
 export default {
 	props: {
 		leftMenu: {
