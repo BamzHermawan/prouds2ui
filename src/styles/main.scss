@@ -137,6 +137,12 @@ section.activity {
 	width: 100%;
 }
 
+.b-table {
+	.level:not(.top) {
+        padding-bottom: 0px !important;
+    }
+}
+
 [disabled] {
 	background-color: #a5a5a5 !important;
 	border-color: #a5a5a5 !important;

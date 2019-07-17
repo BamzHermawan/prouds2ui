@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import vTable from "../components/table";
+import vTable from "../components/dataTable";
 export default {
 	components: {
 		vTable

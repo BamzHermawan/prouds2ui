@@ -125,11 +125,30 @@
 					</div>
 				</nav>
 			</section>
+
+			<section class="info" style="margin-bottom: 1.25rem;">
+				<data-table
+					title="Project List"
+					:data="projects"
+					:fields="tableField"
+				></data-table>
+			</section>
 		</div>
 	</section>
 </template>
 
 <script>
-export default {};
+import DataTable from "../components/dataTable";
+export default {
+	components: {
+		DataTable
+	},
+	data() {
+		return {
+			projects: DATA,
+			tableField: FIELDS
+		};
+	}
+};
 </script>
 
