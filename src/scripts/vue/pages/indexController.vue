@@ -2,7 +2,7 @@
 	<div class="dashboard">
 		<div class="columns" style="margin-bottom:0px;">
 			<div
-				class="column is-3-desktop is-4-tablet is-hidden-touch has-background-light"
+				class="column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 			>
 				<figure class="profile-user">
 					<img :src="imageProfile" alt="user-profile-image" />
@@ -37,7 +37,7 @@
 					</b-message>
 				</section>
 			</div>
-			<div class="column">
+			<div class="column is-section">
 				<section class="activity">
 					<div class="tabs is-toggle is-fullwidth is-hidden-desktop">
 						<ul>
@@ -110,7 +110,7 @@
 				</section>
 			</div>
 			<div
-				class="column is-2-widescreen is-3-desktop is-hidden-touch has-background-light"
+				class="column is-section is-2-widescreen is-3-desktop is-hidden-touch has-background-light"
 			>
 				<section class="info">
 					<h5 class="is-size-5">Recent Projects</h5>
@@ -210,50 +210,7 @@
 	</div>
 </template>
 
-<style lang="scss">
-@import "../../../styles/main.scss";
-.column {
-	padding: 0px;
-	min-height: calc(100vh - 52px);
-}
-
-.profile-user {
-	width: 100%;
-	height: 185px;
-	overflow: hidden;
-}
-
-section.activity {
-	padding: 18px 32px;
-}
-
-.button.is-list {
-	text-align: left;
-	display: block;
-}
-
-.project-list {
-	li {
-		margin-bottom: 5px;
-	}
-}
-
-.mobile-menu {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	width: 100vw;
-	background-color: white;
-	z-index: 30;
-}
-
-@media only screen and (max-width: 768px) {
-}
-</style>
-
-
 <script>
-import "../../../styles/main.scss";
 import log from "../components/mediaLog";
 export default {
 	props: {

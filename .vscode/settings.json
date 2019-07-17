@@ -8,5 +8,12 @@
     "editor.detectIndentation": false,
 	"editor.insertSpaces": false,
 	"vetur.format.options.useTabs": true,
-	"vetur.format.options.tabSize": 4
+	"vetur.format.options.tabSize": 4,
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "compressed",
+			"extensionName": ".min.css",
+			"savePath": "/dist/style"
+		}
+	]
 }

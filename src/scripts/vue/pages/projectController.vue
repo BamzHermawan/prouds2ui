@@ -1,7 +1,7 @@
 <template>
 	<section class="columns">
 		<div
-			class="column is-3-desktop is-4-tablet is-hidden-touch has-background-light"
+			class="column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 		>
 			<section class="info">
 				<p class="title is-size-5" style="margin-bottom:10px;">
@@ -97,7 +97,7 @@
 				</article>
 			</section>
 		</div>
-		<div class="column">
+		<div class="column is-section">
 			<section class="main-content">
 				<p class="title is-size-3">BU: Project Management Office</p>
 				<p class="subtitle is-size-5">📁 Total Project [ 100 ]</p>
@@ -106,19 +106,19 @@
 			<section class="info">
 				<nav class="level is-mobile">
 					<div class="level-item has-text-centered">
-						<div class="box box-filter">
+						<div class="box is-level-widget">
 							<p class="heading">Behind Schedule</p>
 							<p class="title">📁 40</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
-						<div class="box box-filter">
+						<div class="box is-level-widget">
 							<p class="heading">BAST Delay</p>
 							<p class="title">📁 20</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
-						<div class="box box-filter">
+						<div class="box is-level-widget">
 							<p class="heading">TOP Delay</p>
 							<p class="title">📁 10</p>
 						</div>
@@ -128,18 +128,6 @@
 		</div>
 	</section>
 </template>
-
-<style lang="scss">
-.column {
-	padding: 0px;
-	min-height: calc(100vh - 52px);
-}
-
-.box-filter {
-	min-width: 150px;
-	width: 100%;
-}
-</style>
 
 <script>
 export default {};
