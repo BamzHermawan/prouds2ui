@@ -110,18 +110,23 @@
 					</article>
 					<hr style="margin-top: 5px;" />
 					<log
-						v-for="n in 10"
-						:key="n"
-						title="Belajar Pentaho"
-						subtitle="@adewiranata - 11 juli 19 : 09.20"
-						thumbnail=""
+						v-for="(n, index) in pageOffset"
+						:key="index"
+						:title="activity[index].title"
+						:subtitle="activity[index].subtitle"
+						:thumbnail="activity[index].thumbnail"
+						class="animated fadeIn"
 					>
-						<div slot="body">
-							Hari ini saya dengan senang hati belajar pentaho.
-							walau susah, tapi saya harus senang dalam belajar.
-							Mantafffff!.
-						</div>
+						<p slot="body">
+							{{ activity[index].body }}
+						</p>
 					</log>
+					<div ref="infinitescrolltrigger" id="scroll-trigger"></div>
+					<section>
+						<b-notification :closable="false">
+							<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
+						</b-notification>
+					</section>
 				</section>
 			</div>
 			<div
@@ -268,6 +273,37 @@ section.activity {
 	z-index: 30;
 }
 
+.footer {
+	position: relative;
+	width: 400px;
+
+	#scrool-trigger {
+		height: 100px;
+	}
+
+	.circle-loader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		widows: 50px;
+		height: 50px;
+		border-radius: 50%;
+		border: 5px solid rgba(255, 255, 255, 0.2);
+		border-top: 5px solid #000000;
+		animation: animate 1.5s infinite linear;
+	}
+}
+
+@keyframes animate {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
 @media only screen and (max-width: 768px) {
 }
 </style>
@@ -276,6 +312,7 @@ section.activity {
 import "../../../styles/main.scss";
 import log from "../components/mediaLog";
 import vChart from "../components/highchart";
+import { setTimeout } from "timers";
 export default {
 	props: {
 		showNewprojectNotif: Boolean,
@@ -292,11 +329,56 @@ export default {
 	},
 	data() {
 		return {
+			isLoading: false,
+			isFullPage: false,
 			showInfo: false,
 			showAction: false,
 			entry: ENTRY,
-			utilization: UTILIZATION
+			utilization: UTILIZATION,
+			activity: ACTIVITY,
+			currentPage: 1,
+			maxPerPage: 10,
+			totalResults: 100,
 		};
+	},
+	computed: {
+		pageCount() {
+			return Math.ceil(this.activity.length / this.maxPerPage);
+		},
+		pageOffset() {
+			var a = this.maxPerPage * this.currentPage;
+			var b;
+			if (this.activity.length > a) {
+				b = this.activity.length - a;
+				return this.activity.length - b;
+			} else {
+				b = a - this.activity.length;
+				return a - b;
+			}
+			// return this.maxPerPage * this.currentPage;
+		}
+	},
+	methods: {
+		scrollTrigger() {
+			const observer = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					if (
+						entry.intersectionRatio > 0 &&
+						this.currentPage < this.pageCount
+					) {
+						this.isLoading = true;
+						setTimeout(() => {
+							this.currentPage += 1;
+							this.isLoading = false;
+						}, 2000);
+					}
+				});
+			});
+			observer.observe(this.$refs.infinitescrolltrigger);
+		}
+	},
+	mounted() {
+		this.scrollTrigger();
 	}
 };
 </script>
