@@ -5,7 +5,7 @@
 				class="column is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 			>
 				<figure class="profile-user">
-					<img :src="imageProfile" alt="user-profile-image" />
+					<img src="https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg" alt="user-profile-image" />
 				</figure>
 
 				<section class="info user-info">
@@ -31,9 +31,24 @@
 						type="is-dark"
 						:closable="false"
 					>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Fusce id fermentum quam. Proin sagittis, nibh id
-						hendrerit imperdiet, elit sapien laoreet elit
+						<v-chart
+							:data="entry"
+							id="container"
+							title="Entry"
+							:color="['#d36464', '#333']"
+						></v-chart>
+					</b-message>
+					<b-message
+						title="📈 My Performance"
+						type="is-dark"
+						:closable="false"
+					>
+						<v-chart
+							:data="utilization"
+							id="container2"
+							title="Utilization"
+							:color="['#d36464', '#333']"
+						></v-chart>
 					</b-message>
 				</section>
 			</div>
@@ -95,18 +110,31 @@
 					</article>
 					<hr style="margin-top: 5px;" />
 					<log
-						v-for="n in 10"
-						:key="n"
-						title="Belajar Pentaho"
-						subtitle="@adewiranata - 11 juli 19 : 09.20"
-						thumbnail="http://mantap:8080/media/user.jpeg"
+						v-for="(n, index) in pageOffset"
+						:key="index"
+						:title="activity[index].title"
+						:subtitle="activity[index].subtitle"
+						:thumbnail="activity[index].thumbnail"
+						class="animated fadeIn"
 					>
-						<div slot="body">
-							Hari ini saya dengan senang hati belajar pentaho.
-							walau susah, tapi saya harus senang dalam belajar.
-							Mantafffff!.
-						</div>
+						<p slot="body">
+							{{ activity[index].body }}
+						</p>
 					</log>
+					<div ref="infinitescrolltrigger" id="scroll-trigger"></div>
+					<hr style="margin-top: 5px;" />
+					<section v-if="showloader">
+						<b-notification
+							style="background-color:#fff; height:50px"
+							:closable="false"
+						>
+							<b-loading
+								:is-full-page="isFullPage"
+								:active.sync="isLoading"
+								:can-cancel="true"
+							></b-loading>
+						</b-notification>
+					</section>
 				</section>
 			</div>
 			<div
@@ -247,6 +275,23 @@ section.activity {
 	z-index: 30;
 }
 
+.footer {
+	position: relative;
+	width: 400px;
+	#scroll-trigger {
+		height: 100px;
+	}
+}
+
+@keyframes animate {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
 @media only screen and (max-width: 768px) {
 }
 </style>
@@ -255,6 +300,9 @@ section.activity {
 <script>
 import "../../../styles/main.scss";
 import log from "../components/mediaLog";
+import vChart from "../components/highchart";
+import { setTimeout } from "timers";
+
 export default {
 	props: {
 		showNewprojectNotif: Boolean,
@@ -262,16 +310,67 @@ export default {
 		imageProfile: String,
 		username: String,
 		nik: String,
-		bu: String
+		bu: String,
+		color: String
 	},
 	components: {
-		log
+		log,
+		vChart
 	},
 	data() {
 		return {
+			isLoading: false,
+			isFullPage: false,
 			showInfo: false,
-			showAction: false
+			showAction: false,
+			entry: ENTRY,
+			utilization: UTILIZATION,
+			activity: ACTIVITY,
+			currentPage: 1,
+			maxPerPage: 10,
+			totalResults: 100,
+			showloader: false
 		};
+	},
+	computed: {
+		pageCount() {
+			return Math.ceil(this.activity.length / this.maxPerPage);
+		},
+		pageOffset() {
+			var a = this.maxPerPage * this.currentPage;
+			var b;
+			if (this.activity.length > a) {
+				b = this.activity.length - a;
+				return this.activity.length - b;
+			} else {
+				b = a - this.activity.length;
+				return a - b;
+			}
+		}
+	},
+	methods: {
+		scrollTrigger() {
+			const observer = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					if (
+						entry.intersectionRatio > 0 &&
+						this.currentPage < this.pageCount
+					) {
+						this.showloader = true;
+						this.isLoading = true;
+						setTimeout(() => {
+							this.currentPage += 1;
+							this.isLoading = false;
+							this.showloader = false;
+						}, 2000);
+					}
+				});
+			});
+			observer.observe(this.$refs.infinitescrolltrigger);
+		}
+	},
+	mounted() {
+		this.scrollTrigger();
 	}
 };
 </script>
