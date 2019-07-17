@@ -122,9 +122,17 @@
 						</p>
 					</log>
 					<div ref="infinitescrolltrigger" id="scroll-trigger"></div>
-					<section>
-						<b-notification :closable="false">
-							<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
+					<hr style="margin-top: 5px;" />
+					<section v-if="showloader">
+						<b-notification
+							style="background-color:#fff; height:50px"
+							:closable="false"
+						>
+							<b-loading
+								:is-full-page="isFullPage"
+								:active.sync="isLoading"
+								:can-cancel="true"
+							></b-loading>
 						</b-notification>
 					</section>
 				</section>
@@ -277,21 +285,8 @@ section.activity {
 	position: relative;
 	width: 400px;
 
-	#scrool-trigger {
+	#scroll-trigger {
 		height: 100px;
-	}
-
-	.circle-loader {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		widows: 50px;
-		height: 50px;
-		border-radius: 50%;
-		border: 5px solid rgba(255, 255, 255, 0.2);
-		border-top: 5px solid #000000;
-		animation: animate 1.5s infinite linear;
 	}
 }
 
@@ -339,6 +334,7 @@ export default {
 			currentPage: 1,
 			maxPerPage: 10,
 			totalResults: 100,
+			showloader: false
 		};
 	},
 	computed: {
@@ -355,7 +351,6 @@ export default {
 				b = a - this.activity.length;
 				return a - b;
 			}
-			// return this.maxPerPage * this.currentPage;
 		}
 	},
 	methods: {
@@ -366,10 +361,12 @@ export default {
 						entry.intersectionRatio > 0 &&
 						this.currentPage < this.pageCount
 					) {
+						this.showloader = true;
 						this.isLoading = true;
 						setTimeout(() => {
 							this.currentPage += 1;
 							this.isLoading = false;
+							this.showloader = false;
 						}, 2000);
 					}
 				});
