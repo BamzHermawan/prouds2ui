@@ -5,7 +5,7 @@
 				class="column is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 			>
 				<figure class="profile-user">
-					<img :src="imageProfile" alt="user-profile-image" />
+					<img src="https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg" alt="user-profile-image" />
 				</figure>
 
 				<section class="info user-info">
