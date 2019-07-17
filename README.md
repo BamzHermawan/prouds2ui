@@ -2,8 +2,8 @@
 
 Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut adalah JS Plugins yang digunakan:
 
-* [Highchart.js](https://www.highcharts.com/)
 * [VueJS](https://vuejs.org/)
+* [Highchart.js](https://www.highcharts.com/)
 * [AxiosJS](https://github.com/axios/axios)
 
 ## Getting started
@@ -16,37 +16,43 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 * Berikut adalah perintah yang dapat digunakan setelah meng-install dependensi:
     * `yarn ngoding`: Memulai parcel environtmen (Hot Reloading) untuk mulai ngoding 🔥 (outuput: dist folder).
     * `yarn mantap`: Build Project ke HTML untuk siap di gabungkan ke CodeIgniter 😎 (output: release folder).
+	* `yarn demo`: Command ini akan menjalankan `yarn mantap` kemudian menjalankan **PHP SERVER** pada release folder.
     * `yarn bersih`: Hapus dist folder untuk Project build yang **Bersih** dan **Sempurna** 🤣.
 
 > **⚠ Note:**
 > `yarn ngoding` Perintah ini hanya untuk Development saja. **JANGAN** gunakan pada server production!.
+> `yarn demo` Menggunakan PHP untuk menjalankan `localhost:5501`. Pastikan kamu sudah menginstall PHP ^5.6.
 
 ## Project Hierarchy
 
 ```
 📦 prouds2ui
-├─ 📄 .vscode [Visual Studio Configuration]
-|  📄 .dist [Development Server Root] *May not exist in first cloning
+├─ 📁 dist [Development Server Root]
 ├─ 📂 release [Build Output Directory]
 |	├─ 📁 login [Login Page Directory]
+| 	├─ 📁 media [Images Directory]
 |	├─ 📁 pages [HTML Page Directory]
 |	├─ 📁 src [JS and CSS Directory]
-| 	└─ 📁 media [Images Directory]
+| 	└─ 📄 index.php [Demo Login PHP Script]
 ├─ 📂 src [Working Directory]
 |	├─ 📁 login
 |	├─ 📁 pages
-|	├─ 📂 scripts
-|   |	└─ 📂 vue
-|   |		├─ 📁 components
-|   |		└─ 📁 pages
-|   └─ 📁 styles
-├─ 📄 .gitignore
+|	├─ 📁 styles
+|	└─ 📂 scripts
+|   	└─ 📂 vue
+|   		├─ 📁 components
+|   		└─ 📁 pages
 ├─ 📄 .CONTRIBUTING.md
+├─ 📄 .gitignore
+├─ 📄 .vscode
 ├─ 📄 package.json
 ├─ 📄 README.md
 ├─ 📄 yarn-error.log
 └─ 📄 yarn.lock
 ```
 
-Last Edit: 16 Juli 2019.
+> **⚠ Note:**
+> `dist` folder may not exist in the fisrt time you clone this repository.
+
+Last Edit: 17 Juli 2019.
 Oleh: [Ario Widiatmoko](https://github.com/ariomoklo)
