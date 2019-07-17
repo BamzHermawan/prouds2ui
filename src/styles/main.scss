@@ -1,7 +1,7 @@
 // @charset "utf-8";
 @import "~bulma/sass/utilities/_all";
 
-// ---------------------------------------------
+// VARIABLES ---------------------------------------------
 
 // Font Import from google Font
 @import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed&display=swap');
@@ -35,6 +35,35 @@ $colors: (
 );
 
 $tablet: 719px;
+
+// NAVBAR ----------------------------------------------
+
+.navbar {
+	margin-bottom: 10px;
+}
+
+.navbar-item {
+	font-family: $roboto;
+	text-transform: uppercase;
+}
+
+.navbar-burger {
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 480px) {
+	.navbar {
+		margin-bottom: 20px;
+	}
+
+	.navbar-end {
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top-color: $primary;
+		border-top-width: 2px;
+		border-top-style: solid;
+	}
+}
 
 // ----------------------------------------------
 
@@ -75,6 +104,37 @@ section.info {
 
 section.main-content {
 	padding: 32px 32px;
+}
+
+section.activity {
+	padding: 18px 32px;
+}
+
+.column.is-section {
+	padding: 0px;
+	min-height: calc(100vh - 52px);
+}
+
+.profile-user {
+	width: 100%;
+	height: 185px;
+	overflow: hidden;
+}
+
+.button.is-list {
+	text-align: left;
+	display: block;
+}
+
+.project-list {
+	li {
+		margin-bottom: 5px;
+	}
+}
+
+.box.is-level-widget {
+	min-width: 150px;
+	width: 100%;
 }
 
 [disabled] {

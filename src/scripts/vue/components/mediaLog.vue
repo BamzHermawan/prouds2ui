@@ -1,9 +1,7 @@
 <template>
 	<article class="media">
 		<figure v-if="thumbnail !== undefined" class="media-left">
-			<p class="image is-64x64">
-				<img :src="thumbnail" />
-			</p>
+			<img :src="thumbnail" class="image is-64x64" />
 		</figure>
 		<div class="media-content">
 			<div class="content">
@@ -27,10 +25,6 @@
 		</div>
 	</article>
 </template>
-
-<style lang="scss">
-@import "../../../styles/main.scss";
-</style>
 
 <script>
 export default {
