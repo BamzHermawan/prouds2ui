@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
-		<meta name="description" content="HOME for PROUDS 2 Web Application">
-		<title>HOME | PROUDS 2</title>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-		<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
-		<link rel="stylesheet" href="../styles/main.scss">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<title>HOME | PROUDS 2</title>
 
-	<body>
-		<div id="vapp">
-			<nav-bar :left-menu="[
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../styles/main.scss">
+</head>
+
+<body>
+	<div id="vapp">
+		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
 				{ label: 'projects', link: '#project', icon:'', active: true },
 				{ label: 'financial', link: '#financial', icon:'', active: false },
@@ -23,11 +24,12 @@
 			]" :right-menu="[
 				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="index.html"></nav-bar>
+			]" home-link="home.html"></nav-bar>
 
-			<content-page></content-page>
-		</div>
+		<content-page></content-page>
+	</div>
 
-		<script src="../scripts/projects.js"></script>
-	</body>
+	<script src="../scripts/projects.js"></script>
+</body>
+
 </html>

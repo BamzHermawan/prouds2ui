@@ -9,7 +9,9 @@
 				</figure>
 
 				<section class="info user-info">
-					<h5 class="is-size-4 has-text-primary">{{ username }}</h5>
+					<h5 class="is-size-4 has-text-primary">
+						{{ username }}
+					</h5>
 					<p class="is-size-5">
 						<span
 							class="mdi mdi-account-box-outline in-left"
@@ -129,7 +131,7 @@
 							:closable="false"
 						>
 							<b-loading
-								:is-full-page="isFullPage"
+								:is-full-page="false"
 								:active.sync="isLoading"
 								:can-cancel="true"
 							></b-loading>
@@ -183,7 +185,7 @@
 					<div class="content">
 						<p class="title is-6">My Performance</p>
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
+							aLorem ipsum dolor sit amet consectetur adipisicing
 							elit. Soluta illo, optio aliquid cum provident sit
 							minus consequuntur alias, dicta commodi sed
 							quibusdam tempora velit recusandae voluptatem. Nulla
@@ -313,5 +315,10 @@ export default {
 		this.scrollTrigger();
 	}
 };
+
+// // IE
+// window.attachEvent("onload", function() {
+// 	console.log("belom kelar");
+// });
 </script>
 

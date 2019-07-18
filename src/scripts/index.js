@@ -9,13 +9,13 @@ new Vue({
 		NavBar, Dashboard
 	},
 	el: '#vapp',
-	data(){
+	data() {
 		return {
 			hello: 'Hello World'
 		}
 	},
 	computed: {
-		sayHi(){
+		sayHi() {
 			return this.hello;
 		}
 	}
