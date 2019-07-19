@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
-		<meta name="description" content="HOME for PROUDS 2 Web Application">
-		<title>HOME | PROUDS 2</title>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-		<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
-		<link rel="stylesheet" href="../styles/main.scss">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<title>HOME | PROUDS 2</title>
 
-	<body>
-		<div id="vapp">
-			<nav-bar :left-menu="[
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../styles/main.scss">
+</head>
+
+<body>
+	<div id="vapp">
+		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
 				{ label: 'projects', link: '#project', icon:'', active: true },
 				{ label: 'financial', link: '#financial', icon:'', active: false },
@@ -25,212 +26,213 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="index.html"></nav-bar>
 
-			<content-page></content-page>
-		</div>
+		<content-page></content-page>
+	</div>
 
-		<script>
-			const
-				DATA = [
-					{
-						"project_name": "SUNT IPSUM",
-						"iwo": "P-CUPIDATAT-100A",
-						"pm": "Ball Whitehead",
-						"status": "Delay",
-						"progress": "65%"
-					},
-					{
-						"project_name": "ADIPISICING IN",
-						"iwo": "P-QUI-101A",
-						"pm": "Lindsay Robles",
-						"status": "Delay",
-						"progress": "23%"
-					},
-					{
-						"project_name": "NISI PARIATUR",
-						"iwo": "P-PROIDENT-102A",
-						"pm": "Bailey Gates",
-						"status": "Delay",
-						"progress": "33%"
-					},
-					{
-						"project_name": "ANIM CONSECTETUR",
-						"iwo": "P-LABORIS-103A",
-						"pm": "Hazel Roy",
-						"status": "On Progress",
-						"progress": "70%"
-					},
-					{
-						"project_name": "SINT ELIT",
-						"iwo": "P-DO-104B",
-						"pm": "Hale Collins",
-						"status": "On Progress",
-						"progress": "77%"
-					},
-					{
-						"project_name": "EA ESSE",
-						"iwo": "P-EXERCITATION-105C",
-						"pm": "Melinda Cline",
-						"status": "Delay",
-						"progress": "75%"
-					},
-					{
-						"project_name": "EXCEPTEUR FUGIAT",
-						"iwo": "P-NOSTRUD-106B",
-						"pm": "Chasity Wilkerson",
-						"status": "On Progress",
-						"progress": "29%"
-					},
-					{
-						"project_name": "CONSEQUAT CONSECTETUR",
-						"iwo": "P-AUTE-107B",
-						"pm": "Dunn Cooley",
-						"status": "On Progress",
-						"progress": "48%"
-					},
-					{
-						"project_name": "LABORUM ULLAMCO",
-						"iwo": "P-CUPIDATAT-108C",
-						"pm": "Nichols Best",
-						"status": "Delay",
-						"progress": "54%"
-					},
-					{
-						"project_name": "ULLAMCO IN",
-						"iwo": "P-AMET-109A",
-						"pm": "Sears Benton",
-						"status": "On Progress",
-						"progress": "40%"
-					},
-					{
-						"project_name": "LABORIS REPREHENDERIT",
-						"iwo": "P-EST-110A",
-						"pm": "Fay Mccormick",
-						"status": "On Progress",
-						"progress": "73%"
-					},
-					{
-						"project_name": "MOLLIT SINT",
-						"iwo": "P-NISI-111A",
-						"pm": "Ramona Murphy",
-						"status": "On Progress",
-						"progress": "46%"
-					},
-					{
-						"project_name": "QUIS CULPA",
-						"iwo": "P-MAGNA-112B",
-						"pm": "Cindy Austin",
-						"status": "Delay",
-						"progress": "42%"
-					},
-					{
-						"project_name": "VELIT SIT",
-						"iwo": "P-ANIM-113C",
-						"pm": "Chandra Nolan",
-						"status": "Delay",
-						"progress": "41%"
-					},
-					{
-						"project_name": "ESSE FUGIAT",
-						"iwo": "P-SINT-114A",
-						"pm": "Clara Kelly",
-						"status": "Delay",
-						"progress": "42%"
-					},
-					{
-						"project_name": "INCIDIDUNT AD",
-						"iwo": "P-ANIM-115B",
-						"pm": "English Kelley",
-						"status": "Delay",
-						"progress": "46%"
-					},
-					{
-						"project_name": "COMMODO SUNT",
-						"iwo": "P-ESSE-116A",
-						"pm": "Boone Myers",
-						"status": "On Progress",
-						"progress": "35%"
-					},
-					{
-						"project_name": "VELIT LABORE",
-						"iwo": "P-NULLA-117B",
-						"pm": "Gretchen Petty",
-						"status": "On Progress",
-						"progress": "25%"
-					},
-					{
-						"project_name": "ESSE PARIATUR",
-						"iwo": "P-DO-118B",
-						"pm": "Oneill Sharp",
-						"status": "On Progress",
-						"progress": "54%"
-					},
-					{
-						"project_name": "DO LOREM",
-						"iwo": "P-ANIM-119C",
-						"pm": "Susanna Garrett",
-						"status": "On Progress",
-						"progress": "48%"
-					},
-					{
-						"project_name": "QUIS IRURE",
-						"iwo": "P-EU-120B",
-						"pm": "Berta Carson",
-						"status": "On Progress",
-						"progress": "39%"
-					},
-					{
-						"project_name": "LABORIS ADIPISICING",
-						"iwo": "P-IPSUM-121B",
-						"pm": "Rhoda Bryant",
-						"status": "On Progress",
-						"progress": "42%"
-					},
-					{
-						"project_name": "IPSUM CILLUM",
-						"iwo": "P-UT-122B",
-						"pm": "Barber Camacho",
-						"status": "On Progress",
-						"progress": "59%"
-					},
-					{
-						"project_name": "VOLUPTATE QUIS",
-						"iwo": "P-CULPA-123A",
-						"pm": "Tamara Blankenship",
-						"status": "Delay",
-						"progress": "36%"
-					},
-					{
-						"project_name": "ESSE ALIQUA",
-						"iwo": "P-OFFICIA-124A",
-						"pm": "Cunningham Campos",
-						"status": "On Progress",
-						"progress": "44%"
-					}
-				],
-				
-				FIELDS = [
-					{
-						field: "project_name",
-						label: "PROJECT NAME"
-					},
-					{
-						field: "iwo",
-						label: "IWO"
-					},
-					{
-						field: "pm",
-						label: "PM"
-					},
-					{
-						field: "status",
-						label: "STATUS"
-					},
-					{
-						field: "progress",
-						label: "PROGRESS"
-					}
-				]
-		</script>
-		<script src="../scripts/projects.js"></script>
-	</body>
+	<script>
+		const
+			DATA = [
+				{
+					"project_name": "SUNT IPSUM",
+					"iwo": "P-CUPIDATAT-100A",
+					"pm": "Ball Whitehead",
+					"status": "Delay",
+					"progress": "65%"
+				},
+				{
+					"project_name": "ADIPISICING IN",
+					"iwo": "P-QUI-101A",
+					"pm": "Lindsay Robles",
+					"status": "Delay",
+					"progress": "23%"
+				},
+				{
+					"project_name": "NISI PARIATUR",
+					"iwo": "P-PROIDENT-102A",
+					"pm": "Bailey Gates",
+					"status": "Delay",
+					"progress": "33%"
+				},
+				{
+					"project_name": "ANIM CONSECTETUR",
+					"iwo": "P-LABORIS-103A",
+					"pm": "Hazel Roy",
+					"status": "On Progress",
+					"progress": "70%"
+				},
+				{
+					"project_name": "SINT ELIT",
+					"iwo": "P-DO-104B",
+					"pm": "Hale Collins",
+					"status": "On Progress",
+					"progress": "77%"
+				},
+				{
+					"project_name": "EA ESSE",
+					"iwo": "P-EXERCITATION-105C",
+					"pm": "Melinda Cline",
+					"status": "Delay",
+					"progress": "75%"
+				},
+				{
+					"project_name": "EXCEPTEUR FUGIAT",
+					"iwo": "P-NOSTRUD-106B",
+					"pm": "Chasity Wilkerson",
+					"status": "On Progress",
+					"progress": "29%"
+				},
+				{
+					"project_name": "CONSEQUAT CONSECTETUR",
+					"iwo": "P-AUTE-107B",
+					"pm": "Dunn Cooley",
+					"status": "On Progress",
+					"progress": "48%"
+				},
+				{
+					"project_name": "LABORUM ULLAMCO",
+					"iwo": "P-CUPIDATAT-108C",
+					"pm": "Nichols Best",
+					"status": "Delay",
+					"progress": "54%"
+				},
+				{
+					"project_name": "ULLAMCO IN",
+					"iwo": "P-AMET-109A",
+					"pm": "Sears Benton",
+					"status": "On Progress",
+					"progress": "40%"
+				},
+				{
+					"project_name": "LABORIS REPREHENDERIT",
+					"iwo": "P-EST-110A",
+					"pm": "Fay Mccormick",
+					"status": "On Progress",
+					"progress": "73%"
+				},
+				{
+					"project_name": "MOLLIT SINT",
+					"iwo": "P-NISI-111A",
+					"pm": "Ramona Murphy",
+					"status": "On Progress",
+					"progress": "46%"
+				},
+				{
+					"project_name": "QUIS CULPA",
+					"iwo": "P-MAGNA-112B",
+					"pm": "Cindy Austin",
+					"status": "Delay",
+					"progress": "42%"
+				},
+				{
+					"project_name": "VELIT SIT",
+					"iwo": "P-ANIM-113C",
+					"pm": "Chandra Nolan",
+					"status": "Delay",
+					"progress": "41%"
+				},
+				{
+					"project_name": "ESSE FUGIAT",
+					"iwo": "P-SINT-114A",
+					"pm": "Clara Kelly",
+					"status": "Delay",
+					"progress": "42%"
+				},
+				{
+					"project_name": "INCIDIDUNT AD",
+					"iwo": "P-ANIM-115B",
+					"pm": "English Kelley",
+					"status": "Delay",
+					"progress": "46%"
+				},
+				{
+					"project_name": "COMMODO SUNT",
+					"iwo": "P-ESSE-116A",
+					"pm": "Boone Myers",
+					"status": "On Progress",
+					"progress": "35%"
+				},
+				{
+					"project_name": "VELIT LABORE",
+					"iwo": "P-NULLA-117B",
+					"pm": "Gretchen Petty",
+					"status": "On Progress",
+					"progress": "25%"
+				},
+				{
+					"project_name": "ESSE PARIATUR",
+					"iwo": "P-DO-118B",
+					"pm": "Oneill Sharp",
+					"status": "On Progress",
+					"progress": "54%"
+				},
+				{
+					"project_name": "DO LOREM",
+					"iwo": "P-ANIM-119C",
+					"pm": "Susanna Garrett",
+					"status": "On Progress",
+					"progress": "48%"
+				},
+				{
+					"project_name": "QUIS IRURE",
+					"iwo": "P-EU-120B",
+					"pm": "Berta Carson",
+					"status": "On Progress",
+					"progress": "39%"
+				},
+				{
+					"project_name": "LABORIS ADIPISICING",
+					"iwo": "P-IPSUM-121B",
+					"pm": "Rhoda Bryant",
+					"status": "On Progress",
+					"progress": "42%"
+				},
+				{
+					"project_name": "IPSUM CILLUM",
+					"iwo": "P-UT-122B",
+					"pm": "Barber Camacho",
+					"status": "On Progress",
+					"progress": "59%"
+				},
+				{
+					"project_name": "VOLUPTATE QUIS",
+					"iwo": "P-CULPA-123A",
+					"pm": "Tamara Blankenship",
+					"status": "Delay",
+					"progress": "36%"
+				},
+				{
+					"project_name": "ESSE ALIQUA",
+					"iwo": "P-OFFICIA-124A",
+					"pm": "Cunningham Campos",
+					"status": "On Progress",
+					"progress": "44%"
+				}
+			],
+
+			FIELDS = [
+				{
+					field: "project_name",
+					label: "PROJECT NAME"
+				},
+				{
+					field: "iwo",
+					label: "IWO"
+				},
+				{
+					field: "pm",
+					label: "PM"
+				},
+				{
+					field: "status",
+					label: "STATUS"
+				},
+				{
+					field: "progress",
+					label: "PROGRESS"
+				}
+			]
+	</script>
+	<script src="../scripts/projects.js"></script>
+</body>
+
 </html>
