@@ -5,11 +5,14 @@
 				<p class="card-header-title">
 					{{ title }}
 				</p>
-				<b-switch v-model="showAll" style="margin-right:15px;"
-					>Show All</b-switch
-				>
+				<slot name="head-right">
+					<b-switch v-model="showAll" style="margin-right:15px;"
+						>Show All</b-switch
+					>
+				</slot>
 			</header>
 			<div class="card-content">
+				<slot name="top-body"></slot>
 				<nav class="level">
 					<div class="level-left">
 						<b-field>
@@ -24,29 +27,35 @@
 						</b-field>
 					</div>
 					<div class="level-right">
-						<div class="field is-grouped">
-							<div
-								v-show="search !== ''"
-								class="control animated fadeIn"
-							>
-								<div class="tags has-addons are-medium">
-									<span class="tag is-dark"
-										>Search Result</span
-									>
-									<span class="tag is-primary">{{
-										filteredlist.length
-									}}</span>
+						<slot
+							name="top-right"
+							:search="search"
+							:page="currentPage"
+						>
+							<div class="field is-grouped">
+								<div
+									v-show="search !== ''"
+									class="control animated fadeIn"
+								>
+									<div class="tags has-addons are-medium">
+										<span class="tag is-dark"
+											>Search Result</span
+										>
+										<span class="tag is-primary">{{
+											filteredlist.length
+										}}</span>
+									</div>
+								</div>
+								<div class="control">
+									<div class="tags has-addons are-medium">
+										<span class="tag is-dark">Total</span>
+										<span class="tag is-primary">{{
+											data.length
+										}}</span>
+									</div>
 								</div>
 							</div>
-							<div class="control">
-								<div class="tags has-addons are-medium">
-									<span class="tag is-dark">Projects</span>
-									<span class="tag is-primary">{{
-										data.length
-									}}</span>
-								</div>
-							</div>
-						</div>
+						</slot>
 					</div>
 				</nav>
 				<b-table
@@ -62,7 +71,15 @@
 					aria-current-label="Current page"
 					:data="filteredlist"
 					:columns="fields"
-				></b-table>
+				>
+					<template slot-scope="props">
+						<slot :row="props.row"></slot>
+					</template>
+
+					<template slot="empty">
+						<slot name="empty"></slot>
+					</template>
+				</b-table>
 			</div>
 		</div>
 	</div>
@@ -101,9 +118,15 @@ export default {
 		filteredlist() {
 			let self = this;
 			return self.data.filter(post => {
-				let found = Object.keys(post).find(key =>
-					post[key].toLowerCase().includes(self.search.toLowerCase())
-				);
+				let found = Object.keys(post).find(key => {
+					if (typeof post[key] === "string") {
+						return post[key]
+							.toLowerCase()
+							.includes(self.search.toLowerCase());
+					} else {
+						return false;
+					}
+				});
 
 				return found;
 			});

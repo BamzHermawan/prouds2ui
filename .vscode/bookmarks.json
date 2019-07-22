@@ -1,16 +1,26 @@
 [
 	{
-		"path": "$ROOTPATH$\\src\\scripts\\vue\\login.vue",
+		"path": "$ROOTPATH$\\src\\scripts\\vue\\pages\\projects\\allocationController.vue",
 		"bookmarks": [
 			{
-				"line": 9,
-				"column": 9,
-				"label": "Login Form"
+				"line": 4,
+				"column": 6,
+				"label": ""
 			},
 			{
-				"line": 49,
-				"column": 10,
-				"label": "Login Styling"
+				"line": 97,
+				"column": 24,
+				"label": ""
+			},
+			{
+				"line": 144,
+				"column": 11,
+				"label": ""
+			},
+			{
+				"line": 431,
+				"column": 8,
+				"label": ""
 			}
 		]
 	}

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+
+	<title>Resource Allocation | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../styles/main.scss">
+</head>
+
+<body>
+	<section class="hero is-primary is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Resource Allocation
+				</h1>
+				<h2 class="subtitle has-text-warning">
+					Development Prouds 2
+				</h2>
+			</div>
+			<br>
+			<div class="container">
+				<p class="is-size-5">
+					🏢 Project Management Office <span style="margin: 0px 14px;">|</span> 👨‍💼 PM. Ade Wiranata Putra
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="vapp" class="section">
+		<content-page 
+			project-id="My-Yeaaaah-Project-ID"
+			action-new-role="http://localhost:5501/demo/post_detect.php?how=new-role"
+			action-new-member="http://localhost:5501/demo/post_detect.php?how=new-member"
+			action-change-role="http://localhost:5501/demo/post_detect.php?how=change-role"
+			alert-message="Waduh Bahaya!"
+			alert-type="is-danger"
+		>
+			<template slot="role-option">
+				<option selected style="display: none;"></option>
+				<option>Programmer Analyst</option>
+				<option>Programmer</option>
+				<option>Engineer</option>
+				<option>Senior Business Analyst</option>
+				<option>Junior Tester</option>
+				<option>Quality Assurance</option>
+				<option>Database Administrator</option>
+				<option>Technical Writer</option>
+			</template>
+		</content-page>
+	</section>
+
+	<script>
+		const RESOURCE = [
+				{
+					"role": "Programmer",
+					"level": "Junior",
+					"member": [
+						{
+							"nik": "P2010942",
+							"nama": "Case Dudley",
+							"bu": "Songbird",
+							"status": false,
+							"start": "18/10/2010",
+							"end": "03/03/2013",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
+						},
+						{
+							"nik": "P2000290",
+							"nama": "Marianne Hubbard",
+							"bu": "Zanymax",
+							"status": true,
+							"start": "27/12/2013",
+							"end": "24/03/2012",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
+						},
+						{
+							"nik": "S2018172",
+							"nama": "Herminia Ward",
+							"bu": "Cognicode",
+							"status": true,
+							"start": "17/03/2006",
+							"end": "04/03/2016",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=deserunt"
+						}
+					],
+					"plan": 1
+				},
+				{
+					"role": "Technical Writer",
+					"level": "Junior",
+					"member": [
+						{
+							"nik": "CRS2018356",
+							"nama": "Mcmahon Christian",
+							"bu": "Medifax",
+							"status": false,
+							"start": "25/03/2010",
+							"end": "18/05/2010",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolor"
+						}
+					],
+					"plan": 1
+				},
+				{
+					"role": "Junior Tester",
+					"level": "",
+					"member": [
+						{
+							"nik": "CRS2018300",
+							"nama": "Clarissa Snider",
+							"bu": "Medifax",
+							"status": false,
+							"start": "25/03/2010",
+							"end": "18/05/2010",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolorcl"
+						}
+					],
+					"plan": 1
+				},
+				{
+					"role": "Database Administrator",
+					"level": "Senior",
+					"member": [
+						{
+							"nik": "CRS2012829",
+							"nama": "Valenzuela Mccarthy",
+							"bu": "Comtrak",
+							"status": false,
+							"start": "07/06/2005",
+							"end": "06/10/2010",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
+						},
+						{
+							"nik": "CRS2016181",
+							"nama": "Rosales Rivas",
+							"bu": "Apexia",
+							"status": false,
+							"start": "19/02/2016",
+							"end": "30/11/2015",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=esse"
+						},
+						{
+							"nik": "CRS2004106",
+							"nama": "Morgan Riddle",
+							"bu": "Speedbolt",
+							"status": false,
+							"start": "12/04/2013",
+							"end": "03/07/2011",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nostrud"
+						},
+						{
+							"nik": "CRS2011824",
+							"nama": "Mcknight Humphrey",
+							"bu": "Overfork",
+							"status": true,
+							"start": "09/05/2016",
+							"end": "01/02/2015",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nulla"
+						}
+					],
+					"plan": 5
+				},
+				{
+					"role": "Quality Assurance",
+					"level": "Junior",
+					"member": [
+						{
+							"nik": "P2012747",
+							"nama": "Woods Newton",
+							"bu": "Quadeebo",
+							"status": true,
+							"start": "06/01/2017",
+							"end": "19/06/2018",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=tempor"
+						},
+						{
+							"nik": "S2013369",
+							"nama": "Gwen Bauer",
+							"bu": "Assurity",
+							"status": false,
+							"start": "27/08/2013",
+							"end": "13/09/2014",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
+						},
+						{
+							"nik": "CRS2013465",
+							"nama": "Eileen Burns",
+							"bu": "Zentix",
+							"status": false,
+							"start": "16/01/2012",
+							"end": "30/12/2018",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nostrud"
+						},
+						{
+							"nik": "P2015981",
+							"nama": "Doreen Woodward",
+							"bu": "Paprikut",
+							"status": false,
+							"start": "24/02/2018",
+							"end": "04/02/2014",
+							"activation_link": "#activate",
+							"deactivation_link": "#deactivate",
+							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=do"
+						}
+					],
+					"plan": 2
+				}
+			]
+		const USERS = [
+				{
+					"nik": "M20005413",
+					"nama": "Martina Dillard",
+					"bu": "Quilm",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
+				},
+				{
+					"nik": "S20186428",
+					"nama": "Alissa Newton",
+					"bu": "Gracker",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+				},
+				{
+					"nik": "CRS20136833",
+					"nama": "Maryanne Watson",
+					"bu": "Corepan",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
+				},
+				{
+					"nik": "CRS20166397",
+					"nama": "Bush Hunt",
+					"bu": "Zytrex",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+				},
+				{
+					"nik": "CRS20005337",
+					"nama": "Cannon May",
+					"bu": "Digifad",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=non"
+				},
+				{
+					"nik": "L20171511",
+					"nama": "Coleen Williamson",
+					"bu": "Entogrok",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+				},
+				{
+					"nik": "S20065729",
+					"nama": "Christa Townsend",
+					"bu": "Ovium",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+				},
+				{
+					"nik": "S20168519",
+					"nama": "Alston Weeks",
+					"bu": "Zentix",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
+				},
+				{
+					"nik": "S20012872",
+					"nama": "Joseph Pratt",
+					"bu": "Essensia",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+				},
+				{
+					"nik": "L20109899",
+					"nama": "Jennings Norman",
+					"bu": "Eternis",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cillum"
+				},
+				{
+					"nik": "P20093418",
+					"nama": "Gertrude Sandoval",
+					"bu": "Sloganaut",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+				},
+				{
+					"nik": "S20005469",
+					"nama": "Rhoda Lloyd",
+					"bu": "Renovize",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliqua"
+				},
+				{
+					"nik": "CRS20104806",
+					"nama": "Florine Blake",
+					"bu": "Enervate",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+				},
+				{
+					"nik": "L20062709",
+					"nama": "Cook Pennington",
+					"bu": "Terrago",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=anim"
+				},
+				{
+					"nik": "S20087299",
+					"nama": "Baxter Glass",
+					"bu": "Zidant",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+				},
+				{
+					"nik": "L2018935",
+					"nama": "French Ferguson",
+					"bu": "Quinex",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=amet"
+				},
+				{
+					"nik": "S20083508",
+					"nama": "Benjamin Saunders",
+					"bu": "Bitendrex",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=duis"
+				},
+				{
+					"nik": "S20139777",
+					"nama": "Holloway Hardin",
+					"bu": "Vetron",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+				},
+				{
+					"nik": "S20028589",
+					"nama": "Gretchen Duran",
+					"bu": "Gorganic",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
+				},
+				{
+					"nik": "CRS20175427",
+					"nama": "Fox Phelps",
+					"bu": "Exposa",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=sit"
+				},
+				{
+					"nik": "CRS20182207",
+					"nama": "Maritza White",
+					"bu": "Techtrix",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+				},
+				{
+					"nik": "S20142407",
+					"nama": "Warren Ochoa",
+					"bu": "Geostele",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+				},
+				{
+					"nik": "M20011347",
+					"nama": "Mann Hudson",
+					"bu": "Zipak",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+				},
+				{
+					"nik": "CRS20056394",
+					"nama": "Jordan Robertson",
+					"bu": "Soprano",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cupidatat"
+				},
+				{
+					"nik": "M20169784",
+					"nama": "West Morrow",
+					"bu": "Omatom",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=id"
+				},
+				{
+					"nik": "M20186408",
+					"nama": "Marissa Morton",
+					"bu": "Portalis",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+				},
+				{
+					"nik": "P20105376",
+					"nama": "Vinson Joyce",
+					"bu": "Exiand",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+				},
+				{
+					"nik": "CRS20127204",
+					"nama": "Navarro Herring",
+					"bu": "Marketoid",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
+				},
+				{
+					"nik": "L20113959",
+					"nama": "Sheila Williams",
+					"bu": "Dognosis",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
+				}
+			]
+	</script>
+
+	<script src="../scripts/projectAllocation.js"></script>
+</body>
+
+</html>
