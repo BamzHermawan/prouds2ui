@@ -104,7 +104,6 @@ export default {
 				let found = Object.keys(post).find(key =>
 					post[key].toLowerCase().includes(self.search.toLowerCase())
 				);
-
 				return found;
 			});
 		}

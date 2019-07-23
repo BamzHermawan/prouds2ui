@@ -335,7 +335,6 @@ export default {
 		progress_project: "",
 		progress_bast: "",
 		j_bast: "",
-		bast: String,
 		color: String
 	},
 	components: {
