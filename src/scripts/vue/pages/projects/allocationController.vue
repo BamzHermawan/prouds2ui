@@ -71,7 +71,7 @@
 						>
 						<a
 							v-else
-							:href="props.row.deactivation_link"
+							:href="props.row.activation_link"
 							class="button is-small is-success"
 							>🔓 Activate</a
 						>
@@ -141,7 +141,7 @@
 									<span style="margin-left:5px;">Actual</span>
 								</span>
 								<span class="tag is-primary">{{
-									res.member.length
+									res.actual
 								}}</span>
 							</div>
 						</div>
@@ -149,10 +149,7 @@
 				</template>
 
 				<template slot="top-body">
-					<b-message
-						v-if="res.member.length > res.plan"
-						type="is-warning"
-					>
+					<b-message v-if="res.actual > res.plan" type="is-warning">
 						<span style="margin-right:5px;">🛑</span> Jumlah member
 						di role ini melebihi dari jumlah plan yang direncanakan
 						sejumlah [<b>{{ res.plan }}</b> 👨‍💼]
@@ -526,9 +523,11 @@ export default {
 			let self = this;
 			this.modal.selectedLevel.value = null;
 			this.modal.selectedLevel.loading = true;
-			return Axios.get(
-				"http://localhost:5501/demo/level_api.php?role=" + role
-			)
+			return Axios.get(role, {
+				params: {
+					role: role
+				}
+			})
 				.then(function(response) {
 					// handle success
 					self.fetchedLevel = response.data;

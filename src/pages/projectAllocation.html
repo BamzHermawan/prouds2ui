@@ -44,6 +44,7 @@
 			action-change-role="http://localhost:5501/demo/post_detect.php?how=change-role"
 			alert-message="Waduh Bahaya!"
 			alert-type="is-danger"
+			api-fetch-level="http://localhost:5501/demo/level_api.php?role="
 		>
 			<template slot="role-option">
 				<option selected style="display: none;"></option>
@@ -99,7 +100,8 @@
 							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=deserunt"
 						}
 					],
-					"plan": 1
+					"plan": 1,
+					"actual": 2
 				},
 				{
 					"role": "Technical Writer",
@@ -117,7 +119,8 @@
 							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolor"
 						}
 					],
-					"plan": 1
+					"plan": 1,
+					"actual": 0
 				},
 				{
 					"role": "Junior Tester",
@@ -135,7 +138,8 @@
 							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolorcl"
 						}
 					],
-					"plan": 1
+					"plan": 1,
+					"actual": 0
 				},
 				{
 					"role": "Database Administrator",
@@ -186,7 +190,8 @@
 							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nulla"
 						}
 					],
-					"plan": 5
+					"plan": 5,
+					"actual": 1
 				},
 				{
 					"role": "Quality Assurance",
@@ -237,7 +242,8 @@
 							"avatar": "http://localhost:5501/demo/user_avatar.php?nik=do"
 						}
 					],
-					"plan": 2
+					"plan": 2,
+					"actual": 1
 				}
 			]
 		const USERS = [
