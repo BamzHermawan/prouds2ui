@@ -155,7 +155,7 @@
 					>
 						<span style="margin-right:5px;">🛑</span> Jumlah member
 						di role ini melebihi dari jumlah plan yang direncanakan
-						sejumlah [<b>1</b> 👨‍💼]
+						sejumlah [<b>{{ res.plan }}</b> 👨‍💼]
 					</b-message>
 				</template>
 			</data-table>
