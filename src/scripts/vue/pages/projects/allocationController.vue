@@ -29,15 +29,19 @@
 						</figure>
 					</b-table-column>
 
-					<b-table-column field="nama" label="Name" sortable>
+					<b-table-column field="nama" label="👨‍💼 Name" sortable>
 						<span>{{ props.row.nama }}</span>
 					</b-table-column>
 
-					<b-table-column field="bu" label="Business Unit" sortable>
+					<b-table-column
+						field="bu"
+						label="🏢 Business Unit"
+						sortable
+					>
 						{{ props.row.bu }}
 					</b-table-column>
 
-					<b-table-column field="status" label="Status" sortable>
+					<b-table-column field="status" label="💡 Status" sortable>
 						<span v-if="props.row.status" class="tag is-success"
 							>active</span
 						>
@@ -46,23 +50,13 @@
 
 					<b-table-column
 						field="start"
-						label="Join Date"
-						sortable
+						label="📅 Working Period"
 						centered
 					>
-						{{ props.row.start }}
+						{{ props.row.start }} - {{ props.row.end }}
 					</b-table-column>
 
-					<b-table-column
-						field="end"
-						label="Left Date"
-						sortable
-						centered
-					>
-						{{ props.row.end }}
-					</b-table-column>
-
-					<b-table-column field="activation_link" label="Action">
+					<b-table-column field="activation_link" label="⚡ Action">
 						<a
 							v-if="props.row.status"
 							:href="props.row.deactivation_link"
@@ -122,9 +116,6 @@
 						<div class="control">
 							<div class="tags has-addons are-medium">
 								<span class="tag is-dark">
-									<span class="is-hidden-touch"
-										>Resource</span
-									>
 									<span style="margin-left:5px;">Plan</span>
 								</span>
 								<span class="tag is-primary">{{
@@ -135,9 +126,6 @@
 						<div class="control">
 							<div class="tags has-addons are-medium">
 								<span class="tag is-dark">
-									<span class="is-hidden-touch"
-										>Resource</span
-									>
 									<span style="margin-left:5px;">Actual</span>
 								</span>
 								<span class="tag is-primary">{{
