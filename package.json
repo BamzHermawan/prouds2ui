@@ -5,7 +5,7 @@
 	"scripts": {
 		"bersih": "rm -rf dist",
 		"demo": "yarn run mantap && cd release && php -S localhost:5501",
-		"ngoding": "yarn run bersih && parcel src/login/login.html src/pages/*.html -p 5500",
+		"ngoding": "yarn run bersih && parcel src/login/login.html src/pages/*.html src/pages/setting/*.html -p 5500",
 		"ngoding:pages": "parcel src/pages/*.html -d dist/pages -p 5500",
 		"ngoding:login": "parcel src/login/login.html -d dist/login -p 5500",
 		"mantap": "rm -rf release/{login,pages,src} && yarn run mantap:login && yarn run mantap:pages && yarn run mantap:assamble",

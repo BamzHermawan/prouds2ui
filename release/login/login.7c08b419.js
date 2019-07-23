@@ -17985,7 +17985,7 @@ var global = arguments[3];
     }])
   );
 });
-},{"vue":"f5S3"}],"V40F":[function(require,module,exports) {
+},{"vue":"f5S3"}],"YM4K":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18055,228 +18055,83 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
+  name: "vLogin",
   props: {
-    leftMenu: {
-      type: Array,
-      required: false
+    emailName: {
+      type: String,
+      required: true
     },
-    rightMenu: {
-      type: Array,
-      required: false
+    passwordName: {
+      type: String,
+      required: true
     },
-    homeLink: {
+    action: {
+      type: String,
+      required: true
+    },
+    loginAlert: {
       type: String,
       required: false
     }
   },
   data: function data() {
     return {
-      menu: {
-        left: [{
-          label: "setting",
-          link: "#setting",
-          icon: "mdi-cogs"
-        }],
-        right: [{
-          label: "🔒 logout",
-          link: "#logout",
-          icon: ""
-        }]
-      },
-      activeNavbar: false
+      email: "",
+      password: "",
+      validation: true,
+      errors: []
     };
-  },
-  computed: {
-    showLeftMenu: function showLeftMenu() {
-      if (this.leftMenu === undefined) return this.menu.left;
-      return this.leftMenu.length > 0 ? this.leftMenu : this.menu.left;
-    },
-    showRightMenu: function showRightMenu() {
-      if (this.rightMenu === undefined) return this.menu.right;
-      return this.rightMenu.length > 0 ? this.rightMenu : this.menu.right;
-    },
-    homeLinkCheck: function homeLinkCheck() {
-      if (this.homeLink === undefined) return "#";
-      return this.homeLink;
-    }
   },
   methods: {
-    navbarStatus: function navbarStatus(paddingClass) {
-      return paddingClass + (this.activeNavbar ? " is-active" : "");
-    }
-  }
-};
-exports.default = _default;
-        var $f7e14b = exports.default || module.exports;
-      
-      if (typeof $f7e14b === 'function') {
-        $f7e14b = $f7e14b.options;
+    doLogin: function doLogin(e) {
+      this.errors = [];
+      this.validation = this.email != "";
+      if (!this.validation) this.errors.push("Email Tidak Boleh Kosong");
+      this.validation = this.password != "";
+      if (!this.validation) this.errors.push("Password Tidak Boleh Kosong");
+      this.validation = window.navigator.onLine;
+      if (!this.validation) this.errors.push("Koneksi Internet Tidak Terdeteksi");
+
+      if (!this.validation) {
+        e.preventDefault();
       }
-    
-        /* template */
-        Object.assign($f7e14b, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('nav',{staticClass:"navbar is-primary",attrs:{"role":"navigation","aria-label":"main navigation"}},[_c('div',{staticClass:"navbar-brand"},[_c('a',{staticClass:"navbar-item",attrs:{"href":_vm.homeLinkCheck}},[_c('span',{staticClass:"mdi mdi-view-grid in-left"}),_vm._v("\n\t\t\tPROUDS\n\t\t")]),_vm._v(" "),_c('a',{class:_vm.navbarStatus('navbar-burger burger'),attrs:{"role":"button","aria-label":"menu","aria-expanded":"false","data-target":"navbarBasicExample"},on:{"click":function($event){_vm.activeNavbar = !_vm.activeNavbar}}},[_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}})])]),_vm._v(" "),_c('div',{class:_vm.navbarStatus('navbar-menu animated fadeIn'),attrs:{"id":"navbarBasicExample"}},[_c('div',{staticClass:"navbar-start"},_vm._l((_vm.showLeftMenu),function(menu,index){return _c('a',{key:index,class:'navbar-item ' + (menu.active ? 'is-active' : ''),attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0),_vm._v(" "),_c('div',{staticClass:"navbar-end"},_vm._l((_vm.showRightMenu),function(menu,index){return _c('a',{key:index,staticClass:"navbar-item",attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0)])])}
-var staticRenderFns = []
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-},{}],"pzHi":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  data: function data() {
-    return {
-      currentPage: 1,
-      search: ""
-    };
-  },
-  props: {
-    fields: {
-      type: Array,
-      required: true
     },
-    data: {
-      type: Array,
-      required: true
-    },
-    perPage: {
-      type: Number,
-      default: 5
-    },
-    showAll: {
-      type: Boolean,
-      default: false
-    },
-    title: {
-      type: String
+    getAttr: function getAttr(attrName) {
+      return APP_EL.getAttribute(attrName);
     }
   },
   computed: {
-    filteredlist: function filteredlist() {
-      var self = this;
-      return self.data.filter(function (post) {
-        var found = Object.keys(post).find(function (key) {
-          if (typeof post[key] === "string") {
-            return post[key].toLowerCase().includes(self.search.toLowerCase());
-          } else {
-            return false;
-          }
-        });
-        return found;
-      });
+    errorString: function errorString() {
+      return this.errors.join(", ");
+    },
+    showError: function showError() {
+      return !this.validation || this.errors.length != 0;
     }
+  },
+  mounted: function mounted() {
+    if (this.loginAlert != "") this.errors.push(this.loginAlert);
   }
 };
 exports.default = _default;
-        var $13e013 = exports.default || module.exports;
+        var $7101d5 = exports.default || module.exports;
       
-      if (typeof $13e013 === 'function') {
-        $13e013 = $13e013.options;
+      if (typeof $7101d5 === 'function') {
+        $7101d5 = $7101d5.options;
       }
     
         /* template */
-        Object.assign($13e013, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('div',{staticClass:"card"},[(_vm.title !== undefined)?_c('header',{staticClass:"card-header"},[_c('p',{staticClass:"card-header-title"},[_vm._v("\n\t\t\t\t"+_vm._s(_vm.title)+"\n\t\t\t")]),_vm._v(" "),_vm._t("head-right",[_c('b-switch',{staticStyle:{"margin-right":"15px"},model:{value:(_vm.showAll),callback:function ($$v) {_vm.showAll=$$v},expression:"showAll"}},[_vm._v("Show All")])])],2):_vm._e(),_vm._v(" "),_c('div',{staticClass:"card-content"},[_vm._t("top-body"),_vm._v(" "),_c('nav',{staticClass:"level"},[_c('div',{staticClass:"level-left"},[_c('b-field',[_c('b-input',{staticStyle:{"margin-right":"10px"},attrs:{"placeholder":"Search...","type":"search","icon":"magnify"},model:{value:(_vm.search),callback:function ($$v) {_vm.search=$$v},expression:"search"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"level-right"},[_vm._t("top-right",[_c('div',{staticClass:"field is-grouped"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.search !== ''),expression:"search !== ''"}],staticClass:"control animated fadeIn"},[_c('div',{staticClass:"tags has-addons are-medium"},[_c('span',{staticClass:"tag is-dark"},[_vm._v("Search Result")]),_vm._v(" "),_c('span',{staticClass:"tag is-primary"},[_vm._v(_vm._s(_vm.filteredlist.length))])])]),_vm._v(" "),_c('div',{staticClass:"control"},[_c('div',{staticClass:"tags has-addons are-medium"},[_c('span',{staticClass:"tag is-dark"},[_vm._v("Total")]),_vm._v(" "),_c('span',{staticClass:"tag is-primary"},[_vm._v(_vm._s(_vm.data.length))])])])])],{"search":_vm.search,"page":_vm.currentPage})],2)]),_vm._v(" "),_c('b-table',{attrs:{"paginated":!_vm.showAll && _vm.filteredlist.length > 10,"per-page":_vm.perPage,"current-page":_vm.currentPage,"pagination-simple":true,"pagination-position":"bottom","default-sort-direction":"asc","aria-next-label":"mdi-chevron-right","aria-previous-label":"mdi-chevron-left","aria-page-label":"Page","aria-current-label":"Current page","data":_vm.filteredlist,"columns":_vm.fields},on:{"update:currentPage":function($event){_vm.currentPage=$event},"update:current-page":function($event){_vm.currentPage=$event}},scopedSlots:_vm._u([{key:"default",fn:function(props){return [_vm._t("default",null,{"row":props.row})]}}],null,true)},[_vm._v(" "),_c('template',{slot:"empty"},[_vm._t("empty")],2)],2)],2)])])}
-var staticRenderFns = []
+        Object.assign($7101d5, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.showError)?_c('article',{staticClass:"message is-small is-warning animated fadeIn"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"message-body"},[_vm._v("\n\t\t\t"+_vm._s(_vm.errorString)+"\n\t\t")])]):_vm._e(),_vm._v(" "),_c('form',{attrs:{"action":_vm.action,"method":"POST"},on:{"submit":_vm.doLogin}},[_c('div',{staticClass:"field no-margin-top"},[_c('label',{staticClass:"label",attrs:{"for":"email"}},[_vm._v("📧 Email")]),_vm._v(" "),_c('div',{staticClass:"control"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.email),expression:"email"}],staticClass:"input",attrs:{"type":"email","id":"email","name":_vm.emailName,"placeholder":"Your Sigma Email"},domProps:{"value":(_vm.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.email=$event.target.value}}})])]),_vm._v(" "),_c('div',{staticClass:"field"},[_c('label',{staticClass:"label",attrs:{"for":"email"}},[_vm._v("🔒 Password")]),_vm._v(" "),_c('div',{staticClass:"control"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.password),expression:"password"}],staticClass:"input",attrs:{"type":"password","id":"password","name":_vm.passwordName,"placeholder":"Your Password"},domProps:{"value":(_vm.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.password=$event.target.value}}})])]),_vm._v(" "),_vm._m(1)])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"message-header"},[_c('p',[_vm._v("Gagal Login")]),_vm._v(" "),_c('a',{staticClass:"is-small"},[_vm._v("⚠")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"field"},[_c('div',{staticClass:"control"},[_c('button',{staticClass:"button is-dark is-fullwidth",attrs:{"type":"submit"}},[_vm._v("\n\t\t\t\t\tLOGIN\n\t\t\t\t")])])])}]
 
           return {
             render: render,
@@ -18287,7 +18142,7 @@ var staticRenderFns = []
           };
         })());
       
-},{}],"S1cl":[function(require,module,exports) {
+},{}],"iygy":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18295,7 +18150,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _dataTable = _interopRequireDefault(require("../components/dataTable"));
+var _loginForm = _interopRequireDefault(require("./loginForm"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18438,28 +18293,90 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var APP_EL = document.getElementById("vapp");
 var _default = {
   components: {
-    DataTable: _dataTable.default
+    loginForm: _loginForm.default
   },
   data: function data() {
     return {
-      projects: DATA,
-      tableField: FIELDS
+      iconn: true,
+      logo: {
+        prouds: "",
+        sigma: ""
+      }
     };
+  },
+  methods: {
+    getAttr: function getAttr(attrName) {
+      return APP_EL.getAttribute(attrName);
+    },
+    checkConnection: function checkConnection() {
+      this.iconn = window.navigator.onLine;
+    }
+  },
+  mounted: function mounted() {
+    this.iconn = window.navigator.onLine;
+    window.addEventListener("online", this.checkConnection);
+    window.addEventListener("offline", this.checkConnection);
+    this.logo.prouds = document.getElementById("logo-prouds").getAttribute("data-url");
+    this.logo.sigma = document.getElementById("logo-sigma").getAttribute("data-url");
   }
 };
 exports.default = _default;
-        var $b874c9 = exports.default || module.exports;
+        var $8c0754 = exports.default || module.exports;
       
-      if (typeof $b874c9 === 'function') {
-        $b874c9 = $b874c9.options;
+      if (typeof $8c0754 === 'function') {
+        $8c0754 = $8c0754.options;
       }
     
         /* template */
-        Object.assign($b874c9, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"columns"},[_c('div',{staticClass:"column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"},[_c('section',{staticClass:"info"},[_c('p',{staticClass:"title is-size-5",staticStyle:{"margin-bottom":"10px"}},[_vm._v("\n\t\t\t\tBusiness Unit\n\t\t\t")]),_vm._v(" "),_c('b-field',{staticStyle:{"margin-bottom":"18px"}},[_c('b-select',{attrs:{"placeholder":"Select Business Unit","expanded":""}},[_c('option',{attrs:{"value":"pmo"}},[_vm._v("PMO")]),_vm._v(" "),_c('option',{attrs:{"value":"cdo"}},[_vm._v("CDO")]),_vm._v(" "),_c('option',{attrs:{"value":"bsd"}},[_vm._v("BSD")])])],1),_vm._v(" "),_c('b-field',{staticStyle:{"margin-bottom":"5px"},attrs:{"grouped":""}},[_c('b-field',{attrs:{"label":"CPI","label-position":"on-border","expanded":""}},[_c('b-input',{attrs:{"readonly":"","value":"0.92"}})],1),_vm._v(" "),_c('b-field',{attrs:{"label":"SPI","label-position":"on-border","expanded":""}},[_c('b-input',{attrs:{"readonly":"","value":"0.92"}})],1),_vm._v(" "),_c('b-field',{attrs:{"expanded":""}},[_c('b-dropdown',{attrs:{"aria-role":"list"}},[_c('button',{staticClass:"button is-primary",attrs:{"slot":"trigger"},slot:"trigger"},[_c('span',[_vm._v("⚙")]),_vm._v(" "),_c('b-icon',{attrs:{"icon":"menu-down"}})],1),_vm._v(" "),_c('b-dropdown-item',{attrs:{"aria-role":"listitem"}},[_vm._v("Action")]),_vm._v(" "),_c('b-dropdown-item',{attrs:{"aria-role":"listitem"}},[_vm._v("Another action")]),_vm._v(" "),_c('b-dropdown-item',{attrs:{"aria-role":"listitem"}},[_vm._v("Something else")])],1)],1)],1),_vm._v(" "),_c('b-field',[_c('a',{staticClass:"button is-fullwidth"},[_vm._v("Non-Project")])])],1),_vm._v(" "),_c('section',{staticClass:"info"},[_c('p',{staticClass:"title is-size-5",staticStyle:{"margin-bottom":"10px"}},[_vm._v("\n\t\t\t\tNew Projects\n\t\t\t")]),_vm._v(" "),_c('hr',{staticClass:"has-background-grey-lighter",staticStyle:{"margin-top":"5px","margin-bottom":"10px"}}),_vm._v(" "),_c('b-field',[_c('b-input',{attrs:{"placeholder":"Search...","type":"search","icon":"magnify"}})],1),_vm._v(" "),_vm._l((3),function(n){return _c('article',{key:n,staticClass:"media"},[_vm._m(0,true),_vm._v(" "),_c('div',{staticClass:"media-right"},[_c('b-dropdown',{attrs:{"aria-role":"list"}},[_c('button',{staticClass:"button is-primary is-small",attrs:{"slot":"trigger"},slot:"trigger"},[_c('span',[_vm._v("⚙")])]),_vm._v(" "),_c('b-dropdown-item',{attrs:{"aria-role":"listitem"}},[_vm._v("Action")]),_vm._v(" "),_c('b-dropdown-item',{attrs:{"aria-role":"listitem"}},[_vm._v("Another action")]),_vm._v(" "),_c('b-dropdown-item',{attrs:{"aria-role":"listitem"}},[_vm._v("Something else")])],1)],1)])})],2)]),_vm._v(" "),_c('div',{staticClass:"column is-section"},[_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('section',{staticClass:"info",staticStyle:{"margin-bottom":"1.25rem"}},[_c('data-table',{attrs:{"title":"Project List","data":_vm.projects,"fields":_vm.tableField}})],1)])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"media-content"},[_c('div',{staticClass:"content"},[_c('p',{staticClass:"title is-size-6 is-marginless"},[_vm._v("\n\t\t\t\t\t\t\tProject Name\n\t\t\t\t\t\t")]),_vm._v(" "),_c('p',{staticClass:"is-marginless"},[_c('span',[_vm._v("P-SCC-XXXA")]),_vm._v(" "),_c('span',{staticStyle:{"margin-left":"10px"}},[_vm._v("USD. 300")])]),_vm._v(" "),_c('p',{staticClass:"is-size-7"},[_vm._v("AM: Wawan Surnawan, M.T.")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"main-content"},[_c('p',{staticClass:"title is-size-3"},[_vm._v("BU: Project Management Office")]),_vm._v(" "),_c('p',{staticClass:"subtitle is-size-5"},[_vm._v("📁 Total Project [ 100 ]")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"info"},[_c('nav',{staticClass:"level is-mobile"},[_c('div',{staticClass:"level-item has-text-centered"},[_c('div',{staticClass:"box is-level-widget"},[_c('p',{staticClass:"heading"},[_vm._v("Behind Schedule")]),_vm._v(" "),_c('p',{staticClass:"title"},[_vm._v("📁 40")])])]),_vm._v(" "),_c('div',{staticClass:"level-item has-text-centered"},[_c('div',{staticClass:"box is-level-widget"},[_c('p',{staticClass:"heading"},[_vm._v("BAST Delay")]),_vm._v(" "),_c('p',{staticClass:"title"},[_vm._v("📁 20")])])]),_vm._v(" "),_c('div',{staticClass:"level-item has-text-centered"},[_c('div',{staticClass:"box is-level-widget"},[_c('p',{staticClass:"heading"},[_vm._v("TOP Delay")]),_vm._v(" "),_c('p',{staticClass:"title"},[_vm._v("📁 10")])])])])])}]
+        Object.assign($8c0754, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"loginPage"},[_c('section',{staticClass:"banner",style:('background-image: url(' + _vm.getAttr('bg-image') + ');')},[_c('div',{staticClass:"welcoming"},[_c('p',{staticClass:"is-hidden-mobile"},[_vm._v("\n\t\t\t\t👋 Selamat Datang | Welcome Back 👋\n\t\t\t")]),_vm._v(" "),_c('p',{staticClass:"has-text-centered"},[_c('img',{staticClass:"prouds-logo",attrs:{"src":_vm.logo.prouds,"alt":"Prouds Logo"}})])]),_vm._v(" "),_vm._m(0)]),_vm._v(" "),_c('section',{staticClass:"form"},[_c('login-form',{staticClass:"login-form",attrs:{"emailName":_vm.getAttr('emailName'),"passwordName":_vm.getAttr('passwordName'),"action":_vm.getAttr('action'),"loginAlert":_vm.getAttr('loginAlert')}})],1),_vm._v(" "),_c('img',{staticClass:"logo-telkomsigma",attrs:{"src":_vm.logo.sigma,"alt":"Logo Telkomsigma"}}),_vm._v(" "),(!_vm.iconn)?_c('b-notification',{staticClass:"con-alert has-text-centered",attrs:{"type":"is-info","role":"alert","closable":false}},[_vm._v("\n\t\t😢 Sepertinya koneksi internet anda telah terputus, mohon untuk\n\t\tmenghubungkan komputer anda ke koneksi internet dengan koneksi yang\n\t\tstabil. terimakasih 👍.\n\t")]):_vm._e()],1)}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"banner-footer"},[_c('p',[_vm._v("\n\t\t\t\tSilakan Login Menggunakan Akun Email Sigma.co.id Anda Untuk\n\t\t\t\tDapat Mengakses PROUDS.\n\t\t\t")])])}]
 
           return {
             render: render,
@@ -18470,36 +18387,24 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"../components/dataTable":"pzHi"}],"2PQ/":[function(require,module,exports) {
+},{"./loginForm":"YM4K"}],"4VR3":[function(require,module,exports) {
+
+},{}],"mnjM":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
 
 var _buefy = _interopRequireDefault(require("buefy"));
 
-var _topNavBar = _interopRequireDefault(require("./vue/components/topNavBar.vue"));
+var _loginController = _interopRequireDefault(require("./vue/loginController.vue"));
 
-var _projectController = _interopRequireDefault(require("./vue/pages/projectController.vue"));
+require("buefy/dist/buefy.css");
+
+require("../styles/main.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.use(_buefy.default);
 
-new _vue.default({
-  components: {
-    NavBar: _topNavBar.default,
-    ContentPage: _projectController.default
-  },
-  el: '#vapp',
-  data: function data() {
-    return {
-      hello: 'Hello World'
-    };
-  },
-  computed: {
-    sayHi: function sayHi() {
-      return this.hello;
-    }
-  }
-});
-},{"vue":"f5S3","buefy":"Yp7S","./vue/components/topNavBar.vue":"V40F","./vue/pages/projectController.vue":"S1cl"}]},{},["2PQ/"], null)
+new _vue.default(_loginController.default).$mount('#vapp');
+},{"vue":"f5S3","buefy":"Yp7S","./vue/loginController.vue":"iygy","buefy/dist/buefy.css":"4VR3","../styles/main.scss":"4VR3"}]},{},["mnjM"], null)
