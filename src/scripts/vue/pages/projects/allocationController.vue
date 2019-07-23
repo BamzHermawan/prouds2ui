@@ -164,7 +164,7 @@
 			@close="closeModal()"
 		>
 			<form :action="modal.formTarget" method="POST">
-				<input type="hidden" name="project" v-model="projectId" />
+				<input type="hidden" name="projectId" v-model="projectId" />
 				<article class="message is-primary">
 					<div class="message-header">
 						<p>
@@ -181,7 +181,7 @@
 							<div class="column">
 								<input
 									type="hidden"
-									name="role"
+									name="memberRole"
 									v-model="modal.selectedRole.value"
 								/>
 								<b-field label="Role">
@@ -208,7 +208,7 @@
 							<div class="column">
 								<input
 									type="hidden"
-									name="level"
+									name="roleLevel"
 									v-model="modal.selectedLevel.value"
 								/>
 								<b-field label="Level">
@@ -271,7 +271,7 @@
 						<b-field>
 							<input
 								type="hidden"
-								name="user"
+								name="userId"
 								v-model="selectedOptions"
 							/>
 							<b-select
@@ -371,6 +371,10 @@ export default {
 		},
 		alertType: {
 			type: String
+		},
+		apiFetchLevel: {
+			type: String,
+			required: true
 		}
 	},
 	data() {
@@ -523,7 +527,7 @@ export default {
 			let self = this;
 			this.modal.selectedLevel.value = null;
 			this.modal.selectedLevel.loading = true;
-			return Axios.get(role, {
+			return Axios.get(this.apiFetchLevel, {
 				params: {
 					role: role
 				}

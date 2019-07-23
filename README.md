@@ -29,6 +29,7 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 📦 prouds2ui
 ├─ 📁 dist [Development Server Root]
 ├─ 📂 release [Build Output Directory]
+|	├─ 📁 demo [PHP Script for demo only]
 |	├─ 📁 login [Login Page Directory]
 | 	├─ 📁 media [Images Directory]
 |	├─ 📁 pages [HTML Page Directory]
