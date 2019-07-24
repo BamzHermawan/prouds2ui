@@ -5,12 +5,12 @@
 	"scripts": {
 		"bersih": "rm -rf dist",
 		"demo": "yarn run mantap && cd release && php -S localhost:5501",
-		"ngoding": "yarn run bersih && parcel src/login/login.html src/pages/*.html -p 5500",
+		"ngoding": "yarn run bersih && parcel src/login/login.html src/pages/*.html src/pages/setting/*.html -p 5500",
 		"ngoding:pages": "parcel src/pages/*.html -d dist/pages -p 5500",
 		"ngoding:login": "parcel src/login/login.html -d dist/login -p 5500",
 		"mantap": "rm -rf release/{login,pages,src} && yarn run mantap:login && yarn run mantap:pages && yarn run mantap:assamble",
 		"mantap:login": "parcel build src/login/login.html -d release/login --public-url ./ --no-minify --no-source-maps",
-		"mantap:pages": "parcel build src/pages/*.html -d release/pages --public-url ./../src --no-minify --no-source-maps",
+		"mantap:pages": "parcel build src/pages/*.html src/pages/setting/*.html -d release/pages --public-url /src --no-minify --no-source-maps",
 		"mantap:assamble": "cd release && mkdir src && mv ./pages/*.js ./src && mv ./pages/*.css ./src"
 	},
 	"author": "PMO Telkomsigma",

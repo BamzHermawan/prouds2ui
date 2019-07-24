@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
-import NavBar from "./vue/components/topNavBar.vue";
-import Dashboard from "./vue/pages/indexController.vue";
+import NavBar from "../vue/components/topNavBar.vue";
+import Dashboard from "../vue/pages/setting/usersController.vue";
 
 Vue.use(Buefy);
 new Vue({

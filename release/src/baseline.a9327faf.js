@@ -17985,7 +17985,7 @@ var global = arguments[3];
     }])
   );
 });
-},{"vue":"f5S3"}],"YM4K":[function(require,module,exports) {
+},{"vue":"f5S3"}],"V40F":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18055,83 +18055,69 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
-  name: "vLogin",
   props: {
-    emailName: {
-      type: String,
-      required: true
+    leftMenu: {
+      type: Array,
+      required: false
     },
-    passwordName: {
-      type: String,
-      required: true
+    rightMenu: {
+      type: Array,
+      required: false
     },
-    action: {
-      type: String,
-      required: true
-    },
-    loginAlert: {
+    homeLink: {
       type: String,
       required: false
     }
   },
   data: function data() {
     return {
-      email: "",
-      password: "",
-      validation: true,
-      errors: []
+      menu: {
+        left: [{
+          label: "setting",
+          link: "#setting",
+          icon: "mdi-cogs"
+        }],
+        right: [{
+          label: "🔒 logout",
+          link: "#logout",
+          icon: ""
+        }]
+      },
+      activeNavbar: false
     };
   },
-  methods: {
-    doLogin: function doLogin(e) {
-      this.errors = [];
-      this.validation = this.email != "";
-      if (!this.validation) this.errors.push("Email Tidak Boleh Kosong");
-      this.validation = this.password != "";
-      if (!this.validation) this.errors.push("Password Tidak Boleh Kosong");
-      this.validation = window.navigator.onLine;
-      if (!this.validation) this.errors.push("Koneksi Internet Tidak Terdeteksi");
-
-      if (!this.validation) {
-        e.preventDefault();
-      }
-    },
-    getAttr: function getAttr(attrName) {
-      return APP_EL.getAttribute(attrName);
-    }
-  },
   computed: {
-    errorString: function errorString() {
-      return this.errors.join(", ");
+    showLeftMenu: function showLeftMenu() {
+      if (this.leftMenu === undefined) return this.menu.left;
+      return this.leftMenu.length > 0 ? this.leftMenu : this.menu.left;
     },
-    showError: function showError() {
-      return !this.validation || this.errors.length != 0;
+    showRightMenu: function showRightMenu() {
+      if (this.rightMenu === undefined) return this.menu.right;
+      return this.rightMenu.length > 0 ? this.rightMenu : this.menu.right;
+    },
+    homeLinkCheck: function homeLinkCheck() {
+      if (this.homeLink === undefined) return "#";
+      return this.homeLink;
     }
   },
-  mounted: function mounted() {
-    if (this.loginAlert != "") this.errors.push(this.loginAlert);
+  methods: {
+    navbarStatus: function navbarStatus(paddingClass) {
+      return paddingClass + (this.activeNavbar ? " is-active" : "");
+    }
   }
 };
 exports.default = _default;
-        var $460a81 = exports.default || module.exports;
+        var $e58795 = exports.default || module.exports;
       
-      if (typeof $460a81 === 'function') {
-        $460a81 = $460a81.options;
+      if (typeof $e58795 === 'function') {
+        $e58795 = $e58795.options;
       }
     
         /* template */
-        Object.assign($460a81, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.showError)?_c('article',{staticClass:"message is-small is-warning animated fadeIn"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"message-body"},[_vm._v("\n\t\t\t"+_vm._s(_vm.errorString)+"\n\t\t")])]):_vm._e(),_vm._v(" "),_c('form',{attrs:{"action":_vm.action,"method":"POST"},on:{"submit":_vm.doLogin}},[_c('div',{staticClass:"field no-margin-top"},[_c('label',{staticClass:"label",attrs:{"for":"email"}},[_vm._v("📧 Email")]),_vm._v(" "),_c('div',{staticClass:"control"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.email),expression:"email"}],staticClass:"input",attrs:{"type":"email","id":"email","name":_vm.emailName,"placeholder":"Your Sigma Email"},domProps:{"value":(_vm.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.email=$event.target.value}}})])]),_vm._v(" "),_c('div',{staticClass:"field"},[_c('label',{staticClass:"label",attrs:{"for":"email"}},[_vm._v("🔒 Password")]),_vm._v(" "),_c('div',{staticClass:"control"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.password),expression:"password"}],staticClass:"input",attrs:{"type":"password","id":"password","name":_vm.passwordName,"placeholder":"Your Password"},domProps:{"value":(_vm.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.password=$event.target.value}}})])]),_vm._v(" "),_vm._m(1)])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"message-header"},[_c('p',[_vm._v("Gagal Login")]),_vm._v(" "),_c('a',{staticClass:"is-small"},[_vm._v("⚠")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"field"},[_c('div',{staticClass:"control"},[_c('button',{staticClass:"button is-dark is-fullwidth",attrs:{"type":"submit"}},[_vm._v("\n\t\t\t\t\tLOGIN\n\t\t\t\t")])])])}]
+        Object.assign($e58795, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('nav',{staticClass:"navbar is-primary",attrs:{"role":"navigation","aria-label":"main navigation"}},[_c('div',{staticClass:"navbar-brand"},[_c('a',{staticClass:"navbar-item",attrs:{"href":_vm.homeLinkCheck}},[_c('span',{staticClass:"mdi mdi-view-grid in-left"}),_vm._v("\n\t\t\tPROUDS\n\t\t")]),_vm._v(" "),_c('a',{class:_vm.navbarStatus('navbar-burger burger'),attrs:{"role":"button","aria-label":"menu","aria-expanded":"false","data-target":"navbarBasicExample"},on:{"click":function($event){_vm.activeNavbar = !_vm.activeNavbar}}},[_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}})])]),_vm._v(" "),_c('div',{class:_vm.navbarStatus('navbar-menu animated fadeIn'),attrs:{"id":"navbarBasicExample"}},[_c('div',{staticClass:"navbar-start"},_vm._l((_vm.showLeftMenu),function(menu,index){return _c('a',{key:index,class:'navbar-item ' + (menu.active ? 'is-active' : ''),attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0),_vm._v(" "),_c('div',{staticClass:"navbar-end"},_vm._l((_vm.showRightMenu),function(menu,index){return _c('a',{key:index,staticClass:"navbar-item",attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0)])])}
+var staticRenderFns = []
 
           return {
             render: render,
@@ -18142,7 +18128,639 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{}],"iygy":[function(require,module,exports) {
+},{}],"pzHi":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  data: function data() {
+    return {
+      currentPage: 1,
+      search: ""
+    };
+  },
+  props: {
+    fields: {
+      type: Array,
+      required: true
+    },
+    data: {
+      type: Array,
+      required: true
+    },
+    perPage: {
+      type: Number,
+      default: 5
+    },
+    showAll: {
+      type: Boolean,
+      default: false
+    },
+    title: {
+      type: String
+    }
+  },
+  computed: {
+    filteredlist: function filteredlist() {
+      var self = this;
+      return self.data.filter(function (post) {
+        var found = Object.keys(post).find(function (key) {
+          if (typeof post[key] === "string") {
+            return post[key].toLowerCase().includes(self.search.toLowerCase());
+          } else {
+            return false;
+          }
+        });
+        return found;
+      });
+    }
+  }
+};
+exports.default = _default;
+        var $5c7312 = exports.default || module.exports;
+      
+      if (typeof $5c7312 === 'function') {
+        $5c7312 = $5c7312.options;
+      }
+    
+        /* template */
+        Object.assign($5c7312, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('div',{staticClass:"card"},[(_vm.title !== undefined)?_c('header',{staticClass:"card-header"},[_c('p',{staticClass:"card-header-title"},[_vm._v("\n\t\t\t\t"+_vm._s(_vm.title)+"\n\t\t\t")]),_vm._v(" "),_vm._t("head-right",[_c('b-switch',{staticStyle:{"margin-right":"15px"},model:{value:(_vm.showAll),callback:function ($$v) {_vm.showAll=$$v},expression:"showAll"}},[_vm._v("Show All")])])],2):_vm._e(),_vm._v(" "),_c('div',{staticClass:"card-content"},[_vm._t("top-body"),_vm._v(" "),_c('nav',{staticClass:"level"},[_c('div',{staticClass:"level-left"},[_c('b-field',[_c('b-input',{staticStyle:{"margin-right":"10px"},attrs:{"placeholder":"Search...","type":"search","icon":"magnify"},model:{value:(_vm.search),callback:function ($$v) {_vm.search=$$v},expression:"search"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"level-right"},[_vm._t("top-right",[_c('div',{staticClass:"field is-grouped"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.search !== ''),expression:"search !== ''"}],staticClass:"control animated fadeIn"},[_c('div',{staticClass:"tags has-addons are-medium"},[_c('span',{staticClass:"tag is-dark"},[_vm._v("Search Result")]),_vm._v(" "),_c('span',{staticClass:"tag is-primary"},[_vm._v(_vm._s(_vm.filteredlist.length))])])]),_vm._v(" "),_c('div',{staticClass:"control"},[_c('div',{staticClass:"tags has-addons are-medium"},[_c('span',{staticClass:"tag is-dark"},[_vm._v("Total")]),_vm._v(" "),_c('span',{staticClass:"tag is-primary"},[_vm._v(_vm._s(_vm.data.length))])])])])],{"search":_vm.search,"page":_vm.currentPage})],2)]),_vm._v(" "),_c('b-table',{attrs:{"paginated":!_vm.showAll && _vm.filteredlist.length > 10,"per-page":_vm.perPage,"current-page":_vm.currentPage,"pagination-simple":true,"pagination-position":"bottom","default-sort-direction":"asc","aria-next-label":"mdi-chevron-right","aria-previous-label":"mdi-chevron-left","aria-page-label":"Page","aria-current-label":"Current page","data":_vm.filteredlist},on:{"update:currentPage":function($event){_vm.currentPage=$event},"update:current-page":function($event){_vm.currentPage=$event}},scopedSlots:_vm._u([{key:"default",fn:function(props){return [_vm._t("default",_vm._l((_vm.fields),function(col,index){return _c('b-table-column',{key:index,attrs:{"field":col.field,"label":col.label,"sortable":Boolean(col.sortable),"numeric":Boolean(col.numeric),"centered":Boolean(col.centered),"width":col.width !== undefined ? col.width : ''}},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(props.row[col.field])+"\n\t\t\t\t\t\t")])}),{"row":props.row})]}}],null,true)},[_vm._v(" "),_c('template',{slot:"empty"},[_vm._t("empty")],2)],2)],2)])])}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+},{}],"rH1J":[function(require,module,exports) {
+
+// shim for using process in browser
+var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+  throw new Error('setTimeout has not been defined');
+}
+
+function defaultClearTimeout() {
+  throw new Error('clearTimeout has not been defined');
+}
+
+(function () {
+  try {
+    if (typeof setTimeout === 'function') {
+      cachedSetTimeout = setTimeout;
+    } else {
+      cachedSetTimeout = defaultSetTimout;
+    }
+  } catch (e) {
+    cachedSetTimeout = defaultSetTimout;
+  }
+
+  try {
+    if (typeof clearTimeout === 'function') {
+      cachedClearTimeout = clearTimeout;
+    } else {
+      cachedClearTimeout = defaultClearTimeout;
+    }
+  } catch (e) {
+    cachedClearTimeout = defaultClearTimeout;
+  }
+})();
+
+function runTimeout(fun) {
+  if (cachedSetTimeout === setTimeout) {
+    //normal enviroments in sane situations
+    return setTimeout(fun, 0);
+  } // if setTimeout wasn't available but was latter defined
+
+
+  if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+    cachedSetTimeout = setTimeout;
+    return setTimeout(fun, 0);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedSetTimeout(fun, 0);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+      return cachedSetTimeout.call(null, fun, 0);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+      return cachedSetTimeout.call(this, fun, 0);
+    }
+  }
+}
+
+function runClearTimeout(marker) {
+  if (cachedClearTimeout === clearTimeout) {
+    //normal enviroments in sane situations
+    return clearTimeout(marker);
+  } // if clearTimeout wasn't available but was latter defined
+
+
+  if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+    cachedClearTimeout = clearTimeout;
+    return clearTimeout(marker);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedClearTimeout(marker);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+      return cachedClearTimeout.call(null, marker);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+      // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+      return cachedClearTimeout.call(this, marker);
+    }
+  }
+}
+
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+  if (!draining || !currentQueue) {
+    return;
+  }
+
+  draining = false;
+
+  if (currentQueue.length) {
+    queue = currentQueue.concat(queue);
+  } else {
+    queueIndex = -1;
+  }
+
+  if (queue.length) {
+    drainQueue();
+  }
+}
+
+function drainQueue() {
+  if (draining) {
+    return;
+  }
+
+  var timeout = runTimeout(cleanUpNextTick);
+  draining = true;
+  var len = queue.length;
+
+  while (len) {
+    currentQueue = queue;
+    queue = [];
+
+    while (++queueIndex < len) {
+      if (currentQueue) {
+        currentQueue[queueIndex].run();
+      }
+    }
+
+    queueIndex = -1;
+    len = queue.length;
+  }
+
+  currentQueue = null;
+  draining = false;
+  runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+  var args = new Array(arguments.length - 1);
+
+  if (arguments.length > 1) {
+    for (var i = 1; i < arguments.length; i++) {
+      args[i - 1] = arguments[i];
+    }
+  }
+
+  queue.push(new Item(fun, args));
+
+  if (queue.length === 1 && !draining) {
+    runTimeout(drainQueue);
+  }
+}; // v8 likes predictible objects
+
+
+function Item(fun, array) {
+  this.fun = fun;
+  this.array = array;
+}
+
+Item.prototype.run = function () {
+  this.fun.apply(null, this.array);
+};
+
+process.title = 'browser';
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) {
+  return [];
+};
+
+process.binding = function (name) {
+  throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () {
+  return '/';
+};
+
+process.chdir = function (dir) {
+  throw new Error('process.chdir is not supported');
+};
+
+process.umask = function () {
+  return 0;
+};
+},{}],"X5NK":[function(require,module,exports) {
+var global = arguments[3];
+var process = require("process");
+(function (global, undefined) {
+    "use strict";
+
+    if (global.setImmediate) {
+        return;
+    }
+
+    var nextHandle = 1; // Spec says greater than zero
+    var tasksByHandle = {};
+    var currentlyRunningATask = false;
+    var doc = global.document;
+    var registerImmediate;
+
+    function setImmediate(callback) {
+      // Callback can either be a function or a string
+      if (typeof callback !== "function") {
+        callback = new Function("" + callback);
+      }
+      // Copy function arguments
+      var args = new Array(arguments.length - 1);
+      for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i + 1];
+      }
+      // Store and register the task
+      var task = { callback: callback, args: args };
+      tasksByHandle[nextHandle] = task;
+      registerImmediate(nextHandle);
+      return nextHandle++;
+    }
+
+    function clearImmediate(handle) {
+        delete tasksByHandle[handle];
+    }
+
+    function run(task) {
+        var callback = task.callback;
+        var args = task.args;
+        switch (args.length) {
+        case 0:
+            callback();
+            break;
+        case 1:
+            callback(args[0]);
+            break;
+        case 2:
+            callback(args[0], args[1]);
+            break;
+        case 3:
+            callback(args[0], args[1], args[2]);
+            break;
+        default:
+            callback.apply(undefined, args);
+            break;
+        }
+    }
+
+    function runIfPresent(handle) {
+        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+        // So if we're currently running a task, we'll need to delay this invocation.
+        if (currentlyRunningATask) {
+            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+            // "too much recursion" error.
+            setTimeout(runIfPresent, 0, handle);
+        } else {
+            var task = tasksByHandle[handle];
+            if (task) {
+                currentlyRunningATask = true;
+                try {
+                    run(task);
+                } finally {
+                    clearImmediate(handle);
+                    currentlyRunningATask = false;
+                }
+            }
+        }
+    }
+
+    function installNextTickImplementation() {
+        registerImmediate = function(handle) {
+            process.nextTick(function () { runIfPresent(handle); });
+        };
+    }
+
+    function canUsePostMessage() {
+        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
+        // where `global.postMessage` means something completely different and can't be used for this purpose.
+        if (global.postMessage && !global.importScripts) {
+            var postMessageIsAsynchronous = true;
+            var oldOnMessage = global.onmessage;
+            global.onmessage = function() {
+                postMessageIsAsynchronous = false;
+            };
+            global.postMessage("", "*");
+            global.onmessage = oldOnMessage;
+            return postMessageIsAsynchronous;
+        }
+    }
+
+    function installPostMessageImplementation() {
+        // Installs an event handler on `global` for the `message` event: see
+        // * https://developer.mozilla.org/en/DOM/window.postMessage
+        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+
+        var messagePrefix = "setImmediate$" + Math.random() + "$";
+        var onGlobalMessage = function(event) {
+            if (event.source === global &&
+                typeof event.data === "string" &&
+                event.data.indexOf(messagePrefix) === 0) {
+                runIfPresent(+event.data.slice(messagePrefix.length));
+            }
+        };
+
+        if (global.addEventListener) {
+            global.addEventListener("message", onGlobalMessage, false);
+        } else {
+            global.attachEvent("onmessage", onGlobalMessage);
+        }
+
+        registerImmediate = function(handle) {
+            global.postMessage(messagePrefix + handle, "*");
+        };
+    }
+
+    function installMessageChannelImplementation() {
+        var channel = new MessageChannel();
+        channel.port1.onmessage = function(event) {
+            var handle = event.data;
+            runIfPresent(handle);
+        };
+
+        registerImmediate = function(handle) {
+            channel.port2.postMessage(handle);
+        };
+    }
+
+    function installReadyStateChangeImplementation() {
+        var html = doc.documentElement;
+        registerImmediate = function(handle) {
+            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+            var script = doc.createElement("script");
+            script.onreadystatechange = function () {
+                runIfPresent(handle);
+                script.onreadystatechange = null;
+                html.removeChild(script);
+                script = null;
+            };
+            html.appendChild(script);
+        };
+    }
+
+    function installSetTimeoutImplementation() {
+        registerImmediate = function(handle) {
+            setTimeout(runIfPresent, 0, handle);
+        };
+    }
+
+    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
+    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+
+    // Don't get fooled by e.g. browserify environments.
+    if ({}.toString.call(global.process) === "[object process]") {
+        // For Node.js before 0.9
+        installNextTickImplementation();
+
+    } else if (canUsePostMessage()) {
+        // For non-IE10 modern browsers
+        installPostMessageImplementation();
+
+    } else if (global.MessageChannel) {
+        // For web workers, where supported
+        installMessageChannelImplementation();
+
+    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
+        // For IE 6–8
+        installReadyStateChangeImplementation();
+
+    } else {
+        // For older browsers
+        installSetTimeoutImplementation();
+    }
+
+    attachTo.setImmediate = setImmediate;
+    attachTo.clearImmediate = clearImmediate;
+}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
+
+},{"process":"rH1J"}],"YgSw":[function(require,module,exports) {
+var global = arguments[3];
+var scope = typeof global !== "undefined" && global || typeof self !== "undefined" && self || window;
+var apply = Function.prototype.apply; // DOM APIs, for completeness
+
+exports.setTimeout = function () {
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+};
+
+exports.setInterval = function () {
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+};
+
+exports.clearTimeout = exports.clearInterval = function (timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+
+Timeout.prototype.unref = Timeout.prototype.ref = function () {};
+
+Timeout.prototype.close = function () {
+  this._clearFn.call(scope, this._id);
+}; // Does not start the time, just sets up the members needed.
+
+
+exports.enroll = function (item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function (item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function (item) {
+  clearTimeout(item._idleTimeoutId);
+  var msecs = item._idleTimeout;
+
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout) item._onTimeout();
+    }, msecs);
+  }
+}; // setimmediate attaches itself to the global object
+
+
+require("setimmediate"); // On some exotic environments, it's not clear which object `setimmediate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+
+
+exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
+exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
+},{"setimmediate":"X5NK"}],"J7S3":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18150,7 +18768,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _loginForm = _interopRequireDefault(require("./loginForm"));
+var _dataTable = _interopRequireDefault(require("../../components/dataTable"));
+
+var _timers = require("timers");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18208,175 +18828,53 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var APP_EL = document.getElementById("vapp");
 var _default = {
+  props: {
+    configMenu: {
+      type: Array,
+      required: false
+    }
+  },
   components: {
-    loginForm: _loginForm.default
+    DataTable: _dataTable.default
   },
   data: function data() {
     return {
-      iconn: true,
-      logo: {
-        prouds: "",
-        sigma: ""
+      dataUserInternal: DATA_USER_INTERNAL,
+      fieldsuserinternal: FIELDS_USER_INTERNAL,
+      dataUserExternal: DATA_USER_EXTERNAL,
+      fieldsuserExternal: FIELDS_USER_EXTERNAL,
+      dataBaselineStatus: DATA_BASELINE_STATUS,
+      fieldBaselineStatus: FIELDS_BASELINE_STATUS,
+      dataBaselineType: DATA_BASELINE_TYPE,
+      fieldBaselineType: FIELDS_BASELINE_TYPE,
+      menu: {
+        config: [{
+          label: "setting",
+          link: "#setting",
+          icon: "mdi-cogs"
+        }]
       }
     };
   },
-  methods: {
-    getAttr: function getAttr(attrName) {
-      return APP_EL.getAttribute(attrName);
-    },
-    checkConnection: function checkConnection() {
-      this.iconn = window.navigator.onLine;
+  computed: {
+    showConfigMenu: function showConfigMenu() {
+      if (this.configMenu === undefined) return this.menu.config;
+      return this.configMenu.length > 0 ? this.configMenu : this.menu.config;
     }
-  },
-  mounted: function mounted() {
-    this.iconn = window.navigator.onLine;
-    window.addEventListener("online", this.checkConnection);
-    window.addEventListener("offline", this.checkConnection);
-    this.logo.prouds = document.getElementById("logo-prouds").getAttribute("data-url");
-    this.logo.sigma = document.getElementById("logo-sigma").getAttribute("data-url");
   }
 };
 exports.default = _default;
-        var $5cf95c = exports.default || module.exports;
+        var $f9eb67 = exports.default || module.exports;
       
-      if (typeof $5cf95c === 'function') {
-        $5cf95c = $5cf95c.options;
+      if (typeof $f9eb67 === 'function') {
+        $f9eb67 = $f9eb67.options;
       }
     
         /* template */
-        Object.assign($5cf95c, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"loginPage"},[_c('section',{staticClass:"banner",style:('background-image: url(' + _vm.getAttr('bg-image') + ');')},[_c('div',{staticClass:"welcoming"},[_c('p',{staticClass:"is-hidden-mobile"},[_vm._v("\n\t\t\t\t👋 Selamat Datang | Welcome Back 👋\n\t\t\t")]),_vm._v(" "),_c('p',{staticClass:"has-text-centered"},[_c('img',{staticClass:"prouds-logo",attrs:{"src":_vm.logo.prouds,"alt":"Prouds Logo"}})])]),_vm._v(" "),_vm._m(0)]),_vm._v(" "),_c('section',{staticClass:"form"},[_c('login-form',{staticClass:"login-form",attrs:{"emailName":_vm.getAttr('emailName'),"passwordName":_vm.getAttr('passwordName'),"action":_vm.getAttr('action'),"loginAlert":_vm.getAttr('loginAlert')}})],1),_vm._v(" "),_c('img',{staticClass:"logo-telkomsigma",attrs:{"src":_vm.logo.sigma,"alt":"Logo Telkomsigma"}}),_vm._v(" "),(!_vm.iconn)?_c('b-notification',{staticClass:"con-alert has-text-centered",attrs:{"type":"is-info","role":"alert","closable":false}},[_vm._v("\n\t\t😢 Sepertinya koneksi internet anda telah terputus, mohon untuk\n\t\tmenghubungkan komputer anda ke koneksi internet dengan koneksi yang\n\t\tstabil. terimakasih 👍.\n\t")]):_vm._e()],1)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"banner-footer"},[_c('p',[_vm._v("\n\t\t\t\tSilakan Login Menggunakan Akun Email Sigma.co.id Anda Untuk\n\t\t\t\tDapat Mengakses PROUDS.\n\t\t\t")])])}]
+        Object.assign($f9eb67, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard"},[_c('div',{staticClass:"columns",staticStyle:{"margin-bottom":"0px"}},[_c('div',{staticClass:"column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"},[_c('section',{staticClass:"info user-info"},[_c('h5',{staticClass:"is-size-4 has-text-primary has-text-centered"},[_vm._v("\n\t\t\t\t\tConfiguration Menu\n\t\t\t\t")]),_vm._v(" "),_c('hr',{staticStyle:{"margin-top":"5px"}}),_vm._v(" "),_c('b-menu',[_c('b-menu-list',{attrs:{"label":""}},_vm._l((_vm.showConfigMenu),function(menu,index){return _c('b-menu-item',{key:index,attrs:{"href":menu.link,"icon":menu.icon,"label":menu.label,"active":menu.active}})}),1)],1)],1)]),_vm._v(" "),_c('div',{staticClass:"column is-section"},[_c('div',[_vm._m(0),_vm._v(" "),_c('section',{staticClass:"info"},[_c('div',{staticClass:"columns is-desktop"},[_c('div',{staticClass:"column is-6"},[_c('data-table',{attrs:{"title":"Baseline Status","data":_vm.dataBaselineStatus,"fields":_vm.fieldBaselineStatus}})],1),_vm._v(" "),_c('div',{staticClass:"column is-6"},[_c('data-table',{attrs:{"title":"Baseline Type","data":_vm.dataBaselineType,"fields":_vm.fieldBaselineType}})],1)])])])])])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"main-content"},[_c('p',{staticClass:"title is-size-3"},[_vm._v("BASELINE")])])}]
 
           return {
             render: render,
@@ -18387,24 +18885,36 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"./loginForm":"YM4K"}],"4VR3":[function(require,module,exports) {
-
-},{}],"mnjM":[function(require,module,exports) {
+},{"../../components/dataTable":"pzHi","timers":"YgSw"}],"+/OY":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
 
 var _buefy = _interopRequireDefault(require("buefy"));
 
-var _loginController = _interopRequireDefault(require("./vue/loginController.vue"));
+var _topNavBar = _interopRequireDefault(require("../vue/components/topNavBar.vue"));
 
-require("buefy/dist/buefy.css");
-
-require("../styles/main.scss");
+var _baselineController = _interopRequireDefault(require("../vue/pages/setting/baselineController.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.use(_buefy.default);
 
-new _vue.default(_loginController.default).$mount('#vapp');
-},{"vue":"f5S3","buefy":"Yp7S","./vue/loginController.vue":"iygy","buefy/dist/buefy.css":"4VR3","../styles/main.scss":"4VR3"}]},{},["mnjM"], null)
+new _vue.default({
+  components: {
+    NavBar: _topNavBar.default,
+    Dashboard: _baselineController.default
+  },
+  el: '#vapp',
+  data: function data() {
+    return {
+      hello: 'Hello World'
+    };
+  },
+  computed: {
+    sayHi: function sayHi() {
+      return this.hello;
+    }
+  }
+});
+},{"vue":"f5S3","buefy":"Yp7S","../vue/components/topNavBar.vue":"V40F","../vue/pages/setting/baselineController.vue":"J7S3"}]},{},["+/OY"], null)
