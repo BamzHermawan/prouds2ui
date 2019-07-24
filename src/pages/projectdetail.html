@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<title>PROJECT DETAIL | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../styles/main.scss">
+</head>
+
+<body>
+	<div id="vapp">
+		<nav-bar :left-menu="[
+				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+				{ label: 'projects', link: 'projects.html', icon:'', active: false },
+				{ label: 'financial', link: '#financial', icon:'', active: false },
+				{ label: 'operation', link: '#opperation', icon:'', active: false },
+			]" :right-menu="[
+				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+				{ label: '🔒 logout', link: '#logout', icon:'' },
+			]" home-link="index.html"></nav-bar>
+
+		<dashboard project_name="Delivery Awesome App" username="Ade Wiranata Putra" nik="CRS2019000" iwo="P-SCC-XXXA"
+			start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5"
+			progress_project="70" progress_bast="2" j_bast="4" bu="Project Management Office" show-newproject-notif
+			show-timesheet-notif>
+			<div slot="new-project-notification">
+				Ada sebanyak <b>10 IWO BARU</b>. Silakan
+				Assign PM pada Project IWO tersebut.
+				<a href="#" class="has-text-info">Menuju Halaman Project.</a>
+			</div>
+
+			<div slot="timesheet-notification">
+				<ul>
+					<li>📅 8 Juli 2019 [8 Jam] - Belajar Pentaho</li>
+					<li>📅 9 Juli 2019 [8 Jam] - Front-end Prouds</li>
+					<li>📅 10 Juli 2019 [8 Jam] - Belajar Oracle</li>
+				</ul>
+			</div>
+
+			<ul slot="assign-member" class="project-list">
+				<li>
+					<a href="#project" class="button is-info is-small is-fullwidth">Assign Member</a>
+				</li>
+			</ul>
+
+			<ul slot="documents" class="project-list">
+				<li>
+					<a href="#" class="button is-list is-small is-fullwidth">📄 File Excel A</a>
+				</li>
+				<li>
+					<a href="#" class="button is-list is-small is-fullwidth">📄 File Excel B</a>
+				</li>
+				<li>
+					<a href="#" class="button is-list is-small is-fullwidth">📄 File Excel C</a>
+				</li>
+			</ul>
+		</dashboard>
+	</div>
+
+	<script>
+		const
+			ENTRY = [["Entry", 50], ["Empty", 100 - 50]]
+		UTILIZATION = [["Utilization", 50], ["Empty", 100 - 50]]
+		ACTIVITY = [
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			},
+			{
+				title: "test",
+				subtitle: "@adewiranata - 11 juli 19 : 09.20",
+				thumbnail: "https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
+			}
+		]
+	</script>
+
+	<script src="../scripts/projectdetail.js"></script>
+</body>
+
+</html>

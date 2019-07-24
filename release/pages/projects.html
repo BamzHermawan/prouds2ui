@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
-		<meta name="description" content="HOME for PROUDS 2 Web Application">
-		<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
-		<title>HOME | PROUDS 2</title>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-		<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
-		<link rel="stylesheet" href="../src/main.4f8a0a61.css">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+	<title>HOME | PROUDS 2</title>
 
-	<body>
-		<div id="vapp">
-			<nav-bar :left-menu="[
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="/src/main.4f8a0a61.css">
+</head>
+
+<body>
+	<div id="vapp">
+		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
 				{ label: 'projects', link: '#project', icon:'', active: true },
 				{ label: 'financial', link: '#financial', icon:'', active: false },
@@ -26,10 +27,10 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="index.html"></nav-bar>
 
-			<content-page></content-page>
-		</div>
+		<content-page></content-page>
+	</div>
 
-		<script>var DATA = [{
+	<script>var DATA = [{
   "project_name": "SUNT IPSUM",
   "iwo": "P-CUPIDATAT-100A",
   "pm": "Ball Whitehead",
@@ -182,20 +183,26 @@
 }],
     FIELDS = [{
   field: "project_name",
-  label: "PROJECT NAME"
+  label: "PROJECT NAME",
+  sortable: true
 }, {
   field: "iwo",
-  label: "IWO"
+  label: "IWO",
+  sortable: true
 }, {
   field: "pm",
-  label: "PM"
+  label: "PM",
+  sortable: true
 }, {
   field: "status",
-  label: "STATUS"
+  label: "STATUS",
+  sortable: true
 }, {
   field: "progress",
-  label: "PROGRESS"
+  label: "PROGRESS",
+  sortable: true
 }];</script>
-		<script src="../src/projects.01018d92.js"></script>
-	</body>
+	<script src="/src/projects.87ec9dfd.js"></script>
+</body>
+
 </html>

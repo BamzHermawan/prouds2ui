@@ -70,10 +70,24 @@
 					aria-page-label="Page"
 					aria-current-label="Current page"
 					:data="filteredlist"
-					:columns="fields"
 				>
 					<template slot-scope="props">
-						<slot :row="props.row"></slot>
+						<slot :row="props.row">
+							<b-table-column
+								v-for="(col, index) in fields"
+								:key="index"
+								:field="col.field"
+								:label="col.label"
+								:sortable="Boolean(col.sortable)"
+								:numeric="Boolean(col.numeric)"
+								:centered="Boolean(col.centered)"
+								:width="
+									col.width !== undefined ? col.width : ''
+								"
+							>
+								{{ props.row[col.field] }}
+							</b-table-column>
+						</slot>
 					</template>
 
 					<template slot="empty">
