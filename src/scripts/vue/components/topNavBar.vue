@@ -3,6 +3,7 @@
 		class="navbar is-primary"
 		role="navigation"
 		aria-label="main navigation"
+		id="idnav"
 	>
 		<div class="navbar-brand">
 			<a class="navbar-item" :href="homeLinkCheck">
@@ -106,6 +107,19 @@ export default {
 		navbarStatus(paddingClass) {
 			return paddingClass + (this.activeNavbar ? " is-active" : "");
 		}
+	},
+	mounted() {
+		var position = 0;
+		window.addEventListener("scroll", () => {
+			var st = window.pageYOffset || document.documentElement.scrollTop;
+			if (st > position) {
+				var element = document.getElementById("idnav");
+				element.classList.add("is-fixed-top");
+			} else{
+				var element = document.getElementById("idnav");
+				element.classList.remove("is-fixed-top");
+			}
+		});
 	}
 };
 </script>
