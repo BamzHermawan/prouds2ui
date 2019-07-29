@@ -1,5 +1,4 @@
 const job = require('./tools.js');
-const Progress = require('cli-progress');
 const Bundler = require('parcel-bundler');
 const minimist = require('minimist');
 const colorit = require('color-it');
@@ -39,35 +38,25 @@ const options = {
 		return console.log(colorit(' ❌ Please Specify Entry Point! ').clouds().redBg().toString());
 	}
 
-	// Create Progress Style Instance
-	const progress = new Progress.Bar({
-		format: " » " + colorit("{bar}").peterRiver() + " | {percentage}% | {value}/{total} | ETA: {eta}s"
-	}, Progress.Presets.rect);
-
 	// Save Important Path Received from CLI Arguments
 	const outDir = Args.o !== undefined ? Args.o : options.outDir;
 	const srcDir = Args.s !== undefined ? Args.s : Path.join(outDir, 'src');
 
 	job.log.title("Emptying Directory");
-	progress.start(2, 0);
 	var status = true;
 
 	// Start by emptying Directory
 	await job.emptyDir(srcDir)
-		.then(() => progress.increment())
 		.catch(function (err){
 			status = false;
 			job.log.error(err);
 		});
 
 	await job.emptyDir(outDir)
-		.then(() => progress.increment())
 		.catch(function (err) {
 			status = false;
 			job.log.error(err);
 		});
-
-	progress.stop();
 	
 	if(!status) 
 		process.exit(1);
@@ -86,8 +75,6 @@ const options = {
 	bundler.on('bundled', (bundle) => {
 		console.log(" ");
 		job.log.success("Parcel Bundler has been completed");
-		// Belom Selese Bundlernya. Butuh ganti script link ke source yg benar
-		console.log(" ");
 		job.logToFile("parcel-log", bundler)
 			.then((res) => job.log.success(res))
 			.catch((err) => job.log.error(err))
@@ -139,19 +126,17 @@ const options = {
 		});
 	});
 
-	progress.start(files.length, 0);
 	for (let i = 0; i < files.length; i++) {
-		await job.replaceInFile(files[i].path, "main\..*\.css", "main.min.css")
+
+		var cssName = files[i].name === "login" ? "login":"main";
+		await job.replaceInFile(files[i].path, "\/src\/.*\.css", "/src/" + cssName + ".min.css")
 			.catch((err) => job.log.error(err))
 
-		await job.replaceInFile(files[i].path, files[i].name + "\..*\.css", files[i].name + ".min.css")
-			.catch((err) => job.log.error(err))
-
-		await job.replaceInFile(files[i].path, files[i].name + "\..*\.js", files[i].name + ".min.js")
-			.then(() => progress.increment())
+		var counting = i > 8 ? (i + 1) : "0" + (i + 1);
+		await job.replaceInFile(files[i].path, "\/src\/.*\.js", "/src/" + files[i].name + ".min.js")
+			.then(() => job.log.process("[" + counting + "/" + files.length + "] Rewriting CSS|JS on  ->  " + colorit(files[i].path).green().toString()))
 			.catch((err) => job.log.error(err))
 	}
 
-	progress.stop();
-	job.log.title("Finished Every Job Perfectly!\n");
+	job.log.success("Finished Every Job Perfectly!");
 })();

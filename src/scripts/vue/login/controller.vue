@@ -56,7 +56,7 @@
 </template>
 
 <style lang="scss">
-@import "../../styles/_variable.scss";
+@import "../../../styles/_variable.scss";
 
 .prouds-logo {
 	width: 40%;
@@ -181,7 +181,7 @@
 </style>
 
 <script>
-import loginForm from "./loginForm";
+import loginForm from "./form";
 
 const APP_EL = document.getElementById("vapp");
 export default {

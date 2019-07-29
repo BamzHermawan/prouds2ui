@@ -22,12 +22,16 @@ const logs = {
 };
 
 // Minifying Function
-function doMinify (file, filepath){
+function doMinify (file, filepath, counting = ""){
 	var filename = file.split(".");
 
 	// Check if its Javascript files
 	if (filename.includes('js')) {
-		logs.process("Compressing File JS: " + file);
+		logs.process(
+			counting + " Compression On   " + 
+			colorit("[ UglifyJS ]").yellow().toString() + "   " + 
+			colorit(file).clouds().toString()
+		);
 
 		// Minify JS Files
 		return minify({
@@ -36,7 +40,11 @@ function doMinify (file, filepath){
 			output: Path.join(filepath, filename[0] + '.min.js')
 		});
 	} else if (filename.includes('css')) {
-		logs.process("Compressing File CSS: " + file);
+		logs.process(
+			counting + " Compression On   " + 
+			colorit("[ CSS-nano ]").green().toString() + "   " + 
+			colorit(file).clouds().toString()
+		);
 
 		// Minify CSS
 		return minify({
@@ -59,12 +67,17 @@ module.exports.compressor = function (filepath){
 			if (err) {
 				reject('Unable to scan directory: ' + err);
 			} else {
-				logs.process("Found Total " + files.length + " Files");
+				logs.process(
+					colorit("Found Total ").green().toString() + 
+					colorit(files.length).red().toString() + 
+					colorit(" Files").green().toString()
+				);
 			}
 
 			// compress all files using loop
 			for (let i = 0; i < files.length; i++) {
-				await doMinify(files[i], directoryPath).then(function () {
+				var counting = i > 8 ? (i + 1) : "0" + (i + 1);
+				await doMinify(files[i], directoryPath, "[" + counting + "/" + files.length +"]").then(function () {
 					fs.unlinkSync(Path.join(directoryPath, files[i]));
 				});
 			}

@@ -116,7 +116,7 @@
 						<div class="control">
 							<div class="tags has-addons are-medium">
 								<span class="tag is-dark">
-									<span style="margin-left:5px;">Plan</span>
+									<span style="margin-left:5px;">Resource Plan</span>
 								</span>
 								<span class="tag is-primary">{{
 									res.plan
@@ -126,7 +126,7 @@
 						<div class="control">
 							<div class="tags has-addons are-medium">
 								<span class="tag is-dark">
-									<span style="margin-left:5px;">Actual</span>
+									<span style="margin-left:5px;">Resource Actual</span>
 								</span>
 								<span class="tag is-primary">{{
 									res.actual
