@@ -259,6 +259,9 @@ export default {
 		},
 		apiUtilizationChart: {
 			type: String
+		},
+		apiActivity: {
+			type: String
 		}
 	},
 	components: {

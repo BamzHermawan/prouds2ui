@@ -18055,6 +18055,7 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   props: {
     leftMenu: {
@@ -18105,6 +18106,20 @@ var _default = {
     navbarStatus: function navbarStatus(paddingClass) {
       return paddingClass + (this.activeNavbar ? " is-active" : "");
     }
+  },
+  mounted: function mounted() {
+    var position = 0;
+    window.addEventListener("scroll", function () {
+      var st = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (st > position) {
+        var element = document.getElementById("idnav");
+        element.classList.add("is-fixed-top");
+      } else {
+        var element = document.getElementById("idnav");
+        element.classList.remove("is-fixed-top");
+      }
+    });
   }
 };
 exports.default = _default;
@@ -18116,7 +18131,7 @@ exports.default = _default;
     
         /* template */
         Object.assign($e58795, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('nav',{staticClass:"navbar is-primary",attrs:{"role":"navigation","aria-label":"main navigation"}},[_c('div',{staticClass:"navbar-brand"},[_c('a',{staticClass:"navbar-item",attrs:{"href":_vm.homeLinkCheck}},[_c('span',{staticClass:"mdi mdi-view-grid in-left"}),_vm._v("\n\t\t\tPROUDS\n\t\t")]),_vm._v(" "),_c('a',{class:_vm.navbarStatus('navbar-burger burger'),attrs:{"role":"button","aria-label":"menu","aria-expanded":"false","data-target":"navbarBasicExample"},on:{"click":function($event){_vm.activeNavbar = !_vm.activeNavbar}}},[_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}})])]),_vm._v(" "),_c('div',{class:_vm.navbarStatus('navbar-menu animated fadeIn'),attrs:{"id":"navbarBasicExample"}},[_c('div',{staticClass:"navbar-start"},_vm._l((_vm.showLeftMenu),function(menu,index){return _c('a',{key:index,class:'navbar-item ' + (menu.active ? 'is-active' : ''),attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0),_vm._v(" "),_c('div',{staticClass:"navbar-end"},_vm._l((_vm.showRightMenu),function(menu,index){return _c('a',{key:index,staticClass:"navbar-item",attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0)])])}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('nav',{staticClass:"navbar is-primary",attrs:{"role":"navigation","aria-label":"main navigation","id":"idnav"}},[_c('div',{staticClass:"navbar-brand"},[_c('a',{staticClass:"navbar-item",attrs:{"href":_vm.homeLinkCheck}},[_c('span',{staticClass:"mdi mdi-view-grid in-left"}),_vm._v("\n\t\t\tPROUDS\n\t\t")]),_vm._v(" "),_c('a',{class:_vm.navbarStatus('navbar-burger burger'),attrs:{"role":"button","aria-label":"menu","aria-expanded":"false","data-target":"navbarBasicExample"},on:{"click":function($event){_vm.activeNavbar = !_vm.activeNavbar}}},[_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('span',{attrs:{"aria-hidden":"true"}})])]),_vm._v(" "),_c('div',{class:_vm.navbarStatus('navbar-menu animated fadeIn'),attrs:{"id":"navbarBasicExample"}},[_c('div',{staticClass:"navbar-start"},_vm._l((_vm.showLeftMenu),function(menu,index){return _c('a',{key:index,class:'navbar-item ' + (menu.active ? 'is-active' : ''),attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0),_vm._v(" "),_c('div',{staticClass:"navbar-end"},_vm._l((_vm.showRightMenu),function(menu,index){return _c('a',{key:index,staticClass:"navbar-item",attrs:{"href":menu.link}},[(menu.icon != '')?_c('span',{class:'mdi ' + menu.icon + ' in-left'}):_vm._e(),_vm._v("\n\t\t\t\t"+_vm._s(menu.label)+"\n\t\t\t")])}),0)])])}
 var staticRenderFns = []
 
           return {
@@ -18760,7 +18775,7 @@ require("setimmediate"); // On some exotic environments, it's not clear which ob
 
 exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
 exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
-},{"setimmediate":"X5NK"}],"J7S3":[function(require,module,exports) {
+},{"setimmediate":"X5NK"}],"jag5":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18774,8 +18789,6 @@ var _timers = require("timers");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
 //
 //
 //
@@ -18865,16 +18878,16 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $f9eb67 = exports.default || module.exports;
+        var $612c7b = exports.default || module.exports;
       
-      if (typeof $f9eb67 === 'function') {
-        $f9eb67 = $f9eb67.options;
+      if (typeof $612c7b === 'function') {
+        $612c7b = $612c7b.options;
       }
     
         /* template */
-        Object.assign($f9eb67, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard"},[_c('div',{staticClass:"columns",staticStyle:{"margin-bottom":"0px"}},[_c('div',{staticClass:"column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"},[_c('section',{staticClass:"info user-info"},[_c('h5',{staticClass:"is-size-4 has-text-primary has-text-centered"},[_vm._v("\n\t\t\t\t\tConfiguration Menu\n\t\t\t\t")]),_vm._v(" "),_c('hr',{staticStyle:{"margin-top":"5px"}}),_vm._v(" "),_c('b-menu',[_c('b-menu-list',{attrs:{"label":""}},_vm._l((_vm.showConfigMenu),function(menu,index){return _c('b-menu-item',{key:index,attrs:{"href":menu.link,"icon":menu.icon,"label":menu.label,"active":menu.active}})}),1)],1)],1)]),_vm._v(" "),_c('div',{staticClass:"column is-section"},[_c('div',[_vm._m(0),_vm._v(" "),_c('section',{staticClass:"info"},[_c('div',{staticClass:"columns is-desktop"},[_c('div',{staticClass:"column is-6"},[_c('data-table',{attrs:{"title":"Baseline Status","data":_vm.dataBaselineStatus,"fields":_vm.fieldBaselineStatus}})],1),_vm._v(" "),_c('div',{staticClass:"column is-6"},[_c('data-table',{attrs:{"title":"Baseline Type","data":_vm.dataBaselineType,"fields":_vm.fieldBaselineType}})],1)])])])])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"main-content"},[_c('p',{staticClass:"title is-size-3"},[_vm._v("BASELINE")])])}]
+        Object.assign($612c7b, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard"},[_c('div',{staticClass:"columns",staticStyle:{"margin-bottom":"0px"}},[_c('div',{staticClass:"column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"},[_c('section',{staticClass:"info user-info"},[_c('h5',{staticClass:"is-size-4 has-text-primary has-text-centered"},[_vm._v("\n\t\t\t\t\tConfiguration Menu\n\t\t\t\t")]),_vm._v(" "),_c('hr',{staticStyle:{"margin-top":"5px"}}),_vm._v(" "),_c('b-menu',[_c('b-menu-list',{attrs:{"label":""}},_vm._l((_vm.showConfigMenu),function(menu,index){return _c('b-menu-item',{key:index,attrs:{"href":menu.link,"icon":menu.icon,"label":menu.label,"active":menu.active}})}),1)],1)],1)]),_vm._v(" "),_c('div',{staticClass:"column is-section"},[_c('div',[_vm._m(0),_vm._v(" "),_c('section',{staticClass:"info"},[_c('b-tabs',{staticClass:"block",attrs:{"size":"is-small"}},[_c('b-tab-item',{attrs:{"label":"Internal"}},[_c('data-table',{attrs:{"data":_vm.dataUserInternal,"fields":_vm.fieldsuserinternal}})],1),_vm._v(" "),_c('b-tab-item',{attrs:{"label":"External"}},[_c('data-table',{attrs:{"data":_vm.dataUserExternal,"fields":_vm.fieldsuserExternal}})],1)],1)],1)])])])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"main-content"},[_c('p',{staticClass:"title is-size-3"},[_vm._v("USERS")])])}]
 
           return {
             render: render,
@@ -18885,7 +18898,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"../../components/dataTable":"pzHi","timers":"YgSw"}],"+/OY":[function(require,module,exports) {
+},{"../../components/dataTable":"pzHi","timers":"YgSw"}],"7hJS":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -18894,7 +18907,7 @@ var _buefy = _interopRequireDefault(require("buefy"));
 
 var _topNavBar = _interopRequireDefault(require("../vue/components/topNavBar.vue"));
 
-var _baselineController = _interopRequireDefault(require("../vue/pages/setting/baselineController.vue"));
+var _usersController = _interopRequireDefault(require("../vue/pages/setting/usersController.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18903,7 +18916,7 @@ _vue.default.use(_buefy.default);
 new _vue.default({
   components: {
     NavBar: _topNavBar.default,
-    Dashboard: _baselineController.default
+    Dashboard: _usersController.default
   },
   el: '#vapp',
   data: function data() {
@@ -18917,4 +18930,4 @@ new _vue.default({
     }
   }
 });
-},{"vue":"f5S3","buefy":"Yp7S","../vue/components/topNavBar.vue":"V40F","../vue/pages/setting/baselineController.vue":"J7S3"}]},{},["+/OY"], null)
+},{"vue":"f5S3","buefy":"Yp7S","../vue/components/topNavBar.vue":"V40F","../vue/pages/setting/usersController.vue":"jag5"}]},{},["7hJS"], null)
