@@ -23,5 +23,15 @@
 				"label": ""
 			}
 		]
+	},
+	{
+		"path": "$ROOTPATH$\\bundler.js",
+		"bookmarks": [
+			{
+				"line": 86,
+				"column": 4,
+				"label": ""
+			}
+		]
 	}
 ]

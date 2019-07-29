@@ -1,3 +1,8 @@
 node_modules
 dist
 .cache
+bundleLog.json
+dree-log.json
+minify-log.json
+parcel-error-log.json
+parcel-log.json

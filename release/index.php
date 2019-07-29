@@ -1,6 +1,6 @@
 <?php
 	if(empty($_POST)) {
-		header("Location: http://localhost:5501/login/login.html");
+		header("Location: /page/login/login.html");
 		die();
 	}else{
 		$email = $_POST['emailUser'];
@@ -42,7 +42,7 @@
 				<br>
 
 				<p class="is-size-4">Do you wish to continue to home ?</p>
-				<a href="http://localhost:5501/pages/home.html" class="button is-success">Yes, to Home we go! ✊</a>
+				<a href="http://localhost:5501/page/pages/home.html" class="button is-success">Yes, to Home we go! ✊</a>
 				<a href="http://localhost:5501/login/login.html" class="button is-warning">No, lets back to login form 🙅‍</a>
 			</div>
 		</div>
