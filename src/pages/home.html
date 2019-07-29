@@ -16,7 +16,7 @@
 
 <body>
 	<div id="vapp">
-		<div id="loading" class="loader"></div>
+		<!-- <div id="loading" class="loader"></div> -->
 		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
 				{ label: 'projects', link: 'projects.html', icon:'', active: false },
@@ -27,7 +27,8 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="index.html"></nav-bar>
 
-		<dashboard image-profile="http://localhost:5501/demo/user_avatar.php?nik=random" username="Ade Wiranata Putra"
+		<dashboard api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+			image-profile="http://localhost:5501/demo/user_avatar.php?nik=random" username="Ade Wiranata Putra"
 			nik="CRS2019000" bu="Project Management Office" show-newproject-notif show-timesheet-notif>
 			<div slot="new-project-notification">
 				Ada sebanyak <b>10 IWO BARU</b>. Silakan
@@ -162,9 +163,9 @@
 				body: "Lorem Ipsum dolar ipsem"
 			}
 		]
-		window.addEventListener("load", () => {
-			document.getElementById("loading").remove();
-		});
+		// window.addEventListener("load", () => {
+		// 	document.getElementById("loading").remove();
+		// });
 	</script>
 
 	<script src="../scripts/home.js"></script>

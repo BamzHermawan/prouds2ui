@@ -13,20 +13,30 @@
 
 <script>
 import Highcharts from "highcharts";
+import Axios from "axios";
 export default {
 	props: {
 		id: String,
 		width: String,
 		height: String,
+		namadata: String,
 		title: String,
 		color: Array,
-		data: {
-			type: Array,
+		dataBae: {
 			required: true
 		}
 	},
 	data() {
-		return {};
+		return {
+			dataChart: []
+		};
+	},
+	watch: {
+		data(newdata, olddata) {
+			if (newdata !== olddata) {
+				this.getChart();
+			}
+		}
 	},
 	computed: {
 		checkWidth() {
@@ -68,14 +78,41 @@ export default {
 					{
 						name: "Brands",
 						colorByPoint: true,
-						data: this.data
+						data: this.dataChart
 					}
 				]
 			});
+		},
+		fetchdataChart() {
+			let self = this;
+			return Axios.get(this.dataBae)
+				.then(function(response) {
+					// handle success
+					self.dataChart = response.data[self.namadata];
+				})
+				.catch(function(error) {
+					// handle error
+					self.$toast.open({
+						duration: 5000,
+						message: `Mohon Maaf, Kami tidak dapat menghubungi server terkait data dataChart.`,
+						position: "is-top",
+						type: "is-danger"
+					});
+				});
 		}
 	},
 	mounted() {
-		this.getChart();
+		console.log(typeof this.dataBae);
+		if (typeof this.dataBae == "string") {
+			let self = this;
+			this.fetchdataChart().then(function() {
+				self.getChart();
+			});
+		} else {
+			let self = this;
+			self.dataChart = this.dataBae;
+			self.getChart();
+		}
 	}
 };
 </script>
