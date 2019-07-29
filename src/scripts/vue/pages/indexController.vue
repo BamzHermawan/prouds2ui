@@ -32,8 +32,9 @@
 						:closable="false"
 					>
 						<v-chart
-							:data="entry"
-							id="container"
+							:data-bae="apiEntryChart"
+							namadata="entry"
+							id="entry"
 							title="Entry"
 							:color="['#d36464', '#333']"
 						></v-chart>
@@ -44,8 +45,9 @@
 						:closable="false"
 					>
 						<v-chart
-							:data="utilization"
-							id="container2"
+							:data-bae="dataUtilization"
+							namadata="utilization"
+							id="utilization"
 							title="Utilization"
 							:color="['#d36464', '#333']"
 						></v-chart>
@@ -251,7 +253,13 @@ export default {
 		username: String,
 		nik: String,
 		bu: String,
-		color: String
+		color: String,
+		apiEntryChart: {
+			type: String
+		},
+		apiUtilizationChart: {
+			type: String
+		}
 	},
 	components: {
 		log,
@@ -263,8 +271,8 @@ export default {
 			isFullPage: false,
 			showInfo: false,
 			showAction: false,
-			entry: ENTRY,
-			utilization: UTILIZATION,
+			dataEntry: ENTRY,
+			dataUtilization: UTILIZATION,
 			activity: ACTIVITY,
 			currentPage: 1,
 			maxPerPage: 10,
