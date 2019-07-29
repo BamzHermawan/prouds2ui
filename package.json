@@ -5,10 +5,8 @@
 	"scripts": {
 		"bersih": "rm -rf dist",
 		"demo": "yarn run mantap && cd release && php -S localhost:5501",
-		"ngoding": "yarn run bersih && parcel src/login/login.html src/pages/*.html src/pages/setting/*.html -p 5500",
-		"ngoding:pages": "parcel src/pages/*.html -d dist/pages -p 5500",
-		"ngoding:login": "parcel src/login/login.html -d dist/login -p 5500",
-		"mantap": "node bundler.js -o release/page -s release/src src/**/*.html"
+		"ngoding": "yarn run bersih && parcel src/pages/**/*.html -p 5500",
+		"mantap": "node bundler.js -o release/page -s release/src src/pages/**/*.html"
 	},
 	"author": "PMO Telkomsigma",
 	"devDependencies": {

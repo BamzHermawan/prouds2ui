@@ -5,7 +5,9 @@
 				class="column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 			>
 				<section class="info user-info">
-					<h5 class="is-size-4 has-text-primary">{{ project_name }}</h5>
+					<h5 class="is-size-4 has-text-primary">
+						{{ project_name }}
+					</h5>
 					<p class="is-size-5">
 						<b-tag
 							type="is-success"
@@ -80,7 +82,9 @@
 								<label class="is-size-6 has-text-primary"
 									>Allocated Resource</label
 								>
-								<h5 class="is-size-6">{{ resource }} of {{max_resource}}</h5>
+								<h5 class="is-size-6">
+									{{ resource }} of {{ max_resource }}
+								</h5>
 							</div>
 						</div>
 					</div>
@@ -91,13 +95,13 @@
 					>
 					<log
 						:title="username"
-						thumbnail="https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg"
+						thumbnail="http://localhost:5501/demo/user_avatar.php?nik=rand"
 						class="animated fadeIn"
 					>
 						<p slot="body">
 							<label class="is-size-6">
 								<div>
-									{{nik}}
+									{{ nik }}
 								</div>
 								<div>
 									{{ bu }}
@@ -194,27 +198,29 @@
 				class="column is-section is-2-widescreen is-3-desktop is-hidden-touch has-background-light"
 			>
 				<section class="info">
-					<h5 class="is-size-5">Member ({{resource}}/{{max_resource}})</h5>
+					<h5 class="is-size-5">
+						Member ({{ resource }}/{{ max_resource }})
+					</h5>
 					<hr style="margin-top: 5px; margin-bottom: 10px;" />
 					<div class="columns is-gapless is-multiline">
-						<div class="column">
-							<p class="image is-24x24">
+						<div class="column" style="padding: 2px !important;">
+							<p class="image is-square">
 								<img
-									src="https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg"
+									src="http://localhost:5501/demo/user_avatar.php?nik=11"
 								/>
 							</p>
 						</div>
-						<div class="column">
-							<p class="image is-24x24">
+						<div class="column" style="padding: 2px !important;">
+							<p class="image is-square">
 								<img
-									src="https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg"
+									src="http://localhost:5501/demo/user_avatar.php?nik=12"
 								/>
 							</p>
 						</div>
-						<div class="column">
-							<p class="image is-24x24">
+						<div class="column" style="padding: 2px !important;">
+							<p class="image is-square">
 								<img
-									src="https://i.pinimg.com/originals/3a/48/27/3a4827b970f20b646f91c81ec65ec316.jpg"
+									src="http://localhost:5501/demo/user_avatar.php?nik=18"
 								/>
 							</p>
 						</div>
@@ -232,88 +238,12 @@
 				</section>
 			</div>
 		</div>
-
-		<b-modal :active.sync="showInfo" :width="640" scroll="keep">
-			<div class="card">
-				<div class="card-image">
-					<figure class="image is-square">
-						<img :src="imageProfile" alt="Image" />
-					</figure>
-				</div>
-				<div class="card-content">
-					<div class="media">
-						<div class="media-content">
-							<p class="title is-4">{{ username }}</p>
-							<p class="subtitle is-6">
-								<span
-									class="mdi mdi-account-box-outline in-left"
-								></span>
-								{{ nik }}
-							</p>
-						</div>
-					</div>
-
-					<div class="content">
-						<p class="title is-6">My Performance</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Soluta illo, optio aliquid cum provident sit
-							minus consequuntur alias, dicta commodi sed
-							quibusdam tempora velit recusandae voluptatem. Nulla
-							iste consequuntur hic.
-						</p>
-					</div>
-				</div>
-			</div>
-		</b-modal>
-
-		<b-modal
-			:active.sync="showAction"
-			full-screen
-			scroll="keep"
-			:can-cancel="false"
-		>
-			<div class="modal-card" style="width: auto">
-				<header class="modal-card-head">
-					<p class="modal-card-title">My Task</p>
-					<a
-						@click="showAction = !showAction"
-						class="card-header-icon"
-						aria-label="close task"
-					>
-						<b-icon
-							icon="close-circle-outline"
-							type="is-dark"
-						></b-icon>
-					</a>
-				</header>
-				<section class="modal-card-body">
-					<section class="info">
-						<h5 class="is-size-5">Recent Projects</h5>
-						<hr
-							class="has-background-grey-lighter"
-							style="margin-top: 5px; margin-bottom: 10px;"
-						/>
-						<slot name="recent-project"></slot>
-					</section>
-
-					<section class="info">
-						<h5 class="is-size-5">My Task: 11 Juli 2019</h5>
-						<hr
-							class="has-background-grey-lighter"
-							style="margin-top: 5px; margin-bottom: 10px;"
-						/>
-						<slot name="today-task"></slot>
-					</section>
-				</section>
-			</div>
-		</b-modal>
 	</div>
 </template>
 
 <script>
-import log from "../components/mediaLog";
-import vChart from "../components/highchart";
+import log from "../../components/mediaLog";
+import vChart from "../../components/highchart";
 import { setTimeout } from "timers";
 export default {
 	props: {

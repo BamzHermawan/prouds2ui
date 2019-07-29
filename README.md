@@ -36,13 +36,10 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 |	├─ 📁 src [JS and CSS Directory]
 | 	└─ 📄 index.php [Demo Login PHP Script]
 ├─ 📂 src [Working Directory]
-|	├─ 📁 login
 |	├─ 📁 pages
 |	├─ 📁 styles
 |	└─ 📂 scripts
 |   	└─ 📂 vue
-|   		├─ 📁 components
-|   		└─ 📁 pages
 ├─ 📄 .CONTRIBUTING.md
 ├─ 📄 .gitignore
 ├─ 📄 .vscode
@@ -55,5 +52,5 @@ Projects ini menggunakan [Parcel Bundler](https://parceljs.org). Dan berikut ada
 > **⚠ Note:**
 > `dist` folder may not exist in the fisrt time you clone this repository.
 
-Last Edit: 17 Juli 2019.
+Last Edit: 29 Juli 2019.
 Oleh: [Ario Widiatmoko](https://github.com/ariomoklo)
