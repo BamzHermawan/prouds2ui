@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+
+	<title>Resource Allocation | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../styles/main.scss">
+</head>
+
+<body>
+	<section class="hero is-primary is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Resource Booking
+				</h1>
+				<h2 class="subtitle">
+					<span class="has-text-warning">Search Engine:</span> Find your suitable Project Member Here 💪
+				</h2>
+			</div>
+		</div>
+	</section>
+
+	<section id="vapp" class="section">
+		<search-menu 
+			:filter-cat="filterCat" 
+			api-search-engine="http://localhost:5501/demo/getResource.php"
+			>
+			<template name="cartButton">
+				<b-button type="is-success" @click="filter.active = true">Next Step: Pick Booking Schedule 👉</b-button>
+			</template>
+		</search-menu>
+
+		<b-modal :active.sync="filter.active" has-modal-card full-screen :can-cancel="false">
+			<filter-menu v-bind="formProps"></filter-menu>
+		</b-modal>
+	</section>
+	<script>
+		const FILTERCATEGORY = [
+			{
+				key: "role",
+				text: "Cari dengan Role",
+				summary: "Filter Kategori ini digunakan saat kamu butuh resource role tertentu, contoh kamu butuh resource dengan role sebagai Programmer atau Desainer"
+			},
+			{
+				key: "level",
+				text: "Cari dengan level",
+				summary: "Filter Kategori ini digunakan saat kamu butuh resource yang memiliki level tertentu seperti Senior / Junior level"
+			},
+			{
+				key: "skill",
+				text: "Cari dengan Kemampuan / Skill",
+				summary: "Filter Kategori ini digunakan saat kamu butuh resource yang memiliki kemampuan tertentu seperti JavaScript / PHP / Photoshop"
+			},
+			{
+				key: "cert",
+				text: "Cari dengan Certificate / Course",
+				summary: "Filter Kategori ini digunakan saat resource yang kamu butuh harus memiliki certifikasi di bidang tertentu seperti Cisco, dll"
+			},
+			// {
+			// 	key: "exp",
+			// 	text: "Cari dengan Pengalaman",
+			// 	summary: "Filter Kategori ini digunakan saat kamu butuh resource yang sudah memiliki pengalaman. contoh: 3 Tahun"
+			// }
+		]
+	</script>
+	<script src="../../scripts/project/resourceStore.js"></script>
+</body>

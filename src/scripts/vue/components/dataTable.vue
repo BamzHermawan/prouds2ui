@@ -126,6 +126,9 @@ export default {
 		},
 		title: {
 			type: String
+		},
+		checkedRows: {
+			default: false
 		}
 	},
 	computed: {

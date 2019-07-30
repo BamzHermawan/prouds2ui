@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 if(!empty($_POST)){
 	$return['POST'] = $_POST;
 	$status = 'is-success';
