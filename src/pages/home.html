@@ -16,71 +16,73 @@
 
 <body>
 	<div id="vapp">
-		<!-- <div id="loading" class="loader"></div> -->
-		<nav-bar :left-menu="[
-				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-				{ label: 'projects', link: 'projects.html', icon:'', active: false },
-				{ label: 'financial', link: '#financial', icon:'', active: false },
-				{ label: 'operation', link: '#opperation', icon:'', active: false },
-			]" :right-menu="[
-				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
-				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="index.html"></nav-bar>
+		<div id="loading" class="loader"></div>
+		<div>
+			<nav-bar :left-menu="[
+							{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+							{ label: 'projects', link: 'projects.html', icon:'', active: false },
+							{ label: 'financial', link: '#financial', icon:'', active: false },
+							{ label: 'operation', link: '#opperation', icon:'', active: false },
+						]" :right-menu="[
+							{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+							{ label: '🔒 logout', link: '#logout', icon:'' },
+						]" home-link="index.html"></nav-bar>
 
-		<dashboard api-entry-chart="http://localhost:5501/demo/chart.php?entry"
-			api-activity="http://localhost:5501/demo/activity.php?activity"
-			image-profile="http://localhost:5501/demo/user_avatar.php?nik=random" username="Ade Wiranata Putra"
-			nik="CRS2019000" bu="Project Management Office" show-newproject-notif show-timesheet-notif>
-			<div slot="new-project-notification">
-				Ada sebanyak <b>10 IWO BARU</b>. Silakan
-				Assign PM pada Project IWO tersebut.
-				<a href="#" class="has-text-info">Menuju Halaman Project.</a>
-			</div>
+			<dashboard id="test" style="display: none" api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-activity="http://localhost:5501/demo/activity.php?activity"
+				image-profile="http://localhost:5501/demo/user_avatar.php?nik=random" username="Ade Wiranata Putra"
+				nik="CRS2019000" bu="Project Management Office" show-newproject-notif show-timesheet-notif>
+				<div slot="new-project-notification">
+					Ada sebanyak <b>10 IWO BARU</b>. Silakan
+					Assign PM pada Project IWO tersebut.
+					<a href="#" class="has-text-info">Menuju Halaman Project.</a>
+				</div>
 
-			<div slot="timesheet-notification">
-				<ul>
-					<li>📅 8 Juli 2019 [8 Jam] - Belajar Pentaho</li>
-					<li>📅 9 Juli 2019 [8 Jam] - Front-end Prouds</li>
-					<li>📅 10 Juli 2019 [8 Jam] - Belajar Oracle</li>
+				<div slot="timesheet-notification">
+					<ul>
+						<li>📅 8 Juli 2019 [8 Jam] - Belajar Pentaho</li>
+						<li>📅 9 Juli 2019 [8 Jam] - Front-end Prouds</li>
+						<li>📅 10 Juli 2019 [8 Jam] - Belajar Oracle</li>
+					</ul>
+				</div>
+
+				<ul slot="recent-project" class="project-list">
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project PMO</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
+					</li>
+					<li>
+						<a href="#project" class="button is-info is-small is-fullwidth">List All My Projects</a>
+					</li>
 				</ul>
-			</div>
 
-			<ul slot="recent-project" class="project-list">
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Project PMO</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Project A</a>
-				</li>
-				<li>
-					<a href="#project" class="button is-info is-small is-fullwidth">List All My Projects</a>
-				</li>
-			</ul>
-
-			<ul slot="today-task" class="project-list">
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
-				</li>
-				<li>
-					<a href="#" class="button is-info is-small is-fullwidth">List All Task</a>
-				</li>
-			</ul>
-		</dashboard>
+				<ul slot="today-task" class="project-list">
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-list is-small is-fullwidth">Task A</a>
+					</li>
+					<li>
+						<a href="#" class="button is-info is-small is-fullwidth">List All Task</a>
+					</li>
+				</ul>
+			</dashboard>
+		</div>
 	</div>
 
 	<script>
@@ -164,15 +166,23 @@
 				body: "Lorem Ipsum dolar ipsem"
 			}
 		]
-		// window.addEventListener("load", () => {
-		// 	document.getElementById("loading").remove();
-		// });
+		window.addEventListener("load", () => {
+			document.getElementById("test").style.display = "block";
+			document.getElementById("loading").remove();
+		});
 	</script>
 
 	<script src="../scripts/index.js"></script>
 
 	<style>
 		.loader {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			z-index: 2;
+			width: 150px;
+			height: 150px;
+			margin: -75px 0 0 -75px;
 			border: 5px solid #f3f3f3;
 			border-radius: 50%;
 			border-top: 5px solid #88898a;
@@ -181,6 +191,7 @@
 			-webkit-animation: spin 2s linear infinite;
 			/* Safari */
 			animation: spin 2s linear infinite;
+			cursor: pointer;
 		}
 
 		/* Safari */
