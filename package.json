@@ -41,7 +41,8 @@
 		"buefy": "^0.7.10",
 		"highcharts": "^7.1.2",
 		"jsgantt-improved": "^2.2.11",
-		"shepherd.js": "^4.1.0",
+		"moment": "^2.24.0",
+		"shepherd.js": "^4.2.0",
 		"vue": "^2.6.10",
 		"vue-clazy-load": "^0.4.2",
 		"vue-hot-reload-api": "^2.3.3"

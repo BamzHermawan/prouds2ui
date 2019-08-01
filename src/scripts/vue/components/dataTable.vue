@@ -73,6 +73,8 @@
 					aria-page-label="Page"
 					aria-current-label="Current page"
 					:data="filteredlist"
+					:checkable="checkable"
+					:is-row-checkable="isRowCheckable"
 					ref="table"
 				>
 					<template slot-scope="props">
@@ -131,12 +133,19 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		checkable: {
+			type: Boolean,
+			default: false
+		},
 		title: {
 			type: String
 		},
 		detailed: {
 			type: Boolean,
 			default: false
+		},
+		isRowCheckable: {
+			default: function() {}
 		},
 		detailKey: {
 			type: String

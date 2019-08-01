@@ -1,0 +1,50 @@
+[
+	{
+		"userId": "S201506017",
+		"name": "MOCHAMAD FAISHOL TRI AFANDI",
+		"bu": "Project Management Office",
+		"bookedDate": [
+			{
+				"start": "1/8/2019",
+				"end": "21/8/2019"
+			}
+		],
+		"freeDate": [
+			{
+				"start": "1/8/2019",
+				"end": "8/8/2019"
+			}
+		],
+		"isBooked": true
+	},
+	{
+		"userId": "S201202159",
+		"name": "YOHANES PAPANG RIANTO",
+		"bu": "Project Management Office",
+		"bookedDate": [
+			[]
+		],
+		"freeDate": [
+			{
+				"start": "1/7/2019",
+				"end": "31/7/2019"
+			}
+		],
+		"isBooked": false
+	},
+	{
+		"userId": "CRS2019016",
+		"name": "ADE WIRANATA PUTRA",
+		"bu": "Project Management Office",
+		"bookedDate": [
+			[]
+		],
+		"freeDate": [
+			{
+				"start": "1/7/2019",
+				"end": "31/7/2019"
+			}
+		],
+		"isBooked": false
+	}
+]
