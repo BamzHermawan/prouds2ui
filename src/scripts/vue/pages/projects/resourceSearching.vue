@@ -2,11 +2,11 @@
 	<div class="columns">
 		<div class="column is-3">
 			<div class="container">
-				<nav class="panel">
+				<nav class="panel tour-step-1">
 					<p class="panel-heading">Filter Resource</p>
 					<div class="panel-block">
 						<div class="container">
-							<b-field>
+							<b-field class="tour-step-2">
 								<b-select
 									placeholder="Pilih Kategori Pencarian"
 									v-model="pickedCat"
@@ -22,7 +22,7 @@
 									>
 								</b-select>
 							</b-field>
-							<b-field>
+							<b-field class="tour-step-3">
 								<b-input
 									placeholder="Search..."
 									type="search"
@@ -44,7 +44,7 @@
 							<b-field>
 								<b-button
 									outlined
-									class="is-fullwidth"
+									class="is-fullwidth tour-step-4"
 									type="is-success"
 									size="is-small"
 									@click="addFilter"
@@ -78,7 +78,7 @@
 							</b-field>
 						</div>
 					</div>
-					<div class="panel-block animated SlideInDown">
+					<div class="panel-block animated SlideInDown tour-step-5">
 						<button
 							class="button is-success is-fullwidth"
 							@click="fetchResource"
@@ -90,14 +90,30 @@
 			</div>
 		</div>
 		<div class="column">
-			<p class="has-text-right" style="margin-bottom: 15px;">
-				<slot class="cartButton"></slot>
-			</p>
-			<div class="container">
+			<nav class="level">
+				<div class="level-left">
+					<div class="level-item">
+						<b-button type="is-warning" @click="startHelpTour"
+							>🙋‍ | Need Help ❓</b-button
+						>
+					</div>
+				</div>
+
+				<div class="level-right">
+					<div class="level-item">
+						<slot name="cartButton"></slot>
+					</div>
+				</div>
+			</nav>
+			<div class="container tour-step-6">
 				<data-table
 					title="Resource List"
 					:data="fetchedRes"
 					:fields="[]"
+					detailed
+					detail-key="nik"
+					:show-detail-icon="false"
+					ref="dataTable"
 				>
 					<template slot-scope="props">
 						<b-table-column field="name" label="👨‍💼 Nama">
@@ -106,18 +122,30 @@
 						<b-table-column field="bu" label="🏢 Business Unit">
 							<span>{{ props.row.bu }}</span>
 						</b-table-column>
-						<b-table-column field="role" label="Role">
-							<span>{{ props.row.role }}</span>
-						</b-table-column>
-						<b-table-column field="nik" label="⚡ Action">
-							<b-button type="is-info" size="is-small"
-								>🔎 Detail</b-button
+						<b-table-column
+							field="nik"
+							label="⚡ Action"
+							class="tour-step-7"
+						>
+							<b-button
+								:type="
+									checkIfOpen(props.row.nik)
+										? 'is-dark'
+										: 'is-info'
+								"
+								size="is-small"
+								@click="toggleDetail(props.row)"
+								>{{
+									checkIfOpen(props.row.nik)
+										? "❌ Close"
+										: "🔎 Detail"
+								}}</b-button
 							>
 							<b-button
 								type="is-success"
 								size="is-small"
 								@click="addSaved(props.row)"
-								>💾 Saved Resource</b-button
+								>💾 Save Resource</b-button
 							>
 						</b-table-column>
 					</template>
@@ -136,7 +164,7 @@
 									>
 								</div>
 							</div>
-							<div class="control">
+							<div class="control tour-step-8">
 								<span
 									id="savedLabel"
 									class="tag is-success is-medium animated"
@@ -144,6 +172,23 @@
 								>
 							</div>
 						</div>
+					</template>
+					<template slot="detail" slot-scope="props">
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+									<img :src="props.row.avatar" />
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+										<strong>{{ props.row.name }}</strong>
+										<small>@{{ props.row.bu }}</small>
+									</p>
+								</div>
+							</div>
+						</article>
 					</template>
 				</data-table>
 			</div>
@@ -153,6 +198,7 @@
 
 <script>
 import Axios from "axios";
+import Shepherd from "../../../helpTour.js";
 import DataTable from "../../components/dataTable";
 export default {
 	components: {
@@ -170,6 +216,7 @@ export default {
 	},
 	data() {
 		return {
+			openedDetail: [],
 			selectedRes: [],
 			filterQuery: "",
 			pickedCat: "",
@@ -178,10 +225,127 @@ export default {
 			alert: {
 				message: "",
 				display: false
-			}
+			},
+			tourStep: [
+				{
+					id: "tour-step-start",
+					title: "🦺 Tutorial",
+					text:
+						"<p class='has-text-left' style='margin-bottom:10px;'><span class='tag is-medium is-warning'>Hi, Ade Wiranata Putra! 👋</span></p>" +
+						"<p class='has-text-left' style='margin-bottom:10px;'>Selamat Datang di Menu Resource Booking Search Engine</p>" +
+						"<p class='has-text-left' style='margin-bottom:10px;'>Untuk melakukan Booking Resource untuk sebuah project, ada beberapa hal yang perlu kamu lakukan. Kami akan bimbing kamu, Ayo Ikuti lebih lanjut! 👉</p>"
+				},
+				{
+					id: "tour-step-1",
+					title: "🔎 Filtering Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>Sebelum mulai memilih Resource yang kamu butuhkan, lebih baik jika kita filter sesuai dengan kebutuhan kamu. 😉</p>",
+					attachTo: {
+						element: ".tour-step-1",
+						on: "right"
+					}
+				},
+				{
+					id: "tour-step-2",
+					title: "🔎 Filtering Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>Pilih Kategori Filter yang kamu Inginkan, Penjelasan mengenai kategori tersebut akan muncul saat kamu memilih kategori pencarian nanti. 👍</p>",
+					attachTo: {
+						element: ".tour-step-2",
+						on: "right"
+					}
+				},
+				{
+					id: "tour-step-3",
+					title: "🔎 Filtering Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>Ketik Pencarian yang kamu inginkan sesuai dengan kategori yang telah kamu pilih.</p>",
+					attachTo: {
+						element: ".tour-step-3",
+						on: "right"
+					}
+				},
+				{
+					id: "tour-step-4",
+					title: "🔎 Filtering Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>Tekan Add Filter untuk menambahkan filternya. 😁</p>",
+					attachTo: {
+						element: ".tour-step-4",
+						on: "right"
+					}
+				},
+				{
+					id: "tour-step-5",
+					title: "🔎 Filtering Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>Setelah Menambahkan semua filter yang kamu inginkan, Tekan tombol ini untuk mendapatkan hasil pencarian. 👍</p>",
+					attachTo: {
+						element: ".tour-step-5",
+						on: "right"
+					}
+				},
+				{
+					id: "tour-step-6",
+					title: "🎯 Choose and Save Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>Hasil pencarian dari filter tadi akan muncul pada table ini. Di sini kamu bisa memilih resource yang sesuai dengan kebutuhan. 😎</p>",
+					attachTo: {
+						element: ".tour-step-6",
+						on: "top"
+					}
+				},
+				{
+					id: "tour-step-7",
+					title: "🎯 Choose and Save Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>" +
+						"Pada table ini ada dua tombol action.</p>" +
+						"<p class='subtitle has-text-left is-size-6'>" +
+						"Tombol <span class='tag is-info'>🔎 Detail</span> untuk melihat data detail dari resource tersebut.</p>" +
+						"<p class='subtitle has-text-left is-size-6'>" +
+						"Dan Tombol  <span class='tag is-success'>💾 Save Resource</span> untuk menyimpan pilihan kamu.</p>",
+					attachTo: {
+						element: ".tour-step-7",
+						on: "bottom"
+					}
+				},
+				{
+					id: "tour-step-8",
+					title: "🎯 Choose and Save Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>" +
+						"Notifikasi ini akan menunjukan jumlah resource yang telah kamu simpan. 💾👍</p>",
+					attachTo: {
+						element: ".tour-step-8",
+						on: "bottom"
+					}
+				},
+				{
+					id: "tour-step-9",
+					title: "🎯 Choose and Save Resource",
+					text:
+						"<p class='subtitle has-text-left is-size-6'>" +
+						"Jika sudah memilih, ayo check tanggal booking pada resource yang telah kamu simpan. 👉</p>",
+					attachTo: {
+						element: ".tour-step-9",
+						on: "bottom"
+					},
+					buttons: [
+						{
+							action: Shepherd.cancelActive,
+							text: "Finish"
+						}
+					]
+				}
+			],
+			touring: undefined
 		};
 	},
 	methods: {
+		checkIfOpen(nik) {
+			return this.openedDetail.includes(nik);
+		},
 		addSaved(resource) {
 			this.selectedRes.push({
 				nik: resource.nik,
@@ -189,11 +353,28 @@ export default {
 				bu: resource.bu
 			});
 
+			window.localStorage.setItem(
+				"selectedResource",
+				JSON.stringify(this.selectedRes)
+			);
+
 			let savedNotif = document.querySelector("#savedLabel");
 			savedNotif.classList.add("tada");
 			savedNotif.addEventListener("animationend", function() {
 				savedNotif.classList.remove("tada");
 			});
+		},
+		toggleDetail(row) {
+			if (this.checkIfOpen(row.nik)) {
+				let indexAt = this.openedDetail.findIndex(
+					nik => nik === row.nik
+				);
+				this.openedDetail.splice(indexAt, 1);
+			} else {
+				this.openedDetail.push(row.nik);
+			}
+
+			this.$refs.dataTable.toggleDetail(row);
 		},
 		addFilter() {
 			if (this.pickedCat === "") {
@@ -231,10 +412,8 @@ export default {
 				filter => filter.key === key
 			);
 
-			console.log(findExist);
 			if (findExist > -1) {
-				let mans = this.filters.splice(findExist, 1);
-				console.log(mans);
+				this.filters.splice(findExist, 1);
 			}
 		},
 		resetFilterForm() {
@@ -254,6 +433,9 @@ export default {
 				.catch(function(error) {
 					console.log(error);
 				});
+		},
+		startHelpTour() {
+			this.touring.start();
 		}
 	},
 	computed: {
@@ -272,6 +454,19 @@ export default {
 	},
 	mounted() {
 		this.fetchResource();
+		let json = window.localStorage.getItem("selectedResource");
+		let selected = JSON.parse(json);
+
+		if (selected !== null) {
+			this.selectedRes = selected;
+			let savedNotif = document.querySelector("#savedLabel");
+			savedNotif.classList.add("tada");
+			savedNotif.addEventListener("animationend", function() {
+				savedNotif.classList.remove("tada");
+			});
+		}
+
+		this.touring = Shepherd.Tour(this.tourStep);
 	}
 };
 </script>
