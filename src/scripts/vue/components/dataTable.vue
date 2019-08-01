@@ -70,6 +70,8 @@
 					aria-page-label="Page"
 					aria-current-label="Current page"
 					:data="filteredlist"
+					:checkable="checkable"
+					:is-row-checkable="isRowCheckable"
 				>
 					<template slot-scope="props">
 						<slot :row="props.row">
@@ -124,11 +126,18 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		checkable: {
+			type: Boolean,
+			default: false
+		},
 		title: {
 			type: String
 		},
 		checkedRows: {
 			default: false
+		},
+		isRowCheckable: {
+			default: function() {}
 		}
 	},
 	computed: {
