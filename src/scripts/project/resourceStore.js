@@ -7,6 +7,13 @@ import filterMenu from "./../vue/pages/projects/resourceFilter.vue";
 Vue.use(Buefy);
 new Vue({
 	el: '#vapp',
+	methods: {
+		cartBtnAction(){
+			let self = this;
+			this.$refs.stepOne.sendSavedResource()
+				.then(() => self.filter.active = true);
+		}
+	},
 	components: {
 		NavBar, searchMenu, filterMenu
 	},

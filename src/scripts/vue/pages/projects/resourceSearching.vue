@@ -93,7 +93,7 @@
 			<nav class="level">
 				<div class="level-left">
 					<div class="level-item">
-						<b-button type="is-warning" @click="startHelpTour"
+						<b-button type="is-warning" @click="touring.start()"
 							>🙋‍ | Need Help ❓</b-button
 						>
 					</div>
@@ -101,7 +101,10 @@
 
 				<div class="level-right">
 					<div class="level-item">
-						<slot name="cartButton"></slot>
+						<slot
+							name="cartButton"
+							v-bind="{ isLoading: cartBtnLoading }"
+						></slot>
 					</div>
 				</div>
 			</nav>
@@ -199,6 +202,7 @@
 <script>
 import Axios from "axios";
 import Shepherd from "../../../helpTour.js";
+import Notified from "../../../notified.js";
 import DataTable from "../../components/dataTable";
 export default {
 	components: {
@@ -212,6 +216,18 @@ export default {
 		apiSearchEngine: {
 			type: String,
 			required: true
+		},
+		apiPostSaved: {
+			type: String,
+			required: true
+		},
+		loggedUserName: {
+			type: String,
+			required: true
+		},
+		batchId: {
+			type: String,
+			default: null
 		}
 	},
 	data() {
@@ -231,7 +247,9 @@ export default {
 					id: "tour-step-start",
 					title: "🦺 Tutorial",
 					text:
-						"<p class='has-text-left' style='margin-bottom:10px;'><span class='tag is-medium is-warning'>Hi, Ade Wiranata Putra! 👋</span></p>" +
+						"<p class='has-text-left' style='margin-bottom:10px;'><span class='tag is-medium is-warning'>Hi, " +
+						this.loggedUserName +
+						"! 👋</span></p>" +
 						"<p class='has-text-left' style='margin-bottom:10px;'>Selamat Datang di Menu Resource Booking Search Engine</p>" +
 						"<p class='has-text-left' style='margin-bottom:10px;'>Untuk melakukan Booking Resource untuk sebuah project, ada beberapa hal yang perlu kamu lakukan. Kami akan bimbing kamu, Ayo Ikuti lebih lanjut! 👉</p>"
 				},
@@ -339,7 +357,8 @@ export default {
 					]
 				}
 			],
-			touring: undefined
+			touring: undefined,
+			cartBtnLoading: false
 		};
 	},
 	methods: {
@@ -348,14 +367,16 @@ export default {
 		},
 		addSaved(resource) {
 			this.selectedRes.push({
-				nik: resource.nik,
-				name: resource.name,
-				bu: resource.bu
+				userId: resource.userId,
+				filters: this.parsedFilter
 			});
 
 			window.localStorage.setItem(
 				"selectedResource",
-				JSON.stringify(this.selectedRes)
+				JSON.stringify({
+					batchId: this.batchId,
+					resource: this.selectedRes
+				})
 			);
 
 			let savedNotif = document.querySelector("#savedLabel");
@@ -425,7 +446,7 @@ export default {
 		fetchResource() {
 			let self = this;
 			Axios.get(this.apiSearchEngine, {
-				params: self.paresedFilter
+				params: self.parsedFilter
 			})
 				.then(function(response) {
 					self.fetchedRes = response.data;
@@ -434,12 +455,51 @@ export default {
 					console.log(error);
 				});
 		},
-		startHelpTour() {
-			this.touring.start();
+		loadLocalStorage(showAnimation = false) {
+			let json = window.localStorage.getItem("selectedResource");
+			let selected = JSON.parse(json);
+
+			if (selected !== null) {
+				this.selectedRes = selected.resource;
+
+				if (showAnimation) {
+					let savedNotif = document.querySelector("#savedLabel");
+					savedNotif.classList.add("tada");
+					savedNotif.addEventListener("animationend", function() {
+						savedNotif.classList.remove("tada");
+					});
+				}
+			}
+
+			return selected;
+		},
+		sendSavedResource() {
+			this.cartBtnLoading = true;
+			let bundle = this.loadLocalStorage();
+			if (bundle === null) {
+				Notified.alert("Kamu belum memilih resource satu pun 😂");
+				return false;
+			}
+
+			let self = this;
+			return Axios.post(this.apiPostSaved, bundle, {
+				headers: {
+					"Content-type": "application/x-www-form-urlencoded"
+				}
+			})
+				.then(function(response) {
+					console.log(response.data);
+					self.cartBtnLoading = false;
+				})
+				.catch(function(error) {
+					Notified.error(
+						"Mohon maaf, terjadi gangguan koneksi. Mohon ulangi dalam beberapa saat lagi. 🙏"
+					);
+				});
 		}
 	},
 	computed: {
-		paresedFilter() {
+		parsedFilter() {
 			if (this.filters.length > 0) {
 				let prep = {};
 				this.filters.forEach(filter => {
@@ -454,18 +514,7 @@ export default {
 	},
 	mounted() {
 		this.fetchResource();
-		let json = window.localStorage.getItem("selectedResource");
-		let selected = JSON.parse(json);
-
-		if (selected !== null) {
-			this.selectedRes = selected;
-			let savedNotif = document.querySelector("#savedLabel");
-			savedNotif.classList.add("tada");
-			savedNotif.addEventListener("animationend", function() {
-				savedNotif.classList.remove("tada");
-			});
-		}
-
+		// console.log(Notified.test);
 		this.touring = Shepherd.Tour(this.tourStep);
 	}
 };

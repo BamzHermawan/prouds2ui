@@ -16,19 +16,19 @@ $filter = [
 if(!empty($_GET)){
 	foreach ($resource as $staff) {
 		$checker = false;
-		if($staff->skill == $filter["skill"]){
+		if($staff->testFilter->skill == $filter["skill"]){
 			$checker = true;
 		}
 
-		if($staff->role == $filter["role"]){
+		if($staff->testFilter->role == $filter["role"]){
 			$checker = true;
 		}
 
-		if($staff->level == $filter["level"]){
+		if($staff->testFilter->level == $filter["level"]){
 			$checker = true;
 		}
 
-		if($staff->cert == $filter["cert"]){
+		if($staff->testFilter->cert == $filter["cert"]){
 			$checker = true;
 		}
 
