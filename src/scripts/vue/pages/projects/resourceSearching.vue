@@ -101,10 +101,7 @@
 
 				<div class="level-right">
 					<div class="level-item">
-						<slot
-							name="cartButton"
-							v-bind="{ isLoading: cartBtnLoading }"
-						></slot>
+						<slot name="cartButton"></slot>
 					</div>
 				</div>
 			</nav>
@@ -145,7 +142,12 @@
 								}}</b-button
 							>
 							<b-button
-								type="is-success"
+								:disabled="checkIfSaved(props.row.userId)"
+								:type="
+									checkIfSaved(props.row.userId)
+										? 'is-dark'
+										: 'is-success'
+								"
 								size="is-small"
 								@click="addSaved(props.row)"
 								>💾 Save Resource</b-button
@@ -201,8 +203,8 @@
 
 <script>
 import Axios from "axios";
+import Tools from "../../../tools.js";
 import Shepherd from "../../../helpTour.js";
-import Notified from "../../../notified.js";
 import DataTable from "../../components/dataTable";
 export default {
 	components: {
@@ -357,13 +359,16 @@ export default {
 					]
 				}
 			],
-			touring: undefined,
-			cartBtnLoading: false
+			touring: undefined
 		};
 	},
 	methods: {
 		checkIfOpen(nik) {
 			return this.openedDetail.includes(nik);
+		},
+		checkIfSaved(nik) {
+			let found = this.selectedRes.filter(({ userId }) => userId === nik);
+			return found.length > 0;
 		},
 		addSaved(resource) {
 			this.selectedRes.push({
@@ -472,30 +477,6 @@ export default {
 			}
 
 			return selected;
-		},
-		sendSavedResource() {
-			this.cartBtnLoading = true;
-			let bundle = this.loadLocalStorage();
-			if (bundle === null) {
-				Notified.alert("Kamu belum memilih resource satu pun 😂");
-				return false;
-			}
-
-			let self = this;
-			return Axios.post(this.apiPostSaved, bundle, {
-				headers: {
-					"Content-type": "application/x-www-form-urlencoded"
-				}
-			})
-				.then(function(response) {
-					console.log(response.data);
-					self.cartBtnLoading = false;
-				})
-				.catch(function(error) {
-					Notified.error(
-						"Mohon maaf, terjadi gangguan koneksi. Mohon ulangi dalam beberapa saat lagi. 🙏"
-					);
-				});
 		}
 	},
 	computed: {
@@ -514,7 +495,7 @@ export default {
 	},
 	mounted() {
 		this.fetchResource();
-		// console.log(Notified.test);
+		this.loadLocalStorage(true);
 		this.touring = Shepherd.Tour(this.tourStep);
 	}
 };
