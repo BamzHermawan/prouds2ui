@@ -35,8 +35,8 @@
 			:filter-cat="filterCat" 
 			api-search-engine="http://localhost:5501/demo/getResource.php"
 			>
-			<template name="cartButton">
-				<b-button type="is-success" @click="filter.active = true">Next Step: Pick Booking Schedule 👉</b-button>
+			<template slot="cartButton">
+				<b-button type="is-success tour-step-9" @click="filter.active = true">Next Step: Pick Booking Schedule 👉</b-button>
 			</template>
 		</search-menu>
 

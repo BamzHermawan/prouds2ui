@@ -65,11 +65,15 @@
 					:pagination-simple="true"
 					pagination-position="bottom"
 					default-sort-direction="asc"
+					:detailed="detailed"
+					:detail-key="detailKey"
+					:show-detail-icon="showDetailIcon"
 					aria-next-label="mdi-chevron-right"
 					aria-previous-label="mdi-chevron-left"
 					aria-page-label="Page"
 					aria-current-label="Current page"
 					:data="filteredlist"
+					ref="table"
 				>
 					<template slot-scope="props">
 						<slot :row="props.row">
@@ -92,6 +96,9 @@
 
 					<template slot="empty">
 						<slot name="empty"></slot>
+					</template>
+					<template slot="detail" slot-scope="props">
+						<slot name="detail" :row="props.row"></slot>
 					</template>
 				</b-table>
 			</div>
@@ -127,8 +134,16 @@ export default {
 		title: {
 			type: String
 		},
-		checkedRows: {
+		detailed: {
+			type: Boolean,
 			default: false
+		},
+		detailKey: {
+			type: String
+		},
+		showDetailIcon: {
+			type: Boolean,
+			default: true
 		}
 	},
 	computed: {
@@ -147,6 +162,11 @@ export default {
 
 				return found;
 			});
+		}
+	},
+	methods: {
+		toggleDetail(row) {
+			this.$refs.table.toggleDetails(row);
 		}
 	}
 };
