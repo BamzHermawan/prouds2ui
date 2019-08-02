@@ -1,10 +1,30 @@
 import Shepherd from 'shepherd.js';
 
+
 module.exports.cancelActive = function(){
 	Shepherd.activeTour.cancel();
 };
 
-module.exports.Tour = function(steps, options = undefined){
+function normalizeCallbacks(callbacks){
+	let list = Object.keys(callbacks);
+
+	if (!list.includes("onExit")) {
+		callbacks.onExit = () => true;
+	}
+
+	if (!list.includes("onNext")) {
+		callbacks.onNext = () => true;
+	}
+
+	if (!list.includes("onBack")) {
+		callbacks.onBack = () => true;
+	}
+
+	return callbacks;
+}
+
+module.exports.Tour = function (steps, options = undefined, callbacks = {}){
+	callbacks = normalizeCallbacks(callbacks);
 	if(options === undefined){
 		options = {
 			defaultStepOptions: {
@@ -26,11 +46,21 @@ module.exports.Tour = function(steps, options = undefined){
 			step.buttons = [
 				{
 					secondary: true,
-					action: tour.cancel,
+					action: function(){
+						let status = callbacks.onExit(tour.getCurrentStep());
+						if(status){
+							tour.cancel();
+						}
+					},
 					text: 'Exit'
 				},
 				{
-					action: tour.next,
+					action: function () {
+						let status = callbacks.onNext(tour.getCurrentStep());
+						if (status) {
+							tour.next();
+						}
+					},
 					text: 'Next'
 				}
 			];
@@ -38,11 +68,21 @@ module.exports.Tour = function(steps, options = undefined){
 			step.buttons = [
 				{
 					secondary: true,
-					action: tour.back,
+					action: function () {
+						let status = callbacks.onBack(tour.getCurrentStep());
+						if (status) {
+							tour.back();
+						}
+					},
 					text: 'Back'
 				},
 				{
-					action: tour.next,
+					action: function() {
+						let status = callbacks.onNext(tour.getCurrentStep());
+						if (status) {
+							tour.next();
+						}
+					},
 					text: 'Next'
 				}
 			];

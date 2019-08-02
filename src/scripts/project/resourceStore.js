@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import Axios from 'axios';
 import Shepherd from "../helpTour.js";
-import { notified, loadStorage } from '../tools.js';
-import NavBar from "./../vue/components/topNavBar.vue";
+import { notified, loadStorage, saveStorage } from '../tools.js';
 import searchMenu from "./../vue/pages/projects/resourceSearching.vue";
 import filterMenu from "./../vue/pages/projects/resourceFilter.vue";
 
@@ -40,7 +39,7 @@ new Vue({
 		}
 	},
 	components: {
-		NavBar, searchMenu, filterMenu
+		searchMenu, filterMenu
 	},
 	data: {
 		loadingBtn: false,
@@ -169,10 +168,55 @@ new Vue({
 		touring: undefined
 	},
 	mounted(){
-		this.touring = Shepherd.Tour(this.tourStep);
+		let self = this;
+		let firstTimeTour = loadStorage("firstTimeTour");
+
+		self.touring = Shepherd.Tour(this.tourStep, undefined, {
+			onExit: function(step){
+				if(step.id === "tour-step-start"){
+					loadStorage("firstTimeTour")
+						.catch(() => saveStorage("firstTimeTour", {
+							status: false,
+							tourDate: null,
+							createdDate: new Date()
+						}));
+				}
+
+				return true;
+			},
+			onNext: function(step){
+				if (step.id === "tour-step-start") {
+					loadStorage("firstTimeTour")
+						.then(firstTime => {
+							if(!firstTime.status){
+								saveStorage("firstTimeTour", {
+									status: true,
+									tourDate: new Date,
+									createdDate: firstTime.createdDate
+								})
+							}
+						})
+						.catch(() => saveStorage("firstTimeTour", {
+							status: true,
+							tourDate: new Date(),
+							createdDate: new Date()
+						}));
+				}
+
+				return true;
+			}
+		});
+
+		firstTimeTour.then(firstTime => {
+			if(!firstTime.status){
+				self.touring.start();
+			}
+		}).catch(() => {
+			saveStorage("firstTimeTour", {
+				status: false,
+				tourDate: null,
+				createdDate: new Date()
+			});
+		});
 	}
 });
-
-function newFunction() {
-	return "loggedUserName";
-}

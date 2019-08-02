@@ -64,13 +64,13 @@ module.exports.notified = (actor, message = undefined) => {
 module.exports.loadStorage = function(key) {
 	return new Promise(function (resolve, reject) {
 		let json = window.localStorage.getItem(key);
-		let selected = JSON.parse(json);
+		let data = JSON.parse(json);
 
-		if (selected !== null) {
-			resolve(selected);
+		if (data !== null) {
+			resolve(data);
 		}
 
-		reject(selected);
+		reject(false);
 	})
 }
 
