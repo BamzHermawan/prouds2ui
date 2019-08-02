@@ -143,6 +143,10 @@ section.activity {
     }
 }
 
+.b-checkbox.checkbox .control-label {
+	padding-left: 0px !important;
+}
+
 [disabled] {
 	background-color: #a5a5a5 !important;
 	border-color: #a5a5a5 !important;

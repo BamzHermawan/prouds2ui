@@ -1,7 +1,7 @@
 <template>
 	<div class="modal-card" style="width: auto">
 		<form :action="apiAction" method="post">
-			<article class="message is-primary">
+			<article class="message is-primary" style="min-height: 100vh;">
 				<div class="message-header">
 					<p>
 						<span
@@ -13,54 +13,62 @@
 					</p>
 				</div>
 				<div class="message-body">
+					<nav class="level">
+						<div class="level-left">
+							<div class="level-item">
+								<a
+									class="button is-danger"
+									style="min-width: 150px;"
+									type="button"
+									@click="$parent.close()"
+									@close="closeModal()"
+								>
+									◀ Back
+								</a>
+							</div>
+						</div>
+						<div class="level-right">
+							<div class="level-item">
+								<p class="subtitle is-5">📅 Booking Period:</p>
+							</div>
+							<div class="level-item">
+								<b-field>
+									<b-datepicker
+										placeholder="DD/MM/YYYY"
+										:min-date="minDate"
+										@input="postDate"
+										v-model="start"
+										:name="startDateName"
+									>
+									</b-datepicker>
+								</b-field>
+							</div>
+							<div class="level-item"><p>-</p></div>
+							<div class="level-item">
+								<b-field>
+									<b-datepicker
+										placeholder="DD/MM/YYYY"
+										:min-date="minDate"
+										@input="postDate"
+										v-model="end"
+										:name="endDateName"
+									>
+									</b-datepicker>
+								</b-field>
+							</div>
+							<div class="level-item" style="min-width: 250px;">
+								<button
+									class="button is-success is-fullwidth"
+									type="submit"
+								>
+									Send Booking Form 📬
+								</button>
+							</div>
+						</div>
+					</nav>
 					<div class="columns">
 						<div class="column is-3">
-							<a
-								class="button is-danger is-fullwidth"
-								type="button"
-								@click="$parent.close()"
-								@close="closeModal()"
-							>
-								Back
-							</a>
-						</div>
-						<div class="column is-3">
-							<b-field label="Start Booking Period 📅">
-								<b-datepicker
-									placeholder="DD/MM/YYYY"
-									:min-date="minDate"
-									@input="postDate"
-									v-model="start"
-									:name="startDateName"
-								>
-								</b-datepicker>
-							</b-field>
-						</div>
-						<div class="column is-3" style="margin-left:50px">
-							<b-field label="End Booking Period 📅">
-								<b-datepicker
-									placeholder="DD/MM/YYYY"
-									:min-date="minDate"
-									@input="postDate"
-									v-model="end"
-									:name="endDateName"
-								>
-								</b-datepicker>
-							</b-field>
-						</div>
-						<div class="column is-1">
-							<button
-								class="button is-success is-fullwidth"
-								type="submit"
-								style="margin-top:30px; margin-left:50px"
-							>
-								Submit
-							</button>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-3">
-							<b-field>
+							<b-field label="🎯 Select Project">
 								<b-input
 									placeholder="Search Project..."
 									type="search"
@@ -128,7 +136,59 @@
 										>
 									</b-table-column>
 								</template>
+								<template slot="head-right">
+									<span></span>
+								</template>
+								<template slot="top-right">
+									<div class="field is-grouped">
+										<div class="control">
+											<div
+												class="tags has-addons are-medium"
+											>
+												<span class="tag is-dark">
+													Total Resource
+												</span>
+												<span class="tag is-success">{{
+													fetchedRes.length
+												}}</span>
+											</div>
+										</div>
+									</div>
+								</template>
 							</data-table>
+							<div class="card" style="margin-top: 25px;">
+								<header class="card-header">
+									<p class="card-header-title">
+										Detail Resource
+									</p>
+									<a
+										href="#"
+										class="card-header-icon"
+										aria-label="more options"
+									>
+										<span class="icon">
+											<i
+												class="fas fa-angle-down"
+												aria-hidden="true"
+											></i>
+										</span>
+									</a>
+								</header>
+								<div class="card-content">
+									<div class="content">
+										Lorem ipsum dolor sit amet, consectetur
+										adipiscing elit. Phasellus nec iaculis
+										mauris.
+										<a href="#">@bulmaio</a>.
+										<a href="#">#css</a>
+										<a href="#">#responsive</a>
+										<br />
+										<time datetime="2016-1-1"
+											>11:09 PM - 1 Jan 2016</time
+										>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
