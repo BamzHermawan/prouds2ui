@@ -15,7 +15,8 @@
 				"end": "8/8/2019"
 			}
 		],
-		"isBooked": true
+		"isBooked": true,
+		"status": "Full Booked"
 	},
 	{
 		"userId": "S201202159",
@@ -30,7 +31,8 @@
 				"end": "31/7/2019"
 			}
 		],
-		"isBooked": false
+		"isBooked": false,
+		"status": "Available"
 	},
 	{
 		"userId": "CRS2019016",
@@ -45,6 +47,7 @@
 				"end": "31/7/2019"
 			}
 		],
-		"isBooked": false
+		"isBooked": false,
+		"status": "Available"
 	}
 ]

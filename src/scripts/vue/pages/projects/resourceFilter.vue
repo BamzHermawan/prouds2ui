@@ -90,9 +90,9 @@
 									</option>
 								</b-select>
 							</b-field>
-							<p class="content">
+							<!-- <p class="content">
 								<b>selected</b>: {{ selectedOptions }}
-							</p>
+							</p> -->
 						</div>
 						<div class="column is-9">
 							<data-table
@@ -117,6 +117,7 @@
 										field="status"
 										label="Status"
 									>
+										<span>{{ props.row.status }}</span>
 									</b-table-column>
 									<b-table-column
 										field="userId"
