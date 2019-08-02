@@ -24,13 +24,30 @@
 							</b-field>
 							<b-field class="tour-step-3">
 								<b-input
-									placeholder="Search..."
+									:placeholder="'Cari Kategori... '"
 									type="search"
 									icon="magnify"
 									size="is-small"
 									v-model="filterQuery"
 								>
 								</b-input>
+							</b-field>
+							<b-field
+								v-show="pickedCat !== null && pickedCat !== ''"
+								class="animated SlideInDown"
+							>
+								<div class="container box">
+									<div class="tags has-addons is-marginless">
+										<span class="tag is-dark"
+											>Category</span
+										>
+										<span
+											class="tag is-info is-capitalized"
+											>{{ pickedCat }}</span
+										>
+									</div>
+									<p class="is-size-7">{{ getSummary() }}</p>
+								</div>
 							</b-field>
 							<b-message
 								type="is-warning"
@@ -93,7 +110,9 @@
 			<nav class="level">
 				<div class="level-left">
 					<div class="level-item">
-						<b-button type="is-warning" @click="touring.start()"
+						<b-button
+							type="is-warning"
+							@click="$parent.touring.start()"
 							>🙋‍ | Need Help ❓</b-button
 						>
 					</div>
@@ -204,7 +223,6 @@
 <script>
 import Axios from "axios";
 import Tools from "../../../tools.js";
-import Shepherd from "../../../helpTour.js";
 import DataTable from "../../components/dataTable";
 export default {
 	components: {
@@ -223,10 +241,6 @@ export default {
 			type: String,
 			required: true
 		},
-		loggedUserName: {
-			type: String,
-			required: true
-		},
 		batchId: {
 			type: String,
 			default: null
@@ -237,132 +251,27 @@ export default {
 			openedDetail: [],
 			selectedRes: [],
 			filterQuery: "",
-			pickedCat: "",
+			pickedCat: null,
 			filters: [],
 			fetchedRes: [],
 			alert: {
 				message: "",
 				display: false
-			},
-			tourStep: [
-				{
-					id: "tour-step-start",
-					title: "🦺 Tutorial",
-					text:
-						"<p class='has-text-left' style='margin-bottom:10px;'><span class='tag is-medium is-warning'>Hi, " +
-						this.loggedUserName +
-						"! 👋</span></p>" +
-						"<p class='has-text-left' style='margin-bottom:10px;'>Selamat Datang di Menu Resource Booking Search Engine</p>" +
-						"<p class='has-text-left' style='margin-bottom:10px;'>Untuk melakukan Booking Resource untuk sebuah project, ada beberapa hal yang perlu kamu lakukan. Kami akan bimbing kamu, Ayo Ikuti lebih lanjut! 👉</p>"
-				},
-				{
-					id: "tour-step-1",
-					title: "🔎 Filtering Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>Sebelum mulai memilih Resource yang kamu butuhkan, lebih baik jika kita filter sesuai dengan kebutuhan kamu. 😉</p>",
-					attachTo: {
-						element: ".tour-step-1",
-						on: "right"
-					}
-				},
-				{
-					id: "tour-step-2",
-					title: "🔎 Filtering Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>Pilih Kategori Filter yang kamu Inginkan, Penjelasan mengenai kategori tersebut akan muncul saat kamu memilih kategori pencarian nanti. 👍</p>",
-					attachTo: {
-						element: ".tour-step-2",
-						on: "right"
-					}
-				},
-				{
-					id: "tour-step-3",
-					title: "🔎 Filtering Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>Ketik Pencarian yang kamu inginkan sesuai dengan kategori yang telah kamu pilih.</p>",
-					attachTo: {
-						element: ".tour-step-3",
-						on: "right"
-					}
-				},
-				{
-					id: "tour-step-4",
-					title: "🔎 Filtering Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>Tekan Add Filter untuk menambahkan filternya. 😁</p>",
-					attachTo: {
-						element: ".tour-step-4",
-						on: "right"
-					}
-				},
-				{
-					id: "tour-step-5",
-					title: "🔎 Filtering Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>Setelah Menambahkan semua filter yang kamu inginkan, Tekan tombol ini untuk mendapatkan hasil pencarian. 👍</p>",
-					attachTo: {
-						element: ".tour-step-5",
-						on: "right"
-					}
-				},
-				{
-					id: "tour-step-6",
-					title: "🎯 Choose and Save Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>Hasil pencarian dari filter tadi akan muncul pada table ini. Di sini kamu bisa memilih resource yang sesuai dengan kebutuhan. 😎</p>",
-					attachTo: {
-						element: ".tour-step-6",
-						on: "top"
-					}
-				},
-				{
-					id: "tour-step-7",
-					title: "🎯 Choose and Save Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>" +
-						"Pada table ini ada dua tombol action.</p>" +
-						"<p class='subtitle has-text-left is-size-6'>" +
-						"Tombol <span class='tag is-info'>🔎 Detail</span> untuk melihat data detail dari resource tersebut.</p>" +
-						"<p class='subtitle has-text-left is-size-6'>" +
-						"Dan Tombol  <span class='tag is-success'>💾 Save Resource</span> untuk menyimpan pilihan kamu.</p>",
-					attachTo: {
-						element: ".tour-step-7",
-						on: "bottom"
-					}
-				},
-				{
-					id: "tour-step-8",
-					title: "🎯 Choose and Save Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>" +
-						"Notifikasi ini akan menunjukan jumlah resource yang telah kamu simpan. 💾👍</p>",
-					attachTo: {
-						element: ".tour-step-8",
-						on: "bottom"
-					}
-				},
-				{
-					id: "tour-step-9",
-					title: "🎯 Choose and Save Resource",
-					text:
-						"<p class='subtitle has-text-left is-size-6'>" +
-						"Jika sudah memilih, ayo check tanggal booking pada resource yang telah kamu simpan. 👉</p>",
-					attachTo: {
-						element: ".tour-step-9",
-						on: "bottom"
-					},
-					buttons: [
-						{
-							action: Shepherd.cancelActive,
-							text: "Finish"
-						}
-					]
-				}
-			],
-			touring: undefined
+			}
 		};
 	},
 	methods: {
+		getSummary() {
+			let summary = "";
+			let selected = this.pickedCat;
+			this.filterCat.forEach(function(cat, index) {
+				if (cat.key === selected) {
+					summary = cat.summary;
+				}
+			});
+
+			return summary;
+		},
 		checkIfOpen(nik) {
 			return this.openedDetail.includes(nik);
 		},
@@ -496,7 +405,6 @@ export default {
 	mounted() {
 		this.fetchResource();
 		this.loadLocalStorage(true);
-		this.touring = Shepherd.Tour(this.tourStep);
 	}
 };
 </script>
