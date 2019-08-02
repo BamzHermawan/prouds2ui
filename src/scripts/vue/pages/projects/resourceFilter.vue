@@ -125,7 +125,8 @@
 										field="status"
 										label="Status"
 									>
-										<span>{{ props.row.status }}</span>
+										<span v-if="props.row.isBooked==true">Full Booked</span>
+										<span v-if="props.row.isBooked==false">Available</span>
 									</b-table-column>
 									<b-table-column
 										field="userId"
