@@ -231,12 +231,12 @@
 										Kemampuan (Skill)
 									</p>
 									<ol
-										v-if="resDetail.skills.length > 0"
+										v-if="props.row.skills.length > 0"
 										type="1"
 									>
 										<li
-											v-for="(skill,
-											index) in resDetail.skills"
+											v-for="(skill, index) in props.row
+												.skills"
 											:key="index"
 										>
 											<b>{{ skill.skillName }}</b
@@ -253,12 +253,12 @@
 								<div class="content">
 									<p class="title is-size-6">Training</p>
 									<ol
-										v-if="resDetail.course.length > 0"
+										v-if="props.row.course.length > 0"
 										type="1"
 									>
 										<li
-											v-for="(course,
-											index) in resDetail.course"
+											v-for="(course, index) in props.row
+												.course"
 											:key="index"
 										>
 											{{ course.courseName }}
@@ -273,12 +273,12 @@
 								<div class="content">
 									<p class="title is-size-6">Certificate</p>
 									<ol
-										v-if="resDetail.competency.length > 0"
+										v-if="props.row.competency.length > 0"
 										type="1"
 									>
 										<li
-											v-for="(competency,
-											index) in resDetail.competency"
+											v-for="(competency, index) in props
+												.row.competency"
 											:key="index"
 										>
 											{{ competency.competencyName }}
@@ -329,7 +329,11 @@ export default {
 	},
 	data() {
 		return {
-			resDetail: {},
+			resDetail: {
+				skills: [],
+				competency: [],
+				course: []
+			},
 			openedDetail: [],
 			selectedRes: [],
 			filterQuery: "",
@@ -487,7 +491,14 @@ export default {
 				params: { userId: userId }
 			})
 				.then(function(response) {
-					self.resDetail = response.data;
+					let detail = response.data;
+					let idex = self.fetchedRes.findIndex(
+						bit => bit.userId === userId
+					);
+
+					self.fetchedRes[idex].skills = detail.skills;
+					self.fetchedRes[idex].course = detail.course;
+					self.fetchedRes[idex].competency = detail.competency;
 				})
 				.catch(function(error) {
 					console.log(error);

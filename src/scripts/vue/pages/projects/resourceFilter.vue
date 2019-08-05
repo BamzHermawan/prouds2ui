@@ -111,7 +111,7 @@
 								:fields="[]"
 								:is-row-checkable="checkBookable"
 								checkable
-								@onCheck="test"
+								@onCheck="passedCheckedRow"
 								:checkbox-position="checkboxPosition"
 							>
 								<template slot-scope="props">
@@ -213,6 +213,7 @@
 
 <script>
 import Axios from "axios";
+import Tools from "../../../tools.js";
 import DataTable from "../../components/dataTable";
 import moment from "moment";
 export default {
@@ -220,10 +221,6 @@ export default {
 		DataTable
 	},
 	props: {
-		apiSearchEngine: {
-			type: String,
-			required: true
-		},
 		startDateName: {
 			type: String,
 			required: true
@@ -240,7 +237,7 @@ export default {
 			type: String,
 			required: true
 		},
-		testAction: {
+		apiCheckBooking: {
 			type: String,
 			required: true
 		}
@@ -314,7 +311,7 @@ export default {
 		}
 	},
 	methods: {
-		test(check) {
+		passedCheckedRow(check) {
 			this.checkedRows = check;
 		},
 		removeResource(resource) {
@@ -324,23 +321,20 @@ export default {
 
 			if (findExist > -1) {
 				this.fetchedRes.splice(findExist, 1);
+				Tools.loadStorage("selectedResource").then(selected => {
+					let index = selected.resource.findIndex(
+						bit => bit.userId === resource.userId
+					);
+
+					if (index > -1) {
+						selected.resource.splice(index, 1);
+						Tools.saveStorage("selectedResource", selected);
+					}
+				});
 			}
 		},
 		closeModal() {
 			this.searchQuery = "";
-		},
-		fetchResource() {
-			let self = this;
-			Axios.get(this.apiSearchEngine, {
-				params: self.paresedFilter
-			})
-				.then(function(response) {
-					self.fetchedRes = response.data;
-					self.book();
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
 		},
 		book() {
 			var a = this.fetchedRes.length;
@@ -353,11 +347,16 @@ export default {
 		checkBookable(row) {
 			return this.canbook.includes(row.userId);
 		},
-		postDate() {
+		postDate(users = undefined) {
+			if (users === undefined) {
+				users = this.checkedRows;
+			}
+
 			let self = this;
 			Axios.post(
-				this.testAction,
+				this.apiCheckBooking,
 				{
+					users: users,
 					start: self.start,
 					end: self.end
 				},
@@ -368,17 +367,21 @@ export default {
 				}
 			)
 				.then(function(response) {
-					console.log(response);
+					self.fetchedRes = response.data.resource;
+					self.book();
 				})
 				.catch(function(error) {
-					console.log(error);
+					console.log("error");
 				});
 		}
 	},
 	mounted() {
+		let self = this;
 		this.listProjectData = this.listProject;
-		this.fetchResource();
-		this.book();
+		Tools.loadStorage("selectedResource").then(selected => {
+			let saved = selected.resource.map(({ userId }) => userId);
+			self.postDate(saved);
+		});
 	}
 };
 </script>
