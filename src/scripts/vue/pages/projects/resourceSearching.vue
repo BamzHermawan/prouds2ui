@@ -2,6 +2,13 @@
 	<div class="columns">
 		<div class="column is-3">
 			<div class="container">
+				<div style="margin-bottom:24px;">
+					<slot name="exit-button">
+						<a href="#" class="button is-primary"
+							>🏃‍ Exit Booking Menu</a
+						>
+					</slot>
+				</div>
 				<nav class="panel tour-step-1">
 					<p class="panel-heading">Filter Resource</p>
 					<div class="panel-block">
@@ -130,7 +137,7 @@
 					:data="fetchedRes"
 					:fields="[]"
 					detailed
-					detail-key="nik"
+					detail-key="userId"
 					:show-detail-icon="false"
 					ref="dataTable"
 				>
@@ -142,34 +149,37 @@
 							<span>{{ props.row.bu }}</span>
 						</b-table-column>
 						<b-table-column
-							field="nik"
+							field="userId"
 							label="⚡ Action"
 							class="tour-step-7"
 						>
 							<b-button
 								:type="
-									checkIfOpen(props.row.nik)
+									checkIfOpen(props.row.userId)
 										? 'is-dark'
 										: 'is-info'
 								"
 								size="is-small"
 								@click="toggleDetail(props.row)"
 								>{{
-									checkIfOpen(props.row.nik)
+									checkIfOpen(props.row.userId)
 										? "❌ Close"
 										: "🔎 Detail"
 								}}</b-button
 							>
 							<b-button
-								:disabled="checkIfSaved(props.row.userId)"
-								:type="
-									checkIfSaved(props.row.userId)
-										? 'is-dark'
-										: 'is-success'
-								"
+								v-if="!checkIfSaved(props.row.userId)"
+								type="is-success"
 								size="is-small"
 								@click="addSaved(props.row)"
 								>💾 Save Resource</b-button
+							>
+							<b-button
+								v-else
+								type="is-danger"
+								size="is-small"
+								@click="removeSaved(props.row)"
+								>🚫 Unsave Resource</b-button
 							>
 						</b-table-column>
 					</template>
@@ -198,21 +208,88 @@
 						</div>
 					</template>
 					<template slot="detail" slot-scope="props">
-						<article class="media">
-							<figure class="media-left">
-								<p class="image is-64x64">
-									<img :src="props.row.avatar" />
+						<div class="columns">
+							<div class="column">
+								<p class="title is-size-5">
+									{{ props.row.name }}
 								</p>
-							</figure>
-							<div class="media-content">
+								<p class="subtitle is-size-6">
+									NIK. {{ props.row.userId }}
+								</p>
+							</div>
+							<div class="column">
+								<p class="title is-size-6">🏢 Business Unit</p>
+								<p class="subtitle is-size-5">
+									{{ props.row.bu }}
+								</p>
+							</div>
+						</div>
+						<div class="columns">
+							<div class="column">
 								<div class="content">
-									<p>
-										<strong>{{ props.row.name }}</strong>
-										<small>@{{ props.row.bu }}</small>
+									<p class="title is-size-6">
+										Kemampuan (Skill)
+									</p>
+									<ol
+										v-if="resDetail.skills.length > 0"
+										type="1"
+									>
+										<li
+											v-for="(skill,
+											index) in resDetail.skills"
+											:key="index"
+										>
+											<b>{{ skill.skillName }}</b
+											>:
+											{{ skill.skillLevel }}
+										</li>
+									</ol>
+									<p v-else class="tag is-warning">
+										Tidak Ada Data
 									</p>
 								</div>
 							</div>
-						</article>
+							<div class="column">
+								<div class="content">
+									<p class="title is-size-6">Training</p>
+									<ol
+										v-if="resDetail.course.length > 0"
+										type="1"
+									>
+										<li
+											v-for="(course,
+											index) in resDetail.course"
+											:key="index"
+										>
+											{{ course.courseName }}
+										</li>
+									</ol>
+									<p v-else class="tag is-warning">
+										Tidak Ada Data
+									</p>
+								</div>
+							</div>
+							<div class="column">
+								<div class="content">
+									<p class="title is-size-6">Certificate</p>
+									<ol
+										v-if="resDetail.competency.length > 0"
+										type="1"
+									>
+										<li
+											v-for="(competency,
+											index) in resDetail.competency"
+											:key="index"
+										>
+											{{ competency.competencyName }}
+										</li>
+									</ol>
+									<p v-else class="tag is-warning">
+										Tidak Ada Data
+									</p>
+								</div>
+							</div>
+						</div>
 					</template>
 				</data-table>
 			</div>
@@ -237,6 +314,10 @@ export default {
 			type: String,
 			required: true
 		},
+		apiDetailResource: {
+			type: String,
+			required: true
+		},
 		apiPostSaved: {
 			type: String,
 			required: true
@@ -248,6 +329,7 @@ export default {
 	},
 	data() {
 		return {
+			resDetail: {},
 			openedDetail: [],
 			selectedRes: [],
 			filterQuery: "",
@@ -272,11 +354,11 @@ export default {
 
 			return summary;
 		},
-		checkIfOpen(nik) {
-			return this.openedDetail.includes(nik);
+		checkIfOpen(userId) {
+			return this.openedDetail.includes(userId);
 		},
-		checkIfSaved(nik) {
-			let found = this.selectedRes.filter(({ userId }) => userId === nik);
+		checkIfSaved(id) {
+			let found = this.selectedRes.filter(({ userId }) => userId === id);
 			return found.length > 0;
 		},
 		addSaved(resource) {
@@ -285,13 +367,10 @@ export default {
 				filters: this.parsedFilter
 			});
 
-			window.localStorage.setItem(
-				"selectedResource",
-				JSON.stringify({
-					batchId: this.batchId,
-					resource: this.selectedRes
-				})
-			);
+			Tools.saveStorage("selectedResource", {
+				batchId: this.batchId,
+				resource: this.selectedRes
+			});
 
 			let savedNotif = document.querySelector("#savedLabel");
 			savedNotif.classList.add("tada");
@@ -299,14 +378,34 @@ export default {
 				savedNotif.classList.remove("tada");
 			});
 		},
+		removeSaved(resource) {
+			let findExist = this.selectedRes.findIndex(
+				bit => bit.userId === resource.userId
+			);
+
+			if (findExist > -1) {
+				this.selectedRes.splice(findExist, 1);
+				Tools.saveStorage("selectedResource", {
+					batchId: this.batchId,
+					resource: this.selectedRes
+				});
+
+				let savedNotif = document.querySelector("#savedLabel");
+				savedNotif.classList.add("rubberBand");
+				savedNotif.addEventListener("animationend", function() {
+					savedNotif.classList.remove("rubberBand");
+				});
+			}
+		},
 		toggleDetail(row) {
-			if (this.checkIfOpen(row.nik)) {
+			this.fetchDetail(row.userId);
+			if (this.checkIfOpen(row.userId)) {
 				let indexAt = this.openedDetail.findIndex(
-					nik => nik === row.nik
+					userId => userId === row.userId
 				);
 				this.openedDetail.splice(indexAt, 1);
 			} else {
-				this.openedDetail.push(row.nik);
+				this.openedDetail.push(row.userId);
 			}
 
 			this.$refs.dataTable.toggleDetail(row);
@@ -370,12 +469,9 @@ export default {
 				});
 		},
 		loadLocalStorage(showAnimation = false) {
-			let json = window.localStorage.getItem("selectedResource");
-			let selected = JSON.parse(json);
-
-			if (selected !== null) {
-				this.selectedRes = selected.resource;
-
+			let self = this;
+			return Tools.loadStorage("selectedResource").then(selected => {
+				self.selectedRes = selected.resource;
 				if (showAnimation) {
 					let savedNotif = document.querySelector("#savedLabel");
 					savedNotif.classList.add("tada");
@@ -383,9 +479,19 @@ export default {
 						savedNotif.classList.remove("tada");
 					});
 				}
-			}
-
-			return selected;
+			});
+		},
+		fetchDetail(userId) {
+			let self = this;
+			return Axios.get(this.apiDetailResource, {
+				params: { userId: userId }
+			})
+				.then(function(response) {
+					self.resDetail = response.data;
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
 		}
 	},
 	computed: {
