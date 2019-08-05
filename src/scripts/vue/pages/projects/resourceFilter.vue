@@ -83,6 +83,11 @@
 									name="projectId"
 									v-model="selectedOptions"
 								/>
+								<input
+									type="hidden"
+									:name="userIdName"
+									v-model="checkId"
+								/>
 								<b-select
 									multiple
 									expanded
@@ -98,18 +103,16 @@
 									</option>
 								</b-select>
 							</b-field>
-							<!-- <p class="content">
-								<b>selected</b>: {{ selectedOptions }}
-							</p> -->
 						</div>
 						<div class="column is-9">
 							<data-table
 								title="Resource List"
 								:data="fetchedRes"
-								checkbox-position="left"
 								:fields="[]"
 								:is-row-checkable="checkBookable"
 								checkable
+								@onCheck="test"
+								:checkbox-position="checkboxPosition"
 							>
 								<template slot-scope="props">
 									<b-table-column
@@ -125,7 +128,12 @@
 										field="status"
 										label="Status"
 									>
-										<span>{{ props.row.status }}</span>
+										<span v-if="props.row.isBooked == true"
+											>Full Booked</span
+										>
+										<span v-if="props.row.isBooked == false"
+											>Available</span
+										>
 									</b-table-column>
 									<b-table-column
 										field="userId"
@@ -133,6 +141,12 @@
 									>
 										<b-button type="is-info" size="is-small"
 											>🔎 Detail</b-button
+										>
+										<b-button
+											type="is-danger"
+											size="is-small"
+											@click="removeResource(props.row)"
+											>🚫 Remove</b-button
 										>
 									</b-table-column>
 								</template>
@@ -236,7 +250,6 @@ export default {
 
 		return {
 			canbook: [],
-			status_book: [],
 			date: new Date(),
 			minDate: new Date(
 				today.getFullYear(),
@@ -247,12 +260,12 @@ export default {
 			end: new Date(),
 			fetchedRes: [],
 			checkboxPosition: "left",
-			// checkedRows: [],
 			searchQuery: "",
 			searchList: true,
 			listProject: LISTPROJECT,
 			listProjectData: [],
-			projectId: ""
+			projectId: "",
+			checkedRows: []
 		};
 	},
 	computed: {
@@ -268,6 +281,13 @@ export default {
 					this.projectId = "";
 				}
 			}
+		},
+		checkId() {
+			let a = [];
+			this.checkedRows.forEach(row => {
+				a.push(row.userId);
+			});
+			return a;
 		}
 	},
 	watch: {
@@ -294,6 +314,18 @@ export default {
 		}
 	},
 	methods: {
+		test(check) {
+			this.checkedRows = check;
+		},
+		removeResource(resource) {
+			let findExist = this.fetchedRes.findIndex(
+				bit => bit.userId === resource.userId
+			);
+
+			if (findExist > -1) {
+				this.fetchedRes.splice(findExist, 1);
+			}
+		},
 		closeModal() {
 			this.searchQuery = "";
 		},
@@ -327,14 +359,7 @@ export default {
 				this.testAction,
 				{
 					start: self.start,
-					end: self.end,
-					users: [
-						"0000000000",
-						"0000000000",
-						"0000000000",
-						"0000000000",
-						"0000000000"
-					]
+					end: self.end
 				},
 				{
 					headers: {
