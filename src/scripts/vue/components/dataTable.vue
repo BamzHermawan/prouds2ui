@@ -75,6 +75,7 @@
 					:data="filteredlist"
 					:checkable="checkable"
 					:is-row-checkable="isRowCheckable"
+					:checked-rows.sync="checked"
 					ref="table"
 				>
 					<template slot-scope="props">
@@ -113,8 +114,14 @@ export default {
 	data() {
 		return {
 			currentPage: 1,
-			search: ""
+			search: "",
+			checked: []
 		};
+	},
+	watch: {
+		checked: function(newdata, olddata) {
+			this.$emit("onCheck", newdata);
+		}
 	},
 	props: {
 		fields: {
