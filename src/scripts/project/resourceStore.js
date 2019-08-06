@@ -36,6 +36,9 @@ new Vue({
 					);
 				})
 				.finally(() => self.loadingBtn = false);
+		},
+		reloadLocalStorage(){
+			this.$refs.stepOne.loadLocalStorage();
 		}
 	},
 	components: {
@@ -45,10 +48,6 @@ new Vue({
 		loadingBtn: false,
 		filter: {
 			active: false
-		},
-		formProps: {
-			email: '',
-			password: ''
 		},
 		filterCat: FILTERCATEGORY,
 		tourStep: [

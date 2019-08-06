@@ -33,6 +33,13 @@ if(!empty($_GET)){
 		}
 
 		if($checker){
+			unset($staff->skills);
+			unset($staff->course);
+			unset($staff->competency);
+			unset($staff->bookedDate);
+			unset($staff->freeDate);
+			unset($staff->testFilter);
+			
 			$prep[] = $staff;
 		}
 

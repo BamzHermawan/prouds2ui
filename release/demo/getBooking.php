@@ -2,12 +2,29 @@
 
 header("Access-Control-Allow-Origin: *");
 
-$content  = file_get_contents("./booking.json");
+$content  = file_get_contents("./resource.json");
 $resource = json_decode($content);
-$iterate = 500;
-$prep = array();
 
-$prep = array_slice($resource, 0, $iterate);
+$post = json_decode(file_get_contents("php://input"));
+$cooked = [
+	"batchId" => rand(1, 5),
+	"resource" => []
+];
 
+foreach ($post->users as $user) {
+	$found = array_search($user, array_column($resource, 'userId'));
+	if($found !== FALSE){
+		$cook = [
+			"userId" => $resource[$found]->userId,
+			"name" => $resource[$found]->name,
+			"bu" => $resource[$found]->bu,
+			"bookedDate" => $resource[$found]->bookedDate,
+			"freeDate" => $resource[$found]->freeDate,
+			"isBooked" => rand(0, 1) === 0
+		];
 
-echo json_encode($prep);
+		$cooked["resource"][] = $cook;
+	}
+}
+
+echo json_encode($cooked);
