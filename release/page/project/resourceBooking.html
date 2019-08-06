@@ -30,9 +30,121 @@
 		</div>
 	</section>
 	<section id="vapp" class="section">
-		<booking></booking>
+		<booking :user-booking="userBook">
+			<template slot="new-request-button">
+				<a href="/src/project\resourceStore.html" class="button is-success">Request Booking Baru 📬</a>
+			</template>
+		</booking>
 	</section>
 
+	<script>var BOOKING = [{
+  "projectId": 2,
+  "projectName": "Kaggle",
+  "periode": "24/3/2019 - 25/3/2019",
+  "resource": [{
+    "userId": "000000",
+    "name": "Winifred Byers",
+    "bu": "Viocular",
+    "status": "Listed",
+    "approvalBy": "Davenport Chase",
+    "approvedDate": "12/6/2019"
+  }, {
+    "userId": "000001",
+    "name": "Cleveland Hanson",
+    "bu": "Veraq",
+    "status": "Rejected",
+    "approvalBy": "Aurelia Burnett",
+    "approvedDate": "6/1/2019"
+  }, {
+    "userId": "000002",
+    "name": "Joseph Yang",
+    "bu": "Isoswitch",
+    "status": "Rejected",
+    "approvalBy": "Allen Walker",
+    "approvedDate": "12/10/2019"
+  }, {
+    "userId": "000003",
+    "name": "Mccormick Paul",
+    "bu": "Junipoor",
+    "status": "Listed",
+    "approvalBy": "Donaldson Melendez",
+    "approvedDate": "20/1/2019"
+  }, {
+    "userId": "000004",
+    "name": "Gould Berry",
+    "bu": "Snacktion",
+    "status": "Rejected",
+    "approvalBy": "Grace Hayes",
+    "approvedDate": "20/11/2019"
+  }]
+}, {
+  "projectId": null,
+  "projectName": null,
+  "updateLink": "http://localhost:5500/project/resourceStore.html#batchId",
+  "periode": "7/1/2019 - 10/8/2019",
+  "resource": [{
+    "userId": "000000",
+    "name": "Teresa Mccullough",
+    "bu": "Pigzart",
+    "status": "Booked",
+    "approvalBy": "Ashlee Parrish",
+    "approvedDate": "24/3/2019"
+  }, {
+    "userId": "000001",
+    "name": "Valentine Avery",
+    "bu": "Centice",
+    "status": "Approved",
+    "approvalBy": "Sherman Hull",
+    "approvedDate": "23/6/2019"
+  }, {
+    "userId": "000002",
+    "name": "Clara Bowman",
+    "bu": "Gadtron",
+    "status": "Booked",
+    "approvalBy": "Beatrice Daniel",
+    "approvedDate": "14/2/2019"
+  }, {
+    "userId": "000003",
+    "name": "Opal Elliott",
+    "bu": "Digigen",
+    "status": "Approved",
+    "approvalBy": "Marina Jimenez",
+    "approvedDate": "7/1/2019"
+  }, {
+    "userId": "000004",
+    "name": "Florine Doyle",
+    "bu": "Bristo",
+    "status": "Listed",
+    "approvalBy": "Cara Whitehead",
+    "approvedDate": "14/2/2019"
+  }]
+}, {
+  "projectId": 10,
+  "projectName": "Dragbot",
+  "periode": "23/2/2019 - 18/1/2019",
+  "resource": [{
+    "userId": "000000",
+    "name": "Kellie Mcclure",
+    "bu": "Talkalot",
+    "status": "Listed",
+    "approvalBy": "Earnestine Hernandez",
+    "approvedDate": "16/6/2019"
+  }, {
+    "userId": "000001",
+    "name": "Alston Delgado",
+    "bu": "Viasia",
+    "status": "Booked",
+    "approvalBy": "Bowers Sampson",
+    "approvedDate": "24/7/2019"
+  }, {
+    "userId": "000002",
+    "name": "Carmen Stark",
+    "bu": "Corpulse",
+    "status": "Rejected",
+    "approvalBy": "Richmond Weeks",
+    "approvedDate": "19/6/2019"
+  }]
+}];</script>
 	<script src="/src/resourceBooking.min.js"></script>
 </body>
 </html>

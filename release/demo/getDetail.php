@@ -9,10 +9,9 @@ if(!empty($_GET["userId"])){
 	$found = array_search($_GET["userId"], array_column($resource, 'userId'));
 	if($found !== FALSE){
 		echo json_encode($resource[$found]);
-		return 0;
+	}else{
+		echo json_encode([
+			"status" => FALSE
+		]);
 	}
 }
-
-echo json_encode([
-	"status" => FALSE
-]);
