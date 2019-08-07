@@ -1,7 +1,7 @@
 <template>
 	<div class="modal-card" style="width: auto">
-		<form :action="apiAction" method="post">
-			<article class="message is-primary" style="min-height: 100vh;">
+		<form @submit="checkForm" :action="apiAction" method="post">
+			<article class="message is-primary" style="min-height:100vh">
 				<div class="message-header">
 					<p>
 						<span
@@ -12,7 +12,7 @@
 						Resource Booking
 					</p>
 				</div>
-				<div class="message-body">
+				<div class="message-body" style="overflow-y:scroll; max-height:80vh;">
 					<nav class="level">
 						<div class="level-left">
 							<div class="level-item">
@@ -48,7 +48,7 @@
 								<b-field>
 									<b-datepicker
 										placeholder="DD/MM/YYYY"
-										:min-date="minDate"
+										:min-date="minDateEnd"
 										@input="postDate"
 										v-model="end"
 										:name="endDateName"
@@ -106,9 +106,13 @@
 						</div>
 						<div class="column is-9">
 							<data-table
+								ref="resTable"
 								title="Resource List"
 								:data="fetchedRes"
 								:fields="[]"
+								detailed
+								detail-key="userId"
+								:show-detail-icon="false"
 								:is-row-checkable="checkBookable"
 								checkable
 								@onCheck="passedCheckedRow"
@@ -139,8 +143,19 @@
 										field="userId"
 										label="⚡ Action"
 									>
-										<b-button type="is-info" size="is-small"
-											>🔎 Detail</b-button
+										<b-button
+											:type="
+												checkIfOpen(props.row.userId)
+													? 'is-dark'
+													: 'is-info'
+											"
+											size="is-small"
+											@click="toggleDetail(props.row)"
+											>{{
+												checkIfOpen(props.row.userId)
+													? "❌ Close"
+													: "🔎 Detail"
+											}}</b-button
 										>
 										<b-button
 											type="is-danger"
@@ -169,40 +184,122 @@
 										</div>
 									</div>
 								</template>
-							</data-table>
-							<div class="card" style="margin-top: 25px;">
-								<header class="card-header">
-									<p class="card-header-title">
-										Detail Resource
-									</p>
-									<a
-										href="#"
-										class="card-header-icon"
-										aria-label="more options"
-									>
-										<span class="icon">
-											<i
-												class="fas fa-angle-down"
-												aria-hidden="true"
-											></i>
-										</span>
-									</a>
-								</header>
-								<div class="card-content">
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit. Phasellus nec iaculis
-										mauris.
-										<a href="#">@bulmaio</a>.
-										<a href="#">#css</a>
-										<a href="#">#responsive</a>
-										<br />
-										<time datetime="2016-1-1"
-											>11:09 PM - 1 Jan 2016</time
-										>
+								<template slot="detail" slot-scope="props">
+									<div class="columns">
+										<div class="column">
+											<p class="title is-size-5">
+												{{ props.row.name }}
+											</p>
+											<p class="subtitle is-size-6">
+												NIK. {{ props.row.userId }}
+											</p>
+										</div>
+										<div class="column">
+											<p class="title is-size-6">
+												🏢 Business Unit
+											</p>
+											<p class="subtitle is-size-5">
+												{{ props.row.bu }}
+											</p>
+										</div>
 									</div>
-								</div>
-							</div>
+									<div class="columns">
+										<div class="column">
+											<div class="content">
+												<p class="title is-size-6">
+													Kemampuan (Skill)
+												</p>
+												<ol
+													v-if="
+														props.row.skills
+															.length > 0
+													"
+													type="1"
+												>
+													<li
+														v-for="(skill,
+														index) in props.row
+															.skills"
+														:key="index"
+													>
+														<b>{{
+															skill.skillName
+														}}</b
+														>:
+														{{ skill.skillLevel }}
+													</li>
+												</ol>
+												<p
+													v-else
+													class="tag is-warning"
+												>
+													Tidak Ada Data
+												</p>
+											</div>
+										</div>
+										<div class="column">
+											<div class="content">
+												<p class="title is-size-6">
+													Training
+												</p>
+												<ol
+													v-if="
+														props.row.course
+															.length > 0
+													"
+													type="1"
+												>
+													<li
+														v-for="(course,
+														index) in props.row
+															.course"
+														:key="index"
+													>
+														{{ course.courseName }}
+													</li>
+												</ol>
+												<p
+													v-else
+													class="tag is-warning"
+												>
+													Tidak Ada Data
+												</p>
+											</div>
+										</div>
+										<div class="column">
+											<div class="content">
+												<p class="title is-size-6">
+													Certificate
+												</p>
+												<ol
+													v-if="
+														props.row.competency
+															.length > 0
+													"
+													type="1"
+												>
+													<li
+														v-for="(competency,
+														index) in props.row
+															.competency"
+														:key="index"
+													>
+														{{
+															competency.competencyName
+														}}
+													</li>
+												</ol>
+												<p
+													v-else
+													class="tag is-warning"
+												>
+													Tidak Ada Data
+												</p>
+											</div>
+										</div>
+									</div>
+								</template>
+							</data-table>
 						</div>
 					</div>
 				</div>
@@ -216,6 +313,7 @@ import Axios from "axios";
 import Tools from "../../../tools.js";
 import DataTable from "../../components/dataTable";
 import moment from "moment";
+import { start } from "repl";
 export default {
 	components: {
 		DataTable
@@ -240,6 +338,10 @@ export default {
 		apiCheckBooking: {
 			type: String,
 			required: true
+		},
+		apiDetailResource: {
+			type: String,
+			required: true
 		}
 	},
 	data() {
@@ -253,6 +355,11 @@ export default {
 				today.getMonth(),
 				today.getDate()
 			),
+			minDateEnd: new Date(
+				today.getFullYear(),
+				today.getMonth(),
+				today.getDate()
+			),
 			start: new Date(),
 			end: new Date(),
 			fetchedRes: [],
@@ -262,7 +369,13 @@ export default {
 			listProject: LISTPROJECT,
 			listProjectData: [],
 			projectId: "",
-			checkedRows: []
+			checkedRows: [],
+			openedDetail: [],
+			resDetail: {
+				skills: [],
+				competency: [],
+				course: []
+			}
 		};
 	},
 	computed: {
@@ -311,6 +424,21 @@ export default {
 		}
 	},
 	methods: {
+		checkForm: function(e) {
+			if (this.projectId === "") {
+				Tools.notified(this.$toast).alert("Anda Belum Memilih Project");
+				e.preventDefault();
+			}
+			if (this.checkedRows.length === 0) {
+				Tools.notified(this.$toast).alert(
+					"Anda Belum Memilih Resource"
+				);
+				e.preventDefault();
+			}
+		},
+		checkIfOpen(userId) {
+			return this.openedDetail.includes(userId);
+		},
 		passedCheckedRow(check) {
 			this.checkedRows = check;
 		},
@@ -347,9 +475,26 @@ export default {
 		checkBookable(row) {
 			return this.canbook.includes(row.userId);
 		},
-		postDate(users = undefined) {
-			if (users === undefined) {
-				users = this.checkedRows;
+		postDate(users = undefined, passData = false) {
+			if (!passData) {
+				users = this.fetchedRes.map(({ userId }) => userId);
+			}
+			let a = moment(this.start).isBefore(this.end);
+			let b = moment(this.start).isBefore(this.start);
+			console.log(b);
+			if (!a) {
+				this.end = this.start;
+				this.minDateEnd = new Date(
+					this.start.getFullYear(),
+					this.start.getMonth(),
+					this.start.getDate()
+				);
+			} else {
+				this.minDateEnd = new Date(
+					this.start.getFullYear(),
+					this.start.getMonth(),
+					this.start.getDate()
+				);
 			}
 
 			let self = this;
@@ -369,9 +514,41 @@ export default {
 				.then(function(response) {
 					self.fetchedRes = response.data.resource;
 					self.book();
+					self.$refs.resTable.clearChecked();
 				})
 				.catch(function(error) {
 					console.log("error");
+				});
+		},
+		toggleDetail(row) {
+			this.fetchDetail(row);
+			if (this.checkIfOpen(row.userId)) {
+				let indexAt = this.openedDetail.findIndex(
+					userId => userId === row.userId
+				);
+				this.openedDetail.splice(indexAt, 1);
+			} else {
+				this.openedDetail.push(row.userId);
+			}
+		},
+		fetchDetail(row) {
+			let self = this;
+			return Axios.get(this.apiDetailResource, {
+				params: { userId: row.userId }
+			})
+				.then(function(response) {
+					let detail = response.data;
+					let idex = self.fetchedRes.findIndex(
+						bit => bit.userId === row.userId
+					);
+
+					self.fetchedRes[idex].skills = detail.skills;
+					self.fetchedRes[idex].course = detail.course;
+					self.fetchedRes[idex].competency = detail.competency;
+					self.$refs.resTable.toggleDetail(row);
+				})
+				.catch(function(error) {
+					console.log(error);
 				});
 		}
 	},
@@ -380,7 +557,7 @@ export default {
 		this.listProjectData = this.listProject;
 		Tools.loadStorage("selectedResource").then(selected => {
 			let saved = selected.resource.map(({ userId }) => userId);
-			self.postDate(saved);
+			self.postDate(saved, true);
 		});
 	}
 };

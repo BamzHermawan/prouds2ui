@@ -183,6 +183,9 @@ export default {
 	methods: {
 		toggleDetail(row) {
 			this.$refs.table.toggleDetails(row);
+		},
+		clearChecked() {
+			this.checked = [];
 		}
 	}
 };
