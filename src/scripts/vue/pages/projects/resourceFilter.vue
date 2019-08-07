@@ -81,7 +81,7 @@
 								<input
 									type="hidden"
 									name="batchId"
-									v-model="$parent.batchId"
+									v-model="$root.batchId"
 								/>
 								<input
 									type="hidden"
@@ -104,7 +104,7 @@
 										index) in listProjectData"
 										:key="index"
 										:value="project.projectId"
-										>👨‍💼 {{ project.projectName }}
+										>{{ project.projectName }}
 									</option>
 								</b-select>
 							</b-field>
@@ -621,7 +621,6 @@ export default {
 		}
 	},
 	mounted() {
-		console.log(this.$parent.batchId);
 		let self = this;
 		this.listProjectData = this.listProject;
 		Tools.loadStorage("selectedResource").then(selected => {

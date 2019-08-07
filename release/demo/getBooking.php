@@ -7,7 +7,7 @@ $resource = json_decode($content);
 
 $post = json_decode(file_get_contents("php://input"));
 $cooked = [
-	"batchId" => rand(1, 5),
+	"batchId" => empty($post->batchId) ? rand(1, 5): $post->batchId,
 	"resource" => []
 ];
 

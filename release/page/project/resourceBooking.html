@@ -32,16 +32,21 @@
 	<section id="vapp" class="section">
 		<booking id="booking-menu" :user-booking="userBook" v-show="!showDetail">
 			<template slot="new-request-button">
-				<a href="/src/project\resourceStore.html" class="button is-success">Request Booking Baru 📬</a>
+				<div class="level-item">
+					<a href="#exit" class="button is-danger">🏃‍ Exit Resource Booking</a>
+				</div>
+				<div class="level-item">
+					<a href="/src/project\resourceStore.html" class="button is-success">📬 Request Booking Baru</a>
+				</div>
 			</template>
 		</booking>
 		<detail id="detail-menu" :batch-detail="batchDetail" v-show="showDetail" :is-open="showDetail" api-detail-resource="http://localhost:5501/demo/getDetail.php"></detail>
 	</section>
 
 	<script>var BOOKING = [{
-  "projectId": 2,
-  "projectName": "Kaggle",
-  "projectManager": "Boy Wiranata Putra",
+  "projectId": null,
+  "projectName": null,
+  "projectManager": null,
   "periode": "24/3/2019 - 25/3/2019",
   "resource": [{
     "userId": "000000",
@@ -64,24 +69,11 @@
     "status": "Rejected",
     "approvalBy": "Allen Walker",
     "approvedDate": "12/10/2019"
-  }, {
-    "userId": "000003",
-    "name": "Mccormick Paul",
-    "bu": "Junipoor",
-    "status": "Listed",
-    "approvalBy": null,
-    "approvedDate": null
-  }, {
-    "userId": "000004",
-    "name": "Gould Berry",
-    "bu": "Snacktion",
-    "status": "Rejected",
-    "approvalBy": "Grace Hayes",
-    "approvedDate": "20/11/2019"
   }]
 }, {
   "projectId": null,
   "projectName": null,
+  "projectManager": null,
   "updateLink": "http://localhost:5500/project/resourceStore.html#batchId",
   "periode": "7/1/2019 - 10/8/2019",
   "resource": [{

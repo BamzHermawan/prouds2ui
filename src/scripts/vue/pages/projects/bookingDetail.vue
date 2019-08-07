@@ -18,6 +18,12 @@
 						<p class="title is-size-5">{{ projectManager }}</p>
 					</div>
 				</div>
+				<div class="level-item">
+					<div style="margin-right: 50px;">
+						<p class="heading">Booking Periode</p>
+						<p class="title is-size-5">{{ periode }}</p>
+					</div>
+				</div>
 			</div>
 			<div class="level-right">
 				<b-button type="is-danger" @click="$parent.shutDetail"
@@ -191,6 +197,7 @@ export default {
 			resource: [],
 			projectName: "",
 			projectManager: "",
+			periode: "",
 			loading: false
 		};
 	},
@@ -238,6 +245,10 @@ export default {
 
 			if (newBatch.projectManager !== undefined) {
 				this.projectManager = newBatch.projectManager;
+			}
+
+			if (newBatch.periode !== undefined) {
+				this.periode = newBatch.periode;
 			}
 		}
 	}

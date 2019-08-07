@@ -468,6 +468,7 @@ export default {
 			let self = this;
 			return Tools.loadStorage("selectedResource").then(selected => {
 				self.selectedRes = selected.resource;
+				self.$parent.batchId = selected.batchId;
 				if (showAnimation) {
 					let savedNotif = document.querySelector("#savedLabel");
 					savedNotif.classList.add("tada");
