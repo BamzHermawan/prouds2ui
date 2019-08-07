@@ -120,7 +120,9 @@
 						<b-button
 							type="is-warning"
 							@click="$parent.touring.start()"
-							>🙋‍ | Need Help ❓</b-button
+							>🙋‍<span style="margin-left:10px;"
+								>Need Help ?</span
+							></b-button
 						>
 					</div>
 				</div>
@@ -321,19 +323,10 @@ export default {
 		apiPostSaved: {
 			type: String,
 			required: true
-		},
-		batchId: {
-			type: String,
-			default: null
 		}
 	},
 	data() {
 		return {
-			resDetail: {
-				skills: [],
-				competency: [],
-				course: []
-			},
 			openedDetail: [],
 			selectedRes: [],
 			filterQuery: "",
@@ -372,7 +365,7 @@ export default {
 			});
 
 			Tools.saveStorage("selectedResource", {
-				batchId: this.batchId,
+				batchId: this.$parent.batchId,
 				resource: this.selectedRes
 			});
 
@@ -390,7 +383,7 @@ export default {
 			if (findExist > -1) {
 				this.selectedRes.splice(findExist, 1);
 				Tools.saveStorage("selectedResource", {
-					batchId: this.batchId,
+					batchId: this.$parent.batchId,
 					resource: this.selectedRes
 				});
 
@@ -402,7 +395,7 @@ export default {
 			}
 		},
 		toggleDetail(row) {
-			this.fetchDetail(row.userId);
+			this.fetchDetail(row);
 			if (this.checkIfOpen(row.userId)) {
 				let indexAt = this.openedDetail.findIndex(
 					userId => userId === row.userId
@@ -411,8 +404,6 @@ export default {
 			} else {
 				this.openedDetail.push(row.userId);
 			}
-
-			this.$refs.dataTable.toggleDetail(row);
 		},
 		addFilter() {
 			if (this.pickedCat === "") {
@@ -467,6 +458,7 @@ export default {
 			})
 				.then(function(response) {
 					self.fetchedRes = response.data;
+					self.openedDetail = [];
 				})
 				.catch(function(error) {
 					console.log(error);
@@ -485,20 +477,21 @@ export default {
 				}
 			});
 		},
-		fetchDetail(userId) {
+		fetchDetail(resource) {
 			let self = this;
 			return Axios.get(this.apiDetailResource, {
-				params: { userId: userId }
+				params: { userId: resource.userId }
 			})
 				.then(function(response) {
 					let detail = response.data;
 					let idex = self.fetchedRes.findIndex(
-						bit => bit.userId === userId
+						bit => bit.userId === resource.userId
 					);
 
 					self.fetchedRes[idex].skills = detail.skills;
 					self.fetchedRes[idex].course = detail.course;
 					self.fetchedRes[idex].competency = detail.competency;
+					self.$refs.dataTable.toggleDetail(resource);
 				})
 				.catch(function(error) {
 					console.log(error);

@@ -99,3 +99,10 @@ module.exports.animate = function(selector, classOption, callback = undefined){
 		el.addEventListener('animationend', handleAnimationEnd);
 	}
 }
+
+module.exports.randomSmile = function(){
+	let smiles = [ "😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙈", "🙉", "🙊" ];
+	let random = Math.random() * smiles.length;
+	let index = Math.floor(Math.random() * random);
+	return smiles[index];
+}

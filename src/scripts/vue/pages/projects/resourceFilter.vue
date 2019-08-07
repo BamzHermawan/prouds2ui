@@ -12,7 +12,10 @@
 						Resource Booking
 					</p>
 				</div>
-				<div class="message-body" style="overflow-y:scroll; max-height:80vh;">
+				<div
+					class="message-body"
+					style="overflow-y:scroll; max-height:80vh;"
+				>
 					<nav class="level">
 						<div class="level-left">
 							<div class="level-item">
@@ -78,6 +81,11 @@
 								</b-input>
 							</b-field>
 							<b-field>
+								<input
+									type="hidden"
+									name="batchId"
+									v-model="$parent.batchId"
+								/>
 								<input
 									type="hidden"
 									name="projectId"
@@ -188,6 +196,7 @@
 									<div class="columns">
 										<div class="column">
 											<p class="title is-size-5">
+												{{ randomSmile() }}
 												{{ props.row.name }}
 											</p>
 											<p class="subtitle is-size-6">
@@ -207,7 +216,69 @@
 										<div class="column">
 											<div class="content">
 												<p class="title is-size-6">
-													Kemampuan (Skill)
+													📅 Available Date
+												</p>
+												<ol
+													v-if="
+														props.row.freeDate
+															.length > 0
+													"
+													type="1"
+												>
+													<li
+														v-for="(free,
+														index) in props.row
+															.freeDate"
+														:key="index"
+													>
+														{{ free.start }} -
+														{{ free.end }}
+													</li>
+												</ol>
+												<p
+													v-else
+													class="tag is-warning"
+												>
+													Tidak Ada Data
+												</p>
+											</div>
+										</div>
+										<div class="column">
+											<div class="content">
+												<p class="title is-size-6">
+													📅 Unavailable Date
+												</p>
+												<ol
+													v-if="
+														props.row.bookedDate
+															.length > 0
+													"
+													type="1"
+												>
+													<li
+														v-for="(booked,
+														index) in props.row
+															.bookedDate"
+														:key="index"
+													>
+														{{ booked.start }} -
+														{{ booked.end }}
+													</li>
+												</ol>
+												<p
+													v-else
+													class="tag is-warning"
+												>
+													Tidak Ada Data
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="columns">
+										<div class="column">
+											<div class="content">
+												<p class="title is-size-6">
+													🏆 Kemampuan (Skill)
 												</p>
 												<ol
 													v-if="
@@ -240,7 +311,7 @@
 										<div class="column">
 											<div class="content">
 												<p class="title is-size-6">
-													Training
+													🎒 Training
 												</p>
 												<ol
 													v-if="
@@ -269,7 +340,7 @@
 										<div class="column">
 											<div class="content">
 												<p class="title is-size-6">
-													Certificate
+													📜 Certificate
 												</p>
 												<ol
 													v-if="
@@ -370,12 +441,7 @@ export default {
 			listProjectData: [],
 			projectId: "",
 			checkedRows: [],
-			openedDetail: [],
-			resDetail: {
-				skills: [],
-				competency: [],
-				course: []
-			}
+			openedDetail: []
 		};
 	},
 	computed: {
@@ -424,6 +490,9 @@ export default {
 		}
 	},
 	methods: {
+		randomSmile() {
+			return Tools.randomSmile();
+		},
 		checkForm: function(e) {
 			if (this.projectId === "") {
 				Tools.notified(this.$toast).alert("Anda Belum Memilih Project");

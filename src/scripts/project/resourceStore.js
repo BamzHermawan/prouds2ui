@@ -6,6 +6,8 @@ import { notified, loadStorage, saveStorage } from '../tools.js';
 import searchMenu from "./../vue/pages/projects/resourceSearching.vue";
 import filterMenu from "./../vue/pages/projects/resourceFilter.vue";
 
+window.localStorage.setItem("selectedResource", JSON.stringify(SAVEDRESOURCE));
+
 Vue.use(Buefy);
 new Vue({
 	el: '#vapp',
@@ -23,7 +25,7 @@ new Vue({
 						}
 					})
 						.then(function (response) {
-							console.log(response.data);
+							// self.$refs.stepOne.apiPostSaved
 							self.filter.active = true;
 						})
 						.catch(function () {
@@ -164,7 +166,8 @@ new Vue({
 				]
 			}
 		],
-		touring: undefined
+		touring: undefined,
+		batchId: "100"
 	},
 	mounted(){
 		let self = this;

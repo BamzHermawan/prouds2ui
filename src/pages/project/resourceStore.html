@@ -34,7 +34,7 @@
 		<search-menu ref="stepOne" batch-id="2" :filter-cat="filterCat"
 			api-detail-resource="http://localhost:5501/demo/getDetail.php"
 			api-search-engine="http://localhost:5501/demo/getResource.php"
-			api-post-saved="http://localhost:5501/demo/axios_check.php">
+			api-post-saved="http://localhost:5501/demo/axios_check.php?return=integer-0-99-batchId">
 			<template slot="exit-button">
 				<a href="resourceBooking.html" class="button is-primary">🏃‍ Exit Booking Menu</a>
 			</template>
@@ -46,14 +46,32 @@
 
 		<b-modal full-screen :active.sync="filter.active" has-modal-card :can-cancel="false"
 			@close="reloadLocalStorage">
-			<filter-menu :filter-cat="filterCat" start-date-name="startDate" end-date-name="endDate"
+			<filter-menu  batch-id="2" :filter-cat="filterCat" start-date-name="startDate" end-date-name="endDate"
 				user-id-name="users" api-action="http://localhost:5501/demo/post_detect.php"
 				api-check-booking="http://localhost:5501/demo/getBooking.php"
 				api-detail-resource="http://localhost:5501/demo/getDetail.php"></filter-menu>
 		</b-modal>
 	</section>
 	<script>
-		const FILTERCATEGORY = [
+		const 
+		SAVEDRESOURCE = {
+			batchId: "2",
+			resource: [
+				{
+					userId:"000008",
+					filters:{
+						role:"Project Manager"
+					}
+				},
+				{
+					userId:"000010",
+					filters:{
+						role:"Project Manager"
+					}
+				}
+			]
+		}
+		FILTERCATEGORY = [
 			{
 				key: "role",
 				text: "Cari dengan Role",
