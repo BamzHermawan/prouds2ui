@@ -535,11 +535,13 @@ export default {
 		},
 		book() {
 			var a = this.fetchedRes.length;
+			let prep = [];
 			for (var i = 0; i < a; i++) {
 				if (!this.fetchedRes[i].isBooked) {
-					this.canbook.push(this.fetchedRes[i].userId);
+					prep.push(this.fetchedRes[i].userId);
 				}
 			}
+			this.canbook = prep;
 		},
 		checkBookable(row) {
 			return this.canbook.includes(row.userId);
