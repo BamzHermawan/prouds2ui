@@ -77,3 +77,25 @@ module.exports.loadStorage = function(key) {
 module.exports.saveStorage = function (key, json) {
 	return window.localStorage.setItem(key, JSON.stringify(json));
 }
+
+module.exports.animate = function(selector, classOption, callback = undefined){
+	const el = document.querySelector(selector);
+	if(el !== null && el !== undefined){
+		if (!el.classList.contains('animated')) {
+			el.classList.add('animated');
+		}
+
+		function handleAnimationEnd() {
+			let option = classOption.split(" ");
+			option.forEach(oneClass => {
+				el.classList.remove(oneClass);
+			});
+
+			el.removeEventListener('animationend', handleAnimationEnd);
+			if (typeof callback === 'function') callback();
+		}
+
+		el.className += " " + classOption;
+		el.addEventListener('animationend', handleAnimationEnd);
+	}
+}

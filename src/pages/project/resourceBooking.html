@@ -21,20 +21,26 @@
 				<h1 class="title">
 					Resource Booking
 				</h1>
-				<h2 class="subtitle">
+				<h2 class="title is-size-5">
 					Hi, <span class="has-text-warning">Ade Wiranata Putra</span> 👋
 				</h2>
-				<p>Selamat Datang di Halaman Resource Booking.<br>Jika kamu butuh bantuan, silakan ikuti tutorial dibawah ini:</p>
-				<p style="margin-top: 10px;">👉 <button class="button is-warning is-small">🏁 Start Tutorial</button></p>
+				<p class="subtitle">Selamat Datang di Halaman Resource Booking.</p>
 			</div>
 		</div>
 	</section>
 	<section id="vapp" class="section">
-		<booking :user-booking="userBook">
+		<booking id="booking-menu" :user-booking="userBook" v-show="!showDetail">
 			<template slot="new-request-button">
 				<a href="resourceStore.html" class="button is-success">Request Booking Baru 📬</a>
 			</template>
 		</booking>
+		<detail 
+			id="detail-menu" 
+			:batch-detail="batchDetail" 
+			v-show="showDetail" 
+			:is-open="showDetail"
+			api-detail-resource="http://localhost:5501/demo/getDetail.php"
+		></detail>
 	</section>
 
 	<script>
@@ -42,6 +48,7 @@
 				{
 					"projectId": 2,
 					"projectName": "Kaggle",
+					"projectManager": "Boy Wiranata Putra",
 					"periode": "24/3/2019 - 25/3/2019",
 					"resource": [
 						{
@@ -49,8 +56,8 @@
 							"name": "Winifred Byers",
 							"bu": "Viocular",
 							"status": "Listed",
-							"approvalBy": "Davenport Chase",
-							"approvedDate": "12/6/2019"
+							"approvalBy": null,
+							"approvedDate": null
 						},
 						{
 							"userId": "000001",
@@ -73,8 +80,8 @@
 							"name": "Mccormick Paul",
 							"bu": "Junipoor",
 							"status": "Listed",
-							"approvalBy": "Donaldson Melendez",
-							"approvedDate": "20/1/2019"
+							"approvalBy": null,
+							"approvedDate": null
 						},
 						{
 							"userId": "000004",
@@ -96,47 +103,48 @@
 							"userId": "000000",
 							"name": "Teresa Mccullough",
 							"bu": "Pigzart",
-							"status": "Booked",
-							"approvalBy": "Ashlee Parrish",
-							"approvedDate": "24/3/2019"
+							"status": "Listed",
+							"approvalBy": null,
+							"approvedDate": null,
 						},
 						{
 							"userId": "000001",
 							"name": "Valentine Avery",
 							"bu": "Centice",
-							"status": "Approved",
-							"approvalBy": "Sherman Hull",
-							"approvedDate": "23/6/2019"
+							"status": "Listed",
+							"approvalBy": null,
+							"approvedDate": null,
 						},
 						{
 							"userId": "000002",
 							"name": "Clara Bowman",
 							"bu": "Gadtron",
-							"status": "Booked",
-							"approvalBy": "Beatrice Daniel",
-							"approvedDate": "14/2/2019"
+							"status": "Listed",
+							"approvalBy": null,
+							"approvedDate": null,
 						},
 						{
 							"userId": "000003",
 							"name": "Opal Elliott",
 							"bu": "Digigen",
-							"status": "Approved",
-							"approvalBy": "Marina Jimenez",
-							"approvedDate": "7/1/2019"
+							"status": "Listed",
+							"approvalBy": null,
+							"approvedDate": null,
 						},
 						{
 							"userId": "000004",
 							"name": "Florine Doyle",
 							"bu": "Bristo",
 							"status": "Listed",
-							"approvalBy": "Cara Whitehead",
-							"approvedDate": "14/2/2019"
+							"approvalBy": null,
+							"approvedDate": null,
 						}
 					]
 				},
 				{
 					"projectId": 10,
 					"projectName": "Dragbot",
+					"projectManager": "Ade Wiranata Putra",
 					"periode": "23/2/2019 - 18/1/2019",
 					"resource": [
 						{
@@ -144,8 +152,8 @@
 							"name": "Kellie Mcclure",
 							"bu": "Talkalot",
 							"status": "Listed",
-							"approvalBy": "Earnestine Hernandez",
-							"approvedDate": "16/6/2019"
+							"approvalBy": null,
+							"approvedDate": null
 						},
 						{
 							"userId": "000001",

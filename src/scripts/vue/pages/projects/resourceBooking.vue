@@ -63,7 +63,10 @@
 								<span class="tag is-info">28/10/2019</span>
 							</span>
 						</p>
-						<button class="button is-small is-info">
+						<button
+							class="button is-small is-info"
+							@click="$parent.openDetail(booking)"
+						>
 							🔎 Detail
 						</button>
 					</div>
