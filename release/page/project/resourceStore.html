@@ -41,8 +41,8 @@
 			</template>
 		</search-menu>
 
-		<b-modal :active.sync="filter.active" has-modal-card="" full-screen="" :can-cancel="false" @close="reloadLocalStorage">
-			<filter-menu :filter-cat="filterCat" start-date-name="startDate" end-date-name="endDate" user-id-name="users" api-action="http://localhost:5501/demo/post_detect.php" api-check-booking="http://localhost:5501/demo/getBooking.php"></filter-menu>
+		<b-modal full-screen="" :active.sync="filter.active" has-modal-card="" :can-cancel="false" @close="reloadLocalStorage">
+			<filter-menu :filter-cat="filterCat" start-date-name="startDate" end-date-name="endDate" user-id-name="users" api-action="http://localhost:5501/demo/post_detect.php" api-check-booking="http://localhost:5501/demo/getBooking.php" api-detail-resource="http://localhost:5501/demo/getDetail.php"></filter-menu>
 		</b-modal>
 	</section>
 	<script>var FILTERCATEGORY = [{
