@@ -19,7 +19,3 @@ if(!empty($_GET["userId"])){
 		return 0;
 	}
 }
-
-echo json_encode([
-	"status" => FALSE
-]);
