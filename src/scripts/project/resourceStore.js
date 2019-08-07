@@ -25,7 +25,7 @@ new Vue({
 						}
 					})
 						.then(function (response) {
-							// self.$refs.stepOne.apiPostSaved
+							self.batchId = response.data.batchId;
 							self.filter.active = true;
 						})
 						.catch(function () {
@@ -167,7 +167,7 @@ new Vue({
 			}
 		],
 		touring: undefined,
-		batchId: "100"
+		batchId: null
 	},
 	mounted(){
 		let self = this;

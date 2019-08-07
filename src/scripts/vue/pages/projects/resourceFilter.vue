@@ -1,7 +1,7 @@
 <template>
 	<div class="modal-card" style="width: auto">
 		<form @submit="checkForm" :action="apiAction" method="post">
-			<article class="message is-primary" style="min-height:100vh">
+			<article class="message is-modal is-primary">
 				<div class="message-header">
 					<p>
 						<span
@@ -12,10 +12,7 @@
 						Resource Booking
 					</p>
 				</div>
-				<div
-					class="message-body"
-					style="overflow-y:scroll; max-height:80vh;"
-				>
+				<div class="message-body">
 					<nav class="level">
 						<div class="level-left">
 							<div class="level-item">
@@ -196,7 +193,7 @@
 									<div class="columns">
 										<div class="column">
 											<p class="title is-size-5">
-												{{ randomSmile() }}
+												{{ randomSmile(props.index) }}
 												{{ props.row.name }}
 											</p>
 											<p class="subtitle is-size-6">
@@ -490,8 +487,8 @@ export default {
 		}
 	},
 	methods: {
-		randomSmile() {
-			return Tools.randomSmile();
+		randomSmile(index) {
+			return Tools.randomSmile(index);
 		},
 		checkForm: function(e) {
 			if (this.projectId === "") {
@@ -624,6 +621,7 @@ export default {
 		}
 	},
 	mounted() {
+		console.log(this.$parent.batchId);
 		let self = this;
 		this.listProjectData = this.listProject;
 		Tools.loadStorage("selectedResource").then(selected => {

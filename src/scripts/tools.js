@@ -100,9 +100,14 @@ module.exports.animate = function(selector, classOption, callback = undefined){
 	}
 }
 
-module.exports.randomSmile = function(){
-	let smiles = [ "😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙈", "🙉", "🙊" ];
+module.exports.randomSmile = function(request = undefined){
+	let smiles = ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "🙊", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "🙈", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙉" ];
 	let random = Math.random() * smiles.length;
 	let index = Math.floor(Math.random() * random);
+	
+	if(request !== undefined){
+		index = request % smiles.length;
+	}
+
 	return smiles[index];
 }

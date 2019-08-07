@@ -272,5 +272,14 @@ section.activity {
 	}
 }
 
+.message.is-modal {
+	height: 100vh;
+
+	.message-body {
+		overflow-y:scroll;
+		height: calc(100% - 56px);
+	}
+}
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

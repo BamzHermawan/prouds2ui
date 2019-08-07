@@ -101,7 +101,11 @@
 						<slot name="empty"></slot>
 					</template>
 					<template slot="detail" slot-scope="props">
-						<slot name="detail" :row="props.row"></slot>
+						<slot
+							name="detail"
+							:row="props.row"
+							:index="props.index"
+						></slot>
 					</template>
 				</b-table>
 			</div>
