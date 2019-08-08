@@ -43,7 +43,7 @@
 			</div>
 		</nav>
 
-		<div class="columns multiline">
+		<div class="columns is-multiline">
 			<div
 				class="column is-4"
 				v-for="(booking, index) in filterBooking(false)"
