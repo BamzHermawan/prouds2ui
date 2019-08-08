@@ -41,6 +41,7 @@
 			</template>
 		</booking>
 		<detail 
+			ref="detil"
 			id="detail-menu" 
 			:batch-detail="batchDetail" 
 			v-show="showDetail" 
@@ -52,115 +53,58 @@
 	<script>
 		const BOOKING = [
 				{
-					"projectId": null,
-					"projectName": null,
-					"projectManager": null,
-					"periode": "24/3/2019 - 25/3/2019",
+					"batchId": "7",
+					"projectName": "Project Testing",
+					"projectId": "1000001",
+					"periode": "23/08/019 - 19/09/019",
 					"resource": [
 						{
-							"userId": "000000",
-							"name": "Winifred Byers",
-							"bu": "Viocular",
-							"status": "Listed",
+							"userId": "S201501018",
+							"name": "DANIAR EKA MARSITA",
+							"bu": "Telecommunication Sales",
+							"status": "Booked (Waiting Approval)",
 							"approvalBy": null,
 							"approvedDate": null
 						},
 						{
-							"userId": "000001",
-							"name": "Cleveland Hanson",
-							"bu": "Veraq",
-							"status": "Rejected",
-							"approvalBy": "Aurelia Burnett",
-							"approvedDate": "6/1/2019"
-						},
-						{
-							"userId": "000002",
-							"name": "Joseph Yang",
-							"bu": "Isoswitch",
-							"status": "Rejected",
-							"approvalBy": "Allen Walker",
-							"approvedDate": "12/10/2019"
-						},
-					]
-				},
-				{
-					"projectId": null,
-					"projectName": null,
-					"projectManager": null,
-					"updateLink": "http://localhost:5500/project/resourceStore.html#batchId",
-					"periode": "7/1/2019 - 10/8/2019",
-					"resource": [
-						{
-							"userId": "000000",
-							"name": "Teresa Mccullough",
-							"bu": "Pigzart",
-							"status": "Listed",
+							"userId": "L201402170",
+							"name": "PANCHA YULIANI",
+							"bu": "Finance and Accounting",
+							"status": "Booked (Waiting Approval)",
 							"approvalBy": null,
-							"approvedDate": null,
-						},
-						{
-							"userId": "000001",
-							"name": "Valentine Avery",
-							"bu": "Centice",
-							"status": "Listed",
-							"approvalBy": null,
-							"approvedDate": null,
-						},
-						{
-							"userId": "000002",
-							"name": "Clara Bowman",
-							"bu": "Gadtron",
-							"status": "Listed",
-							"approvalBy": null,
-							"approvedDate": null,
-						},
-						{
-							"userId": "000003",
-							"name": "Opal Elliott",
-							"bu": "Digigen",
-							"status": "Listed",
-							"approvalBy": null,
-							"approvedDate": null,
-						},
-						{
-							"userId": "000004",
-							"name": "Florine Doyle",
-							"bu": "Bristo",
-							"status": "Listed",
-							"approvalBy": null,
-							"approvedDate": null,
+							"approvedDate": null
 						}
 					]
 				},
 				{
-					"projectId": 10,
-					"projectName": "Dragbot",
-					"projectManager": "Ade Wiranata Putra",
-					"periode": "23/2/2019 - 18/1/2019",
+					"batchId": "8",
+					"projectName": "Project Testing",
+					"projectId": "1000001",
+					"periode": "05/11/019 - 21/11/019",
 					"resource": [
 						{
-							"userId": "000000",
-							"name": "Kellie Mcclure",
-							"bu": "Talkalot",
-							"status": "Listed",
+							"userId": "S201501018",
+							"name": "DANIAR EKA MARSITA",
+							"bu": "Telecommunication Sales",
+							"status": "Booked (Waiting Approval)",
 							"approvalBy": null,
 							"approvedDate": null
 						},
 						{
-							"userId": "000001",
-							"name": "Alston Delgado",
-							"bu": "Viasia",
-							"status": "Booked",
-							"approvalBy": "Bowers Sampson",
-							"approvedDate": "24/7/2019"
+							"userId": "S201506017",
+							"name": "MOCHAMAD FAISHOL TRI AFANDI",
+							"bu": "Project Management Office",
+							"status": "Booked (Waiting Approval)",
+							"approvalBy": null,
+							"approvedDate": null
 						},
 						{
-							"userId": "000002",
-							"name": "Carmen Stark",
-							"bu": "Corpulse",
-							"status": "Rejected",
-							"approvalBy": "Richmond Weeks",
-							"approvedDate": "19/6/2019"
+							"userId": "L201402170",
+							"name": "PANCHA YULIANI",
+							"bu": "Finance and Accounting",
+							"status": "Booked (Waiting Approval)",
+							"approvalBy": null,
+							"approvedDate": null
 						}
 					]
 				}

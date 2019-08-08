@@ -113,6 +113,13 @@
 					</div>
 				</article>
 			</div>
+			<div v-if="userBooking.length == 0" class="column">
+				<b-message type="is-warning">
+					<p class="has-text-centered">
+						Kamu Belum Membuat Booking Proposal 😐
+					</p>
+				</b-message>
+			</div>
 		</div>
 	</div>
 </template>
@@ -129,6 +136,10 @@ export default {
 	},
 	methods: {
 		filterBooking(onlyNull = false) {
+			if (this.userBooking.length == 0) {
+				return [];
+			}
+
 			if (onlyNull) {
 				return this.userBooking.filter(
 					batch =>

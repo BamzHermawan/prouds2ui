@@ -1,35 +1,20 @@
 [
 	{
-		"path": "$ROOTPATH$\\src\\scripts\\vue\\pages\\projects\\allocationController.vue",
+		"path": "$ROOTPATH$\\src\\pages\\project\\resourceStore.html",
 		"bookmarks": [
 			{
-				"line": 4,
-				"column": 6,
-				"label": ""
-			},
-			{
-				"line": 97,
-				"column": 24,
-				"label": ""
-			},
-			{
-				"line": 144,
-				"column": 11,
-				"label": ""
-			},
-			{
-				"line": 431,
-				"column": 8,
+				"line": 46,
+				"column": 13,
 				"label": ""
 			}
 		]
 	},
 	{
-		"path": "$ROOTPATH$\\bundler.js",
+		"path": "$ROOTPATH$\\src\\scripts\\vue\\pages\\projects\\resourceFilter.vue",
 		"bookmarks": [
 			{
-				"line": 86,
-				"column": 4,
+				"line": 158,
+				"column": 16,
 				"label": ""
 			}
 		]

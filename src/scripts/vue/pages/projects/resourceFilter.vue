@@ -33,12 +33,16 @@
 							</div>
 							<div class="level-item">
 								<b-field>
+									<input
+										type="hidden"
+										:name="startDateName"
+										v-model="formatedStart"
+									/>
 									<b-datepicker
 										placeholder="DD/MM/YYYY"
 										:min-date="minDate"
 										@input="postDate"
 										v-model="start"
-										:name="startDateName"
 									>
 									</b-datepicker>
 								</b-field>
@@ -46,12 +50,16 @@
 							<div class="level-item"><p>-</p></div>
 							<div class="level-item">
 								<b-field>
+									<input
+										type="hidden"
+										:name="endDateName"
+										v-model="formatedEnd"
+									/>
 									<b-datepicker
 										placeholder="DD/MM/YYYY"
 										:min-date="minDateEnd"
 										@input="postDate"
 										v-model="end"
-										:name="endDateName"
 									>
 									</b-datepicker>
 								</b-field>
@@ -442,6 +450,12 @@ export default {
 		};
 	},
 	computed: {
+		formatedStart() {
+			return moment(this.start).format("DD/MM/YYYY");
+		},
+		formatedEnd() {
+			return moment(this.end).format("DD/MM/YYYY");
+		},
 		selectedOptions: {
 			get: function() {
 				return [this.projectId];
@@ -502,8 +516,12 @@ export default {
 				e.preventDefault();
 			}
 		},
-		checkIfOpen(userId) {
-			return this.openedDetail.includes(userId);
+		checkIfOpen(detail) {
+			let find = this.openedDetail.findIndex(
+				bit => bit.userId === detail.userId
+			);
+
+			return find !== -1;
 		},
 		passedCheckedRow(check) {
 			this.checkedRows = check;
@@ -544,12 +562,14 @@ export default {
 			return this.canbook.includes(row.userId);
 		},
 		postDate(users = undefined, passData = false) {
+			this.openedDetail.forEach(detail => this.toggleDetail(detail));
+
 			if (!passData) {
 				users = this.fetchedRes.map(({ userId }) => userId);
 			}
+
 			let a = moment(this.start).isBefore(this.end);
 			let b = moment(this.start).isBefore(this.start);
-			console.log(b);
 			if (!a) {
 				this.end = this.start;
 				this.minDateEnd = new Date(
@@ -565,13 +585,18 @@ export default {
 				);
 			}
 
+			let start = moment(this.start).format("DD/MM/YYYY");
+			let end = moment(this.end).format("DD/MM/YYYY");
+			this.$refs.resTable.clearChecked();
+
 			let self = this;
 			Axios.post(
 				this.apiCheckBooking,
 				{
+					batchId: self.$root.batchId,
 					users: users,
-					start: self.start,
-					end: self.end
+					start: start,
+					end: end
 				},
 				{
 					headers: {
@@ -582,21 +607,24 @@ export default {
 				.then(function(response) {
 					self.fetchedRes = response.data.resource;
 					self.book();
-					self.$refs.resTable.clearChecked();
 				})
 				.catch(function(error) {
-					console.log("error");
+					console.log("ACB Error Fetching: 591");
+					console.log(error);
+					Tools.notified(self.$toast).error(
+						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
+					);
 				});
 		},
 		toggleDetail(row) {
 			this.fetchDetail(row);
 			if (this.checkIfOpen(row.userId)) {
 				let indexAt = this.openedDetail.findIndex(
-					userId => userId === row.userId
+					detail => detail.userId === row.userId
 				);
 				this.openedDetail.splice(indexAt, 1);
 			} else {
-				this.openedDetail.push(row.userId);
+				this.openedDetail.push(row);
 			}
 		},
 		fetchDetail(row) {
@@ -616,7 +644,11 @@ export default {
 					self.$refs.resTable.toggleDetail(row);
 				})
 				.catch(function(error) {
+					console.log("ADR Error Fetching: 623");
 					console.log(error);
+					Tools.notified(self.$toast).error(
+						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
+					);
 				});
 		}
 	},

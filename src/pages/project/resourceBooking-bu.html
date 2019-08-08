@@ -7,13 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
 
 	<title>Resource Booking | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="/src/main.min.css">
+	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
 		<div class="container">
 			<nav class="level">
 				<div class="level-left">
-					<a class="button is-danger" href="/src/project\resourceBooking.html">🏃‍ Exit Resource Booking</a>
+					<a class="button is-danger" href="resourceBooking.html">🏃‍ Exit Resource Booking</a>
 				</div>
 				<div class="level-right">
 					<div v-for="(status, index) in statusCount" :key="index" class="level-item">
@@ -51,7 +51,7 @@
 		<br>
 		<data-table :data="resource" :fields="[]" title="📮 Resource Booking Proposal">
 			<template slot-scope="props">
-				<b-table-column field="name" label="👨‍💼 Nama" sortable="">
+				<b-table-column field="name" label="👨‍💼 Nama" sortable>
 					{{ props.row.name }}
 				</b-table-column>
 		
@@ -72,8 +72,11 @@
 				</b-table-column>
 		
 				<b-table-column field="userId" label="⚡ Action">
-					<b-button type="is-danger" size="is-small" tag="a" :href="props.row.rejectLink">👎 Reject</b-button>
-					<b-button type="is-success" size="is-small" tag="a" :href="props.row.acceptLink">👍 Accept</b-button>
+					<div v-if="!checkEmpty(props.row.acceptLink) && !checkEmpty(props.row.rejectLink)">
+						<b-button type="is-danger" size="is-small" tag="a" :href="props.row.rejectLink">👎 Reject</b-button>
+						<b-button type="is-success" size="is-small" tag="a" :href="props.row.acceptLink">👍 Accept</b-button>
+					</div>
+					<span v-else class="tag is-warning">Action Not Available</span>
 				</b-table-column>
 			</template>
 			<template slot="empty">
@@ -84,35 +87,37 @@
 		</data-table>
 	</section>
 
-	<script>var RESOURCE = [{
-  userId: "000000",
-  name: "Ade Wiranata Putra",
-  status: "Waiting",
-  projectName: "Prouds 2 Development",
-  projectManager: "Mr. Boy Wiranata",
-  bookingDate: "01/01/2020 - 01/10/2020",
-  rejectLink: "https://localhost:5501/post_detect.php?reject=yesssssshh",
-  acceptLink: "https://localhost:5501/post_detect.php?accept=aarrrrrrggh"
-}, {
-  userId: "000001",
-  name: "Kakak Wiranata Putra",
-  status: "Accepted",
-  projectName: "Prouds 2 Development",
-  projectManager: "Mr. Boy Wiranata",
-  bookingDate: "01/01/2020 - 01/10/2020",
-  rejectLink: "https://localhost:5501/post_detect.php?reject=yesssssshh",
-  acceptLink: "https://localhost:5501/post_detect.php?accept=aarrrrrrggh"
-}, {
-  userId: "000002",
-  name: "Sepupu Wiranata Putra",
-  status: "Rejected",
-  projectName: "Prouds 2 Development",
-  projectManager: "Mr. Boy Wiranata",
-  bookingDate: "01/01/2020 - 01/10/2020",
-  rejectLink: "https://localhost:5501/post_detect.php?reject=yesssssshh",
-  acceptLink: "https://localhost:5501/post_detect.php?accept=aarrrrrrggh"
-}];</script>
-	<script src="/src/resourceBooking.min.js"></script>
+	<script>
+		const RESOURCE = [
+			{
+				userId: "000000",
+				name: "Ade Wiranata Putra",
+				status: "Waiting",
+				projectName: "Prouds 2 Development",
+				projectManager: "Mr. Boy Wiranata",
+				bookingDate: "01/01/2020 - 01/10/2020",
+				rejectLink: "https://localhost:5501/post_detect.php?reject=yesssssshh",
+				acceptLink: "https://localhost:5501/post_detect.php?accept=aarrrrrrggh",
+			},
+			{
+				userId: "000001",
+				name: "Kakak Wiranata Putra",
+				status: "Accepted",
+				projectName: "Prouds 2 Development",
+				projectManager: "Mr. Boy Wiranata",
+				bookingDate: "01/01/2020 - 01/10/2020",
+			},
+			{
+				userId: "000002",
+				name: "Sepupu Wiranata Putra",
+				status: "Rejected",
+				projectName: "Prouds 2 Development",
+				projectManager: "Mr. Boy Wiranata",
+				bookingDate: "01/01/2020 - 01/10/2020",
+			},
+		]
+	</script>
+	<script src="../../scripts/project/resourceBooking-bu.js"></script>
 	<!-- Copy to this section -->
 </body>
 

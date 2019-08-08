@@ -41,6 +41,7 @@ new Vue({
 		openDetail(batch){
 			let self = this;
 			self.batchDetail = batch;
+			this.$refs.detil.doReload(batch);
 			Tools.animate("#booking-menu", "fadeOut faster", function () {
 				self.showDetail = true;
 				Tools.animate("#detail-menu", "fadeIn faster");

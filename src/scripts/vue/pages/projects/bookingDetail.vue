@@ -35,7 +35,7 @@
 			title="Booked Resource"
 			:data="resource"
 			:fields="[]"
-			detailed
+			:detailed="showDetail"
 			detail-key="userId"
 			:show-detail-icon="true"
 		>
@@ -198,7 +198,8 @@ export default {
 			projectName: "",
 			projectManager: "",
 			periode: "",
-			loading: false
+			loading: false,
+			showDetail: false
 		};
 	},
 	methods: {
@@ -223,14 +224,16 @@ export default {
 					self.resource[idex].skills = detail.skills;
 					self.resource[idex].course = detail.course;
 					self.resource[idex].competency = detail.competency;
+					self.showDetail = true;
 				})
 				.catch(function(error) {
-					console.log(error);
+					self.showDetail = false;
+					notified(self.$toast).error(
+						"Mohon Maaf Kami Tidak dapat Terhubung dengan Server, Silakan Cek Koneksi Anda. Terimakasih 🙏"
+					);
 				});
-		}
-	},
-	watch: {
-		batchDetail: function(newBatch) {
+		},
+		doReload(newBatch) {
 			if (newBatch.resource !== undefined) {
 				let self = this;
 				this.resource = newBatch.resource;
@@ -250,6 +253,11 @@ export default {
 			if (newBatch.periode !== undefined) {
 				this.periode = newBatch.periode;
 			}
+		}
+	},
+	watch: {
+		batchDetail: function(newBatch) {
+			this.doReload(newBatch);
 		}
 	}
 };

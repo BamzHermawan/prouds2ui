@@ -26,6 +26,12 @@ new Vue({
 					})
 						.then(function (response) {
 							self.batchId = response.data.batchId;
+
+							saveStorage("selectedResource", {
+								batchId: response.data.batchId,
+								resource: bundle.resource
+							});
+
 							self.filter.active = true;
 						})
 						.catch(function () {

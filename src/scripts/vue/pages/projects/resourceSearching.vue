@@ -461,7 +461,11 @@ export default {
 					self.openedDetail = [];
 				})
 				.catch(function(error) {
+					console.log("ASE Error Fetching: 464");
 					console.log(error);
+					Tools.notified(self.$toast).error(
+						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
+					);
 				});
 		},
 		loadLocalStorage(showAnimation = false) {
@@ -495,7 +499,11 @@ export default {
 					self.$refs.dataTable.toggleDetail(resource);
 				})
 				.catch(function(error) {
+					console.log("ADR Error Fetching: 500");
 					console.log(error);
+					Tools.notified(self.$toast).error(
+						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
+					);
 				});
 		}
 	},
