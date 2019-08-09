@@ -1,9 +1,8 @@
 <template>
 	<nav
-		class="navbar is-primary"
+		class="navbar is-primary is-fixed-top"
 		role="navigation"
 		aria-label="main navigation"
-		id="idnav"
 	>
 		<div class="navbar-brand">
 			<a class="navbar-item" :href="homeLinkCheck">
@@ -110,16 +109,16 @@ export default {
 	},
 	mounted() {
 		var position = 0;
-		window.addEventListener("scroll", () => {
-			var st = window.pageYOffset || document.documentElement.scrollTop;
-			if (st > position) {
-				var element = document.getElementById("idnav");
-				element.classList.add("is-fixed-top");
-			} else{
-				var element = document.getElementById("idnav");
-				element.classList.remove("is-fixed-top");
-			}
-		});
+		// window.addEventListener("scroll", () => {
+		// 	var st = window.pageYOffset || document.documentElement.scrollTop;
+		// 	if (st > position) {
+		// 		var element = document.getElementById("idnav");
+		// 		element.classList.add("is-fixed-top");
+		// 	} else{
+		// 		var element = document.getElementById("idnav");
+		// 		element.classList.remove("is-fixed-top");
+		// 	}
+		// });
 	}
 };
 </script>
