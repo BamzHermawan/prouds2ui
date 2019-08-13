@@ -79,32 +79,12 @@ new Vue({
 				}
 			},
 			{
-				id: "tour-step-2",
-				title: "🔎 Filtering Resource",
-				text:
-					"<p class='subtitle has-text-left is-size-6'>Pilih Kategori Filter yang kamu Inginkan, Penjelasan mengenai kategori tersebut akan muncul saat kamu memilih kategori pencarian nanti. 👍</p>",
-				attachTo: {
-					element: ".tour-step-2",
-					on: "right"
-				}
-			},
-			{
 				id: "tour-step-3",
 				title: "🔎 Filtering Resource",
 				text:
-					"<p class='subtitle has-text-left is-size-6'>Ketik Pencarian yang kamu inginkan sesuai dengan kategori yang telah kamu pilih.</p>",
+					"<p class='subtitle has-text-left is-size-6'>Masukan kata pencarian pada kategori yang kamu inginkan. 🕵️‍</p>",
 				attachTo: {
-					element: ".tour-step-3",
-					on: "right"
-				}
-			},
-			{
-				id: "tour-step-4",
-				title: "🔎 Filtering Resource",
-				text:
-					"<p class='subtitle has-text-left is-size-6'>Tekan Add Filter untuk menambahkan filternya. 😁</p>",
-				attachTo: {
-					element: ".tour-step-4",
+					element: ".tour-step-1",
 					on: "right"
 				}
 			},
@@ -112,9 +92,9 @@ new Vue({
 				id: "tour-step-5",
 				title: "🔎 Filtering Resource",
 				text:
-					"<p class='subtitle has-text-left is-size-6'>Setelah Menambahkan semua filter yang kamu inginkan, Tekan tombol ini untuk mendapatkan hasil pencarian. 👍</p>",
+					"<p class='subtitle has-text-left is-size-6'>Setelah Mengisi semua filter yang kamu inginkan, Tekan tombol ini untuk mendapatkan hasil pencarian. 👍</p>",
 				attachTo: {
-					element: ".tour-step-5",
+					element: ".tour-step-1",
 					on: "right"
 				}
 			},

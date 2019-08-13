@@ -281,5 +281,9 @@ section.activity {
 	}
 }
 
+.table > tbody > tr > td {
+	height: 44px !important;
+}
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
