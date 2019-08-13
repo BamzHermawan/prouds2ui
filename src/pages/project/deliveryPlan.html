@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+
+	<title>Delivery Plan | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../styles/main.scss">
+</head>
+
+<body>
+	<section class="hero is-primary is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Delivery Plan
+				</h1>
+				<h2 class="subtitle">
+					<span class="has-text-warning">Development Prouds 2 UI</span>
+					<br><small class="has-text-grey-lighter">P-1908SCC-TEST</small>
+				</h2>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<nav class="level">
+				<div class="level-left">
+					<div class="level-item">
+						<div style="margin-right: 50px;">
+							<p class="heading">Project Manager</p>
+							<p class="title is-size-5">Ade Wiranata Putra</p>
+						</div>
+					</div>
+					<div class="level-item">
+						<div style="margin-right: 50px;">
+							<p class="heading">Project Status</p>
+							<p class="title is-size-5">
+								<span class="tag is-medium is-info">In Progress</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="level-right">
+					<button class="button is-danger" href="#">🏃‍ Exit Delivery Plan</button>
+				</div>
+			</nav>
+		</div>
+	</section>
+	
+	<div id="app" class="container" style="margin-bottom: 50px;">
+		<div class="columns">
+			<div class="column is-3">
+				<p class="title">Planning</p>
+				<b-table 
+					:data="delivery"
+					:row-class="(row, index) => row.topStatus && 'has-background-warning'"
+				>
+					<template slot-scope="props">
+						<b-table-column field="periode" label="📅 Periode" width="150">
+							{{ props.row.periode }}
+						</b-table-column>
+						<b-table-column field="plan" label="🔋 Progress" width="150">
+							<span class="tag is-small is-info">{{ props.row.plan }}</span>
+						</b-table-column>
+					</template>
+				</b-table>
+			</div>
+			<div class="column">
+				<p class="title">Actual Delivery</p>
+				<b-table 
+					:data="delivery" 
+					:row-class="(row, index) => row.topStatus && 'has-background-warning'"
+				>
+					<template slot-scope="props">
+						<b-table-column field="periode" label="📅 Periode" width="150">
+							{{ props.row.periode }}
+						</b-table-column>
+						<b-table-column field="actual.progress" label="🔋 Progress" width="150">
+							<span v-if="props.row.actual !== null" class="tag is-small is-info">{{ props.row.actual.progress }}</span>
+							<span v-else class="tag is-small">---</span>
+						</b-table-column>
+						<b-table-column field="actual.document" label="📚 Document">
+							<span v-if="props.row.actual !== null">
+								<abbr :title="'Download File ' + props.row.actual.document">
+									<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document }}</a>
+								</abbr>
+							</span>
+							<span v-else class="tag is-small">---</span>
+						</b-table-column>
+						<b-table-column field="actual.status" label="✅ Status">
+							<span v-if="props.row.actual !== null">{{ props.row.actual.status }}</span>
+							<span v-else class="tag is-small">---</span>
+						</b-table-column>
+						<b-table-column field="actual" label="⚡ Action" centered>
+							<div v-if="props.row.actual !== null">
+								<a class="button is-small is-info">Revisi</a>
+							</div>
+							<div v-else>
+								<a v-if="props.row.showUpload" class="button is-small is-success">Upload</a>
+								<span v-else class="tag is-small">---</span>
+							</div>
+						</b-table-column>
+					</template>
+				</b-table>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const DELIVERY = [
+			{
+				"periode": "2019/01",
+				"plan": "10%",
+				"actual": {
+					"progress": "10%",
+					"document": "BATPP Bulan I",
+					"version": "2",
+					"doctype": "BATPP",
+					"downloadLink": "#downloadBATPPI",
+					"status": "Verified",
+					"notes": "Sudah dicek dan sesuai"
+				}
+			},
+			{
+				"periode": "2019/02",
+				"plan": "20%",
+				"topStatus": true,
+				"actual": {
+					"progress": "20%",
+					"document": "BATPP Bulan II",
+					"version": "1",
+					"doctype": "BATPP",
+					"downloadLink": "#downloadBATPPII",
+					"status": "Verified",
+					"notes": "Sesuai Kesepakatan"
+				}
+			},
+			{
+				"periode": "2019/03",
+				"plan": "30%",
+				"actual": {
+					"progress": "30%",
+					"document": "BATPP Bulan III",
+					"version": "1",
+					"doctype": "BATPP",
+					"downloadLink": "#downloadBATPPI",
+					"verifyLink": "#verifyingDocs",
+					"status": "Unverified",
+					"notes": ""
+				}
+			},
+			{
+				"periode": "2019/04",
+				"plan": "55%",
+				"actual": null
+			},
+			{
+				"periode": "2019/05",
+				"plan": "75%",
+				"actual": null
+			},
+			{
+				"periode": "2019/06",
+				"plan": "90%",
+				"actual": null
+			},
+			{
+				"periode": "2019/07",
+				"plan": "100%",
+				"actual": null
+			}
+		],
+		DOCTYPE = [ "BAST", "BATPP", "KONTRAK" ];
+	</script>
+	<script src="../../scripts/project/deliveryPlan.js"></script>
+</body>
+</html>
