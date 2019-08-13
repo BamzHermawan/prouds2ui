@@ -281,5 +281,11 @@ section.activity {
 	}
 }
 
+.is-packed > .table-wrapper > .table {
+	td {
+		padding: 5px 0.75em !important; 
+	}
+}
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
