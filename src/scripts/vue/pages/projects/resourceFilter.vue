@@ -41,7 +41,6 @@
 									<b-datepicker
 										placeholder="DD/MM/YYYY"
 										:min-date="minDate"
-										@input="postDate"
 										v-model="start"
 									>
 									</b-datepicker>
@@ -58,7 +57,6 @@
 									<b-datepicker
 										placeholder="DD/MM/YYYY"
 										:min-date="minDateEnd"
-										@input="postDate"
 										v-model="end"
 									>
 									</b-datepicker>
@@ -498,6 +496,14 @@ export default {
 			} else {
 				this.listProjectData = this.listProject;
 			}
+		},
+		start: function(newdata,olddata){
+			this.openedDetail = [];
+			this.postDate();	
+		},
+		end: function(newdata,olddata){
+			this.openedDetail = [];
+			this.postDate();	
 		}
 	},
 	methods: {
@@ -589,7 +595,7 @@ export default {
 			let end = moment(this.end).format("DD/MM/YYYY");
 			this.$refs.resTable.clearChecked();
 
-			let self = this;
+			var self = this;
 			Axios.post(
 				this.apiCheckBooking,
 				{
@@ -605,11 +611,27 @@ export default {
 				}
 			)
 				.then(function(response) {
-					self.fetchedRes = response.data.resource;
+					// self.fetchedRes = response.data.resource;
+					response.data.resource.forEach(row => {
+						let index = self.fetchedRes.findIndex(
+							bit => bit.userId === row.userId
+						);
+						if(index!=(-1)){
+							self.fetchedRes[index].isBooked = row.isBooked;
+						}else {
+							self.fetchedRes.push(row);
+						}
+					})
 					self.book();
+
+					if(passData){
+						self.fetchedRes.forEach(row => {
+							self.fetchDetail(row);
+						})
+					}
 				})
 				.catch(function(error) {
-					console.log("ACB Error Fetching: 591");
+					console.log("ACB Error Fetching: 629");
 					console.log(error);
 					Tools.notified(self.$toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
@@ -617,8 +639,9 @@ export default {
 				});
 		},
 		toggleDetail(row) {
-			this.fetchDetail(row);
-			if (this.checkIfOpen(row.userId)) {
+			
+			this.$refs.resTable.toggleDetail(row);
+			if (this.checkIfOpen(row)) {
 				let indexAt = this.openedDetail.findIndex(
 					detail => detail.userId === row.userId
 				);
@@ -641,7 +664,7 @@ export default {
 					self.fetchedRes[idex].skills = detail.skills;
 					self.fetchedRes[idex].course = detail.course;
 					self.fetchedRes[idex].competency = detail.competency;
-					self.$refs.resTable.toggleDetail(row);
+					// self.$refs.resTable.toggleDetail(row);
 				})
 				.catch(function(error) {
 					console.log("ADR Error Fetching: 623");
@@ -655,6 +678,7 @@ export default {
 	mounted() {
 		let self = this;
 		this.listProjectData = this.listProject;
+		
 		Tools.loadStorage("selectedResource").then(selected => {
 			let saved = selected.resource.map(({ userId }) => userId);
 			self.postDate(saved, true);

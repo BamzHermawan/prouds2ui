@@ -77,6 +77,7 @@
 					:is-row-checkable="isRowCheckable"
 					:checked-rows.sync="checked"
 					ref="table"
+					:class="addedClass()"
 				>
 					<template slot-scope="props">
 						<slot :row="props.row">
@@ -164,6 +165,10 @@ export default {
 		showDetailIcon: {
 			type: Boolean,
 			default: true
+		},
+		isPacked: {
+			type: Boolean,
+			default: true
 		}
 	},
 	computed: {
@@ -185,6 +190,14 @@ export default {
 		}
 	},
 	methods: {
+		addedClass(added = "") {
+			let classes = [];
+			if (this.isPacked) {
+				classes.push("is-packed");
+			}
+
+			return added + classes.join(" ");
+		},
 		toggleDetail(row) {
 			this.$refs.table.toggleDetails(row);
 		},
