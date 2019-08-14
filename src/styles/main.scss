@@ -281,6 +281,12 @@ section.activity {
 	}
 }
 
+.is-packed > .table-wrapper > .table {
+	td {
+		padding: 5px 0.75em !important; 
+	}
+}
+
 .table > tbody > tr > td {
 	height: 44px !important;
 }
