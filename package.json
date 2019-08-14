@@ -4,7 +4,7 @@
 	"description": "Front-end HTML/CSS/JS for PRouDS",
 	"scripts": {
 		"bersih": "rm -rf dist",
-		"demo": "yarn run mantap && cd release && php -S localhost:5501",
+		"demo": "cd release && php -S localhost:5501",
 		"ngoding": "yarn run bersih && parcel src/pages/**/*.html -p 5500",
 		"mantap": "node bundler.js -o release/page -s release/src src/pages/**/*.html",
 		"build": "node bundler.js -o release/page -s release/src"
