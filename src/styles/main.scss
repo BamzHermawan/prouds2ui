@@ -148,8 +148,8 @@ section.activity {
 }
 
 [disabled] {
-	background-color: #a5a5a5 !important;
-	border-color: #a5a5a5 !important;
+	background-color: lighten(#a5a5a5, 10%) !important;
+	border-color: lighten(#a5a5a5, 10%) !important;
 }
 
 .hero.is-bold {

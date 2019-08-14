@@ -58,62 +58,70 @@
 	</section>
 	
 	<div id="app" class="container" style="margin-bottom: 50px;">
-		<div class="columns">
-			<div class="column is-3">
-				<p class="title">Planning</p>
-				<b-table 
-					:data="delivery"
-					:row-class="(row, index) => row.topStatus && 'has-background-warning'"
-				>
-					<template slot-scope="props">
-						<b-table-column field="periode" label="📅 Periode" width="150">
-							{{ props.row.periode }}
-						</b-table-column>
-						<b-table-column field="plan" label="🔋 Progress" width="150">
-							<span class="tag is-small is-info">{{ props.row.plan }}</span>
-						</b-table-column>
-					</template>
-				</b-table>
-			</div>
-			<div class="column">
-				<p class="title">Actual Delivery</p>
-				<b-table 
-					:data="delivery" 
-					:row-class="(row, index) => row.topStatus && 'has-background-warning'"
-				>
-					<template slot-scope="props">
-						<b-table-column field="periode" label="📅 Periode" width="150">
-							{{ props.row.periode }}
-						</b-table-column>
-						<b-table-column field="actual.progress" label="🔋 Progress" width="150">
-							<span v-if="props.row.actual !== null" class="tag is-small is-info">{{ props.row.actual.progress }}</span>
-							<span v-else class="tag is-small">---</span>
-						</b-table-column>
-						<b-table-column field="actual.document" label="📚 Document">
-							<span v-if="props.row.actual !== null">
-								<abbr :title="'Download File ' + props.row.actual.document">
-									<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document }}</a>
-								</abbr>
-							</span>
-							<span v-else class="tag is-small">---</span>
-						</b-table-column>
-						<b-table-column field="actual.status" label="✅ Status">
-							<span v-if="props.row.actual !== null">{{ props.row.actual.status }}</span>
-							<span v-else class="tag is-small">---</span>
-						</b-table-column>
-						<b-table-column field="actual" label="⚡ Action" centered>
-							<div v-if="props.row.actual !== null">
-								<a class="button is-small is-info">Revisi</a>
-							</div>
-							<div v-else>
-								<a v-if="props.row.showUpload" class="button is-small is-success">Upload</a>
-								<span v-else class="tag is-small">---</span>
-							</div>
-						</b-table-column>
-					</template>
-				</b-table>
-			</div>
-		</div>
+		<notified message="Hello Dunia Semua" color="success"></notified>
+
+		<p class="title">Delivery Progress</p>
+		<b-message v-if="top.status" type="is-info">
+			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span> Informasi</p>
+			<p>Status TOP saat ini berada pada periode [ {{ top.periode.join(", ") }} ] di baris yang telah di highlight <span
+				class="tag is-warning">KUNING</span>.</p>
+		</b-message>
+		<b-table 
+			:data="delivery" 
+			:row-class="(row, index) => row.topStatus && 'has-background-warning'"
+		>
+			<template slot-scope="props">
+				<b-table-column field="periode" label="📅 Periode" width="150">
+					{{ props.row.periode }}
+				</b-table-column>
+				<b-table-column field="periode" label="🔋 Progress Plan" width="150" centered>
+					<span class="tag is-small is-info">{{ props.row.plan }}</span>
+				</b-table-column>
+				<b-table-column field="actual.progress" label="🔋 Progress Actual" width="175" centered>
+					<span v-if="props.row.actual !== null" class="tag is-small is-info">{{ props.row.actual.progress }}</span>
+					<span v-else class="tag is-small">---</span>
+				</b-table-column>
+				<b-table-column field="actual.document" label="📚 Document">
+					<span v-if="props.row.actual !== null">
+						<b-tooltip :label="notesChecker(props.row.actual.notes)" 
+							:multilined="tooltipIsMultilined(props.row.actual.notes)"
+							position="is-bottom" square dashed type="is-light">
+							<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document }}</a>
+						</b-tooltip>
+					</span>
+					<span v-else class="tag is-small">---</span>
+				</b-table-column>
+				<b-table-column field="actual.status" label="✅ Status">
+					<span v-if="props.row.actual !== null">
+						{{ props.row.actual.status }}
+					</span>
+					<span v-else class="tag is-small">---</span>
+				</b-table-column>
+				<b-table-column field="actual" label="⚡ Action" centered>
+					<div v-if="props.row.actual !== null">
+						<button class="button is-small is-info" @click="displayForm(props.row)">
+							<span class="mdi mdi-file-undo in-left"></span>
+							Revisi
+						</button>
+					</div>
+					<div v-else>
+						<button class="button is-small is-success" @click="displayForm(props.row)">
+							<span class="mdi mdi-upload in-left"></span>
+							Upload
+						</button>
+					</div>
+				</b-table-column>
+			</template>
+		</b-table>
+
+		<b-modal :active.sync="formModal.display" has-modal-card scroll="keep">
+			<form-upload
+				project-id="MantaffId"
+				action="http://localhost:5501/demo/post_detect.php"
+				:doctype="formModal.doctype" :delivery="formModal.delivery"
+				allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx"
+			></form-upload>
+		</b-modal>
 	</div>
 
 	<script>
@@ -134,7 +142,6 @@
 			{
 				"periode": "2019/02",
 				"plan": "20%",
-				"topStatus": true,
 				"actual": {
 					"progress": "20%",
 					"document": "BATPP Bulan II",
@@ -156,7 +163,8 @@
 					"downloadLink": "#downloadBATPPI",
 					"verifyLink": "#verifyingDocs",
 					"status": "Unverified",
-					"notes": ""
+					"notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra tempor ultricies. Proin placerat dolor at dui tincidunt varius. Curabitur amet.",
+					"rejectLink": "http://localhost:5501/demo/post_detect.php"
 				}
 			},
 			{
@@ -167,6 +175,7 @@
 			{
 				"periode": "2019/05",
 				"plan": "75%",
+				"topStatus": true,
 				"actual": null
 			},
 			{
@@ -177,6 +186,7 @@
 			{
 				"periode": "2019/07",
 				"plan": "100%",
+				"topStatus": true,
 				"actual": null
 			}
 		],
