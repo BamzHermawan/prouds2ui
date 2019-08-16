@@ -23,17 +23,17 @@
 					</b-menu>
 				</section>
 			</div>
-			<div class="column is-section">
+			<div class="column">
 				<div>
 					<section class="main-content">
-						<p class="title is-size-3">BASELINE</p>
+						<p class="title is-size-3">ISSUE</p>
 					</section>
 					<section class="info">
 						<div class="columns">
 							<div class="column is-6">
 								<data-table
-									title="Baseline Status"
-									:data="dataBaselineStatus"
+									title="Issue Status"
+									:data="dataIssueStatus"
 									:fields="[]"
 								>
 									<template slot-scope="props">
@@ -70,17 +70,17 @@
 							</div>
 							<div class="column is-6">
 								<data-table
-									title="Baseline Type"
-									:data="dataBaselineType"
+									title="Issue Severity"
+									:data="dataIssueSeverity"
 									:fields="[]"
 								>
 									<template slot-scope="props">
 										<b-table-column
-											field="type_name"
-											label="Type Name"
+											field="severity_name"
+											label="Severity Name"
 										>
 											<span>{{
-												props.row.type_name
+												props.row.severity_name
 											}}</span>
 										</b-table-column>
 										<b-table-column
@@ -129,10 +129,10 @@ export default {
 	},
 	data() {
 		return {
-			dataBaselineStatus: DATA_BASELINE_STATUS,
-			fieldBaselineStatus: FIELDS_BASELINE_STATUS,
-			dataBaselineType: DATA_BASELINE_TYPE,
-			fieldBaselineType: FIELDS_BASELINE_TYPE,
+			dataIssueStatus: DATA_ISSUE_STATUS,
+			fieldIssueStatus: FIELDS_ISSUE_STATUS,
+			dataIssueSeverity: DATA_ISSUE_SEVERITY,
+			fieldIssueSeverity: FIELDS_ISSUE_SEVERITY,
 			menu: {
 				config: [
 					{ label: "setting", link: "#setting", icon: "mdi-cogs" }

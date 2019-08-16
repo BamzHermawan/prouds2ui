@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
+
 	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -26,70 +27,51 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="home.html"></nav-bar>
 
-		<dashboard :config-menu="[
+		<dashboard api-edit="http://localhost:5501/demo/post_detect.php" :config-menu="[
 			{ label: 'Users', link:'#users', icon:'account', active:true },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
-			{ label: 'Customer', link:'#customer', icon:'account-star', active:false },
-			{ label: 'Issue', link:'#issue', icon:'account-alert', active:false },
-			{ label: 'Organization', link:'#organization', icon:'account-group', active:false },
-			{ label: 'Authorization', link:'#authorization', icon:'account-settings', active:false },
-			{ label: 'Projects', link:'#projects', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'#dayscheme', icon:'calendar', active:false }
+			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]" project_name="Delivery Awesome App" username="Ade Wiranata Putra" nik="CRS2019000" iwo="P-SCC-XXXA" start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5" progress_project="70" progress_bast="2" j_bast="4" bu="Project Management Office" show-newproject-notif="" show-timesheet-notif="">
-			<div slot="new-project-notification">
-				Ada sebanyak <b>10 IWO BARU</b>. Silakan
-				Assign PM pada Project IWO tersebut.
-				<a href="#" class="has-text-info">Menuju Halaman Project.</a>
-			</div>
-
-			<div slot="timesheet-notification">
-				<ul>
-					<li>📅 8 Juli 2019 [8 Jam] - Belajar Pentaho</li>
-					<li>📅 9 Juli 2019 [8 Jam] - Front-end Prouds</li>
-					<li>📅 10 Juli 2019 [8 Jam] - Belajar Oracle</li>
-				</ul>
-			</div>
-
-			<ul slot="assign-member" class="project-list">
-				<li>
-					<a href="#project" class="button is-info is-small is-fullwidth">Assign Member</a>
-				</li>
-			</ul>
-
-			<ul slot="documents" class="project-list">
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">📄 File Excel A</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">📄 File Excel B</a>
-				</li>
-				<li>
-					<a href="#" class="button is-list is-small is-fullwidth">📄 File Excel C</a>
-				</li>
-			</ul>
 		</dashboard>
 	</div>
 
-	<script>var ENTRY = [["Entry", 50], ["Empty", 100 - 50]];
-UTILIZATION = [["Utilization", 50], ["Empty", 100 - 50]];
-DATA_USER_INTERNAL = [{
-  user_id: "suntipsum",
-  name: "SUNT IPSUM",
-  email: "suntipsum@sigma.co.id",
-  bu: "PMO",
-  profile: "Cell 1"
-}, {
+	<script>var DATA_USER_INTERNAL = [{
   user_id: "adewiranataputra",
-  name: "ADE WIRANATA PUTRA",
-  email: "adewiranata@sigma.co.id",
+  name: "Ade Wiranata Putra",
+  email: "ade.wiranata@sigma.co.id",
   bu: "PMO",
-  profile: "Cell 2"
+  profile: "Manager",
+  status: true,
+  activation_link: "#activate",
+  deactivation_link: "#deactivate",
+  editUserLink: "editUser.html",
+  editPasswordLink: "editPassword.html"
 }, {
   user_id: "ariowidiatmoko",
   name: "ARIO WIDIATMOKO",
   email: "ario@sigma.co.id",
   bu: "PMO",
-  profile: "Cell 3"
+  profile: "Cell 3",
+  status: false,
+  deactivation_link: "#deactivate",
+  editUserLink: "editUser.html",
+  editPasswordLink: "editPassword.html"
+}, {
+  user_id: "ariowidiatmoko",
+  name: "ARIO WIDIATMOKO",
+  email: "ario@sigma.co.id",
+  bu: "PMO",
+  profile: "Cell 3",
+  status: false,
+  activation_link: "#activate",
+  deactivation_link: "#deactivate",
+  editUserLink: "editUser.html",
+  editPasswordLink: "editPassword.html"
 }];
 FIELDS_USER_INTERNAL = [{
   field: "user_id",

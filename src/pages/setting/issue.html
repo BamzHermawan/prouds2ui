@@ -28,9 +28,9 @@
 
 		<dashboard :config-menu="[
 			{ label: 'Users', link:'users.html', icon:'account', active:false },
-			{ label: 'Baseline', link:'#baseline', icon:'briefcase', active:true },
+			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
@@ -43,63 +43,69 @@
 	</div>
 
 	<script>
-		const DATA_BASELINE_STATUS = [
+		const DATA_ISSUE_STATUS = [
 			{
-				status_name: "suntipsum",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
+				status_name: "adewiranataputra",
+				action_action: "",
+				editLink: "editIssueStatus.html",
 				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			},
 			{
 				status_name: "adewiranataputra",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
+				action_action: "",
+				editLink: "editIssueStatus.html",
 				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			},
 			{
 				status_name: "ariowidiatmoko",
 				status_action: "",
-				editLink: "editBaselineStatus.html",
+				editLink: "editIssueStatus.html",
 				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			}
 		];
-		FIELDS_BASELINE_STATUS = [
+		FIELDS_ISSUE_STATUS = [
 			{
-				field: "status_name",
-				label: "Status Name"
+				field: "status_issue",
+				label: "Status Issue"
 			},
 			{
-				field: "status_action",
+				field: "action",
 				label: "Action"
 			}
 		];
-		DATA_BASELINE_TYPE = [
+		DATA_ISSUE_SEVERITY = [
 			{
-				type_name: "exsuntipsum",
-				type_action: ""
+				severity_name: "exsuntipsum",
+				severity_action: "",
+				editLink: "editIssueSeverity.html",
+				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			},
 			{
-				type_name: "exadewiranataputra",
-				type_action: ""
+				severity_name: "exadewiranataputra",
+				severity_action: "",
+				editLink: "editIssueSeverity.html",
+				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			},
 			{
-				type_name: "exariowidiatmoko",
-				type_action: ""
+				severity_name: "exariowidiatmoko",
+				severity_action: "",
+				editLink: "editIssueSeverity.html",
+				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			}
 		];
-		FIELDS_BASELINE_TYPE = [
+		FIELDS_ISSUE_SEVERITY = [
 			{
-				field: "type_name",
-				label: "Type Name"
+				field: "severity_name",
+				label: "Severity Name"
 			},
 			{
-				field: "type_action",
+				field: "severity_action",
 				label: "Action"
 			}
 		];
 	</script>
 
-	<script src="../../scripts/setting/baseline.js"></script>
+	<script src="../../scripts/setting/issue.js"></script>
 </body>
 
 </html>

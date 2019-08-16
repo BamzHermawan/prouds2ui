@@ -54,27 +54,29 @@
 				<b-table-column field="name" label="👨‍💼 Nama" sortable>
 					{{ props.row.name }}
 				</b-table-column>
-		
-				<b-table-column field="projectName" label="🎯 Project">
+
+				<b-table-column field="projectName" label="Project" sortable>
 					{{ props.row.projectName }}
 				</b-table-column>
-		
+
 				<b-table-column field="projectManager" label="🕵️‍ Project Manager">
 					{{ props.row.projectManager }}
 				</b-table-column>
-		
+
 				<b-table-column field="bookingDate" label="📅 Booking Date">
 					{{ props.row.bookingDate }}
 				</b-table-column>
-		
-				<b-table-column field="status" label="💡 Status">
+
+				<b-table-column field="status" label="💡 Status" sortable>
 					{{ props.row.status }}
 				</b-table-column>
-		
+
 				<b-table-column field="userId" label="⚡ Action">
 					<div v-if="!checkEmpty(props.row.acceptLink) && !checkEmpty(props.row.rejectLink)">
-						<b-button type="is-danger" size="is-small" tag="a" :href="props.row.rejectLink">👎 Reject</b-button>
-						<b-button type="is-success" size="is-small" tag="a" :href="props.row.acceptLink">👍 Accept</b-button>
+						<b-button type="is-danger" size="is-small" tag="a" :href="props.row.rejectLink">👎 Reject
+						</b-button>
+						<b-button type="is-success" size="is-small" tag="a" :href="props.row.acceptLink">👍 Accept
+						</b-button>
 					</div>
 					<span v-else class="tag is-warning">Action Not Available</span>
 				</b-table-column>
