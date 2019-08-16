@@ -128,8 +128,97 @@
 							<b-tab-item label="External">
 								<data-table
 									:data="dataUserExternal"
-									:fields="fieldsuserExternal"
-								></data-table>
+									:fields="[]"
+								>
+									<template slot-scope="props">
+										<b-table-column
+											field="user_id"
+											label="User ID"
+											name="userId"
+											v-model="userId"
+										>
+											<span>{{ props.row.user_id }}</span>
+										</b-table-column>
+										<b-table-column
+											field="name"
+											label="Name"
+										>
+											<span>{{ props.row.name }}</span>
+										</b-table-column>
+										<b-table-column
+											field="email"
+											label="Email"
+										>
+											<span>{{ props.row.email }}</span>
+										</b-table-column>
+										<b-table-column
+											field="bu"
+											label="Business_unit"
+										>
+											<span>{{ props.row.bu }}</span>
+										</b-table-column>
+										<b-table-column
+											field="profile"
+											label="Profile"
+										>
+											<span>{{ props.row.profile }}</span>
+										</b-table-column>
+										<b-table-column
+											field="user_id"
+											label="Action"
+										>
+											<b-dropdown aria-role="list">
+												<button
+													class="button is-info is-small"
+													slot="trigger"
+												>
+													<span>⚙ Action</span>
+												</button>
+
+												<b-dropdown-item
+													aria-role="listitem"
+													has-link
+												>
+													<a
+														:href="
+															props.row
+																.editUserLink
+														"
+														>Edit</a
+													>
+												</b-dropdown-item>
+												<b-dropdown-item
+													aria-role="listitem"
+													has-link=""
+												>
+													<a
+														:href="
+															props.row
+																.editPasswordLink
+														"
+														>Ganti Password</a
+													>
+												</b-dropdown-item>
+											</b-dropdown>
+											<a
+												v-if="!props.row.status"
+												:href="
+													props.row.deactivation_link
+												"
+												class="button is-small is-warning"
+												>🔒 Deactivate</a
+											>
+											<a
+												v-else
+												:href="
+													props.row.activation_link
+												"
+												class="button is-small is-success"
+												>🔓 Activate</a
+											>
+										</b-table-column>
+									</template>
+								</data-table>
 							</b-tab-item>
 						</b-tabs>
 					</section>

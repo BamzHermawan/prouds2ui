@@ -23,37 +23,47 @@
 					</b-menu>
 				</section>
 			</div>
-			<div class="column is-section">
+			<div class="column">
 				<div>
 					<section class="main-content">
-						<p class="title is-size-3">CUSTOMER</p>
+						<p class="title is-size-3">ORGANIZATION</p>
 					</section>
 					<section class="info">
-						<div class="columns is-desktop">
-							<div class="column is-12">
+						<div class="columns">
+							<div class="column is-6">
 								<data-table
-									title="Customer List"
-									:data="dataCustomer"
+									title="Organization"
+									:data="dataOrganization"
 									:fields="[]"
 								>
 									<template slot-scope="props">
-										<b-table-column
-											field="customer_name"
-											label="Customer Name"
-										>
-											<span>{{
-												props.row.customer_name
-											}}</span>
+										<b-table-column field="org_id" hidden>
+											<span>{{ props.row.org_id }}</span>
 										</b-table-column>
 										<b-table-column
-											field="alamat"
-											label="Alamat"
+											field="userId"
+											label="Action"
+											class="tour-step-7"
 										>
-											<span>{{ props.row.alamat }}</span>
+											<b-button
+												type="is-success"
+												size="is-small"
+												:href="props.row.editLink"
+												tag="a"
+												>📝 Edit</b-button
+											>
+											<b-button
+												type="is-danger"
+												size="is-small"
+												:href="props.row.deleteLink"
+												tag="a"
+												>🚫 Delete</b-button
+											>
 										</b-table-column>
 									</template>
 								</data-table>
 							</div>
+							<div class="column is-6"></div>
 						</div>
 					</section>
 				</div>
@@ -63,7 +73,6 @@
 </template>
 
 <script>
-import Axios from "axios";
 import DataTable from "../../components/dataTable";
 import { setTimeout } from "timers";
 export default {
@@ -78,7 +87,10 @@ export default {
 	},
 	data() {
 		return {
-			dataCustomer: DATACUSTOMER,
+			dataOrganization: DATA_ORGANIZATION,
+			fieldOrganization: FIELDS_ORGANIZATION,
+			dataIssueSeverity: DATA_ISSUE_SEVERITY,
+			fieldIssueSeverity: FIELDS_ISSUE_SEVERITY,
 			menu: {
 				config: [
 					{ label: "setting", link: "#setting", icon: "mdi-cogs" }
@@ -93,7 +105,6 @@ export default {
 				? this.configMenu
 				: this.menu.config;
 		}
-	},
-	mounted() {}
+	}
 };
 </script>

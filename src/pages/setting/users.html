@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body>
+<body class="marginless">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -105,25 +105,39 @@
 		];
 		DATA_USER_EXTERNAL = [
 			{
-				user_id: "exsuntipsum",
-				name: "EXSUNT IPSUM",
-				email: "exsuntipsum@sigma.co.id",
-				bu: "EXPMO",
-				profile: "exCell 1"
+				user_id: "adewiranataputra",
+				name: "Ade Wiranata Putra",
+				email: "ade.wiranata@sigma.co.id",
+				bu: "PMO",
+				profile: "Manager",
+				status: true,
+				activation_link: "#activate",
+				deactivation_link: "#deactivate",
+				editUserLink: "editUser.html",
+				editPasswordLink: "editPassword.html"
 			},
 			{
-				user_id: "exadewiranataputra",
-				name: "ExADE WIRANATA PUTRA",
-				email: "exadewiranata@sigma.co.id",
-				bu: "EXPMO",
-				profile: "exCell 2"
+				user_id: "ariowidiatmoko",
+				name: "ARIO WIDIATMOKO",
+				email: "ario@sigma.co.id",
+				bu: "PMO",
+				profile: "Cell 3",
+				status: false,
+				deactivation_link: "#deactivate",
+				editUserLink: "editUser.html",
+				editPasswordLink: "editPassword.html"
 			},
 			{
-				user_id: "exariowidiatmoko",
-				name: "exARIO WIDIATMOKO",
-				email: "exario@sigma.co.id",
-				bu: "exPMO",
-				profile: "exCell 3"
+				user_id: "ariowidiatmoko",
+				name: "ARIO WIDIATMOKO",
+				email: "ario@sigma.co.id",
+				bu: "PMO",
+				profile: "Cell 3",
+				status: false,
+				activation_link: "#activate",
+				deactivation_link: "#deactivate",
+				editUserLink: "editUser.html",
+				editPasswordLink: "editPassword.html"
 			}
 		];
 		FIELDS_USER_EXTERNAL = [
