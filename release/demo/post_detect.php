@@ -12,6 +12,10 @@ if(!empty($_GET)){
 	$return['GET'] = $_GET;
 }
 
+if(!empty($_FILES)){
+	$return['FILES'] = $_FILES;
+}
+
 ?>
 
 <!DOCTYPE html>
