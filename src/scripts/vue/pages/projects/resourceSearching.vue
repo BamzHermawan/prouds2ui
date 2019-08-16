@@ -11,95 +11,28 @@
 				</div>
 				<nav class="panel tour-step-1">
 					<p class="panel-heading">Filter Resource</p>
-					<div class="panel-block">
+					<div
+						v-for="(category, index) in filterCat"
+						:key="index"
+						class="panel-block"
+					>
 						<div class="container">
-							<b-field class="tour-step-2">
-								<b-select
-									placeholder="Pilih Kategori Pencarian"
-									v-model="pickedCat"
-									size="is-small"
-									icon="magnify"
-									expanded
-								>
-									<option
-										v-for="(filter, index) in filterCat"
-										:key="index"
-										:value="filter.key"
-										>{{ filter.text }}</option
-									>
-								</b-select>
-							</b-field>
-							<b-field class="tour-step-3">
-								<b-input
-									:placeholder="'Cari Kategori... '"
-									type="search"
-									icon="magnify"
-									size="is-small"
-									v-model="filterQuery"
-								>
-								</b-input>
-							</b-field>
-							<b-field
-								v-show="pickedCat !== null && pickedCat !== ''"
-								class="animated SlideInDown"
-							>
-								<div class="container box">
-									<div class="tags has-addons is-marginless">
-										<span class="tag is-dark"
-											>Category</span
-										>
-										<span
-											class="tag is-info is-capitalized"
-											>{{ pickedCat }}</span
-										>
-									</div>
-									<p class="is-size-7">{{ getSummary() }}</p>
-								</div>
-							</b-field>
-							<b-message
-								type="is-warning"
+							<b-input
+								@focus="focusedFilter = category.key"
+								:placeholder="category.text"
+								v-model="filters[category.key]"
+								type="search"
+								icon="magnify"
 								size="is-small"
-								style="margin-bottom: 10px;"
-								class="animated zoomIn"
-								v-show="alert.display"
 							>
-								{{ alert.message }}
-							</b-message>
-							<b-field>
-								<b-button
-									outlined
-									class="is-fullwidth tour-step-4"
-									type="is-success"
-									size="is-small"
-									@click="addFilter"
-									>Add Filter</b-button
-								>
-							</b-field>
-						</div>
-					</div>
-					<div v-show="filters.length > 0" class="panel-block">
-						<div class="container">
-							<b-field grouped group-multiline>
-								<div
-									class="control"
-									v-for="(filter, index) in filters"
-									:key="index"
-								>
-									<div class="tags has-addons">
-										<span
-											class="tag is-dark is-lowercase"
-											>{{ filter.key }}</span
-										>
-										<span class="tag is-info">{{
-											filter.query
-										}}</span>
-										<a
-											@click="removeFilter(filter.key)"
-											class="tag is-delete"
-										></a>
-									</div>
-								</div>
-							</b-field>
+							</b-input>
+							<p
+								v-show="focusedFilter === category.key"
+								class="is-size-7 animated fadeIn"
+								style="margin-top: 0.75em;"
+							>
+								{{ category.summary }}
+							</p>
 						</div>
 					</div>
 					<div class="panel-block animated SlideInDown tour-step-5">
@@ -327,30 +260,14 @@ export default {
 	},
 	data() {
 		return {
+			focusedFilter: "",
 			openedDetail: [],
 			selectedRes: [],
-			filterQuery: "",
-			pickedCat: null,
-			filters: [],
-			fetchedRes: [],
-			alert: {
-				message: "",
-				display: false
-			}
+			filters: {},
+			fetchedRes: []
 		};
 	},
 	methods: {
-		getSummary() {
-			let summary = "";
-			let selected = this.pickedCat;
-			this.filterCat.forEach(function(cat, index) {
-				if (cat.key === selected) {
-					summary = cat.summary;
-				}
-			});
-
-			return summary;
-		},
 		checkIfOpen(userId) {
 			return this.openedDetail.includes(userId);
 		},
@@ -361,7 +278,7 @@ export default {
 		addSaved(resource) {
 			this.selectedRes.push({
 				userId: resource.userId,
-				filters: this.parsedFilter
+				filters: this.filters
 			});
 
 			Tools.saveStorage("selectedResource", {
@@ -405,56 +322,17 @@ export default {
 				this.openedDetail.push(row.userId);
 			}
 		},
-		addFilter() {
-			if (this.pickedCat === "") {
-				this.alert.message =
-					"Silakan Pilih Kategori Pencarian Dahulu 😂";
-				this.alert.display = true;
-				return false;
-			}
-
-			if (this.filterQuery === "") {
-				this.alert.message =
-					"Silakan Isi Kolom Pencarian Terlebih Dahulu 😂";
-				this.alert.display = true;
-				return false;
-			}
-
-			let findExist = this.filters.findIndex(
-				filter => filter.key === this.pickedCat
-			);
-
-			if (findExist > -1) {
-				this.filters[findExist].query = this.filterQuery;
-			} else {
-				this.filters.push({
-					key: this.pickedCat,
-					query: this.filterQuery
-				});
-			}
-
-			this.resetFilterForm();
-			return true;
-		},
-		removeFilter(key) {
-			let findExist = this.filters.findIndex(
-				filter => filter.key === key
-			);
-
-			if (findExist > -1) {
-				this.filters.splice(findExist, 1);
-			}
-		},
-		resetFilterForm() {
-			this.pickedCat = "";
-			this.filterQuery = "";
-			this.alert.message = "";
-			this.alert.display = false;
-		},
 		fetchResource() {
+			let filters = {};
+			for (const key in this.filters) {
+				if(this.filters[key] !== ""){
+					filters[key] = this.filters[key];
+				}
+			}
+
 			let self = this;
 			Axios.get(this.apiSearchEngine, {
-				params: self.parsedFilter
+				params: filters
 			})
 				.then(function(response) {
 					self.fetchedRes = response.data;
@@ -507,21 +385,14 @@ export default {
 				});
 		}
 	},
-	computed: {
-		parsedFilter() {
-			if (this.filters.length > 0) {
-				let prep = {};
-				this.filters.forEach(filter => {
-					prep[filter.key] = filter.query;
-				});
-
-				return prep;
-			} else {
-				return [];
-			}
-		}
-	},
 	mounted() {
+		let self = this;
+		this.filterCat.forEach(filter => {
+			self.filters[filter.key] = "";
+		});
+
+		console.log(this.filters);
+
 		this.fetchResource();
 		this.loadLocalStorage(true);
 	}

@@ -63,28 +63,18 @@ const options = {
 
 	job.log.success("Removing Directory has been completed");
 
-	// Initializes a bundler using the entrypoint location and options provided
-	options.outDir = outDir;
-	const bundler = new Bundler(entryFiles, options);
-
-	bundler.on('buildError', error => {
-		job.log.error(error.message);
-		job.log.error("Error Path: " + error.path);
-	});
-
-	bundler.on('bundled', (bundle) => {
-		console.log(" ");
-		job.log.success("Parcel Bundler has been completed");
-		job.logToFile("parcel-log", bundler)
-			.then((res) => job.log.success(res))
-			.catch((err) => job.log.error(err))
-	});
-
-
 	// Run the bundler, this returns the main bundle
 	// Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
 	job.log.title("Start Parcel Bundler");
-	await bundler.bundle();
+	// await bundler.bundle();
+
+	await job.runScript("yarn run build")
+	.then(() => {
+		job.log.success("Parcel Bundler has been completed");
+	})
+	.catch((error) => {
+		job.log.error(error);
+	})
 	
 
 	job.log.title("Moving Javascript Files to " + srcDir);

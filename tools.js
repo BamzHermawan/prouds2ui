@@ -1,6 +1,6 @@
 const uglify = require('@node-minify/uglify-js');
 const cssnano = require('@node-minify/cssnano');
-const spawn = require('child_process').spawn;
+const {spawn, exec} = require('child_process');
 const minify = require('@node-minify/core');
 const colorit = require('color-it');
 const Path = require('path');
@@ -84,6 +84,18 @@ module.exports.compressor = function (filepath){
 
 			resolve(files);
 		});
+	})
+}
+
+module.exports.runScript = function (command){
+	return new Promise(function(resolve, reject){
+		var run = child = exec(command,
+			function (error, stdout, stderr) {
+				resolve(stdout)
+				if (error !== null) {
+					reject(stderr);
+				}
+			});
 	})
 }
 
