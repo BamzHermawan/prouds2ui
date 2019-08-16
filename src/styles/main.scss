@@ -1,7 +1,8 @@
 // @charset "utf-8";
 @import "~bulma/sass/utilities/_all";
 
-// VARIABLES ---------------------------------------------
+// Mixins ---------------------------------------------
+@import "mixin";
 
 // Font Import from google Font
 @import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed&display=swap');
@@ -287,8 +288,52 @@ section.activity {
 	}
 }
 
-.table > tbody > tr > td {
-	height: 44px !important;
+.level.sub-nav {
+	&.is-primary {
+		@include gradientMagic($primary);
+	}
+
+	&.is-success {
+		@include gradientMagic($success);
+	}
+
+	&.is-warning {
+		@include gradientMagic($warning);
+	}
+
+	&.is-info {
+		@include gradientMagic($info);
+	}
+
+	&.is-light {
+		@include gradientMagic($light);
+	}
+
+	&.is-dark {
+		@include gradientMagic($dark);
+		color: $light;
+	}
+
+	padding: 0.75em;
+	border-radius: 5px;
+}
+
+p.heading.is-normal {
+	font-size: 1em;
+	margin-bottom: 0px;
+}
+
+.is-checked > .checkbox-cell {
+	.check {
+		background-color: $info !important;
+    	border-color: $info !important;
+	}
+}
+
+.checkbox-cell {
+	.b-checkbox:hover > .check {
+		border-color: $info !important;
+	}
 }
 
 @import "~bulma";

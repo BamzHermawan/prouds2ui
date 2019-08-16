@@ -12,7 +12,7 @@
 							<b-input
 								class="has-text-white"
 								placeholder="Disabled"
-								v-model="delivery.periode"
+								v-model="delivery.period"
 								disabled
 							></b-input>
 						</b-field>
@@ -38,11 +38,11 @@
 								expanded
 							>
 								<option
-									v-for="(option, index) in doctype"
-									:value="option"
-									:key="index"
+									v-for="option in doctype"
+									:value="option.docTypeId"
+									:key="option.docTypeId"
 								>
-									{{ option }}
+									{{ option.docTypeName }}
 								</option>
 							</b-select>
 						</b-field>
@@ -103,7 +103,7 @@
 					</b-input>
 				</b-field>
 				<input type="hidden" name="projectId" v-model="projectId" />
-				<input type="hidden" name="period" v-model="delivery.periode" />
+				<input type="hidden" name="period" v-model="delivery.period" />
 				<button
 					class="button is-fullwidth is-success"
 					:disabled="disableSubmit"

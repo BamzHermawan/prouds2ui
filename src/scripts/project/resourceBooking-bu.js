@@ -37,6 +37,26 @@ new Vue({
 	methods: {
 		checkEmpty(value){
 			return value === undefined || value === null || value === "";
+		},
+		rejectAction(action){
+			this.$dialog.prompt({
+				message: `Alasan Penolakan Proposal Booking ?`,
+				inputAttrs: {
+					placeholder: 'Panjang maksimal 150 karakter..',
+					maxlength: 150,
+				},
+				onConfirm: (value) => {
+					console.log(value);
+				}
+			})
+		},
+		acceptAction(action, name){
+			this.$dialog.confirm({
+				message: 'Apakah kamu yakin ingin menerima proposal booking untuk <b>' + name + "</b>?",
+				onConfirm: (value) => {
+					console.log(value);
+				}
+			})
 		}
 	}
 });

@@ -1,11 +1,20 @@
 <template>
 	<div class="container">
-		<button class="button is-success" @click="newRoleModal()">
-			<span class="mdi mdi-account-multiple-plus-outline in-left"></span>
-			<span>Add Member in New Role</span>
-		</button>
-
-		<br /><br />
+		<nav class="level">
+			<div class="level-left">
+				<button class="button is-success" @click="newRoleModal()">
+					<span
+						class="mdi mdi-account-multiple-plus-outline in-left"
+					></span>
+					<span>Add Member in New Role</span>
+				</button>
+			</div>
+			<div class="level-right">
+				<slot name="got-to-resource-booking">
+					<a class="button is-info" href="#">LINK</a>
+				</slot>
+			</div>
+		</nav>
 
 		<div
 			v-for="(res, index) in resource"
@@ -116,7 +125,9 @@
 						<div class="control">
 							<div class="tags has-addons are-medium">
 								<span class="tag is-dark">
-									<span style="margin-left:5px;">Resource Plan</span>
+									<span style="margin-left:5px;"
+										>Resource Plan</span
+									>
 								</span>
 								<span class="tag is-primary">{{
 									res.plan
@@ -126,7 +137,9 @@
 						<div class="control">
 							<div class="tags has-addons are-medium">
 								<span class="tag is-dark">
-									<span style="margin-left:5px;">Resource Actual</span>
+									<span style="margin-left:5px;"
+										>Resource Actual</span
+									>
 								</span>
 								<span class="tag is-primary">{{
 									res.actual

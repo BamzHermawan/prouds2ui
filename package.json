@@ -7,7 +7,7 @@
 		"demo": "cd release && php -S localhost:5501",
 		"ngoding": "yarn run bersih && parcel src/pages/**/*.html -p 5500",
 		"mantap": "node bundler.js -o release/page -s release/src src/pages/**/*.html",
-		"build": "node bundler.js -o release/page -s release/src"
+		"build": "parcel build src/pages/**/*.html -d release/page --public-url /src --no-source-maps --no-minify"
 	},
 	"author": "PMO Telkomsigma",
 	"devDependencies": {
