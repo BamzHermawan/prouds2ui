@@ -10,22 +10,22 @@ new Vue({
 		resource: RESOURCE
 	},
 	computed: {
-		statusCount(){
+		statusCount() {
 			let status = [];
 			this.resource.map(user => {
-				if(status.length == 0){
+				if (status.length == 0) {
 					status.push({
 						key: user.status,
 						count: 1
 					});
-				}else{
+				} else {
 					let index = status.findIndex(bit => bit.key === user.status);
-					if(index === -1){
+					if (index === -1) {
 						status.push({
 							key: user.status,
 							count: 1
 						});
-					}else{
+					} else {
 						status[index].count++;
 					}
 				}
@@ -35,7 +35,7 @@ new Vue({
 		}
 	},
 	methods: {
-		checkEmpty(value){
+		checkEmpty(value) {
 			return value === undefined || value === null || value === "";
 		},
 		rejectAction(action){

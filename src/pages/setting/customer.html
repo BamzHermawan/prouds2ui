@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
+<body>
 	<div id="vapp">
 		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -28,8 +28,8 @@
 
 		<dashboard :config-menu="[
 			{ label: 'Users', link:'users.html', icon:'account', active:false },
-			{ label: 'Baseline', link:'#baseline', icon:'briefcase', active:true },
-			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
+			{ label: 'Customer', link:'#customer', icon:'account-star', active:true },
 			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
@@ -43,63 +43,33 @@
 	</div>
 
 	<script>
-		const DATA_BASELINE_STATUS = [
+		const DATACUSTOMER = [
 			{
-				status_name: "suntipsum",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				customer_name: "suntipsum",
+				alamat: "SUNT IPSUM"
 			},
 			{
-				status_name: "adewiranataputra",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				customer_name: "adewiranataputra",
+				alamat: "ADE WIRANATA PUTRA"
 			},
 			{
-				status_name: "ariowidiatmoko",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				customer_name: "ariowidiatmoko",
+				alamat: "ARIO WIDIATMOKO"
 			}
 		];
-		FIELDS_BASELINE_STATUS = [
+		FIELDS_CUSTOMER = [
 			{
-				field: "status_name",
-				label: "Status Name"
+				field: "customer_name",
+				label: "CUSTOMER NAME"
 			},
 			{
-				field: "status_action",
-				label: "Action"
-			}
-		];
-		DATA_BASELINE_TYPE = [
-			{
-				type_name: "exsuntipsum",
-				type_action: ""
-			},
-			{
-				type_name: "exadewiranataputra",
-				type_action: ""
-			},
-			{
-				type_name: "exariowidiatmoko",
-				type_action: ""
-			}
-		];
-		FIELDS_BASELINE_TYPE = [
-			{
-				field: "type_name",
-				label: "Type Name"
-			},
-			{
-				field: "type_action",
-				label: "Action"
+				field: "alamat",
+				label: "ALAMAT"
 			}
 		];
 	</script>
 
-	<script src="../../scripts/setting/baseline.js"></script>
+	<script src="../../scripts/setting/customer.js"></script>
 </body>
 
 </html>

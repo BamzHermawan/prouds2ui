@@ -16,7 +16,7 @@ new Vue({
 			let self = this;
 			this.loadingBtn = true;
 			let apiUrl = this.$refs.stepOne.apiPostSaved;
-			
+
 			loadStorage("selectedResource")
 				.then(bundle => {
 					Axios.post(apiUrl, bundle, {
@@ -38,14 +38,14 @@ new Vue({
 							notified(self.$notification).error("Mohon maaf, terjadi gangguan koneksi. Mohon ulangi dalam beberapa saat lagi. 🙏");
 						});
 				})
-				.catch(function(){
+				.catch(function () {
 					notified(self.$snackbar,
 						"Kamu belum memilih resource satu pun 😂"
 					);
 				})
 				.finally(() => self.loadingBtn = false);
 		},
-		reloadLocalStorage(){
+		reloadLocalStorage() {
 			this.$refs.stepOne.loadLocalStorage();
 		}
 	},
@@ -155,13 +155,13 @@ new Vue({
 		touring: undefined,
 		batchId: null
 	},
-	mounted(){
+	mounted() {
 		let self = this;
 		let firstTimeTour = loadStorage("firstTimeTour");
 
 		self.touring = Shepherd.Tour(this.tourStep, undefined, {
-			onExit: function(step){
-				if(step.id === "tour-step-start"){
+			onExit: function (step) {
+				if (step.id === "tour-step-start") {
 					loadStorage("firstTimeTour")
 						.catch(() => saveStorage("firstTimeTour", {
 							status: false,
@@ -172,11 +172,11 @@ new Vue({
 
 				return true;
 			},
-			onNext: function(step){
+			onNext: function (step) {
 				if (step.id === "tour-step-start") {
 					loadStorage("firstTimeTour")
 						.then(firstTime => {
-							if(!firstTime.status){
+							if (!firstTime.status) {
 								saveStorage("firstTimeTour", {
 									status: true,
 									tourDate: new Date,
@@ -196,7 +196,7 @@ new Vue({
 		});
 
 		firstTimeTour.then(firstTime => {
-			if(!firstTime.status){
+			if (!firstTime.status) {
 				self.touring.start();
 			}
 		}).catch(() => {
