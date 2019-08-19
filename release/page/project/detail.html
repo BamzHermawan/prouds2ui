@@ -14,7 +14,10 @@
 	<link rel="stylesheet" href="/src/main.min.css">
 </head>
 
-<body>
+<body class="add-margin">
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
 	<div id="vapp">
 		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -26,7 +29,7 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="home.html"></nav-bar>
 
-		<dashboard project_name="Delivery Awesome App" username="Ade Wiranata Putra" nik="CRS2019000" iwo="P-SCC-XXXA" start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5" progress_project="70" progress_bast="2" j_bast="4" bu="Project Management Office" show-newproject-notif="" show-timesheet-notif="">
+		<dashboard project_name="Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia" username="Ade Wiranata Putra" nik="CRS2019000" iwo="P-SCC-XXXA" start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5" progress_project="70" progress_bast="2" j_bast="4" bu="Project Management Office" show-newproject-notif="" show-timesheet-notif="">
 			<div slot="new-project-notification">
 				Ada sebanyak <b>10 IWO BARU</b>. Silakan
 				Assign PM pada Project IWO tersebut.
@@ -40,6 +43,57 @@
 					<li>📅 10 Juli 2019 [8 Jam] - Belajar Oracle</li>
 				</ul>
 			</div>
+
+			<template #activity-section="">
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+				<log title="Developing Front-End" subtitle="@adewiranata - 11 juli 19 : 09.20" class="animated fadeIn">
+					<p slot="body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
+						Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in
+					</p>
+				</log>
+			</template>
 
 			<ul slot="assign-member" class="project-list">
 				<li>
@@ -61,95 +115,7 @@
 		</dashboard>
 	</div>
 
-	<script>var ENTRY = [["Entry", 50], ["Empty", 100 - 50]];
-UTILIZATION = [["Utilization", 50], ["Empty", 100 - 50]];
-ACTIVITY = [{
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=18",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=17",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=16",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=15",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=14",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=13",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=12",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=10",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=9",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=8",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=7",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=6",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=5",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=4",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=3",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=2",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}, {
-  title: "test",
-  subtitle: "@adewiranata - 11 juli 19 : 09.20",
-  thumbnail: "http://localhost:5501/demo/user_avatar.php?nik=1",
-  body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in"
-}];</script>
-
+	<script src="/src/detail.min.js"></script>
 	<script src="/src/detail.min.js"></script>
 </body>
 

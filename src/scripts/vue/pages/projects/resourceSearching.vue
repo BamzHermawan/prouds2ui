@@ -11,30 +11,117 @@
 				</div>
 				<nav class="panel tour-step-1">
 					<p class="panel-heading">Filter Resource</p>
-					<div
-						v-for="(category, index) in filterCat"
-						:key="index"
-						class="panel-block"
-					>
+
+					<!-- Cari Dengan Role -->
+					<div class="panel-block">
 						<div class="container">
 							<b-input
-								@focus="focusedFilter = category.key"
-								:placeholder="category.text"
-								v-model="filters[category.key]"
+								@focus="focusedFilter = 'role'"
+								placeholder="Cari dengan Role"
+								v-model="filters.role"
 								type="search"
 								icon="magnify"
 								size="is-small"
 							>
 							</b-input>
 							<p
-								v-show="focusedFilter === category.key"
+								v-show="focusedFilter === 'role'"
 								class="is-size-7 animated fadeIn"
 								style="margin-top: 0.75em;"
 							>
-								{{ category.summary }}
+								Filter Kategori ini digunakan saat kamu butuh
+								resource role tertentu, contoh kamu butuh
+								resource dengan role sebagai Programmer atau
+								Desainer
 							</p>
 						</div>
 					</div>
+
+					<!-- Cari Dengan Role -->
+					<div class="panel-block">
+						<div class="container">
+							<p
+								v-show="focusedFilter === 'level'"
+								class="is-size-7 animated fadeIn"
+								style="margin-top: 0.75em; margin-bottom: 0.75em;"
+							>
+								Filter Kategori ini digunakan saat kamu butuh
+								resource yang memiliki level tertentu seperti
+								Senior / Junior level
+							</p>
+							<div class="field has-addons is-fullwidth">
+								<b-select
+									@focus="focusedFilter = 'level'"
+									placeholder="Cari dengan level"
+									v-model="filters.level"
+									size="is-small"
+									icon="magnify"
+									expanded
+								>
+									<slot name="level-select-master"></slot>
+								</b-select>
+								<div class="control">
+									<button
+										@click="filters.level = null"
+										class="button is-danger is-small"
+									>
+										<i
+											class="mdi mdi-backspace is-marginless"
+										></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Cari Dengan Skill -->
+					<div class="panel-block">
+						<div class="container">
+							<b-input
+								@focus="focusedFilter = 'skill'"
+								placeholder="Cari dengan Kemampuan / Skill"
+								v-model="filters.skill"
+								type="search"
+								icon="magnify"
+								size="is-small"
+							>
+							</b-input>
+							<p
+								v-show="focusedFilter === 'skill'"
+								class="is-size-7 animated fadeIn"
+								style="margin-top: 0.75em;"
+							>
+								Filter Kategori ini digunakan saat kamu butuh
+								resource yang memiliki kemampuan tertentu
+								seperti JavaScript / PHP / Photoshop
+							</p>
+						</div>
+					</div>
+
+					<!-- Cari Dengan Skill -->
+					<div class="panel-block">
+						<div class="container">
+							<b-input
+								@focus="focusedFilter = 'skill'"
+								placeholder="Cari dengan Competency (Certificate / Course)"
+								v-model="filters.skill"
+								type="search"
+								icon="magnify"
+								size="is-small"
+							>
+							</b-input>
+							<p
+								v-show="focusedFilter === 'competency'"
+								class="is-size-7 animated fadeIn"
+								style="margin-top: 0.75em;"
+							>
+								Filter Kategori ini digunakan saat resource yang
+								kamu butuh harus memiliki certifikasi di bidang
+								tertentu seperti Cisco, dll
+							</p>
+						</div>
+					</div>
+
 					<div class="panel-block animated SlideInDown tour-step-5">
 						<button
 							class="button is-success is-fullwidth"
@@ -241,10 +328,6 @@ export default {
 		DataTable
 	},
 	props: {
-		filterCat: {
-			type: Array,
-			required: true
-		},
 		apiSearchEngine: {
 			type: String,
 			required: true
@@ -263,7 +346,12 @@ export default {
 			focusedFilter: "",
 			openedDetail: [],
 			selectedRes: [],
-			filters: {},
+			filters: {
+				role: "",
+				level: null,
+				skill: "",
+				competency: ""
+			},
 			fetchedRes: []
 		};
 	},
@@ -325,7 +413,7 @@ export default {
 		fetchResource() {
 			let filters = {};
 			for (const key in this.filters) {
-				if(this.filters[key] !== ""){
+				if (this.filters[key] !== "") {
 					filters[key] = this.filters[key];
 				}
 			}
@@ -387,12 +475,6 @@ export default {
 	},
 	mounted() {
 		let self = this;
-		this.filterCat.forEach(filter => {
-			self.filters[filter.key] = "";
-		});
-
-		console.log(this.filters);
-
 		this.fetchResource();
 		this.loadLocalStorage(true);
 	}

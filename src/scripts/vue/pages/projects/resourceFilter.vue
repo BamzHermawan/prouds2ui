@@ -214,6 +214,14 @@
 												{{ props.row.bu }}
 											</p>
 										</div>
+										<div class="column">
+											<p class="title is-size-6">
+												🔥 Workload
+											</p>
+											<p class="subtitle is-size-5">
+												{{ props.row.workload }}
+											</p>
+										</div>
 									</div>
 									<div class="columns">
 										<div class="column">
@@ -497,13 +505,13 @@ export default {
 				this.listProjectData = this.listProject;
 			}
 		},
-		start: function(newdata,olddata){
+		start: function(newdata, olddata) {
 			this.openedDetail = [];
-			this.postDate();	
+			this.postDate();
 		},
-		end: function(newdata,olddata){
+		end: function(newdata, olddata) {
 			this.openedDetail = [];
-			this.postDate();	
+			this.postDate();
 		}
 	},
 	methods: {
@@ -616,18 +624,18 @@ export default {
 						let index = self.fetchedRes.findIndex(
 							bit => bit.userId === row.userId
 						);
-						if(index!=(-1)){
+						if (index != -1) {
 							self.fetchedRes[index].isBooked = row.isBooked;
-						}else {
+						} else {
 							self.fetchedRes.push(row);
 						}
-					})
+					});
 					self.book();
 
-					if(passData){
+					if (passData) {
 						self.fetchedRes.forEach(row => {
 							self.fetchDetail(row);
-						})
+						});
 					}
 				})
 				.catch(function(error) {
@@ -639,7 +647,6 @@ export default {
 				});
 		},
 		toggleDetail(row) {
-			
 			this.$refs.resTable.toggleDetail(row);
 			if (this.checkIfOpen(row)) {
 				let indexAt = this.openedDetail.findIndex(
@@ -664,6 +671,7 @@ export default {
 					self.fetchedRes[idex].skills = detail.skills;
 					self.fetchedRes[idex].course = detail.course;
 					self.fetchedRes[idex].competency = detail.competency;
+					self.fetchedRes[idex].workload = detail.workload;
 					// self.$refs.resTable.toggleDetail(row);
 				})
 				.catch(function(error) {
@@ -678,7 +686,7 @@ export default {
 	mounted() {
 		let self = this;
 		this.listProjectData = this.listProject;
-		
+
 		Tools.loadStorage("selectedResource").then(selected => {
 			let saved = selected.resource.map(({ userId }) => userId);
 			self.postDate(saved, true);

@@ -73,8 +73,8 @@
 
 				<b-table-column field="userId" label="⚡ Action">
 					<div v-if="!checkEmpty(props.row.acceptLink) && !checkEmpty(props.row.rejectLink)">
-						<b-button type="is-danger" size="is-small" tag="a" @click="rejectAction(props.row.acceptLink)">👎 Reject</b-button>
-						<b-button type="is-success" size="is-small" @click="rejectAction(props.row.acceptLink)">👍 Accept</b-button>
+						<b-button type="is-danger" size="is-small" tag="a" @click="rejectAction(props.row.rejectLink)">👎 Reject</b-button>
+						<b-button type="is-success" size="is-small" @click="acceptAction(props.row.acceptLink, props.row.name)">👍 Accept</b-button>
 					</div>
 					<span v-else="" class="tag is-warning">Action Not Available</span>
 				</b-table-column>
@@ -94,8 +94,8 @@
   projectName: "Prouds 2 Development",
   projectManager: "Mr. Boy Wiranata",
   bookingDate: "01/01/2020 - 01/10/2020",
-  rejectLink: "https://localhost:5501/post_detect.php?reject=yesssssshh",
-  acceptLink: "https://localhost:5501/post_detect.php?accept=aarrrrrrggh"
+  rejectLink: "http://localhost:5501/demo/post_detect.php?reject=yesssssshh",
+  acceptLink: "http://localhost:5501/demo/post_detect.php?accept=aarrrrrrggh"
 }, {
   userId: "000001",
   name: "Kakak Wiranata Putra",
