@@ -9,7 +9,7 @@
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<!-- <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" /> -->
 
-	<title>Edit User | PROUDS 2</title>
+	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
@@ -29,35 +29,42 @@
 			{ label: '🔒 logout', link: '#logout', icon:'' },
 		]" home-link="home.html"></nav-bar>
 		<side-bar :config-menu="[
-			{ label: 'Users', link:'users.html', icon:'account', active:false },
+			{ label: 'Users', link:'#users', icon:'account', active:false },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
-			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:true },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
 			<div class="container">
-				<p class="title is-size-4">Edit Issue Severity</p>
+				<p class="title is-size-4">Edit Project Type</p>
 				<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-					<b-field hidden label="UserId">
-						<b-input v-model="userId" name="userId"></b-input>
-					</b-field>
 					<div class="columns">
 						<div class="column is-2">
-							<p class="heading">Name</p>
+							<p class="heading">Project Type</p>
 						</div>
 						<div class="column">
 							<b-field>
-								<b-input expanded v-model="severityName" name="severityName"></b-input>
+								<b-input expanded v-model="project_type" name="project_type"></b-input>
+							</b-field>
+						</div>
+					</div>
+					<div class="columns">
+						<div class="column is-2">
+							<p class="heading">Category</p>
+						</div>
+						<div class="column">
+							<b-field>
+								<b-input expanded v-model="category" name="category"></b-input>
 							</b-field>
 						</div>
 					</div>
 					<nav class="level">
 						<div class="level-left">
 							<div class="level-item">
-								<a class="button is-danger" href="issue.html">Batal</a>
+								<a class="button is-danger" href="projects.html">Batal</a>
 							</div>
 							<div class="level-item">
 								<div class="level-item">
@@ -79,10 +86,8 @@
 	</div>
 
 	<script>
-		const
-			userId = "suntipsum"
 	</script>
-	<script src="../../scripts/setting/editIssueSeverity.js"></script>
+	<script src="../../scripts/setting/editProjectType.js"></script>
 </body>
 
 </html>

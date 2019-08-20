@@ -1,22 +1,23 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import DataTable from "../../scripts/vue/components/dataTable.vue";
 import NavBar from "../vue/components/topNavBar.vue";
-import Dashboard from "../vue/pages/setting/baselineController.vue";
+import SideBar from "../vue/components/settingSidebar.vue";
 
 Vue.use(Buefy);
 new Vue({
-	components: {
-		NavBar, Dashboard
-	},
 	el: '#vapp',
-	data() {
-		return {
-			hello: 'Hello World'
-		}
+	components: { DataTable, NavBar, SideBar },
+	data: {
+		dataBaselineStatus: DATA_BASELINE_STATUS,
+		dataBaselineType: DATA_BASELINE_TYPE
+
 	},
 	computed: {
-		sayHi() {
-			return this.hello;
+	},
+	methods: {
+		checkEmpty(value) {
+			return value === undefined || value === null || value === "";
 		}
 	}
 });

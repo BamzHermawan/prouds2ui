@@ -38,49 +38,49 @@
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<div class="container">
-				<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-					<b-field label="UserId">
-						<b-input v-model="userId" name="userId"></b-input>
-					</b-field>
-					<b-field label="Name">
-						<b-input v-model="name" name="name"></b-input>
-					</b-field>
-					<b-field label="Email">
-						<b-input type="email" v-model="email" name="email"></b-input>
-					</b-field>
-					<b-field label="Business Unit">
-						<b-select expanded v-model="bu" name="bu">
-							<option value="0">Select BU</option>
-							<option value="1">PMO</option>
-							<option value="2">Clouds</option>
-						</b-select>
-					</b-field>
-					<b-field label="Profile">
-						<b-select expanded v-model="profile" name="profile">
-							<option value="0">Select Profile</option>
-							<option value="1">Manager</option>
-							<option value="2">Vice President</option>
-						</b-select>
-					</b-field>
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<a class="button is-danger" href="users.html">Batal</a>
-							</div>
-							<div class="level-item">
-								<div class="level-item">
-									<button class="button is-success is-fullwidth" type="submit">
-										Simpan
-									</button>
-								</div>
-							</div>
-						</div>
-					</nav>
+			<setting-form title="Edit User" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+					{
+						type:'input',
+						label:'User ID',
+						name:'userId',
+						value: 'Ade Ganteng'
+					},
+					{
+						type:'input',
+						label:'Nama User',
+						name:'name',
+						value: 'Ade'
+					},
+					{
+						type:'email',
+						label:'Email',
+						name:'email',
+						value: 'ade@gmail.com'
+					},
+					{
+						type:'select',
+						label:'BU',
+						name:'bu',
+						value: '1',
+						select: {
+							1: 'Kocok',
+							2: 'Dikocok',
+							3: 'B2b'
+						}
+					},
+					{
+						type:'select',
+						label:'Profile',
+						name:'profile',
+						value: 'zeid',
+						select: {
+							zeid: 'Zeid',
+							bilbil: 'Bilbil'
+						}
+					}
+				]">
 
-
-				</form>
-			</div>
+			</setting-form>
 		</side-bar>
 
 		<br>

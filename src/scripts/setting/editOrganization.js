@@ -9,8 +9,10 @@ new Vue({
 	el: '#vapp',
 	components: { DataTable, NavBar, SideBar },
 	data: {
-		dataUserInternal: DATA_USER_INTERNAL
-
+		org_name: "President Director",
+		org_level_id: "1",
+		org_code: "",
+		leader_id: ""
 	},
 	computed: {
 	},

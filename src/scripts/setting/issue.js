@@ -1,22 +1,23 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import DataTable from "../../scripts/vue/components/dataTable.vue";
 import NavBar from "../vue/components/topNavBar.vue";
-import Dashboard from "../vue/pages/setting/issueController.vue";
+import SideBar from "../vue/components/settingSidebar.vue";
 
 Vue.use(Buefy);
 new Vue({
-	components: {
-		NavBar, Dashboard
-	},
 	el: '#vapp',
-	data() {
-		return {
-			hello: 'Hello World'
-		}
+	components: { DataTable, NavBar, SideBar },
+	data: {
+		dataIssueStatus: DATA_ISSUE_STATUS,
+		dataIssueSeverity: DATA_ISSUE_SEVERITY
+
 	},
 	computed: {
-		sayHi() {
-			return this.hello;
+	},
+	methods: {
+		checkEmpty(value) {
+			return value === undefined || value === null || value === "";
 		}
 	}
 });

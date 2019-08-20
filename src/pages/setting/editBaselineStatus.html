@@ -9,7 +9,7 @@
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<!-- <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" /> -->
 
-	<title>Edit User | PROUDS 2</title>
+	<title>Edit Baseline Status | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
@@ -29,7 +29,7 @@
 			{ label: '🔒 logout', link: '#logout', icon:'' },
 		]" home-link="home.html"></nav-bar>
 		<side-bar :config-menu="[
-			{ label: 'Users', link:'#users', icon:'account', active:false },
+			{ label: 'Users', link:'users.html', icon:'account', active:false },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:true },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
 			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
@@ -44,9 +44,16 @@
 					<b-field hidden label="UserId">
 						<b-input v-model="userId" name="userId"></b-input>
 					</b-field>
-					<b-field label="Status Name">
-						<b-input v-model="statusName" name="statusName"></b-input>
-					</b-field>
+					<div class="columns">
+						<div class="column is-2">
+							<p class="heading">Name</p>
+						</div>
+						<div class="column">
+							<b-field>
+								<b-input expanded v-model="statusName" name="statusName"></b-input>
+							</b-field>
+						</div>
+					</div>
 					<nav class="level">
 						<div class="level-left">
 							<div class="level-item">

@@ -9,7 +9,8 @@ new Vue({
 	el: '#vapp',
 	components: { DataTable, NavBar, SideBar },
 	data: {
-		dataUserInternal: DATA_USER_INTERNAL
+		dataOrganization: DATA_ORGANIZATION,
+		dataOrganizationLevel: DATA_ORGANIZATION_LEVEL
 
 	},
 	computed: {

@@ -17,29 +17,64 @@
 <body class="marginless">
 	<div id="vapp">
 		<nav-bar :left-menu="[
-				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-				{ label: 'projects', link: 'projects.html', icon:'', active: false },
-				{ label: 'financial', link: '#financial', icon:'', active: false },
-				{ label: 'operation', link: '#opperation', icon:'', active: false },
-			]" :right-menu="[
-				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
-				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="home.html"></nav-bar>
-
-		<dashboard :config-menu="[
-			{ label: 'Users', link:'users.html', icon:'account', active:false },
-			{ label: 'Baseline', link:'#baseline', icon:'briefcase', active:true },
-			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
-			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
-			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
-			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
-		]" project_name="Delivery Awesome App" username="Ade Wiranata Putra" nik="CRS2019000" iwo="P-SCC-XXXA"
-			start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5"
-			progress_project="70" progress_bast="2" j_bast="4" bu="Project Management Office" show-newproject-notif
-			show-timesheet-notif>
-		</dashboard>
+					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+					{ label: 'projects', link: 'projects.html', icon:'', active: false },
+					{ label: 'financial', link: '#financial', icon:'', active: false },
+					{ label: 'operation', link: '#opperation', icon:'', active: false },
+				]" :right-menu="[
+					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+					{ label: '🔒 logout', link: '#logout', icon:'' },
+				]" home-link="home.html"></nav-bar>
+		<side-bar :config-menu="[
+					{ label: 'Users', link:'users.html', icon:'account', active:false },
+					{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:true },
+					{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+					{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+					{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+					{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+					{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+					{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+				]">
+			<div class="container is-section">
+				<p class="title is-size-3">BASELINE</p>
+				<div class="columns">
+					<div class="column is-6">
+						<data-table :data="dataBaselineStatus" :fields="[]" title="Baseline Status">
+							<template slot-scope="props">
+								<b-table-column field="status_name" label="Status Name" sortable>
+									{{ props.row.status_name }}
+								</b-table-column>
+								<b-table-column field="baseline_Status_id" label="Action" class="tour-step-7">
+									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
+										Edit
+									</b-button>
+									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
+										Delete
+									</b-button>
+								</b-table-column>
+							</template>
+						</data-table>
+					</div>
+					<div class="column is-6">
+						<data-table :data="dataBaselineType" :fields="[]" title="Baseline Type">
+							<template slot-scope="props">
+								<b-table-column field="type_name" label="Status Type" sortable>
+									{{ props.row.type_name }}
+								</b-table-column>
+								<b-table-column field="baseline_Status_id" label="Action" class="tour-step-7">
+									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
+										Edit
+									</b-button>
+									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
+										Delete
+									</b-button>
+								</b-table-column>
+							</template>
+						</data-table>
+					</div>
+				</div>
+			</div>
+		</side-bar>
 	</div>
 
 	<script>
@@ -75,16 +110,22 @@
 		];
 		DATA_BASELINE_TYPE = [
 			{
-				type_name: "exsuntipsum",
-				type_action: ""
+				type_name: "suntipsum",
+				status_action: "",
+				editLink: "editBaselineType.html",
+				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			},
 			{
-				type_name: "exadewiranataputra",
-				type_action: ""
+				type_name: "adewiranataputra",
+				status_action: "",
+				editLink: "editBaselineType.html",
+				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			},
 			{
-				type_name: "exariowidiatmoko",
-				type_action: ""
+				type_name: "ariowidiatmoko",
+				status_action: "",
+				editLink: "editBaselineType.html",
+				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
 			}
 		];
 		FIELDS_BASELINE_TYPE = [

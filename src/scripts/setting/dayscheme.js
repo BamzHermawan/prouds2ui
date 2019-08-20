@@ -9,7 +9,7 @@ new Vue({
 	el: '#vapp',
 	components: { DataTable, NavBar, SideBar },
 	data: {
-		dataUserInternal: DATA_USER_INTERNAL
+		holiday: HOLIDAY
 
 	},
 	computed: {
