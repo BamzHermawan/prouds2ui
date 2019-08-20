@@ -38,7 +38,7 @@ new Vue({
 		checkEmpty(value) {
 			return value === undefined || value === null || value === "";
 		},
-		rejectAction(action){
+		rejectAction(action) {
 			this.$dialog.prompt({
 				message: `Alasan Penolakan Proposal Booking ?`,
 				inputAttrs: {
@@ -50,7 +50,7 @@ new Vue({
 				}
 			})
 		},
-		acceptAction(action, name){
+		acceptAction(action, name) {
 			this.$dialog.confirm({
 				message: 'Apakah kamu yakin ingin menerima proposal booking untuk <b>' + name + "</b>?",
 				onConfirm: (value) => {

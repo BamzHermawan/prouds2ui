@@ -38,81 +38,49 @@
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<div class="container">
-				<p class="title is-size-4">Edit Users</p>
-				<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">UserId</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="userId" name="userId"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Name</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="name" name="name"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Email</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="email" name="email"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Business Unit</p>
-						</div>
-						<div class="column">
-							<b-select expanded v-model="bu" name="bu">
-								<option value="0">Select BU</option>
-								<option value="1">PMO</option>
-								<option value="2">Clouds</option>
-							</b-select>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Profile</p>
-						</div>
-						<div class="column">
-							<b-select expanded v-model="profile" name="profile">
-								<option value="0">Select Profile</option>
-								<option value="1">Manager</option>
-								<option value="2">Vice President</option>
-							</b-select>
-						</div>
-					</div>
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<a class="button is-danger" href="users.html">Batal</a>
-							</div>
-							<div class="level-item">
-								<div class="level-item">
-									<button class="button is-success is-fullwidth" type="submit">
-										Simpan
-									</button>
-								</div>
-							</div>
-						</div>
-					</nav>
+			<setting-form title="Edit User" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+					{
+						type:'input',
+						label:'User ID',
+						name:'userId',
+						value: 'Ade Ganteng'
+					},
+					{
+						type:'input',
+						label:'Nama User',
+						name:'name',
+						value: 'Ade'
+					},
+					{
+						type:'email',
+						label:'Email',
+						name:'email',
+						value: 'ade@gmail.com'
+					},
+					{
+						type:'select',
+						label:'BU',
+						name:'bu',
+						value: '1',
+						select: {
+							1: 'Kocok',
+							2: 'Dikocok',
+							3: 'B2b'
+						}
+					},
+					{
+						type:'select',
+						label:'Profile',
+						name:'profile',
+						value: 'zeid',
+						select: {
+							zeid: 'Zeid',
+							bilbil: 'Bilbil'
+						}
+					}
+				]">
 
-
-				</form>
-			</div>
+			</setting-form>
 		</side-bar>
 
 		<br>

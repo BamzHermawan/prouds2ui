@@ -26,21 +26,118 @@
 				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="home.html"></nav-bar>
+		<side-bar :config-menu="[
+				{ label: 'Users', link:'users.html', icon:'account', active:true },
+				{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
+				{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+				{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+				{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+				{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+				{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+				{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+			]">
+			<div class="container is-section">
+				<p class="title is-size-3">USERS</p>
+				<b-tabs class="block">
+					<b-tab-item label="Internal">
+						<data-table :data="dataUserInternal" :fields="[]" title="Project Type">
+							<template slot-scope="props">
+								<b-table-column field="user_id" label="User ID" sortable>
+									{{ props.row.user_id }}
+								</b-table-column>
 
-		<dashboard api-edit="http://localhost:5501/demo/post_detect.php" :config-menu="[
-			{ label: 'Users', link:'#users', icon:'account', active:true },
-			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
-			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
-			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
-			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
-			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
-		]" project_name="Delivery Awesome App" username="Ade Wiranata Putra" nik="CRS2019000" iwo="P-SCC-XXXA"
-			start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5"
-			progress_project="70" progress_bast="2" j_bast="4" bu="Project Management Office" show-newproject-notif
-			show-timesheet-notif>
-		</dashboard>
+								<b-table-column field="name" label="Name" sortable>
+									{{ props.row.name }}
+								</b-table-column>
+								<b-table-column field="email" label="Email" sortable>
+									{{ props.row.email }}
+								</b-table-column>
+								<b-table-column field="bu" label="BU" sortable>
+									{{ props.row.bu }}
+								</b-table-column>
+								<b-table-column field="profile" label="Profile" sortable>
+									{{ props.row.profile }}
+								</b-table-column>
+								<b-table-column field="user_id" label="Action">
+									<b-dropdown aria-role="list">
+										<button class="button is-info is-small" slot="trigger">
+											<span>⚙ Action</span>
+										</button>
+
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a :href="
+												props.row
+													.editUserLink
+											">Edit</a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link="">
+											<a :href="
+												props.row
+													.editPasswordLink
+											">Ganti Password</a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link="">
+											<a v-if="!props.row.status" :href="
+												props.row.deactivation_link">Deactivate</a>
+											<a v-else :href="
+												props.row.activation_link">Activate</a>
+										</b-dropdown-item>
+									</b-dropdown>
+								</b-table-column>
+							</template>
+						</data-table>
+					</b-tab-item>
+					<b-tab-item label="External">
+						<data-table :data="dataUserInternal" :fields="[]" title="Project Type">
+							<template slot-scope="props">
+								<b-table-column field="user_id" label="User ID" sortable>
+									{{ props.row.user_id }}
+								</b-table-column>
+
+								<b-table-column field="name" label="Name" sortable>
+									{{ props.row.name }}
+								</b-table-column>
+								<b-table-column field="email" label="Email" sortable>
+									{{ props.row.email }}
+								</b-table-column>
+								<b-table-column field="bu" label="Business Unit" sortable>
+									{{ props.row.bu }}
+								</b-table-column>
+								<b-table-column field="profile" label="Profile" sortable>
+									{{ props.row.profile }}
+								</b-table-column>
+								<b-table-column field="user_id" label="Action">
+									<b-dropdown aria-role="list">
+										<button class="button is-info is-small" slot="trigger">
+											<span>⚙ Action</span>
+										</button>
+
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a :href="
+												props.row
+													.editUserLink
+											">Edit</a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link="">
+											<a :href="
+												props.row
+													.editPasswordLink
+											">Ganti Password</a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link="">
+											<a v-if="!props.row.status" :href="
+												props.row.deactivation_link">Deactivate</a>
+											<a v-else :href="
+												props.row.activation_link">Activate</a>
+										</b-dropdown-item>
+									</b-dropdown>
+								</b-table-column>
+							</template>
+						</data-table>
+					</b-tab-item>
+				</b-tabs>
+			</div>
+		</side-bar>
 	</div>
 
 	<script>

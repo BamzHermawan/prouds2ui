@@ -1,22 +1,22 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import DataTable from "../../scripts/vue/components/dataTable.vue";
 import NavBar from "../vue/components/topNavBar.vue";
-import Dashboard from "../vue/pages/setting/usersController.vue";
+import SideBar from "../vue/components/settingSidebar.vue";
 
 Vue.use(Buefy);
 new Vue({
-	components: {
-		NavBar, Dashboard
-	},
 	el: '#vapp',
-	data() {
-		return {
-			hello: 'Hello World'
-		}
+	components: { DataTable, NavBar, SideBar },
+	data: {
+		dataUserInternal: DATA_USER_INTERNAL
+
 	},
 	computed: {
-		sayHi() {
-			return this.hello;
+	},
+	methods: {
+		checkEmpty(value) {
+			return value === undefined || value === null || value === "";
 		}
 	}
 });

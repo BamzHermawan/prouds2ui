@@ -82,18 +82,23 @@
 					<template slot-scope="props">
 						<slot :row="props.row">
 							<b-table-column
-								v-for="(col, index) in fields"
+								v-for="(col, index) in dataField"
 								:key="index"
-								:field="col.field"
-								:label="col.label"
-								:sortable="Boolean(col.sortable)"
-								:numeric="Boolean(col.numeric)"
-								:centered="Boolean(col.centered)"
-								:width="
-									col.width !== undefined ? col.width : ''
-								"
+								:field="col"
+								:label="parseLabel(col)"
 							>
-								{{ props.row[col.field] }}
+								<template v-if="col === 'action'">
+									<b-button
+										v-for="(btn, index) in props.row.action"
+										:key="index"
+										tag="a"
+										size="is-small"
+										:type="btn.type"
+										:href="btn.link"
+										>{{ btn.label }}</b-button
+									>
+								</template>
+								<span v-else> {{ props.row[col] }}</span>
 							</b-table-column>
 						</slot>
 					</template>
@@ -187,6 +192,9 @@ export default {
 
 				return found;
 			});
+		},
+		dataField() {
+			return Object.keys(this.data[0]);
 		}
 	},
 	methods: {
@@ -203,6 +211,16 @@ export default {
 		},
 		clearChecked() {
 			this.checked = [];
+		},
+		parseLabel(field) {
+			var res = field.replace("_", " ");
+			return res.toUpperCase();
+		},
+		checkFieldIsButton(field) {
+			return field.includes("Btn");
+		},
+		buttonField(field) {
+			return this.parseLabel(field).replace("BTN", "");
 		}
 	}
 };
