@@ -4,111 +4,82 @@
 			<div
 				class="column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 			>
-				<section class="info user-info">
-					<h5 class="is-size-4 has-text-primary">
-						{{ project_name }}
-					</h5>
-					<p class="is-size-5">
-						<b-tag
-							type="is-success"
-							:closable="false"
-							@close="isTag1Active = false"
-						>
-							In Progress
-						</b-tag>
-					</p>
-				</section>
-				<section class="info user-bu">
-					<div class="level">
-						<div class="level-left">
-							<div>
-								<label class="is-size-6 has-text-primary"
-									>Business Delivery</label
+				<section class="hero is-success is-sidebar is-bold">
+					<div class="hero-body">
+						<div class="content">
+							<p class="title is-5 is-uppercase is-marginless">
+								{{ project_name }}
+							</p>
+							<p class="is-size-5">
+								<b-tag
+									type="is-dark"
+									:closable="false"
+									@close="isTag1Active = false"
 								>
-								<h5 class="is-size-6">{{ bu }}</h5>
-							</div>
-						</div>
-					</div>
-					<div class="level">
-						<div class="level-left">
-							<div>
-								<label class="is-size-6 has-text-primary"
-									>IWO</label
-								>
-								<h5 class="is-size-6">{{ iwo }}</h5>
-							</div>
-						</div>
-					</div>
-					<div class="level">
-						<div class="level-left">
-							<div>
-								<label class="is-size-6 has-text-primary"
-									>Start</label
-								>
-								<h5 class="is-size-6">{{ start }}</h5>
-							</div>
-						</div>
-						<div class="level-item">
-							<div>
-								<label class="is-size-6 has-text-primary"
-									>Deadline</label
-								>
-								<h5 class="is-size-6">{{ deadline }}</h5>
-							</div>
-						</div>
-					</div>
-					<div class="level">
-						<div class="level-left">
-							<div>
-								<label class="is-size-6 has-text-primary"
-									>spi</label
-								>
-								<h5 class="is-size-6">{{ spi }}</h5>
-							</div>
-						</div>
-						<div class="level-item">
-							<div>
-								<label class="is-size-6 has-text-primary"
-									>spi</label
-								>
-								<h5 class="is-size-6">{{ cpi }}</h5>
-							</div>
-						</div>
-					</div>
-
-					<div class="level">
-						<div class="level-left">
-							<div>
-								<label class="is-size-6 has-text-primary"
-									>Allocated Resource</label
-								>
-								<h5 class="is-size-6">
-									{{ resource }} of {{ max_resource }}
-								</h5>
-							</div>
+									In Progress
+								</b-tag>
+							</p>
 						</div>
 					</div>
 				</section>
 				<section class="info user-bu">
-					<label class="is-size-6 has-text-primary"
-						>Project Manager</label
-					>
-					<log
-						:title="username"
-						thumbnail="http://localhost:5501/demo/user_avatar.php?nik=rand"
-						class="animated fadeIn"
-					>
-						<p slot="body">
-							<label class="is-size-6">
-								<div>
-									{{ nik }}
-								</div>
-								<div>
-									{{ bu }}
-								</div>
-							</label>
+					<div class="columns is-multiline">
+						<div class="column is-full">
+							<p class="heading has-text-primary">
+								<b>Delivery Business Unit</b>
+							</p>
+							<p class="subtitle">{{ bu }}</p>
+						</div>
+						<div class="column is-full">
+							<p class="heading has-text-primary">
+								<b>IWO NUMBER</b>
+							</p>
+							<p class="subtitle">{{ iwo }}</p>
+						</div>
+						<div class="column is-half">
+							<p class="heading has-text-primary">
+								<b>START</b>
+							</p>
+							<p class="subtitle">{{ start }}</p>
+						</div>
+						<div class="column is-half">
+							<p class="heading has-text-primary">
+								<b>DEADLINE</b>
+							</p>
+							<p class="subtitle">{{ deadline }}</p>
+						</div>
+						<div class="column is-one-third">
+							<p class="heading has-text-primary">
+								<b>RESOURCE</b>
+							</p>
+							<p class="subtitle">
+								{{ resource }} of {{ max_resource }}
+							</p>
+						</div>
+						<div class="column is-one-third">
+							<p class="heading has-text-primary">
+								<b>SPI</b>
+							</p>
+							<p class="subtitle">
+								{{ spi }}
+							</p>
+						</div>
+						<div class="column is-one-third">
+							<p class="heading has-text-primary">
+								<b>CPI</b>
+							</p>
+							<p class="subtitle">
+								{{ cpi }}
+							</p>
+						</div>
+					</div>
+					<div class="content">
+						<p class="heading has-text-primary">
+							<b>Project Manager</b>
 						</p>
-					</log>
+						<p class="subtitle is-marginless">Ade Wiranata Putra</p>
+						<p>Project Management Office</p>
+					</div>
 					<div style="margin-top: 10px">
 						<label class="is-size-7 has-text-primary"
 							>Progress (70%)</label
@@ -131,53 +102,13 @@
 					</div>
 				</section>
 			</div>
-			<div class="column is-section">
+			<div class="column">
 				<section class="activity">
-					<div class="tabs is-toggle is-fullwidth is-hidden-desktop">
-						<ul>
-							<li>
-								<a @click="showInfo = !showInfo">
-									<span class="icon is-small"
-										><span
-											class="mdi mdi-information"
-										></span
-									></span>
-									<span>My Info</span>
-								</a>
-							</li>
-							<li>
-								<a @click="showAction = !showAction">
-									<span class="icon is-small"
-										><span
-											class="mdi mdi-format-list-checkbox"
-										></span
-									></span>
-									<span>My Task</span>
-								</a>
-							</li>
-						</ul>
+					<div class="content">
+						<p class="title is-4">⚡ Activity</p>
+						<hr />
 					</div>
-					<article
-						class="message"
-						style="margin-bottom: 0px; margin-top: 25px;"
-					>
-						<div class="message-header">
-							<p>⚡ Activity</p>
-						</div>
-					</article>
-					<hr style="margin-top: 5px;" />
-					<log
-						v-for="(n, index) in pageOffset"
-						:key="index"
-						:title="activity[index].title"
-						:subtitle="activity[index].subtitle"
-						:thumbnail="activity[index].thumbnail"
-						class="animated fadeIn"
-					>
-						<p slot="body">
-							{{ activity[index].body }}
-						</p>
-					</log>
+					<slot name="activity-section"></slot>
 					<div ref="infinitescrolltrigger" id="scroll-trigger"></div>
 					<hr style="margin-top: 5px;" />
 					<section v-if="showloader">
@@ -251,8 +182,6 @@ export default {
 		showTimesheetNotif: Boolean,
 		imageProfile: String,
 		project_name: String,
-		username: String,
-		nik: String,
 		bu: String,
 		iwo: String,
 		start: String,

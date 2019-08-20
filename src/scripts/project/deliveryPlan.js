@@ -35,14 +35,15 @@ new Vue({
 	},
 	methods: {
 		notesChecker(notes){
-			if(notes === undefined || notes === ""){
+			if(notes === undefined || notes === "" || notes == null){
 				return "tidak ada pesan";
 			}else{
 				return notes;
 			}
 		},
 		tooltipIsMultilined(notes){
-			return notes !== undefined && notes.length > 28;
+			let notEmpty = notes !== undefined && notes !== null && notes !== "";
+			return notEmpty && notes.length > 28;
 		},
 		displayForm(delivery){
 			this.formModal.delivery = delivery;

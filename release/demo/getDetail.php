@@ -13,6 +13,7 @@ if(!empty($_GET["userId"])){
 			"skills" => $resource[$found]->skills,
 			"competency" => $resource[$found]->competency,
 			"course" => $resource[$found]->course,
+			"workload" => rand(1, 10) . " Projects",
 		];
 
 		echo json_encode($prep);

@@ -38,25 +38,56 @@ new Vue({
 		checkEmpty(value) {
 			return value === undefined || value === null || value === "";
 		},
-		rejectAction(action) {
+		rejectAction(action){
+			let self = this;
 			this.$dialog.prompt({
 				message: `Alasan Penolakan Proposal Booking ?`,
+				cancelText: 'Keluar',
+				confirmText: 'Kirim Penolakan',
+				type: 'is-warning',
 				inputAttrs: {
 					placeholder: 'Panjang maksimal 150 karakter..',
 					maxlength: 150,
 				},
 				onConfirm: (value) => {
-					console.log(value);
+					self.sendForm(action, {
+						notes: value
+					});
 				}
 			})
 		},
-		acceptAction(action, name) {
+		acceptAction(action, name){
+			let self = this;
 			this.$dialog.confirm({
 				message: 'Apakah kamu yakin ingin menerima proposal booking untuk <b>' + name + "</b>?",
-				onConfirm: (value) => {
-					console.log(value);
+				cancelText: 'Tidak',
+				confirmText: 'Terima Booking',
+				type: 'is-success',
+				onConfirm: () => {
+					self.sendForm(action, {
+						notes: null
+					});
 				}
 			})
+		},
+		sendForm(action, data){
+			let form = document.createElement("form");
+			
+			for (const key in data) {
+				if (data.hasOwnProperty(key)) {
+					let value = data[key];
+					let input = document.createElement("input");
+					
+					input.value = value;
+					input.name = key;
+					form.appendChild(input);
+				}
+			}
+
+			form.action = action;
+			form.method = "post";
+			document.body.appendChild(form);
+			form.submit();
 		}
 	}
 });

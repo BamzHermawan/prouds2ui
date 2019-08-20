@@ -57,7 +57,6 @@ new Vue({
 		filter: {
 			active: false
 		},
-		filterCat: FILTERCATEGORY,
 		tourStep: [
 			{
 				id: "tour-step-start",
