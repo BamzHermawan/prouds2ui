@@ -17,6 +17,10 @@
 </head>
 
 <body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
 	<section class="hero is-primary is-bold">
 		<div class="hero-body">
 			<div class="container">
@@ -107,7 +111,7 @@
 				<b-table-column field="actual.progress" label="🔋 Progress Actual" width="175" centered>
 					<span 
 						v-if="props.row.actual !== null" 
-						:class="'tag is-small ' + (props.row.actual.progress < props.row.plan ? 'is-danger':'is-info')"
+						:class="'tag is-small ' + (parseInt(props.row.actual.progress) < parseInt(props.row.plan) ? 'is-danger':'is-info')"
 						>{{ props.row.actual.progress }}%</span>
 					<span v-else class="tag is-small">---</span>
 				</b-table-column>
@@ -171,15 +175,15 @@
 			},
 			{
 				"period": "2019/02",
-				"plan": "20",
+				"plan": "100",
 				"actual": {
-					"progress": "10",
+					"progress": "35",
 					"document": "BATPP Bulan II",
 					"version": "1",
 					"doctype": "BATPP",
 					"downloadLink": "#downloadBATPPII",
 					"status": "Verified",
-					"notes": "Sesuai Kesepakatan"
+					"notes": null
 				}
 			},
 			{
@@ -242,5 +246,6 @@
 		];
 	</script>
 	<script src="../../scripts/project/deliveryPlan.js"></script>
+	<script src="../../scripts/loader.js"></script>
 </body>
 </html>

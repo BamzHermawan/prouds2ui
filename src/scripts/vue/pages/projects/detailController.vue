@@ -73,27 +73,13 @@
 							</p>
 						</div>
 					</div>
-				</section>
-				<section class="info user-bu">
-					<label class="is-size-6 has-text-primary"
-						>Project Manager</label
-					>
-					<log
-						:title="username"
-						thumbnail="http://localhost:5501/demo/user_avatar.php?nik=rand"
-						class="animated fadeIn"
-					>
-						<p slot="body">
-							<label class="is-size-6">
-								<div>
-									{{ nik }}
-								</div>
-								<div>
-									{{ bu }}
-								</div>
-							</label>
+					<div class="content">
+						<p class="heading has-text-primary">
+							<b>Project Manager</b>
 						</p>
-					</log>
+						<p class="subtitle is-marginless">Ade Wiranata Putra</p>
+						<p>Project Management Office</p>
+					</div>
 					<div style="margin-top: 10px">
 						<label class="is-size-7 has-text-primary"
 							>Progress (70%)</label
@@ -196,8 +182,6 @@ export default {
 		showTimesheetNotif: Boolean,
 		imageProfile: String,
 		project_name: String,
-		username: String,
-		nik: String,
 		bu: String,
 		iwo: String,
 		start: String,
