@@ -26,41 +26,63 @@ new Vue({
 		tableCheckable: false,
 	},
 	computed: {
-		isPaginated(){
+		isPaginated() {
 			return this.delivery.length > 10;
 		},
-		showPMONav(){
+		showPMONav() {
 			return this.selected.length > 0 && this.tableCheckable;
 		}
 	},
+	filters: {
+		cutFileName: function (value) {
+			if (!value) return ''
+			value = value.toString();
+			var res = value.split(".");
+			var allowed = "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx".split("|");
+
+			if (res.length > 1) {
+				var check = res.pop();
+				if (allowed.includes(check)) {
+					return res.slice(0, 15) + " ... " + "." + check;
+				} else {
+					return res.slice(0, 15) + " ... ";
+				}
+			} else if (value.length > 14) {
+				return value.slice(0, 15) + " ... ";
+			} else {
+				return value;
+			}
+
+		}
+	},
 	methods: {
-		notesChecker(notes){
-			if(notes === undefined || notes === "" || notes == null){
+		notesChecker(notes) {
+			if (notes === undefined || notes === "" || notes == null) {
 				return "tidak ada pesan";
-			}else{
+			} else {
 				return notes;
 			}
 		},
-		tooltipIsMultilined(notes){
+		tooltipIsMultilined(notes) {
 			let notEmpty = notes !== undefined && notes !== null && notes !== "";
 			return notEmpty && notes.length > 28;
 		},
-		displayForm(delivery){
+		displayForm(delivery) {
 			this.formModal.delivery = delivery;
 			this.formModal.display = true;
 		},
-		confirmVerification(verify){
+		confirmVerification(verify) {
 			let projectId = "";
 			let period = [];
 			let action = "";
 			let message = "";
 			this.selected.forEach(row => period.push(row.period));
 
-			if(verify){
+			if (verify) {
 				action = this.$refs.verifyingBtn.$attrs.action;
 				projectId = this.$refs.verifyingBtn.$attrs.project;
 				message = "Apa kamu yakin untuk <b>menyetujui</b> dokumen pada periode:<br><b>[ " + period.join(", ") + " ]</b> ?";
-			}else{
+			} else {
 				projectId = this.$refs.unverifyingBtn.$attrs.project;
 				action = this.$refs.unverifyingBtn.$attrs.action;
 				message = "Apa kamu yakin untuk <b>menolak</b> dokumen pada periode:<br><b>[ " + period.join(", ") + " ]</b> ?";
@@ -78,7 +100,7 @@ new Vue({
 					selected.value = period.join(",");
 					selected.name = "period";
 					form.appendChild(selected);
-					
+
 					pid.value = projectId;
 					pid.name = "projectId";
 					form.appendChild(pid);
@@ -95,7 +117,7 @@ new Vue({
 			})
 		}
 	},
-	mounted(){
+	mounted() {
 		this.tableCheckable = this.$refs.dTable.checkable;
 		let firstNull = true;
 		for (let i = 0; i < DELIVERY.length; i++) {
@@ -104,17 +126,18 @@ new Vue({
 				if (firstNull) {
 					firstNull = false;
 					row.showUpload = true;
-				}else{
+				} else {
 					row.showUpload = false;
 				}
 			}
 
-			if (row.topStatus !== undefined && row.topStatus === true){
+			if (row.topStatus !== undefined && row.topStatus === true) {
 				this.top.period.push(row.period);
 				this.top.status = true;
 			}
 
 			this.delivery.push(row);
 		}
+
 	}
 });

@@ -249,7 +249,8 @@ export default {
 								.toString()
 								.charAt(0)
 								.toUpperCase() +
-								res[index].toString().slice(1)) + " ";
+								res[index].toString().slice(1)) +
+							" ";
 					}
 				} else {
 					return str.charAt(0).toUpperCase() + str.slice(1);

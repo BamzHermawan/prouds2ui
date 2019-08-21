@@ -60,46 +60,42 @@
 			</nav>
 		</div>
 	</section>
-	
+
 	<div id="app" class="container" style="margin-bottom: 50px;">
 		<notified message="Hello Dunia Semua" color="success"></notified>
 
 		<p class="title">Delivery Progress</p>
 		<b-message v-if="top.status" type="is-info">
-			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span> Informasi</p>
-			<p>Status TOP saat ini berada pada periode [ {{ top.period.join(", ") }} ] di baris yang telah di highlight <span
-				class="tag is-warning">KUNING</span>.</p>
+			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span>
+				Informasi</p>
+			<p>Status TOP saat ini berada pada periode [ {{ top.period.join(", ") }} ] di baris yang telah di highlight
+				<span class="tag is-warning">KUNING</span>.</p>
 		</b-message>
-		
+
 		<nav v-if="showPMONav" class="level sub-nav is-info animated fadeIn" style="margin-top:25px;">
 			<div class="level-left">
 				<div class="level-item">
-					<p class="heading is-normal has-text-light" style="margin-left:10px;">Selected {{ selected.length }} Item</p>
+					<p class="heading is-normal has-text-light" style="margin-left:10px;">Selected {{ selected.length }}
+						Item</p>
 				</div>
 			</div>
 			<div class="level-right">
 				<div class="level-item">
-					<b-button ref="verifyingBtn" type="is-success" @click="confirmVerification(true)" project="MantaffId"
-						action="http://localhost:5501/demo/post_detect.php">Verified Selected</b-button>
+					<b-button ref="verifyingBtn" type="is-success" @click="confirmVerification(true)"
+						project="MantaffId" action="http://localhost:5501/demo/post_detect.php">Verified Selected
+					</b-button>
 				</div>
 				<div class="level-item">
-					<b-button ref="unverifyingBtn" type="is-warning" @click="confirmVerification(false)" project="MantaffId"
-						action="http://localhost:5501/demo/post_detect.php">Unverified Selected</b-button>
+					<b-button ref="unverifyingBtn" type="is-warning" @click="confirmVerification(false)"
+						project="MantaffId" action="http://localhost:5501/demo/post_detect.php">Unverified Selected
+					</b-button>
 				</div>
 			</div>
 		</nav>
 
-		<b-table 
-			ref="dTable"
-			:header-checkable="false"
-			:data="delivery" class="is-packed"
-			checkbox-position="left" :checked-rows.sync="selected"
-			:row-class="(row, index) => row.topStatus && 'has-background-warning'"
-			:paginated="isPaginated"
-			per-page="10"
-			pagination-simple
-			checkable
-		>
+		<b-table ref="dTable" :header-checkable="false" :data="delivery" class="is-packed" checkbox-position="left"
+			:checked-rows.sync="selected" :row-class="(row, index) => row.topStatus && 'has-background-warning'"
+			:paginated="isPaginated" per-page="10" pagination-simple checkable>
 			<template slot-scope="props">
 				<b-table-column field="period" label="📅 Period" width="120" centered>
 					{{ props.row.period }}
@@ -109,18 +105,17 @@
 					<span v-else class="tag is-small is-info">---</span>
 				</b-table-column>
 				<b-table-column field="actual.progress" label="🔋 Progress Actual" width="175" centered>
-					<span 
-						v-if="props.row.actual !== null" 
-						:class="'tag is-small ' + (parseInt(props.row.actual.progress) < parseInt(props.row.plan) ? 'is-danger':'is-info')"
-						>{{ props.row.actual.progress }}%</span>
+					<span v-if="props.row.actual !== null"
+						:class="'tag is-small ' + (parseInt(props.row.actual.progress) < parseInt(props.row.plan) ? 'is-danger':'is-info')">{{ props.row.actual.progress }}%</span>
 					<span v-else class="tag is-small">---</span>
 				</b-table-column>
 				<b-table-column field="actual.document" label="📚 Document">
 					<span v-if="props.row.actual !== null">
-						<b-tooltip :label="notesChecker(props.row.actual.notes)" 
-							:multilined="tooltipIsMultilined(props.row.actual.notes)"
-							position="is-bottom" square dashed type="is-light">
-							<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document }}</a>
+						<b-tooltip :label="notesChecker(props.row.actual.notes)"
+							:multilined="tooltipIsMultilined(props.row.actual.notes)" position="is-bottom" square dashed
+							type="is-light">
+							<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document | cutFileName }}
+							</a>
 						</b-tooltip>
 					</span>
 					<span v-else class="tag is-small">---</span>
@@ -149,12 +144,9 @@
 		</b-table>
 
 		<b-modal :active.sync="formModal.display" has-modal-card scroll="keep">
-			<form-upload
-				project-id="MantaffId"
-				action="http://localhost:5501/demo/post_detect.php"
+			<form-upload project-id="MantaffId" action="http://localhost:5501/demo/post_detect.php"
 				:doctype="formModal.doctype" :delivery="formModal.delivery"
-				allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx"
-			></form-upload>
+				allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx"></form-upload>
 		</b-modal>
 	</div>
 
@@ -165,7 +157,7 @@
 				"plan": "10",
 				"actual": {
 					"progress": "10",
-					"document": "BATPP Bulan I",
+					"document": "BATPP Bulan I.pdf",
 					"version": "2",
 					"doctype": "BATPP",
 					"downloadLink": "#downloadBATPPI",
@@ -230,22 +222,23 @@
 				"actual": null
 			}
 		],
-		DOCTYPE = [ 
-			{
-				"docTypeId": 1,
-				"docTypeName": "BATPP"
-			},
-			{
-				"docTypeId": 2,
-				"docTypeName": "EXCEL"
-			},
-			{
-				"docTypeId": 3,
-				"docTypeName": "WORD"
-			}
-		];
+			DOCTYPE = [
+				{
+					"docTypeId": 1,
+					"docTypeName": "BATPP"
+				},
+				{
+					"docTypeId": 2,
+					"docTypeName": "EXCEL"
+				},
+				{
+					"docTypeId": 3,
+					"docTypeName": "WORD"
+				}
+			];
 	</script>
 	<script src="../../scripts/project/deliveryPlan.js"></script>
 	<script src="../../scripts/loader.js"></script>
 </body>
+
 </html>
