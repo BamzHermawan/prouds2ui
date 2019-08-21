@@ -37,22 +37,19 @@ new Vue({
 		cutFileName: function (value) {
 			if (!value) return ''
 			value = value.toString();
-			var res = value.split(".");
-			var allowed = "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx".split("|");
+			let allowed = "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx".split("|");
 
-			if (res.length > 1) {
-				var check = res.pop();
-				if (allowed.includes(check)) {
-					return res.slice(0, 15) + " ... " + "." + check;
+			if(value.length > 14) {
+				let res = value.split(".");
+				let ext = value.split(".").pop();
+				if (res.length > 1 && allowed.includes(ext)) {
+					return value.slice(0, 15) + " ... " + "." + ext;
 				} else {
-					return res.slice(0, 15) + " ... ";
+					return value.slice(0, 15) + " ... ";
 				}
-			} else if (value.length > 14) {
-				return value.slice(0, 15) + " ... ";
 			} else {
 				return value;
 			}
-
 		}
 	},
 	methods: {

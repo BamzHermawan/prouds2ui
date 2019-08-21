@@ -33,18 +33,36 @@
 			{ label: 'Users', link:'#users', icon:'account', active:false },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
-			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+			{ label: 'Organization', link:'organization.html', icon:'account-group', active:true },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<setting-form title="Edit Issue Status" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+			<setting-form title="Edit Organization" action="http://localhost:5501/demo/post_detect.php" :form-data="[
 				{
 					type:'input',
-					label:'Status Name',
-					name:'statusName',
-					value: 'suntipsum'
+					label:'Organization Name',
+					name:'org_name',
+					value: 'President Director '
+				},
+				{
+					type:'input',
+					label:'Organization Level',
+					name:'org_level_id',
+					value: '1 '
+				},
+				{
+					type:'input',
+					label:'Organization Code',
+					name:'org_code',
+					value: ''
+				},
+				{
+					type:'input',
+					label:'Leader ID',
+					name:'leader_id',
+					value: ''
 				}
 			]">
 			</setting-form>
@@ -54,8 +72,9 @@
 
 	</div>
 
-	<script>var userId = "suntipsum";</script>
-	<script src="/src/editIssueStatus.min.js"></script>
+	<script>
+	</script>
+	<script src="/src/editOrganization.min.js"></script>
 </body>
 
 </html>

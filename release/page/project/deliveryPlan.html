@@ -60,28 +60,33 @@
 			</nav>
 		</div>
 	</section>
-	
+
 	<div id="app" class="container" style="margin-bottom: 50px;">
 		<notified message="Hello Dunia Semua" color="success"></notified>
 
 		<p class="title">Delivery Progress</p>
 		<b-message v-if="top.status" type="is-info">
-			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span> Informasi</p>
-			<p>Status TOP saat ini berada pada periode [ {{ top.period.join(", ") }} ] di baris yang telah di highlight <span class="tag is-warning">KUNING</span>.</p>
+			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span>
+				Informasi</p>
+			<p>Status TOP saat ini berada pada periode [ {{ top.period.join(", ") }} ] di baris yang telah di highlight
+				<span class="tag is-warning">KUNING</span>.</p>
 		</b-message>
-		
+
 		<nav v-if="showPMONav" class="level sub-nav is-info animated fadeIn" style="margin-top:25px;">
 			<div class="level-left">
 				<div class="level-item">
-					<p class="heading is-normal has-text-light" style="margin-left:10px;">Selected {{ selected.length }} Item</p>
+					<p class="heading is-normal has-text-light" style="margin-left:10px;">Selected {{ selected.length }}
+						Item</p>
 				</div>
 			</div>
 			<div class="level-right">
 				<div class="level-item">
-					<b-button ref="verifyingBtn" type="is-success" @click="confirmVerification(true)" project="MantaffId" action="http://localhost:5501/demo/post_detect.php">Verified Selected</b-button>
+					<b-button ref="verifyingBtn" type="is-success" @click="confirmVerification(true)" project="MantaffId" action="http://localhost:5501/demo/post_detect.php">Verified Selected
+					</b-button>
 				</div>
 				<div class="level-item">
-					<b-button ref="unverifyingBtn" type="is-warning" @click="confirmVerification(false)" project="MantaffId" action="http://localhost:5501/demo/post_detect.php">Unverified Selected</b-button>
+					<b-button ref="unverifyingBtn" type="is-warning" @click="confirmVerification(false)" project="MantaffId" action="http://localhost:5501/demo/post_detect.php">Unverified Selected
+					</b-button>
 				</div>
 			</div>
 		</nav>
@@ -102,7 +107,8 @@
 				<b-table-column field="actual.document" label="📚 Document">
 					<span v-if="props.row.actual !== null">
 						<b-tooltip :label="notesChecker(props.row.actual.notes)" :multilined="tooltipIsMultilined(props.row.actual.notes)" position="is-bottom" square="" dashed="" type="is-light">
-							<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document }}</a>
+							<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document | cutFileName }}
+							</a>
 						</b-tooltip>
 					</span>
 					<span v-else="" class="tag is-small">---</span>
@@ -140,7 +146,7 @@
   "plan": "10",
   "actual": {
     "progress": "10",
-    "document": "BATPP Bulan I",
+    "document": "BATPP.Bulan I - Awas ada rencana saya bungkam.pdf",
     "version": "2",
     "doctype": "BATPP",
     "downloadLink": "#downloadBATPPI",
@@ -210,4 +216,5 @@
 	<script src="/src/deliveryPlan.min.js"></script>
 	<script src="/src/deliveryPlan.min.js"></script>
 </body>
+
 </html>

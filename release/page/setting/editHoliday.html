@@ -7,7 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<!-- <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" /> -->
 
 	<title>SETTING | PROUDS 2</title>
 
@@ -17,7 +16,6 @@
 </head>
 
 <body class="add-margin">
-	<!-- Copy from this section: BU VIEWS -->
 	<div id="vapp">
 		<nav-bar :left-menu="[
 			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -30,23 +28,35 @@
 			{ label: '🔒 logout', link: '#logout', icon:'' },
 		]" home-link="home.html"></nav-bar>
 		<side-bar :config-menu="[
-			{ label: 'Users', link:'#users', icon:'account', active:false },
+			{ label: 'Users', link:'users.html', icon:'account', active:false },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:true }
 		]">
-			<setting-form title="Edit Issue Status" action="http://localhost:5501/demo/post_detect.php" :form-data="[
-				{
-					type:'input',
-					label:'Status Name',
-					name:'statusName',
-					value: 'suntipsum'
-				}
-			]">
+			<setting-form title="Edit Holiday" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+			{
+				type:'input',
+				label:'Year',
+				name:'year',
+				value: '2019'
+			},
+			{
+				type:'input',
+				label:'Date',
+				name:'date',
+				value: '1 January 2019'
+			},
+			{
+				type:'input',
+				label:'Description',
+				name:'desc',
+				value: 'Tahun Baru Masehi'
+			}
+		]">
 			</setting-form>
 		</side-bar>
 
@@ -55,7 +65,7 @@
 	</div>
 
 	<script>var userId = "suntipsum";</script>
-	<script src="/src/editIssueStatus.min.js"></script>
+	<script src="/src/editHoliday.min.js"></script>
 </body>
 
 </html>

@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="/src/main.min.css">
 </head>
 
-<body>
+<body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -26,19 +26,29 @@
 			]" :right-menu="[
 				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="../home.html"></nav-bar>
-
-		<dashboard api-edit="http://localhost:5501/demo/post_detect.php" :config-menu="[
-			{ label: 'Users', link:'#users', icon:'account', active:true },
-			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
-			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
-			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
-			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
-			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
-		]" project_name="Delivery Awesome App" username="Ade Wiranata Putra" nik="CRS2019000" iwo="P-SCC-XXXA" start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5" progress_project="70" progress_bast="2" j_bast="4" bu="Project Management Office" show-newproject-notif="" show-timesheet-notif="">
-		</dashboard>
+			]" home-link="home.html"></nav-bar>
+		<side-bar :config-menu="[
+				{ label: 'Users', link:'users.html', icon:'account', active:true },
+				{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
+				{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+				{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+				{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+				{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+				{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+				{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+			]">
+			<div class="container is-section">
+				<p class="title is-size-3">USERS</p>
+				<b-tabs class="block">
+					<b-tab-item label="Internal">
+						<data-table :data="dataUserInternal" :fields="[]" title="User Internal"></data-table>
+					</b-tab-item>
+					<b-tab-item label="External">
+						<data-table :data="dataUserExternal" :fields="[]" title="User External"></data-table>
+					</b-tab-item>
+				</b-tabs>
+			</div>
+		</side-bar>
 	</div>
 
 	<script>var DATA_USER_INTERNAL = [{
@@ -48,10 +58,16 @@
   bu: "PMO",
   profile: "Manager",
   status: true,
-  activation_link: "#activate",
-  deactivation_link: "#deactivate",
-  editUserLink: "editUser.html",
-  editPasswordLink: "editPassword.html"
+  dropdownAction: [{
+    link: "editUser.html",
+    label: "Edit"
+  }, {
+    link: "editPassword.html",
+    label: "Ganti Password"
+  }, {
+    link: "#active",
+    label: "Active"
+  }]
 }, {
   user_id: "ariowidiatmoko",
   name: "ARIO WIDIATMOKO",
@@ -59,9 +75,16 @@
   bu: "PMO",
   profile: "Cell 3",
   status: false,
-  deactivation_link: "#deactivate",
-  editUserLink: "editUser.html",
-  editPasswordLink: "editPassword.html"
+  dropdownAction: [{
+    link: "editUser.html",
+    label: "Edit"
+  }, {
+    link: "editPassword.html",
+    label: "Ganti Password"
+  }, {
+    link: "#deactive",
+    label: "Deactive"
+  }]
 }, {
   user_id: "ariowidiatmoko",
   name: "ARIO WIDIATMOKO",
@@ -69,95 +92,80 @@
   bu: "PMO",
   profile: "Cell 3",
   status: false,
-  activation_link: "#activate",
-  deactivation_link: "#deactivate",
-  editUserLink: "editUser.html",
-  editPasswordLink: "editPassword.html"
-}];
-FIELDS_USER_INTERNAL = [{
-  field: "user_id",
-  label: "USER ID"
-}, {
-  field: "name",
-  label: "NAME"
-}, {
-  field: "email",
-  label: "EMAIL"
-}, {
-  field: "bu",
-  label: "BUSINESS UNIT"
-}, {
-  field: "profile",
-  label: "PROFILE"
+  dropdownAction: [{
+    link: "editUser.html",
+    label: "Edit"
+  }, {
+    link: "editPassword.html",
+    label: "Ganti Password"
+  }, {
+    link: "#deactivate",
+    label: "Deactive"
+  }]
 }];
 DATA_USER_EXTERNAL = [{
-  user_id: "exsuntipsum",
-  name: "EXSUNT IPSUM",
-  email: "exsuntipsum@sigma.co.id",
-  bu: "EXPMO",
-  profile: "exCell 1"
+  user_id: "adewiranataputra",
+  name: "Ade Wiranata Putra",
+  email: "ade.wiranata@sigma.co.id",
+  bu: "PMO",
+  profile: "Manager",
+  status: true,
+  dropdownAction: [{
+    link: "editUser.html",
+    label: "Edit"
+  }, {
+    link: "editPassword.html",
+    label: "Ganti Password"
+  }, {
+    activation_link: "#deactivate",
+    label: "Deactive" // activation_link: "#activate",
+    // deactivation_link: "#deactivate",
+    // editUserLink: "editUser.html",
+    // editPasswordLink: "editPassword.html"
+
+  }]
 }, {
-  user_id: "exadewiranataputra",
-  name: "ExADE WIRANATA PUTRA",
-  email: "exadewiranata@sigma.co.id",
-  bu: "EXPMO",
-  profile: "exCell 2"
+  user_id: "ariowidiatmoko",
+  name: "ARIO WIDIATMOKO",
+  email: "ario@sigma.co.id",
+  bu: "PMO",
+  profile: "Cell 3",
+  status: false,
+  dropdownAction: [{
+    link: "editUser.html",
+    label: "Edit"
+  }, {
+    link: "editPassword.html",
+    label: "Ganti Password"
+  }, {
+    activation_link: "#active",
+    label: "Active" // activation_link: "#activate",
+    // deactivation_link: "#deactivate",
+    // editUserLink: "editUser.html",
+    // editPasswordLink: "editPassword.html"
+
+  }]
 }, {
-  user_id: "exariowidiatmoko",
-  name: "exARIO WIDIATMOKO",
-  email: "exario@sigma.co.id",
-  bu: "exPMO",
-  profile: "exCell 3"
-}];
-FIELDS_USER_EXTERNAL = [{
-  field: "user_id",
-  label: "USER ID"
-}, {
-  field: "name",
-  label: "NAME"
-}, {
-  field: "email",
-  label: "EMAIL"
-}, {
-  field: "bu",
-  label: "BUSINESS UNIT"
-}, {
-  field: "profile",
-  label: "PROFILE"
-}];
-DATA_BASELINE_STATUS = [{
-  status_name: "suntipsum",
-  status_action: ""
-}, {
-  status_name: "adewiranataputra",
-  status_action: ""
-}, {
-  status_name: "ariowidiatmoko",
-  status_action: ""
-}];
-FIELDS_BASELINE_STATUS = [{
-  field: "status_name",
-  label: "Status Name"
-}, {
-  field: "status_action",
-  label: "Action"
-}];
-DATA_BASELINE_TYPE = [{
-  type_name: "exsuntipsum",
-  type_action: ""
-}, {
-  type_name: "exadewiranataputra",
-  type_action: ""
-}, {
-  type_name: "exariowidiatmoko",
-  type_action: ""
-}];
-FIELDS_BASELINE_TYPE = [{
-  field: "type_name",
-  label: "Type Name"
-}, {
-  field: "type_action",
-  label: "Action"
+  user_id: "ariowidiatmoko",
+  name: "ARIO WIDIATMOKO",
+  email: "ario@sigma.co.id",
+  bu: "PMO",
+  profile: "Cell 3",
+  status: false,
+  dropdownAction: [{
+    link: "editUser.html",
+    label: "Edit"
+  }, {
+    link: "editPassword.html",
+    label: "Ganti Password"
+  }, {
+    activation_link: "#active",
+    label: "Active" // activation_link: "#activate",
+    // deactivation_link: "#deactivate",
+    // editUserLink: "editUser.html",
+    // editPasswordLink: "editPassword.html"
+
+  }]
 }];</script>
 
 	<script src="/src/users.min.js"></script>

@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
+
 	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -17,43 +18,47 @@
 <body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
-					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-					{ label: 'projects', link: 'projects.html', icon:'', active: false },
-					{ label: 'financial', link: '#financial', icon:'', active: false },
-					{ label: 'operation', link: '#opperation', icon:'', active: false },
-					{ label: 'setting', link: '#', icon:'', active: true },
-				]" :right-menu="[
-					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
-					{ label: '🔒 logout', link: '#logout', icon:'' },
-				]" home-link="home.html"></nav-bar>
+			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+			{ label: 'projects', link: 'projects.html', icon:'', active: false },
+			{ label: 'financial', link: '#financial', icon:'', active: false },
+			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: '#', icon:'', active: true },
+		]" :right-menu="[
+			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+			{ label: '🔒 logout', link: '#logout', icon:'' },
+		]" home-link="home.html"></nav-bar>
 		<side-bar :config-menu="[
 			{ label: 'Users', link:'users.html', icon:'account', active:false },
-			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:true },
+			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
 			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:true }
 		]">
 			<div class="container is-section">
-				<p class="title is-size-3">BASELINE</p>
-				<div class="columns">
-					<div class="column is-6">
-						<data-table :data="dataBaselineStatus" :fields="[]" title="Baseline Status"></data-table>
-					</div>
-					<div class="column is-6">
-						<data-table :data="dataBaselineType" :fields="[]" title="Baseline Type"></data-table>
-					</div>
-				</div>
+				<p class="title is-size-3">DAYS SCHEME</p>
+				<section>
+					<b-button type="is-danger" size="is-small" href="addHoliday.html" tag="a">
+						add
+					</b-button>
+				</section>
+				<data-table :data="holiday" :fields="[]" title="Holiday"></data-table>
 			</div>
 		</side-bar>
+
+		<br>
+
 	</div>
 
-	<script>var DATA_BASELINE_STATUS = [{
-  status_name: "suntipsum",
+	<script>var HOLIDAY = [{
+  year: "2019",
+  start: "1 January 2019",
+  end: '1 January 2019',
+  desc: "Tahun Baru Masehi",
   action: [{
-    link: "editBaselineStatus.html",
+    link: "editHoliday.html",
     label: "Edit",
     type: "is-info"
   }, {
@@ -62,9 +67,12 @@
     type: "is-danger"
   }]
 }, {
-  status_name: "adewiranataputra",
+  year: "2019",
+  start: "5 Februari 2019",
+  end: '5 Februari 2019',
+  desc: "Tahun Baru Imlek",
   action: [{
-    link: "editBaselineStatus.html",
+    link: "editHoliday.html",
     label: "Edit",
     type: "is-info"
   }, {
@@ -73,21 +81,12 @@
     type: "is-danger"
   }]
 }, {
-  status_name: "ariowidiatmoko",
+  year: "2019",
+  start: "7 Maret 2019",
+  end: '7 Maret 2019',
+  desc: "Nyepi",
   action: [{
-    link: "editBaselineStatus.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}];
-DATA_BASELINE_TYPE = [{
-  type_name: "suntipsum",
-  action: [{
-    link: "editBaselineType.html",
+    link: "editHoliday.html",
     label: "Edit",
     type: "is-info"
   }, {
@@ -96,20 +95,12 @@ DATA_BASELINE_TYPE = [{
     type: "is-danger"
   }]
 }, {
-  type_name: "adewiranataputra",
+  year: "2019",
+  start: "3 April 2019",
+  end: '3 April 2019',
+  desc: "Isra' Miraj",
   action: [{
-    link: "editBaselineType.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  type_name: "ariowidiatmoko",
-  action: [{
-    link: "editBaselineType.html",
+    link: "editHoliday.html",
     label: "Edit",
     type: "is-info"
   }, {
@@ -118,8 +109,7 @@ DATA_BASELINE_TYPE = [{
     type: "is-danger"
   }]
 }];</script>
-
-	<script src="/src/baseline.min.js"></script>
+	<script src="/src/dayscheme.min.js"></script>
 </body>
 
 </html>

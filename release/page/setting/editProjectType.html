@@ -33,29 +33,35 @@
 			{ label: 'Users', link:'#users', icon:'account', active:false },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
-			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:true },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<setting-form title="Edit Issue Status" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+			<setting-form title="Edit Project Type" action="http://localhost:5501/demo/post_detect.php" :form-data="[
 				{
 					type:'input',
-					label:'Status Name',
-					name:'statusName',
-					value: 'suntipsum'
+					label:'Project Type',
+					name:'project_type',
+					value: 'Non Project'
+				},
+				{
+					type:'input',
+					label:'Category',
+					name:'category',
+					value: 'Category 1'
 				}
 			]">
-			</setting-form>
-		</side-bar>
+		</setting-form></side-bar>
 
 		<br>
 
 	</div>
 
-	<script>var userId = "suntipsum";</script>
-	<script src="/src/editIssueStatus.min.js"></script>
+	<script>
+	</script>
+	<script src="/src/editProjectType.min.js"></script>
 </body>
 
 </html>

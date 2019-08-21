@@ -36,7 +36,7 @@
 						{{ props.row.bu }}
 					</b-table-column>
 
-					<b-table-column field="role" label="Role" sortable>
+					<b-table-column field="role" label="Job Role" sortable>
 						{{ props.row.role }}
 					</b-table-column>
 
@@ -154,7 +154,7 @@
 							name="memberRole"
 							v-model="modal.selectedRole.value"
 						/>
-						<b-field label="Role">
+						<b-field label="Job Role">
 							<b-select
 								expanded
 								v-if="modal.selectedRole.display"

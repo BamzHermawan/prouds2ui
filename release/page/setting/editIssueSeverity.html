@@ -9,14 +9,14 @@
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<!-- <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" /> -->
 
-	<title>Edit User | PROUDS 2</title>
+	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="/src/main.min.css">
 </head>
 
-<body class="marginless">
+<body class="add-margin">
 	<!-- Copy from this section: BU VIEWS -->
 	<div id="vapp">
 		<nav-bar :left-menu="[
@@ -24,12 +24,13 @@
 			{ label: 'projects', link: 'projects.html', icon:'', active: false },
 			{ label: 'financial', link: '#financial', icon:'', active: false },
 			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: '#', icon:'', active: true },
 		]" :right-menu="[
 			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 			{ label: '🔒 logout', link: '#logout', icon:'' },
 		]" home-link="home.html"></nav-bar>
 		<side-bar :config-menu="[
-			{ label: 'Users', link:'#users', icon:'account', active:false },
+			{ label: 'Users', link:'users.html', icon:'account', active:false },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
 			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
@@ -38,32 +39,15 @@
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<div class="container">
-				<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-					<b-field hidden="" label="UserId">
-						<b-input v-model="userId" name="userId"></b-input>
-					</b-field>
-					<b-field label="Severity Name">
-						<b-input v-model="severityName" name="severityName"></b-input>
-					</b-field>
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<a class="button is-danger" href="/src/setting\issue.html">Batal</a>
-							</div>
-							<div class="level-item">
-								<div class="level-item">
-									<button class="button is-success is-fullwidth" type="submit">
-										Simpan
-									</button>
-								</div>
-							</div>
-						</div>
-					</nav>
-
-
-				</form>
-			</div>
+			<setting-form title="Edit Issue Severity" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+				{
+					type:'input',
+					label:'Name',
+					name:'severityName',
+					value: 'suntipsum'
+				}
+			]">
+			</setting-form>
 		</side-bar>
 
 		<br>
