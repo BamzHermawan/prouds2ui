@@ -23,6 +23,23 @@
 							>
 						</b-select>
 					</b-field>
+					<b-field v-else-if="input.type === 'datepicker'">
+						<b-datepicker
+							placeholder="DD/MM/YYYY"
+							v-model="input.value"
+							:name="input.name"
+						></b-datepicker>
+					</b-field>
+					<b-field v-else-if="input.type === 'password'">
+						<b-input
+							:type="input.type"
+							:name="input.name"
+							v-model="input.value"
+							value="iwantmytreasure"
+							password-reveal
+						>
+						</b-input>
+					</b-field>
 					<b-field v-else>
 						<b-input
 							expanded

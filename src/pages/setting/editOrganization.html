@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
+<body class="add-margin">
 	<!-- Copy from this section: BU VIEWS -->
 	<div id="vapp">
 		<nav-bar :left-menu="[
@@ -38,67 +38,33 @@
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<div class="container">
-				<p class="title is-size-4">Edit Organization</p>
-				<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Organization Name</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="org_name" name="org_name"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Organization Level</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="org_level_id" name="org_level_id"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Organization Code</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="org_code" name="org_code"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Leader ID</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="leader_id" name="leader_id"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<a class="button is-danger" href="organization.html">Batal</a>
-							</div>
-							<div class="level-item">
-								<div class="level-item">
-									<button class="button is-success is-fullwidth" type="submit">
-										Simpan
-									</button>
-								</div>
-							</div>
-						</div>
-					</nav>
-
-
-				</form>
-			</div>
+			<setting-form title="Edit Organization" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+				{
+					type:'input',
+					label:'Organization Name',
+					name:'org_name',
+					value: 'President Director '
+				},
+				{
+					type:'input',
+					label:'Organization Level',
+					name:'org_level_id',
+					value: '1 '
+				},
+				{
+					type:'input',
+					label:'Organization Code',
+					name:'org_code',
+					value: ''
+				},
+				{
+					type:'input',
+					label:'Leader ID',
+					name:'leader_id',
+					value: ''
+				}
+			]">
+			</setting-form>
 		</side-bar>
 
 		<br>

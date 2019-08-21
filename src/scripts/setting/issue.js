@@ -11,13 +11,5 @@ new Vue({
 	data: {
 		dataIssueStatus: DATA_ISSUE_STATUS,
 		dataIssueSeverity: DATA_ISSUE_SEVERITY
-
-	},
-	computed: {
-	},
-	methods: {
-		checkEmpty(value) {
-			return value === undefined || value === null || value === "";
-		}
 	}
 });

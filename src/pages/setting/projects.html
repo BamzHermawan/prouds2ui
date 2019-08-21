@@ -7,17 +7,15 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<!-- <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" /> -->
 
-	<title>Setting Projects | PROUDS 2</title>
+	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
-	<!-- Copy from this section: BU VIEWS -->
+<body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -39,51 +37,18 @@
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
 			<div class="container is-section">
-				<p class="title is-size-3">PROJECT</p>
-				<div class="columns">
-					<div class="column is-6">
-						<data-table :data="project_type" :fields="[]" title="Project Type">
-							<template slot-scope="props">
-								<b-table-column field="project_type" label="Project Type" sortable>
-									{{ props.row.project_type }}
-								</b-table-column>
-
-								<b-table-column field="category" label="Category" sortable>
-									{{ props.row.category }}
-								</b-table-column>
-								<b-table-column field="project_id" label="Action" class="tour-step-7">
-									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-										Edit
-									</b-button>
-									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-										Delete
-									</b-button>
-								</b-table-column>
-							</template>
-						</data-table>
+				<div class="container is-section">
+					<div class="container is-section">
+						<p class="title is-size-3">PROJECT</p>
+						<div class="columns">
+							<column is-6>
+								<data-table :data="project_type" :fields="[]" title="Project Type"></data-table>
+							</column>
+							<column is-6>
+								<data-table :data="project_category" :fields="[]" title="Project Level"></data-table>
+							</column>
+						</div>
 					</div>
-					<div class="column is-6">
-						<data-table :data="project_category" :fields="[]" title="Project Category">
-							<template slot-scope="props">
-								<b-table-column field="project_type" label="Project Type" sortable>
-									{{ props.row.project_type }}
-								</b-table-column>
-
-								<b-table-column field="category" label="Category" sortable>
-									{{ props.row.category }}
-								</b-table-column>
-								<b-table-column field="project_id" label="Action" class="tour-step-7">
-									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-										Edit
-									</b-button>
-									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-										Delete
-									</b-button>
-								</b-table-column>
-							</template>
-						</data-table>
-					</div>
-
 				</div>
 			</div>
 		</side-bar>
@@ -94,40 +59,100 @@
 			{
 				project_type: "Non Project",
 				category: "Category 1",
-				editLink: "editProjectType.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+				action: [
+					{
+						link: "editProjectType.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				project_type: "Project",
 				category: "Category 2",
-				editLink: "editProjectType.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+				action: [
+					{
+						link: "editProjectType.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				project_type: "IWO",
 				category: "Category 3",
-				editLink: "editProjectType.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+				action: [
+					{
+						link: "editProjectType.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 		]
 		PROJECT_CATEGORY = [
 			{
 				project_type: "Non Project",
 				category: "Category 1",
-				editLink: "editProjectCategory.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+				action: [
+					{
+						link: "editProjectCategory.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				project_type: "Project",
 				category: "Category 2",
-				editLink: "editProjectCategory.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+				action: [
+					{
+						link: "editProjectCategory.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				project_type: "IWO",
 				category: "Category 3",
-				editLink: "editProjectCategory.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+				action: [
+					{
+						link: "editProjectCategory.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 		]
 	</script>

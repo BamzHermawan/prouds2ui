@@ -98,6 +98,27 @@
 										>{{ btn.label }}</b-button
 									>
 								</template>
+								<template v-else-if="col === 'dropdownAction'">
+									<b-dropdown aria-role="list">
+										<button
+											class="button is-info is-small"
+											slot="trigger"
+										>
+											<span>⚙ Action</span>
+										</button>
+										<b-dropdown-item
+											v-for="(btn, index) in props.row
+												.dropdownAction"
+											:key="index"
+											aria-role="listitem"
+											has-link
+										>
+											<a :href="btn.link"
+												><span>{{ btn.label }}</span></a
+											>
+										</b-dropdown-item>
+									</b-dropdown>
+								</template>
 								<span v-else> {{ props.row[col] }}</span>
 							</b-table-column>
 						</slot>

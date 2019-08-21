@@ -8,14 +8,14 @@
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 
-	<title>Edit User | PROUDS 2</title>
+	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
+<body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -36,40 +36,15 @@
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<div class="container is-section">
-				<p class="title is-size-4">Edit Baseline Type</p>
-				<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-					<b-field hidden label="UserId">
-						<b-input v-model="userId" name="userId"></b-input>
-					</b-field>
-					<div class="columns">
-						<div class="column is-2">
-							<p class="heading">Name</p>
-						</div>
-						<div class="column">
-							<b-field>
-								<b-input expanded v-model="typeName" name="typeName"></b-input>
-							</b-field>
-						</div>
-					</div>
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<a class="button is-danger" href="baseline.html">Batal</a>
-							</div>
-							<div class="level-item">
-								<div class="level-item">
-									<button class="button is-success is-fullwidth" type="submit">
-										Simpan
-									</button>
-								</div>
-							</div>
-						</div>
-					</nav>
-
-
-				</form>
-			</div>
+			<setting-form title="Edit Baseline Type" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+			{
+				type:'input',
+				label:'Name',
+				name:'typeName',
+				value: 'suntipsum'
+			}
+		]">
+			</setting-form>
 		</side-bar>
 
 		<br>

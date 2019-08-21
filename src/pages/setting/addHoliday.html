@@ -32,18 +32,27 @@
 			{ label: 'Users', link:'users.html', icon:'account', active:false },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:true }
 		]">
-			<setting-form title="Edit Issue Severity" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+			<setting-form title="Add Holiday" action="http://localhost:5501/demo/post_detect.php" :form-data="[
 				{
 					type:'input',
-					label:'Name',
-					name:'severityName',
-					value: 'suntipsum'
+					label:'Holiday',
+					name:'holiday'
+				},
+				{
+					type:'datepicker',
+					label:'Start Holiday',
+					name:'startDate'
+				},
+				{
+					type:'datepicker',
+					label:'End Holiday',
+					name:'endDate'
 				}
 			]">
 			</setting-form>
@@ -57,7 +66,7 @@
 		const
 			userId = "suntipsum"
 	</script>
-	<script src="../../scripts/setting/editIssueSeverity.js"></script>
+	<script src="../../scripts/setting/addHoliday.js"></script>
 </body>
 
 </html>

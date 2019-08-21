@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
+<body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
@@ -27,7 +27,7 @@
 		]" home-link="home.html"></nav-bar>
 		<side-bar :config-menu="[
 			{ label: 'Users', link:'users.html', icon:'account', active:false },
-			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
+			{ label: 'Issue', link:'Issue.html', icon:'briefcase', active:false },
 			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
 			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
@@ -38,38 +38,12 @@
 			<div class="container is-section">
 				<p class="title is-size-3">ISSUE</p>
 				<div class="columns">
-					<div class="column is-6">
-						<data-table :data="dataIssueStatus" :fields="[]" title="Issue Status">
-							<template slot-scope="props">
-								<b-table-column field="status_name" label="Status Name" sortable>
-									{{ props.row.status_name }}
-								</b-table-column>
-								<b-table-column field="userId" label="Action" class="tour-step-7">
-									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-										Edit</b-button>
-									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-										Delete</b-button>
-								</b-table-column>
-							</template>
-						</data-table>
-					</div>
-					<div class="column is-6">
-						<data-table :data="dataIssueSeverity" :fields="[]" title="Issue Severity">
-							<template slot-scope="props">
-								<b-table-column field="severity_name" label="Severity Name" sortable>
-									{{ props.row.severity_name }}
-								</b-table-column>
-								<b-table-column field="severity_name_id" label="Action" class="tour-step-7">
-									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-										Edit
-									</b-button>
-									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-										Delete
-									</b-button>
-								</b-table-column>
-							</template>
-						</data-table>
-					</div>
+					<column is-6>
+						<data-table :data="dataIssueStatus" :fields="[]" title="Issue Status"></data-table>
+					</column>
+					<column is-6>
+						<data-table :data="dataIssueSeverity" :fields="[]" title="Issue Severity"></data-table>
+					</column>
 				</div>
 			</div>
 		</side-bar>
@@ -79,61 +53,95 @@
 		const DATA_ISSUE_STATUS = [
 			{
 				status_name: "adewiranataputra",
-				action_action: "",
-				editLink: "editIssueStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editIssueStatus.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				status_name: "adewiranataputra",
-				action_action: "",
-				editLink: "editIssueStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editIssueStatus.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				status_name: "ariowidiatmoko",
-				status_action: "",
-				editLink: "editIssueStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
-			}
-		];
-		FIELDS_ISSUE_STATUS = [
-			{
-				field: "status_issue",
-				label: "Status Issue"
-			},
-			{
-				field: "action",
-				label: "Action"
+				action: [
+					{
+						link: "editIssueStatus.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			}
 		];
 		DATA_ISSUE_SEVERITY = [
 			{
 				severity_name: "exsuntipsum",
-				severity_action: "",
-				editLink: "editIssueSeverity.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editIssueSeverity.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				severity_name: "exadewiranataputra",
-				severity_action: "",
-				editLink: "editIssueSeverity.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editIssueSeverity.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				severity_name: "exariowidiatmoko",
-				severity_action: "",
-				editLink: "editIssueSeverity.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
-			}
-		];
-		FIELDS_ISSUE_SEVERITY = [
-			{
-				field: "severity_name",
-				label: "Severity Name"
-			},
-			{
-				field: "severity_action",
-				label: "Action"
+				action: [
+					{
+						link: "editIssueSeverity.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			}
 		];
 	</script>

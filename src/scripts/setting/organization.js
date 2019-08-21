@@ -12,12 +12,5 @@ new Vue({
 		dataOrganization: DATA_ORGANIZATION,
 		dataOrganizationLevel: DATA_ORGANIZATION_LEVEL
 
-	},
-	computed: {
-	},
-	methods: {
-		checkEmpty(value) {
-			return value === undefined || value === null || value === "";
-		}
 	}
 });
