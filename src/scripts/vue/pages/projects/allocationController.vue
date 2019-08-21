@@ -24,48 +24,31 @@
 			<data-table
 				:data="res.member"
 				:fields="[]"
-				:title="
-					res.role + (res.level !== '' ? ' [' + res.level + ']' : '')
-				"
+				:title="res.role"
+				:row-class="row => !row.status && 'has-text-grey-lighter'"
 			>
 				<template slot-scope="props">
-					<b-table-column field="image" width="40">
-						<figure class="image is-32x32">
-							<img
-								:id="'avatar-row-' + index"
-								:src="props.row.avatar"
-							/>
-						</figure>
-					</b-table-column>
-
-					<b-table-column field="nama" label="👨‍💼 Name" sortable>
+					<b-table-column field="nama" label="Name" sortable>
 						<span>{{ props.row.nama }}</span>
 					</b-table-column>
 
-					<b-table-column
-						field="bu"
-						label="🏢 Business Unit"
-						sortable
-					>
+					<b-table-column field="bu" label="Business Unit" sortable>
 						{{ props.row.bu }}
 					</b-table-column>
 
-					<b-table-column field="status" label="💡 Status" sortable>
-						<span v-if="props.row.status" class="tag is-success"
-							>active</span
-						>
-						<span v-else class="tag is-dark">inactive</span>
+					<b-table-column field="role" label="Role" sortable>
+						{{ props.row.role }}
 					</b-table-column>
 
 					<b-table-column
 						field="start"
-						label="📅 Working Period"
+						label="Working Period"
 						centered
 					>
 						{{ props.row.start }} - {{ props.row.end }}
 					</b-table-column>
 
-					<b-table-column field="activation_link" label="⚡ Action">
+					<b-table-column field="activation_link" label="Action">
 						<a
 							v-if="props.row.status"
 							:href="props.row.deactivation_link"
@@ -80,9 +63,7 @@
 						>
 						<a
 							class="button is-small is-info"
-							@click="
-								newRoleModal(props.row, res.role, res.level)
-							"
+							@click="newRoleModal(props.row, res.role)"
 							>⚙ Change Role</a
 						>
 					</b-table-column>
@@ -106,10 +87,7 @@
 				</template>
 
 				<template slot="head-right">
-					<a
-						@click="assignModal(res.role, res.level)"
-						class="card-header-icon"
-					>
+					<a @click="assignModal(res.role)" class="card-header-icon">
 						<span class="icon">
 							<i
 								class="mdi mdi-account-plus"
@@ -138,7 +116,7 @@
 							<div class="tags has-addons are-medium">
 								<span class="tag is-dark">
 									<span style="margin-left:5px;"
-										>Resource Actual</span
+										>Allocated</span
 									>
 								</span>
 								<span class="tag is-primary">{{
@@ -166,98 +144,33 @@
 		>
 			<form :action="modal.formTarget" method="POST">
 				<input type="hidden" name="projectId" v-model="projectId" />
-				<article class="message is-primary">
-					<div class="message-header">
-						<p>
-							<span
-								class="tag is-warning is-medium"
-								style="padding: 0px 8px; margin-right: 7px;"
-								>👨‍💼</span
+				<div class="modal-card" style="width: auto;">
+					<header class="modal-card-head">
+						<p class="modal-card-title">👨‍💼 {{ modal.title }}</p>
+					</header>
+					<section class="modal-card-body">
+						<input
+							type="hidden"
+							name="memberRole"
+							v-model="modal.selectedRole.value"
+						/>
+						<b-field label="Role">
+							<b-select
+								expanded
+								v-if="modal.selectedRole.display"
+								v-model="modal.selectedRole.value"
+								placeholder="Pilih Role Member"
 							>
-							{{ modal.title }}
-						</p>
-					</div>
-					<div class="message-body">
-						<div class="columns">
-							<div class="column">
-								<input
-									type="hidden"
-									name="memberRole"
-									v-model="modal.selectedRole.value"
-								/>
-								<b-field label="Role">
-									<b-select
-										expanded
-										v-if="modal.selectedRole.display"
-										v-model="modal.selectedRole.value"
-										placeholder="Pilih Role Member"
-										@change.native="
-											fetchLevel(modal.selectedRole.value)
-										"
-									>
-										<slot name="role-option"></slot>
-									</b-select>
-									<b-tag
-										v-else
-										size="is-medium"
-										style="width: 100%;"
-										type="is-info"
-										>{{ modal.selectedRole.value }}</b-tag
-									>
-								</b-field>
-							</div>
-							<div class="column">
-								<input
-									type="hidden"
-									name="roleLevel"
-									v-model="modal.selectedLevel.value"
-								/>
-								<b-field label="Level">
-									<b-select
-										v-if="
-											modal.selectedLevel.display &&
-												fetchedLevel.length > 0
-										"
-										expanded
-										:disabled="
-											modal.selectedRole.value === null ||
-												modal.selectedRole.value === ''
-										"
-										v-model="modal.selectedLevel.value"
-										placeholder="Pilih Level Member"
-										:loading="modal.selectedLevel.loading"
-									>
-										<option
-											selected
-											style="display: none;"
-										></option>
-										<option
-											v-for="(level,
-											index) in fetchedLevel"
-											:key="index"
-											>{{ level }}</option
-										>
-									</b-select>
-									<b-tag
-										v-else
-										size="is-medium"
-										style="width: 100%;"
-										:type="
-											fetchedLevel.length > 0
-												? 'is-info'
-												: 'is-warning'
-										"
-										>{{
-											fetchedLevel.length > 0
-												? modal.selectedLevel.value
-												: !!modal.selectedRole.value
-												? "🚫 No-Level Role"
-												: "⚠ Pick a Role First"
-										}}</b-tag
-									>
-								</b-field>
-							</div>
-						</div>
+								<slot name="role-option"></slot>
+							</b-select>
+							<b-tag
+								v-else
+								size="is-medium"
+								style="width: 100%;"
+								type="is-info"
+								>{{ modal.selectedRole.value }}</b-tag
+							>
+						</b-field>
 						<b-field>
 							<b-input
 								placeholder="Search User..."
@@ -268,7 +181,6 @@
 							>
 							</b-input>
 						</b-field>
-
 						<b-field>
 							<input
 								type="hidden"
@@ -286,48 +198,30 @@
 									v-for="(user, index) in modal.userdata"
 									:key="index"
 									:value="user.nik"
-									>👨‍💼 {{ user.nama }} - 🏢
-									{{ user.bu }}</option
+									>{{ user.nama }}</option
 								>
 							</b-select>
 						</b-field>
-
 						<b-field
 							v-show="modal.selectedUser.nik !== ''"
 							class="animated fadeIn"
 						>
 							<div class="box">
 								<article class="media">
-									<div class="media-left">
-										<figure class="image is-64x64">
-											<img
-												@load="modal.imgLoader = false"
-												v-show="!modal.imgLoader"
-												:src="modal.selectedUser.avatar"
-											/>
-											<b-loading
-												v-show="modal.imgLoader"
-												:is-full-page="false"
-												active
-											></b-loading>
-										</figure>
-									</div>
 									<div class="media-content">
 										<div class="content">
 											<h1 class="title is-size-4">
 												{{ modal.selectedUser.nama }}
 											</h1>
 											<h2 class="subtitle is-size-6">
-												🆔
-												{{ modal.selectedUser.nik }} |
-												🏢 {{ modal.selectedUser.bu }}
+												{{ modal.selectedUser.role }} |
+												{{ modal.selectedUser.bu }}
 											</h2>
 										</div>
 									</div>
 								</article>
 							</div>
 						</b-field>
-
 						<b-field style="margin-top:35px;">
 							<button
 								type="submit"
@@ -336,8 +230,8 @@
 								Send Assignment
 							</button>
 						</b-field>
-					</div>
-				</article>
+					</section>
+				</div>
 			</form>
 		</b-modal>
 	</div>
@@ -372,10 +266,6 @@ export default {
 		},
 		alertType: {
 			type: String
-		},
-		apiFetchLevel: {
-			type: String,
-			required: true
 		}
 	},
 	data() {
@@ -385,28 +275,22 @@ export default {
 			searchQuery: "",
 			modal: {
 				display: false,
-				imgLoader: true,
 				searchList: true,
 				title: "Assign Member",
 				selectedUser: {
 					nik: "",
 					nama: "",
 					bu: "",
-					avatar: ""
+					avatar: "",
+					role: ""
 				},
 				selectedRole: {
 					value: null,
 					display: true
 				},
-				selectedLevel: {
-					value: null,
-					display: true,
-					loading: false
-				},
 				userdata: [],
 				formTarget: ""
-			},
-			fetchedLevel: []
+			}
 		};
 	},
 	computed: {
@@ -415,7 +299,6 @@ export default {
 				return [this.modal.selectedUser.nik];
 			},
 			set: function(newValue = []) {
-				this.modal.imgLoader = true;
 				if (newValue.length > 0) {
 					let self = this;
 					let nik = newValue.shift();
@@ -463,14 +346,12 @@ export default {
 			this.searchQuery = "";
 			this.modal.display = false;
 		},
-		newRoleModal(member = null, role = null, level = null) {
+		newRoleModal(member = null, role = null) {
 			if (member === null) {
 				this.modal.title = "Assign New Role";
 				this.modal.formTarget = this.actionNewRole;
 				this.modal.selectedRole.display = true;
 				this.modal.selectedRole.value = role;
-				this.modal.selectedLevel.display = true;
-				this.modal.selectedLevel.value = level;
 				this.modal.searchList = true;
 				this.modal.display = true;
 				this.modal.selectedUser = {
@@ -488,68 +369,19 @@ export default {
 				this.modal.selectedUser.nik = member.nik;
 				this.modal.selectedUser.bu = member.bu;
 				this.modal.selectedUser.nama = member.nama;
-				this.modal.selectedUser.avatar = member.avatar;
-				this.modal.imgLoader = true;
+				this.modal.selectedUser.role = member.role;
 				this.modal.searchList = false;
 				this.modal.display = true;
-
-				if (level !== "") {
-					let self = this;
-					self.modal.selectedLevel.display = true;
-					this.fetchLevel(role).finally(function() {
-						self.modal.selectedLevel.value = level;
-					});
-				} else {
-					this.fetchedLevel = [];
-					this.modal.selectedLevel.display = false;
-					this.modal.selectedLevel.value = "";
-				}
 			}
 		},
-		assignModal(role, level) {
+		assignModal(role) {
 			this.modal.title = "Assign New Member";
 			this.modal.formTarget = this.actionNewMember;
 			this.modal.selectedRole.display = false;
 			this.modal.selectedRole.value = role;
 
-			if (level !== "") {
-				this.fetchedLevel.push(level);
-				this.modal.selectedLevel.display = false;
-				this.modal.selectedLevel.value = level;
-			} else {
-				this.fetchedLevel = [];
-				this.modal.selectedLevel.display = false;
-				this.modal.selectedLevel.value = "";
-			}
 			this.modal.searchList = true;
 			this.modal.display = true;
-		},
-		fetchLevel(role) {
-			let self = this;
-			this.modal.selectedLevel.value = null;
-			this.modal.selectedLevel.loading = true;
-			return Axios.get(this.apiFetchLevel, {
-				params: {
-					role: role
-				}
-			})
-				.then(function(response) {
-					// handle success
-					self.fetchedLevel = response.data;
-					self.modal.selectedLevel.display = response.data.length > 0;
-				})
-				.catch(function(error) {
-					// handle error
-					self.$toast.open({
-						duration: 5000,
-						message: `Mohon Maaf, Kami tidak dapat menghubungi server terkait data level.`,
-						position: "is-top",
-						type: "is-danger"
-					});
-				})
-				.then(function() {
-					self.modal.selectedLevel.loading = false;
-				});
 		}
 	},
 	mounted() {

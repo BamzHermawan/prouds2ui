@@ -78,6 +78,7 @@
 					:checked-rows.sync="checked"
 					ref="table"
 					:class="addedClass()"
+					:row-class="rowClass"
 				>
 					<template slot-scope="props">
 						<slot :row="props.row">
@@ -174,6 +175,9 @@ export default {
 		isPacked: {
 			type: Boolean,
 			default: true
+		},
+		rowClass: {
+			default: function() {}
 		}
 	},
 	computed: {

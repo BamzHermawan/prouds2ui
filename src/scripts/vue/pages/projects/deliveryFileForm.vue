@@ -66,12 +66,19 @@
 				<p class="heading">Document</p>
 				<div class="columns">
 					<div class="column">
+						<div class="field">
+							<div class="control">
+								<b-input
+									readonly
+									v-model="documentName"
+								></b-input>
+							</div>
+						</div>
 						<b-field
 							:type="determineFieldStatus"
 							message="File yang dibolehkan: jpg, jpeg, png, doc, docx,
-							pdf, xls, xlsx, ppt, pptx"
+							pdf, xls, xlsx, ppt, pptx ; File size maksimal 20MB"
 						>
-							<b-input readonly v-model="documentName"></b-input>
 						</b-field>
 					</div>
 					<div class="column is-one-third">
