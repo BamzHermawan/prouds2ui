@@ -234,8 +234,30 @@ export default {
 			this.checked = [];
 		},
 		parseLabel(field) {
-			var res = field.replace("_", " ");
-			return res.toUpperCase();
+			if (field === "dropdownAction" || field === "action") {
+				return "Action";
+			} else {
+				var str = field.replace("_", " ");
+				var res = str.split(" ");
+				var ade = "";
+
+				if (res.length > 1) {
+					for (let index = 0; index < res.length; index++) {
+						ade =
+							ade +
+							(res[index]
+								.toString()
+								.charAt(0)
+								.toUpperCase() +
+								res[index].toString().slice(1)) + " ";
+					}
+				} else {
+					return str.charAt(0).toUpperCase() + str.slice(1);
+				}
+
+				console.log(ade);
+				return ade;
+			}
 		},
 		checkFieldIsButton(field) {
 			return field.includes("Btn");
