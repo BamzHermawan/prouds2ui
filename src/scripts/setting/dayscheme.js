@@ -10,13 +10,5 @@ new Vue({
 	components: { DataTable, NavBar, SideBar },
 	data: {
 		holiday: HOLIDAY
-
-	},
-	computed: {
-	},
-	methods: {
-		checkEmpty(value) {
-			return value === undefined || value === null || value === "";
-		}
 	}
 });

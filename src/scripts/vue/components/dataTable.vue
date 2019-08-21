@@ -99,6 +99,27 @@
 										>{{ btn.label }}</b-button
 									>
 								</template>
+								<template v-else-if="col === 'dropdownAction'">
+									<b-dropdown aria-role="list">
+										<button
+											class="button is-info is-small"
+											slot="trigger"
+										>
+											<span>⚙ Action</span>
+										</button>
+										<b-dropdown-item
+											v-for="(btn, index) in props.row
+												.dropdownAction"
+											:key="index"
+											aria-role="listitem"
+											has-link
+										>
+											<a :href="btn.link"
+												><span>{{ btn.label }}</span></a
+											>
+										</b-dropdown-item>
+									</b-dropdown>
+								</template>
 								<span v-else> {{ props.row[col] }}</span>
 							</b-table-column>
 						</slot>
@@ -217,8 +238,31 @@ export default {
 			this.checked = [];
 		},
 		parseLabel(field) {
-			var res = field.replace("_", " ");
-			return res.toUpperCase();
+			if (field === "dropdownAction" || field === "action") {
+				return "Action";
+			} else {
+				var str = field.replace("_", " ");
+				var res = str.split(" ");
+				var ade = "";
+
+				if (res.length > 1) {
+					for (let index = 0; index < res.length; index++) {
+						ade =
+							ade +
+							(res[index]
+								.toString()
+								.charAt(0)
+								.toUpperCase() +
+								res[index].toString().slice(1)) +
+							" ";
+					}
+				} else {
+					return str.charAt(0).toUpperCase() + str.slice(1);
+				}
+
+				console.log(ade);
+				return ade;
+			}
 		},
 		checkFieldIsButton(field) {
 			return field.includes("Btn");

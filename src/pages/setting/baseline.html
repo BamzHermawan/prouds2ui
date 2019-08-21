@@ -14,63 +14,36 @@
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
+<body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
 					{ label: 'projects', link: 'projects.html', icon:'', active: false },
 					{ label: 'financial', link: '#financial', icon:'', active: false },
 					{ label: 'operation', link: '#opperation', icon:'', active: false },
+					{ label: 'setting', link: '#', icon:'', active: true },
 				]" :right-menu="[
 					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 					{ label: '🔒 logout', link: '#logout', icon:'' },
 				]" home-link="home.html"></nav-bar>
 		<side-bar :config-menu="[
-					{ label: 'Users', link:'users.html', icon:'account', active:false },
-					{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:true },
-					{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
-					{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
-					{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
-					{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
-					{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-					{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
-				]">
+			{ label: 'Users', link:'users.html', icon:'account', active:false },
+			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:true },
+			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+		]">
 			<div class="container is-section">
 				<p class="title is-size-3">BASELINE</p>
 				<div class="columns">
 					<div class="column is-6">
-						<data-table :data="dataBaselineStatus" :fields="[]" title="Baseline Status">
-							<template slot-scope="props">
-								<b-table-column field="status_name" label="Status Name" sortable>
-									{{ props.row.status_name }}
-								</b-table-column>
-								<b-table-column field="baseline_Status_id" label="Action" class="tour-step-7">
-									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-										Edit
-									</b-button>
-									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-										Delete
-									</b-button>
-								</b-table-column>
-							</template>
-						</data-table>
+						<data-table :data="dataBaselineStatus" :fields="[]" title="Baseline Status"></data-table>
 					</div>
 					<div class="column is-6">
-						<data-table :data="dataBaselineType" :fields="[]" title="Baseline Type">
-							<template slot-scope="props">
-								<b-table-column field="type_name" label="Status Type" sortable>
-									{{ props.row.type_name }}
-								</b-table-column>
-								<b-table-column field="baseline_Status_id" label="Action" class="tour-step-7">
-									<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-										Edit
-									</b-button>
-									<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-										Delete
-									</b-button>
-								</b-table-column>
-							</template>
-						</data-table>
+						<data-table :data="dataBaselineType" :fields="[]" title="Baseline Type"></data-table>
 					</div>
 				</div>
 			</div>
@@ -81,61 +54,95 @@
 		const DATA_BASELINE_STATUS = [
 			{
 				status_name: "suntipsum",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editBaselineStatus.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				status_name: "adewiranataputra",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editBaselineStatus.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				status_name: "ariowidiatmoko",
-				status_action: "",
-				editLink: "editBaselineStatus.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
-			}
-		];
-		FIELDS_BASELINE_STATUS = [
-			{
-				field: "status_name",
-				label: "Status Name"
-			},
-			{
-				field: "status_action",
-				label: "Action"
+				action: [
+					{
+						link: "editBaselineStatus.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			}
 		];
 		DATA_BASELINE_TYPE = [
 			{
 				type_name: "suntipsum",
-				status_action: "",
-				editLink: "editBaselineType.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editBaselineType.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				type_name: "adewiranataputra",
-				status_action: "",
-				editLink: "editBaselineType.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editBaselineType.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				type_name: "ariowidiatmoko",
-				status_action: "",
-				editLink: "editBaselineType.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
-			}
-		];
-		FIELDS_BASELINE_TYPE = [
-			{
-				field: "type_name",
-				label: "Type Name"
-			},
-			{
-				field: "type_action",
-				label: "Action"
+				action: [
+					{
+						link: "editBaselineType.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			}
 		];
 	</script>

@@ -8,20 +8,5 @@ import SettingForm from "../vue/components/SettingForm.vue"
 Vue.use(Buefy);
 new Vue({
 	el: '#vapp',
-	components: { DataTable, NavBar, SideBar, SettingForm },
-	data: {
-		userId: "adewiranataputra",
-		name: "Ade Wiranata Putra",
-		email: "ade.wiranata@sigma.co.id",
-		bu: "1",
-		profile: "1"
-
-	},
-	computed: {
-	},
-	methods: {
-		checkEmpty(value) {
-			return value === undefined || value === null || value === "";
-		}
-	}
+	components: { DataTable, NavBar, SideBar, SettingForm }
 });

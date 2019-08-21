@@ -9,14 +9,14 @@
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<!-- <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" /> -->
 
-	<title>Edit User | PROUDS 2</title>
+	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
+<body class="add-margin">
 	<!-- Copy from this section: BU VIEWS -->
 	<div id="vapp">
 		<nav-bar :left-menu="[
@@ -24,6 +24,7 @@
 			{ label: 'projects', link: 'projects.html', icon:'', active: false },
 			{ label: 'financial', link: '#financial', icon:'', active: false },
 			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: '#', icon:'', active: true },
 		]" :right-menu="[
 			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 			{ label: '🔒 logout', link: '#logout', icon:'' },
@@ -39,12 +40,6 @@
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
 			<setting-form title="Edit User" action="http://localhost:5501/demo/post_detect.php" :form-data="[
-					{
-						type:'input',
-						label:'User ID',
-						name:'userId',
-						value: 'Ade Ganteng'
-					},
 					{
 						type:'input',
 						label:'Nama User',
@@ -63,19 +58,20 @@
 						name:'bu',
 						value: '1',
 						select: {
-							1: 'Kocok',
-							2: 'Dikocok',
-							3: 'B2b'
+							1: 'PMO',
+							2: 'Cloud',
+							3: 'BSD'
 						}
 					},
 					{
 						type:'select',
 						label:'Profile',
 						name:'profile',
-						value: 'zeid',
+						value: '1',
 						select: {
-							zeid: 'Zeid',
-							bilbil: 'Bilbil'
+							1: 'PMO',
+							2: 'Manager',
+							3: 'Member'
 						}
 					}
 				]">
@@ -87,10 +83,6 @@
 
 	</div>
 
-	<script>
-		const
-			userId = "suntipsum"
-	</script>
 	<script src="../../scripts/setting/editUser.js"></script>
 </body>
 

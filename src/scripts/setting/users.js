@@ -9,14 +9,7 @@ new Vue({
 	el: '#vapp',
 	components: { DataTable, NavBar, SideBar },
 	data: {
-		dataUserInternal: DATA_USER_INTERNAL
-
-	},
-	computed: {
-	},
-	methods: {
-		checkEmpty(value) {
-			return value === undefined || value === null || value === "";
-		}
+		dataUserInternal: DATA_USER_INTERNAL,
+		dataUserExternal: DATA_USER_EXTERNAL
 	}
 });

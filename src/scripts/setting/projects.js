@@ -11,13 +11,5 @@ new Vue({
 	data: {
 		project_type: PROJECT_TYPE,
 		project_category: PROJECT_CATEGORY
-
-	},
-	computed: {
-	},
-	methods: {
-		checkEmpty(value) {
-			return value === undefined || value === null || value === "";
-		}
 	}
 });

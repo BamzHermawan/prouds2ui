@@ -7,23 +7,22 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<!-- <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" /> -->
 
-	<title>Setting Holiday | PROUDS 2</title>
+	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
-	<!-- Copy from this section: BU VIEWS -->
+<body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
 			{ label: 'projects', link: 'projects.html', icon:'', active: false },
 			{ label: 'financial', link: '#financial', icon:'', active: false },
 			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: '#', icon:'', active: true },
 		]" :right-menu="[
 			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 			{ label: '🔒 logout', link: '#logout', icon:'' },
@@ -41,7 +40,7 @@
 			<div class="container is-section">
 				<p class="title is-size-3">DAYS SCHEME</p>
 				<section>
-					<b-button type="is-danger" size="is-small" href="" tag="a">
+					<b-button type="is-danger" size="is-small" href="addHoliday.html" tag="a">
 						add
 					</b-button>
 				</section>
@@ -57,11 +56,12 @@
 		const HOLIDAY = [
 			{
 				year: "2019",
-				date: "1 January 2019",
+				start: "1 January 2019",
+				end: '1 January 2019',
 				desc: "Tahun Baru Masehi",
 				action: [
 					{
-						link: "https://localhost:5501/post_detect.php?reject=yesssssshh",
+						link: "editHoliday.html",
 						label: "Edit",
 						type: "is-info"
 					},
@@ -74,11 +74,12 @@
 			},
 			{
 				year: "2019",
-				date: "5 Februari 2019",
+				start: "5 Februari 2019",
+				end: '5 Februari 2019',
 				desc: "Tahun Baru Imlek",
 				action: [
 					{
-						link: "https://localhost:5501/post_detect.php?reject=yesssssshh",
+						link: "editHoliday.html",
 						label: "Edit",
 						type: "is-info"
 					},
@@ -91,11 +92,12 @@
 			},
 			{
 				year: "2019",
-				date: "7 Maret 2019",
+				start: "7 Maret 2019",
+				end: '7 Maret 2019',
 				desc: "Nyepi",
 				action: [
 					{
-						link: "https://localhost:5501/post_detect.php?reject=yesssssshh",
+						link: "editHoliday.html",
 						label: "Edit",
 						type: "is-info"
 					},
@@ -108,11 +110,12 @@
 			},
 			{
 				year: "2019",
-				date: "3 April 2019",
+				start: "3 April 2019",
+				end: '3 April 2019',
 				desc: "Isra' Miraj",
 				action: [
 					{
-						link: "https://localhost:5501/post_detect.php?reject=yesssssshh",
+						link: "editHoliday.html",
 						label: "Edit",
 						type: "is-info"
 					},

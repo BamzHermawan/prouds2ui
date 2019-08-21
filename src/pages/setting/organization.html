@@ -14,13 +14,14 @@
 	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
-<body class="marginless">
+<body class="add-margin">
 	<div id="vapp">
 		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
 				{ label: 'projects', link: 'projects.html', icon:'', active: false },
 				{ label: 'financial', link: '#financial', icon:'', active: false },
 				{ label: 'operation', link: '#opperation', icon:'', active: false },
+				{ label: 'setting', link: '#', icon:'', active: true },
 			]" :right-menu="[
 				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 				{ label: '🔒 logout', link: '#logout', icon:'' },
@@ -36,46 +37,12 @@
 				{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 			]">
 			<div class="container is-section">
-				<p class="title is-size-3">ORGANIZATION</p>
-				<data-table :data="dataOrganization" :fields="[]" title="Organization">
-					<template slot-scope="props">
-						<b-table-column field="org_name" label="Organization Name" sortable>
-							{{ props.row.org_name }}
-						</b-table-column>
-						<b-table-column field="org_level_id" label="Organization Level" sortable>
-							{{ props.row.org_level_id }}
-						</b-table-column>
-						<b-table-column field="org_code" label="Organization Code" sortable>
-							{{ props.row.org_code }}
-						</b-table-column>
-						<b-table-column field="leader_id" label="Leader ID" sortable>
-							{{ props.row.leader_id }}
-						</b-table-column>
-						<b-table-column field="userId" label="Action" class="tour-step-7">
-							<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-								Edit</b-button>
-							<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-								Delete</b-button>
-						</b-table-column>
-					</template>
-				</data-table>
-				<br>
-				<data-table :data="dataOrganizationLevel" :fields="[]" title="Organization Level">
-					<template slot-scope="props">
-						<b-table-column field="org_level" label="Organization Level" sortable>
-							{{ props.row.org_level }}
-						</b-table-column>
-						<b-table-column field="leader_segment" label="Leader Segment" sortable>
-							{{ props.row.leader_segment }}
-						</b-table-column>
-						<b-table-column field="userId" label="Action" class="tour-step-7">
-							<b-button type="is-success" size="is-small" :href="props.row.editLink" tag="a">📝
-								Edit</b-button>
-							<b-button type="is-danger" size="is-small" :href="props.row.deleteLink" tag="a">🚫
-								Delete</b-button>
-						</b-table-column>
-					</template>
-				</data-table>
+				<div class="container is-section">
+					<p class="title is-size-3">ORGANIZATION</p>
+					<data-table :data="dataOrganization" :fields="[]" title="Organization"></data-table>
+					<br>
+					<data-table :data="dataOrganizationLevel" :fields="[]" title="Organization Level"></data-table>
+				</div>
 			</div>
 		</side-bar>
 	</div>
@@ -84,125 +51,155 @@
 		const DATA_ORGANIZATION = [
 			{
 				org_name: "President Director",
-				org_level_id: "1",
+				org_level: "1",
 				org_code: "",
 				leader_id: "",
-				editLink: "editOrganization.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editOrganization.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				org_name: "Finance and Business Support",
-				org_level_id: "1",
+				org_level: "1",
 				org_code: "",
 				leader_id: "",
-				editLink: "editOrganization.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editOrganization.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				org_name: "Sales",
-				org_level_id: "1",
+				org_level: "1",
 				org_code: "",
 				leader_id: "",
-				editLink: "editOrganization.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
-			}
-		];
-		FIELDS_ORAGNIZATION = [
-			{
-				field: "org_id",
-				label: "Organization ID"
-			},
-			{
-				field: "org_parent_id",
-				label: "Parent ID"
-			},
-			{
-				field: "org_name",
-				label: "Organization Name"
-			},
-			{
-				field: "org_level_id",
-				label: "Level ID"
-			},
-			{
-				field: "org_code",
-				label: "Organization Code"
-			},
-			{
-				field: "leader_id",
-				label: "Leader ID"
-			},
-			{
-				field: "action",
-				label: "Action"
+				action: [
+					{
+						link: "editOrganization.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			}
 		];
 		DATA_ORGANIZATION_LEVEL = [
 			{
 				org_level: "Direktorat",
 				leader_segment: "President Director",
-				editLink: "editOrganizationLevel.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editOrganizationLevel.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				org_level: "Sub Direktorat",
 				leader_segment: "SVP",
-				editLink: "editOrganizationLevel.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editOrganizationLevel.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				org_level: "Business Unit",
 				leader_segment: "VP",
-				editLink: "editOrganizationLevel.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editOrganizationLevel.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				org_level: "Division",
 				leader_segment: "Head of",
-				editLink: "editOrganizationLevel.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editOrganizationLevel.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				org_level: "Department",
 				leader_segment: "Head of Section",
-				editLink: "editOrganizationLevel.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
+				action: [
+					{
+						link: "editOrganizationLevel.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			},
 			{
 				org_level: "Uni",
 				leader_segment: "",
-				editLink: "editOrganizationLevel.html",
-				deleteLink: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh"
-			}
-		];
-		FIELDS_ORGANIZATION_LEVEL = [
-			{
-				field: "org_id",
-				label: "Organization ID"
-			},
-			{
-				field: "org_parent_id",
-				label: "Parent ID"
-			},
-			{
-				field: "org_name",
-				label: "Organization Name"
-			},
-			{
-				field: "org_level_id",
-				label: "Level ID"
-			},
-			{
-				field: "org_code",
-				label: "Organization Code"
-			},
-			{
-				field: "leader_id",
-				label: "Leader ID"
-			},
-			{
-				field: "action",
-				label: "Action"
+				action: [
+					{
+						link: "editOrganizationLevel.html",
+						label: "Edit",
+						type: "is-info"
+					},
+					{
+						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+						label: "Delete",
+						type: "is-danger"
+					}
+				]
 			}
 		];
 	</script>

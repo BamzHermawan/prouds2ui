@@ -41,100 +41,10 @@
 				<p class="title is-size-3">USERS</p>
 				<b-tabs class="block">
 					<b-tab-item label="Internal">
-						<data-table :data="dataUserInternal" :fields="[]" title="Project Type">
-							<template slot-scope="props">
-								<b-table-column field="user_id" label="User ID" sortable>
-									{{ props.row.user_id }}
-								</b-table-column>
-
-								<b-table-column field="name" label="Name" sortable>
-									{{ props.row.name }}
-								</b-table-column>
-								<b-table-column field="email" label="Email" sortable>
-									{{ props.row.email }}
-								</b-table-column>
-								<b-table-column field="bu" label="BU" sortable>
-									{{ props.row.bu }}
-								</b-table-column>
-								<b-table-column field="profile" label="Profile" sortable>
-									{{ props.row.profile }}
-								</b-table-column>
-								<b-table-column field="user_id" label="Action">
-									<b-dropdown aria-role="list">
-										<button class="button is-info is-small" slot="trigger">
-											<span>⚙ Action</span>
-										</button>
-
-										<b-dropdown-item aria-role="listitem" has-link>
-											<a :href="
-												props.row
-													.editUserLink
-											">Edit</a>
-										</b-dropdown-item>
-										<b-dropdown-item aria-role="listitem" has-link="">
-											<a :href="
-												props.row
-													.editPasswordLink
-											">Ganti Password</a>
-										</b-dropdown-item>
-										<b-dropdown-item aria-role="listitem" has-link="">
-											<a v-if="!props.row.status" :href="
-												props.row.deactivation_link">Deactivate</a>
-											<a v-else :href="
-												props.row.activation_link">Activate</a>
-										</b-dropdown-item>
-									</b-dropdown>
-								</b-table-column>
-							</template>
-						</data-table>
+						<data-table :data="dataUserInternal" :fields="[]" title="User Internal"></data-table>
 					</b-tab-item>
 					<b-tab-item label="External">
-						<data-table :data="dataUserInternal" :fields="[]" title="Project Type">
-							<template slot-scope="props">
-								<b-table-column field="user_id" label="User ID" sortable>
-									{{ props.row.user_id }}
-								</b-table-column>
-
-								<b-table-column field="name" label="Name" sortable>
-									{{ props.row.name }}
-								</b-table-column>
-								<b-table-column field="email" label="Email" sortable>
-									{{ props.row.email }}
-								</b-table-column>
-								<b-table-column field="bu" label="Business Unit" sortable>
-									{{ props.row.bu }}
-								</b-table-column>
-								<b-table-column field="profile" label="Profile" sortable>
-									{{ props.row.profile }}
-								</b-table-column>
-								<b-table-column field="user_id" label="Action">
-									<b-dropdown aria-role="list">
-										<button class="button is-info is-small" slot="trigger">
-											<span>⚙ Action</span>
-										</button>
-
-										<b-dropdown-item aria-role="listitem" has-link>
-											<a :href="
-												props.row
-													.editUserLink
-											">Edit</a>
-										</b-dropdown-item>
-										<b-dropdown-item aria-role="listitem" has-link="">
-											<a :href="
-												props.row
-													.editPasswordLink
-											">Ganti Password</a>
-										</b-dropdown-item>
-										<b-dropdown-item aria-role="listitem" has-link="">
-											<a v-if="!props.row.status" :href="
-												props.row.deactivation_link">Deactivate</a>
-											<a v-else :href="
-												props.row.activation_link">Activate</a>
-										</b-dropdown-item>
-									</b-dropdown>
-								</b-table-column>
-							</template>
-						</data-table>
+						<data-table :data="dataUserExternal" :fields="[]" title="User External"></data-table>
 					</b-tab-item>
 				</b-tabs>
 			</div>
@@ -150,10 +60,21 @@
 				bu: "PMO",
 				profile: "Manager",
 				status: true,
-				activation_link: "#activate",
-				deactivation_link: "#deactivate",
-				editUserLink: "editUser.html",
-				editPasswordLink: "editPassword.html"
+				dropdownAction: [
+					{
+						link: "editUser.html",
+						label: "Edit"
+					},
+					{
+						link: "editPassword.html",
+						label: "Ganti Password"
+					},
+					{
+						link: "#active",
+						label: "Active"
+					}
+				]
+
 			},
 			{
 				user_id: "ariowidiatmoko",
@@ -162,9 +83,20 @@
 				bu: "PMO",
 				profile: "Cell 3",
 				status: false,
-				deactivation_link: "#deactivate",
-				editUserLink: "editUser.html",
-				editPasswordLink: "editPassword.html"
+				dropdownAction: [
+					{
+						link: "editUser.html",
+						label: "Edit"
+					},
+					{
+						link: "editPassword.html",
+						label: "Ganti Password"
+					},
+					{
+						link: "#deactive",
+						label: "Deactive"
+					}
+				]
 			},
 			{
 				user_id: "ariowidiatmoko",
@@ -173,32 +105,20 @@
 				bu: "PMO",
 				profile: "Cell 3",
 				status: false,
-				activation_link: "#activate",
-				deactivation_link: "#deactivate",
-				editUserLink: "editUser.html",
-				editPasswordLink: "editPassword.html"
-			}
-		];
-		FIELDS_USER_INTERNAL = [
-			{
-				field: "user_id",
-				label: "USER ID"
-			},
-			{
-				field: "name",
-				label: "NAME"
-			},
-			{
-				field: "email",
-				label: "EMAIL"
-			},
-			{
-				field: "bu",
-				label: "BUSINESS UNIT"
-			},
-			{
-				field: "profile",
-				label: "PROFILE"
+				dropdownAction: [
+					{
+						link: "editUser.html",
+						label: "Edit"
+					},
+					{
+						link: "editPassword.html",
+						label: "Ganti Password"
+					},
+					{
+						link: "#deactivate",
+						label: "Deactive"
+					}
+				]
 			}
 		];
 		DATA_USER_EXTERNAL = [
@@ -209,10 +129,24 @@
 				bu: "PMO",
 				profile: "Manager",
 				status: true,
-				activation_link: "#activate",
-				deactivation_link: "#deactivate",
-				editUserLink: "editUser.html",
-				editPasswordLink: "editPassword.html"
+				dropdownAction: [
+					{
+						link: "editUser.html",
+						label: "Edit"
+					},
+					{
+						link: "editPassword.html",
+						label: "Ganti Password"
+					},
+					{
+						activation_link: "#deactivate",
+						label: "Deactive"
+					}
+					// activation_link: "#activate",
+					// deactivation_link: "#deactivate",
+					// editUserLink: "editUser.html",
+					// editPasswordLink: "editPassword.html"
+				]
 			},
 			{
 				user_id: "ariowidiatmoko",
@@ -221,9 +155,24 @@
 				bu: "PMO",
 				profile: "Cell 3",
 				status: false,
-				deactivation_link: "#deactivate",
-				editUserLink: "editUser.html",
-				editPasswordLink: "editPassword.html"
+				dropdownAction: [
+					{
+						link: "editUser.html",
+						label: "Edit"
+					},
+					{
+						link: "editPassword.html",
+						label: "Ganti Password"
+					},
+					{
+						activation_link: "#active",
+						label: "Active"
+					}
+					// activation_link: "#activate",
+					// deactivation_link: "#deactivate",
+					// editUserLink: "editUser.html",
+					// editPasswordLink: "editPassword.html"
+				]
 			},
 			{
 				user_id: "ariowidiatmoko",
@@ -232,80 +181,24 @@
 				bu: "PMO",
 				profile: "Cell 3",
 				status: false,
-				activation_link: "#activate",
-				deactivation_link: "#deactivate",
-				editUserLink: "editUser.html",
-				editPasswordLink: "editPassword.html"
-			}
-		];
-		FIELDS_USER_EXTERNAL = [
-			{
-				field: "user_id",
-				label: "USER ID"
-			},
-			{
-				field: "name",
-				label: "NAME"
-			},
-			{
-				field: "email",
-				label: "EMAIL"
-			},
-			{
-				field: "bu",
-				label: "BUSINESS UNIT"
-			},
-			{
-				field: "profile",
-				label: "PROFILE"
-			}
-		];
-		DATA_BASELINE_STATUS = [
-			{
-				status_name: "suntipsum",
-				status_action: ""
-			},
-			{
-				status_name: "adewiranataputra",
-				status_action: ""
-			},
-			{
-				status_name: "ariowidiatmoko",
-				status_action: ""
-			}
-		];
-		FIELDS_BASELINE_STATUS = [
-			{
-				field: "status_name",
-				label: "Status Name"
-			},
-			{
-				field: "status_action",
-				label: "Action"
-			}
-		];
-		DATA_BASELINE_TYPE = [
-			{
-				type_name: "exsuntipsum",
-				type_action: ""
-			},
-			{
-				type_name: "exadewiranataputra",
-				type_action: ""
-			},
-			{
-				type_name: "exariowidiatmoko",
-				type_action: ""
-			}
-		];
-		FIELDS_BASELINE_TYPE = [
-			{
-				field: "type_name",
-				label: "Type Name"
-			},
-			{
-				field: "type_action",
-				label: "Action"
+				dropdownAction: [
+					{
+						link: "editUser.html",
+						label: "Edit"
+					},
+					{
+						link: "editPassword.html",
+						label: "Ganti Password"
+					},
+					{
+						activation_link: "#active",
+						label: "Active"
+					}
+					// activation_link: "#activate",
+					// deactivation_link: "#deactivate",
+					// editUserLink: "editUser.html",
+					// editPasswordLink: "editPassword.html"
+				]
 			}
 		];
 	</script>

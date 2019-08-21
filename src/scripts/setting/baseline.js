@@ -9,15 +9,7 @@ new Vue({
 	el: '#vapp',
 	components: { DataTable, NavBar, SideBar },
 	data: {
-		dataBaselineStatus: DATA_BASELINE_STATUS,
-		dataBaselineType: DATA_BASELINE_TYPE
-
-	},
-	computed: {
-	},
-	methods: {
-		checkEmpty(value) {
-			return value === undefined || value === null || value === "";
-		}
+		dataBaselineStatus : DATA_BASELINE_STATUS,
+		dataBaselineType : DATA_BASELINE_TYPE
 	}
 });
