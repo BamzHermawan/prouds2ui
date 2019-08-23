@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Axios from 'axios';
+import Loader from "../loader.js";
 import Shepherd from "../helpTour.js";
 import { notified, loadStorage, saveStorage } from '../tools.js';
 import searchMenu from "./../vue/pages/projects/resourceSearching.vue";
@@ -205,5 +206,7 @@ new Vue({
 				createdDate: new Date()
 			});
 		});
+
+		Loader();
 	}
 });

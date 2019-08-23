@@ -180,7 +180,7 @@ section.activity {
 		$textColor: nth($thisColor, 2);
 
 		@include heroGradient($primeColor, darken($primeColor, 20%));
-		color: $textColor;
+		color: $light !important;
 	}
 }
 

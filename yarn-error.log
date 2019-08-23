@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add babel-preset-env -D
+  C:\Program Files\nodejs\node.exe C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add Loader
 
 PATH: 
-  C:\Users\ARIOWI~1\AppData\Local\Temp\yarn--1565927072861-0.17005969733052462;D:\Projects\Telkomsigma\prouds2ui\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;D:\Oracle\product\11.2.0\client_1\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\wamp64\bin\php\php7.2.4;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AdoptOpenJDK\jdk8u192-b12\bin;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;C:\Android\android-sdk\tools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Ario Widiatmoko\AppData\Local\Microsoft\WindowsApps;C:\Users\Ario Widiatmoko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\Composer\vendor\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\cmder
+  C:\Users\ARIOWI~1\AppData\Local\Temp\yarn--1566551251120-0.9140931644889869;D:\Projects\Telkomsigma\prouds2ui\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;D:\Oracle\product\11.2.0\client_1\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\wamp64\bin\php\php7.2.4;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AdoptOpenJDK\jdk8u192-b12\bin;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;C:\Android\android-sdk\tools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Ario Widiatmoko\AppData\Local\Microsoft\WindowsApps;C:\Users\Ario Widiatmoko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\Composer\vendor\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\cmder
 
 Yarn version: 
   1.16.0
@@ -14,7 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'D:\Projects\Telkomsigma\prouds2ui\node_modules\deasync\bin\win32-x64-node-10\deasync.node'
+  Error: https://registry.yarnpkg.com/Loader: Not found
+      at Request.params.callback [as _callback] (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66091:18)
+      at Request.self.callback (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129590:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130562:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130484:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1129:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
@@ -26,7 +36,7 @@ npm manifest:
   		"demo": "cd release && php -S localhost:5501",
   		"ngoding": "yarn run bersih && parcel src/pages/**/*.html -p 5500",
   		"mantap": "node bundler.js -o release/page -s release/src src/pages/**/*.html",
-  		"build": "node bundler.js -o release/page -s release/src"
+  		"build": "parcel build src/pages/**/*.html -d release/page --public-url /src --no-source-maps --no-minify"
   	},
   	"author": "PMO Telkomsigma",
   	"devDependencies": {
@@ -44,6 +54,7 @@ npm manifest:
   		"parcel-plugin-markdown": "^0.3.1",
   		"parcel-plugin-markdown-string": "^1.3.5",
   		"sass": "^1.21.0",
+  		"stylus": "^0.54.7",
   		"vue-template-compiler": "^2.6.10"
   	},
   	"marked": {
@@ -61,6 +72,7 @@ npm manifest:
   		"buefy": "^0.7.10",
   		"highcharts": "^7.1.2",
   		"jsgantt-improved": "^2.2.11",
+  		"loader.js": "^4.7.0",
   		"moment": "^2.24.0",
   		"shepherd.js": "^4.2.0",
   		"vue": "^2.6.10",
@@ -1976,6 +1988,13 @@ Lockfile:
       postcss-modules-scope "1.1.0"
       postcss-modules-values "1.3.0"
   
+  css-parse@~2.0.0:
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/css-parse/-/css-parse-2.0.0.tgz#a468ee667c16d81ccf05c58c38d2a97c780dbfd4"
+    integrity sha1-pGjuZnwW2BzPBcWMONKpfHgNv9Q=
+    dependencies:
+      css "^2.0.0"
+  
   css-select-base-adapter@^0.1.1:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"
@@ -2038,6 +2057,16 @@ Lockfile:
     version "2.1.3"
     resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.3.tgz#a6d7604573365fe74686c3f311c56513d88285f2"
     integrity sha512-a+EPoD+uZiNfh+5fxw2nO9QwFa6nJe2Or35fGY6Ipw1R3R4AGz1d1TEZrCegvw2YTmZ0jXirGYlzxxpYSHwpEg==
+  
+  css@^2.0.0:
+    version "2.2.4"
+    resolved "https://registry.yarnpkg.com/css/-/css-2.2.4.tgz#c646755c73971f2bba6a601e2cf2fd71b1298929"
+    integrity sha512-oUnjmWpy0niI3x/mPL8dVEI1l7MnG3+HHyRPHf+YFSbK+svOhXpmSOcDURUh2aOCgl2grzrOPt1nHLuCVFULLw==
+    dependencies:
+      inherits "^2.0.3"
+      source-map "^0.6.1"
+      source-map-resolve "^0.5.2"
+      urix "^0.1.0"
   
   cssesc@^0.1.0:
     version "0.1.0"
@@ -2197,7 +2226,7 @@ Lockfile:
     dependencies:
       ms "2.0.0"
   
-  debug@=3.1.0:
+  debug@=3.1.0, debug@~3.1.0:
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
     integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
@@ -3674,6 +3703,11 @@ Lockfile:
       prelude-ls "~1.1.2"
       type-check "~0.3.2"
   
+  loader.js@^4.7.0:
+    version "4.7.0"
+    resolved "https://registry.yarnpkg.com/loader.js/-/loader.js-4.7.0.tgz#a1a52902001c83631efde9688b8ab3799325ef1f"
+    integrity sha512-9M2KvGT6duzGMgkOcTkWb+PR/Q2Oe54df/tLgHGVmFpAmtqJ553xJh6N63iFYI2yjo2PeJXbS5skHi/QpJq4vA==
+  
   locate-path@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
@@ -3900,7 +3934,7 @@ Lockfile:
       for-in "^1.0.2"
       is-extendable "^1.0.1"
   
-  mkdirp@0.5.1, mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
+  mkdirp@0.5.1, mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1, mkdirp@~0.5.x:
     version "0.5.1"
     resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
     integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
@@ -5280,7 +5314,7 @@ Lockfile:
     dependencies:
       ret "~0.1.10"
   
-  "safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
+  "safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@^2.1.2, safer-buffer@~2.1.0:
     version "2.1.2"
     resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
     integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
@@ -5308,6 +5342,11 @@ Lockfile:
     version "5.7.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
     integrity sha512-Ya52jSX2u7QKghxeoFGpLwCtGlt7j0oY9DYb5apt9nPlJ42ID+ulTXESnt/qAQcoSERyZ5sl3LDIOw0nAn/5DA==
+  
+  semver@^6.0.0:
+    version "6.3.0"
+    resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
+    integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
   
   semver@^6.1.1:
     version "6.2.0"
@@ -5468,7 +5507,7 @@ Lockfile:
       source-map-resolve "^0.5.0"
       use "^3.1.0"
   
-  source-map-resolve@^0.5.0:
+  source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
     version "0.5.2"
     resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.2.tgz#72e2cc34095543e43b2c62b2c4c10d4a9054f259"
     integrity sha512-MjqsvNwyz1s0k81Goz/9vRBe9SZdB09Bdw+/zYyO+3CuPk6fouTaxscHkgtE8jKvf01kVfl8riHzERQ/kefaSA==
@@ -5506,6 +5545,11 @@ Lockfile:
     version "0.5.7"
     resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
     integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
+  
+  source-map@^0.7.3:
+    version "0.7.3"
+    resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
+    integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
   
   sourcemap-codec@^1.4.1:
     version "1.4.6"
@@ -5716,6 +5760,20 @@ Lockfile:
     version "3.5.0"
     resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.0.tgz#016fa239663d77f868fef5b67cf201c4b7c701e1"
     integrity sha512-pP7yXN6dwMzAR29Q0mBrabPCe0/mNO1MSr93bhay+hcZondvMMTpeGyd8nbhYJdyperNT2DRxONQuUGcJr5iPw==
+  
+  stylus@^0.54.7:
+    version "0.54.7"
+    resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.54.7.tgz#c6ce4793965ee538bcebe50f31537bfc04d88cd2"
+    integrity sha512-Yw3WMTzVwevT6ZTrLCYNHAFmanMxdylelL3hkWNgPMeTCpMwpV3nXjpOHuBXtFv7aiO2xRuQS6OoAdgkNcSNug==
+    dependencies:
+      css-parse "~2.0.0"
+      debug "~3.1.0"
+      glob "^7.1.3"
+      mkdirp "~0.5.x"
+      safer-buffer "^2.1.2"
+      sax "~1.2.4"
+      semver "^6.0.0"
+      source-map "^0.7.3"
   
   supports-color@^2.0.0:
     version "2.0.0"
