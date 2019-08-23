@@ -20,9 +20,11 @@ $primary: #D36464;
 $primary-invert: findColorInvert($primary);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
+$pink: rgb(250, 129, 150);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
+	"pink": (rgb(250, 129, 150), $white),
 	"grey": (grey, $white),
     "white": ($white, $black),
     "black": ($black, $white),
@@ -144,6 +146,42 @@ section.activity {
 .column.is-section {
 	padding: 0px;
 	min-height: calc(100vh - 52px);
+
+	&.is-sidebar {
+		background-color: $light;
+		min-width: 240px;
+		max-width: 250px;
+
+		.menu {
+			.menu-label {
+				font-size: 16px;
+				text-align: center;
+			}
+
+			.menu-list a {
+				color: $dark;
+				padding: 0.75em;
+				.icon {
+					margin-right: 10px;
+				}
+
+				&:hover {
+					color: $dark;
+				}
+			}
+		}
+	}
+}
+
+@each $color in $colors {
+	.menu.is-#{nth($color, 1)} a.is-active {
+		$thisColor: nth($color, 2);
+		$primeColor: nth($thisColor, 1);
+		$textColor: nth($thisColor, 2);
+
+		@include heroGradient($primeColor, darken($primeColor, 20%));
+		color: $textColor;
+	}
 }
 
 .profile-user {
@@ -184,12 +222,15 @@ section.activity {
 }
 
 .hero.is-bold {
-	&.is-primary {
-		@include heroGradient(rgb(204, 103, 63), rgb(223, 35, 11))
-	}
+	@each $color in $colors {
+		&.is-#{nth($color, 1)} {
+			$thisColor: nth($color, 2);
+			$primeColor: nth($thisColor, 1);
+			$textColor: nth($thisColor, 2);
 
-	&.is-warning {
-		@include heroGradient(rgb(221, 214, 21), rgb(206, 158, 25));
+			@include heroGradient($primeColor, darken($primeColor, 20%));
+			color: $warning;
+		}
 	}
 }
 
@@ -218,34 +259,22 @@ section.activity {
 
 .is-packed > .table-wrapper > .table {
 	td {
-		padding: 5px 0.75em !important; 
+		padding: 5px 0.75em !important;
+		vertical-align: middle;
 	}
 }
 
 .level.sub-nav {
-	&.is-primary {
-		@include gradientMagic($primary);
-	}
 
-	&.is-success {
-		@include gradientMagic($success);
-	}
+	@each $color in $colors {
+		&.is-#{nth($color, 1)} {
+			$thisColor: nth($color, 2);
+			$primeColor: nth($thisColor, 1);
+			$textColor: nth($thisColor, 2);
 
-	&.is-warning {
-		@include gradientMagic($warning);
-	}
-
-	&.is-info {
-		@include gradientMagic($info);
-	}
-
-	&.is-light {
-		@include gradientMagic($light);
-	}
-
-	&.is-dark {
-		@include gradientMagic($dark);
-		color: $light;
+			@include gradientMagic($primeColor);
+			color: $textColor;
+		}
 	}
 
 	padding: 0.75em;
@@ -285,6 +314,58 @@ p.help.is-success {
 	.hero-body {
 		padding-top: 25px;
 		padding-bottom: 25px;
+	}
+}
+
+.card.table-summary-plan {
+	margin-bottom: 28px;
+
+	.card-header {
+		border-bottom: 1px solid #dbdbdb;
+	}
+
+	tr th:not(:first-child), tr td:not(:first-child) {
+		border-left: 1px solid #dbdbdb;
+	}
+
+	tr {
+		th {
+			background-color: lighten($grey, 45%);
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		td {
+			padding: 7px;
+		}
+
+		td:not(:first-child) {
+			text-align: right;
+		}
+
+		td.is-plan, th.is-plan {
+			background-color: lighten($info, 40%) !important;
+			&.inner {
+				background-color: lighten($info, 45%) !important;
+			}
+			color: $dark;
+			border-color: #cacaca;
+		}
+
+		td.is-actual, th.is-actual {
+			background-color: lighten($success, 40%) !important;
+			&.inner {
+				background-color: lighten($success, 48%) !important;
+			}
+			color: $dark;
+			border-color: #cacaca;
+		}
+	}
+
+	tr:last-child {
+		td {
+			font-weight: bold;
+		}
 	}
 }
 

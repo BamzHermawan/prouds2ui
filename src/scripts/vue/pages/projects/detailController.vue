@@ -133,29 +133,6 @@
 						Member ({{ resource }}/{{ max_resource }})
 					</h5>
 					<hr style="margin-top: 5px; margin-bottom: 10px;" />
-					<div class="columns is-gapless is-multiline">
-						<div class="column" style="padding: 2px !important;">
-							<p class="image is-square">
-								<img
-									src="http://localhost:5501/demo/user_avatar.php?nik=11"
-								/>
-							</p>
-						</div>
-						<div class="column" style="padding: 2px !important;">
-							<p class="image is-square">
-								<img
-									src="http://localhost:5501/demo/user_avatar.php?nik=12"
-								/>
-							</p>
-						</div>
-						<div class="column" style="padding: 2px !important;">
-							<p class="image is-square">
-								<img
-									src="http://localhost:5501/demo/user_avatar.php?nik=18"
-								/>
-							</p>
-						</div>
-					</div>
 					<slot name="assign-member"></slot>
 				</section>
 

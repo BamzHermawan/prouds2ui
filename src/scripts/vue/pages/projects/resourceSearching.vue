@@ -37,6 +37,30 @@
 						</div>
 					</div>
 
+					<!-- Cari Dengan Skill -->
+					<div class="panel-block">
+						<div class="container">
+							<b-input
+								@focus="focusedFilter = 'skill'"
+								placeholder="Cari dengan Skill / Kompetensi"
+								v-model="filters.skill"
+								type="search"
+								icon="magnify"
+								size="is-small"
+							>
+							</b-input>
+							<p
+								v-show="focusedFilter === 'skill'"
+								class="is-size-7 animated fadeIn"
+								style="margin-top: 0.75em;"
+							>
+								Filter Kategori ini digunakan saat kamu butuh
+								resource yang memiliki kemampuan tertentu
+								seperti JavaScript / PHP / Photoshop
+							</p>
+						</div>
+					</div>
+
 					<!-- Cari Dengan Role -->
 					<div class="panel-block">
 						<div class="container">
@@ -71,54 +95,6 @@
 									</button>
 								</div>
 							</div>
-						</div>
-					</div>
-
-					<!-- Cari Dengan Skill -->
-					<div class="panel-block">
-						<div class="container">
-							<b-input
-								@focus="focusedFilter = 'skill'"
-								placeholder="Cari dengan Kemampuan / Skill"
-								v-model="filters.skill"
-								type="search"
-								icon="magnify"
-								size="is-small"
-							>
-							</b-input>
-							<p
-								v-show="focusedFilter === 'skill'"
-								class="is-size-7 animated fadeIn"
-								style="margin-top: 0.75em;"
-							>
-								Filter Kategori ini digunakan saat kamu butuh
-								resource yang memiliki kemampuan tertentu
-								seperti JavaScript / PHP / Photoshop
-							</p>
-						</div>
-					</div>
-
-					<!-- Cari Dengan Skill -->
-					<div class="panel-block">
-						<div class="container">
-							<b-input
-								@focus="focusedFilter = 'skill'"
-								placeholder="Cari dengan Competency (Certificate / Course)"
-								v-model="filters.skill"
-								type="search"
-								icon="magnify"
-								size="is-small"
-							>
-							</b-input>
-							<p
-								v-show="focusedFilter === 'competency'"
-								class="is-size-7 animated fadeIn"
-								style="margin-top: 0.75em;"
-							>
-								Filter Kategori ini digunakan saat resource yang
-								kamu butuh harus memiliki certifikasi di bidang
-								tertentu seperti Cisco, dll
-							</p>
 						</div>
 					</div>
 
@@ -164,11 +140,22 @@
 					ref="dataTable"
 				>
 					<template slot-scope="props">
-						<b-table-column field="name" label="👨‍💼 Nama">
+						<b-table-column field="name" label="Nama">
 							<span>{{ props.row.name }}</span>
 						</b-table-column>
-						<b-table-column field="bu" label="🏢 Business Unit">
+						<b-table-column field="bu" label="Business Unit">
 							<span>{{ props.row.bu }}</span>
+						</b-table-column>
+						<b-table-column field="role" label="Job Role">
+							<span
+								v-if="
+									props.row.role !== undefined &&
+										props.row.role !== null &&
+										props.row.role !== ''
+								"
+								>{{ props.row.role }}</span
+							>
+							<span v-else>-</span>
 						</b-table-column>
 						<b-table-column
 							field="userId"
@@ -224,7 +211,7 @@
 								<span
 									id="savedLabel"
 									class="tag is-success is-medium animated"
-									>💾 {{ selectedRes.length }}</span
+									>👨‍💼 {{ selectedRes.length }}</span
 								>
 							</div>
 						</div>

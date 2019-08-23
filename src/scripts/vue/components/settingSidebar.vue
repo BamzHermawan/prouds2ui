@@ -1,16 +1,21 @@
 <template>
 	<div>
 		<div class="columns" style="margin-bottom:0px;">
-			<div
-				class="column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"
-			>
+			<div class="column is-section is-hidden-touch is-sidebar">
+				<section class="hero is-white is-bold is-sidebar">
+					<div class="hero-body">
+						<div class="content">
+							<p
+								class="title is-5 is-uppercase is-marginless has-text-danger"
+							>
+								<b>Configuration Menu</b>
+							</p>
+						</div>
+					</div>
+				</section>
 				<section class="info user-info">
-					<h5 class="is-size-4 has-text-primary has-text-centered">
-						Configuration Menu
-					</h5>
-					<hr style="margin-top: 5px;" />
-					<b-menu>
-						<b-menu-list label="">
+					<b-menu class="is-danger">
+						<b-menu-list class="sideMenu">
 							<b-menu-item
 								v-for="(menu, index) in showConfigMenu"
 								:key="index"
