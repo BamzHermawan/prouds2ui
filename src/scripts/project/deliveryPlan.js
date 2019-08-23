@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import Loader from '../loader.js';
 import Notified from '../vue/components/notified.vue';
 import FormUpload from '../../scripts/vue/pages/projects/deliveryFileForm.vue';
 
@@ -136,5 +137,6 @@ new Vue({
 			this.delivery.push(row);
 		}
 
+		Loader();
 	}
 });
