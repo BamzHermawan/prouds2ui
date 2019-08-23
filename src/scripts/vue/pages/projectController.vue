@@ -108,19 +108,28 @@
 			<section class="info">
 				<nav class="level is-mobile">
 					<div class="level-item has-text-centered">
-						<div class="box is-level-widget">
+						<div
+							class="box is-level-widget"
+							@click="test('behind_schedule', 1)"
+						>
 							<p class="heading">Behind Schedule</p>
 							<p class="title">📁 40</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
-						<div class="box is-level-widget">
+						<div
+							class="box is-level-widget"
+							@click="test('bast_delay', 2)"
+						>
 							<p class="heading">BAST Delay</p>
 							<p class="title">📁 20</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
-						<div class="box is-level-widget">
+						<div
+							class="box is-level-widget"
+							@click="test('top_delay', 3)"
+						>
 							<p class="heading">TOP Delay</p>
 							<p class="title">📁 10</p>
 						</div>
@@ -132,8 +141,35 @@
 				<data-table
 					title="Project List"
 					:data="projects"
-					:fields="tableField"
-				></data-table>
+					:fields="[]"
+					ref="widget"
+				>
+					<template slot-scope="props">
+						<b-table-column
+							field="project_name"
+							label="Project Name"
+							sortable
+						>
+							<span>{{ props.row.project_name }}</span>
+						</b-table-column>
+						<b-table-column field="iwo" label="IWO" sortable>
+							<span>{{ props.row.iwo }}</span>
+						</b-table-column>
+						<b-table-column field="pm" label="PM" sortable>
+							<span>{{ props.row.pm }}</span>
+						</b-table-column>
+						<b-table-column field="status" label="Status" sortable>
+							<span>{{ props.row.status }}</span>
+						</b-table-column>
+						<b-table-column
+							field="progress"
+							label="Progress"
+							sortable
+						>
+							<span>{{ props.row.progress }}</span>
+						</b-table-column>
+					</template>
+				</data-table>
 			</section>
 		</div>
 
@@ -260,9 +296,10 @@ export default {
 	data() {
 		return {
 			projects: DATA,
-			tableField: FIELDS,
+			dataku: DATA,
 			users: USERS,
 			searchQuery: "",
+			search: "",
 			modal: {
 				display: false,
 				imgLoader: true,
@@ -285,7 +322,10 @@ export default {
 				},
 				userdata: [],
 				formTarget: ""
-			}
+			},
+			behindFilter: false,
+			delayFilter: false,
+			topFilter: false
 		};
 	},
 	methods: {
@@ -303,6 +343,32 @@ export default {
 				bu: "",
 				avatar: ""
 			};
+		},
+		test(filter, no) {
+			if (no === 1) {
+				if (
+					this.behindFilter === false ||
+					this.delayFilter === true ||
+					this.topFilter === true
+				) {
+					this.projects = this.dataku;
+					this.behindFilter = true;
+					let self = this;
+					this.projects = this.projects.filter(post => post[filter]);
+				} else {
+					this.projects = this.dataku;
+				}
+			}
+		},
+		test2() {
+			if (this.behindFilter === false) {
+				this.behindFilter = true;
+				let self = this;
+				this.projects = this.projects.filter(post => post[filter]);
+			} else {
+				this.behindFilter = false;
+				this.projects = this.dataku;
+			}
 		}
 	},
 	watch: {

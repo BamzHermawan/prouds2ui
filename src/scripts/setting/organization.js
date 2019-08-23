@@ -3,6 +3,7 @@ import Buefy from 'buefy';
 import DataTable from "../../scripts/vue/components/dataTable.vue";
 import NavBar from "../vue/components/topNavBar.vue";
 import SideBar from "../vue/components/settingSidebar.vue";
+import Loader from "../loader.js";
 
 Vue.use(Buefy);
 new Vue({
@@ -12,5 +13,8 @@ new Vue({
 		dataOrganization: DATA_ORGANIZATION,
 		dataOrganizationLevel: DATA_ORGANIZATION_LEVEL
 
+	},
+	mounted() {
+		Loader();
 	}
 });
