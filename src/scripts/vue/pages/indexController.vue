@@ -4,9 +4,23 @@
 			<div
 				class="column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 			>
-				<figure class="profile-user">
-					<img :src="imageProfile" alt="user-profile-image" />
-				</figure>
+				<vue-clazy-load
+					v-if="imageProfile !== undefined"
+					:src="imageProfile"
+					class="profile-user"
+					tag="figure"
+				>
+					<img :src="imageProfile" />
+					<template slot="placeholder">
+						<div
+							style="display:grid; margin-top:45px; justify-content:center;"
+						>
+							<span
+								class="mdi mdi-spin mdi-loading mdi-48px"
+							></span>
+						</div>
+					</template>
+				</vue-clazy-load>
 
 				<section class="info user-info">
 					<h5 class="is-size-4 has-text-primary">{{ username }}</h5>
@@ -244,6 +258,7 @@
 import log from "../components/mediaLog";
 import vChart from "../components/highchart";
 import { setTimeout } from "timers";
+import { VueClazyLoad } from "vue-clazy-load";
 
 export default {
 	props: {
@@ -263,7 +278,8 @@ export default {
 	},
 	components: {
 		log,
-		vChart
+		vChart,
+		VueClazyLoad
 	},
 	data() {
 		return {

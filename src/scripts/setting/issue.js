@@ -3,6 +3,7 @@ import Buefy from 'buefy';
 import DataTable from "../../scripts/vue/components/dataTable.vue";
 import NavBar from "../vue/components/topNavBar.vue";
 import SideBar from "../vue/components/settingSidebar.vue";
+import Loader from "../loader.js";
 
 Vue.use(Buefy);
 new Vue({
@@ -11,5 +12,8 @@ new Vue({
 	data: {
 		dataIssueStatus: DATA_ISSUE_STATUS,
 		dataIssueSeverity: DATA_ISSUE_SEVERITY
+	},
+	mounted() {
+		Loader();
 	}
 });
