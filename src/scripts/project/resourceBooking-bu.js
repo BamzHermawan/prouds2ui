@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import Loader from '../loader.js';
 import DataTable from "../../scripts/vue/components/dataTable.vue";
 
 Vue.use(Buefy);
@@ -89,5 +90,8 @@ new Vue({
 			document.body.appendChild(form);
 			form.submit();
 		}
+	},
+	mounted(){
+		Loader();
 	}
 });

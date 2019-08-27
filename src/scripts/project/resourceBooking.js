@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Tools from "./../tools.js";
+import Loader from "./../Loader.js";
 import Booking from "./../vue/pages/projects/resourceBooking.vue";
 import Detail from "./../vue/pages/projects/bookingDetail.vue";
 
@@ -48,4 +49,7 @@ new Vue({
 			});
 		}
 	},
+	mounted(){
+		Loader();
+	}
 });

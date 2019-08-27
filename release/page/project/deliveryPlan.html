@@ -93,18 +93,22 @@
 
 		<b-table ref="dTable" :header-checkable="false" :data="delivery" class="is-packed" checkbox-position="left" :checked-rows.sync="selected" :row-class="(row, index) => row.topStatus && 'has-background-warning'" :paginated="isPaginated" per-page="10" pagination-simple="" checkable="">
 			<template slot-scope="props">
-				<b-table-column field="period" label="📅 Period" width="120" centered="">
+				<b-table-column field="period" label="Period" width="120" centered="">
 					{{ props.row.period }}
 				</b-table-column>
-				<b-table-column field="plan" label="🔋 Progress Plan" width="150" centered="">
+				<b-table-column field="plan" label="Progress Plan" width="150" centered="">
 					<span v-if="props.row.plan !== null" class="tag is-small is-info">{{ props.row.plan }}%</span>
 					<span v-else="" class="tag is-small is-info">---</span>
 				</b-table-column>
-				<b-table-column field="actual.progress" label="🔋 Progress Actual" width="175" centered="">
+				<b-table-column field="docTypePlan" label="Doc Type Plan" width="370">
+					<p v-if="props.row.docTypePlan !== undefined && props.row.docTypePlan !== '' && props.row.docTypePlan !== null">{{props.row.docTypePlan}}</p>
+					<span v-else="" class="tag is-small">---</span>
+				</b-table-column>
+				<b-table-column field="actual.progress" label="Progress Actual" width="175" centered="">
 					<span v-if="props.row.actual !== null" :class="'tag is-small ' + (parseInt(props.row.actual.progress) < parseInt(props.row.plan) ? 'is-danger':'is-info')">{{ props.row.actual.progress }}%</span>
 					<span v-else="" class="tag is-small">---</span>
 				</b-table-column>
-				<b-table-column field="actual.document" label="📚 Document">
+				<b-table-column field="actual.document" label="Document">
 					<span v-if="props.row.actual !== null">
 						<b-tooltip :label="notesChecker(props.row.actual.notes)" :multilined="tooltipIsMultilined(props.row.actual.notes)" position="is-bottom" square="" dashed="" type="is-light">
 							<a :href="props.row.actual.downloadLink">📄 {{ props.row.actual.document | cutFileName }}
@@ -113,13 +117,13 @@
 					</span>
 					<span v-else="" class="tag is-small">---</span>
 				</b-table-column>
-				<b-table-column field="actual.status" label="✅ Status">
+				<b-table-column field="actual.status" label="Status" width="110">
 					<span v-if="props.row.actual !== null">
 						{{ props.row.actual.status }}
 					</span>
 					<span v-else="" class="tag is-small">---</span>
 				</b-table-column>
-				<b-table-column field="actual" label="⚡ Action" centered="">
+				<b-table-column field="actual" label="Action" centered="" width="110">
 					<div v-if="props.row.actual !== null">
 						<button class="button is-small is-info" @click="displayForm(props.row)">
 							<span class="mdi mdi-file-undo in-left"></span>
@@ -144,6 +148,7 @@
 	<script>var DELIVERY = [{
   "period": "2019/01",
   "plan": "10",
+  "docTypePlan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus facilisis.",
   "actual": {
     "progress": "10",
     "document": "BATPP.Bulan I - Awas ada rencana saya bungkam.pdf",
@@ -156,6 +161,7 @@
 }, {
   "period": "2019/02",
   "plan": "100",
+  "docTypePlan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus facilisis.",
   "actual": {
     "progress": "35",
     "document": "BATPP Bulan II",
@@ -213,7 +219,6 @@
   "docTypeId": 3,
   "docTypeName": "WORD"
 }];</script>
-	<script src="/src/deliveryPlan.min.js"></script>
 	<script src="/src/deliveryPlan.min.js"></script>
 </body>
 
