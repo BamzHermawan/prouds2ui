@@ -8,7 +8,7 @@
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
-	<title>HOME | PROUDS 2</title>
+	<title>PROJECT | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
@@ -31,7 +31,10 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="home.html"></nav-bar>
 
-		<content-page project-id="ProuDS 2 UI" action-send="http://localhost:5501/demo/post_detect.php?how=assign-pm">
+		<content-page :show-assign-pm="false" project-id="ProuDS 2 UI" bu="Project Management Office"
+			behind-schedule="40" bast-delay="20" top-delay="10" total-project="70"
+			action-send="http://localhost:5501/demo/post_detect.php?how=assign-pm">
+
 		</content-page>
 	</div>
 
@@ -74,24 +77,21 @@
 					"iwo": "P-DO-104B",
 					"pm": "Hale Collins",
 					"status": "On Progress",
-					"progress": "77%",
-					"top_delay": true
+					"progress": "77%"
 				},
 				{
 					"project_name": "EA ESSE",
 					"iwo": "P-EXERCITATION-105C",
 					"pm": "Melinda Cline",
 					"status": "Delay",
-					"progress": "75%",
-					"top_delay": true
+					"progress": "75%"
 				},
 				{
 					"project_name": "EXCEPTEUR FUGIAT",
 					"iwo": "P-NOSTRUD-106B",
 					"pm": "Chasity Wilkerson",
 					"status": "On Progress",
-					"progress": "29%",
-					"top_delay": true
+					"progress": "29%"
 				},
 				{
 					"project_name": "CONSEQUAT CONSECTETUR",
@@ -105,16 +105,14 @@
 					"iwo": "P-CUPIDATAT-108C",
 					"pm": "Nichols Best",
 					"status": "Delay",
-					"progress": "54%",
-					"top_delay": true
+					"progress": "54%"
 				},
 				{
 					"project_name": "ULLAMCO IN",
 					"iwo": "P-AMET-109A",
 					"pm": "Sears Benton",
 					"status": "On Progress",
-					"progress": "40%",
-					"top_delay": true
+					"progress": "40%"
 				},
 				{
 					"project_name": "LABORIS REPREHENDERIT",
