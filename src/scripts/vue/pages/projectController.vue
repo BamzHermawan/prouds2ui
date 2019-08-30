@@ -3,7 +3,7 @@
 		<div
 			class="column is-section is-3-desktop is-4-tablet is-hidden-touch has-background-light"
 		>
-			<section class="info">
+			<section v-if="!showAssignPm" class="info">
 				<p class="title is-size-5" style="margin-bottom:10px;">
 					Business Unit
 				</p>
@@ -28,9 +28,11 @@
 								<b-icon icon="menu-down"></b-icon>
 							</button>
 
-							<b-dropdown-item aria-role="listitem"
-								>Assign PM</b-dropdown-item
-							>
+							<b-dropdown-item
+								aria-role="listitem"
+								@click="assignPM()"
+								>Assign PM
+							</b-dropdown-item>
 							<b-dropdown-item aria-role="listitem"
 								>Merge</b-dropdown-item
 							>
@@ -44,7 +46,6 @@
 					<a class="button is-fullwidth">Non-Project</a>
 				</b-field>
 			</section>
-
 			<section class="info">
 				<p class="title is-size-5" style="margin-bottom:10px;">
 					New Projects
@@ -74,7 +75,30 @@
 							<p class="is-size-7">AM: Wawan Surnawan, M.T.</p>
 						</div>
 					</div>
-					<div class="media-right">
+					<div v-if="showAssignPm" class="media-right">
+						<b-dropdown aria-role="list">
+							<button
+								class="button is-primary is-small"
+								slot="trigger"
+							>
+								<span>⚙</span>
+							</button>
+
+							<b-dropdown-item
+								aria-role="listitem"
+								href="project/allocation.html"
+								tag="a"
+								>Assign Member
+							</b-dropdown-item>
+							<b-dropdown-item aria-role="listitem"
+								>Merge</b-dropdown-item
+							>
+							<b-dropdown-item aria-role="listitem"
+								>Detail</b-dropdown-item
+							>
+						</b-dropdown>
+					</div>
+					<div v-else class="media-right">
 						<b-dropdown aria-role="list">
 							<button
 								class="button is-primary is-small"
@@ -86,8 +110,8 @@
 							<b-dropdown-item
 								aria-role="listitem"
 								@click="assignPM()"
-								>Assign PM</b-dropdown-item
-							>
+								>Assign PM
+							</b-dropdown-item>
 							<b-dropdown-item aria-role="listitem"
 								>Merge</b-dropdown-item
 							>
@@ -101,8 +125,8 @@
 		</div>
 		<div class="column is-section">
 			<section class="main-content">
-				<p class="title is-size-3">BU: Project Management Office</p>
-				<p class="subtitle is-size-5">📁 Total Project [ 100 ]</p>
+				<p class="title is-size-3">BU: {{bu}}</p>
+				<p class="subtitle is-size-5">📁 Total Project [ {{totalProject}} ]</p>
 			</section>
 
 			<section class="info">
@@ -110,28 +134,28 @@
 					<div class="level-item has-text-centered">
 						<div
 							class="box is-level-widget"
-							@click="test('behind_schedule', 1)"
+							@click="filter('behind_schedule', 1)"
 						>
 							<p class="heading">Behind Schedule</p>
-							<p class="title">📁 40</p>
+							<p class="title">📁 {{behindSchedule}}</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
 						<div
 							class="box is-level-widget"
-							@click="test('bast_delay', 2)"
+							@click="filter('bast_delay', 2)"
 						>
 							<p class="heading">BAST Delay</p>
-							<p class="title">📁 20</p>
+							<p class="title">📁 {{bastDelay}}</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
 						<div
 							class="box is-level-widget"
-							@click="test('top_delay', 3)"
+							@click="filter('top_delay', 3)"
 						>
 							<p class="heading">TOP Delay</p>
-							<p class="title">📁 10</p>
+							<p class="title">📁 {{topDelay}}</p>
 						</div>
 					</div>
 				</nav>
@@ -291,6 +315,30 @@ export default {
 		projectId: {
 			type: String,
 			required: true
+		},
+		showAssignPm: {
+			type: Boolean,
+			default: false
+		},
+		totalProject: {
+			type: String,
+			required: true
+		},
+		bu: {
+			type: String,
+			required: true
+		},
+		behindSchedule: {
+			type: String,
+			required: true
+		},
+		bastDelay: {
+			type: String,
+			required: true
+		},
+		topDelay: {
+			type: String,
+			required: true
 		}
 	},
 	data() {
@@ -323,9 +371,8 @@ export default {
 				userdata: [],
 				formTarget: ""
 			},
-			behindFilter: false,
-			delayFilter: false,
-			topFilter: false
+			topFilter: false,
+			noFilter: ""
 		};
 	},
 	methods: {
@@ -344,30 +391,24 @@ export default {
 				avatar: ""
 			};
 		},
-		test(filter, no) {
-			if (no === 1) {
-				if (
-					this.behindFilter === false ||
-					this.delayFilter === true ||
-					this.topFilter === true
-				) {
+		filter(filter, no) {
+			if (this.projectFilter === true && this.noFilter !== "") {
+				if (this.noFilter === no) {
 					this.projects = this.dataku;
-					this.behindFilter = true;
-					let self = this;
-					this.projects = this.projects.filter(post => post[filter]);
+					this.noFilter = "";
+					this.projectFilter = false;
 				} else {
 					this.projects = this.dataku;
+					let self = this;
+					this.projects = this.projects.filter(post => post[filter]);
+					this.projectFilter = true;
+					this.noFilter = no;
 				}
-			}
-		},
-		test2() {
-			if (this.behindFilter === false) {
-				this.behindFilter = true;
+			} else {
 				let self = this;
 				this.projects = this.projects.filter(post => post[filter]);
-			} else {
-				this.behindFilter = false;
-				this.projects = this.dataku;
+				this.projectFilter = true;
+				this.noFilter = no;
 			}
 		}
 	},
@@ -422,6 +463,7 @@ export default {
 	},
 	mounted() {
 		this.modal.userdata = this.users;
+		console.log(this.showAssignPm);
 
 		if (this.alertMessage !== undefined && this.alertMessage !== "") {
 			let type = [

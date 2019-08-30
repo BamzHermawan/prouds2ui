@@ -1,6 +1,5 @@
 <template>
 	<h1>
-		hello Vue
 		<div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 	</h1>
 </template>
@@ -23,7 +22,7 @@ export default {
 			// g.AddTaskItemObject(this.dataBaru);
 
 			g.setOptions({
-				vCaptionType: "Complete", // Set to Show Caption : None,Caption,Resource,Duration,Complete,
+				vCaptionType: "Complete",
 				vQuarterColWidth: 36,
 				vDateTaskDisplayFormat: "day dd month yyyy", // Shown in tool tip box
 				vDayMajorDateDisplayFormat: "mon yyyy - Week ww", // Set format to dates in the "Major" header of the "Day" view
@@ -33,16 +32,21 @@ export default {
 				vShowEndWeekDate: 0, // Show/Hide the date for the last day of the week in header for daily
 				vAdditionalHeaders: {
 					// Add data columns to your table
-					category: {
-						title: "Category"
+					work: {
+						title: "Work"
 					},
-					sector: {
-						title: "Sector"
+					workTotal: {
+						title: "Work Total"
+					},
+					resource: {
+						title: "Resource"
 					}
 				},
 				vUseSingleCell: 10000, // Set the threshold cell per table row (Helps performance for large data.
 				vFormatArr: ["Day", "Week", "Month", "Quarter"] // Even with setUseSingleCell using Hour format on such a large chart can cause issues in some browsers,
 			});
+			g.setShowRes(0);
+			g.setShowComp(0);
 			this.dataBaru.forEach(d => {
 				d.pGantt = g;
 				g.AddTaskItemObject(d);
