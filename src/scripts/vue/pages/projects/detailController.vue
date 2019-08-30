@@ -137,6 +137,15 @@
 				</section>
 
 				<section class="info">
+					<h5 class="is-size-5">Workplan</h5>
+					<hr
+						class="has-background-grey-lighter"
+						style="margin-top: 5px; margin-bottom: 10px;"
+					/>
+					<slot name="workplan"></slot>
+				</section>
+
+				<section class="info">
 					<h5 class="is-size-5">Documents</h5>
 					<hr
 						class="has-background-grey-lighter"

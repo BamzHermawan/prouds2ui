@@ -40,7 +40,7 @@ new Vue({
 			value = value.toString();
 			let allowed = "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx".split("|");
 
-			if(value.length > 14) {
+			if (value.length > 14) {
 				let res = value.split(".");
 				let ext = value.split(".").pop();
 				if (res.length > 1 && allowed.includes(ext)) {
