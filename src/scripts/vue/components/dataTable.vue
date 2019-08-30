@@ -79,6 +79,7 @@
 					ref="table"
 					:class="addedClass()"
 					:row-class="rowClass"
+					:loading="isLoading"
 				>
 					<template slot-scope="props">
 						<slot :row="props.row">
@@ -199,6 +200,9 @@ export default {
 		},
 		rowClass: {
 			default: function() {}
+		},
+		isLoading: {
+			default: false
 		}
 	},
 	computed: {
