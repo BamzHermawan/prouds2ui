@@ -128,6 +128,7 @@
 								checkable
 								@onCheck="passedCheckedRow"
 								:checkbox-position="checkboxPosition"
+								:is-loading="loadingTable"
 							>
 								<template slot-scope="props">
 									<b-table-column
@@ -199,7 +200,6 @@
 									<div class="columns">
 										<div class="column">
 											<p class="title is-size-5">
-												{{ randomSmile(props.index) }}
 												{{ props.row.name }}
 											</p>
 											<p class="subtitle is-size-6">
@@ -218,8 +218,21 @@
 											<p class="title is-size-6">
 												🔥 Workload
 											</p>
-											<p class="subtitle is-size-5">
+											<p
+												v-if="
+													props.row.workload !==
+														undefined &&
+														props.row.workload !==
+															null &&
+														props.row.workload !==
+															''
+												"
+												class="subtitle is-size-5"
+											>
 												{{ props.row.workload }}
+											</p>
+											<p v-else class="tag is-warning">
+												Tidak Ada Data
 											</p>
 										</div>
 									</div>
@@ -285,41 +298,48 @@
 											</div>
 										</div>
 									</div>
-									<div class="columns">
-										<div class="column">
+									<div class="columns is-multiline">
+										<div class="column is-12">
 											<div class="content">
 												<p class="title is-size-6">
 													🏆 Kemampuan (Skill)
 												</p>
-												<ol
-													v-if="
-														props.row.skills
-															.length > 0
-													"
-													type="1"
-												>
-													<li
-														v-for="(skill,
-														index) in props.row
-															.skills"
-														:key="index"
+												<div style="padding:8px;">
+													<div
+														v-if="
+															props.row.skills
+																.length > 0
+														"
+														class="columns is-multiline"
 													>
-														<b>{{
-															skill.skillName
-														}}</b
-														>:
-														{{ skill.skillLevel }}
-													</li>
-												</ol>
-												<p
-													v-else
-													class="tag is-warning"
-												>
-													Tidak Ada Data
-												</p>
+														<div
+															v-for="(skill,
+															index) in props.row
+																.skills"
+															:key="index"
+															class="column is-one-quarter"
+															style="padding: 5px;"
+														>
+															{{ index + 1 }}.
+															<b>{{
+																skill.skillName
+															}}</b
+															>:
+															{{
+																skill.skillLevel
+															}}
+														</div>
+													</div>
+													<p
+														v-else
+														class="tag is-warning"
+													>
+														Tidak Ada Data
+													</p>
+												</div>
 											</div>
 										</div>
-										<div class="column">
+										<div class="column is-hidden">
 											<div class="content">
 												<p class="title is-size-6">
 													🎒 Training
@@ -348,35 +368,42 @@
 												</p>
 											</div>
 										</div>
-										<div class="column">
+										<div class="column is-12">
 											<div class="content">
 												<p class="title is-size-6">
 													📜 Certificate
 												</p>
-												<ol
-													v-if="
-														props.row.competency
-															.length > 0
-													"
-													type="1"
-												>
-													<li
-														v-for="(competency,
-														index) in props.row
-															.competency"
-														:key="index"
+												<div style="padding:8px;">
+													<div
+														v-if="
+															props.row.competency
+																.length > 0
+														"
+														class="columns is-multiline"
 													>
-														{{
-															competency.competencyName
-														}}
-													</li>
-												</ol>
-												<p
-													v-else
-													class="tag is-warning"
-												>
-													Tidak Ada Data
-												</p>
+														<div
+															v-for="(competency,
+															index) in props.row
+																.competency"
+															:key="index"
+															class="column is-one-quarter"
+															style="padding: 5px;"
+														>
+															{{
+																index + 1 + ". "
+															}}
+															{{
+																competency.competencyName
+															}}
+														</div>
+													</div>
+													<p
+														v-else
+														class="tag is-warning"
+													>
+														Tidak Ada Data
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -452,7 +479,8 @@ export default {
 			listProjectData: [],
 			projectId: "",
 			checkedRows: [],
-			openedDetail: []
+			openedDetail: [],
+			loadingTable: true
 		};
 	},
 	computed: {
@@ -637,6 +665,8 @@ export default {
 							self.fetchDetail(row);
 						});
 					}
+
+					self.loadingTable = false;
 				})
 				.catch(function(error) {
 					console.log("ACB Error Fetching: 629");
@@ -685,6 +715,7 @@ export default {
 	},
 	mounted() {
 		let self = this;
+		this.loadingTable = true;
 		this.listProjectData = this.listProject;
 
 		Tools.loadStorage("selectedResource").then(selected => {

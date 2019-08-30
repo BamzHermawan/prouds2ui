@@ -144,7 +144,15 @@
 							<span>{{ props.row.name }}</span>
 						</b-table-column>
 						<b-table-column field="bu" label="Business Unit">
-							<span>{{ props.row.bu }}</span>
+							<span
+								v-if="
+									props.row.bu !== undefined &&
+										props.row.bu !== null &&
+										props.row.bu !== ''
+								"
+								>{{ props.row.bu }}</span
+							>
+							<span v-else>-</span>
 						</b-table-column>
 						<b-table-column field="role" label="Job Role">
 							<span
@@ -159,7 +167,7 @@
 						</b-table-column>
 						<b-table-column
 							field="userId"
-							label="⚡ Action"
+							label="Action"
 							class="tour-step-7"
 						>
 							<b-button
@@ -233,34 +241,41 @@
 								</p>
 							</div>
 						</div>
-						<div class="columns">
-							<div class="column">
+						<div class="columns is-multiline">
+							<div class="column is-12">
 								<div class="content">
 									<p class="title is-size-6">
-										Kemampuan (Skill)
+										🏆 Kemampuan (Skill)
 									</p>
-									<ol
-										v-if="props.row.skills.length > 0"
-										type="1"
-									>
-										<li
-											v-for="(skill, index) in props.row
-												.skills"
-											:key="index"
+									<div style="padding:8px;">
+										<div
+											v-if="props.row.skills.length > 0"
+											class="columns is-multiline"
 										>
-											<b>{{ skill.skillName }}</b
-											>:
-											{{ skill.skillLevel }}
-										</li>
-									</ol>
-									<p v-else class="tag is-warning">
-										Tidak Ada Data
-									</p>
+											<div
+												v-for="(skill, index) in props
+													.row.skills"
+												:key="index"
+												class="column is-one-quarter"
+												style="padding: 5px;"
+											>
+												{{ index + 1 }}.
+												<b>{{ skill.skillName }}</b
+												>:
+												{{ skill.skillLevel }}
+											</div>
+										</div>
+										<p v-else class="tag is-warning">
+											Tidak Ada Data
+										</p>
+									</div>
 								</div>
 							</div>
-							<div class="column">
+							<div class="column is-hidden">
 								<div class="content">
-									<p class="title is-size-6">Training</p>
+									<p class="title is-size-6">
+										🎒 Training
+									</p>
 									<ol
 										v-if="props.row.course.length > 0"
 										type="1"
@@ -278,24 +293,33 @@
 									</p>
 								</div>
 							</div>
-							<div class="column">
+							<div class="column is-12">
 								<div class="content">
-									<p class="title is-size-6">Certificate</p>
-									<ol
-										v-if="props.row.competency.length > 0"
-										type="1"
-									>
-										<li
-											v-for="(competency, index) in props
-												.row.competency"
-											:key="index"
-										>
-											{{ competency.competencyName }}
-										</li>
-									</ol>
-									<p v-else class="tag is-warning">
-										Tidak Ada Data
+									<p class="title is-size-6">
+										📜 Certificate
 									</p>
+									<div style="padding:8px;">
+										<div
+											v-if="
+												props.row.competency.length > 0
+											"
+											class="columns is-multiline"
+										>
+											<div
+												v-for="(competency,
+												index) in props.row.competency"
+												:key="index"
+												class="column is-one-quarter"
+												style="padding: 5px;"
+											>
+												{{ index + 1 + ". " }}
+												{{ competency.competencyName }}
+											</div>
+										</div>
+										<p v-else class="tag is-warning">
+											Tidak Ada Data
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>

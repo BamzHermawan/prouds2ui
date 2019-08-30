@@ -7,9 +7,9 @@
 // Font Import from google Font
 @import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed&display=swap');
 
-$roboto: 'Roboto Condensed', sans-serif;
-$crete: 'Crete Round', serif;
-$dmserif: 'DM Serif Text', serif;
+$roboto: 'Roboto Condensed', sans-serif !important;
+$crete: 'Crete Round', serif !important;
+$dmserif: 'DM Serif Text', serif, !important;
 
 $p_font: $roboto;
 $h1_font: $crete;
@@ -367,6 +367,10 @@ p.help.is-success {
 			font-weight: bold;
 		}
 	}
+}
+
+.b-table.is-loading {
+    margin-bottom: 50px !important;
 }
 
 @import "~bulma";
