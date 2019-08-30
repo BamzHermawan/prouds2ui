@@ -10,16 +10,6 @@ new Vue({
 		NavBar, ContentPage
 	},
 	el: '#vapp',
-	data() {
-		return {
-			hello: 'Hello World'
-		}
-	},
-	computed: {
-		sayHi() {
-			return this.hello;
-		}
-	},
 	mounted() {
 		Loader();
 	}

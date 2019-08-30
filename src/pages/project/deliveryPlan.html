@@ -105,7 +105,9 @@
 					<span v-else class="tag is-small is-info">---</span>
 				</b-table-column>
 				<b-table-column field="docTypePlan" label="Doc Type Plan" width="370">
-					<p v-if="props.row.docTypePlan !== undefined && props.row.docTypePlan !== '' && props.row.docTypePlan !== null">{{props.row.docTypePlan}}</p>
+					<p
+						v-if="props.row.docTypePlan !== undefined && props.row.docTypePlan !== '' && props.row.docTypePlan !== null">
+						{{props.row.docTypePlan}}</p>
 					<span v-else class="tag is-small">---</span>
 				</b-table-column>
 				<b-table-column field="actual.progress" label="Progress Actual" width="175" centered>

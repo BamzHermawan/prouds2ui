@@ -174,7 +174,7 @@
 							label="Project Name"
 							sortable
 						>
-							<span>{{ props.row.project_name }}</span>
+							<span><a :href="props.row.link">{{ props.row.project_name }}</a></span>
 						</b-table-column>
 						<b-table-column field="iwo" label="IWO" sortable>
 							<span>{{ props.row.iwo }}</span>
