@@ -378,6 +378,14 @@ p.help.is-success {
 }
 .gmainleft{
 	width: 40% !important;
+
+	.gspanning.gtaskname  {
+		padding: 1px !important;
+		vertical-align: middle;
+		div {
+			font-size: 10px !important;
+		}
+	}
 }
 
 .gantt {
