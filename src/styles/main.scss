@@ -369,5 +369,25 @@ p.help.is-success {
 	}
 }
 
+.gmainright{
+	width: 60% !important;
+}
+.gmainleft{
+	width: 40% !important;
+}
+
+.gantt {
+	td {
+		padding: 8px !important;
+		font-size: 12px !important;
+		
+		div {
+			font-size: 12px !important;
+		}
+	}
+}
+
+
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
