@@ -48,7 +48,7 @@
 						<b-field label="Work">
 							<b-input
 								expanded
-								v-model="modal.work"
+								v-model="modal.data.work"
 								type="input"
 								name="work"
 							></b-input>
@@ -56,7 +56,7 @@
 						<b-field label="Work Total">
 							<b-input
 								expanded
-								v-model="modal.workTotal"
+								v-model="modal.data.workTotal"
 								type="input"
 								name="workTotal"
 							></b-input>
@@ -100,9 +100,8 @@ export default {
 				title: "",
 				StartDate: "",
 				EndDate: "",
-				work: "1800",
-				workTotal: "6272",
-				duration: ""
+				duration: "",
+				data: {}
 			}
 		};
 	},
@@ -123,6 +122,9 @@ export default {
 				vShowTaskInfoLink: 1,
 				vShowEndWeekDate: 0,
 				vAdditionalHeaders: {
+					duration: {
+						title: "Duration"
+					},
 					work: {
 						title: "Work"
 					},
@@ -135,9 +137,10 @@ export default {
 			});
 			g.setShowRes(0);
 			g.setShowComp(0);
+			g.setShowDur(0);
 			// g.setEditable(1);
 			g.setEventClickRow(function(e) {
-				console.log(e);
+				// console.log(e);
 				self.modalEvent(e);
 			});
 			this.dataBaru.forEach(d => {
@@ -152,8 +155,12 @@ export default {
 			this.modal.StartDate = e.getStart();
 			this.modal.EndDate = e.getEnd();
 			this.modal.duration = e.getDuration();
-			console.log(e.getOriginalID());
-			console.log(this.modal.title);
+			let eventID = e.getOriginalID();
+
+			this.modal.data = this.dataBaru.find(task => {
+				console.log(task);
+				return task.pID == eventID;
+			});
 		},
 		closeModal() {
 			this.modal.display = false;
