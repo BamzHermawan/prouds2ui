@@ -374,31 +374,45 @@ p.help.is-success {
 }
 
 .gmainright{
-	width: 60% !important;
+	width: 50% !important;
+	// margin-bottom: 43px !important;
 }
 .gmainleft{
-	width: 40% !important;
+	width: 50% !important;
 
-	.gspanning.gtaskname  {
-		padding: 1px !important;
-		vertical-align: middle;
-		div {
-			font-size: 10px !important;
-		}
-	}
+	// .gspanning.gtaskname  {
+	// 	padding: 1px !important;
+	// 	vertical-align: middle;
+	// }
 }
 
-.gantt {
-	td {
-		padding: 8px !important;
-		font-size: 12px !important;
-		
-		div {
-			font-size: 12px !important;
-		}
-	}
+// .gtaskname div {
+// 	padding: 5px !important;
+// 	font-size: 12px !important;
+// }
+
+td.gmajorheading div{
+	padding: 5px !important;
 }
 
+// td.gspanning div {
+// 	padding: 9px !important;
+// }
+
+.gantt td {
+	// font-size: 11px;
+	padding: 2px !important;
+}
+
+// .gantt table {
+// 	// margin-bottom: 43px;
+// }
+
+// .gantt-inputtable {
+// 	max-height: 20px !important;
+// 	font-size: 12px;
+// 	padding: 2px;
+// }
 
 
 @import "~bulma";
