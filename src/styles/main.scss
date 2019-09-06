@@ -414,6 +414,9 @@ td.gmajorheading div{
 // 	padding: 2px;
 // }
 
+.datepicker .datepicker-content {
+    height: auto !important;
+}
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

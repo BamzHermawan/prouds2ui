@@ -34,8 +34,7 @@
 	</section>
 
 	<section id="vapp" class="section" data-logged="Ade Wiranata Putra">
-		<search-menu ref="stepOne"
-			api-detail-resource="http://localhost:5501/demo/getDetail.php"
+		<search-menu ref="stepOne" api-detail-resource="http://localhost:5501/demo/getDetail.php"
 			api-search-engine="http://localhost:5501/demo/getResource.php"
 			api-post-saved="http://localhost:5501/demo/axios_check.php?return=integer-0-99-batchId">
 			<template slot="exit-button">
@@ -56,8 +55,8 @@
 
 		<b-modal full-screen :active.sync="filter.active" has-modal-card :can-cancel="false"
 			@close="reloadLocalStorage">
-			<filter-menu start-date-name="startDate" end-date-name="endDate"
-				user-id-name="users" api-action="http://localhost:5501/demo/post_detect.php"
+			<filter-menu start-date-name="startDate" end-date-name="endDate" user-id-name="users"
+				api-action="http://localhost:5501/demo/post_detect.php"
 				api-check-booking="http://localhost:5501/demo/getBooking.php"
 				api-detail-resource="http://localhost:5501/demo/getDetail.php"></filter-menu>
 		</b-modal>

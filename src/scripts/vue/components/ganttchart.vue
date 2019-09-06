@@ -23,14 +23,22 @@
 						method="POST"
 						enctype="multipart/form-data"
 					>
-						<b-field label="Start Date">
+						<b-field label="Task Name">
+							<b-input
+								expanded
+								v-model="modal.data.pName"
+								type="input"
+								name="taskName"
+							></b-input>
+						</b-field>
+						<b-field label="Start">
 							<b-datepicker
 								placeholder="DD/MM/YYYY"
 								name="StartDate"
 								v-model="modal.StartDate"
 							></b-datepicker>
 						</b-field>
-						<b-field label="End Date">
+						<b-field label="Finish">
 							<b-datepicker
 								placeholder="DD/MM/YYYY"
 								name="EndDate"
@@ -40,7 +48,7 @@
 						<b-field label="Duration">
 							<b-input
 								expanded
-								v-model="modal.duration"
+								v-model="modal.data.duration"
 								type="input"
 								name="duration"
 							></b-input>
@@ -130,6 +138,9 @@ export default {
 					},
 					workTotal: {
 						title: "Work Total"
+					},
+					action: {
+						title: "Action"
 					}
 				},
 				vUseSingleCell: 10000,
@@ -138,12 +149,15 @@ export default {
 			g.setShowRes(0);
 			g.setShowComp(0);
 			g.setShowDur(0);
+			g.setUseToolTip(0);
 			// g.setEditable(1);
 			g.setEventClickRow(function(e) {
 				// console.log(e);
-				self.modalEvent(e);
+				// self.modalEvent(e);
+				self.$parent.showSideBar = true;
 			});
 			this.dataBaru.forEach(d => {
+				d.action = "<span class='has-text-info'>⚙ Action</span>";
 				d.pGantt = g;
 				g.AddTaskItemObject(d);
 			});

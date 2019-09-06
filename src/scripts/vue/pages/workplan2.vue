@@ -62,7 +62,7 @@
 				</div>
 			</div>
 		</nav>
-		<v-gantt :dataBaru="dataBaru" :action-event="actionEvent"></v-gantt>
+		<v-chart :dataBaru="dataBaru"></v-chart>
 		<b-modal
 			:active.sync="modal.display"
 			width="600px"
@@ -179,10 +179,10 @@
 </template>
 
 <script>
-import vGantt from "../components/ganttchart";
+import vChart from "../components/ganttchart2";
 export default {
 	components: {
-		vGantt
+		vChart
 	},
 	props: {
 		apiAction: {
@@ -198,10 +198,6 @@ export default {
 			required: true
 		},
 		action: {
-			type: String,
-			required: true
-		},
-		actionEvent: {
 			type: String,
 			required: true
 		}
