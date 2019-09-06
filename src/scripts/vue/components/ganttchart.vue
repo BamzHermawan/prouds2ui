@@ -1,57 +1,183 @@
 <template>
-	<h1>
-		<div style="position:relative" class="gantt" id="GanttChartDIV"></div>
-	</h1>
+	<div class="container">
+		<h1>
+			<div
+				style="position:relative"
+				class="gantt"
+				id="GanttChartDIV"
+			></div>
+		</h1>
+		<b-modal
+			:active.sync="modal.display"
+			width="600px"
+			@close="closeModal()"
+			scroll="keep"
+		>
+			<div class="card-modal">
+				<header class="modal-card-head">
+					<p class="modal-card-title">{{ modal.title }}</p>
+				</header>
+				<section class="modal-card-body" style="min-height:500px;">
+					<form
+						:action="actionEvent"
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<b-field label="Task Name">
+							<b-input
+								expanded
+								v-model="modal.data.pName"
+								type="input"
+								name="taskName"
+							></b-input>
+						</b-field>
+						<b-field label="Start">
+							<b-datepicker
+								placeholder="DD/MM/YYYY"
+								name="StartDate"
+								v-model="modal.StartDate"
+							></b-datepicker>
+						</b-field>
+						<b-field label="Finish">
+							<b-datepicker
+								placeholder="DD/MM/YYYY"
+								name="EndDate"
+								v-model="modal.EndDate"
+							></b-datepicker>
+						</b-field>
+						<b-field label="Duration">
+							<b-input
+								expanded
+								v-model="modal.data.duration"
+								type="input"
+								name="duration"
+							></b-input>
+						</b-field>
+						<b-field label="Work">
+							<b-input
+								expanded
+								v-model="modal.data.work"
+								type="input"
+								name="work"
+							></b-input>
+						</b-field>
+						<b-field label="Work Total">
+							<b-input
+								expanded
+								v-model="modal.data.workTotal"
+								type="input"
+								name="workTotal"
+							></b-input>
+						</b-field>
+						<a
+							class="button is-danger"
+							style="min-width:50px; margin-top:14px;"
+							type="button"
+							@click="closeModal()"
+						>
+							Close
+						</a>
+						<button
+							class="button is-success"
+							type="submit"
+							style="min-width:50px; margin-top:14px;"
+						>
+							Submit
+						</button>
+					</form>
+				</section>
+			</div>
+		</b-modal>
+	</div>
 </template>
 
 <script>
 import * as JSGantt from "jsgantt-improved";
 export default {
+	props: {
+		actionEvent: {
+			type: String,
+			required: true
+		}
+	},
 	data() {
 		return {
-			dataBaru: DATA
+			dataBaru: DATA,
+			modal: {
+				display: false,
+				title: "",
+				StartDate: "",
+				EndDate: "",
+				duration: "",
+				data: {}
+			}
 		};
 	},
 	methods: {
 		getChart() {
+			let self = this;
 			const g = new JSGantt.GanttChart(
 				document.getElementById("GanttChartDIV"),
 				"day"
 			);
-
-			// g.AddTaskItemObject(this.dataBaru);
-
 			g.setOptions({
 				vCaptionType: "Complete",
 				vQuarterColWidth: 36,
-				vDateTaskDisplayFormat: "day dd month yyyy", // Shown in tool tip box
-				vDayMajorDateDisplayFormat: "mon yyyy - Week ww", // Set format to dates in the "Major" header of the "Day" view
-				vWeekMinorDateDisplayFormat: "dd mon", // Set format to display dates in the "Minor" header of the "Week" view
+				vDateTaskDisplayFormat: "day dd month yyyy",
+				vDayMajorDateDisplayFormat: "mon yyyy - Week ww",
+				vWeekMinorDateDisplayFormat: "dd mon",
 				vLang: "en",
-				vShowTaskInfoLink: 1, // Show link in tool tip (0/1)
-				vShowEndWeekDate: 0, // Show/Hide the date for the last day of the week in header for daily
+				vShowTaskInfoLink: 1,
+				vShowEndWeekDate: 0,
 				vAdditionalHeaders: {
-					// Add data columns to your table
+					duration: {
+						title: "Duration"
+					},
 					work: {
 						title: "Work"
 					},
 					workTotal: {
 						title: "Work Total"
 					},
-					resource: {
-						title: "Resource"
+					action: {
+						title: "Action"
 					}
 				},
-				vUseSingleCell: 10000, // Set the threshold cell per table row (Helps performance for large data.
-				vFormatArr: ["Day", "Week", "Month", "Quarter"] // Even with setUseSingleCell using Hour format on such a large chart can cause issues in some browsers,
+				vUseSingleCell: 10000,
+				vFormatArr: ["Day", "Week", "Month", "Quarter"]
 			});
 			g.setShowRes(0);
 			g.setShowComp(0);
+			g.setShowDur(0);
+			g.setUseToolTip(0);
+			// g.setEditable(1);
+			g.setEventClickRow(function(e) {
+				// console.log(e);
+				// self.modalEvent(e);
+				self.$parent.showSideBar = true;
+			});
 			this.dataBaru.forEach(d => {
+				d.action = "<span class='has-text-info'>⚙ Action</span>";
 				d.pGantt = g;
 				g.AddTaskItemObject(d);
 			});
 			g.Draw();
+		},
+		modalEvent(e) {
+			this.modal.display = true;
+			this.modal.title = "Edit " + e.getName();
+			this.modal.StartDate = e.getStart();
+			this.modal.EndDate = e.getEnd();
+			this.modal.duration = e.getDuration();
+			let eventID = e.getOriginalID();
+
+			this.modal.data = this.dataBaru.find(task => {
+				console.log(task);
+				return task.pID == eventID;
+			});
+		},
+		closeModal() {
+			this.modal.display = false;
 		}
 	},
 	mounted() {

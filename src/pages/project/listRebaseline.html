@@ -12,33 +12,35 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../styles/main.scss">
-	<link href="../../node_modules/jsgantt-improved/dist/jsgantt.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../../styles/main.scss">
+	<link href="../../../node_modules/jsgantt-improved/dist/jsgantt.css" rel="stylesheet" type="text/css" />
+	<script src="../../../node_modules/jsgantt-improved/dist/jsgantt.js" type="text/javascript"></script>
 </head>
 
-<body class="add-margin">
+<body>
 	<div class="loader-wrapper animated fadeIn">
 		<img src="http://localhost:5501/media/loader.gif">
 	</div>
-	<div id="vapp">
-		<nav-bar :left-menu="[
-				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-				{ label: 'projects', link: 'projects.html', icon:'', active: false },
-				{ label: 'financial', link: '#financial', icon:'', active: false },
-				{ label: 'operation', link: '#opperation', icon:'', active: false },
-				{ label: 'setting', link: 'setting/users.html', icon:'', active: false },
-			]" :right-menu="[
-				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
-				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="home.html"></nav-bar>
+	<section class="hero is-primary is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Rebaseline List
+				</h1>
+				<h2 class="title is-size-5">
+					Hi, <span class="has-text-warning">Ade Wiranata Putra</span> 👋
+				</h2>
+				<p class="subtitle">Selamat Datang di Halaman List Rebaseline.</p>
+			</div>
+		</div>
+	</section>
 
-		<content-page :show-assign-pm="false" project-id="ProuDS 2 UI" bu="Project Management Office"
-			behind-schedule="40" bast-delay="20" top-delay="10" total-project="70"
-			action-send="http://localhost:5501/demo/post_detect.php?how=assign-pm"
-			api-action="http://localhost:5501/demo/post_detect.php">
+	<section id="vapp" class="section">
+		<content-page workplan-id="1" allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx"
+			action-event="http://localhost:5501/demo/post_detect.php">
 
 		</content-page>
-	</div>
+	</section>
 
 	<script>
 		const DATA = [
@@ -47,19 +49,23 @@
 				pName: "New Prouds Development Phase I",
 				pStart: "2019-06-10",
 				pEnd: "2019-12-31",
+				duration: 100,
 				pClass: "gtaskpurple",
+				pMile: 0,
 				pComp: 40,
 				pGroup: 1,
 				pParent: 0,
 				pOpen: 1,
 				work: 1800,
-				workTotal: 6272
+				workTotal: 6272,
+				pRes: "ade"
 			},
 			{
 				pID: 2,
 				pName: "Requirement Gathering",
 				pStart: "2019-06-10",
 				pEnd: "2019-06-21",
+				duration: 100,
 				pClass: "gtaskyellow",
 				pComp: 100,
 				pGroup: 0,
@@ -73,6 +79,7 @@
 				pName: "Analysis and Design",
 				pStart: "2019-06-17",
 				pEnd: "2019-07-12",
+				duration: 100,
 				pClass: "gtaskpink",
 				pComp: 80,
 				pGroup: 0,
@@ -86,6 +93,7 @@
 				pName: "Mockup UI Development",
 				pStart: "2019-06-06",
 				pEnd: "2019-10-18",
+				duration: 100,
 				pClass: "gtaskred",
 				pComp: 27.33,
 				pGroup: 0,
@@ -99,6 +107,7 @@
 				pName: "Construction",
 				pStart: "2019-06-19",
 				pEnd: "2019-11-22",
+				duration: 100,
 				pClass: "gtaskblue",
 				pComp: 23.71,
 				pGroup: 1,
@@ -112,6 +121,7 @@
 				pName: "Develop Front-End",
 				pStart: "2019-08-19",
 				pEnd: "2019-10-31",
+				duration: 100,
 				pClass: "gtaskgreen",
 				pComp: 57.81,
 				pGroup: 0,
@@ -122,7 +132,8 @@
 			}
 		]
 	</script>
-	<script src="../scripts/workplan.js"></script>
+	<script src="../../scripts/project/listRebaseline.js"></script>
+
 </body>
 
 </html>

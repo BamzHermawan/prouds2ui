@@ -76,8 +76,10 @@
 
 				<b-table-column field="userId" label="⚡ Action">
 					<div v-if="!checkEmpty(props.row.acceptLink) && !checkEmpty(props.row.rejectLink)">
-						<b-button type="is-danger" size="is-small" tag="a" @click="rejectAction(props.row.rejectLink)">👎 Reject</b-button>
-						<b-button type="is-success" size="is-small" @click="acceptAction(props.row.acceptLink, props.row.name)">👍 Accept</b-button>
+						<b-button type="is-danger" size="is-small" tag="a" @click="rejectAction(props.row.rejectLink)">
+							👎 Reject</b-button>
+						<b-button type="is-success" size="is-small"
+							@click="acceptAction(props.row.acceptLink, props.row.name)">👍 Accept</b-button>
 					</div>
 					<span v-else class="tag is-warning">Action Not Available</span>
 				</b-table-column>
