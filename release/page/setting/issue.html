@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="/src/main.min.css">
+</head>
+
+<body class="add-margin">
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+	<div id="vapp">
+		<nav-bar :left-menu="[
+			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+			{ label: 'projects', link: '../projects.html', icon:'', active: false },
+			{ label: 'financial', link: '#financial', icon:'', active: false },
+			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: '#', icon:'', active: true },
+		]" :right-menu="[
+			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+			{ label: '🔒 logout', link: '#logout', icon:'' },
+		]" home-link="../home.html"></nav-bar>
+		<side-bar :config-menu="[
+			{ label: 'Users', link:'users.html', icon:'account', active:false },
+			{ label: 'Issue', link:'Issue.html', icon:'briefcase', active:false },
+			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
+			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+		]">
+			<div class="container is-section">
+				<p class="title is-size-3">ISSUE</p>
+				<div class="columns">
+					<div class="column is-6">
+						<data-table :data="dataIssueStatus" :fields="[]" title="Issue Status"></data-table>
+					</div>
+					<div class="column is-6">
+						<data-table :data="dataIssueSeverity" :fields="[]" title="Issue Severity"></data-table>
+					</div>
+				</div>
+			</div>
+
+			<crud :paginated="5" narrowed="" :data="props.CRUD_TEST.data" :columns="props.CRUD_TEST.fields" add="http://localhost:5501/demo/post_detect.php" del="http://localhost:5501/demo/post_detect.php?name={submit_by}&id={id}" :edit="{
+					method: 'get',
+					action: 'http://localhost:5501/demo/post_detect.php',
+					form: {
+						name: {
+							label: 'Issue Name',
+							type: 'text'
+						},
+						severity: {
+							label: 'Severity Issue',
+							type: 'select',
+							option: [ 'low', 'middle', 'high' ]
+						},
+						company: {
+							label: 'Company Sender',
+							type: 'select',
+							option: [
+								{ key: 'pmo', text: 'Project Management Office' },
+								{ key: 'cdo', text: 'Cloud Development Operation' },
+								{ key: 'sid', text: 'Support Internal Development' }
+							]
+						},
+						submit_at: {
+							label: 'Created At',
+							type: 'datepicker'
+						}
+					}
+				}">
+				<template slot="header">
+					<header class="card-header has-gradient-light">
+						<p class="card-header-title">Issue List</p>
+					</header>
+				</template>
+			</crud>
+		</side-bar>
+	</div>
+
+	<script>var VAPPS = {
+  CRUD_TEST: {
+    fields: [{
+      key: 'name',
+      label: 'Issue Name',
+      sortable: true
+    }, {
+      key: 'severity',
+      label: 'Severity Issue',
+      sortable: true,
+      width: 250
+    }, {
+      key: 'submit_at',
+      label: 'Created Date',
+      sortable: false
+    }],
+    data: [{
+      "id": 0,
+      "name": "CILLUM EXCEPTEUR",
+      "severity": "low",
+      "submit_by": "Oconnor Albert",
+      "email": "oconnoralbert@prismatic.com",
+      "phone": "(62) 898-0446-2530",
+      "company": "Octocore",
+      "submit_at": "13/07/2019"
+    }, {
+      "id": 1,
+      "name": "ANIM AMET",
+      "severity": "middle",
+      "submit_by": "Elva Tate",
+      "email": "elvatate@octocore.com",
+      "phone": "(62) 898-8575-2831",
+      "company": "Affluex",
+      "submit_at": "12/05/2019"
+    }, {
+      "id": 2,
+      "name": "ESSE AD",
+      "severity": "middle",
+      "submit_by": "Sallie Alston",
+      "email": "salliealston@affluex.com",
+      "phone": "(62) 884-0599-3924",
+      "company": "Signidyne",
+      "submit_at": "21/07/2017"
+    }, {
+      "id": 3,
+      "name": "LABORUM VOLUPTATE",
+      "severity": "high",
+      "submit_by": "Marie Mccray",
+      "email": "mariemccray@signidyne.com",
+      "phone": "(62) 897-3570-2263",
+      "company": "Elentrix",
+      "submit_at": "19/07/2019"
+    }, {
+      "id": 4,
+      "name": "PROIDENT LABORE",
+      "severity": "high",
+      "submit_by": "Dominique Callahan",
+      "email": "dominiquecallahan@elentrix.com",
+      "phone": "(62) 880-4412-2797",
+      "company": "Zialactic",
+      "submit_at": "26/06/2018"
+    }, {
+      "id": 5,
+      "name": "ANIM DUIS",
+      "severity": "middle",
+      "submit_by": "Earlene York",
+      "email": "earleneyork@zialactic.com",
+      "phone": "(62) 882-7544-3886",
+      "company": "Quotezart",
+      "submit_at": "23/08/2018"
+    }, {
+      "id": 6,
+      "name": "LABORE MINIM",
+      "severity": "low",
+      "submit_by": "Chen Lowe",
+      "email": "chenlowe@quotezart.com",
+      "phone": "(62) 882-6461-3107",
+      "company": "Earbang",
+      "submit_at": "23/02/2019"
+    }, {
+      "id": 7,
+      "name": "SUNT DO",
+      "severity": "low",
+      "submit_by": "Soto Livingston",
+      "email": "sotolivingston@earbang.com",
+      "phone": "(62) 889-6538-3660",
+      "company": "Pearlesex",
+      "submit_at": "08/11/2018"
+    }, {
+      "id": 8,
+      "name": "IRURE UT",
+      "severity": "high",
+      "submit_by": "Maldonado Hensley",
+      "email": "maldonadohensley@pearlesex.com",
+      "phone": "(62) 895-1492-2663",
+      "company": "Coash",
+      "submit_at": "17/01/2019"
+    }, {
+      "id": 9,
+      "name": "EST SUNT",
+      "severity": "low",
+      "submit_by": "Henderson Frazier",
+      "email": "hendersonfrazier@coash.com",
+      "phone": "(62) 890-6557-2818",
+      "company": "Geologix",
+      "submit_at": "20/12/2017"
+    }, {
+      "id": 10,
+      "name": "ALIQUIP SUNT",
+      "severity": "high",
+      "submit_by": "Katelyn Andrews",
+      "email": "katelynandrews@geologix.com",
+      "phone": "(62) 888-2450-2827",
+      "company": "Trollery",
+      "submit_at": "10/03/2018"
+    }, {
+      "id": 11,
+      "name": "NOSTRUD AMET",
+      "severity": "high",
+      "submit_by": "Camille Whitaker",
+      "email": "camillewhitaker@trollery.com",
+      "phone": "(62) 893-3584-3747",
+      "company": "Atgen",
+      "submit_at": "26/09/2017"
+    }, {
+      "id": 12,
+      "name": "IPSUM AMET",
+      "severity": "low",
+      "submit_by": "Evelyn Kerr",
+      "email": "evelynkerr@atgen.com",
+      "phone": "(62) 898-3598-2009",
+      "company": "Kangle",
+      "submit_at": "28/03/2017"
+    }, {
+      "id": 13,
+      "name": "VENIAM EXERCITATION",
+      "severity": "low",
+      "submit_by": "Wheeler Cannon",
+      "email": "wheelercannon@kangle.com",
+      "phone": "(62) 896-2417-2469",
+      "company": "Zenco",
+      "submit_at": "11/12/2017"
+    }, {
+      "id": 14,
+      "name": "LABORUM ANIM",
+      "severity": "high",
+      "submit_by": "Dixie Welch",
+      "email": "dixiewelch@zenco.com",
+      "phone": "(62) 887-9549-3000",
+      "company": "Zentury",
+      "submit_at": "23/04/2017"
+    }, {
+      "id": 15,
+      "name": "COMMODO EXCEPTEUR",
+      "severity": "low",
+      "submit_by": "Bridgett Owens",
+      "email": "bridgettowens@zentury.com",
+      "phone": "(62) 896-5565-3524",
+      "company": "Corecom",
+      "submit_at": "21/08/2017"
+    }, {
+      "id": 16,
+      "name": "NISI ADIPISICING",
+      "severity": "middle",
+      "submit_by": "Wolfe Harrell",
+      "email": "wolfeharrell@corecom.com",
+      "phone": "(62) 884-2513-2824",
+      "company": "Comtent",
+      "submit_at": "12/01/2018"
+    }, {
+      "id": 17,
+      "name": "IPSUM ET",
+      "severity": "high",
+      "submit_by": "Eddie Conway",
+      "email": "eddieconway@comtent.com",
+      "phone": "(62) 889-6502-3351",
+      "company": "Ronbert",
+      "submit_at": "08/10/2018"
+    }]
+  }
+};
+var DATA_ISSUE_STATUS = [{
+  status_name: "adewiranataputra",
+  action: [{
+    link: "editIssueStatus.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  status_name: "adewiranataputra",
+  action: [{
+    link: "editIssueStatus.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  status_name: "ariowidiatmoko",
+  action: [{
+    link: "editIssueStatus.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}];
+DATA_ISSUE_SEVERITY = [{
+  severity_name: "exsuntipsum",
+  action: [{
+    link: "editIssueSeverity.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  severity_name: "exadewiranataputra",
+  action: [{
+    link: "editIssueSeverity.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  severity_name: "exariowidiatmoko",
+  action: [{
+    link: "editIssueSeverity.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}];</script>
+
+	<script src="/src/issue.min.js"></script>
+</body>
+
+</html>

@@ -209,7 +209,7 @@ section.activity {
 .b-table {
 	.level:not(.top) {
         padding-bottom: 0px !important;
-    }
+	}	
 }
 
 .b-checkbox.checkbox .control-label {
@@ -369,6 +369,20 @@ p.help.is-success {
 	}
 }
 
+.card {
+	.b-table {
+		.table.is-narrow {
+			th {
+				padding: 0.5em 0.75em !important;
+			}
+		}
+
+		.top {
+			margin: 15px !important;
+		}
+	}
+}
+
 .b-table.is-loading {
     margin-bottom: 50px !important;
 }
@@ -399,7 +413,51 @@ p.help.is-success {
 	}
 }
 
+.card {
+	.card-header {
+		@include heroGradient($light, darken($light, 20%));
+	}
+}
 
+@each $color in $colors {
+	.has-gradient-#{nth($color, 1)} {
+		$thisColor: nth($color, 2);
+		$primeColor: nth($thisColor, 1);
+
+		@include heroGradient($primeColor, darken($primeColor, 20%));
+	}
+
+	.has-gradient-#{nth($color, 1)}-lighter {
+		$thisColor: nth($color, 2);
+		$primeColor: nth($thisColor, 1);
+
+		@include heroGradient(lighten($primeColor, 20%), lighten($primeColor, 10%));
+	}
+
+	.message {
+		&.is-#{nth($color, 1)} {
+			$thisColor: nth($color, 2);
+			$primeColor: nth($thisColor, 1);
+			@include heroGradient(lighten($primeColor, 35%), lighten($primeColor, 20%));
+
+			.message-header {
+				@include heroGradient(lighten($primeColor, 15%), lighten($primeColor, 5%));
+				color: nth($thisColor, 2) !important;
+				font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+
+			.message-header + .message-body {
+				background-color: lighten($primeColor, 75%);
+				border-width: 0px 2px 2px !important;
+				border-color: lighten($primeColor, 10%);
+			}
+		}
+	}
+}
+
+.datepicker .datepicker-content {
+    height: auto !important;
+}
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

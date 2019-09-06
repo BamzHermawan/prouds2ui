@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+
+	<title>Resource Allocation | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="/src/main.min.css">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<section class="hero is-primary is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Resource Allocation
+				</h1>
+				<h2 class="subtitle has-text-warning">
+					Development Prouds 2
+				</h2>
+			</div>
+			<br>
+			<div class="container">
+				<p class="is-size-5">
+					🏢 Project Management Office <span style="margin: 0px 14px;">|</span> 👨‍💼 PM. Ade Wiranata Putra
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="vapp" class="section">
+		<content-page project-id="My-Yeaaaah-Project-ID" action-new-role="http://localhost:5501/demo/post_detect.php?how=new-role" action-new-member="http://localhost:5501/demo/post_detect.php?how=new-member" action-change-role="http://localhost:5501/demo/post_detect.php?how=change-role" api-fetch-level="http://localhost:5501/demo/level_api.php" alert-message="Waduh Bahaya!" alert-type="is-danger">
+			<template slot="role-option">
+				<option selected="" style="display: none;"></option>
+				<option>Programmer Analyst</option>
+				<option>Programmer</option>
+				<option>Engineer</option>
+				<option>Senior Business Analyst</option>
+				<option>Junior Tester</option>
+				<option>Quality Assurance</option>
+				<option>Database Administrator</option>
+				<option>Technical Writer</option>
+			</template>
+			<template #got-to-resource-booking="">
+				<a class="button is-info" href="/src/project\resourceBooking.html">
+					<span>Resource Booking 👉</span>
+				</a>
+			</template>
+
+			<template #summary-plan="">
+				<b-collapse class="card table-summary-plan" :open="false">
+					<div slot="trigger" slot-scope="props" class="card-header" role="button">
+						<p class="card-header-title">
+							Resource Allocation Summary
+						</p>
+						<a class="card-header-icon">
+							<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+							</b-icon>
+						</a>
+					</div>
+					<table class="table is-fullwidth">
+						<tr>
+							<th rowspan="2">Job Role</th>
+							<th rowspan="2">Rate (IDR)</th>
+							<th rowspan="2">Days</th>
+							<th colspan="3" class="is-plan">Plan</th>
+							<th colspan="3" class="is-actual">Allocated</th>
+						</tr>
+						<tr>
+							<th class="is-plan">Qty</th>
+							<th class="is-plan">Mandays</th>
+							<th class="is-plan">Cost (IDR)</th>
+							<th class="is-actual">Qty</th>
+							<th class="is-actual">Mandays</th>
+							<th class="is-actual">Cost (IDR)</th>
+						</tr>
+						<tr>
+							<td>Junior Programmer</td>
+							<td>700,000</td>
+							<td>90</td>
+							<td class="inner is-plan">5</td>
+							<td class="inner is-plan">450</td>
+							<td class="inner is-plan">315,000,000</td>
+							<td class="inner is-actual">7</td>
+							<td class="inner is-actual">630</td>
+							<td class="inner is-actual">441,000,000</td>
+						</tr>
+						<tr>
+							<td>System Analyst</td>
+							<td>1,000,000</td>
+							<td>30</td>
+							<td class="inner is-plan">1</td>
+							<td class="inner is-plan">30</td>
+							<td class="inner is-plan">30,000,000</td>
+							<td class="inner is-actual">2</td>
+							<td class="inner is-actual">60</td>
+							<td class="inner is-actual">60,000,000</td>
+						</tr>
+						<tr>
+							<td>Business Analyst</td>
+							<td>1,500,000</td>
+							<td>45</td>
+							<td class="inner is-plan">1</td>
+							<td class="inner is-plan">45</td>
+							<td class="inner is-plan">67,500,000</td>
+							<td class="inner is-actual">1</td>
+							<td class="inner is-actual">45</td>
+							<td class="inner is-actual">67,500,000</td>
+						</tr>
+						<tr>
+							<td>Assosiate Consultant</td>
+							<td>500,000</td>
+							<td>90</td>
+							<td class="inner is-plan">3</td>
+							<td class="inner is-plan">270</td>
+							<td class="inner is-plan">135,000,000</td>
+							<td class="inner is-actual">1</td>
+							<td class="inner is-actual">90</td>
+							<td class="inner is-actual">45,000,000</td>
+						</tr>
+						<tr>
+							<td>Technical Writer</td>
+							<td>300,000</td>
+							<td>6</td>
+							<td class="inner is-plan">0</td>
+							<td class="inner is-plan">0</td>
+							<td class="inner is-plan">-</td>
+							<td class="inner is-actual">2</td>
+							<td class="inner is-actual">12</td>
+							<td class="inner is-actual">3,600,000</td>
+						</tr>
+						<tr>
+							<td colspan="3">Total</td>
+							<td class="is-plan">10</td>
+							<td class="is-plan">795</td>
+							<td class="is-plan">547,500,000</td>
+							<td class="is-actual">13</td>
+							<td class="is-actual">837</td>
+							<td class="is-actual">617,100,100</td>
+						</tr>
+					</table>
+				</b-collapse>
+			</template>
+		</content-page>
+	</section>
+
+	<script>var RESOURCE = [{
+  "role": "Programmer",
+  "member": [{
+    "nik": "P2010942",
+    "nama": "Case Dudley",
+    "bu": "Songbird",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "18/10/2010",
+    "end": "03/03/2013",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
+  }, {
+    "nik": "P2000290",
+    "nama": "Marianne Hubbard",
+    "bu": "Zanymax",
+    "role": "Lorem Ipsum",
+    "status": true,
+    "start": "27/12/2013",
+    "end": "24/03/2012",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
+  }, {
+    "nik": "S2018172",
+    "nama": "Herminia Ward",
+    "bu": "Cognicode",
+    "role": "Lorem Ipsum",
+    "status": true,
+    "start": "17/03/2006",
+    "end": "04/03/2016",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=deserunt"
+  }],
+  "plan": 1,
+  "actual": 2
+}, {
+  "role": "Technical Writer",
+  "member": [{
+    "nik": "CRS2018356",
+    "nama": "Mcmahon Christian",
+    "bu": "Medifax",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "25/03/2010",
+    "end": "18/05/2010",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolor"
+  }],
+  "plan": 1,
+  "actual": 0
+}, {
+  "role": "Junior Tester",
+  "member": [{
+    "nik": "CRS2018300",
+    "nama": "Clarissa Snider",
+    "bu": "Medifax",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "25/03/2010",
+    "end": "18/05/2010",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolorcl"
+  }],
+  "plan": 1,
+  "actual": 0
+}, {
+  "role": "Database Administrator",
+  "member": [{
+    "nik": "CRS2012829",
+    "nama": "Valenzuela Mccarthy",
+    "bu": "Comtrak",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "07/06/2005",
+    "end": "06/10/2010",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
+  }, {
+    "nik": "CRS2016181",
+    "nama": "Rosales Rivas",
+    "bu": "Apexia",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "19/02/2016",
+    "end": "30/11/2015",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=esse"
+  }, {
+    "nik": "CRS2004106",
+    "nama": "Morgan Riddle",
+    "bu": "Speedbolt",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "12/04/2013",
+    "end": "03/07/2011",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=nostrud"
+  }, {
+    "nik": "CRS2011824",
+    "nama": "Mcknight Humphrey",
+    "bu": "Overfork",
+    "role": "Lorem Ipsum",
+    "status": true,
+    "start": "09/05/2016",
+    "end": "01/02/2015",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=nulla"
+  }],
+  "plan": 5,
+  "actual": 1
+}, {
+  "role": "Quality Assurance",
+  "member": [{
+    "nik": "P2012747",
+    "nama": "Woods Newton",
+    "bu": "Quadeebo",
+    "role": "Lorem Ipsum",
+    "status": true,
+    "start": "06/01/2017",
+    "end": "19/06/2018",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=tempor"
+  }, {
+    "nik": "S2013369",
+    "nama": "Gwen Bauer",
+    "bu": "Assurity",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "27/08/2013",
+    "end": "13/09/2014",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
+  }, {
+    "nik": "CRS2013465",
+    "nama": "Eileen Burns",
+    "bu": "Zentix",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "16/01/2012",
+    "end": "30/12/2018",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=nostrud"
+  }, {
+    "nik": "P2015981",
+    "nama": "Doreen Woodward",
+    "bu": "Paprikut",
+    "role": "Lorem Ipsum",
+    "status": false,
+    "start": "24/02/2018",
+    "end": "04/02/2014",
+    "activation_link": "#activate",
+    "deactivation_link": "#deactivate",
+    "avatar": "http://localhost:5501/demo/user_avatar.php?nik=do"
+  }],
+  "plan": 2,
+  "actual": 1
+}];
+var USERS = [{
+  "nik": "M20005413",
+  "nama": "Martina Dillard",
+  "role": "Lorem Ippsum",
+  "bu": "Quilm",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
+}, {
+  "nik": "S20186428",
+  "nama": "Alissa Newton",
+  "role": "Lorem Ippsum",
+  "bu": "Gracker",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+}, {
+  "nik": "CRS20136833",
+  "nama": "Maryanne Watson",
+  "role": "Lorem Ippsum",
+  "bu": "Corepan",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
+}, {
+  "nik": "CRS20166397",
+  "nama": "Bush Hunt",
+  "role": "Lorem Ippsum",
+  "bu": "Zytrex",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+}, {
+  "nik": "CRS20005337",
+  "nama": "Cannon May",
+  "role": "Lorem Ippsum",
+  "bu": "Digifad",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=non"
+}, {
+  "nik": "L20171511",
+  "nama": "Coleen Williamson",
+  "role": "Lorem Ippsum",
+  "bu": "Entogrok",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+}, {
+  "nik": "S20065729",
+  "nama": "Christa Townsend",
+  "role": "Lorem Ippsum",
+  "bu": "Ovium",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+}, {
+  "nik": "S20168519",
+  "nama": "Alston Weeks",
+  "role": "Lorem Ippsum",
+  "bu": "Zentix",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
+}, {
+  "nik": "S20012872",
+  "nama": "Joseph Pratt",
+  "role": "Lorem Ippsum",
+  "bu": "Essensia",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+}, {
+  "nik": "L20109899",
+  "nama": "Jennings Norman",
+  "role": "Lorem Ippsum",
+  "bu": "Eternis",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=cillum"
+}, {
+  "nik": "P20093418",
+  "nama": "Gertrude Sandoval",
+  "role": "Lorem Ippsum",
+  "bu": "Sloganaut",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+}, {
+  "nik": "S20005469",
+  "nama": "Rhoda Lloyd",
+  "role": "Lorem Ippsum",
+  "bu": "Renovize",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliqua"
+}, {
+  "nik": "CRS20104806",
+  "nama": "Florine Blake",
+  "role": "Lorem Ippsum",
+  "bu": "Enervate",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+}, {
+  "nik": "L20062709",
+  "nama": "Cook Pennington",
+  "role": "Lorem Ippsum",
+  "bu": "Terrago",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=anim"
+}, {
+  "nik": "S20087299",
+  "nama": "Baxter Glass",
+  "role": "Lorem Ippsum",
+  "bu": "Zidant",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+}, {
+  "nik": "L2018935",
+  "nama": "French Ferguson",
+  "role": "Lorem Ippsum",
+  "bu": "Quinex",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=amet"
+}, {
+  "nik": "S20083508",
+  "nama": "Benjamin Saunders",
+  "role": "Lorem Ippsum",
+  "bu": "Bitendrex",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=duis"
+}, {
+  "nik": "S20139777",
+  "nama": "Holloway Hardin",
+  "role": "Lorem Ippsum",
+  "bu": "Vetron",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+}, {
+  "nik": "S20028589",
+  "nama": "Gretchen Duran",
+  "role": "Lorem Ippsum",
+  "bu": "Gorganic",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
+}, {
+  "nik": "CRS20175427",
+  "nama": "Fox Phelps",
+  "role": "Lorem Ippsum",
+  "bu": "Exposa",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=sit"
+}, {
+  "nik": "CRS20182207",
+  "nama": "Maritza White",
+  "role": "Lorem Ippsum",
+  "bu": "Techtrix",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+}, {
+  "nik": "S20142407",
+  "nama": "Warren Ochoa",
+  "role": "Lorem Ippsum",
+  "bu": "Geostele",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+}, {
+  "nik": "M20011347",
+  "nama": "Mann Hudson",
+  "role": "Lorem Ippsum",
+  "bu": "Zipak",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+}, {
+  "nik": "CRS20056394",
+  "nama": "Jordan Robertson",
+  "role": "Lorem Ippsum",
+  "bu": "Soprano",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=cupidatat"
+}, {
+  "nik": "M20169784",
+  "nama": "West Morrow",
+  "role": "Lorem Ippsum",
+  "bu": "Omatom",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=id"
+}, {
+  "nik": "M20186408",
+  "nama": "Marissa Morton",
+  "role": "Lorem Ippsum",
+  "bu": "Portalis",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+}, {
+  "nik": "P20105376",
+  "nama": "Vinson Joyce",
+  "role": "Lorem Ippsum",
+  "bu": "Exiand",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+}, {
+  "nik": "CRS20127204",
+  "nama": "Navarro Herring",
+  "role": "Lorem Ippsum",
+  "bu": "Marketoid",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
+}, {
+  "nik": "L20113959",
+  "nama": "Sheila Williams",
+  "role": "Lorem Ippsum",
+  "bu": "Dognosis",
+  "avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
+}];</script>
+
+	<script src="/src/allocation.min.js"></script>
+</body>
+
+</html>

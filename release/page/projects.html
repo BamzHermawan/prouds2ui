@@ -8,7 +8,7 @@
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
-	<title>HOME | PROUDS 2</title>
+	<title>PROJECT | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
@@ -31,11 +31,13 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="home.html"></nav-bar>
 
-		<content-page project-id="ProuDS 2 UI" action-send="http://localhost:5501/demo/post_detect.php?how=assign-pm">
+		<content-page :show-assign-pm="false" project-id="ProuDS 2 UI" bu="Project Management Office" behind-schedule="40" bast-delay="20" top-delay="10" total-project="70" action-send="http://localhost:5501/demo/post_detect.php?how=assign-pm">
+
 		</content-page>
 	</div>
 
 	<script>var DATA = [{
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "SUNT IPSUM",
   "iwo": "P-CUPIDATAT-100A",
   "pm": "Ball Whitehead",
@@ -43,12 +45,14 @@
   "progress": "65%",
   "behind_schedule": true
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "ADIPISICING IN",
   "iwo": "P-QUI-101A",
   "pm": "Lindsay Robles",
   "status": "Delay",
   "progress": "23%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "NISI PARIATUR",
   "iwo": "P-PROIDENT-102A",
   "pm": "Bailey Gates",
@@ -56,6 +60,7 @@
   "progress": "33%",
   "bast_delay": true
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "ANIM CONSECTETUR",
   "iwo": "P-LABORIS-103A",
   "pm": "Hazel Roy",
@@ -63,131 +68,147 @@
   "progress": "70%",
   "top_delay": true
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "SINT ELIT",
   "iwo": "P-DO-104B",
   "pm": "Hale Collins",
   "status": "On Progress",
-  "progress": "77%",
-  "top_delay": true
+  "progress": "77%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "EA ESSE",
   "iwo": "P-EXERCITATION-105C",
   "pm": "Melinda Cline",
   "status": "Delay",
-  "progress": "75%",
-  "top_delay": true
+  "progress": "75%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "EXCEPTEUR FUGIAT",
   "iwo": "P-NOSTRUD-106B",
   "pm": "Chasity Wilkerson",
   "status": "On Progress",
-  "progress": "29%",
-  "top_delay": true
+  "progress": "29%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "CONSEQUAT CONSECTETUR",
   "iwo": "P-AUTE-107B",
   "pm": "Dunn Cooley",
   "status": "On Progress",
   "progress": "48%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "LABORUM ULLAMCO",
   "iwo": "P-CUPIDATAT-108C",
   "pm": "Nichols Best",
   "status": "Delay",
-  "progress": "54%",
-  "top_delay": true
+  "progress": "54%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "ULLAMCO IN",
   "iwo": "P-AMET-109A",
   "pm": "Sears Benton",
   "status": "On Progress",
-  "progress": "40%",
-  "top_delay": true
+  "progress": "40%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "LABORIS REPREHENDERIT",
   "iwo": "P-EST-110A",
   "pm": "Fay Mccormick",
   "status": "On Progress",
   "progress": "73%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "MOLLIT SINT",
   "iwo": "P-NISI-111A",
   "pm": "Ramona Murphy",
   "status": "On Progress",
   "progress": "46%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "QUIS CULPA",
   "iwo": "P-MAGNA-112B",
   "pm": "Cindy Austin",
   "status": "Delay",
   "progress": "42%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "VELIT SIT",
   "iwo": "P-ANIM-113C",
   "pm": "Chandra Nolan",
   "status": "Delay",
   "progress": "41%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "ESSE FUGIAT",
   "iwo": "P-SINT-114A",
   "pm": "Clara Kelly",
   "status": "Delay",
   "progress": "42%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "INCIDIDUNT AD",
   "iwo": "P-ANIM-115B",
   "pm": "English Kelley",
   "status": "Delay",
   "progress": "46%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "COMMODO SUNT",
   "iwo": "P-ESSE-116A",
   "pm": "Boone Myers",
   "status": "On Progress",
   "progress": "35%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "VELIT LABORE",
   "iwo": "P-NULLA-117B",
   "pm": "Gretchen Petty",
   "status": "On Progress",
   "progress": "25%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "ESSE PARIATUR",
   "iwo": "P-DO-118B",
   "pm": "Oneill Sharp",
   "status": "On Progress",
   "progress": "54%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "DO LOREM",
   "iwo": "P-ANIM-119C",
   "pm": "Susanna Garrett",
   "status": "On Progress",
   "progress": "48%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "QUIS IRURE",
   "iwo": "P-EU-120B",
   "pm": "Berta Carson",
   "status": "On Progress",
   "progress": "39%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "LABORIS ADIPISICING",
   "iwo": "P-IPSUM-121B",
   "pm": "Rhoda Bryant",
   "status": "On Progress",
   "progress": "42%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "IPSUM CILLUM",
   "iwo": "P-UT-122B",
   "pm": "Barber Camacho",
   "status": "On Progress",
   "progress": "59%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "VOLUPTATE QUIS",
   "iwo": "P-CULPA-123A",
   "pm": "Tamara Blankenship",
   "status": "Delay",
   "progress": "36%"
 }, {
+  "link": "http://localhost:5500/project/detail.html",
   "project_name": "ESSE ALIQUA",
   "iwo": "P-OFFICIA-124A",
   "pm": "Cunningham Campos",
