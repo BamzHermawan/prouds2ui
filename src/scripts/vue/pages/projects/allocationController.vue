@@ -322,22 +322,27 @@ export default {
 	},
 	watch: {
 		searchQuery: function(newQuery, oldQuery) {
-			if (this.searchQuery !== "") {
+			if (
+				newQuery !== "" &&
+				newQuery !== undefined &&
+				newQuery !== null
+			) {
 				let self = this;
-				this.modal.userdata = this.users.filter(user =>
-					Object.keys(user).find(key => {
-						if (typeof user[key] === "string") {
-							return user[key]
+				this.modal.userdata = this.users.filter(user => {
+					if (
+						user.nama !== undefined &&
+						user.nama !== null &&
+						user.nama !== ""
+					) {
+						if (typeof user.nama === "string") {
+							return user.nama
 								.toLowerCase()
-								.includes(self.searchQuery.toLowerCase());
-						} else {
-							return user[key]
-								.toString()
-								.toLowerCase()
-								.includes(self.searchQuery.toLowerCase());
+								.includes(newQuery.toLowerCase());
 						}
-					})
-				);
+					}
+
+					return false;
+				});
 			} else {
 				this.modal.userdata = this.users;
 			}

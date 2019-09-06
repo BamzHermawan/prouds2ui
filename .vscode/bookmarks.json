@@ -1,21 +1,11 @@
 [
 	{
-		"path": "$ROOTPATH$\\src\\pages\\project\\resourceStore.html",
+		"path": "$ROOTPATH$\\src\\scripts\\vue\\components\\crud\\crud.vue",
 		"bookmarks": [
 			{
-				"line": 46,
-				"column": 13,
-				"label": ""
-			}
-		]
-	},
-	{
-		"path": "$ROOTPATH$\\src\\scripts\\vue\\pages\\projects\\resourceFilter.vue",
-		"bookmarks": [
-			{
-				"line": 158,
-				"column": 16,
-				"label": ""
+				"line": 40,
+				"column": 23,
+				"label": "Proses Menampilkan Form Edit"
 			}
 		]
 	}
