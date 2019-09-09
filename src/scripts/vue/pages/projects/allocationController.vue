@@ -6,28 +6,23 @@
 					<span
 						class="mdi mdi-account-multiple-plus-outline in-left"
 					></span>
-					<span>Add Member in New Role</span>
+					<span>Assign New Member</span>
 				</button>
 			</div>
 			<div class="level-right">
-				<slot name="got-to-resource-booking">
-					<a class="button is-info" href="#">LINK</a>
-				</slot>
+				<slot name="got-to-resource-booking"></slot>
 			</div>
 		</nav>
 
 		<slot name="summary-plan"></slot>
 
-		<div
-			v-for="(res, index) in resource"
-			:key="index"
-			style="margin-bottom:25px;"
-		>
+		<div style="margin-bottom:25px;">
 			<data-table
-				:data="res.member"
+				:data="resource.member"
 				:fields="[]"
-				:title="res.role"
-				:row-class="row => !row.status && 'has-text-grey-lighter'"
+				title="Resource List"
+				:per-page="3"
+				:show-all="false"
 			>
 				<template slot-scope="props">
 					<b-table-column field="nama" label="Name" sortable>
@@ -38,34 +33,34 @@
 						{{ props.row.bu }}
 					</b-table-column>
 
-					<b-table-column field="role" label="Job Role" sortable>
-						{{ props.row.role }}
-					</b-table-column>
-
 					<b-table-column
-						field="start"
-						label="Working Period"
-						centered
+						field="assigned_role"
+						label="Assigned Role"
+						sortable
 					>
-						{{ props.row.start }} - {{ props.row.end }}
+						{{ props.row.assigned_role }}
 					</b-table-column>
 
-					<b-table-column field="activation_link" label="Action">
+					<b-table-column field="job_role" label="Job Role" sortable>
+						{{ props.row.job_role }}
+					</b-table-column>
+
+					<b-table-column field="rate" label="Rate (Rp)" sortable>
+						{{ props.row.rate | number_format }}
+					</b-table-column>
+
+					<b-table-column field="action" label="Action">
 						<a
-							v-if="props.row.status"
-							:href="props.row.deactivation_link"
-							class="button is-small is-warning"
-							>🔒 Deactivate</a
-						>
-						<a
-							v-else
-							:href="props.row.activation_link"
-							class="button is-small is-success"
-							>🔓 Activate</a
+							:href="props.row.unassign_link"
+							class="button is-small is-danger"
+							><span
+								class="mdi mdi-account-remove in-left"
+							></span>
+							Unassign</a
 						>
 						<a
 							class="button is-small is-info"
-							@click="newRoleModal(props.row, res.role)"
+							@click="newRoleModal(props.row)"
 							>⚙ Change Role</a
 						>
 					</b-table-column>
@@ -73,7 +68,7 @@
 
 				<template slot="empty">
 					<b-message
-						v-if="res.member.length == 0"
+						v-if="resource.member.length == 0"
 						type="is-warning"
 						class="has-text-centered"
 					>
@@ -89,15 +84,7 @@
 				</template>
 
 				<template slot="head-right">
-					<a @click="assignModal(res.role)" class="card-header-icon">
-						<span class="icon">
-							<i
-								class="mdi mdi-account-plus"
-								aria-hidden="true"
-							></i>
-						</span>
-						<span>Add Member</span>
-					</a>
+					<span></span>
 				</template>
 
 				<template slot="top-right">
@@ -110,7 +97,7 @@
 									>
 								</span>
 								<span class="tag is-primary">{{
-									res.plan
+									resource.plan
 								}}</span>
 							</div>
 						</div>
@@ -122,7 +109,7 @@
 									>
 								</span>
 								<span class="tag is-primary">{{
-									res.actual
+									resource.actual
 								}}</span>
 							</div>
 						</div>
@@ -130,11 +117,7 @@
 				</template>
 
 				<template slot="top-body">
-					<b-message v-if="res.actual > res.plan" type="is-warning">
-						<span style="margin-right:5px;">🛑</span> Jumlah member
-						di role ini melebihi dari jumlah plan yang direncanakan
-						sejumlah [<b>{{ res.plan }}</b> 👨‍💼]
-					</b-message>
+					<slot name="resourceAlert"></slot>
 				</template>
 			</data-table>
 		</div>
@@ -353,12 +336,12 @@ export default {
 			this.searchQuery = "";
 			this.modal.display = false;
 		},
-		newRoleModal(member = null, role = null) {
+		newRoleModal(member = null) {
 			if (member === null) {
 				this.modal.title = "Assign New Role";
 				this.modal.formTarget = this.actionNewRole;
 				this.modal.selectedRole.display = true;
-				this.modal.selectedRole.value = role;
+				this.modal.selectedRole.value = null;
 				this.modal.searchList = true;
 				this.modal.display = true;
 				this.modal.selectedUser = {
@@ -371,12 +354,12 @@ export default {
 				this.modal.title = "Change Role";
 				this.modal.formTarget = this.actionChangeRole;
 				this.modal.selectedRole.display = true;
-				this.modal.selectedRole.value = role;
+				this.modal.selectedRole.value = member.assinged_role;
 
 				this.modal.selectedUser.nik = member.nik;
 				this.modal.selectedUser.bu = member.bu;
 				this.modal.selectedUser.nama = member.nama;
-				this.modal.selectedUser.role = member.role;
+				this.modal.selectedUser.role = member.assigned_role;
 				this.modal.searchList = false;
 				this.modal.display = true;
 			}
@@ -416,6 +399,18 @@ export default {
 				position: "is-top-right",
 				type: type
 			});
+		}
+	},
+	filters: {
+		number_format(str) {
+			str += "";
+			var x = str.split(".");
+			var x1 = x[0];
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(x1)) {
+				x1 = x1.replace(rgx, "$1" + "," + "$2");
+			}
+			return x1;
 		}
 	}
 };

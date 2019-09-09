@@ -92,7 +92,7 @@ module.exports.animate = function(selector, classOption, callback = undefined){
 			});
 
 			el.removeEventListener('animationend', handleAnimationEnd);
-			if (typeof callback === 'function') callback();
+			if (typeof callback === 'function') callback(el);
 		}
 
 		el.className += " " + classOption;

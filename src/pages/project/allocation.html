@@ -64,8 +64,14 @@
 				</a>
 			</template>
 
+			<template slot="resourceAlert">
+				<b-message type="is-danger">
+					<span style="margin-right:5px;">🛑</span> Your allocated budget is more than your plan
+				</b-message>
+			</template>
+
 			<template #summary-plan>
-				<b-collapse class="card table-summary-plan" :open="false">
+				<!-- <b-collapse class="card table-summary-plan" :open="true">
 					<div slot="trigger" slot-scope="props" class="card-header" role="button">
 						<p class="card-header-title">
 							Resource Allocation Summary
@@ -156,205 +162,176 @@
 							<td class="is-actual">617,100,100</td>
 						</tr>
 					</table>
+				</b-collapse> -->
+
+				<b-collapse class="card table-summary-plan" :open="true">
+					<div slot="trigger" slot-scope="props" class="card-header" role="button">
+						<p class="card-header-title">
+							Resource Allocation Plan / BoQ
+						</p>
+						<a class="card-header-icon">
+							<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+							</b-icon>
+						</a>
+					</div>
+					<table class="table is-fullwidth">
+						<thead>
+							<th>Assigned Role</th>
+							<th class="is-plan">Qty</th>
+							<th class="is-plan">Day(s)</th>
+							<th class="is-plan">Manday(s)</th>
+							<th class="is-plan">Rate (Rp)</th>
+							<th class="is-plan">Total Cost (Rp)</th>
+						</thead>
+						<tr>
+							<td>Senior Programmer</td>
+							<td class="inner is-plan">7</td>
+							<td class="inner is-plan">80</td>
+							<td class="inner is-plan">560</td>
+							<td class="inner is-plan">750,000</td>
+							<td class="inner is-plan">420,000,000</td>
+						</tr>
+						<tr>
+							<td>Engineer</td>
+							<td class="inner is-plan">5</td>
+							<td class="inner is-plan">50</td>
+							<td class="inner is-plan">250</td>
+							<td class="inner is-plan">600,000</td>
+							<td class="inner is-plan">150,000,000</td>
+						</tr>
+						<tr>
+							<td>Total</td>
+							<td class="is-plan">12</td>
+							<td class="is-plan">130</td>
+							<td class="is-plan">810</td>
+							<td class="is-plan"></td>
+							<td class="is-plan">570,000,000</td>
+						</tr>
+					</table>
+				</b-collapse>
+
+				<b-collapse class="card table-summary-plan" :open="true">
+					<div slot="trigger" slot-scope="props" class="card-header" role="button">
+						<p class="card-header-title">
+							Resource Allocation Planed by PM
+						</p>
+						<a class="card-header-icon">
+							<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+							</b-icon>
+						</a>
+					</div>
+					<table class="table is-fullwidth">
+						<thead>
+							<th>Assigned Role</th>
+							<th class="is-actual">Qty</th>
+							<th class="is-actual">Day(s)</th>
+							<th class="is-actual">Manday(s)</th>
+							<th class="is-actual">Rate (Rp)</th>
+							<th class="is-actual">Total Cost (Rp)</th>
+						</thead>
+						<tr>
+							<td>Senior Programmer</td>
+							<td class="inner is-actual">7</td>
+							<td class="inner is-actual">80</td>
+							<td class="inner is-actual">560</td>
+							<td class="inner is-actual">750,000</td>
+							<td class="inner is-actual">420,000,000</td>
+						</tr>
+						<tr>
+							<td>Engineer</td>
+							<td class="inner is-actual">5</td>
+							<td class="inner is-actual">50</td>
+							<td class="inner is-actual">250</td>
+							<td class="inner is-actual">600,000</td>
+							<td class="inner is-actual">150,000,000</td>
+						</tr>
+						<tr>
+							<td>Total</td>
+							<td class="is-actual">12</td>
+							<td class="is-actual">130</td>
+							<td class="is-actual">810</td>
+							<td class="is-actual"></td>
+							<td class="is-actual">570,000,000</td>
+						</tr>
+					</table>
 				</b-collapse>
 			</template>
 		</content-page>
 	</section>
 
 	<script>
-		const RESOURCE = [
-			{
-				"role": "Programmer",
-				"member": [
-					{
-						"nik": "P2010942",
-						"nama": "Case Dudley",
-						"bu": "Songbird",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "18/10/2010",
-						"end": "03/03/2013",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
-					},
-					{
-						"nik": "P2000290",
-						"nama": "Marianne Hubbard",
-						"bu": "Zanymax",
-						"role": "Lorem Ipsum",
-						"status": true,
-						"start": "27/12/2013",
-						"end": "24/03/2012",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
-					},
-					{
-						"nik": "S2018172",
-						"nama": "Herminia Ward",
-						"bu": "Cognicode",
-						"role": "Lorem Ipsum",
-						"status": true,
-						"start": "17/03/2006",
-						"end": "04/03/2016",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=deserunt"
-					}
-				],
-				"plan": 1,
-				"actual": 2
-			},
-			{
-				"role": "Technical Writer",
-				"member": [
-					{
-						"nik": "CRS2018356",
-						"nama": "Mcmahon Christian",
-						"bu": "Medifax",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "25/03/2010",
-						"end": "18/05/2010",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolor"
-					}
-				],
-				"plan": 1,
-				"actual": 0
-			},
-			{
-				"role": "Junior Tester",
-				"member": [
-					{
-						"nik": "CRS2018300",
-						"nama": "Clarissa Snider",
-						"bu": "Medifax",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "25/03/2010",
-						"end": "18/05/2010",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=dolorcl"
-					}
-				],
-				"plan": 1,
-				"actual": 0
-			},
-			{
-				"role": "Database Administrator",
-				"member": [
-					{
-						"nik": "CRS2012829",
-						"nama": "Valenzuela Mccarthy",
-						"bu": "Comtrak",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "07/06/2005",
-						"end": "06/10/2010",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
-					},
-					{
-						"nik": "CRS2016181",
-						"nama": "Rosales Rivas",
-						"bu": "Apexia",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "19/02/2016",
-						"end": "30/11/2015",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=esse"
-					},
-					{
-						"nik": "CRS2004106",
-						"nama": "Morgan Riddle",
-						"bu": "Speedbolt",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "12/04/2013",
-						"end": "03/07/2011",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nostrud"
-					},
-					{
-						"nik": "CRS2011824",
-						"nama": "Mcknight Humphrey",
-						"bu": "Overfork",
-						"role": "Lorem Ipsum",
-						"status": true,
-						"start": "09/05/2016",
-						"end": "01/02/2015",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nulla"
-					}
-				],
-				"plan": 5,
-				"actual": 1
-			},
-			{
-				"role": "Quality Assurance",
-				"member": [
-					{
-						"nik": "P2012747",
-						"nama": "Woods Newton",
-						"bu": "Quadeebo",
-						"role": "Lorem Ipsum",
-						"status": true,
-						"start": "06/01/2017",
-						"end": "19/06/2018",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=tempor"
-					},
-					{
-						"nik": "S2013369",
-						"nama": "Gwen Bauer",
-						"bu": "Assurity",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "27/08/2013",
-						"end": "13/09/2014",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
-					},
-					{
-						"nik": "CRS2013465",
-						"nama": "Eileen Burns",
-						"bu": "Zentix",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "16/01/2012",
-						"end": "30/12/2018",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nostrud"
-					},
-					{
-						"nik": "P2015981",
-						"nama": "Doreen Woodward",
-						"bu": "Paprikut",
-						"role": "Lorem Ipsum",
-						"status": false,
-						"start": "24/02/2018",
-						"end": "04/02/2014",
-						"activation_link": "#activate",
-						"deactivation_link": "#deactivate",
-						"avatar": "http://localhost:5501/demo/user_avatar.php?nik=do"
-					}
-				],
-				"plan": 2,
-				"actual": 1
-			}
-		]
+		const RESOURCE = {
+			"member": [
+				{
+					"nik": "P2010942",
+					"nama": "Case Dudley",
+					"bu": "Songbird",
+					"job_role": "Junior Programmer",
+					"assigned_role": "Senior Programmer",
+					"rate": 850000,
+					"start": "18/10/2010",
+					"end": "03/03/2013",
+					"unassign_link": "#remove"
+				},
+				{
+					"nik": "CRS2018356",
+					"nama": "Mcmahon Christian",
+					"bu": "Medifax",
+					"assigned_role": "Technical Writer",
+					"job_role": "Junior Programmer",
+					"rate": 550000,
+					"start": "25/03/2010",
+					"end": "18/05/2010",
+					"unassign_link": "#remove"
+				},
+				{
+					"nik": "CRS2018300",
+					"nama": "Clarissa Snider",
+					"bu": "Medifax",
+					"assigned_role": "Junior Tester",
+					"job_role": "Junior Tester",
+					"rate": 450000,
+					"start": "25/03/2010",
+					"end": "18/05/2010",
+					"unassign_link": "#remove"
+				},
+				{
+					"nik": "CRS2012829",
+					"nama": "Valenzuela Mccarthy",
+					"bu": "Comtrak",
+					"assigned_role": "Database Administrator",
+					"job_role": "Database Administrator",
+					"rate": 550000,
+					"start": "07/06/2005",
+					"end": "06/10/2010",
+					"unassign_link": "#remove"
+				},
+				{
+					"nik": "CRS2016181",
+					"nama": "Rosales Rivas",
+					"bu": "Apexia",
+					"assigned_role": "Database Administrator",
+					"job_role": "Database Administrator",
+					"rate": 550000,
+					"start": "19/02/2016",
+					"end": "30/11/2015",
+					"unassign_link": "#remove"
+				},
+				{
+					"nik": "P2012747",
+					"nama": "Woods Newton",
+					"bu": "Quadeebo",
+					"assigned_role": "Quality Assurance",
+					"job_role": "Quality Assurance",
+					"rate": 550000,
+					"start": "06/01/2017",
+					"end": "19/06/2018",
+					"unassign_link": "#remove"
+				},
+			],
+			"plan": 4,
+			"actual": 6
+		}
 		const USERS = [
 			{
 				"nik": "M20005413",

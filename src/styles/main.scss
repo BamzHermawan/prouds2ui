@@ -387,12 +387,20 @@ p.help.is-success {
     margin-bottom: 50px !important;
 }
 
-.gmainright{
+.gmainright {
 	width: 50% !important;
 	// margin-bottom: 43px !important;
 }
-.gmainleft{
+.gmainleft {
 	width: 50% !important;
+
+	.gcontainercol {
+		min-width: 100%;
+
+		table {
+			min-width: 100%;
+		}
+	}
 
 	// .gspanning.gtaskname  {
 	// 	padding: 1px !important;
@@ -416,6 +424,10 @@ td.gmajorheading div{
 .gantt td {
 	// font-size: 11px;
 	padding: 2px !important;
+}
+
+tr.gname {
+	cursor: pointer !important;
 }
 
 .card {
