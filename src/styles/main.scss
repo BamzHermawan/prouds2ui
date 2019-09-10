@@ -470,6 +470,23 @@ tr.gname {
 			}
 		}
 	}
+
+	.field.is-#{nth($color, 1)} {
+		$thisColor: nth($color, 2);
+		$primeColor: nth($thisColor, 1);
+
+		.input, .select > select {
+			border-color: $primeColor !important;
+		}
+
+		.select:not(.is-multiple):not(.is-loading)::after {
+			border-color: darken($primeColor, 15%) !important;
+		}
+
+		.icon {
+			color: $primeColor !important;
+		}
+	}
 }
 
 .datepicker .datepicker-content {

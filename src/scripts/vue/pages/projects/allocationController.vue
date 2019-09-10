@@ -23,6 +23,7 @@
 				title="Resource List"
 				:per-page="3"
 				:show-all="false"
+				:row-class="row => !row.status && 'has-text-grey-light'"
 			>
 				<template slot-scope="props">
 					<b-table-column field="nama" label="Name" sortable>
@@ -51,7 +52,13 @@
 
 					<b-table-column field="action" label="Action">
 						<a
-							:href="props.row.unassign_link"
+							@click="
+								confirmUnassign(
+									props.row.unassign_link,
+									props.row.nama,
+									props.row.assigned_role
+								)
+							"
 							class="button is-small is-danger"
 							><span
 								class="mdi mdi-account-remove in-left"
@@ -139,7 +146,7 @@
 							name="memberRole"
 							v-model="modal.selectedRole.value"
 						/>
-						<b-field label="Job Role">
+						<b-field label="Assigned Role">
 							<b-select
 								expanded
 								v-if="modal.selectedRole.display"
@@ -212,7 +219,7 @@
 								type="submit"
 								class="button is-success is-fullwidth"
 							>
-								Send Assignment
+								ASSIGN
 							</button>
 						</b-field>
 					</section>
@@ -336,9 +343,24 @@ export default {
 			this.searchQuery = "";
 			this.modal.display = false;
 		},
+		confirmUnassign(link, name, role) {
+			this.$dialog.confirm({
+				message:
+					"Are you sure want to <b class='has-text-danger'>UNASSIGN</b>:<br><b>" +
+					name +
+					"</b> as <b>" +
+					role +
+					"</b> ?",
+				type: "is-danger",
+				confirmText: "Unassign " + name,
+				onConfirm: () => {
+					window.location = link;
+				}
+			});
+		},
 		newRoleModal(member = null) {
 			if (member === null) {
-				this.modal.title = "Assign New Role";
+				this.modal.title = "Assign New Member";
 				this.modal.formTarget = this.actionNewRole;
 				this.modal.selectedRole.display = true;
 				this.modal.selectedRole.value = null;
