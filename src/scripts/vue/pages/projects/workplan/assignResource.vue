@@ -22,6 +22,7 @@
 						<p class="heading">Finish</p>
 						{{ finish }}
 					</div>
+					<input type="hidden" name="users" v-model="checkId" />
 				</div>
 				<div class="columns">
 					<div class="column">
@@ -54,8 +55,16 @@
 							:data="resourceAvailable"
 							:fields="[]"
 							checkable
+							:checked-rows.sync="checkedRows"
 						>
+							<template slot="bottom-left">
+								<b>Total checked</b>:
+								{{ checkedRows.length }}
+							</template>
 							<template slot-scope="props">
+								<!-- <b-table-column field="userid" label="userid">
+											<span>{{ props.row.userid }}</span>
+										</b-table-column> -->
 								<b-table-column field="name" label="Name">
 									<span>{{ props.row.name }}</span>
 								</b-table-column>
@@ -103,8 +112,18 @@ export default {
 			resourceAvailable: RESOURCE_AVAILABLE,
 			taskName: this.task.pName,
 			start: moment(this.task.pStart).format("DD/MM/YYYY"),
-			finish: moment(this.task.pEnd).format("DD/MM/YYYY")
+			finish: moment(this.task.pEnd).format("DD/MM/YYYY"),
+			checkedRows: []
 		};
+	},
+	computed: {
+		checkId() {
+			let a = [];
+			this.checkedRows.forEach(row => {
+				a.push(row.userid);
+			});
+			return a;
+		}
 	}
 };
 </script>
