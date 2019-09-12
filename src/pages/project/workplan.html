@@ -8,6 +8,7 @@
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+
 	<title>WORKPLAN | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -23,25 +24,157 @@
 	</div>
 	<div id="vapp">
 		<nav-bar :left-menu="[
-				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-				{ label: 'projects', link: 'projects.html', icon:'', active: false },
-				{ label: 'financial', link: '#financial', icon:'', active: false },
-				{ label: 'operation', link: '#opperation', icon:'', active: false },
-				{ label: 'setting', link: 'setting/users.html', icon:'', active: false },
-			]" :right-menu="[
-				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
-				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="home.html"></nav-bar>
+					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+					{ label: 'projects', link: 'projects.html', icon:'', active: false },
+					{ label: 'financial', link: '#financial', icon:'', active: false },
+					{ label: 'operation', link: '#opperation', icon:'', active: false },
+					{ label: 'setting', link: 'setting/users.html', icon:'', active: false },
+				]" :right-menu="[
+					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+					{ label: '🔒 logout', link: '#logout', icon:'' },
+				]" home-link="home.html"></nav-bar>
 
-		<content-page workplan-id="1" allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx"
-			action-event="http://localhost:5501/demo/post_detect.php"
-			api-action="http://localhost:5501/demo/post_detect.php">
+		<div class="container">
+			<br />
+			<p class="title is-size-3" style="margin-bottom:10px;">
+				Workplan
+			</p>
+			<br />
+			<div class="columns">
+				<div class="column is-3 animated fadeInLeft" v-show="showSideBar">
+					<div class="card">
+						<header class="card-header">
+							<p class="card-header-title">
+								Task Menu
+							</p>
+							<a @click="showSideBar = false" class="card-header-icon" aria-label="more options">
+								<span class="icon">
+									<i class="mdi mdi-close-box" aria-hidden="true"></i>
+								</span>
+							</a>
+						</header>
+						<div class="card-content">
+							<b-menu>
+								<b-menu-list>
+									<b-menu-item @click="editTask" label="Edit Task"></b-menu-item>
+									<b-menu-item @click="setProgress" label="Set Progress"></b-menu-item>
+									<b-menu-item @click="setSchedule" label="Set Schedule"></b-menu-item>
+									<b-menu-item @click="changeParentTask" label="Change Parent Task"></b-menu-item>
+									<b-menu-item @click="linkPredecessor" label="Link Predecessor"></b-menu-item>
+									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor"></b-menu-item>
+									<b-menu-item @click="assignResource" label="Assign Resource"></b-menu-item>
+									<b-menu-item @click="mergeTask" label="Merge Task"></b-menu-item>
+									<b-menu-item @click="deleteTask" label="Delete Task"></b-menu-item>
+								</b-menu-list>
+							</b-menu>
+						</div>
+					</div>
+				</div>
+				<div :class="'column ' + (showSideBar ? 'is-9' : '')">
+					<nav class="level">
+						<div class="level-left">
+							<div class="level-item">
+								<a href="http://localhost:5500/project/listrebaseline.html" class="button is-success"
+									style="width:100%;">
+									<b-icon icon="file-document"></b-icon>
+									<span>Rebasline List</span>
+								</a>
+							</div>
+							<div class="level-item" v-if="selectedDocument">
+								<form action="http://localhost:5501/demo/post_detect.php" method="post">
+									<input type="hidden" name="image" v-model="selectedDocument.name" />
+									<button class="button is-warning is-fullwidth" type="submit">
+										📬 Send File
+									</button>
+								</form>
+								<span class="file-name" v-if="selectedDocument">
+									{{ selectedDocument.name }}
+								</span>
+							</div>
+							<div class="level-item" v-else>
+								<b-upload v-model="selectedDocument" name="evidDoc" native required style="width:100%;"
+									accept=".xml,.jpg">
+									<a class="button is-info is-fullwidth">
+										<b-icon icon="upload"></b-icon>
+										<span>Upload XML</span>
+									</a>
+								</b-upload>
+							</div>
+						</div>
+						<div class="level-right">
+							<div class="level-item">
+								<a href="http://localhost:5500/project/detail.html" class="button is-danger">🏃‍ Exit
+									Workplan</a>
+							</div>
+						</div>
+					</nav>
+					<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
+					<v-gantt action-event="http://localhost:5501/demo/post_detect.php"></v-gantt>
+				</div>
+			</div>
+		</div>
 
-		</content-page>
+		<b-modal width="650px" :active.sync="modal.editTask">
+			<edit-task title="Edit Task" :task="selectedTask" workplan-id="1"
+				action-event="http://localhost:5501/demo/post_detect.php">
+				<template slot="phase-option">
+					<option selected style="display: none;"></option>
+					<option value="1">Planning</option>
+					<option value="2">Development</option>
+				</template>
+				<template slot="workdays-option">
+					<option selected style="display: none;"></option>
+					<option value="1">Normal : 5 Business days</option>
+					<option value="2">Medium : 10 Business days</option>
+				</template>
+			</edit-task>
+		</b-modal>
+
+		<b-modal width="650px" :active.sync="modal.setProgress">
+			<set-progress title="Set Progress" :task="selectedTask" workplan-id="1"
+				action-event="http://localhost:5501/demo/post_detect.php">
+			</set-progress>
+		</b-modal>
+
+		<b-modal width="650px" :active.sync="modal.setSchedule">
+			<set-schedule title="Set Schedule" :task="selectedTask" workplan-id="1"
+				action-event="http://localhost:5501/demo/post_detect.php">
+				<template slot="workdays-option">
+					<option selected style="display: none;"></option>
+					<option value="1">Normal : 5 Business days</option>
+					<option value="2">Medium : 10 Business days</option>
+				</template>
+			</set-schedule>
+		</b-modal>
+
+		<b-modal width="650px" :active.sync="modal.changeParentTask">
+			<change-parent-task title="Change Parent Task" :task="selectedTask" workplan-id="1"
+				action-event="http://localhost:5501/demo/post_detect.php">
+			</change-parent-task>
+		</b-modal>
+
+		<b-modal width="650px" :active.sync="modal.linkPredecessor">
+			<link-predecessor title="Link Predecessor" :task="selectedTask" workplan-id="1"
+				action-event="http://localhost:5501/demo/post_detect.php">
+			</link-predecessor>
+		</b-modal>
+
+		<b-modal width="650px" :active.sync="modal.mergeTask">
+			<merge-task title="Merge Task" :task="selectedTask" workplan-id="1"
+				action-event="http://localhost:5501/demo/post_detect.php">
+			</merge-task>
+		</b-modal>
+
+		<b-modal width="650px" :active.sync="modal.assignResource">
+			<assign-resource title="Assign Resource" :task="selectedTask" workplan-id="1"
+				action-event="http://localhost:5501/demo/post_detect.php">
+			</assign-resource>
+		</b-modal>
+
 	</div>
 
 	<script>
-		const DATA = [
+		const GANTT = [
 			{
 				pID: 1,
 				pName: "New Prouds Development Phase I",
@@ -54,9 +187,24 @@
 				pGroup: 1,
 				pParent: 0,
 				pOpen: 1,
+				pDepend: 0,
 				work: 1800,
 				workTotal: 6272,
-				pRes: "ade"
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"action": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"action": ""
+					}
+				],
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
 			},
 			{
 				pID: 2,
@@ -69,8 +217,24 @@
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
+				pDepend: 1,
 				work: 352,
-				workTotal: 350
+				workTotal: 350,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"action": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"action": ""
+					}
+				],
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
 			},
 			{
 				pID: 3,
@@ -83,8 +247,24 @@
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
+				pDepend: 1,
 				work: 352,
-				workTotal: 350
+				workTotal: 350,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"action": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"action": ""
+					}
+				],
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
 			},
 			{
 				pID: 4,
@@ -97,8 +277,24 @@
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
+				pDepend: 1,
 				work: 352,
-				workTotal: 350
+				workTotal: 350,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"action": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"action": ""
+					}
+				],
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
 			},
 			{
 				pID: 6,
@@ -111,8 +307,24 @@
 				pGroup: 1,
 				pParent: 1,
 				pOpen: 1,
+				pDepend: 1,
 				work: 352,
-				workTotal: 350
+				workTotal: 350,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"action": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"action": ""
+					}
+				],
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
 			},
 			{
 				pID: 7,
@@ -125,12 +337,41 @@
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
+				pDepend: 1,
 				work: 296,
-				workTotal: 512
+				workTotal: 512,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"action": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"action": ""
+					}
+				],
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
 			}
-		]
+		],
+			RESOURCE_AVAILABLE = [
+				{
+					"userid": "1234",
+					"name": "Ario"
+				},
+				{
+					"userid": "5678",
+					"name": "Moklo"
+				}
+			]
 	</script>
 	<script src="../../scripts/project/workplan.js"></script>
 </body>
-
-</html>
+<style>
+	.gtasklist {
+		font-size: 1px;
+	}
+</style>
