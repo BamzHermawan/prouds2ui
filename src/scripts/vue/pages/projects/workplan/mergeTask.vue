@@ -42,6 +42,7 @@
 					</div>
 				</div>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
+				<input type="hidden" name="taskID" v-model="taskID" />
 				<button class="button is-fullwidth is-success" type="submit">
 					Submit Document
 				</button>
@@ -75,7 +76,8 @@ export default {
 		return {
 			dataBaru: GANTT,
 			taskName: this.task.pName,
-			destination: 1
+			destination: 1,
+			taskID: this.task.pID
 		};
 	}
 };

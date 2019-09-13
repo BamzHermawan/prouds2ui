@@ -54,17 +54,23 @@
 							<b-datepicker
 								placeholder="DD/MM/YYYY"
 								v-model="finish"
+								:min-date="formatedMinDate"
 							></b-datepicker>
 						</b-field>
 					</div>
 
-					<div class="column">
+					<div class="column is-6">
 						<p class="heading">Duration</p>
-						<b-input name="duration" v-model="duration" disabled>
-						</b-input>
+						{{ this.duration }}
+						<input
+							type="hidden"
+							name="duration"
+							v-model="duration"
+						/>
 					</div>
 				</div>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
+				<input type="hidden" name="taskID" v-model="taskID" />
 				<button class="button is-fullwidth is-success" type="submit">
 					Submit Document
 				</button>
@@ -75,6 +81,7 @@
 
 <script>
 import moment from "moment";
+import Axios from "axios";
 export default {
 	props: {
 		actionEvent: {
@@ -92,6 +99,10 @@ export default {
 		task: {
 			type: Object,
 			required: true
+		},
+		apiGetDuration: {
+			type: String,
+			required: true
 		}
 	},
 	data() {
@@ -101,7 +112,8 @@ export default {
 			duration: 20,
 			start: new Date(this.task.pStart),
 			finish: new Date(this.task.pEnd),
-			oldfinish: new Date(this.task.pEnd)
+			oldfinish: new Date(this.task.pEnd),
+			taskID: this.task.pID
 		};
 	},
 	methods: {
@@ -113,6 +125,37 @@ export default {
 					? "The date you choose must be approved by PMO"
 					: undefined;
 			}
+		},
+		getDuration(start, finish, workdays) {
+			let self = this;
+			return Axios.get(this.apiGetDuration, {
+				params: { start: start, finish: finish, workdays: workdays }
+			})
+				.then(function(response) {
+					let dur = response.data;
+					self.duration = dur.duration;
+				})
+				.catch(function(error) {
+					console.log("ADR Error Fetching: 500");
+					console.log(error);
+					Tools.notified(self.$toast).error(
+						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
+					);
+				});
+		}
+	},
+	watch: {
+		start: function() {
+			if (this.start > this.finish) {
+				this.finish = this.start;
+			}
+			this.getDuration(this.start, this.finish, this.workdays);
+		},
+		finish: function() {
+			this.getDuration(this.start, this.finish, this.workdays);
+		},
+		workdays: function() {
+			this.getDuration(this.start, this.finish, this.workdays);
 		}
 	},
 	computed: {
@@ -122,6 +165,13 @@ export default {
 		},
 		formatedFinish() {
 			return moment(this.finish).format("DD/MM/YYYY");
+		},
+		formatedMinDate() {
+			return new Date(
+				this.start.getFullYear(),
+				this.start.getMonth(),
+				this.start.getDate()
+			);
 		},
 		finishisoverflow() {
 			return this.finish > this.oldfinish;

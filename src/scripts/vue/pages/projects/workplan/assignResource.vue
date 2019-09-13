@@ -57,14 +57,7 @@
 							checkable
 							:checked-rows.sync="checkedRows"
 						>
-							<template slot="bottom-left">
-								<b>Total checked</b>:
-								{{ checkedRows.length }}
-							</template>
 							<template slot-scope="props">
-								<!-- <b-table-column field="userid" label="userid">
-											<span>{{ props.row.userid }}</span>
-										</b-table-column> -->
 								<b-table-column field="name" label="Name">
 									<span>{{ props.row.name }}</span>
 								</b-table-column>
@@ -73,6 +66,7 @@
 					</div>
 				</div>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
+				<input type="hidden" name="taskID" v-model="taskID" />
 				<button class="button is-fullwidth is-success" type="submit">
 					Submit Document
 				</button>
@@ -113,7 +107,8 @@ export default {
 			taskName: this.task.pName,
 			start: moment(this.task.pStart).format("DD/MM/YYYY"),
 			finish: moment(this.task.pEnd).format("DD/MM/YYYY"),
-			checkedRows: []
+			checkedRows: [],
+			taskID: this.task.pID
 		};
 	},
 	computed: {

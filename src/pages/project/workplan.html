@@ -25,7 +25,7 @@
 	<div id="vapp">
 		<nav-bar :left-menu="[
 					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-					{ label: 'projects', link: 'projects.html', icon:'', active: false },
+					{ label: 'projects', link: '../projects.html', icon:'', active: false },
 					{ label: 'financial', link: '#financial', icon:'', active: false },
 					{ label: 'operation', link: '#opperation', icon:'', active: false },
 					{ label: 'setting', link: 'setting/users.html', icon:'', active: false },
@@ -93,7 +93,7 @@
 							</div>
 							<div class="level-item" v-else>
 								<b-upload v-model="selectedDocument" name="evidDoc" native required style="width:100%;"
-									accept=".xml,.jpg">
+									accept=".xml">
 									<a class="button is-info is-fullwidth">
 										<b-icon icon="upload"></b-icon>
 										<span>Upload XML</span>
@@ -116,6 +116,7 @@
 
 		<b-modal width="650px" :active.sync="modal.editTask">
 			<edit-task title="Edit Task" :task="selectedTask" workplan-id="1"
+				api-get-duration="http://localhost:5501/demo/getDuration.php"
 				action-event="http://localhost:5501/demo/post_detect.php">
 				<template slot="phase-option">
 					<option selected style="display: none;"></option>
@@ -138,6 +139,7 @@
 
 		<b-modal width="650px" :active.sync="modal.setSchedule">
 			<set-schedule title="Set Schedule" :task="selectedTask" workplan-id="1"
+				api-get-duration="http://localhost:5501/demo/getDuration.php"
 				action-event="http://localhost:5501/demo/post_detect.php">
 				<template slot="workdays-option">
 					<option selected style="display: none;"></option>

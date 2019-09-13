@@ -26,6 +26,7 @@
 					</div>
 				</div>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
+				<input type="hidden" name="taskID" v-model="taskID" />
 				<button class="button is-fullwidth is-success" type="submit">
 					Submit Document
 				</button>
@@ -59,7 +60,8 @@ export default {
 		return {
 			taskName: this.task.pName,
 			progress: this.task.pComp,
-			estProgress: this.task.estProgress
+			estProgress: this.task.estProgress,
+			taskID: this.task.pID
 		};
 	}
 };
