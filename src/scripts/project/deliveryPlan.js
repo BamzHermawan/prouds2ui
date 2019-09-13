@@ -134,6 +134,7 @@ new Vue({
 				this.top.status = true;
 			}
 
+			row.id = i;
 			this.delivery.push(row);
 		}
 

@@ -67,9 +67,8 @@
 		<p class="title">Delivery Progress</p>
 		<b-message v-if="top.status" type="is-info">
 			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span>
-				Informasi</p>
-			<p>Status TOP saat ini berada pada periode [ {{ top.period.join(", ") }} ] di baris yang telah di highlight
-				<span class="tag is-warning">KUNING</span>.</p>
+				Information</p>
+			<p><span class="tag is-warning">YELLOW</span> Highlight Term of Payment (TOP)</p>
 		</b-message>
 
 		<nav v-if="showPMONav" class="level sub-nav is-info animated fadeIn" style="margin-top:25px;">
@@ -91,7 +90,7 @@
 			</div>
 		</nav>
 
-		<b-table ref="dTable" :header-checkable="false" :data="delivery" class="is-packed" checkbox-position="left" :checked-rows.sync="selected" :row-class="(row, index) => row.topStatus && 'has-background-warning'" :paginated="isPaginated" per-page="10" pagination-simple="" checkable="">
+		<b-table ref="dTable" :header-checkable="false" :data="delivery" class="is-packed" checkbox-position="right" :checked-rows.sync="selected" :row-class="(row, index) => row.topStatus && 'has-background-warning'" :paginated="isPaginated" per-page="10" pagination-simple="" checkable="" detailed="" detail-key="id" show-detail-icon="">
 			<template slot-scope="props">
 				<b-table-column field="period" label="Period" width="120" centered="">
 					{{ props.row.period }}
@@ -139,6 +138,24 @@
 					</div>
 				</b-table-column>
 			</template>
+
+			<template slot="detail" slot-scope="props">
+				<div v-if="props.row.detail !== undefined && props.row.detail !== null" class="content">
+					<div class="container" v-for="(list, index) in props.row.detail" :key="index">
+						<div class="columns">
+							<div class="column is-one-fifth">
+								<b>{{ list.label }}</b>
+							</div>
+							<div class="column">
+								<p v-html="list.content"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div v-else="" class="content">
+					<p class="is-3 has-text-centered has-text-danger">Detail Unavailable</p>
+				</div>
+			</template>
 		</b-table>
 
 		<b-modal :active.sync="formModal.display" has-modal-card="" scroll="keep">
@@ -158,7 +175,14 @@
     "downloadLink": "#downloadBATPPI",
     "status": "Verified",
     "notes": "Sudah dicek dan sesuai"
-  }
+  },
+  "detail": [{
+    "label": "Detail Nomer 1",
+    "content": "<b>Lorem ipsum</b> dolor sit, amet consectetur adipisicing elit. Placeat, doloribus. Aut necessitatibus, minima harum perferendis exercitationem tempore, quisquam voluptates porro aliquam quam possimus nam. Consectetur iure nihil dicta itaque adipisci."
+  }, {
+    "label": "Detail Nomer 2",
+    "content": "Tanggal 20 Oktober 2017"
+  }]
 }, {
   "period": "2019/02",
   "plan": "100",

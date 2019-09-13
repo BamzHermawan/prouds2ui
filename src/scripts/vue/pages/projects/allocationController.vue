@@ -26,29 +26,45 @@
 				:row-class="row => !row.status && 'has-text-grey-light'"
 			>
 				<template slot-scope="props">
-					<b-table-column field="nama" label="Name" sortable>
-						<span>{{ props.row.nama }}</span>
-					</b-table-column>
+					<slot name="column" :row="props.row" :index="props.index">
+						<b-table-column field="nama" label="Name" sortable>
+							<span>{{ props.row.nama }}</span>
+						</b-table-column>
 
-					<b-table-column field="bu" label="Business Unit" sortable>
-						{{ props.row.bu }}
-					</b-table-column>
+						<b-table-column
+							field="bu"
+							label="Business Unit"
+							sortable
+						>
+							{{ props.row.bu }}
+						</b-table-column>
 
-					<b-table-column
-						field="assigned_role"
-						label="Assigned Role"
-						sortable
-					>
-						{{ props.row.assigned_role }}
-					</b-table-column>
+						<b-table-column
+							field="assigned_role"
+							label="Assigned Role"
+							sortable
+						>
+							{{ props.row.assigned_role }}
+						</b-table-column>
 
-					<b-table-column field="job_role" label="Job Role" sortable>
-						{{ props.row.job_role }}
-					</b-table-column>
+						<b-table-column
+							field="job_role"
+							label="Job Role"
+							sortable
+						>
+							{{ props.row.job_role }}
+						</b-table-column>
 
-					<b-table-column field="rate" label="Rate (Rp)" sortable>
-						{{ props.row.rate | number_format }}
-					</b-table-column>
+						<b-table-column
+							field="rate"
+							label="Rate (Rp)"
+							sortable
+							centered
+							class="has-text-right"
+						>
+							{{ props.row.rate | number_format }}
+						</b-table-column>
+					</slot>
 
 					<b-table-column field="action" label="Action">
 						<a
@@ -74,19 +90,8 @@
 				</template>
 
 				<template slot="empty">
-					<b-message
-						v-if="resource.member.length == 0"
-						type="is-warning"
-						class="has-text-centered"
-					>
-						No User Assigned In This Role 😢.
-					</b-message>
-					<b-message
-						v-else
-						type="is-warning"
-						class="has-text-centered"
-					>
-						No User Found 😢.
+					<b-message type="is-warning" class="has-text-centered">
+						Currently No User is Assigned 😢.
 					</b-message>
 				</template>
 
@@ -151,7 +156,7 @@
 								expanded
 								v-if="modal.selectedRole.display"
 								v-model="modal.selectedRole.value"
-								placeholder="Pilih Role Member"
+								placeholder="Select Member Role"
 							>
 								<slot name="role-option"></slot>
 							</b-select>

@@ -42,6 +42,14 @@ const notifiedType = (typeIndex, actor, message = undefined) => {
 	}
 };
 
+
+/**
+ * Notified: Show Notification based on buefy actor
+ *
+ * @param {Object} actor
+ * @param {String} [message=undefined]
+ * @returns [error|success|danger] notified type if message is undefined
+ */
 module.exports.notified = (actor, message = undefined) => {
 	if(message == undefined){ 
 		var bundle = {};
@@ -61,6 +69,12 @@ module.exports.notified = (actor, message = undefined) => {
 	}
 };
 
+/**
+ * Get LocalStorage data by key and decode it
+ *
+ * @param {*} key
+ * @returns {Object}
+ */
 module.exports.loadStorage = function(key) {
 	return new Promise(function (resolve, reject) {
 		let json = window.localStorage.getItem(key);
@@ -74,10 +88,24 @@ module.exports.loadStorage = function(key) {
 	})
 }
 
+/**
+ * Save to LocalStorage by encode it to json
+ *
+ * @param {string} key
+ * @param {object} json
+ * @returns Boolean result
+ */
 module.exports.saveStorage = function (key, json) {
 	return window.localStorage.setItem(key, JSON.stringify(json));
 }
 
+/**
+ * Do animate DOM Element
+ *
+ * @param {String} selector
+ * @param {String} classOption
+ * @param {Function} [callback=undefined]
+ */
 module.exports.animate = function(selector, classOption, callback = undefined){
 	const el = document.querySelector(selector);
 	if(el !== null && el !== undefined){
@@ -100,6 +128,12 @@ module.exports.animate = function(selector, classOption, callback = undefined){
 	}
 }
 
+/**
+ * Get Smiley Face!
+ *
+ * @param {Number} [request=undefined]
+ * @returns Smiley Face!
+ */
 module.exports.randomSmile = function(request = undefined){
 	let smiles = ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "🙊", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "🙈", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙉" ];
 	let random = Math.random() * smiles.length;

@@ -41,7 +41,7 @@
 	</section>
 
 	<section id="vapp" class="section">
-		<content-page project-id="My-Yeaaaah-Project-ID" action-new-role="http://localhost:5501/demo/post_detect.php?how=new-role" action-new-member="http://localhost:5501/demo/post_detect.php?how=new-member" action-change-role="http://localhost:5501/demo/post_detect.php?how=change-role" api-fetch-level="http://localhost:5501/demo/level_api.php" alert-message="Waduh Bahaya!" alert-type="is-danger">
+		<content-page ref="content" project-id="My-Yeaaaah-Project-ID" action-new-role="http://localhost:5501/demo/post_detect.php?how=new-role" action-new-member="http://localhost:5501/demo/post_detect.php?how=new-member" action-change-role="http://localhost:5501/demo/post_detect.php?how=change-role" api-fetch-level="http://localhost:5501/demo/level_api.php" alert-message="Waduh Bahaya!" alert-type="is-danger">
 			<template slot="role-option">
 				<option selected="" style="display: none;"></option>
 				<option>Programmer Analyst</option>
@@ -59,105 +59,33 @@
 				</a>
 			</template>
 
-			<template slot="resourceAlert">
-				<b-message type="is-danger">
-					<span style="margin-right:5px;">🛑</span> Your allocated budget is more than your plan
-				</b-message>
+			<template slot="column" slot-scope="props">
+				<b-table-column field="nama" label="Name" sortable="">
+					<span>{{ props.row.nama }}</span>
+				</b-table-column>
+				
+				<b-table-column field="bu" label="Business Unit" sortable="">
+					{{ props.row.bu }}
+				</b-table-column>
+				
+				<b-table-column field="assigned_role" label="Assigned Role" sortable="">
+					{{ props.row.assigned_role }}
+				</b-table-column>
+				
+				<b-table-column field="job_role" label="Job Role" sortable="">
+					{{ props.row.job_role }}
+				</b-table-column>
+				
+				<!-- <b-table-column field="rate" label="Rate (Rp)" sortable centered class="has-text-right">
+					{{ props.row.rate | number_format }}
+				</b-table-column> -->
 			</template>
 
 			<template #summary-plan="">
-				<!-- <b-collapse class="card table-summary-plan" :open="true">
-					<div slot="trigger" slot-scope="props" class="card-header" role="button">
-						<p class="card-header-title">
-							Resource Allocation Summary
-						</p>
-						<a class="card-header-icon">
-							<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
-							</b-icon>
-						</a>
-					</div>
-					<table class="table is-fullwidth">
-						<tr>
-							<th rowspan="2">Job Role</th>
-							<th rowspan="2">Rate (IDR)</th>
-							<th rowspan="2">Days</th>
-							<th colspan="3" class="is-plan">Plan</th>
-							<th colspan="3" class="is-actual">Allocated</th>
-						</tr>
-						<tr>
-							<th class="is-plan">Qty</th>
-							<th class="is-plan">Mandays</th>
-							<th class="is-plan">Cost (IDR)</th>
-							<th class="is-actual">Qty</th>
-							<th class="is-actual">Mandays</th>
-							<th class="is-actual">Cost (IDR)</th>
-						</tr>
-						<tr>
-							<td>Junior Programmer</td>
-							<td>700,000</td>
-							<td>90</td>
-							<td class="inner is-plan">5</td>
-							<td class="inner is-plan">450</td>
-							<td class="inner is-plan">315,000,000</td>
-							<td class="inner is-actual">7</td>
-							<td class="inner is-actual">630</td>
-							<td class="inner is-actual">441,000,000</td>
-						</tr>
-						<tr>
-							<td>System Analyst</td>
-							<td>1,000,000</td>
-							<td>30</td>
-							<td class="inner is-plan">1</td>
-							<td class="inner is-plan">30</td>
-							<td class="inner is-plan">30,000,000</td>
-							<td class="inner is-actual">2</td>
-							<td class="inner is-actual">60</td>
-							<td class="inner is-actual">60,000,000</td>
-						</tr>
-						<tr>
-							<td>Business Analyst</td>
-							<td>1,500,000</td>
-							<td>45</td>
-							<td class="inner is-plan">1</td>
-							<td class="inner is-plan">45</td>
-							<td class="inner is-plan">67,500,000</td>
-							<td class="inner is-actual">1</td>
-							<td class="inner is-actual">45</td>
-							<td class="inner is-actual">67,500,000</td>
-						</tr>
-						<tr>
-							<td>Assosiate Consultant</td>
-							<td>500,000</td>
-							<td>90</td>
-							<td class="inner is-plan">3</td>
-							<td class="inner is-plan">270</td>
-							<td class="inner is-plan">135,000,000</td>
-							<td class="inner is-actual">1</td>
-							<td class="inner is-actual">90</td>
-							<td class="inner is-actual">45,000,000</td>
-						</tr>
-						<tr>
-							<td>Technical Writer</td>
-							<td>300,000</td>
-							<td>6</td>
-							<td class="inner is-plan">0</td>
-							<td class="inner is-plan">0</td>
-							<td class="inner is-plan">-</td>
-							<td class="inner is-actual">2</td>
-							<td class="inner is-actual">12</td>
-							<td class="inner is-actual">3,600,000</td>
-						</tr>
-						<tr>
-							<td colspan="3">Total</td>
-							<td class="is-plan">10</td>
-							<td class="is-plan">795</td>
-							<td class="is-plan">547,500,000</td>
-							<td class="is-actual">13</td>
-							<td class="is-actual">837</td>
-							<td class="is-actual">617,100,100</td>
-						</tr>
-					</table>
-				</b-collapse> -->
+				<b-message id="is-alert-message" class="animated" type="is-danger">
+					<span style="margin-right:5px;">⚠</span> Your allocated budget is more than your plan <br>
+					<span style="margin-right:5px;">⚠</span> Your allocated budget is more than your plan <br>
+				</b-message>
 
 				<b-collapse class="card table-summary-plan" :open="true">
 					<div slot="trigger" slot-scope="props" class="card-header" role="button">
@@ -178,30 +106,32 @@
 							<th class="is-plan">Rate (Rp)</th>
 							<th class="is-plan">Total Cost (Rp)</th>
 						</thead>
-						<tr>
-							<td>Senior Programmer</td>
-							<td class="inner is-plan">7</td>
-							<td class="inner is-plan">80</td>
-							<td class="inner is-plan">560</td>
-							<td class="inner is-plan">750,000</td>
-							<td class="inner is-plan">420,000,000</td>
-						</tr>
-						<tr>
-							<td>Engineer</td>
-							<td class="inner is-plan">5</td>
-							<td class="inner is-plan">50</td>
-							<td class="inner is-plan">250</td>
-							<td class="inner is-plan">600,000</td>
-							<td class="inner is-plan">150,000,000</td>
-						</tr>
-						<tr>
-							<td>Total</td>
+						<tbody>
+							<tr>
+								<td>Senior Programmer</td>
+								<td class="inner is-plan">7</td>
+								<td class="inner is-plan">80</td>
+								<td class="inner is-plan">560</td>
+								<td class="inner is-plan">750,000</td>
+								<td class="inner is-plan">420,000,000</td>
+							</tr>
+							<tr>
+								<td>Engineer</td>
+								<td class="inner is-plan">5</td>
+								<td class="inner is-plan">50</td>
+								<td class="inner is-plan">250</td>
+								<td class="inner is-plan">600,000</td>
+								<td class="inner is-plan">150,000,000</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<th>Total</th>
 							<td class="is-plan">12</td>
 							<td class="is-plan">130</td>
 							<td class="is-plan">810</td>
 							<td class="is-plan"></td>
 							<td class="is-plan">570,000,000</td>
-						</tr>
+						</tfoot>
 					</table>
 				</b-collapse>
 
@@ -215,40 +145,77 @@
 							</b-icon>
 						</a>
 					</div>
-					<table class="table is-fullwidth">
+					<table id="tablePlan" class="table is-fullwidth is-marginless">
 						<thead>
 							<th>Assigned Role</th>
+							<th>Job Role</th>
 							<th class="is-actual">Qty</th>
 							<th class="is-actual">Day(s)</th>
 							<th class="is-actual">Manday(s)</th>
 							<th class="is-actual">Rate (Rp)</th>
 							<th class="is-actual">Total Cost (Rp)</th>
 						</thead>
-						<tr>
-							<td>Senior Programmer</td>
-							<td class="inner is-actual">7</td>
-							<td class="inner is-actual">80</td>
-							<td class="inner is-actual">560</td>
-							<td class="inner is-actual">750,000</td>
-							<td class="inner is-actual">420,000,000</td>
-						</tr>
-						<tr>
-							<td>Engineer</td>
-							<td class="inner is-actual">5</td>
-							<td class="inner is-actual">50</td>
-							<td class="inner is-actual">250</td>
-							<td class="inner is-actual">600,000</td>
-							<td class="inner is-actual">150,000,000</td>
-						</tr>
-						<tr>
-							<td>Total</td>
-							<td class="is-actual">12</td>
-							<td class="is-actual">130</td>
-							<td class="is-actual">810</td>
+						<tbody data-url="http://localhost:5501/demo/axios_check.php?return=ok">
+							<tr data-id="1" data-days="80" data-qty="7" data-rate="750000">
+								<td>Senior Programmer</td>
+								<td class="has-text-left">Analyst Programmer</td>
+								<td class="inner is-actual val-1-qty">-</td>
+								<td class="inner is-actual is-days-has-input">
+									<span v-show="!editPlan" class="animated fadeIn val-1-days">-</span>
+									<input v-show="editPlan" type="number" @change="daysChange" class="input is-small animated fadeIn">
+								</td>
+								<td class="inner is-actual val-1-mandays">-</td>
+								<td class="inner is-actual val-1-rate">-</td>
+								<td class="inner is-actual val-1-total">-</td>
+							</tr>
+							<tr data-id="2" data-days="50" data-qty="5" data-rate="600000">
+								<td>Engineer</td>
+								<td class="has-text-left">Junior Programmer</td>
+								<td class="inner is-actual val-2-qty">-</td>
+								<td class="inner is-actual is-days-has-input">
+									<span v-show="!editPlan" class="animated fadeIn val-2-days">-</span>
+									<input v-show="editPlan" type="number" @change="daysChange" class="input is-small animated fadeIn">
+								</td>
+								<td class="inner is-actual val-2-mandays">-</td>
+								<td class="inner is-actual val-2-rate">-</td>
+								<td class="inner is-actual val-2-total">-</td>
+							</tr>
+
+							<!-- Template Jika Data Kosong -->
+							<tr>
+								<td colspan="7" class="inner is-actual">
+									<p class="subtitle has-text-centered">Data Unavailable</p>
+								</td>
+							</tr>
+							<!-- Template Jika Data Kosong -->
+
+						</tbody>
+						<tfoot>
+							<th colspan="2">Total</th>
+							<td class="is-actual">{{ planSums.qty | numformat }}</td>
 							<td class="is-actual"></td>
-							<td class="is-actual">570,000,000</td>
-						</tr>
+							<td class="is-actual">{{ planSums.mandays | numformat }}</td>
+							<td class="is-actual"></td>
+							<td class="is-actual">{{ planSums.total | numformat }}</td>
+						</tfoot>
 					</table>
+
+					<!-- Jika Data Kosong Footer ini boleh tidak ditampilkan -->
+					<footer class="card-footer has-gradient-light is-block is-clearfix">
+						<div v-if="editPlan" class="button-right">
+							<b-button type="is-success" size="is-small" :loading="loadingSavePlan" @click="saveEditPlan()">
+								Save Plan
+							</b-button>
+							<b-button type="is-danger" size="is-small" @click="cancelEditPlan()">
+								Cancel
+							</b-button>
+						</div>
+						<b-button v-else="" type="is-info" size="is-small" class="is-pulled-right" @click="editPlan = true">
+							Edit Plan
+						</b-button>
+					</footer>
+					<!-- Jika Data Kosong Footer ini boleh tidak ditampilkan -->
+
 				</b-collapse>
 			</template>
 		</content-page>
@@ -262,8 +229,6 @@
     "job_role": "Junior Programmer",
     "assigned_role": "Senior Programmer",
     "rate": 850000,
-    "start": "18/10/2010",
-    "end": "03/03/2013",
     "unassign_link": "#remove",
     "status": true
   }, {
@@ -273,8 +238,6 @@
     "assigned_role": "Technical Writer",
     "job_role": "Junior Programmer",
     "rate": 550000,
-    "start": "25/03/2010",
-    "end": "18/05/2010",
     "unassign_link": "#remove",
     "status": false
   }, {
@@ -284,8 +247,6 @@
     "assigned_role": "Junior Tester",
     "job_role": "Junior Tester",
     "rate": 450000,
-    "start": "25/03/2010",
-    "end": "18/05/2010",
     "unassign_link": "#remove",
     "status": false
   }, {
@@ -295,8 +256,6 @@
     "assigned_role": "Database Administrator",
     "job_role": "Database Administrator",
     "rate": 550000,
-    "start": "07/06/2005",
-    "end": "06/10/2010",
     "unassign_link": "#remove",
     "status": true
   }, {
@@ -306,8 +265,6 @@
     "assigned_role": "Database Administrator",
     "job_role": "Database Administrator",
     "rate": 550000,
-    "start": "19/02/2016",
-    "end": "30/11/2015",
     "unassign_link": "#remove",
     "status": false
   }, {
@@ -317,8 +274,6 @@
     "assigned_role": "Quality Assurance",
     "job_role": "Quality Assurance",
     "rate": 550000,
-    "start": "06/01/2017",
-    "end": "19/06/2018",
     "unassign_link": "#remove",
     "status": true
   }],

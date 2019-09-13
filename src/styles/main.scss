@@ -362,7 +362,7 @@ p.help.is-success {
 		}
 	}
 
-	tr:last-child {
+	tfoot {
 		td {
 			font-weight: bold;
 		}
@@ -434,6 +434,46 @@ tr.gname {
 	.card-header {
 		@include heroGradient($light, darken($light, 20%));
 	}
+
+	&.collapse {
+		.card-header .icon {
+			color: $light !important;
+		}
+
+		.card-footer {
+			padding: 8px 12px;
+
+			.button {
+				min-width: 95px;
+			}
+
+			.button-right {
+				float: right !important;
+
+				& > .button:first-child {
+					margin-right: 5px;
+				}
+			}
+		}
+
+		td {
+			vertical-align: middle;
+			height: 42px !important;
+		}
+
+		td.is-days-has-input {
+			width: 150px;
+
+			input.input {
+				text-align: center !important;
+
+				&::-webkit-inner-spin-button, 
+				&::-webkit-outer-spin-button {  
+					opacity: 1;
+				}
+			}
+		}
+	}
 }
 
 @each $color in $colors {
@@ -483,7 +523,7 @@ tr.gname {
 			border-color: darken($primeColor, 15%) !important;
 		}
 
-		.icon {
+		.control > .icon {
 			color: $primeColor !important;
 		}
 	}
@@ -491,6 +531,10 @@ tr.gname {
 
 .datepicker .datepicker-content {
     height: auto !important;
+}
+
+#is-alert-message.is-hidden {
+	display: none !important;
 }
 
 @import "~bulma";

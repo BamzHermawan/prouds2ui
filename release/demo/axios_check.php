@@ -9,9 +9,15 @@ if(!empty($_GET['return'])){
 		$max = $prep[2];
 		$cooked[$prep[3]] = rand($min, $max);
 		echo json_encode($cooked);
+	}if($prep[0] === "false" && count($prep) === 2){
+		echo json_encode([
+			"status" => false,
+			"message" => $prep[1]
+		]);
 	}else{
 		echo json_encode([
 			"status" => true,
+			"warning" => rand(0, 1) === 0,
 			"message" => "Success Fetching Data"
 		]);
 	}
