@@ -62,6 +62,11 @@
 					<div class="column is-6">
 						<p class="heading">Duration</p>
 						{{ this.duration }}
+						<b-loading
+							:is-full-page="false"
+							:active.sync="isLoading"
+							:can-cancel="true"
+						></b-loading>
 						<input
 							type="hidden"
 							name="duration"
@@ -113,7 +118,8 @@ export default {
 			start: new Date(this.task.pStart),
 			finish: new Date(this.task.pEnd),
 			oldfinish: new Date(this.task.pEnd),
-			taskID: this.task.pID
+			taskID: this.task.pID,
+			isLoading: false
 		};
 	},
 	methods: {
@@ -126,7 +132,14 @@ export default {
 					: undefined;
 			}
 		},
+		openLoading() {
+			this.isLoading = true;
+			// setTimeout(() => {
+			// 	this.isLoading = false
+			// }, 10 * 1000)
+		},
 		getDuration(start, finish, workdays) {
+			this.isLoading = true;
 			let self = this;
 			return Axios.get(this.apiGetDuration, {
 				params: { start: start, finish: finish, workdays: workdays }
@@ -141,7 +154,8 @@ export default {
 					Tools.notified(self.$toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
-				});
+				})
+				.finally(() => (self.isLoading = false));
 		}
 	},
 	watch: {

@@ -3,7 +3,7 @@
 		<header class="modal-card-head">
 			<p class="modal-card-title">{{ title }}</p>
 		</header>
-		<section class="modal-card-body">
+		<section class="modal-card-body" style="height:auto;">
 			<form
 				:action="actionEvent"
 				method="POST"
@@ -115,6 +115,11 @@
 					<div class="column is-6">
 						<p class="heading">Duration</p>
 						{{ this.duration }}
+						<b-loading
+							:is-full-page="false"
+							:active.sync="isLoading"
+							:can-cancel="true"
+						></b-loading>
 						<input
 							type="hidden"
 							name="duration"
@@ -124,7 +129,11 @@
 				</div>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
-				<button class="button is-fullwidth is-success" type="submit">
+				<button
+					style="margin-top:50px"
+					class="button is-fullwidth is-success"
+					type="submit"
+				>
 					Submit Document
 				</button>
 			</form>
@@ -171,7 +180,8 @@ export default {
 			start: new Date(this.task.pStart),
 			finish: new Date(this.task.pEnd),
 			oldfinish: new Date(this.task.pEnd),
-			taskID: this.task.pID
+			taskID: this.task.pID,
+			isLoading: false
 		};
 	},
 	// watch: {
@@ -191,6 +201,7 @@ export default {
 			}
 		},
 		getDuration(start, finish, workdays) {
+			this.isLoading = true;
 			let self = this;
 			return Axios.get(this.apiGetDuration, {
 				params: { start: start, finish: finish, workdays: workdays }
@@ -205,7 +216,8 @@ export default {
 					Tools.notified(self.$toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
-				});
+				})
+				.finally(() => (self.isLoading = false));
 		}
 	},
 	watch: {

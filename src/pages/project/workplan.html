@@ -32,7 +32,7 @@
 				]" :right-menu="[
 					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 					{ label: '🔒 logout', link: '#logout', icon:'' },
-				]" home-link="home.html"></nav-bar>
+				]" home-link="../home.html"></nav-bar>
 
 		<div class="container">
 			<br />
@@ -114,7 +114,7 @@
 			</div>
 		</div>
 
-		<b-modal width="650px" :active.sync="modal.editTask">
+		<b-modal width="750px" :active.sync="modal.editTask">
 			<edit-task title="Edit Task" :task="selectedTask" workplan-id="1"
 				api-get-duration="http://localhost:5501/demo/getDuration.php"
 				action-event="http://localhost:5501/demo/post_detect.php">
