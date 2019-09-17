@@ -21,7 +21,7 @@ const POSITION = [
 
 const notifiedType = (typeIndex, actor, message = undefined) => {
 	var option = {};
-	if(message === undefined){
+	if (message === undefined) {
 		var bundle = {};
 		for (let j = 0; j < POSITION.length; j++) {
 			bundle[POSITION[j].pos] = function (lateMessage) {
@@ -34,7 +34,7 @@ const notifiedType = (typeIndex, actor, message = undefined) => {
 		}
 
 		return bundle;
-	}else{
+	} else {
 		option.message = message;
 		option.type = TIPE[typeIndex].class;
 		option.duration = TIPE[typeIndex].duration;
@@ -51,7 +51,7 @@ const notifiedType = (typeIndex, actor, message = undefined) => {
  * @returns [error|success|danger] notified type if message is undefined
  */
 module.exports.notified = (actor, message = undefined) => {
-	if(message == undefined){ 
+	if (message == undefined) {
 		var bundle = {};
 		for (let i = 0; i < TIPE.length; i++) {
 			bundle[TIPE[i].key] = function (secondMessage = undefined) {
@@ -108,7 +108,7 @@ module.exports.saveStorage = function (key, json) {
  */
 module.exports.animate = function(selector, classOption, callback = undefined){
 	const el = document.querySelector(selector);
-	if(el !== null && el !== undefined){
+	if (el !== null && el !== undefined) {
 		if (!el.classList.contains('animated')) {
 			el.classList.add('animated');
 		}
@@ -138,8 +138,8 @@ module.exports.randomSmile = function(request = undefined){
 	let smiles = ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "🙊", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "🙈", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙉" ];
 	let random = Math.random() * smiles.length;
 	let index = Math.floor(Math.random() * random);
-	
-	if(request !== undefined){
+
+	if (request !== undefined) {
 		index = request % smiles.length;
 	}
 
