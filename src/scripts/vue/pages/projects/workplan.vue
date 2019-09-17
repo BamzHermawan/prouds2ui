@@ -1,63 +1,58 @@
 <template>
 	<div class="container">
-		<br />
-		<p class="title is-size-3" style="margin-bottom:10px;">
-			Workplan
-		</p>
-		<br />
 		<div class="columns">
-			<div class="column is-3 animated fadeInLeft" v-show="showSideBar">
+			<div
+				class="column is-3 animated side-task-menu"
+				v-show="showSideBar"
+			>
 				<div class="card">
 					<header class="card-header">
 						<p class="card-header-title">
 							Task Menu
 						</p>
 						<a
-							@click="showSideBar = false"
+							@click="toggleTaskMenu"
 							class="card-header-icon"
 							aria-label="more options"
 						>
-							<span class="icon">
-								<i
-									class="mdi mdi-close-box"
-									aria-hidden="true"
-								></i>
+							<span class="button is-small is-light">
+								<span class="icon has-text-dark">
+									<i
+										class="mdi mdi-close-circle"
+										aria-hidden="true"
+									></i>
+								</span>
 							</span>
 						</a>
 					</header>
-					<div class="card-content">
-						<b-menu>
-							<b-menu-list>
-								<b-menu-item
-									@click="editTast()"
-									label="Edit Task"
-								></b-menu-item>
-								<b-menu-item
-									@click="setSchedule()"
-									label="Set Schedule"
-								></b-menu-item>
-								<b-menu-item
-									@click="changeParentTask()"
-									label="Change Parent Task"
-								></b-menu-item>
-								<b-menu-item
-									@click="changePhaseTask()"
-									label="Change Phase Task"
-								></b-menu-item>
-								<b-menu-item
-									label="Link Predecessor"
-								></b-menu-item>
-								<b-menu-item
-									label="Unlink Predecessor"
-								></b-menu-item>
-								<b-menu-item
-									label="Assign Resource"
-								></b-menu-item>
-								<b-menu-item label="Merge Task"></b-menu-item>
-								<b-menu-item label="Delete Task"></b-menu-item>
-							</b-menu-list>
-						</b-menu>
-					</div>
+					<b-menu>
+						<b-menu-list>
+							<b-menu-item
+								@click="editTast()"
+								label="Edit Task"
+								icon="settings"
+							></b-menu-item>
+							<b-menu-item
+								@click="setSchedule()"
+								label="Set Schedule"
+							></b-menu-item>
+							<b-menu-item
+								@click="changeParentTask()"
+								label="Change Parent Task"
+							></b-menu-item>
+							<b-menu-item
+								@click="changePhaseTask()"
+								label="Change Phase Task"
+							></b-menu-item>
+							<b-menu-item label="Link Predecessor"></b-menu-item>
+							<b-menu-item
+								label="Unlink Predecessor"
+							></b-menu-item>
+							<b-menu-item label="Assign Resource"></b-menu-item>
+							<b-menu-item label="Merge Task"></b-menu-item>
+							<b-menu-item label="Delete Task"></b-menu-item>
+						</b-menu-list>
+					</b-menu>
 				</div>
 			</div>
 			<div :class="'column ' + (showSideBar ? 'is-9' : '')">
@@ -123,10 +118,7 @@
 				></v-gantt>
 			</div>
 		</div>
-		<b-modal
-			:active.sync="modalEditTask.display"
-			width="670px"
-		>
+		<b-modal :active.sync="modalEditTask.display" width="670px">
 			<div class="card-modal">
 				<header class="modal-card-head">
 					<p class="modal-card-title">{{ modalEditTask.title }}</p>
@@ -136,7 +128,6 @@
 						:action="actionEvent"
 						method="POST"
 						enctype="multipart/form-data"
-						
 					>
 						<div class="columns">
 							<div class="column">
@@ -155,21 +146,18 @@
 									v-model="modalChangeParentTask.subtask"
 									name="subtask"
 								>
-									<option value="1"
-										>Task 1</option
-									>
+									<option value="1">Task 1</option>
 								</b-select>
 							</div>
 						</div>
 						<div class="columns">
-							
 							<div class="column">
 								<p class="heading">Start</p>
 								<b-datepicker
 									placeholder="DD/MM/YYYY"
 									name="start"
 									v-model="modalEditTask.start"
-									inline 
+									inline
 									size="is-small"
 								></b-datepicker>
 							</div>
@@ -192,9 +180,7 @@
 									v-model="modalEditTask.phase"
 									name="phase"
 								>
-									<option value="1"
-										>Planning</option
-									>
+									<option value="1">Planning</option>
 								</b-select>
 							</div>
 							<div class="column">
@@ -214,27 +200,27 @@
 							<div class="column">
 								<b-checkbox
 									type="is-danger"
-									v-model="modalEditTask.checkboxPredecessor">
-										Has Predecessor
+									v-model="modalEditTask.checkboxPredecessor"
+								>
+									Has Predecessor
 								</b-checkbox>
 							</div>
 						</div>
 						<div class="columns">
-							<div class="column" v-if="modalEditTask.checkboxPredecessor">
+							<div
+								class="column"
+								v-if="modalEditTask.checkboxPredecessor"
+							>
 								<p class="heading">Predecessor</p>
 								<b-select
 									expanded
 									v-model="modalEditTask.predecessor"
 									name="phase"
 								>
-									<option value="1"
-										>Task #12</option
-									>
+									<option value="1">Task #12</option>
 								</b-select>
 							</div>
-							<div class="column" v-else>
-
-							</div>
+							<div class="column" v-else></div>
 							<div class="column is-6">
 								<p class="heading">Duration</p>
 								<b-input
@@ -262,7 +248,7 @@
 		</b-modal>
 		<b-modal
 			:active.sync="modalSetSchedule.display"
-			width="600px"
+			width="680px"
 			scroll="keep"
 		>
 			<div class="card-modal">
@@ -301,6 +287,20 @@
 									placeholder="DD/MM/YYYY"
 									name="finish"
 									v-model="modalSetSchedule.finish"
+								></b-datepicker>
+							</div>
+						</div>
+						<div class="columns">
+							<div class="column">
+								<p class="heading">Start</p>
+								<b-datepicker
+									placeholder="DD/MM/YYYY"
+								></b-datepicker>
+							</div>
+							<div class="column">
+								<p class="heading">Finish</p>
+								<b-datepicker
+									placeholder="DD/MM/YYYY"
 								></b-datepicker>
 							</div>
 						</div>
@@ -350,7 +350,9 @@
 		>
 			<div class="card-modal">
 				<header class="modal-card-head">
-					<p class="modal-card-title">{{ modalChangeParentTask.title }}</p>
+					<p class="modal-card-title">
+						{{ modalChangeParentTask.title }}
+					</p>
 				</header>
 				<section class="modal-card-body">
 					<form
@@ -377,9 +379,7 @@
 									v-model="modalChangeParentTask.subtask"
 									name="subtask"
 								>
-									<option value="1"
-										>Task 1</option
-									>
+									<option value="1">Task 1</option>
 								</b-select>
 							</div>
 						</div>
@@ -405,7 +405,9 @@
 		>
 			<div class="card-modal">
 				<header class="modal-card-head">
-					<p class="modal-card-title">{{ modalChangePhaseTask.title }}</p>
+					<p class="modal-card-title">
+						{{ modalChangePhaseTask.title }}
+					</p>
 				</header>
 				<section class="modal-card-body">
 					<form
@@ -432,9 +434,7 @@
 									v-model="modalChangePhaseTask.phase"
 									name="subtask"
 								>
-									<option value="1"
-										>Execution</option
-									>
+									<option value="1">Execution</option>
 								</b-select>
 							</div>
 						</div>
@@ -458,6 +458,7 @@
 
 <script>
 import vGantt from "../../components/ganttchart";
+import { animate } from "../../../tools";
 export default {
 	components: {
 		vGantt
@@ -521,15 +522,30 @@ export default {
 			// this.modal.formTarget = this.actionSend;
 			this.modalEditTask.display = true;
 		},
+		// Side Task Menu Animation Method Added By @ariomoklo
+		toggleTaskMenu() {
+			let self = this;
+			console.log("Mantaf");
+			if (this.showSideBar) {
+				animate(".side-task-menu", "fadeOutLeft", el => {
+					self.showSideBar = false;
+				});
+			} else {
+				animate(".side-task-menu", "fadeInLeft", () => {
+					console.log("mantaf");
+				});
+				self.showSideBar = true;
+			}
+		},
 		setSchedule() {
 			// this.modal.formTarget = this.actionSend;
 			this.modalSetSchedule.display = true;
 		},
-		changeParentTask(){
-			this.modalChangeParentTask.display = true
+		changeParentTask() {
+			this.modalChangeParentTask.display = true;
 		},
-		changePhaseTask(){
-			this.modalChangePhaseTask.display = true
+		changePhaseTask() {
+			this.modalChangePhaseTask.display = true;
 		},
 		checkExtention(filename) {
 			let sliced = filename.split(".");
