@@ -33,12 +33,13 @@
 			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 			{ label: '🔒 logout', link: '#logout', icon:'' },
 		]" home-link="../home.html"></nav-bar>
-		
+
 		<section class="hero">
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">PROJECT WORKPLAN</h1>
-					<h2 class="subtitle has-text-grey">Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia</h2>
+					<h2 class="subtitle has-text-grey">Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia
+					</h2>
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
 							<li><a href="../home.html">PROUDS</a></li>
@@ -92,25 +93,30 @@
 									<span>Rebasline List</span>
 								</a>
 							</div>
-							<div class="level-item" v-if="selectedDocument">
-								<form action="http://localhost:5501/demo/post_detect.php" method="post">
-									<input type="hidden" name="image" v-model="selectedDocument.name" />
-									<button class="button is-warning is-fullwidth" type="submit">
-										📬 Send File
-									</button>
+							<div class="level-item">
+								<form action="http://localhost:5501/demo/post_detect.php" method="post"
+									enctype="multipart/form-data">
+
+									<div class="level-item">
+										<b-upload v-model="selectedDocument" name="evidDoc" native required
+											style="width:100%;" accept=".xml,.jpg">
+											<div v-if="selectedDocument==null">
+												<a class="button is-info is-fullwidth">
+													<b-icon icon="upload"></b-icon>
+													<span>Upload XML</span>
+												</a>
+											</div>
+										</b-upload>
+										<div v-if="selectedDocument">
+											<button class="button is-warning is-fullwidth" type="submit">
+												📬 Send File
+											</button>
+											<span class="file-name" v-if="selectedDocument">
+												{{ selectedDocument.name }}
+											</span>
+										</div>
+									</div>
 								</form>
-								<span class="file-name" v-if="selectedDocument">
-									{{ selectedDocument.name }}
-								</span>
-							</div>
-							<div class="level-item" v-else>
-								<b-upload v-model="selectedDocument" name="evidDoc" native required style="width:100%;"
-									accept=".xml">
-									<a class="button is-info is-fullwidth">
-										<b-icon icon="upload"></b-icon>
-										<span>Upload XML</span>
-									</a>
-								</b-upload>
 							</div>
 						</div>
 					</nav>
