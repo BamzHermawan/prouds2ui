@@ -1,23 +1,31 @@
  <template>
-	<b-field :label="label">
+	<div :class="'field ' + color" style="margin-bottom: 23px;">
+		<label class="label">{{ label }}{{ required ? "*" : "" }}</label>
 		<div v-if="type === 'datepicker'">
-			<input type="hidden" :name="name" v-model="dateModel" />
+			<input
+				v-if="dateModel !== null"
+				type="hidden"
+				:name="name"
+				v-model="dateModel"
+			/>
 			<b-datepicker
 				expanded
+				:icon="iconPicker()"
 				:month-names="monthList()"
 				:date-formatter="dateFormater"
 				:placeholder="placeholder"
 				v-model="model"
 				:inline="inline"
 				@input="input"
+				:required="required"
 			>
 				<b-button
 					@click="model = null"
 					type="is-grey"
 					class="is-fullwidth"
 				>
-					<span class="mdi mdi-calendar-remove in-left"></span> Clear
-					Selection
+					<span class="mdi mdi-calendar-remove in-left"></span>
+					Clear Selection
 				</b-button>
 			</b-datepicker>
 		</div>
@@ -26,20 +34,30 @@
 			:placeholder="placeholder"
 			v-model="model"
 			:name="name"
+			:icon="iconPicker()"
 			expanded
 			@input="input"
+			:required="required"
 		>
 			<slot></slot>
 		</b-select>
+		<b-numberinput
+			v-else-if="type === 'number'"
+			:placeholder="placeholder"
+			:type="color"
+			v-model="model"
+		></b-numberinput>
 		<b-input
 			expanded
 			v-else-if="type === 'password'"
 			:placeholder="placeholder"
 			type="password"
 			:name="name"
+			:icon="iconPicker()"
 			v-model="model"
 			password-reveal
 			@input="input"
+			:required="required"
 		>
 		</b-input>
 		<b-input
@@ -47,20 +65,31 @@
 			expanded
 			v-model="model"
 			:type="type"
+			:icon="iconPicker()"
 			:name="name"
 			@input="input"
 			:placeholder="placeholder"
+			:required="required"
 		></b-input>
-	</b-field>
+		<slot name="helptext"></slot>
+	</div>
 </template>
  
- <script>
+<script>
 import Moment from "../../../moment-locale";
 export default {
 	props: {
 		label: {
 			type: String,
 			required: true
+		},
+		color: {
+			type: String,
+			default: ""
+		},
+		icon: {
+			type: String,
+			default: undefined
 		},
 		type: {
 			type: String,
@@ -75,6 +104,14 @@ export default {
 		},
 		placeholder: {
 			type: String
+		},
+		required: {
+			type: Boolean,
+			default: false
+		},
+		validation: {
+			type: Function,
+			default: undefined
 		},
 		dateInputFormat: {
 			default: undefined
@@ -121,6 +158,11 @@ export default {
 				}
 			},
 			get() {
+				let compare = value => this.model === value;
+				if (compare(undefined) || compare(null) || compare("")) {
+					return null;
+				}
+
 				Moment.locale(this.dateLocale);
 				return Moment(this.model).format(this.dateOutputFormat);
 			}
@@ -137,6 +179,21 @@ export default {
 				return Moment(date).format("dddd, DD MMMM YYYY");
 			} else {
 				return "";
+			}
+		},
+		iconPicker() {
+			let compare = color => this.color === color;
+
+			if (compare("is-danger") || compare("is-warning")) {
+				return "alert-box";
+			} else if (compare("is-success")) {
+				return "checkbox-marked";
+			} else {
+				if (this.type === "datepicker") {
+					return "calendar-month";
+				} else {
+					return this.icon;
+				}
 			}
 		},
 		monthList() {

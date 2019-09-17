@@ -545,5 +545,15 @@ tr.gname {
 	}
 }
 
+.card-header-icon {
+	.icon {
+		color: $light;
+	}
+
+	&:hover .icon {
+		color: $dark !important;
+	}
+}
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
