@@ -125,8 +125,10 @@
 		</div>
 		<div class="column is-section">
 			<section class="main-content">
-				<p class="title is-size-3">BU: {{bu}}</p>
-				<p class="subtitle is-size-5">📁 Total Project [ {{totalProject}} ]</p>
+				<p class="title is-size-3">BU: {{ bu }}</p>
+				<p class="subtitle is-size-5">
+					📁 Total Project [ {{ totalProject }} ]
+				</p>
 			</section>
 
 			<section class="info">
@@ -137,7 +139,7 @@
 							@click="filter('behind_schedule', 1)"
 						>
 							<p class="heading">Behind Schedule</p>
-							<p class="title">📁 {{behindSchedule}}</p>
+							<p class="title">📁 {{ behindSchedule }}</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
@@ -146,7 +148,7 @@
 							@click="filter('bast_delay', 2)"
 						>
 							<p class="heading">BAST Delay</p>
-							<p class="title">📁 {{bastDelay}}</p>
+							<p class="title">📁 {{ bastDelay }}</p>
 						</div>
 					</div>
 					<div class="level-item has-text-centered">
@@ -155,7 +157,7 @@
 							@click="filter('top_delay', 3)"
 						>
 							<p class="heading">TOP Delay</p>
-							<p class="title">📁 {{topDelay}}</p>
+							<p class="title">📁 {{ topDelay }}</p>
 						</div>
 					</div>
 				</nav>
@@ -174,7 +176,11 @@
 							label="Project Name"
 							sortable
 						>
-							<span><a :href="props.row.link">{{ props.row.project_name }}</a></span>
+							<span
+								><a :href="props.row.link">{{
+									props.row.project_name
+								}}</a></span
+							>
 						</b-table-column>
 						<b-table-column field="iwo" label="IWO" sortable>
 							<span>{{ props.row.iwo }}</span>
