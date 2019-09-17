@@ -82,22 +82,22 @@
 					</div>
 					<div style="margin-top: 10px">
 						<label class="is-size-7 has-text-primary"
-							>Progress (70%)</label
+							>Progress {{ progress_project }} %</label
 						>
 						<progress
 							class="progress is-small is-success"
 							:value="progress_project"
-							max="100"
-							>{{ progress_project }}%</progress
+							:max="max_progress_project"
+							>{{ progress_project }}</progress
 						>
 						<label class="is-size-7 has-text-primary"
 							>BAST ({{ progress_bast }} of {{ j_bast }})</label
 						>
 						<progress
 							class="progress is-small is-success"
-							:value="bast"
-							max="100"
-							>{{ bast }}%</progress
+							:value="progress_bast"
+							:max="j_bast"
+							>{{ progress_bast }}</progress
 						>
 					</div>
 				</section>
@@ -109,20 +109,6 @@
 						<hr />
 					</div>
 					<slot name="activity-section"></slot>
-					<div ref="infinitescrolltrigger" id="scroll-trigger"></div>
-					<hr style="margin-top: 5px;" />
-					<section v-if="showloader">
-						<b-notification
-							style="background-color:#fff; height:50px"
-							:closable="false"
-						>
-							<b-loading
-								:is-full-page="isFullPage"
-								:active.sync="isLoading"
-								:can-cancel="true"
-							></b-loading>
-						</b-notification>
-					</section>
 				</section>
 			</div>
 			<div
@@ -177,6 +163,7 @@ export default {
 		resource: String,
 		max_resource: String,
 		progress_project: "",
+		max_progress_project: "",
 		progress_bast: "",
 		j_bast: "",
 		color: String
@@ -188,59 +175,14 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-			isFullPage: false,
 			showInfo: false,
 			showAction: false,
-			entry: ENTRY,
-			utilization: UTILIZATION,
 			activity: ACTIVITY,
 			currentPage: 1,
 			maxPerPage: 10,
 			totalResults: 100,
-			showloader: false,
 			bast: ""
 		};
-	},
-	computed: {
-		pageCount() {
-			return Math.ceil(this.activity.length / this.maxPerPage);
-		},
-		pageOffset() {
-			var a = this.maxPerPage * this.currentPage;
-			var b;
-			if (this.activity.length > a) {
-				b = this.activity.length - a;
-				return this.activity.length - b;
-			} else {
-				b = a - this.activity.length;
-				return a - b;
-			}
-		}
-	},
-	methods: {
-		scrollTrigger() {
-			const observer = new IntersectionObserver(entries => {
-				entries.forEach(entry => {
-					if (
-						entry.intersectionRatio > 0 &&
-						this.currentPage < this.pageCount
-					) {
-						this.showloader = true;
-						this.isLoading = true;
-						setTimeout(() => {
-							this.currentPage += 1;
-							this.isLoading = false;
-							this.showloader = false;
-						}, 2000);
-					}
-				});
-			});
-			observer.observe(this.$refs.infinitescrolltrigger);
-		}
-	},
-	mounted() {
-		this.bast = (this.progress_bast / this.j_bast) * 100;
-		this.scrollTrigger();
 	}
 };
 </script>

@@ -7,7 +7,7 @@
 				id="GanttChartDIV"
 			></div>
 		</h1>
-		<b-modal
+		<!-- <b-modal
 			:active.sync="modal.display"
 			width="600px"
 			@close="closeModal()"
@@ -87,7 +87,7 @@
 					</form>
 				</section>
 			</div>
-		</b-modal>
+		</b-modal> -->
 	</div>
 </template>
 
@@ -102,15 +102,15 @@ export default {
 	},
 	data() {
 		return {
-			dataBaru: DATA,
-			modal: {
-				display: false,
-				title: "",
-				StartDate: "",
-				EndDate: "",
-				duration: "",
-				data: {}
-			}
+			dataBaru: GANTT,
+			// modal: {
+			// 	display: false,
+			// 	title: "",
+			// 	StartDate: "",
+			// 	EndDate: "",
+			// 	duration: "",
+			// 	data: {}
+			// }
 		};
 	},
 	methods: {
@@ -138,9 +138,6 @@ export default {
 					},
 					workTotal: {
 						title: "Work Total"
-					},
-					action: {
-						title: "Action"
 					}
 				},
 				vUseSingleCell: 10000,
@@ -154,10 +151,15 @@ export default {
 			g.setEventClickRow(function(e) {
 				// console.log(e);
 				// self.modalEvent(e);
+				let taskID = e.getOriginalID();
+				self.$parent.selectedTask = self.dataBaru.find(task => {
+					console.log(task);
+					return task.pID == taskID;
+				});
+
 				self.$parent.showSideBar = true;
 			});
 			this.dataBaru.forEach(d => {
-				d.action = "<span class='has-text-info'>⚙ Action</span>";
 				d.pGantt = g;
 				g.AddTaskItemObject(d);
 			});
@@ -175,10 +177,10 @@ export default {
 				console.log(task);
 				return task.pID == eventID;
 			});
-		},
-		closeModal() {
-			this.modal.display = false;
 		}
+		// closeModal() {
+		// 	this.modal.display = false;
+		// }
 	},
 	mounted() {
 		this.getChart();
