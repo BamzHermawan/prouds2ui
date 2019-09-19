@@ -31,12 +31,40 @@
 				{ label: '🔒 logout', link: '#logout', icon:'' },
 			]" home-link="home.html"></nav-bar>
 
-		<content-page :show-assign-pm="false" project-id="ProuDS 2 UI" bu="Project Management Office"
-			behind-schedule="40" bast-delay="20" top-delay="10" total-project="70"
-			action-send="http://localhost:5501/demo/post_detect.php?how=assign-pm">
-
+		<content-page action-event="http://localhost:5501/demo/post_detect.php">
+			<template slot="select-project">
+				<option selected style="display: none;"></option>
+				<option value="1">Project</option>
+			</template>
+			<template slot="select-task">
+				<option selected style="display: none;"></option>
+				<option value="1">Task</option>
+			</template>
+			<template slot="employee-level">
+				<option selected style="display: none;"></option>
+				<option value="1">Jabodetabek</option>
+				<option value="2">Non Lokal Jawa</option>
+				<option value="3">Luar Jawa Dalam Negeri</option>
+				<option value="4">Luar Negeri</option>
+			</template>
 		</content-page>
 	</div>
+	<script>
+		const DRAFT = [
+			{
+				title: "New Prouds Development Phase I ",
+				activity: "Development Frontend New Prouds ",
+				submitted_on: "18 September 2019",
+				submitted_for: "18 September 2019"
+			},
+			{
+				title: "New Prouds Development Phase I ",
+				activity: "Development Frontend New Prouds ",
+				submitted_on: "19 September 2019",
+				submitted_for: "19 September 2019"
+			}
+		]
+	</script>
 	<script src="../scripts/timesheet.js"></script>
 </body>
 

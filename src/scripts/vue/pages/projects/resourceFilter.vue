@@ -423,7 +423,7 @@ import Tools from "../../../tools.js";
 import DataTable from "../../components/dataTable";
 import moment from "moment";
 import { start } from "repl";
-import { constants } from 'crypto';
+import { constants } from "crypto";
 export default {
 	components: {
 		DataTable
@@ -568,7 +568,7 @@ export default {
 		},
 		passedCheckedRow(check) {
 			this.checkedRows = check;
-			console.log("cokcokok")
+			console.log("cokcokok");
 		},
 		removeResource(resource) {
 			let findExist = this.fetchedRes.findIndex(
