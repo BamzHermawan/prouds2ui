@@ -1,34 +1,14 @@
 <template>
-	<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+	<div class="container" :style="margin">
 		<div class="card">
 			<slot name="header">
 				<header class="card-header">
 					<p class="card-header-title">Data-Table</p>
 				</header>
 			</slot>
-			<div class="card-content" style="padding-bottom:0.5em;">
-				<b-message type="is-success">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Minus eum ipsum facilis totam pariatur nemo eveniet saepe!
-				</b-message>
-				<b-message type="is-info">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Minus eum ipsum facilis totam pariatur nemo eveniet saepe!
-				</b-message>
-				<b-message type="is-danger">
-					<span class="has-text-dark"
-						>Lorem ipsum dolor sit amet, consectetur adipisicing
-						elit. Minus eum ipsum facilis totam pariatur nemo
-						eveniet saepe!</span
-					>
-				</b-message>
-				<b-message type="is-warning">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Minus eum ipsum facilis totam pariatur nemo eveniet saepe!
-				</b-message>
-			</div>
+			<slot name="message"></slot>
 			<b-table
-				v-if="!showEdit"
+				v-if="!showForm"
 				:data="filtered"
 				:paginated="paginated !== 0"
 				:per-page="paginated"
@@ -59,7 +39,9 @@
 							<b-button
 								tag="a"
 								:href="parseActionLink(edit, props.row)"
-								@click="getFormConfig(edit, props.row)"
+								@click="
+									getFormConfig(edit, props.row, props.index)
+								"
 								v-if="edit !== false"
 								type="is-info"
 								size="is-small"
@@ -67,7 +49,15 @@
 							>
 							<b-button
 								tag="a"
-								:href="parseActionLink(copy, props.row)"
+								:href="parseActionLink(add, props.row)"
+								@click="
+									getFormConfig(
+										add,
+										props.row,
+										props.index,
+										true
+									)
+								"
 								v-if="copy !== false"
 								type="is-info"
 								size="is-small"
@@ -86,7 +76,13 @@
 				</template>
 				<template slot="top-left">
 					<div class="level-item">
-						<b-button type="is-success">Add New</b-button>
+						<b-button
+							tag="a"
+							:href="parseActionLink(add)"
+							@click="getFormConfig(add)"
+							type="is-success"
+							>Add New</b-button
+						>
 					</div>
 				</template>
 				<template slot="empty">
@@ -133,13 +129,24 @@
 					</th>
 				</template>
 			</b-table>
-			<crud-form
-				v-if="showEdit"
-				action="http://localhost:5501/demo/post_detect.php"
-				title="Edit Issue Status"
-				:form-data="editForm"
-				@cancel="showEdit = false"
-			></crud-form>
+			<slot
+				v-if="showForm"
+				name="forms"
+				:isAdd="isAdd"
+				:isEdit="isEdit"
+				:isCopy="isCopy"
+				:row="selected.row"
+				:index="selected.index"
+				:method="method"
+				:action="action"
+			>
+				<crud-form
+					action="action"
+					method="method"
+					:form-data="form"
+					@cancel="showForm = false"
+				></crud-form>
+			</slot>
 		</div>
 	</div>
 </template>
@@ -181,19 +188,32 @@ export default {
 		del: {
 			default: false
 		},
-		view: {
-			type: Boolean,
-			default: true
+		margin: {
+			type: String,
+			default: "margin-top: 25px; margin-bottom: 25px;"
 		}
 	},
 	data() {
 		return {
+			isAdd: false,
+			isEdit: false,
+			isCopy: false,
+			action: "#",
+			method: undefined,
 			filtered: [],
-			showEdit: false,
-			editForm: {}
+			showForm: false,
+			form: {},
+			selected: {
+				row: undefined,
+				index: undefined
+			}
 		};
 	},
 	methods: {
+		/**
+		 * doFilter: Filter Single Column
+		 * @param Event Event listener parameter
+		 */
 		doFilter({ target }) {
 			let key = target.attributes.fieldkey.value;
 			let query = target.value;
@@ -212,6 +232,11 @@ export default {
 				}
 			});
 		},
+
+		/**
+		 * clearFilter: Clear for fresh filtering
+		 * @param Event Event listener parameter
+		 */
 		clearFilter() {
 			let input = document.getElementsByClassName("table-crud-filter");
 			for (let i = 0; i < input.length; i++) {
@@ -220,36 +245,97 @@ export default {
 
 			this.filtered = this.data;
 		},
-		parseActionLink(link, row) {
+
+		/**
+		 * parseActionLink: to check if variable is string link or not and parse any {prop-key-name} with row data
+		 * @param {string} link string to parse
+		 * @param {object} [data=undefined] data to replace in string
+		 */
+		parseActionLink(link, row = undefined) {
 			if (typeof link === "string") {
-				let parsed = link.replace(/\{\w*\}/g, function(prop) {
-					let key = prop.replace(/\{|\}/g, "");
-					return row[key];
-				});
+				let parsed = link;
+				if (row !== undefined) {
+					parsed = link.replace(/\{\w*\}/g, function(prop) {
+						let key = prop.replace(/\{|\}/g, "");
+						return row[key];
+					});
+				}
 
 				return parsed;
 			} else {
 				return false;
 			}
 		},
-		getFormConfig(config, row = undefined) {
-			if (typeof config === "object") {
-				if (row === undefined) {
-					this.editForm = this.edit.form;
-				} else {
-					let form = this.edit.form;
-					for (let key in form) {
-						form[key].value = row[key];
-					}
 
-					this.editForm = form;
+		/**
+		 * getFormConfig: Open Form for (edit/add)
+		 * @param {object} config Form Configuration
+		 * @param {object} [data=undefined] Value Data for Edit
+		 * @param {number} [index=undefined] Value Index for Edit
+		 * @param {boolean} [isCopy=false] Boolean if it was copying not add or edit
+		 */
+		getFormConfig(
+			config,
+			row = undefined,
+			index = undefined,
+			isCopy = false
+		) {
+			if (typeof config === "object") {
+				// ! Check if there is 'method' property exist in config
+				if (config.hasOwnProperty("method")) {
+					this.method = config.method;
 				}
 
-				this.showEdit = true;
+				// ! Check if there is 'action' property exist in config
+				if (config.hasOwnProperty("action")) {
+					this.action = this.parseActionLink(config.action, row);
+				}
+
+				// ! check if there is 'form' property exist in config
+				if (config.hasOwnProperty("form")) {
+					this.form = config.form;
+				}
+
+				// ! check if row passed AND form is not undefined
+				if (row !== undefined) {
+					if (isCopy) {
+						this.isAdd = true;
+						this.isEdit = false;
+						this.isCopy = true;
+					} else {
+						this.isAdd = false;
+						this.isEdit = true;
+						this.isCopy = false;
+					}
+
+					this.selected.row = row;
+					this.selected.index = index;
+
+					for (let key in row) {
+						if (this.form.hasOwnProperty(key)) {
+							this.form[key].value = row[key];
+						}
+					}
+				} else {
+					this.isEdit = false;
+					this.isCopy = false;
+					this.isAdd = true;
+				}
+
+				this.showForm = true;
 			} else {
 				return false;
 			}
 		}
+	},
+	mounted() {
+		let data = this.data[0];
+		let selectedRow = {};
+		for (let key in data) {
+			selectedRow[key] = undefined;
+		}
+
+		this.selected.row = selectedRow;
 	},
 	beforeMount() {
 		this.filtered = this.data;

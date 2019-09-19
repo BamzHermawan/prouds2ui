@@ -18,6 +18,7 @@
 				:inline="inline"
 				@input="input"
 				:required="required"
+				:position="datePosition"
 			>
 				<b-button
 					@click="model = null"
@@ -113,6 +114,10 @@ export default {
 			type: Function,
 			default: undefined
 		},
+		datePosition: {
+			type: String,
+			default: undefined
+		},
 		dateInputFormat: {
 			default: undefined
 		},
@@ -148,11 +153,19 @@ export default {
 				if (value === "" || value === undefined) {
 					this.input(null);
 				} else if (this.dateInputFormat !== undefined) {
-					let valueDate = new Date(
-						Moment(this.value, this.dateInputFormat)
-					);
+					if (
+						this.value !== undefined &&
+						this.value !== null &&
+						this.value !== ""
+					) {
+						let valueDate = new Date(
+							Moment(this.value, this.dateInputFormat)
+						);
 
-					this.input(valueDate);
+						this.input(valueDate);
+					} else {
+						this.input(null);
+					}
 				} else {
 					this.input(value);
 				}
@@ -190,7 +203,7 @@ export default {
 				return "checkbox-marked";
 			} else {
 				if (this.type === "datepicker") {
-					return "calendar-month";
+					return "calendar";
 				} else {
 					return this.icon;
 				}

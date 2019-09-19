@@ -1,11 +1,11 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add Loader
+  C:\Program Files\nodejs\node.exe C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add crudInput
 
 PATH: 
-  C:\Users\ARIOWI~1\AppData\Local\Temp\yarn--1566551251120-0.9140931644889869;D:\Projects\Telkomsigma\prouds2ui\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;D:\Oracle\product\11.2.0\client_1\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\wamp64\bin\php\php7.2.4;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AdoptOpenJDK\jdk8u192-b12\bin;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;C:\Android\android-sdk\tools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Ario Widiatmoko\AppData\Local\Microsoft\WindowsApps;C:\Users\Ario Widiatmoko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\Composer\vendor\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\cmder
+  C:\Users\ARIOWI~1\AppData\Local\Temp\yarn--1568778798736-0.37463298094270026;D:\Projects\Telkomsigma\prouds2ui\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;D:\Oracle\product\11.2.0\client_1\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\wamp64\bin\php\php7.2.4;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AdoptOpenJDK\jdk8u192-b12\bin;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;C:\Android\android-sdk\tools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Ario Widiatmoko\AppData\Local\Microsoft\WindowsApps;C:\Users\Ario Widiatmoko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\Composer\vendor\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\cmder
 
 Yarn version: 
-  1.16.0
+  1.17.3
 
 Node version: 
   10.16.0
@@ -14,13 +14,13 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/Loader: Not found
-      at Request.params.callback [as _callback] (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66091:18)
-      at Request.self.callback (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129590:22)
+  Error: https://registry.yarnpkg.com/crudInput: Not found
+      at Request.params.callback [as _callback] (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66830:18)
+      at Request.self.callback (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140464:22)
       at Request.emit (events.js:198:13)
-      at Request.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130562:10)
+      at Request.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141436:10)
       at Request.emit (events.js:198:13)
-      at IncomingMessage.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130484:12)
+      at IncomingMessage.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141358:12)
       at Object.onceWrapper (events.js:286:20)
       at IncomingMessage.emit (events.js:203:15)
       at endReadableNT (_stream_readable.js:1129:12)
@@ -69,7 +69,8 @@ npm manifest:
   	},
   	"dependencies": {
   		"axios": "^0.19.0",
-  		"buefy": "^0.7.10",
+  		"buefy": "^0.8.3",
+  		"dhtmlx-gantt": "^6.2.3",
   		"highcharts": "^7.1.2",
   		"jsgantt-improved": "^2.2.11",
   		"loader.js": "^4.7.0",
@@ -1478,10 +1479,10 @@ Lockfile:
       electron-to-chromium "^1.3.188"
       node-releases "^1.1.25"
   
-  buefy@^0.7.10:
-    version "0.7.10"
-    resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.7.10.tgz#c9931114af9a40cb9a5314026309458241532049"
-    integrity sha512-jU9CTEQR1rozxagwEPB69qObBDwWl+4uCa6TjiPkqcqOb/uxq1uvyvCsVinADzjNjzOTFhUOuuSPQk8gsVEOzA==
+  buefy@^0.8.3:
+    version "0.8.3"
+    resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.8.3.tgz#d8eefe6c3368dde5bc80abfa33cb42736de92604"
+    integrity sha512-01aHoCy4LAD08MmUahXC8mVqtGK/kzJ45ysXskwLWILAhyLMqkZ5fvdMKD9Ky6iDsMttPHdwUe2csmdnIx9caw==
     dependencies:
       bulma "0.7.5"
   
@@ -2342,6 +2343,11 @@ Lockfile:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
     integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+  
+  dhtmlx-gantt@^6.2.3:
+    version "6.2.3"
+    resolved "https://registry.yarnpkg.com/dhtmlx-gantt/-/dhtmlx-gantt-6.2.3.tgz#f6a2f871897df45747e0473e176b7b57f23b8d2c"
+    integrity sha512-1aerQxQM/YQ6o7r0BDgc5n3zdOy0ZoYobcOXQ8CTODutptAsosrBL7wixf4ZPAhCFlHJ45yc/11WcOI1w+kjlw==
   
   diffie-hellman@^5.0.0:
     version "5.0.3"

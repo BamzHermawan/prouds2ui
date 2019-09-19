@@ -1,55 +1,57 @@
 <template>
 	<section class="card-content animated fadeIn">
 		<form :action="action" :method="method">
-			<b-field
-				v-for="(input, index) in model"
-				:label="input.label"
-				:key="index"
-			>
-				<b-datepicker
-					expanded
-					v-if="input.type === 'datepicker'"
-					placeholder="DD/MM/YYYY"
-					v-model="input.value"
-					:name="input.name"
-				></b-datepicker>
-				<b-select
-					v-else-if="input.type === 'select'"
-					:placeholder="input.placeholder"
-					v-model="input.value"
-					:name="input.name"
-					expanded
+			<slot>
+				<b-field
+					v-for="(input, index) in model"
+					:label="input.label"
+					:key="index"
 				>
-					<option
-						v-for="(option, index) in input.option"
-						:key="index"
-						:value="
-							typeof option === 'string' ? option : option.key
-						"
-						>{{
-							typeof option === "string"
-								? option
-								: option.text | capitalize
-						}}</option
+					<b-datepicker
+						expanded
+						v-if="input.type === 'datepicker'"
+						placeholder="DD/MM/YYYY"
+						v-model="input.value"
+						:name="input.name"
+					></b-datepicker>
+					<b-select
+						v-else-if="input.type === 'select'"
+						:placeholder="input.placeholder"
+						v-model="input.value"
+						:name="input.name"
+						expanded
 					>
-				</b-select>
-				<b-input
-					expanded
-					v-else-if="input.type === 'password'"
-					type="password"
-					:name="input.name"
-					v-model="input.value"
-					password-reveal
-				>
-				</b-input>
-				<b-input
-					v-else
-					expanded
-					v-model="input.value"
-					:type="input.type"
-					:name="input.name"
-				></b-input>
-			</b-field>
+						<option
+							v-for="(option, index) in input.option"
+							:key="index"
+							:value="
+								typeof option === 'string' ? option : option.key
+							"
+							>{{
+								typeof option === "string"
+									? option
+									: option.text | capitalize
+							}}</option
+						>
+					</b-select>
+					<b-input
+						expanded
+						v-else-if="input.type === 'password'"
+						type="password"
+						:name="input.name"
+						v-model="input.value"
+						password-reveal
+					>
+					</b-input>
+					<b-input
+						v-else
+						expanded
+						v-model="input.value"
+						:type="input.type"
+						:name="input.name"
+					></b-input>
+				</b-field>
+			</slot>
 			<div style="margin-top: 28px;">
 				<b-button
 					type="is-danger"
@@ -72,12 +74,10 @@
 
 <script>
 import Moment from "moment";
+import CrudInput from "./crudInput";
 export default {
+	components: { CrudInput },
 	props: {
-		title: {
-			type: String,
-			required: true
-		},
 		action: {
 			type: String,
 			required: true
@@ -87,8 +87,7 @@ export default {
 			default: "post"
 		},
 		formData: {
-			type: Object,
-			required: true
+			type: Object
 		}
 	},
 	data() {
