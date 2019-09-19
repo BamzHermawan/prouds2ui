@@ -555,5 +555,17 @@ tr.gname {
 	}
 }
 
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

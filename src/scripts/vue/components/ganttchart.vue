@@ -21,7 +21,7 @@ export default {
 	},
 	data() {
 		return {
-			dataBaru: GANTT,
+			dataBaru: GANTT
 			// modal: {
 			// 	display: false,
 			// 	title: "",
@@ -72,9 +72,18 @@ export default {
 				// self.modalEvent(e);
 				let taskID = e.getOriginalID();
 				self.$parent.selectedTask = self.dataBaru.find(task => {
-					console.log(task);
 					return task.pID == taskID;
 				});
+
+				let lastActive = document.querySelector("tr.gname.is-active");
+				if (lastActive !== null) {
+					lastActive.classList.remove("is-active");
+				}
+
+				let childRow = e.getChildRow();
+				let id_childRow = childRow.getAttribute("id");
+				let id_row = id_childRow.replace("childrow", "child");
+				document.querySelector("#" + id_row).classList.add("is-active");
 
 				self.$parent.showSideBar = true;
 			});
