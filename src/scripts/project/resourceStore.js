@@ -36,11 +36,11 @@ new Vue({
 							self.filter.active = true;
 						})
 						.catch(function () {
-							notified(self.$notification).error("Mohon maaf, terjadi gangguan koneksi. Mohon ulangi dalam beberapa saat lagi. 🙏");
+							notified(self.$buefy.notification).error("Mohon maaf, terjadi gangguan koneksi. Mohon ulangi dalam beberapa saat lagi. 🙏");
 						});
 				})
 				.catch(function () {
-					notified(self.$snackbar,
+					notified(self.$buefy.snackbar,
 						"Kamu belum memilih resource satu pun 😂"
 					);
 				})

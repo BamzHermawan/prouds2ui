@@ -7,6 +7,7 @@
 				type="hidden"
 				:name="name"
 				v-model="dateModel"
+				:loading="loading"
 			/>
 			<b-datepicker
 				expanded
@@ -19,6 +20,8 @@
 				@input="input"
 				:required="required"
 				:position="datePosition"
+				:disabled="disabled"
+				:loading="loading"
 			>
 				<b-button
 					@click="model = null"
@@ -39,6 +42,8 @@
 			expanded
 			@input="input"
 			:required="required"
+			:disabled="disabled"
+			:loading="loading"
 		>
 			<slot></slot>
 		</b-select>
@@ -47,6 +52,8 @@
 			:placeholder="placeholder"
 			:type="color"
 			v-model="model"
+			:disabled="disabled"
+			:loading="loading"
 		></b-numberinput>
 		<b-input
 			expanded
@@ -59,6 +66,8 @@
 			password-reveal
 			@input="input"
 			:required="required"
+			:disabled="disabled"
+			:loading="loading"
 		>
 		</b-input>
 		<b-input
@@ -71,6 +80,8 @@
 			@input="input"
 			:placeholder="placeholder"
 			:required="required"
+			:disabled="disabled"
+			:loading="loading"
 		></b-input>
 		<slot name="helptext"></slot>
 	</div>
@@ -129,6 +140,14 @@ export default {
 			default: "id"
 		},
 		inline: {
+			type: Boolean,
+			default: false
+		},
+		disabled: {
+			type: Boolean,
+			default: false
+		},
+		loading: {
 			type: Boolean,
 			default: false
 		}
