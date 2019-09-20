@@ -141,7 +141,7 @@ export default {
 	watch: {
 		value(changed) {
 			if (this.type === "datepicker") {
-				this.dateModel = this.value;
+				this.dateModel = new Date(this.value);
 			}
 
 			this.model = changed;

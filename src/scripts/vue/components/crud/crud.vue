@@ -320,6 +320,11 @@ export default {
 					this.isEdit = false;
 					this.isCopy = false;
 					this.isAdd = true;
+
+					this.selected.index = undefined;
+					this.selected.row = new Proxy({}, () => {
+						return undefined;
+					});
 				}
 
 				this.showForm = true;

@@ -44,7 +44,8 @@
 			<div class="container is-section">
 				<div class="columns">
 					<div class="column is-6">
-						<crud ref="issueTable" :paginated="5" narrowed margin="margin-bottom: " :data="props.ISSUE_STATUS.data" :columns="props.ISSUE_STATUS.fields"
+						<crud ref="issueTable" :paginated="5" narrowed margin="margin-bottom: "
+							:data="props.ISSUE_STATUS.data" :columns="props.ISSUE_STATUS.fields"
 							del="http://localhost:5501/demo/post_detect.php?id={id}"
 							:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
 							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
@@ -54,29 +55,33 @@
 									<p class="card-header-title">Issue Status</p>
 								</header>
 							</template>
-						
+
 							<template slot="message">
 								<div class="card-content" style="padding-bottom:0.5em;">
 									<b-message type="is-info">
-										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum quae doloribus? Aperiam,
-										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit, molestias eius magnam illum
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
 										debitis.
 									</b-message>
 								</div>
 							</template>
-						
+
 							<template slot="forms" slot-scope="props">
-								<crud-form method="post" :action="props.action" @cancel="$refs.issueTable.showForm = false">
-									<crud-input type="text" label="Status Name" placeholder="Nama Status Issue" name="status_name"
-										:value="props.row.status_name">
+								<crud-form method="post" :action="props.action"
+									@cancel="$refs.issueTable.showForm = false">
+									<crud-input type="text" label="Status Name" placeholder="Nama Status Issue"
+										name="status_name" :value="props.row.status_name">
 									</crud-input>
 								</crud-form>
 							</template>
 						</crud>
 					</div>
 					<div class="column is-6">
-						<crud ref="severityTable" :paginated="5" narrowed margin="margin-top: 0px;" :data="props.ISSUE_SEVERITY.data" :columns="props.ISSUE_SEVERITY.fields"
-							del="http://localhost:5501/demo/post_detect.php?id={id}"  copy
+						<crud ref="severityTable" :paginated="5" narrowed margin="margin-top: 0px;"
+							:data="props.ISSUE_SEVERITY.data" :columns="props.ISSUE_SEVERITY.fields"
+							del="http://localhost:5501/demo/post_detect.php?id={id}" copy
 							:add="{ method: 'post', action: 'http://localhost:5501/demo/post_detect.php' }"
 							:edit="{ method: 'get', action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
@@ -85,23 +90,27 @@
 									<p class="card-header-title">Issue Severity</p>
 								</header>
 							</template>
-						
+
 							<template slot="message">
 								<div class="card-content" style="padding-bottom:0.5em;">
 									<b-message type="is-info">
-										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum quae doloribus? Aperiam,
-										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit, molestias eius magnam illum
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
 										debitis.
 									</b-message>
 								</div>
 							</template>
-						
+
 							<template slot="forms" slot-scope="props">
-								<crud-form :method="props.method" :action="props.action" @cancel="$refs.severityTable.showForm = false">
+								<crud-form :method="props.method" :action="props.action"
+									@cancel="$refs.severityTable.showForm = false">
 									<crud-input v-if="props.isAdd" type="text" label="Id" placeholder="ID" name="id"
 										:value="props.row.id">
 									</crud-input>
-									<crud-input type="text" label="Severity Name" placeholder="Nama Tingkat Priority Issue" name="severity_name"
+									<crud-input type="text" label="Severity Name"
+										placeholder="Nama Tingkat Priority Issue" name="severity_name"
 										:value="props.row.severity_name">
 									</crud-input>
 								</crud-form>

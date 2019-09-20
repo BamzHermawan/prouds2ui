@@ -10,7 +10,7 @@ import Loader from "../loader.js";
 Vue.use(Buefy);
 new Vue({
 	el: '#vapp',
-	components: { 
+	components: {
 		NavBar,
 		SideBar,
 		Crud,
