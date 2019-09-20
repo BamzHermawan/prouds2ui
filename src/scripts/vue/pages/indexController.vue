@@ -116,12 +116,17 @@
 					>
 						<div class="message-header">
 							<p>⚡ Activity</p>
-							<button class="button is-success is-small">
+							<b-button
+								type="is-success"
+								size="is-small"
+								tag="a"
+								href="http://localhost:5500/timesheet.html"
+							>
 								<span
 									class="mdi mdi-bookmark-plus-outline in-left"
 								></span>
 								New Timesheet
-							</button>
+							</b-button>
 						</div>
 					</article>
 					<hr style="margin-top: 5px;" />
