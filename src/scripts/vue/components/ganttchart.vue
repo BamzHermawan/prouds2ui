@@ -66,6 +66,7 @@ export default {
 			g.setShowComp(0);
 			g.setShowDur(0);
 			g.setUseToolTip(0);
+			g.setShowComp(0);
 			// g.setEditable(1);
 			g.setEventClickRow(function(e) {
 				// console.log(e);
