@@ -1,89 +1,99 @@
- <template>
-	<div :class="'field ' + color" style="margin-bottom: 23px;">
-		<label class="label">{{ label }}{{ required ? "*" : "" }}</label>
-		<div v-if="type === 'datepicker'">
-			<input
-				v-if="dateModel !== null"
-				type="hidden"
-				:name="name"
-				v-model="dateModel"
-				:loading="loading"
-			/>
-			<b-datepicker
-				expanded
-				:icon="iconPicker()"
-				:month-names="monthList()"
-				:date-formatter="dateFormater"
+<template>
+	<div class="crudInput">
+		<label v-if="hasAddons !== ''" class="label"
+			>{{ label }}{{ required ? "*" : "" }}</label
+		>
+		<div :class="'field' + hasAddons + color" :style="inputStyle">
+			<label v-if="hasAddons === ''" class="label"
+				>{{ label }}{{ required ? "*" : "" }}</label
+			>
+			<div v-if="type === 'datepicker'">
+				<input
+					v-if="dateModel !== null"
+					type="hidden"
+					:name="name"
+					v-model="dateModel"
+					:loading="loading"
+				/>
+				<b-datepicker
+					expanded
+					:icon="iconPicker()"
+					:month-names="monthList()"
+					:date-formatter="dateFormater"
+					:placeholder="placeholder"
+					v-model="model"
+					:inline="inline"
+					@input="input"
+					:required="required"
+					:position="datePosition"
+					:disabled="disabled"
+					:loading="loading"
+				>
+					<b-button
+						@click="model = null"
+						type="is-grey"
+						class="is-fullwidth"
+					>
+						<span class="mdi mdi-calendar-remove in-left"></span>
+						Clear Selection
+					</b-button>
+				</b-datepicker>
+			</div>
+			<b-select
+				v-else-if="type === 'select'"
 				:placeholder="placeholder"
 				v-model="model"
-				:inline="inline"
+				:name="name"
+				:icon="iconPicker()"
+				expanded
 				@input="input"
 				:required="required"
-				:position="datePosition"
 				:disabled="disabled"
 				:loading="loading"
 			>
-				<b-button
-					@click="model = null"
-					type="is-grey"
-					class="is-fullwidth"
-				>
-					<span class="mdi mdi-calendar-remove in-left"></span>
-					Clear Selection
-				</b-button>
-			</b-datepicker>
+				<slot></slot>
+			</b-select>
+			<b-numberinput
+				v-else-if="type === 'number'"
+				:placeholder="placeholder"
+				:type="color"
+				v-model="model"
+				:disabled="disabled"
+				:loading="loading"
+			></b-numberinput>
+			<b-input
+				expanded
+				v-else-if="type === 'password'"
+				:placeholder="placeholder"
+				type="password"
+				:name="name"
+				:icon="iconPicker()"
+				v-model="model"
+				password-reveal
+				@input="input"
+				:required="required"
+				:disabled="disabled"
+				:loading="loading"
+			>
+			</b-input>
+			<b-input
+				v-else
+				expanded
+				v-model="model"
+				:type="type"
+				:icon="iconPicker()"
+				:name="name"
+				@input="input"
+				:placeholder="placeholder"
+				:required="required"
+				:disabled="disabled"
+				:loading="loading"
+			></b-input>
+			<slot name="helptext"></slot>
+			<div class="control">
+				<slot name="addons"></slot>
+			</div>
 		</div>
-		<b-select
-			v-else-if="type === 'select'"
-			:placeholder="placeholder"
-			v-model="model"
-			:name="name"
-			:icon="iconPicker()"
-			expanded
-			@input="input"
-			:required="required"
-			:disabled="disabled"
-			:loading="loading"
-		>
-			<slot></slot>
-		</b-select>
-		<b-numberinput
-			v-else-if="type === 'number'"
-			:placeholder="placeholder"
-			:type="color"
-			v-model="model"
-			:disabled="disabled"
-			:loading="loading"
-		></b-numberinput>
-		<b-input
-			expanded
-			v-else-if="type === 'password'"
-			:placeholder="placeholder"
-			type="password"
-			:name="name"
-			:icon="iconPicker()"
-			v-model="model"
-			password-reveal
-			@input="input"
-			:required="required"
-			:disabled="disabled"
-			:loading="loading"
-		>
-		</b-input>
-		<b-input
-			v-else
-			expanded
-			v-model="model"
-			:type="type"
-			:icon="iconPicker()"
-			:name="name"
-			@input="input"
-			:placeholder="placeholder"
-			:required="required"
-			:disabled="disabled"
-			:loading="loading"
-		></b-input>
-		<slot name="helptext"></slot>
 	</div>
 </template>
  
@@ -98,6 +108,10 @@ export default {
 		color: {
 			type: String,
 			default: ""
+		},
+		inputStyle: {
+			type: String,
+			default: "margin-bottom: 23px;"
 		},
 		icon: {
 			type: String,
@@ -167,6 +181,9 @@ export default {
 		}
 	},
 	computed: {
+		hasAddons() {
+			return this.$slots.hasOwnProperty("addons") ? " has-addons " : "";
+		},
 		dateModel: {
 			set(value) {
 				if (value === "" || value === undefined) {

@@ -3,148 +3,191 @@
 		<header class="modal-card-head">
 			<p class="modal-card-title">{{ title }}</p>
 		</header>
-		<section class="modal-card-body" style="height:auto;">
-			<form
-				:action="actionEvent"
-				method="POST"
-				enctype="multipart/form-data"
-			>
-				<div class="columns">
-					<div class="column">
-						<p class="heading">Task Name</p>
-						<p>{{ taskName }}</p>
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column">
-						<p class="heading">Sub task of</p>
-						<b-select expanded v-model="subtask" name="subtask">
-							<option value="0">No Parent</option>
-							<option
-								v-for="(opt, name, idx) in dataBaru"
-								:key="idx"
-								:value="opt.pID"
-								>{{ opt.pName }}</option
-							>
-						</b-select>
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column">
-						<p class="heading">Start</p>
-						<input
-							type="hidden"
-							name="start"
-							v-model="formatedStart"
-						/>
-						<b-field>
-							<b-datepicker
-								placeholder="DD/MM/YYYY"
-								v-model="start"
-							></b-datepicker>
-						</b-field>
-					</div>
-					<div class="column">
-						<p class="heading">finish</p>
-						<input
-							type="hidden"
-							name="finish"
-							v-model="formatedFinish"
-						/>
-						<b-field :type="check(true)" :message="check(false)">
-							<b-datepicker
-								placeholder="DD/MM/YYYY"
-								v-model="finish"
-								:min-date="formatedMinDate"
-							></b-datepicker>
-						</b-field>
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column">
-						<p class="heading">Phase</p>
-						<b-select
-							expanded
-							v-model="phase"
-							name="phase"
-							placeholder="Choose Phase"
-						>
-							<slot name="phase-option"></slot>
-						</b-select>
-					</div>
-					<div class="column">
-						<p class="heading">Workdays</p>
-						<b-select
-							expanded
-							v-model="workdays"
-							name="workdays"
-							placeholder="Choose Workdays"
-						>
-							<slot name="workdays-option"></slot>
-						</b-select>
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column">
-						<b-checkbox
-							type="is-danger"
-							v-model="checkboxPredecessor"
-						>
-							Has Predecessor
-						</b-checkbox>
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column" v-if="checkboxPredecessor">
-						<p class="heading">Predecessor</p>
-						<b-select
-							expanded
-							v-model="predecessor"
-							name="predecessor"
-						>
-							<option value="0">No has predecessor</option>
-							<option
-								v-for="(opt, name, idx) in dataBaru"
-								:key="idx"
-								:value="opt.pID"
-								>{{ opt.pName }}</option
-							>
-						</b-select>
-					</div>
-					<div class="column" v-else></div>
-					<div class="column is-6">
-						<p class="heading">Duration</p>
-						{{ this.duration }}
-						<b-loading
-							:is-full-page="false"
-							:active.sync="isLoading"
-							:can-cancel="true"
-						></b-loading>
-						<input
-							type="hidden"
-							name="duration"
-							v-model="duration"
-						/>
-					</div>
-				</div>
-				<input type="hidden" name="workplanId" v-model="workplanId" />
-				<input type="hidden" name="taskID" v-model="taskID" />
-				<button
-					style="margin-top:50px"
-					class="button is-fullwidth is-success"
-					type="submit"
+		<section class="modal-card-body" style="height: auto;">
+			<div class="container" style="margin-top: 25px;">
+				<form
+					:action="actionEvent"
+					method="POST"
+					enctype="multipart/form-data"
 				>
-					Submit Document
-				</button>
-			</form>
+					<input
+						type="hidden"
+						name="workplanId"
+						v-model="workplanId"
+					/>
+					<input type="hidden" name="taskID" v-model="taskID" />
+					<div class="tile is-ancestor">
+						<div class="tile is-vertical is-parent">
+							<div class="tile is-child">
+								<b-message
+									title="Days Configuration"
+									type="is-primary"
+								>
+									<!-- Datepicker Start Date -->
+									<crud-input
+										type="datepicker"
+										label="Start Date"
+										name="start"
+										placeholder="Pick Start Date"
+										v-model="start"
+										date-locale="en"
+										input-style="margin-bottom: 14px;"
+									>
+									</crud-input>
+									<!-- Datepicker Start Date -->
+
+									<!-- Datepicker Finish Date -->
+									<crud-input
+										type="datepicker"
+										label="Finish Date"
+										name="finish"
+										placeholder="Pick End Date"
+										v-model="finish"
+										date-locale="en"
+										input-style="margin-bottom: 14px;"
+									>
+										<template slot="helptext">
+											<p :class="'help ' + check(true)">
+												{{ check(false) }}
+											</p>
+										</template>
+									</crud-input>
+									<!-- Datepicker Finish Date -->
+
+									<!-- Select Workdays -->
+									<crud-input
+										type="select"
+										label="Workdays Schema"
+										name="workdays"
+										placeholder="Choose Workdays Schema"
+										v-model="workdays"
+										input-style="margin-bottom: 14px;"
+									>
+										<slot name="workdays-option"></slot>
+									</crud-input>
+									<!-- Select Workdays -->
+
+									<!-- Duration of Days Holder -->
+									<crud-input
+										type="text"
+										label="Duration of Days"
+										name="duration"
+										v-model="duration"
+										disabled
+										:loading="isLoading"
+										input-style="margin-bottom: 8px;"
+									>
+									</crud-input>
+									<!-- Duration of Days Holder -->
+								</b-message>
+							</div>
+						</div>
+						<div class="tile is-vertical is-parent">
+							<div class="tile is-child">
+								<!-- Input Task Name -->
+								<crud-input
+									type="text"
+									label="Task Name"
+									placeholder="a name for the task"
+									name="taskName"
+									v-model="taskName"
+								>
+								</crud-input>
+								<!-- Input Task Name -->
+
+								<!-- Select Parent Task -->
+								<crud-input
+									type="select"
+									label="Parent Task"
+									name="subtask"
+									placeholder="Choose Parent Task"
+									v-model="subtask"
+								>
+									<option value="0"
+										>Doesn't Have Parent</option
+									>
+									<option
+										v-for="(opt, name, idx) in dataBaru"
+										:key="idx"
+										:value="opt.pID"
+										>{{ opt.pName }}</option
+									>
+								</crud-input>
+								<!-- Select Parent Task -->
+
+								<!-- Select Task Phase -->
+								<crud-input
+									type="select"
+									label="Task Phase"
+									name="phase"
+									placeholder="Choose Task Phase"
+									v-model="phase"
+								>
+									<slot name="phase-option"></slot>
+								</crud-input>
+								<!-- Select Task Phase -->
+
+								<b-message type="is-primary" size="is-small">
+									<!-- Select Predecessor -->
+									<crud-input
+										type="select"
+										label="Predecessor Task"
+										name="predecessor"
+										placeholder="This Task Doesn't Have Predecessor"
+										v-model="predecessor"
+										input-style="margin: 0px;"
+									>
+										<option
+											v-for="(opt, name, idx) in dataBaru"
+											:key="idx"
+											:value="opt.pID"
+											>{{ opt.pName }}</option
+										>
+
+										<template slot="addons">
+											<a
+												class="button is-warning"
+												@click="predecessor = null"
+											>
+												Remove Link
+											</a>
+										</template>
+									</crud-input>
+									<!-- Select Predecessor -->
+								</b-message>
+
+								<div class="is-pulled-right">
+									<a
+										class="button is-danger"
+										@click="$parent.close()"
+									>
+										Cancel
+									</a>
+									<button
+										class="button is-success"
+										type="submit"
+									>
+										Save Task
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
 		</section>
 	</div>
 </template>
 
 <script>
+// TODO: Selesaikan Halaman Modal!
+
 import moment from "moment";
 import Axios from "axios";
+import CrudInput from "../../../components/crud/crudInput";
+import { notified } from "../../../../tools";
 export default {
+	components: { CrudInput },
 	props: {
 		actionEvent: {
 			type: String,
@@ -175,7 +218,7 @@ export default {
 			workdays: 1,
 			duration: 20,
 			checkboxPredecessor: "true",
-			predecessor: 1,
+			predecessor: null,
 			subtask: this.task.pParent,
 			start: new Date(this.task.pStart),
 			finish: new Date(this.task.pEnd),
@@ -211,9 +254,7 @@ export default {
 					self.duration = dur.duration;
 				})
 				.catch(function(error) {
-					console.log("ADR Error Fetching: 500");
-					console.log(error);
-					Tools.notified(self.$toast).error(
+					notified(self.$buefy.toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
 				})
@@ -252,6 +293,9 @@ export default {
 		finishisoverflow() {
 			return this.finish > this.oldfinish;
 		}
+	},
+	mounted() {
+		this.predecessor = this.task.pDepend ? this.task.pDepend : null;
 	}
 };
 </script>

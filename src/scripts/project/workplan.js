@@ -58,6 +58,16 @@ new Vue({
 		showSideBar: false
 	},
 	methods: {
+		toggleSideBar() {
+			if(this.showSideBar){
+				let lastActive = document.querySelector("tr.gname.is-active");
+				if (lastActive !== null) {
+					lastActive.classList.remove("is-active");
+				}
+			}
+
+			this.showSideBar = !this.showSideBar;
+		},
 		editTask() {
 			this.modal.editTask = true;
 		},

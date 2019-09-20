@@ -100,13 +100,13 @@
 						</section>
 					</div>
 				</div>
-				<div class="column is-2 animated fadeInRight" v-show="showSideBar">
+				<div class="column is-2 animated fadeInRight" v-if="showSideBar">
 					<div class="card">
 						<header class="card-header">
 							<p class="card-header-title">
 								Task Menu
 							</p>
-							<a @click="showSideBar = false" class="card-header-icon">
+							<a @click="toggleSideBar()" class="card-header-icon">
 								<span class="icon">
 									<i class="mdi mdi-close-box" aria-hidden="true"></i>
 								</span>
@@ -115,15 +115,15 @@
 						<div class="card-content is-paddingless">
 							<b-menu>
 								<b-menu-list>
-									<b-menu-item @click="editTask" label="Edit Task"></b-menu-item>
-									<b-menu-item @click="setProgress" label="Set Progress"></b-menu-item>
-									<b-menu-item @click="setSchedule" label="Set Schedule"></b-menu-item>
-									<b-menu-item @click="changeParentTask" label="Change Parent Task"></b-menu-item>
-									<b-menu-item @click="linkPredecessor" label="Link Predecessor"></b-menu-item>
-									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor"></b-menu-item>
-									<b-menu-item @click="assignResource" label="Assign Resource"></b-menu-item>
-									<b-menu-item @click="mergeTask" label="Merge Task"></b-menu-item>
-									<b-menu-item @click="deleteTask" label="Delete Task"></b-menu-item>
+									<b-menu-item @click="editTask" label="Edit Task" :active="false"></b-menu-item>
+									<b-menu-item @click="setProgress" label="Set Progress" :active="false"></b-menu-item>
+									<b-menu-item @click="setSchedule" label="Set Schedule" :active="false"></b-menu-item>
+									<b-menu-item @click="changeParentTask" label="Change Parent Task" :active="false"></b-menu-item>
+									<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false"></b-menu-item>
+									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false"></b-menu-item>
+									<b-menu-item @click="assignResource" label="Assign Resource" :active="false"></b-menu-item>
+									<b-menu-item @click="mergeTask" label="Merge Task" :active="false"></b-menu-item>
+									<b-menu-item @click="deleteTask" label="Delete Task" :active="false"></b-menu-item>
 								</b-menu-list>
 							</b-menu>
 						</div>
@@ -132,7 +132,7 @@
 			</div>
 		</div>
 
-		<b-modal width="750px" :active.sync="modal.editTask">
+		<b-modal :active.sync="modal.editTask" full-screen>
 			<edit-task title="Edit Task" :task="selectedTask" workplan-id="1"
 				api-get-duration="http://localhost:5501/demo/getDuration.php"
 				action-event="http://localhost:5501/demo/post_detect.php">
