@@ -20,14 +20,14 @@ export default {
 	methods: {
 		determineActor() {
 			if (this.mode === "toast") {
-				return this.$toast;
+				return this.$buefy.toast;
 			}
 
 			if (this.mode === "snackbar") {
-				return this.$snackbar;
+				return this.$buefy.snackbar;
 			}
 
-			return this.$notification;
+			return this.$buefy.notification;
 		},
 		launchNotified(entity) {
 			if (this.color === "success") {
