@@ -45,10 +45,74 @@
 				<p class="title is-size-3">BASELINE</p>
 				<div class="columns">
 					<div class="column is-6">
-						<data-table :data="dataBaselineStatus" :fields="[]" title="Baseline Status"></data-table>
+						<crud ref="baselineStatusTable" :paginated="5" narrowed margin="margin-bottom: "
+							:data="props.BASELINE_STATUS.data" :columns="props.BASELINE_STATUS.fields"
+							del="http://localhost:5501/demo/post_detect.php?id={id}"
+							:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Baseline Status</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form method="post" :action="props.action"
+									@cancel="$refs.baselineStatusTable.showForm = false">
+									<crud-input type="text" label="Status Name" placeholder="Name Status Baseline"
+										name="status_name" :value="props.row.status_name">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
 					</div>
 					<div class="column is-6">
-						<data-table :data="dataBaselineType" :fields="[]" title="Baseline Type"></data-table>
+						<crud ref="baselineTypeTable" :paginated="5" narrowed margin="margin-bottom: "
+							:data="props.BASELINE_TYPE.data" :columns="props.BASELINE_TYPE.fields"
+							del="http://localhost:5501/demo/post_detect.php?id={id}"
+							:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Baseline Type</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form method="post" :action="props.action"
+									@cancel="$refs.baselineTypeTable.showForm = false">
+									<crud-input type="text" label="Type Name" placeholder="Name Type Baseline"
+										name="type_name" :value="props.row.type_name">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
 					</div>
 				</div>
 			</div>
@@ -56,103 +120,129 @@
 	</div>
 
 	<script>
-		const DATA_BASELINE_STATUS = [
-			{
-				status_name: "suntipsum",
-				action: [
+		const VAPPS = {
+			BASELINE_STATUS: {
+				fields: [
 					{
-						link: "editBaselineStatus.html",
-						label: "Edit",
-						type: "is-info"
+						key: 'status_name',
+						label: 'Status Name',
+						sortable: true,
+					}
+				],
+				data: [
+					{
+						"id": 0,
+						"status_name": "ALIQUA EX"
 					},
 					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
+						"id": 1,
+						"status_name": "DOLORE CONSECTETUR"
+					},
+					{
+						"id": 2,
+						"status_name": "MOLLIT ESSE"
+					},
+					{
+						"id": 3,
+						"status_name": "NISI NON"
+					},
+					{
+						"id": 4,
+						"status_name": "MAGNA EXCEPTEUR"
+					},
+					{
+						"id": 5,
+						"status_name": "CONSECTETUR EU"
+					},
+					{
+						"id": 6,
+						"status_name": "CUPIDATAT AD"
+					},
+					{
+						"id": 7,
+						"status_name": "DUIS LABORUM"
+					},
+					{
+						"id": 8,
+						"status_name": "LABORIS INCIDIDUNT"
+					},
+					{
+						"id": 9,
+						"status_name": "SINT FUGIAT"
+					},
+					{
+						"id": 10,
+						"status_name": "ULLAMCO ID"
+					},
+					{
+						"id": 11,
+						"status_name": "CONSECTETUR REPREHENDERIT"
 					}
 				]
 			},
-			{
-				status_name: "adewiranataputra",
-				action: [
+			BASELINE_TYPE: {
+				fields: [
 					{
-						link: "editBaselineStatus.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
+						key: 'type_name',
+						label: 'Type Name',
+						sortable: true,
 					}
-				]
-			},
-			{
-				status_name: "ariowidiatmoko",
-				action: [
+				],
+				data: [
 					{
-						link: "editBaselineStatus.html",
-						label: "Edit",
-						type: "is-info"
+						"id": 0,
+						"type_name": "ALIQUA EX"
 					},
 					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
+						"id": 1,
+						"type_name": "DOLORE CONSECTETUR"
+					},
+					{
+						"id": 2,
+						"type_name": "MOLLIT ESSE"
+					},
+					{
+						"id": 3,
+						"type_name": "NISI NON"
+					},
+					{
+						"id": 4,
+						"type_name": "MAGNA EXCEPTEUR"
+					},
+					{
+						"id": 5,
+						"type_name": "CONSECTETUR EU"
+					},
+					{
+						"id": 6,
+						"type_name": "CUPIDATAT AD"
+					},
+					{
+						"id": 7,
+						"type_name": "DUIS LABORUM"
+					},
+					{
+						"id": 8,
+						"type_name": "LABORIS INCIDIDUNT"
+					},
+					{
+						"id": 9,
+						"type_name": "SINT FUGIAT"
+					},
+					{
+						"id": 10,
+						"type_name": "ULLAMCO ID"
+					},
+					{
+						"id": 11,
+						"type_name": "CONSECTETUR REPREHENDERIT"
 					}
 				]
 			}
-		];
-		DATA_BASELINE_TYPE = [
-			{
-				type_name: "suntipsum",
-				action: [
-					{
-						link: "editBaselineType.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				]
-			},
-			{
-				type_name: "adewiranataputra",
-				action: [
-					{
-						link: "editBaselineType.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				]
-			},
-			{
-				type_name: "ariowidiatmoko",
-				action: [
-					{
-						link: "editBaselineType.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				]
-			}
-		];
+		}
 	</script>
 
-	<script src="../../scripts/setting/baseline.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
 </body>
 
 </html>

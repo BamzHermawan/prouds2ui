@@ -42,6 +42,14 @@ const notifiedType = (typeIndex, actor, message = undefined) => {
 	}
 };
 
+
+/**
+ * Notified: Show Notification based on buefy actor
+ *
+ * @param {Object} actor
+ * @param {String} [message=undefined]
+ * @returns [error|success|danger] notified type if message is undefined
+ */
 module.exports.notified = (actor, message = undefined) => {
 	if (message == undefined) {
 		var bundle = {};
@@ -61,7 +69,13 @@ module.exports.notified = (actor, message = undefined) => {
 	}
 };
 
-module.exports.loadStorage = function (key) {
+/**
+ * Get LocalStorage data by key and decode it
+ *
+ * @param {*} key
+ * @returns {Object}
+ */
+module.exports.loadStorage = function(key) {
 	return new Promise(function (resolve, reject) {
 		let json = window.localStorage.getItem(key);
 		let data = JSON.parse(json);
@@ -74,11 +88,25 @@ module.exports.loadStorage = function (key) {
 	})
 }
 
+/**
+ * Save to LocalStorage by encode it to json
+ *
+ * @param {string} key
+ * @param {object} json
+ * @returns Boolean result
+ */
 module.exports.saveStorage = function (key, json) {
 	return window.localStorage.setItem(key, JSON.stringify(json));
 }
 
-module.exports.animate = function (selector, classOption, callback = undefined) {
+/**
+ * Do animate DOM Element
+ *
+ * @param {String} selector
+ * @param {String} classOption
+ * @param {Function} [callback=undefined]
+ */
+module.exports.animate = function(selector, classOption, callback = undefined){
 	const el = document.querySelector(selector);
 	if (el !== null && el !== undefined) {
 		if (!el.classList.contains('animated')) {
@@ -92,7 +120,7 @@ module.exports.animate = function (selector, classOption, callback = undefined) 
 			});
 
 			el.removeEventListener('animationend', handleAnimationEnd);
-			if (typeof callback === 'function') callback();
+			if (typeof callback === 'function') callback(el);
 		}
 
 		el.className += " " + classOption;
@@ -100,8 +128,14 @@ module.exports.animate = function (selector, classOption, callback = undefined) 
 	}
 }
 
-module.exports.randomSmile = function (request = undefined) {
-	let smiles = ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "🙊", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "🙈", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙉"];
+/**
+ * Get Smiley Face!
+ *
+ * @param {Number} [request=undefined]
+ * @returns Smiley Face!
+ */
+module.exports.randomSmile = function(request = undefined){
+	let smiles = ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "🙊", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "🙈", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙉" ];
 	let random = Math.random() * smiles.length;
 	let index = Math.floor(Math.random() * random);
 

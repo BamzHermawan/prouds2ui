@@ -16,7 +16,15 @@ Vue.use(Buefy);
 new Vue({
 	el: '#vapp',
 	components: {
-		NavBar, EditTask, vGantt, SetSchedule, SetProgress, ChangeParentTask, ChangePhaseTask, LinkPredecessor, MergeTask,
+		NavBar, 
+		EditTask, 
+		vGantt, 
+		SetSchedule, 
+		SetProgress, 
+		ChangeParentTask, 
+		ChangePhaseTask, 
+		LinkPredecessor, 
+		MergeTask,
 		AssignResource
 	},
 	data: {

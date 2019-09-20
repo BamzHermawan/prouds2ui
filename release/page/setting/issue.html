@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="/src/main.min.css">
+</head>
+
+<body class="add-margin">
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+	<div id="vapp">
+		<nav-bar :left-menu="[
+			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+			{ label: 'projects', link: '../projects.html', icon:'', active: false },
+			{ label: 'financial', link: '#financial', icon:'', active: false },
+			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: '#', icon:'', active: true },
+		]" :right-menu="[
+			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+			{ label: '🔒 logout', link: '#logout', icon:'' },
+		]" home-link="../home.html"></nav-bar>
+		<side-bar :config-menu="[
+			{ label: 'Users', link:'users.html', icon:'account', active:false },
+			{ label: 'Issue', link:'Issue.html', icon:'briefcase', active:false },
+			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:true },
+			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+		]">
+			<div class="container is-section">
+				<p class="title is-size-3">ISSUE</p>
+				<div class="columns">
+					<div class="column is-6">
+						<data-table :data="dataIssueStatus" :fields="[]" title="Issue Status"></data-table>
+					</div>
+					<div class="column is-6">
+						<data-table :data="dataIssueSeverity" :fields="[]" title="Issue Severity"></data-table>
+					</div>
+				</div>
+			</div>
+
+			<crud :paginated="5" narrowed="" :data="props.CRUD_TEST.data" :columns="props.CRUD_TEST.fields" add="http://localhost:5501/demo/post_detect.php" del="http://localhost:5501/demo/post_detect.php?name={submit_by}&id={id}" :edit="{
+					method: 'get',
+					action: 'http://localhost:5501/demo/post_detect.php',
+					form: {
+						name: {
+							label: 'Issue Name',
+							type: 'text'
+						},
+						severity: {
+							label: 'Severity Issue',
+							type: 'select',
+							option: [ 'low', 'middle', 'high' ]
+						},
+						company: {
+							label: 'Company Sender',
+							type: 'select',
+							option: [
+								{ key: 'pmo', text: 'Project Management Office' },
+								{ key: 'cdo', text: 'Cloud Development Operation' },
+								{ key: 'sid', text: 'Support Internal Development' }
+							]
+						},
+						submit_at: {
+							label: 'Created At',
+							type: 'datepicker'
+						}
+					}
+				}">
+				<template slot="header">
+					<header class="card-header has-gradient-light">
+						<p class="card-header-title">Issue List</p>
+					</header>
+				</template>
+
+				<!-- <template slot="forms" slot-scope="{isAdd, isEdit, row, index}">
+					<crud-form method="post" :field-data="row" action="http://localhost:5501/demo/post_detect.php">
+						<crud-input type="text" label="Issue Name" name="name"></crud-input>
+						<crud-input type="select" label="Severity Issue" name="severity">
+							<option value="low">Low</option>
+							<option value="middle">Middle</option>
+							<option value="low">Low</option>
+						</crud-input>
+						<crud-input type="select" label="Company Sender" name="company">
+							<option value="pmo">Project Management Office</option>
+							<option value="cdo">Cloud Development Operation</option>
+							<option value="cs">Customer Service</option>
+						</crud-input>
+						<crud-input type="datepicker" label="CreatedAt" name="name"></crud-input>
+					</crud-form>
+				</template> -->
+			</crud>
+		</side-bar>
+	</div>
+
+	<script>var VAPPS = {
+  CRUD_TEST: {
+    fields: [{
+      key: 'name',
+      label: 'Issue Name',
+      sortable: true
+    }, {
+      key: 'severity',
+      label: 'Severity Issue',
+      sortable: true,
+      width: 250
+    }, {
+      key: 'submit_at',
+      label: 'Created Date',
+      sortable: false
+    }],
+    data: [{
+      "id": 0,
+      "name": "ENIM NULLA",
+      "severity": "low",
+      "submit_by": "Marina Lancaster",
+      "email": "marinalancaster@aeora.com",
+      "phone": "(62) 887-5538-3540",
+      "company": "pmo",
+      "submit_at": "17/06/2019"
+    }, {
+      "id": 1,
+      "name": "DOLOR CULPA",
+      "severity": "high",
+      "submit_by": "King Blackwell",
+      "email": "kingblackwell@aeora.com",
+      "phone": "(62) 884-7444-2427",
+      "company": "cdo",
+      "submit_at": "16/02/2018"
+    }, {
+      "id": 2,
+      "name": "SIT MAGNA",
+      "severity": "low",
+      "submit_by": "Christy Sweet",
+      "email": "christysweet@aeora.com",
+      "phone": "(62) 885-5542-2976",
+      "company": "sid",
+      "submit_at": "27/11/2018"
+    }, {
+      "id": 3,
+      "name": "LABORUM DESERUNT",
+      "severity": "low",
+      "submit_by": "Manuela Reyes",
+      "email": "manuelareyes@aeora.com",
+      "phone": "(62) 887-3586-2653",
+      "company": "pmo",
+      "submit_at": "24/07/2018"
+    }, {
+      "id": 4,
+      "name": "ALIQUIP EU",
+      "severity": "low",
+      "submit_by": "Merle Guzman",
+      "email": "merleguzman@aeora.com",
+      "phone": "(62) 880-9416-2170",
+      "company": "pmo",
+      "submit_at": "04/02/2019"
+    }, {
+      "id": 5,
+      "name": "DESERUNT IPSUM",
+      "severity": "low",
+      "submit_by": "Ortega Ayers",
+      "email": "ortegaayers@aeora.com",
+      "phone": "(62) 896-3496-3927",
+      "company": "pmo",
+      "submit_at": "15/01/2017"
+    }, {
+      "id": 6,
+      "name": "ID INCIDIDUNT",
+      "severity": "middle",
+      "submit_by": "Madeleine Cotton",
+      "email": "madeleinecotton@aeora.com",
+      "phone": "(62) 898-1596-2944",
+      "company": "cdo",
+      "submit_at": "26/05/2017"
+    }, {
+      "id": 7,
+      "name": "CONSEQUAT PROIDENT",
+      "severity": "high",
+      "submit_by": "Bender Whitney",
+      "email": "benderwhitney@aeora.com",
+      "phone": "(62) 890-9590-2277",
+      "company": "cdo",
+      "submit_at": "27/03/2018"
+    }, {
+      "id": 8,
+      "name": "MINIM ELIT",
+      "severity": "high",
+      "submit_by": "Simon Scott",
+      "email": "simonscott@aeora.com",
+      "phone": "(62) 885-5414-3996",
+      "company": "pmo",
+      "submit_at": "22/01/2018"
+    }, {
+      "id": 9,
+      "name": "IN DOLOR",
+      "severity": "high",
+      "submit_by": "Knowles Boone",
+      "email": "knowlesboone@aeora.com",
+      "phone": "(62) 888-6535-3238",
+      "company": "sid",
+      "submit_at": "27/06/2018"
+    }, {
+      "id": 10,
+      "name": "DO EA",
+      "severity": "low",
+      "submit_by": "Pacheco Johnson",
+      "email": "pachecojohnson@aeora.com",
+      "phone": "(62) 885-3478-3817",
+      "company": "sid",
+      "submit_at": "26/04/2018"
+    }, {
+      "id": 11,
+      "name": "SUNT INCIDIDUNT",
+      "severity": "high",
+      "submit_by": "Ola Weiss",
+      "email": "olaweiss@aeora.com",
+      "phone": "(62) 899-7551-3019",
+      "company": "cdo",
+      "submit_at": "13/06/2019"
+    }, {
+      "id": 12,
+      "name": "CONSEQUAT INCIDIDUNT",
+      "severity": "middle",
+      "submit_by": "Johnson Cooley",
+      "email": "johnsoncooley@aeora.com",
+      "phone": "(62) 897-1478-2007",
+      "company": "sid",
+      "submit_at": "28/03/2018"
+    }, {
+      "id": 13,
+      "name": "QUIS ELIT",
+      "severity": "middle",
+      "submit_by": "Mercedes Kennedy",
+      "email": "mercedeskennedy@aeora.com",
+      "phone": "(62) 880-9485-2607",
+      "company": "sid",
+      "submit_at": "25/06/2017"
+    }, {
+      "id": 14,
+      "name": "EST MOLLIT",
+      "severity": "high",
+      "submit_by": "Rocha Powers",
+      "email": "rochapowers@aeora.com",
+      "phone": "(62) 897-3451-2634",
+      "company": "cdo",
+      "submit_at": "16/05/2018"
+    }, {
+      "id": 15,
+      "name": "ELIT DESERUNT",
+      "severity": "high",
+      "submit_by": "Lydia Jackson",
+      "email": "lydiajackson@aeora.com",
+      "phone": "(62) 898-4528-2965",
+      "company": "cdo",
+      "submit_at": "12/01/2019"
+    }, {
+      "id": 16,
+      "name": "ELIT EX",
+      "severity": "high",
+      "submit_by": "Cara Matthews",
+      "email": "caramatthews@aeora.com",
+      "phone": "(62) 897-3440-3565",
+      "company": "sid",
+      "submit_at": "26/07/2019"
+    }, {
+      "id": 17,
+      "name": "AD ESSE",
+      "severity": "low",
+      "submit_by": "Adkins Castillo",
+      "email": "adkinscastillo@aeora.com",
+      "phone": "(62) 894-9476-2200",
+      "company": "cdo",
+      "submit_at": "19/06/2017"
+    }]
+  }
+};
+var DATA_ISSUE_STATUS = [{
+  status_name: "adewiranataputra",
+  action: [{
+    link: "editIssueStatus.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  status_name: "adewiranataputra",
+  action: [{
+    link: "editIssueStatus.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  status_name: "ariowidiatmoko",
+  action: [{
+    link: "editIssueStatus.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}];
+DATA_ISSUE_SEVERITY = [{
+  severity_name: "exsuntipsum",
+  action: [{
+    link: "editIssueSeverity.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  severity_name: "exadewiranataputra",
+  action: [{
+    link: "editIssueSeverity.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}, {
+  severity_name: "exariowidiatmoko",
+  action: [{
+    link: "editIssueSeverity.html",
+    label: "Edit",
+    type: "is-info"
+  }, {
+    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
+    label: "Delete",
+    type: "is-danger"
+  }]
+}];</script>
+
+	<script src="/src/issue.min.js"></script>
+</body>
+
+</html>

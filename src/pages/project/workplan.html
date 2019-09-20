@@ -24,36 +24,95 @@
 	</div>
 	<div id="vapp">
 		<nav-bar :left-menu="[
-					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-					{ label: 'projects', link: '../projects.html', icon:'', active: true },
-					{ label: 'financial', link: '#financial', icon:'', active: false },
-					{ label: 'operation', link: '#opperation', icon:'', active: false },
-					{ label: 'setting', link: 'setting/users.html', icon:'', active: false },
-				]" :right-menu="[
-					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
-					{ label: '🔒 logout', link: '#logout', icon:'' },
-				]" home-link="../home.html"></nav-bar>
+			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+			{ label: 'projects', link: '../projects.html', icon:'', active: true },
+			{ label: 'financial', link: '#financial', icon:'', active: false },
+			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: 'setting/users.html', icon:'', active: false },
+		]" :right-menu="[
+			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+			{ label: '🔒 logout', link: '#logout', icon:'' },
+		]" home-link="../home.html"></nav-bar>
+
+		<section class="hero">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">PROJECT WORKPLAN</h1>
+					<h2 class="subtitle has-text-grey">Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia
+					</h2>
+					<div class="level">
+						<div class="level-left">
+							<nav class="breadcrumb" aria-label="breadcrumbs">
+								<ul>
+									<li><a href="../home.html">PROUDS</a></li>
+									<li><a href="../projects.html">PROJECTS</a></li>
+									<li><a href="./detail.html">DETAIL PROJECT</a></li>
+									<li class="is-active"><a href="#" aria-current="page">WORKPLAN</a></li>
+								</ul>
+							</nav>
+						</div>
+						<div class="level-right">
+							<a href="http://localhost:5500/project/listrebaseline.html" class="button is-success">
+								Go to Rebaseline 👉
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<div class="container">
-			<br />
-			<p class="title is-size-3" style="margin-bottom:10px;">
-				Workplan
-			</p>
-			<br />
 			<div class="columns">
-				<div class="column is-3 animated fadeInLeft" v-show="showSideBar">
+				<div :class="'column ' + (showSideBar ? 'is-10' : '')">
+					<div class="card">
+						<header class="card-header">
+							<p class="card-header-title">
+								Workplan
+							</p>
+							<div class="card-header-icon">
+								<form action="http://localhost:5501/demo/post_detect.php" method="post" enctype="multipart/form-data">
+									<b-upload v-model="selectedDocument" name="evidDoc" native required style="width:100%;" accept=".xml">
+										<div v-if="selectedDocument==null">
+											<a class="button is-small is-info is-fullwidth">
+												<span class="mdi mdi-upload in-left"></span>
+												<span>Upload XML</span>
+											</a>
+										</div>
+										<div v-if="selectedDocument != null" class="field has-addons is-marginless">
+											<div class="control">
+												<span v-if="selectedDocument" class="button is-static is-small">
+													{{ selectedDocument.name }}
+												</span>
+											</div>
+											<div class="control">
+												<button class="button is-success is-fullwidth is-small" type="submit">
+													📬 Send File
+												</button>
+											</div>
+										</div>
+									</b-upload>
+								</form>
+							</div>
+						</header>
+						<section class="card-content" style="padding:10px;">
+							<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
+							<v-gantt action-event="http://localhost:5501/demo/post_detect.php"></v-gantt>
+						</section>
+					</div>
+				</div>
+				<div class="column is-2 animated fadeInRight" v-show="showSideBar">
 					<div class="card">
 						<header class="card-header">
 							<p class="card-header-title">
 								Task Menu
 							</p>
-							<a @click="showSideBar = false" class="card-header-icon" aria-label="more options">
+							<a @click="showSideBar = false" class="card-header-icon">
 								<span class="icon">
 									<i class="mdi mdi-close-box" aria-hidden="true"></i>
 								</span>
 							</a>
 						</header>
-						<div class="card-content">
+						<div class="card-content is-paddingless">
 							<b-menu>
 								<b-menu-list>
 									<b-menu-item @click="editTask" label="Edit Task"></b-menu-item>
@@ -69,52 +128,6 @@
 							</b-menu>
 						</div>
 					</div>
-				</div>
-				<div :class="'column ' + (showSideBar ? 'is-9' : '')">
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<a href="http://localhost:5500/project/listrebaseline.html" class="button is-success"
-									style="width:100%;">
-									<b-icon icon="file-document"></b-icon>
-									<span>Rebasline List</span>
-								</a>
-							</div>
-							<div class="level-item">
-								<form action="http://localhost:5501/demo/post_detect.php" method="post"
-									enctype="multipart/form-data">
-
-									<div class="level-item">
-										<b-upload v-model="selectedDocument" name="evidDoc" native required
-											style="width:100%;" accept=".xml,.jpg">
-											<div v-if="selectedDocument==null">
-												<a class="button is-info is-fullwidth">
-													<b-icon icon="upload"></b-icon>
-													<span>Upload XML</span>
-												</a>
-											</div>
-										</b-upload>
-										<div v-if="selectedDocument">
-											<button class="button is-warning is-fullwidth" type="submit">
-												📬 Send File
-											</button>
-											<span class="file-name" v-if="selectedDocument">
-												{{ selectedDocument.name }}
-											</span>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-						<div class="level-right">
-							<div class="level-item">
-								<a href="http://localhost:5500/project/detail.html" class="button is-danger">🏃‍ Exit
-									Workplan</a>
-							</div>
-						</div>
-					</nav>
-					<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
-					<v-gantt action-event="http://localhost:5501/demo/post_detect.php"></v-gantt>
 				</div>
 			</div>
 		</div>
@@ -185,12 +198,12 @@
 			{
 				pID: 1,
 				pName: "New Prouds Development Phase I",
-				pStart: "",
-				pEnd: "",
-				duration: "100",
-				pClass: "gtaskpurple",
-				pMile: 1,
-				pComp: 0,
+				pStart: "2019-06-10",
+				pEnd: "2019-12-31",
+				duration: 100,
+				pClass: "gtaskred",
+				pMile: 0,
+				pComp: 40,
 				pGroup: 1,
 				pParent: 0,
 				pOpen: 1,

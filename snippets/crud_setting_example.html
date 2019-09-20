@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<section id="vapp">
+		<crud 
+			ref="issueTable" 
+			:paginated="5" 
+			narrowed 
+			copy
+			:data="props.ISSUE_STATUS.data" 
+			:columns="props.ISSUE_STATUS.fields"
+			del="http://localhost:5501/demo/post_detect.php?id={id}"
+			:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+			:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
+
+			<template slot="header">
+				<header class="card-header has-gradient-light">
+					<p class="card-header-title">Issue Status</p>
+				</header>
+			</template>
+		
+			<template slot="message">
+				<div class="card-content" style="padding-bottom:0.5em;">
+					<b-message type="is-info">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum quae doloribus? Aperiam,
+						cumque alias porro quisquam autem omnis officiis doloribus maxime fugit, molestias eius magnam illum
+						debitis.
+					</b-message>
+				</div>
+			</template>
+		
+			<template slot="forms" slot-scope="props">
+				<crud-form method="post" :action="props.action" @cancel="$refs.issueTable.showForm = false">
+					<crud-input v-if="props.isAdd || props.isCopy" type="text" label="Status Name"
+						placeholder="Nama Status Issue" name="name" :value="props.row.status_name">
+					</crud-input>
+					<b-field v-if="props.isEdit && !props.isCopy" label="Issue Name">
+						<p>{{ props.row.name }}</p>
+					</b-field>
+					<crud-input type="select" label="Severity Issue" name="severity" placeholder="Mantaf Jaya"
+						:value="props.row.severity">
+						<option value="low">Low</option>
+						<option value="middle">Middle</option>
+						<option value="high">High</option>
+					</crud-input>
+					<crud-input type="select" label="Company Sender" name="company" placeholder="Business Unit"
+						:value="props.row.company">
+						<option value="pmo">Project Management Office</option>
+						<option value="cdo">Cloud Development Operation</option>
+						<option value="cs">Customer Service</option>
+					</crud-input>
+					<crud-input type="datepicker" label="CreatedAt" name="submit_at" placeholder="Tanggal Dibuat"
+						:value="props.row.submit_at" date-input-format="DD/MM/YYYY" date-position="is-top-right">
+					</crud-input>
+				</crud-form>
+			</template>
+		</crud>
+	</section>
+
+	<script>
+		const VAPPS = {
+				ISSUE_STATUS: {
+					fields: [
+						{
+							key: 'status_name',
+							label: 'Status Name',
+							sortable: true,
+						}
+					],
+					data: [
+						{
+							"id": 0,
+							"status_name": "ALIQUA EX"
+						},
+						{
+							"id": 1,
+							"status_name": "DOLORE CONSECTETUR"
+						},
+						{
+							"id": 2,
+							"status_name": "MOLLIT ESSE"
+						},
+						{
+							"id": 3,
+							"status_name": "NISI NON"
+						},
+						{
+							"id": 4,
+							"status_name": "MAGNA EXCEPTEUR"
+						},
+						{
+							"id": 5,
+							"status_name": "CONSECTETUR EU"
+						},
+						{
+							"id": 6,
+							"status_name": "CUPIDATAT AD"
+						},
+						{
+							"id": 7,
+							"status_name": "DUIS LABORUM"
+						},
+						{
+							"id": 8,
+							"status_name": "LABORIS INCIDIDUNT"
+						},
+						{
+							"id": 9,
+							"status_name": "SINT FUGIAT"
+						},
+						{
+							"id": 10,
+							"status_name": "ULLAMCO ID"
+						},
+						{
+							"id": 11,
+							"status_name": "CONSECTETUR REPREHENDERIT"
+						}
+					]
+				},
+
+				ISSUE_SEVERITY = {
+					fields: [
+						{
+							key: 'severity_name',
+							label: 'Severity Name',
+							sortable: true,
+						}
+					],
+					data: [
+						{
+							"id": 0,
+							"severity_name": "VENIAM ALIQUIP"
+						},
+						{
+							"id": 1,
+							"severity_name": "CONSEQUAT EX"
+						},
+						{
+							"id": 2,
+							"severity_name": "SINT DOLORE"
+						},
+						{
+							"id": 3,
+							"severity_name": "ID SIT"
+						},
+						{
+							"id": 4,
+							"severity_name": "SUNT LABORUM"
+						},
+						{
+							"id": 5,
+							"severity_name": "SIT AD"
+						},
+						{
+							"id": 6,
+							"severity_name": "EX MINIM"
+						},
+						{
+							"id": 7,
+							"severity_name": "ALIQUA UT"
+						},
+						{
+							"id": 8,
+							"severity_name": "LABORE EIUSMOD"
+						},
+						{
+							"id": 9,
+							"severity_name": "AD REPREHENDERIT"
+						},
+						{
+							"id": 10,
+							"severity_name": "DO VELIT"
+						},
+						{
+							"id": 11,
+							"severity_name": "MAGNA EIUSMOD"
+						},
+						{
+							"id": 12,
+							"severity_name": "CUPIDATAT UT"
+						},
+						{
+							"id": 13,
+							"severity_name": "ET ELIT"
+						}
+					]
+				}
+			}
+	</script>
+</body>
+</html>

@@ -7,87 +7,6 @@
 				id="GanttChartDIV"
 			></div>
 		</h1>
-		<!-- <b-modal
-			:active.sync="modal.display"
-			width="600px"
-			@close="closeModal()"
-			scroll="keep"
-		>
-			<div class="card-modal">
-				<header class="modal-card-head">
-					<p class="modal-card-title">{{ modal.title }}</p>
-				</header>
-				<section class="modal-card-body" style="min-height:500px;">
-					<form
-						:action="actionEvent"
-						method="POST"
-						enctype="multipart/form-data"
-					>
-						<b-field label="Task Name">
-							<b-input
-								expanded
-								v-model="modal.data.pName"
-								type="input"
-								name="taskName"
-							></b-input>
-						</b-field>
-						<b-field label="Start">
-							<b-datepicker
-								placeholder="DD/MM/YYYY"
-								name="StartDate"
-								v-model="modal.StartDate"
-							></b-datepicker>
-						</b-field>
-						<b-field label="Finish">
-							<b-datepicker
-								placeholder="DD/MM/YYYY"
-								name="EndDate"
-								v-model="modal.EndDate"
-							></b-datepicker>
-						</b-field>
-						<b-field label="Duration">
-							<b-input
-								expanded
-								v-model="modal.data.duration"
-								type="input"
-								name="duration"
-							></b-input>
-						</b-field>
-						<b-field label="Work">
-							<b-input
-								expanded
-								v-model="modal.data.work"
-								type="input"
-								name="work"
-							></b-input>
-						</b-field>
-						<b-field label="Work Total">
-							<b-input
-								expanded
-								v-model="modal.data.workTotal"
-								type="input"
-								name="workTotal"
-							></b-input>
-						</b-field>
-						<a
-							class="button is-danger"
-							style="min-width:50px; margin-top:14px;"
-							type="button"
-							@click="closeModal()"
-						>
-							Close
-						</a>
-						<button
-							class="button is-success"
-							type="submit"
-							style="min-width:50px; margin-top:14px;"
-						>
-							Submit
-						</button>
-					</form>
-				</section>
-			</div>
-		</b-modal> -->
 	</div>
 </template>
 
@@ -154,9 +73,18 @@ export default {
 				// self.modalEvent(e);
 				let taskID = e.getOriginalID();
 				self.$parent.selectedTask = self.dataBaru.find(task => {
-					console.log(task);
 					return task.pID == taskID;
 				});
+
+				let lastActive = document.querySelector("tr.gname.is-active");
+				if (lastActive !== null) {
+					lastActive.classList.remove("is-active");
+				}
+
+				let childRow = e.getChildRow();
+				let id_childRow = childRow.getAttribute("id");
+				let id_row = id_childRow.replace("childrow", "child");
+				document.querySelector("#" + id_row).classList.add("is-active");
 
 				self.$parent.showSideBar = true;
 			});

@@ -21,13 +21,14 @@
 	<div id="vapp">
 		<nav-bar :left-menu="[
 				{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-				{ label: 'projects', link: 'projects.html', icon:'', active: false },
+				{ label: 'projects', link: '../projects.html', icon:'', active: false },
 				{ label: 'financial', link: '#financial', icon:'', active: false },
 				{ label: 'operation', link: '#opperation', icon:'', active: false },
+				{ label: 'setting', link: '../setting/users.html', icon:'', active: false },
 			]" :right-menu="[
 				{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 				{ label: '🔒 logout', link: '#logout', icon:'' },
-			]" home-link="home.html"></nav-bar>
+			]" home-link="../home.html"></nav-bar>
 
 		<dashboard project_name="Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia" iwo="P-SCC-XXXA" bu="Project Management Office" start="10 Juni 2019" deadline="20 Juni 2019" spi="0.92" cpi="0.92" resource="3" max_resource="5" progress_project="70" progress_bast="2" j_bast="4" show-newproject-notif="" show-timesheet-notif="">
 			<div slot="new-project-notification">
@@ -115,6 +116,12 @@
 				</li>
 				<li>
 					<a href="/src/project\allocation.html" class="button is-info is-small is-fullwidth">Assign Member</a>
+				</li>
+			</ul>
+
+			<ul slot="workplan" class="project-list">
+				<li>
+					<a href="/src/project\workplan.html" class="button is-danger is-small is-fullwidth">Workplan</a>
 				</li>
 			</ul>
 

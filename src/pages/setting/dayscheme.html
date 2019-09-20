@@ -42,13 +42,45 @@
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:true }
 		]">
 			<div class="container is-section">
-				<p class="title is-size-3">DAYS SCHEME</p>
-				<section>
-					<b-button type="is-danger" size="is-small" href="addHoliday.html" tag="a">
-						add
-					</b-button>
-				</section>
-				<data-table :data="holiday" :fields="[]" title="Holiday"></data-table>
+				<crud ref="holidayTable" :paginated="5" narrowed :data="props.HOLIDAY.data"
+					:columns="props.HOLIDAY.fields" del="http://localhost:5501/demo/post_detect.php?id={id}"
+					:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+					:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+
+					<template slot="header">
+						<header class="card-header has-gradient-light">
+							<p class="card-header-title">Holiday</p>
+						</header>
+					</template>
+
+					<template slot="message">
+						<div class="card-content" style="padding-bottom:0.5em;">
+							<b-message type="is-info">
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
+								rerum
+								quae doloribus? Aperiam,
+								cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+								molestias eius magnam illum
+								debitis.
+							</b-message>
+						</div>
+					</template>
+
+					<template slot="forms" slot-scope="props">
+						<crud-form method="post" :action="props.action" @cancel="$refs.holidayTable.showForm = false">
+							<crud-input type="text" label="Yaer" placeholder="Yaer" name="year" :value="props.row.year">
+							</crud-input>
+							<crud-input type="datepicker" label="Start" placeholder="Start" name="start"
+								:value="props.row.start" date-input-format="DD/MM/YYYY">
+							</crud-input>
+							<crud-input type="datepicker" label="End" placeholder="End" name="end"
+								:value="props.row.end" date-input-format="DD/MM/YYYY">
+							</crud-input>
+							<crud-input type="text" label="Desc" placeholder="Desc" name="desc" :value="props.row.desc">
+							</crud-input>
+						</crud-form>
+					</template>
+				</crud>
 			</div>
 		</side-bar>
 
@@ -57,82 +89,64 @@
 	</div>
 
 	<script>
-		const HOLIDAY = [
-			{
-				year: "2019",
-				start: "1 January 2019",
-				end: '1 January 2019',
-				desc: "Tahun Baru Masehi",
-				action: [
+		const VAPPS = {
+			HOLIDAY: {
+				fields: [
 					{
-						link: "editHoliday.html",
-						label: "Edit",
-						type: "is-info"
+						key: 'year',
+						label: 'Year',
+						sortable: true,
 					},
 					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
+						key: 'start',
+						label: 'Start',
+						sortable: true,
+					},
+					{
+						key: 'end',
+						label: 'End',
+						sortable: true,
+					},
+					{
+						key: 'desc',
+						label: 'Desc',
+						sortable: true,
+					}
+				],
+				data: [
+					{
+						"id": 0,
+						"year": "2019",
+						"start": "01/01/2019",
+						"end": "01/01/2019",
+						"desc": "Tahun Baru Masehi"
+					},
+					{
+						"id": 1,
+						"year": "2019",
+						"start": "05/02/2019",
+						"end": "05/02/2019",
+						"desc": "Tahun Baru Imlek"
+					},
+					{
+						"id": 2,
+						"year": "2019",
+						"start": "07/03/2019",
+						"end": "07/03/2019",
+						"desc": "Nyepi"
+					},
+					{
+						"id": 3,
+						"year": "2019",
+						"start": "03/04/2019",
+						"end": "03/04/2019",
+						"desc": "Isra' Miraj"
 					}
 				]
-			},
-			{
-				year: "2019",
-				start: "5 Februari 2019",
-				end: '5 Februari 2019',
-				desc: "Tahun Baru Imlek",
-				action: [
-					{
-						link: "editHoliday.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				],
-			},
-			{
-				year: "2019",
-				start: "7 Maret 2019",
-				end: '7 Maret 2019',
-				desc: "Nyepi",
-				action: [
-					{
-						link: "editHoliday.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				],
-			},
-			{
-				year: "2019",
-				start: "3 April 2019",
-				end: '3 April 2019',
-				desc: "Isra' Miraj",
-				action: [
-					{
-						link: "editHoliday.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				],
 			}
-		]
+		}
 	</script>
-	<script src="../../scripts/setting/dayscheme.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
 </body>
 
 </html>

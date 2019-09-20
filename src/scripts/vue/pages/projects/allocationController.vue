@@ -6,98 +6,97 @@
 					<span
 						class="mdi mdi-account-multiple-plus-outline in-left"
 					></span>
-					<span>Add Member in New Role</span>
+					<span>Assign New Member</span>
 				</button>
 			</div>
 			<div class="level-right">
-				<slot name="got-to-resource-booking">
-					<a class="button is-info" href="#">LINK</a>
-				</slot>
+				<slot name="got-to-resource-booking"></slot>
 			</div>
 		</nav>
 
 		<slot name="summary-plan"></slot>
 
-		<div
-			v-for="(res, index) in resource"
-			:key="index"
-			style="margin-bottom:25px;"
-		>
+		<div style="margin-bottom:25px;">
 			<data-table
-				:data="res.member"
+				:data="resource.member"
 				:fields="[]"
-				:title="res.role"
-				:row-class="row => !row.status && 'has-text-grey-lighter'"
+				title="Resource List"
+				:per-page="3"
+				:show-all="false"
+				:row-class="row => !row.status && 'has-text-grey-light'"
 			>
 				<template slot-scope="props">
-					<b-table-column field="nama" label="Name" sortable>
-						<span>{{ props.row.nama }}</span>
-					</b-table-column>
+					<slot name="column" :row="props.row" :index="props.index">
+						<b-table-column field="nama" label="Name" sortable>
+							<span>{{ props.row.nama }}</span>
+						</b-table-column>
 
-					<b-table-column field="bu" label="Business Unit" sortable>
-						{{ props.row.bu }}
-					</b-table-column>
-
-					<b-table-column field="role" label="Job Role" sortable>
-						{{ props.row.role }}
-					</b-table-column>
-
-					<b-table-column
-						field="start"
-						label="Working Period"
-						centered
-					>
-						{{ props.row.start }} - {{ props.row.end }}
-					</b-table-column>
-
-					<b-table-column field="activation_link" label="Action">
-						<a
-							v-if="props.row.status"
-							:href="props.row.deactivation_link"
-							class="button is-small is-warning"
-							>🔒 Deactivate</a
+						<b-table-column
+							field="bu"
+							label="Business Unit"
+							sortable
 						>
+							{{ props.row.bu }}
+						</b-table-column>
+
+						<b-table-column
+							field="assigned_role"
+							label="Assigned Role"
+							sortable
+						>
+							{{ props.row.assigned_role }}
+						</b-table-column>
+
+						<b-table-column
+							field="job_role"
+							label="Job Role"
+							sortable
+						>
+							{{ props.row.job_role }}
+						</b-table-column>
+
+						<b-table-column
+							field="rate"
+							label="Rate (Rp)"
+							sortable
+							centered
+							class="has-text-right"
+						>
+							{{ props.row.rate | number_format }}
+						</b-table-column>
+					</slot>
+
+					<b-table-column field="action" label="Action">
 						<a
-							v-else
-							:href="props.row.activation_link"
-							class="button is-small is-success"
-							>🔓 Activate</a
+							@click="
+								confirmUnassign(
+									props.row.unassign_link,
+									props.row.nama,
+									props.row.assigned_role
+								)
+							"
+							class="button is-small is-danger"
+							><span
+								class="mdi mdi-account-remove in-left"
+							></span>
+							Unassign</a
 						>
 						<a
 							class="button is-small is-info"
-							@click="newRoleModal(props.row, res.role)"
+							@click="newRoleModal(props.row)"
 							>⚙ Change Role</a
 						>
 					</b-table-column>
 				</template>
 
 				<template slot="empty">
-					<b-message
-						v-if="res.member.length == 0"
-						type="is-warning"
-						class="has-text-centered"
-					>
-						No User Assigned In This Role 😢.
-					</b-message>
-					<b-message
-						v-else
-						type="is-warning"
-						class="has-text-centered"
-					>
-						No User Found 😢.
+					<b-message type="is-warning" class="has-text-centered">
+						Currently No User is Assigned 😢.
 					</b-message>
 				</template>
 
 				<template slot="head-right">
-					<a @click="assignModal(res.role)" class="card-header-icon">
-						<span class="icon">
-							<i
-								class="mdi mdi-account-plus"
-								aria-hidden="true"
-							></i>
-						</span>
-						<span>Add Member</span>
-					</a>
+					<span></span>
 				</template>
 
 				<template slot="top-right">
@@ -110,7 +109,7 @@
 									>
 								</span>
 								<span class="tag is-primary">{{
-									res.plan
+									resource.plan
 								}}</span>
 							</div>
 						</div>
@@ -122,7 +121,7 @@
 									>
 								</span>
 								<span class="tag is-primary">{{
-									res.actual
+									resource.actual
 								}}</span>
 							</div>
 						</div>
@@ -130,11 +129,7 @@
 				</template>
 
 				<template slot="top-body">
-					<b-message v-if="res.actual > res.plan" type="is-warning">
-						<span style="margin-right:5px;">🛑</span> Jumlah member
-						di role ini melebihi dari jumlah plan yang direncanakan
-						sejumlah [<b>{{ res.plan }}</b> 👨‍💼]
-					</b-message>
+					<slot name="resourceAlert"></slot>
 				</template>
 			</data-table>
 		</div>
@@ -156,12 +151,12 @@
 							name="memberRole"
 							v-model="modal.selectedRole.value"
 						/>
-						<b-field label="Job Role">
+						<b-field label="Assigned Role">
 							<b-select
 								expanded
 								v-if="modal.selectedRole.display"
 								v-model="modal.selectedRole.value"
-								placeholder="Pilih Role Member"
+								placeholder="Select Member Role"
 							>
 								<slot name="role-option"></slot>
 							</b-select>
@@ -229,7 +224,7 @@
 								type="submit"
 								class="button is-success is-fullwidth"
 							>
-								Send Assignment
+								ASSIGN
 							</button>
 						</b-field>
 					</section>
@@ -322,22 +317,27 @@ export default {
 	},
 	watch: {
 		searchQuery: function(newQuery, oldQuery) {
-			if (this.searchQuery !== "") {
+			if (
+				newQuery !== "" &&
+				newQuery !== undefined &&
+				newQuery !== null
+			) {
 				let self = this;
-				this.modal.userdata = this.users.filter(user =>
-					Object.keys(user).find(key => {
-						if (typeof user[key] === "string") {
-							return user[key]
+				this.modal.userdata = this.users.filter(user => {
+					if (
+						user.nama !== undefined &&
+						user.nama !== null &&
+						user.nama !== ""
+					) {
+						if (typeof user.nama === "string") {
+							return user.nama
 								.toLowerCase()
-								.includes(self.searchQuery.toLowerCase());
-						} else {
-							return user[key]
-								.toString()
-								.toLowerCase()
-								.includes(self.searchQuery.toLowerCase());
+								.includes(newQuery.toLowerCase());
 						}
-					})
-				);
+					}
+
+					return false;
+				});
 			} else {
 				this.modal.userdata = this.users;
 			}
@@ -348,12 +348,27 @@ export default {
 			this.searchQuery = "";
 			this.modal.display = false;
 		},
-		newRoleModal(member = null, role = null) {
+		confirmUnassign(link, name, role) {
+			this.$dialog.confirm({
+				message:
+					"Are you sure want to <b class='has-text-danger'>UNASSIGN</b>:<br><b>" +
+					name +
+					"</b> as <b>" +
+					role +
+					"</b> ?",
+				type: "is-danger",
+				confirmText: "Unassign " + name,
+				onConfirm: () => {
+					window.location = link;
+				}
+			});
+		},
+		newRoleModal(member = null) {
 			if (member === null) {
-				this.modal.title = "Assign New Role";
+				this.modal.title = "Assign New Member";
 				this.modal.formTarget = this.actionNewRole;
 				this.modal.selectedRole.display = true;
-				this.modal.selectedRole.value = role;
+				this.modal.selectedRole.value = null;
 				this.modal.searchList = true;
 				this.modal.display = true;
 				this.modal.selectedUser = {
@@ -366,12 +381,12 @@ export default {
 				this.modal.title = "Change Role";
 				this.modal.formTarget = this.actionChangeRole;
 				this.modal.selectedRole.display = true;
-				this.modal.selectedRole.value = role;
+				this.modal.selectedRole.value = member.assinged_role;
 
 				this.modal.selectedUser.nik = member.nik;
 				this.modal.selectedUser.bu = member.bu;
 				this.modal.selectedUser.nama = member.nama;
-				this.modal.selectedUser.role = member.role;
+				this.modal.selectedUser.role = member.assigned_role;
 				this.modal.searchList = false;
 				this.modal.display = true;
 			}
@@ -405,12 +420,24 @@ export default {
 				type = this.alertType;
 			}
 
-			this.$notification.open({
+			this.$buefy.notification.open({
 				duration: 5000,
 				message: this.alertMessage,
 				position: "is-top-right",
 				type: type
 			});
+		}
+	},
+	filters: {
+		number_format(str) {
+			str += "";
+			var x = str.split(".");
+			var x1 = x[0];
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(x1)) {
+				x1 = x1.replace(rgx, "$1" + "," + "$2");
+			}
+			return x1;
 		}
 	}
 };

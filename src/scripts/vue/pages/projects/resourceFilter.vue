@@ -549,11 +549,13 @@ export default {
 		},
 		checkForm: function(e) {
 			if (this.projectId === "") {
-				Tools.notified(this.$toast).alert("Anda Belum Memilih Project");
+				Tools.notified(this.$buefy.toast).alert(
+					"Anda Belum Memilih Project"
+				);
 				e.preventDefault();
 			}
 			if (this.checkedRows.length === 0) {
-				Tools.notified(this.$toast).alert(
+				Tools.notified(this.$buefy.toast).alert(
 					"Anda Belum Memilih Resource"
 				);
 				e.preventDefault();
@@ -673,7 +675,7 @@ export default {
 				.catch(function(error) {
 					console.log("ACB Error Fetching: 629");
 					console.log(error);
-					Tools.notified(self.$toast).error(
+					Tools.notified(self.$buefy.toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
 				});
@@ -709,7 +711,7 @@ export default {
 				.catch(function(error) {
 					console.log("ADR Error Fetching: 623");
 					console.log(error);
-					Tools.notified(self.$toast).error(
+					Tools.notified(self.$buefy.toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
 				});

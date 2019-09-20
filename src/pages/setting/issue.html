@@ -42,13 +42,80 @@
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
 			<div class="container is-section">
-				<p class="title is-size-3">ISSUE</p>
 				<div class="columns">
 					<div class="column is-6">
-						<data-table :data="dataIssueStatus" :fields="[]" title="Issue Status"></data-table>
+						<crud ref="issueTable" :paginated="5" narrowed margin="margin-bottom: "
+							:data="props.ISSUE_STATUS.data" :columns="props.ISSUE_STATUS.fields"
+							del="http://localhost:5501/demo/post_detect.php?id={id}"
+							:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Issue Status</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form method="post" :action="props.action"
+									@cancel="$refs.issueTable.showForm = false">
+									<crud-input type="text" label="Status Name" placeholder="Nama Status Issue"
+										name="status_name" :value="props.row.status_name">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
 					</div>
 					<div class="column is-6">
-						<data-table :data="dataIssueSeverity" :fields="[]" title="Issue Severity"></data-table>
+						<crud ref="severityTable" :paginated="5" narrowed margin="margin-top: 0px;"
+							:data="props.ISSUE_SEVERITY.data" :columns="props.ISSUE_SEVERITY.fields"
+							del="http://localhost:5501/demo/post_detect.php?id={id}" copy
+							:add="{ method: 'post', action: 'http://localhost:5501/demo/post_detect.php' }"
+							:edit="{ method: 'get', action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Issue Severity</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form :method="props.method" :action="props.action"
+									@cancel="$refs.severityTable.showForm = false">
+									<crud-input v-if="props.isAdd" type="text" label="Id" placeholder="ID" name="id"
+										:value="props.row.id">
+									</crud-input>
+									<crud-input type="text" label="Severity Name"
+										placeholder="Nama Tingkat Priority Issue" name="severity_name"
+										:value="props.row.severity_name">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
 					</div>
 				</div>
 			</div>
@@ -56,103 +123,137 @@
 	</div>
 
 	<script>
-		const DATA_ISSUE_STATUS = [
-			{
-				status_name: "adewiranataputra",
-				action: [
+		const VAPPS = {
+			ISSUE_STATUS: {
+				fields: [
 					{
-						link: "editIssueStatus.html",
-						label: "Edit",
-						type: "is-info"
+						key: 'status_name',
+						label: 'Status Name',
+						sortable: true,
+					}
+				],
+				data: [
+					{
+						"id": 0,
+						"status_name": "ALIQUA EX"
 					},
 					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
+						"id": 1,
+						"status_name": "DOLORE CONSECTETUR"
+					},
+					{
+						"id": 2,
+						"status_name": "MOLLIT ESSE"
+					},
+					{
+						"id": 3,
+						"status_name": "NISI NON"
+					},
+					{
+						"id": 4,
+						"status_name": "MAGNA EXCEPTEUR"
+					},
+					{
+						"id": 5,
+						"status_name": "CONSECTETUR EU"
+					},
+					{
+						"id": 6,
+						"status_name": "CUPIDATAT AD"
+					},
+					{
+						"id": 7,
+						"status_name": "DUIS LABORUM"
+					},
+					{
+						"id": 8,
+						"status_name": "LABORIS INCIDIDUNT"
+					},
+					{
+						"id": 9,
+						"status_name": "SINT FUGIAT"
+					},
+					{
+						"id": 10,
+						"status_name": "ULLAMCO ID"
+					},
+					{
+						"id": 11,
+						"status_name": "CONSECTETUR REPREHENDERIT"
 					}
 				]
 			},
-			{
-				status_name: "adewiranataputra",
-				action: [
+			ISSUE_SEVERITY: {
+				fields: [
 					{
-						link: "editIssueStatus.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
+						key: 'severity_name',
+						label: 'Severity Name',
+						sortable: true,
 					}
-				]
-			},
-			{
-				status_name: "ariowidiatmoko",
-				action: [
+				],
+				data: [
 					{
-						link: "editIssueStatus.html",
-						label: "Edit",
-						type: "is-info"
+						"id": 0,
+						"severity_name": "VENIAM ALIQUIP"
 					},
 					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
+						"id": 1,
+						"severity_name": "CONSEQUAT EX"
+					},
+					{
+						"id": 2,
+						"severity_name": "SINT DOLORE"
+					},
+					{
+						"id": 3,
+						"severity_name": "ID SIT"
+					},
+					{
+						"id": 4,
+						"severity_name": "SUNT LABORUM"
+					},
+					{
+						"id": 5,
+						"severity_name": "SIT AD"
+					},
+					{
+						"id": 6,
+						"severity_name": "EX MINIM"
+					},
+					{
+						"id": 7,
+						"severity_name": "ALIQUA UT"
+					},
+					{
+						"id": 8,
+						"severity_name": "LABORE EIUSMOD"
+					},
+					{
+						"id": 9,
+						"severity_name": "AD REPREHENDERIT"
+					},
+					{
+						"id": 10,
+						"severity_name": "DO VELIT"
+					},
+					{
+						"id": 11,
+						"severity_name": "MAGNA EIUSMOD"
+					},
+					{
+						"id": 12,
+						"severity_name": "CUPIDATAT UT"
+					},
+					{
+						"id": 13,
+						"severity_name": "ET ELIT"
 					}
 				]
 			}
-		];
-		DATA_ISSUE_SEVERITY = [
-			{
-				severity_name: "exsuntipsum",
-				action: [
-					{
-						link: "editIssueSeverity.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				]
-			},
-			{
-				severity_name: "exadewiranataputra",
-				action: [
-					{
-						link: "editIssueSeverity.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				]
-			},
-			{
-				severity_name: "exariowidiatmoko",
-				action: [
-					{
-						link: "editIssueSeverity.html",
-						label: "Edit",
-						type: "is-info"
-					},
-					{
-						link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-						label: "Delete",
-						type: "is-danger"
-					}
-				]
-			}
-		];
+		}
 	</script>
 
-	<script src="../../scripts/setting/issue.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
 </body>
 
 </html>
