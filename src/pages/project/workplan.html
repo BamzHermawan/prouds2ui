@@ -28,7 +28,7 @@
 			{ label: 'projects', link: '../projects.html', icon:'', active: true },
 			{ label: 'financial', link: '#financial', icon:'', active: false },
 			{ label: 'operation', link: '#opperation', icon:'', active: false },
-			{ label: 'setting', link: 'setting/users.html', icon:'', active: false },
+			{ label: 'setting', link: '../setting/users.html', icon:'', active: false },
 		]" :right-menu="[
 			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
 			{ label: '🔒 logout', link: '#logout', icon:'' },
@@ -70,8 +70,10 @@
 								Workplan
 							</p>
 							<div class="card-header-icon">
-								<form action="http://localhost:5501/demo/post_detect.php" method="post" enctype="multipart/form-data">
-									<b-upload v-model="selectedDocument" name="evidDoc" native required style="width:100%;" accept=".xml">
+								<form action="http://localhost:5501/demo/post_detect.php" method="post"
+									enctype="multipart/form-data">
+									<b-upload v-model="selectedDocument" name="evidDoc" native required
+										style="width:100%;" accept=".xml">
 										<div v-if="selectedDocument==null">
 											<a class="button is-small is-info is-fullwidth">
 												<span class="mdi mdi-upload in-left"></span>
@@ -116,12 +118,18 @@
 							<b-menu>
 								<b-menu-list>
 									<b-menu-item @click="editTask" label="Edit Task" :active="false"></b-menu-item>
-									<b-menu-item @click="setProgress" label="Set Progress" :active="false"></b-menu-item>
-									<b-menu-item @click="setSchedule" label="Set Schedule" :active="false"></b-menu-item>
-									<b-menu-item @click="changeParentTask" label="Change Parent Task" :active="false"></b-menu-item>
-									<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false"></b-menu-item>
-									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false"></b-menu-item>
-									<b-menu-item @click="assignResource" label="Assign Resource" :active="false"></b-menu-item>
+									<b-menu-item @click="setProgress" label="Set Progress" :active="false">
+									</b-menu-item>
+									<b-menu-item @click="setSchedule" label="Set Schedule" :active="false">
+									</b-menu-item>
+									<b-menu-item @click="changeParentTask" label="Change Parent Task" :active="false">
+									</b-menu-item>
+									<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false">
+									</b-menu-item>
+									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false">
+									</b-menu-item>
+									<b-menu-item @click="assignResource" label="Assign Resource" :active="false">
+									</b-menu-item>
 									<b-menu-item @click="mergeTask" label="Merge Task" :active="false"></b-menu-item>
 									<b-menu-item @click="deleteTask" label="Delete Task" :active="false"></b-menu-item>
 								</b-menu-list>
@@ -237,7 +245,7 @@
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
-				pDepend: 0,
+				pDepend: 1,
 				work: 352,
 				workTotal: 350,
 				estProgress: 43,
@@ -267,7 +275,7 @@
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
-				pDepend: 0,
+				pDepend: 3,
 				work: 352,
 				workTotal: 350,
 				estProgress: 43,
@@ -297,7 +305,7 @@
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
-				pDepend: 0,
+				pDepend: 3,
 				work: 352,
 				workTotal: 350,
 				estProgress: 43,
@@ -328,7 +336,7 @@
 				pGroup: 1,
 				pParent: 1,
 				pOpen: 1,
-				pDepend: 0,
+				pDepend: 1,
 				work: 352,
 				workTotal: 350,
 				estProgress: 43,
@@ -358,7 +366,7 @@
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
-				pDepend: 0,
+				pDepend: 2,
 				work: 296,
 				workTotal: 512,
 				estProgress: 43,
