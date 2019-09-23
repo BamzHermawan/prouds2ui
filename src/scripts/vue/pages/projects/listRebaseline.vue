@@ -24,6 +24,32 @@
 				</div>
 			</div>
 		</nav>
+
+		<b-message type="is-warning">
+			<nav class="level">
+				<div class="level-left">
+					<label class="label">Rebaseline Type</label>
+				</div>
+				<div class="level-right">
+					<div class="level-item">
+						<b-button type="is-success">
+							Mandays Recalculation
+						</b-button>
+					</div>
+					<div class="level-item">
+						<b-button type="is-success">
+							Reschedule Milestone
+						</b-button>
+					</div>
+					<div class="level-item">
+						<b-button type="is-success">
+							Cost Reallocation
+						</b-button>
+					</div>
+				</div>
+			</nav>
+		</b-message>
+
 		<div class="columns is-multiline">
 			<div class="column is-4">
 				<article class="message is-dark">
@@ -61,48 +87,105 @@
 				<header class="modal-card-head">
 					<p class="modal-card-title">{{ modalRebaseline.title }}</p>
 				</header>
-				<section class="modal-card-body" style="min-height:500px;">
+				<section class="modal-card-body">
 					<form
 						:action="actionEvent"
 						method="POST"
 						enctype="multipart/form-data"
 					>
-						<div class="columns">
-							<div class="column">
-								<p class="heading">Old Start Date</p>
-								<b-datepicker
-									placeholder="DD/MM/YYYY"
-									name="oldStartDate"
-									v-model="modalRebaseline.oldStartDate"
-								></b-datepicker>
-							</div>
-							<div class="column">
-								<p class="heading">Old End Date</p>
-								<b-datepicker
-									placeholder="DD/MM/YYYY"
-									name="oldEndDate"
-									v-model="modalRebaseline.oldEndDate"
-								></b-datepicker>
-							</div>
-						</div>
-						<div class="columns">
-							<div class="column">
-								<p class="heading">New Start Date</p>
-								<b-datepicker
-									placeholder="DD/MM/YYYY"
-									name="newStartDate"
-								></b-datepicker>
-							</div>
-							<div class="column">
-								<p class="heading">New End Date</p>
-								<b-datepicker
-									placeholder="DD/MM/YYYY"
-									name="newEndDate"
-								></b-datepicker>
-							</div>
-						</div>
-						<p class="heading">Document</p>
-						<div class="columns">
+						<crud-input
+							type="select"
+							label="Rebaseline Type"
+							name="rebaselinetype"
+							placeholder="Choose Rebaseline Type"
+							v-model="rebaselineType"
+						>
+							<slot name="rebaseline-type"></slot>
+						</crud-input>
+						<crud-input
+							type="text"
+							label="Task Name"
+							placeholder="a name for the task"
+							name="taskName"
+							v-model="modalRebaseline.taskName"
+							v-if="rebaselineType == 1"
+							required
+						>
+						</crud-input>
+						<crud-input
+							type="datepicker"
+							label="Old Start Date"
+							name="oldStartDate"
+							placeholder="Pick Start Date"
+							date-locale="en"
+							input-style="margin-bottom: 14px;"
+							v-model="modalRebaseline.oldStartDate"
+							v-if="rebaselineType == 1 || rebaselineType == 2"
+							disabled
+						>
+						</crud-input>
+						<crud-input
+							type="datepicker"
+							label="Old End Date"
+							name="oldEndDate"
+							placeholder="Pick Start Date"
+							date-locale="en"
+							input-style="margin-bottom: 14px;"
+							v-model="modalRebaseline.oldEndDate"
+							v-if="rebaselineType == 1 || rebaselineType == 2"
+							disabled
+						>
+						</crud-input>
+						<crud-input
+							type="datepicker"
+							label="New Start Date"
+							name="newStartDate"
+							placeholder="Pick Start Date"
+							date-locale="en"
+							input-style="margin-bottom: 14px;"
+							v-if="rebaselineType == 1 || rebaselineType == 2"
+						>
+						</crud-input>
+						<crud-input
+							type="datepicker"
+							label="New End Date"
+							name="newEndDate"
+							placeholder="Pick Start Date"
+							date-locale="en"
+							input-style="margin-bottom: 14px;"
+							v-if="rebaselineType == 1 || rebaselineType == 2"
+						>
+						</crud-input>
+						<template v-if="rebaselineType == 3">
+							<input
+								type="hidden"
+								name="actualCost"
+								v-model="actualCost"
+							/>
+							<crud-input
+								type="text"
+								label="Budget Actual Cost"
+								:value="actualCost | currency"
+								@input="actualCostUnformat"
+								name=""
+							>
+							</crud-input>
+						</template>
+						<crud-input
+							type="datepicker"
+							label="Reallocation Date"
+							name="reallocationDate"
+							placeholder="Pick Reallocation Date"
+							date-locale="en"
+							input-style="margin-bottom: 14px;"
+							v-model="modalRebaseline.reallocationDate"
+							v-if="rebaselineType == 3"
+						>
+						</crud-input>
+						<p class="heading" v-if="rebaselineType == 2">
+							Document
+						</p>
+						<div class="columns" v-if="rebaselineType == 2">
 							<div class="column">
 								<div class="field">
 									<div class="control">
@@ -136,8 +219,8 @@
 								</b-field>
 							</div>
 						</div>
-						<p class="heading">Reason</p>
-						<b-field>
+						<p class="heading" v-if="rebaselineType == 2">Reason</p>
+						<b-field v-if="rebaselineType == 2">
 							<b-input
 								name="notes"
 								type="textarea"
@@ -154,8 +237,12 @@
 						/>
 						<button
 							class="button is-fullwidth is-success"
-							:disabled="disableSubmit"
 							type="submit"
+							v-if="
+								(rebaselineType == 1) |
+									(rebaselineType == 2) |
+									(rebaselineType == 3)
+							"
 						>
 							Submit Document
 						</button>
@@ -167,7 +254,9 @@
 </template>
 
 <script>
+import CrudInput from "../../components/crud/crudInput";
 export default {
+	components: { CrudInput },
 	props: {
 		actionEvent: {
 			type: String,
@@ -190,20 +279,29 @@ export default {
 				display: false,
 				title: "Rebaseline",
 				oldStartDate: new Date(),
-				oldEndDate: new Date()
+				oldEndDate: new Date(),
+				reallocationDate: new Date(),
+				taskName: "Test"
 			},
-			modalAddBaseline: {
-				display: false,
-				title: "Add Baseline",
-				oldStartDate: new Date(),
-				oldEndDate: new Date()
-			}
+			actualCost: 10000000000000,
+			rebaselineType: null
 		};
 	},
 	methods: {
+		actualCostUnformat(val) {
+			let medown = val.replace(/\D/g, "");
+			console.log(medown);
+			this.actualCost = medown;
+		},
 		onCancel() {
 			window.history.back();
 		},
+		// formatNumber(num) {
+		// 	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+		// },
+		// checkFormat() {
+		// 	this.actualCost = this.formatNumber(this.actualCost);
+		// },
 		rebaseline() {
 			// this.modal.formTarget = this.actionSend;
 			this.modalRebaseline.display = true;
@@ -258,13 +356,13 @@ export default {
 
 			return "is-success";
 		},
-		disableSubmit() {
-			if (!this.fileValidation || this.selectedDocument === null) {
-				return true;
-			}
+		// disableSubmit() {
+		// 	if (!this.fileValidation || this.selectedDocument === null) {
+		// 		return true;
+		// 	}
 
-			return false;
-		},
+		// 	return false;
+		// },
 		allowedArray() {
 			return this.allowedFile.split("|");
 		}

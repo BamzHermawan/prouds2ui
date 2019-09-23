@@ -16,14 +16,14 @@ Vue.use(Buefy);
 new Vue({
 	el: '#vapp',
 	components: {
-		NavBar, 
-		EditTask, 
-		vGantt, 
-		SetSchedule, 
-		SetProgress, 
-		ChangeParentTask, 
-		ChangePhaseTask, 
-		LinkPredecessor, 
+		NavBar,
+		EditTask,
+		vGantt,
+		SetSchedule,
+		SetProgress,
+		ChangeParentTask,
+		ChangePhaseTask,
+		LinkPredecessor,
 		MergeTask,
 		AssignResource
 	},
@@ -59,7 +59,7 @@ new Vue({
 	},
 	methods: {
 		toggleSideBar() {
-			if(this.showSideBar){
+			if (this.showSideBar) {
 				let lastActive = document.querySelector("tr.gname.is-active");
 				if (lastActive !== null) {
 					lastActive.classList.remove("is-active");
