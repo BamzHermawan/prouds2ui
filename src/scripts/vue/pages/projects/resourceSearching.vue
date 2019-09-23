@@ -440,7 +440,7 @@ export default {
 				.catch(function(error) {
 					console.log("ASE Error Fetching: 464");
 					console.log(error);
-					Tools.notified(self.$buefy.toast).error(
+					Tools.notified(self.$toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
 				});
@@ -478,7 +478,7 @@ export default {
 				.catch(function(error) {
 					console.log("ADR Error Fetching: 500");
 					console.log(error);
-					Tools.notified(self.$buefy.toast).error(
+					Tools.notified(self.$toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
 				});

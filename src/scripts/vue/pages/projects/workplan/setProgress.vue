@@ -1,43 +1,59 @@
 <template>
 	<div class="card-modal">
-		<header class="modal-card-head">
-			<p class="modal-card-title">{{ title }}</p>
-		</header>
-		<section class="modal-card-body">
-			<form
-				:action="actionEvent"
-				method="POST"
-				enctype="multipart/form-data"
-			>
+		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
+			<header class="modal-card-head">
+				<p class="modal-card-title">{{ title }}</p>
+			</header>
+			<section class="modal-card-body">
+				<b-message type="is-primary">
+					<b-field label="Task Name">
+						<p class="has-text-dark">{{ taskName }}</p>
+					</b-field>
+				</b-message>
 				<div class="columns">
 					<div class="column">
-						<p class="heading">Task Name</p>
-						{{ taskName }}
+						<crud-input
+							type="number"
+							name="progress"
+							label="Progress (%)"
+							color="is-info"
+							v-model="progress"
+							input-style="margin-bottom:0px;"
+						>
+						</crud-input>
 					</div>
-				</div>
-				<div class="columns">
 					<div class="column">
-						<p class="heading">Progress (%)</p>
-						<b-input name="progress" v-model="progress"></b-input>
-					</div>
-					<div class="column">
-						<p class="heading">EOD Est. Progress (%)</p>
-						<b-input v-model="estProgress" disabled></b-input>
+						<b-field label="EOD Est. Progress (%)">
+							<span
+								class="button is-info is-fullwidth"
+								disabled
+								>{{ estProgress }}</span
+							>
+						</b-field>
 					</div>
 				</div>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
-				<button class="button is-fullwidth is-success" type="submit">
-					Submit Document
-				</button>
-			</form>
-		</section>
+			</section>
+			<section class="modal-card-foot is-clearfix is-block">
+				<div class="is-pulled-right">
+					<a class="button is-danger" @click="$parent.close()">
+						Cancel
+					</a>
+					<button class="button is-success" type="submit">
+						Update Progress
+					</button>
+				</div>
+			</section>
+		</form>
 	</div>
 </template>
 
 <script>
 import moment from "moment";
+import CrudInput from "../../../components/crud/crudInput";
 export default {
+	components: { CrudInput },
 	props: {
 		actionEvent: {
 			type: String,

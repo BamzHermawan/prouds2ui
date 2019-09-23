@@ -28,6 +28,7 @@
 					:position="datePosition"
 					:disabled="disabled"
 					:loading="loading"
+					size="is-small"
 				>
 					<b-button
 						@click="model = null"
@@ -57,6 +58,7 @@
 				v-else-if="type === 'number'"
 				:placeholder="placeholder"
 				:type="color"
+				:name="name"
 				v-model="model"
 				:disabled="disabled"
 				:loading="loading"
@@ -253,6 +255,13 @@ export default {
 	beforeMount() {
 		if (this.type === "datepicker") {
 			this.dateModel = this.value;
+		}
+	},
+	mounted() {
+		if (this.type === "datepicker") {
+			document
+				.querySelector(".datepicker.is-small input.is-small")
+				.classList.remove("is-small");
 		}
 	}
 };

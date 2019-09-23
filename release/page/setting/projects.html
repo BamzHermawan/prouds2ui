@@ -45,94 +45,194 @@
 				<div class="container is-section">
 					<div class="container is-section">
 						<p class="title is-size-3">PROJECT</p>
-						<div class="columns">
-							<div class="column is-6">
-								<data-table :data="project_type" :fields="[]" title="Project Type"></data-table>
-							</div>
-							<div class="column is-6">
-								<data-table :data="project_category" :fields="[]" title="Project Level"></data-table>
-							</div>
-						</div>
+						<crud ref="projectTypeTable" :paginated="5" narrowed="" margin="margin-bottom: " :data="props.PROJECT_TYPE.data" :columns="props.PROJECT_TYPE.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy="">
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Project Type</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
+										rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form method="post" :action="props.action" @cancel="$refs.projectTypeTable.showForm = false">
+									<crud-input type="text" label="Project Type" placeholder="Project Type" name="project_type" :value="props.row.project_type">
+									</crud-input>
+									<crud-input type="text" label="Category" placeholder="Category" name="category" :value="props.row.category">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
+						<crud ref="projectLevelTable" :paginated="5" narrowed="" :data="props.PROJECT_LEVEL.data" :columns="props.PROJECT_LEVEL.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy="">
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Project Level</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
+										rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form method="post" :action="props.action" @cancel="$refs.projectLevelTable.showForm = false">
+									<crud-input type="text" label="Project Type" placeholder="Project Type" name="project_type" :value="props.row.project_type">
+									</crud-input>
+									<crud-input type="text" label="Category" placeholder="Category" name="category" :value="props.row.category">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
 					</div>
 				</div>
 			</div>
 		</side-bar>
 	</div>
 
-	<script>var PROJECT_TYPE = [{
-  project_type: "Non Project",
-  category: "Category 1",
-  action: [{
-    link: "editProjectType.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  project_type: "Project",
-  category: "Category 2",
-  action: [{
-    link: "editProjectType.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  project_type: "IWO",
-  category: "Category 3",
-  action: [{
-    link: "editProjectType.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}];
-PROJECT_CATEGORY = [{
-  project_type: "Non Project",
-  category: "Category 1",
-  action: [{
-    link: "editProjectCategory.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  project_type: "Project",
-  category: "Category 2",
-  action: [{
-    link: "editProjectCategory.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  project_type: "IWO",
-  category: "Category 3",
-  action: [{
-    link: "editProjectCategory.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}];</script>
+	<script>var VAPPS = {
+  PROJECT_TYPE: {
+    fields: [{
+      key: 'project_type',
+      label: 'Project Type',
+      sortable: true
+    }, {
+      key: 'category',
+      label: 'Category',
+      sortable: true
+    }],
+    data: [{
+      "id": 0,
+      "project_type": "ALIQUA EX",
+      "category": "Category 1"
+    }, {
+      "id": 1,
+      "project_type": "DOLORE CONSECTETUR",
+      "category": "Category 2"
+    }, {
+      "id": 2,
+      "project_type": "MOLLIT ESSE",
+      "category": "Category 3"
+    }, {
+      "id": 3,
+      "project_type": "NISI NON",
+      "category": "Category 1"
+    }, {
+      "id": 4,
+      "project_type": "MAGNA EXCEPTEUR",
+      "category": "Category 2"
+    }, {
+      "id": 5,
+      "project_type": "CONSECTETUR EU",
+      "category": "Category 3"
+    }, {
+      "id": 6,
+      "project_type": "CUPIDATAT AD",
+      "category": "Category 1"
+    }, {
+      "id": 7,
+      "project_type": "DUIS LABORUM",
+      "category": "Category 2"
+    }, {
+      "id": 8,
+      "project_type": "LABORIS INCIDIDUNT",
+      "category": "Category 3"
+    }, {
+      "id": 9,
+      "project_type": "SINT FUGIAT",
+      "category": "Category 1"
+    }, {
+      "id": 10,
+      "project_type": "ULLAMCO ID",
+      "category": "Category 2"
+    }, {
+      "id": 11,
+      "project_type": "CONSECTETUR REPREHENDERIT",
+      "category": "Category 3"
+    }]
+  },
+  PROJECT_LEVEL: {
+    fields: [{
+      key: 'project_type',
+      label: 'Project Type',
+      sortable: true
+    }, {
+      key: 'category',
+      label: 'Category',
+      sortable: true
+    }],
+    data: [{
+      "id": 0,
+      "project_type": "ALIQUA EX",
+      "category": "Category 1"
+    }, {
+      "id": 1,
+      "project_type": "DOLORE CONSECTETUR",
+      "category": "Category 2"
+    }, {
+      "id": 2,
+      "project_type": "MOLLIT ESSE",
+      "category": "Category 3"
+    }, {
+      "id": 3,
+      "project_type": "NISI NON",
+      "category": "Category 1"
+    }, {
+      "id": 4,
+      "project_type": "MAGNA EXCEPTEUR",
+      "category": "Category 2"
+    }, {
+      "id": 5,
+      "project_type": "CONSECTETUR EU",
+      "category": "Category 3"
+    }, {
+      "id": 6,
+      "project_type": "CUPIDATAT AD",
+      "category": "Category 1"
+    }, {
+      "id": 7,
+      "project_type": "DUIS LABORUM",
+      "category": "Category 2"
+    }, {
+      "id": 8,
+      "project_type": "LABORIS INCIDIDUNT",
+      "category": "Category 3"
+    }, {
+      "id": 9,
+      "project_type": "SINT FUGIAT",
+      "category": "Category 1"
+    }, {
+      "id": 10,
+      "project_type": "ULLAMCO ID",
+      "category": "Category 2"
+    }, {
+      "id": 11,
+      "project_type": "CONSECTETUR REPREHENDERIT",
+      "category": "Category 3"
+    }]
+  }
+};</script>
 	<script src="/src/projects.min.js"></script>
 </body>
 

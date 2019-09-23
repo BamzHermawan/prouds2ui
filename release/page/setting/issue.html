@@ -42,320 +42,168 @@
 			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
 			<div class="container is-section">
-				<p class="title is-size-3">ISSUE</p>
 				<div class="columns">
 					<div class="column is-6">
-						<data-table :data="dataIssueStatus" :fields="[]" title="Issue Status"></data-table>
+						<crud ref="issueTable" :paginated="5" narrowed="" margin="margin-bottom: " :data="props.ISSUE_STATUS.data" :columns="props.ISSUE_STATUS.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy="">
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Issue Status</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form method="post" :action="props.action" @cancel="$refs.issueTable.showForm = false">
+									<crud-input type="text" label="Status Name" placeholder="Nama Status Issue" name="status_name" :value="props.row.status_name">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
 					</div>
 					<div class="column is-6">
-						<data-table :data="dataIssueSeverity" :fields="[]" title="Issue Severity"></data-table>
+						<crud ref="severityTable" :paginated="5" narrowed="" margin="margin-top: 0px;" :data="props.ISSUE_SEVERITY.data" :columns="props.ISSUE_SEVERITY.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" copy="" :add="{ method: 'post', action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ method: 'get', action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
+
+							<template slot="header">
+								<header class="card-header has-gradient-light">
+									<p class="card-header-title">Issue Severity</p>
+								</header>
+							</template>
+
+							<template slot="message">
+								<div class="card-content" style="padding-bottom:0.5em;">
+									<b-message type="is-info">
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+										quae doloribus? Aperiam,
+										cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+										molestias eius magnam illum
+										debitis.
+									</b-message>
+								</div>
+							</template>
+
+							<template slot="forms" slot-scope="props">
+								<crud-form :method="props.method" :action="props.action" @cancel="$refs.severityTable.showForm = false">
+									<crud-input v-if="props.isAdd" type="text" label="Id" placeholder="ID" name="id" :value="props.row.id">
+									</crud-input>
+									<crud-input type="text" label="Severity Name" placeholder="Nama Tingkat Priority Issue" name="severity_name" :value="props.row.severity_name">
+									</crud-input>
+								</crud-form>
+							</template>
+						</crud>
 					</div>
 				</div>
 			</div>
-
-			<crud :paginated="5" narrowed="" :data="props.CRUD_TEST.data" :columns="props.CRUD_TEST.fields" add="http://localhost:5501/demo/post_detect.php" del="http://localhost:5501/demo/post_detect.php?name={submit_by}&id={id}" :edit="{
-					method: 'get',
-					action: 'http://localhost:5501/demo/post_detect.php',
-					form: {
-						name: {
-							label: 'Issue Name',
-							type: 'text'
-						},
-						severity: {
-							label: 'Severity Issue',
-							type: 'select',
-							option: [ 'low', 'middle', 'high' ]
-						},
-						company: {
-							label: 'Company Sender',
-							type: 'select',
-							option: [
-								{ key: 'pmo', text: 'Project Management Office' },
-								{ key: 'cdo', text: 'Cloud Development Operation' },
-								{ key: 'sid', text: 'Support Internal Development' }
-							]
-						},
-						submit_at: {
-							label: 'Created At',
-							type: 'datepicker'
-						}
-					}
-				}">
-				<template slot="header">
-					<header class="card-header has-gradient-light">
-						<p class="card-header-title">Issue List</p>
-					</header>
-				</template>
-
-				<!-- <template slot="forms" slot-scope="{isAdd, isEdit, row, index}">
-					<crud-form method="post" :field-data="row" action="http://localhost:5501/demo/post_detect.php">
-						<crud-input type="text" label="Issue Name" name="name"></crud-input>
-						<crud-input type="select" label="Severity Issue" name="severity">
-							<option value="low">Low</option>
-							<option value="middle">Middle</option>
-							<option value="low">Low</option>
-						</crud-input>
-						<crud-input type="select" label="Company Sender" name="company">
-							<option value="pmo">Project Management Office</option>
-							<option value="cdo">Cloud Development Operation</option>
-							<option value="cs">Customer Service</option>
-						</crud-input>
-						<crud-input type="datepicker" label="CreatedAt" name="name"></crud-input>
-					</crud-form>
-				</template> -->
-			</crud>
 		</side-bar>
 	</div>
 
 	<script>var VAPPS = {
-  CRUD_TEST: {
+  ISSUE_STATUS: {
     fields: [{
-      key: 'name',
-      label: 'Issue Name',
+      key: 'status_name',
+      label: 'Status Name',
       sortable: true
-    }, {
-      key: 'severity',
-      label: 'Severity Issue',
-      sortable: true,
-      width: 250
-    }, {
-      key: 'submit_at',
-      label: 'Created Date',
-      sortable: false
     }],
     data: [{
       "id": 0,
-      "name": "ENIM NULLA",
-      "severity": "low",
-      "submit_by": "Marina Lancaster",
-      "email": "marinalancaster@aeora.com",
-      "phone": "(62) 887-5538-3540",
-      "company": "pmo",
-      "submit_at": "17/06/2019"
+      "status_name": "ALIQUA EX"
     }, {
       "id": 1,
-      "name": "DOLOR CULPA",
-      "severity": "high",
-      "submit_by": "King Blackwell",
-      "email": "kingblackwell@aeora.com",
-      "phone": "(62) 884-7444-2427",
-      "company": "cdo",
-      "submit_at": "16/02/2018"
+      "status_name": "DOLORE CONSECTETUR"
     }, {
       "id": 2,
-      "name": "SIT MAGNA",
-      "severity": "low",
-      "submit_by": "Christy Sweet",
-      "email": "christysweet@aeora.com",
-      "phone": "(62) 885-5542-2976",
-      "company": "sid",
-      "submit_at": "27/11/2018"
+      "status_name": "MOLLIT ESSE"
     }, {
       "id": 3,
-      "name": "LABORUM DESERUNT",
-      "severity": "low",
-      "submit_by": "Manuela Reyes",
-      "email": "manuelareyes@aeora.com",
-      "phone": "(62) 887-3586-2653",
-      "company": "pmo",
-      "submit_at": "24/07/2018"
+      "status_name": "NISI NON"
     }, {
       "id": 4,
-      "name": "ALIQUIP EU",
-      "severity": "low",
-      "submit_by": "Merle Guzman",
-      "email": "merleguzman@aeora.com",
-      "phone": "(62) 880-9416-2170",
-      "company": "pmo",
-      "submit_at": "04/02/2019"
+      "status_name": "MAGNA EXCEPTEUR"
     }, {
       "id": 5,
-      "name": "DESERUNT IPSUM",
-      "severity": "low",
-      "submit_by": "Ortega Ayers",
-      "email": "ortegaayers@aeora.com",
-      "phone": "(62) 896-3496-3927",
-      "company": "pmo",
-      "submit_at": "15/01/2017"
+      "status_name": "CONSECTETUR EU"
     }, {
       "id": 6,
-      "name": "ID INCIDIDUNT",
-      "severity": "middle",
-      "submit_by": "Madeleine Cotton",
-      "email": "madeleinecotton@aeora.com",
-      "phone": "(62) 898-1596-2944",
-      "company": "cdo",
-      "submit_at": "26/05/2017"
+      "status_name": "CUPIDATAT AD"
     }, {
       "id": 7,
-      "name": "CONSEQUAT PROIDENT",
-      "severity": "high",
-      "submit_by": "Bender Whitney",
-      "email": "benderwhitney@aeora.com",
-      "phone": "(62) 890-9590-2277",
-      "company": "cdo",
-      "submit_at": "27/03/2018"
+      "status_name": "DUIS LABORUM"
     }, {
       "id": 8,
-      "name": "MINIM ELIT",
-      "severity": "high",
-      "submit_by": "Simon Scott",
-      "email": "simonscott@aeora.com",
-      "phone": "(62) 885-5414-3996",
-      "company": "pmo",
-      "submit_at": "22/01/2018"
+      "status_name": "LABORIS INCIDIDUNT"
     }, {
       "id": 9,
-      "name": "IN DOLOR",
-      "severity": "high",
-      "submit_by": "Knowles Boone",
-      "email": "knowlesboone@aeora.com",
-      "phone": "(62) 888-6535-3238",
-      "company": "sid",
-      "submit_at": "27/06/2018"
+      "status_name": "SINT FUGIAT"
     }, {
       "id": 10,
-      "name": "DO EA",
-      "severity": "low",
-      "submit_by": "Pacheco Johnson",
-      "email": "pachecojohnson@aeora.com",
-      "phone": "(62) 885-3478-3817",
-      "company": "sid",
-      "submit_at": "26/04/2018"
+      "status_name": "ULLAMCO ID"
     }, {
       "id": 11,
-      "name": "SUNT INCIDIDUNT",
-      "severity": "high",
-      "submit_by": "Ola Weiss",
-      "email": "olaweiss@aeora.com",
-      "phone": "(62) 899-7551-3019",
-      "company": "cdo",
-      "submit_at": "13/06/2019"
+      "status_name": "CONSECTETUR REPREHENDERIT"
+    }]
+  },
+  ISSUE_SEVERITY: {
+    fields: [{
+      key: 'severity_name',
+      label: 'Severity Name',
+      sortable: true
+    }],
+    data: [{
+      "id": 0,
+      "severity_name": "VENIAM ALIQUIP"
+    }, {
+      "id": 1,
+      "severity_name": "CONSEQUAT EX"
+    }, {
+      "id": 2,
+      "severity_name": "SINT DOLORE"
+    }, {
+      "id": 3,
+      "severity_name": "ID SIT"
+    }, {
+      "id": 4,
+      "severity_name": "SUNT LABORUM"
+    }, {
+      "id": 5,
+      "severity_name": "SIT AD"
+    }, {
+      "id": 6,
+      "severity_name": "EX MINIM"
+    }, {
+      "id": 7,
+      "severity_name": "ALIQUA UT"
+    }, {
+      "id": 8,
+      "severity_name": "LABORE EIUSMOD"
+    }, {
+      "id": 9,
+      "severity_name": "AD REPREHENDERIT"
+    }, {
+      "id": 10,
+      "severity_name": "DO VELIT"
+    }, {
+      "id": 11,
+      "severity_name": "MAGNA EIUSMOD"
     }, {
       "id": 12,
-      "name": "CONSEQUAT INCIDIDUNT",
-      "severity": "middle",
-      "submit_by": "Johnson Cooley",
-      "email": "johnsoncooley@aeora.com",
-      "phone": "(62) 897-1478-2007",
-      "company": "sid",
-      "submit_at": "28/03/2018"
+      "severity_name": "CUPIDATAT UT"
     }, {
       "id": 13,
-      "name": "QUIS ELIT",
-      "severity": "middle",
-      "submit_by": "Mercedes Kennedy",
-      "email": "mercedeskennedy@aeora.com",
-      "phone": "(62) 880-9485-2607",
-      "company": "sid",
-      "submit_at": "25/06/2017"
-    }, {
-      "id": 14,
-      "name": "EST MOLLIT",
-      "severity": "high",
-      "submit_by": "Rocha Powers",
-      "email": "rochapowers@aeora.com",
-      "phone": "(62) 897-3451-2634",
-      "company": "cdo",
-      "submit_at": "16/05/2018"
-    }, {
-      "id": 15,
-      "name": "ELIT DESERUNT",
-      "severity": "high",
-      "submit_by": "Lydia Jackson",
-      "email": "lydiajackson@aeora.com",
-      "phone": "(62) 898-4528-2965",
-      "company": "cdo",
-      "submit_at": "12/01/2019"
-    }, {
-      "id": 16,
-      "name": "ELIT EX",
-      "severity": "high",
-      "submit_by": "Cara Matthews",
-      "email": "caramatthews@aeora.com",
-      "phone": "(62) 897-3440-3565",
-      "company": "sid",
-      "submit_at": "26/07/2019"
-    }, {
-      "id": 17,
-      "name": "AD ESSE",
-      "severity": "low",
-      "submit_by": "Adkins Castillo",
-      "email": "adkinscastillo@aeora.com",
-      "phone": "(62) 894-9476-2200",
-      "company": "cdo",
-      "submit_at": "19/06/2017"
+      "severity_name": "ET ELIT"
     }]
   }
-};
-var DATA_ISSUE_STATUS = [{
-  status_name: "adewiranataputra",
-  action: [{
-    link: "editIssueStatus.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  status_name: "adewiranataputra",
-  action: [{
-    link: "editIssueStatus.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  status_name: "ariowidiatmoko",
-  action: [{
-    link: "editIssueStatus.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}];
-DATA_ISSUE_SEVERITY = [{
-  severity_name: "exsuntipsum",
-  action: [{
-    link: "editIssueSeverity.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  severity_name: "exadewiranataputra",
-  action: [{
-    link: "editIssueSeverity.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}, {
-  severity_name: "exariowidiatmoko",
-  action: [{
-    link: "editIssueSeverity.html",
-    label: "Edit",
-    type: "is-info"
-  }, {
-    link: "http://localhost:5501/demo/post_detect.php?delete=aarrrrrrggh",
-    label: "Delete",
-    type: "is-danger"
-  }]
-}];</script>
+};</script>
 
 	<script src="/src/issue.min.js"></script>
 </body>

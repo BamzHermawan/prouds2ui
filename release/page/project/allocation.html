@@ -53,11 +53,12 @@
 				<option>Database Administrator</option>
 				<option>Technical Writer</option>
 			</template>
-			<template #got-to-resource-booking="">
-				<a class="button is-info" href="/src/project\resourceBooking.html">
+
+			<!-- <template #got-to-resource-booking>
+				<a class="button is-info" href="resourceBooking.html">
 					<span>Resource Booking 👉</span>
 				</a>
-			</template>
+			</template> -->
 
 			<template slot="column" slot-scope="props">
 				<b-table-column field="nama" label="Name" sortable="">
@@ -199,6 +200,8 @@
 							<td class="is-actual">{{ planSums.total | numformat }}</td>
 						</tfoot>
 					</table>
+
+					<p style="padding: 10px 0px 0px 10px;" class="is-pulled-left has-text-danger is-bold">note* : this is just a note about something that must be noted to user!</p>
 
 					<!-- Jika Data Kosong Footer ini boleh tidak ditampilkan -->
 					<footer class="card-footer has-gradient-light is-block is-clearfix">

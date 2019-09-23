@@ -92,7 +92,7 @@ export default {
 				})
 				.catch(function(error) {
 					// handle error
-					self.$buefy.toast.open({
+					self.$toast.open({
 						duration: 5000,
 						message: `Mohon Maaf, Kami tidak dapat menghubungi server terkait data dataChart.`,
 						position: "is-top",

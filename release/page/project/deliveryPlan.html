@@ -68,7 +68,7 @@
 		<b-message v-if="top.status" type="is-info">
 			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span>
 				Information</p>
-			<p><span class="tag is-warning">YELLOW</span> Highlight Term of Payment (TOP)</p>
+			<p><span class="tag is-warning">YELLOW</span>  Highlight Term of Payment (TOP)</p>
 		</b-message>
 
 		<nav v-if="showPMONav" class="level sub-nav is-info animated fadeIn" style="margin-top:25px;">
@@ -99,13 +99,18 @@
 					<span v-if="props.row.plan !== null" class="tag is-small is-info">{{ props.row.plan }}%</span>
 					<span v-else="" class="tag is-small is-info">---</span>
 				</b-table-column>
-				<b-table-column field="docTypePlan" label="Doc Type Plan" width="370">
+				<b-table-column field="docTypePlan" label="Doc Type Plan" width="140">
 					<p v-if="props.row.docTypePlan !== undefined && props.row.docTypePlan !== '' && props.row.docTypePlan !== null">
 						{{props.row.docTypePlan}}</p>
 					<span v-else="" class="tag is-small">---</span>
 				</b-table-column>
 				<b-table-column field="actual.progress" label="Progress Actual" width="175" centered="">
 					<span v-if="props.row.actual !== null" :class="'tag is-small ' + (parseInt(props.row.actual.progress) < parseInt(props.row.plan) ? 'is-danger':'is-info')">{{ props.row.actual.progress }}%</span>
+					<span v-else="" class="tag is-small">---</span>
+				</b-table-column>
+				<b-table-column field="actual.doctype" label="Doc Type" width="110" centered="">
+					<p v-if="props.row.actual !== undefined && props.actual !== '' && props.row.actual !== null">
+						{{props.row.actual.doctype}}</p>
 					<span v-else="" class="tag is-small">---</span>
 				</b-table-column>
 				<b-table-column field="actual.document" label="Document">
@@ -166,7 +171,7 @@
 	<script>var DELIVERY = [{
   "period": "2019/01",
   "plan": "10",
-  "docTypePlan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus facilisis.",
+  "docTypePlan": "BATP",
   "actual": {
     "progress": "10",
     "document": "BATPP.Bulan I - Awas ada rencana saya bungkam.pdf",
@@ -186,7 +191,7 @@
 }, {
   "period": "2019/02",
   "plan": "100",
-  "docTypePlan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus facilisis.",
+  "docTypePlan": "BAST",
   "actual": {
     "progress": "35",
     "document": "BATPP Bulan II",

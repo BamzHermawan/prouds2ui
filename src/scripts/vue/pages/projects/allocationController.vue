@@ -420,7 +420,7 @@ export default {
 				type = this.alertType;
 			}
 
-			this.$buefy.notification.open({
+			this.$notification.open({
 				duration: 5000,
 				message: this.alertMessage,
 				position: "is-top-right",
