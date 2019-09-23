@@ -1,59 +1,64 @@
 <template>
 	<div class="card-modal">
-		<header class="modal-card-head">
-			<p class="modal-card-title">{{ title }}</p>
-		</header>
-		<section class="modal-card-body">
-			<div style="margin-bottom:20px">
-				<b-message class="messagemergetask" type="is-info">
-					<b>Merge Task</b> allows you to move your resource's task
-					assignment and their timesheets to other task, it also
-					delete the old task afterwards. By merging task, it merge
-					task date, assignment, task predecessor, and also a
-					possibility to change start date of destination task
+		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
+			<header class="modal-card-head">
+				<p class="modal-card-title">{{ title }}</p>
+			</header>
+			<section class="modal-card-body">
+				<div style="margin-bottom:20px">
+					<b-message class="messagemergetask" type="is-info">
+						<p class="has-text-dark has-text-justified">
+							<b>Merge Task</b> allows you to move your resource's
+							task assignment and their timesheets to other task,
+							it also delete the old task afterwards. By merging
+							task, it merge task date, assignment, task
+							predecessor, and also a possibility to change the
+							start date of the destination task
+						</p>
+					</b-message>
+				</div>
+				<b-message type="is-primary">
+					<b-field label="Task Name">
+						<p class="has-text-dark">{{ taskName }}</p>
+					</b-field>
 				</b-message>
-			</div>
-			<form
-				:action="actionEvent"
-				method="POST"
-				enctype="multipart/form-data"
-			>
-				<div class="columns">
-					<div class="column">
-						<p class="heading">Task Name</p>
-						{{ taskName }}
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column">
-						<p class="heading">Destination Task</p>
-						<b-select
-							expanded
-							v-model="destination"
-							name="destination"
-						>
-							<option
-								v-for="(opt, name, idx) in dataBaru"
-								:key="idx"
-								:value="opt.pID"
-								>{{ opt.pName }}</option
-							>
-						</b-select>
-					</div>
-				</div>
+				<crud-input
+					label="Destination Task"
+					v-model="destination"
+					name="destination"
+					type="select"
+					placeholder="Choose Task to Merge to"
+					input-style="margin-bottom: 0px;"
+				>
+					<option
+						v-for="(opt, name, idx) in dataBaru"
+						:key="idx"
+						:value="opt.pID"
+						>{{ opt.pName }}</option
+					>
+				</crud-input>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
-				<button class="button is-fullwidth is-success" type="submit">
-					Submit Document
-				</button>
-			</form>
-		</section>
+			</section>
+			<section class="modal-card-foot is-clearfix is-block">
+				<div class="is-pulled-right">
+					<a class="button is-danger" @click="$parent.close()">
+						Cancel
+					</a>
+					<button class="button is-success" type="submit">
+						Update Progress
+					</button>
+				</div>
+			</section>
+		</form>
 	</div>
 </template>
 
 <script>
 import moment from "moment";
+import CrudInput from "../../../components/crud/crudInput";
 export default {
+	components: { CrudInput },
 	props: {
 		actionEvent: {
 			type: String,

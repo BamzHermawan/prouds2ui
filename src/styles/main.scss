@@ -573,5 +573,34 @@ tr.gname {
 	}
 }
 
+.modal.had-max-width {
+	.modal-content {
+		max-width: 650px !important;
+	}
+}
+
+.menu.is-workplan-task-menu {
+	.menu-label {
+		margin: 0px !important;
+		padding: 5px 0px;
+		text-align: center;
+		background-color: lighten($warning, 15%);
+		color: $dark;
+	}
+
+	.menu-label + .menu-list {
+		background-color: lighten($warning, 25%);
+
+		a.is-active {
+			background-color: $light;
+			color: $dark;
+		}
+
+		a:hover {
+			background-color: lighten($warning, 30%);
+		}
+	}
+}
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

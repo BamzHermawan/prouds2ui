@@ -3,8 +3,8 @@
 		<header class="modal-card-head">
 			<p class="modal-card-title">{{ title }}</p>
 		</header>
-		<section class="modal-card-body" style="height: auto;">
-			<div class="container" style="margin-top: 25px;">
+		<section class="modal-card-body" style="height: 75vh;">
+			<div class="container">
 				<form
 					:action="actionEvent"
 					method="POST"
@@ -20,65 +20,75 @@
 						<div class="tile is-vertical is-parent">
 							<div class="tile is-child">
 								<b-message
-									title="Days Configuration"
+									title="Task Schedule"
 									type="is-primary"
+									:closable="false"
 								>
-									<!-- Datepicker Start Date -->
-									<crud-input
-										type="datepicker"
-										label="Start Date"
-										name="start"
-										placeholder="Pick Start Date"
-										v-model="start"
-										date-locale="en"
-										input-style="margin-bottom: 14px;"
-									>
-									</crud-input>
-									<!-- Datepicker Start Date -->
+									<div class="columns">
+										<div class="column">
+											<!-- Datepicker Start Date -->
+											<crud-input
+												type="datepicker"
+												label="Start Date"
+												name="start"
+												placeholder="Pick Start Date"
+												v-model="start"
+												date-locale="en"
+											>
+											</crud-input>
+											<!-- Datepicker Start Date -->
+										</div>
+										<div class="column">
+											<!-- Datepicker Finish Date -->
+											<crud-input
+												type="datepicker"
+												label="Finish Date"
+												name="finish"
+												placeholder="Pick End Date"
+												v-model="finish"
+												date-locale="en"
+											>
+												<template slot="helptext">
+													<p
+														:class="
+															'help ' +
+																check(true)
+														"
+													>
+														{{ check(false) }}
+													</p>
+												</template>
+											</crud-input>
+											<!-- Datepicker Finish Date -->
+										</div>
+									</div>
 
-									<!-- Datepicker Finish Date -->
-									<crud-input
-										type="datepicker"
-										label="Finish Date"
-										name="finish"
-										placeholder="Pick End Date"
-										v-model="finish"
-										date-locale="en"
-										input-style="margin-bottom: 14px;"
-									>
-										<template slot="helptext">
-											<p :class="'help ' + check(true)">
-												{{ check(false) }}
-											</p>
-										</template>
-									</crud-input>
-									<!-- Datepicker Finish Date -->
-
-									<!-- Select Workdays -->
-									<crud-input
-										type="select"
-										label="Workdays Schema"
-										name="workdays"
-										placeholder="Choose Workdays Schema"
-										v-model="workdays"
-										input-style="margin-bottom: 14px;"
-									>
-										<slot name="workdays-option"></slot>
-									</crud-input>
-									<!-- Select Workdays -->
-
-									<!-- Duration of Days Holder -->
-									<crud-input
-										type="text"
-										label="Duration of Days"
-										name="duration"
-										v-model="duration"
-										disabled
-										:loading="isLoading"
-										input-style="margin-bottom: 8px;"
-									>
-									</crud-input>
-									<!-- Duration of Days Holder -->
+									<div class="columns">
+										<div class="column">
+											<!-- Select Workdays -->
+											<crud-input
+												type="select"
+												label="Workdays Schema"
+												name="workdays"
+												placeholder="Choose Workdays Schema"
+												v-model="workdays"
+											>
+												<slot
+													name="workdays-option"
+												></slot>
+											</crud-input>
+											<!-- Select Workdays -->
+										</div>
+										<div class="column">
+											<b-field label="Duration of Days">
+												<span
+													disabled
+													class="button is-info is-fullwidth"
+													>{{ duration }}</span
+												>
+											</b-field>
+										</div>
+									</div>
 								</b-message>
 							</div>
 						</div>
@@ -91,6 +101,7 @@
 									placeholder="a name for the task"
 									name="taskName"
 									v-model="taskName"
+									input-style="margin-bottom:15px;"
 								>
 								</crud-input>
 								<!-- Input Task Name -->
@@ -102,6 +113,7 @@
 									name="subtask"
 									placeholder="Choose Parent Task"
 									v-model="subtask"
+									input-style="margin-bottom:15px;"
 								>
 									<option value="0"
 										>Doesn't Have Parent</option
@@ -118,7 +130,7 @@
 								<!-- Select Task Phase -->
 								<crud-input
 									type="select"
-									label="Task Phase"
+									label="Group Phase"
 									name="phase"
 									placeholder="Choose Task Phase"
 									v-model="phase"
@@ -127,34 +139,32 @@
 								</crud-input>
 								<!-- Select Task Phase -->
 
-								<b-message type="is-primary" size="is-small">
-									<!-- Select Predecessor -->
-									<crud-input
-										type="select"
-										label="Predecessor Task"
-										name="predecessor"
-										placeholder="This Task Doesn't Have Predecessor"
-										v-model="predecessor"
-										input-style="margin: 0px;"
+								<!-- Select Predecessor -->
+								<crud-input
+									type="select"
+									label="Predecessor"
+									name="predecessor"
+									placeholder="This Task Doesn't Have Predecessor"
+									v-model="predecessor"
+								>
+									<option
+										v-for="(opt, name, idx) in dataBaru"
+										:key="idx"
+										:value="opt.pID"
+										>{{ opt.pName }}</option
 									>
-										<option
-											v-for="(opt, name, idx) in dataBaru"
-											:key="idx"
-											:value="opt.pID"
-											>{{ opt.pName }}</option
-										>
 
-										<template slot="addons">
-											<a
-												class="button is-warning"
-												@click="predecessor = null"
-											>
-												Remove Link
-											</a>
-										</template>
-									</crud-input>
-									<!-- Select Predecessor -->
-								</b-message>
+									<template slot="addons">
+										<a
+											class="button is-warning"
+											@click="predecessor = null"
+											:disabled="predecessor == null"
+										>
+											Remove Link
+										</a>
+									</template>
+								</crud-input>
+								<!-- Select Predecessor -->
 
 								<div class="is-pulled-right">
 									<a
@@ -254,7 +264,7 @@ export default {
 					self.duration = dur.duration;
 				})
 				.catch(function(error) {
-					notified(self.$buefy.toast).error(
+					notified(self.$toast).error(
 						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
 					);
 				})

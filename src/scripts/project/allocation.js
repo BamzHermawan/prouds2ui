@@ -69,10 +69,10 @@ new Vue({
 				}
 			).then(({ data }) => {
 				if(data.status){
-					notified(self.$buefy.notification).success(data.message);
+					notified(self.$notification).success(data.message);
 					self.cycleTablePlan(true);
 				}else{
-					notified(self.$buefy.notification).error(data.message);
+					notified(self.$notification).error(data.message);
 					self.cycleTablePlan(true);
 				}
 
@@ -95,7 +95,7 @@ new Vue({
 				
 				self.editPlan = false;
 			}).catch(() => {
-				notified(self.$buefy.notification).error("Sorry, we can't connect to the server. Please try again later. 🙏");
+				notified(self.$notification).error("Sorry, we can't connect to the server. Please try again later. 🙏");
 			})
 		},
 		cycleTablePlan(acceptNewValue = false){

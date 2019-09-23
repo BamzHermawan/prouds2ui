@@ -228,7 +228,7 @@ export default {
 				})
 				.catch(function(error) {
 					self.showDetail = false;
-					notified(self.$buefy.toast).error(
+					notified(self.$toast).error(
 						"Mohon Maaf Kami Tidak dapat Terhubung dengan Server, Silakan Cek Koneksi Anda. Terimakasih 🙏"
 					);
 				});
