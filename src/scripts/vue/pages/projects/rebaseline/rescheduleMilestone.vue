@@ -31,12 +31,16 @@
 				<div class="columns">
 					<div class="column">
 						<b-field label="Current Start Date">
-							<p>{{ getCurStart }}</p>
+							<b-message class="is-danger is-on-field">
+								<p>{{ getCurStart }}</p>
+							</b-message>
 						</b-field>
 					</div>
 					<div class="column">
 						<b-field label="Current End Date">
-							<p>{{ getCurEnd }}</p>
+							<b-message class="is-danger is-on-field">
+								<p>{{ getCurEnd }}</p>
+							</b-message>
 						</b-field>
 					</div>
 				</div>
