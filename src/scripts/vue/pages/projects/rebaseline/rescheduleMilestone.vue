@@ -9,33 +9,35 @@
 				method="POST"
 				enctype="multipart/form-data"
 			>
-				<input type="hidden" name="taskId" v-model="taskId" />
 				<div class="columns">
 					<div class="column">
-						<crud-input
-							type="datepicker"
-							label="Old Start Date"
-							name="oldStartDate"
-							placeholder="Pick Start Date"
-							date-locale="en"
-							input-style="margin-bottom: 14px;"
-							v-model="oldStartDate"
-							disabled
+						<p class="label">Task Name</p>
+						<input
+							type="hidden"
+							name="taskID"
+							v-model="selectedTask"
+						/>
+						<b-autocomplete
+							v-model="name"
+							placeholder="Choose Task Name"
+							:open-on-focus="true"
+							:data="filterTaskName"
+							field="taskName"
+							@select="option => (selected = option)"
 						>
-						</crud-input>
+						</b-autocomplete>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column">
+						<b-field label="Current Start Date">
+							<p>{{ getCurStart }}</p>
+						</b-field>
 					</div>
 					<div class="column">
-						<crud-input
-							type="datepicker"
-							label="Old End Date"
-							name="oldEndDate"
-							placeholder="Pick Start Date"
-							date-locale="en"
-							input-style="margin-bottom: 14px;"
-							v-model="oldEndDate"
-							disabled
-						>
-						</crud-input>
+						<b-field label="Current End Date">
+							<p>{{ getCurEnd }}</p>
+						</b-field>
 					</div>
 				</div>
 				<div class="columns">
@@ -100,17 +102,6 @@
 						</b-field>
 					</div>
 				</div>
-				<p class="heading">Reason</p>
-				<b-field>
-					<b-input
-						name="notes"
-						type="textarea"
-						maxlength="150"
-						custom-class="has-fixed-size"
-						placeholder="Alasan singkat mengenai rebaseline terkait."
-					>
-					</b-input>
-				</b-field>
 				<div class="is-pulled-right">
 					<a class="button is-danger" @click="$parent.close()">
 						Cancel
@@ -126,6 +117,7 @@
 
 <script>
 import CrudInput from "../../../components/crud/crudInput";
+import moment from "moment";
 export default {
 	components: { CrudInput },
 	props: {
@@ -144,15 +136,27 @@ export default {
 		allowedFile: {
 			type: String,
 			required: true
+		},
+		oldStart: {
+			type: String,
+			required: true
+		},
+		oldEnd: {
+			type: String,
+			required: true
 		}
 	},
 	data() {
 		return {
 			selectedDocument: null,
+			selectedTask: null,
 			fileValidation: true,
-			oldStartDate: new Date(),
-			oldEndDate: new Date(),
-			reallocationDate: new Date()
+			curStartDate: new Date(moment(this.oldStart, "DD/MM/YYYY")),
+			curEndDate: new Date(moment(this.oldEnd, "DD/MM/YYYY")),
+			reallocationDate: new Date(),
+			dataBaru: DATA,
+			name: "",
+			selected: null
 		};
 	},
 	methods: {
@@ -186,6 +190,44 @@ export default {
 		}
 	},
 	computed: {
+		filterTaskName() {
+			return this.dataBaru.filter(option => {
+				return (
+					option.taskName
+						.toString()
+						.toLowerCase()
+						.indexOf(this.name.toLowerCase()) >= 0
+				);
+			});
+		},
+		getCurStart() {
+			if (this.selected != undefined) {
+				this.selectedTask = this.selected.taskID;
+			}
+			let found = this.dataBaru.find(
+				task => task.taskID === this.selectedTask
+			);
+
+			if (found != undefined && found.hasOwnProperty("curStart")) {
+				return found.curStart;
+			} else {
+				return "-";
+			}
+		},
+		getCurEnd() {
+			if (this.selected != undefined) {
+				this.selectedTask = this.selected.taskID;
+			}
+			let found = this.dataBaru.find(
+				task => task.taskID === this.selectedTask
+			);
+
+			if (found != undefined && found.hasOwnProperty("curEnd")) {
+				return found.curEnd;
+			} else {
+				return "-";
+			}
+		},
 		documentName() {
 			if (this.selectedDocument !== null) {
 				let size = this.formatSizeString(this.selectedDocument.size);

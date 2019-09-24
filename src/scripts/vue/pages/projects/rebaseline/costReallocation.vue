@@ -5,12 +5,30 @@
 		</header>
 		<section class="modal-card-body" style="height: auto;">
 			<form :action="actionEvent" method="POST">
-				<input type="hidden" name="taskId" v-model="taskId" />
-				<input type="hidden" name="actualCost" v-model="actualCost" />
+				<div class="columns">
+					<div class="column">
+						<p class="label">Task Name</p>
+						<input
+							type="hidden"
+							name="taskID"
+							v-model="selectedTask"
+						/>
+						<b-autocomplete
+							v-model="name"
+							placeholder="Choose Task Name"
+							:open-on-focus="true"
+							:data="filterTaskName"
+							field="taskName"
+							@select="option => (selected = option)"
+						>
+						</b-autocomplete>
+					</div>
+				</div>
+				<input type="hidden" name="actualCost" v-model="getCost" />
 				<crud-input
 					type="text"
 					label="Budget Actual Cost"
-					:value="actualCost | currency"
+					:value="getCost | currency"
 					@input="actualCostUnformat"
 					name=""
 				>
@@ -22,7 +40,6 @@
 					placeholder="Pick Reallocation Date"
 					date-locale="en"
 					input-style="margin-bottom: 14px;"
-					v-model="reallocationDate"
 				>
 				</crud-input>
 				<div class="is-pulled-right">
@@ -62,14 +79,56 @@ export default {
 	},
 	data() {
 		return {
-			reallocationDate: new Date(),
-			actualCost: 10000000000000
+			selectedTask: "null",
+			dataBaru: DATA,
+			name: "",
+			selected: null
 		};
 	},
 	methods: {
 		actualCostUnformat(val) {
 			let medown = val.replace(/\D/g, "");
-			this.actualCost = medown;
+			this.getCost = medown;
+		}
+	},
+	computed: {
+		filterTaskName() {
+			return this.dataBaru.filter(option => {
+				return (
+					option.taskName
+						.toString()
+						.toLowerCase()
+						.indexOf(this.name.toLowerCase()) >= 0
+				);
+			});
+		},
+		getCost: {
+			get() {
+				if (this.selected != undefined) {
+					this.selectedTask = this.selected.taskID;
+				}
+				let found = this.dataBaru.find(
+					task => task.taskID === this.selectedTask
+				);
+
+				if (found != undefined && found.hasOwnProperty("cost")) {
+					return found.cost;
+				} else {
+					return "";
+				}
+			},
+			set(val) {
+				if (this.selected != undefined) {
+					this.selectedTask = this.selected.taskID;
+				}
+				let found = this.dataBaru.find(
+					task => task.taskID === this.selectedTask
+				);
+
+				if (found != undefined && found.hasOwnProperty("cost")) {
+					found.cost = val;
+				}
+			}
 		}
 	}
 };
