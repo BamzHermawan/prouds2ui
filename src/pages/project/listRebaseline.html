@@ -63,11 +63,6 @@
 					</div>
 					<div class="level-right">
 						<div class="level-item">
-							<b-button type="is-success" @click="editMandays">
-								Mandays Recalculation
-							</b-button>
-						</div>
-						<div class="level-item">
 							<b-button type="is-success" @click="editMilestone">
 								Reschedule Milestone
 							</b-button>
@@ -82,48 +77,97 @@
 			</b-message>
 			<hr>
 			<p class="title is-size-4">Rebaseline List</p>
-			<div class="columns is-multiline">
-				<div class="column is-4">
-					<article class="message is-dark">
-						<div class="message-header">
-							<p>
-								<span class="tags has-addons">
-									<span class="tag is-light">📅</span>
-									<span class="tag is-info">28/10/2019</span>
-								</span>
-							</p>
-							<button class="button is-small is-info">
-								✅ Confirm
-							</button>
+			<div class="columns">
+				<div class="column">
+					<p class="title is-size-5">Mandays Recalculation</p>
+					<article class="media box">
+						<div class="media-content">
+							<div class="content">
+								<p>
+									<small>
+										<strong>Task Name : </strong>Mockup UI Developtmen
+									</small>
+									<div class="columns">
+										<div class="column">
+											<small>
+												<strong>Current Start Date : </strong>22/11/2019
+												<br>
+												<strong>Current End Date : </strong>22/11/2019
+											</small>
+										</div>
+										<div class="column">
+											<small>
+												<strong>New Start Date : </strong>28/11/2019
+												<br>
+												<strong>New End Date : </strong>31/12/2019
+											</small>
+										</div>
+									</div>
+								</p>
+								<a href="http://localhost:5500/project/listrebaseline.html"
+									class="button is-small is-info">
+									✅ Confirm
+								</a>
+							</div>
 						</div>
-						<div class="message-body">
-							<b-field label="Task Name">
-								Mockup UI Development
-							</b-field>
-							<b-field label="Start">
-								06/06/2019
-							</b-field>
-							<b-field label="Finish">
-								30/10/2019
-							</b-field>
+					</article>
+				</div>
+				<div class="column">
+					<p class="title is-size-5">Reschedule Milestone</p>
+					<article class="media box">
+						<div class="media-content">
+							<div class="content">
+								<p>
+									<small><strong>Task Name : </strong>Mockup UI Developtmen</small>
+									<div class="columns">
+										<div class="column">
+											<small>
+												<strong>Current Start Date : </strong>22/11/2019
+												<br>
+												<strong>Current End Date : </strong>22/11/2019
+											</small>
+										</div>
+										<div class="column">
+											<small>
+												<strong>New Start Date : </strong>28/11/2019
+												<br>
+												<strong>New End Date : </strong>31/12/2019
+											</small>
+										</div>
+									</div>
+								</p>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="column">
+					<p class="title is-size-5">Cost Recalculation</p>
+					<article class="media box">
+						<div class="media-content">
+							<div class="content">
+								<p>
+									<small>
+										<strong>Task Name : </strong>Mockup UI Developtmen
+										<br>
+										<strong>Budget Actual Cost : </strong>1000000
+										<br>
+										<strong>Reallocation Date : </strong>31/12/2019
+									</small>
+								</p>
+							</div>
 						</div>
 					</article>
 				</div>
 			</div>
 		</div>
 
-		<b-modal width="770px" :active.sync="modal.mandays">
-			<mandays title="Mandays Recalculation" task-id="1"
-				action-event="http://localhost:5501/demo/post_detect.php">
-			</mandays>
-		</b-modal>
-		<b-modal width="770px" :active.sync="modal.milestone">
-			<milestone title="Reschedule Milestone" task-id="1"
+		<b-modal width="650px" :active.sync="modal.milestone">
+			<milestone title="Reschedule Milestone" task-id="1" old-start="22/11/2019" old-end="28/11/2019"
 				action-event="http://localhost:5501/demo/post_detect.php"
 				allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx">
 			</milestone>
 		</b-modal>
-		<b-modal width="770px" :active.sync="modal.cost">
+		<b-modal width="650px" :active.sync="modal.cost">
 			<cost title="Cost Reallocation" task-id="1" action-event="http://localhost:5501/demo/post_detect.php"
 				allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx">
 			</cost>
@@ -132,5 +176,24 @@
 	<script src="../../scripts/project/listRebaseline.js"></script>
 
 </body>
+
+<script>
+	const DATA = [
+		{
+			taskID: 1,
+			taskName: "New Prouds Development Phase I",
+			curStart: "10/06/2019",
+			curEnd: "31/12/2019",
+			cost: "10000000000000"
+		},
+		{
+			taskID: 3,
+			taskName: "Analysis and Design",
+			curStart: "20/10/2019",
+			curEnd: "28/11/2019",
+			cost: "20000000000"
+		}
+	]
+</script>
 
 </html>
