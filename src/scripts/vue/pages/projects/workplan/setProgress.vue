@@ -5,11 +5,11 @@
 				<p class="modal-card-title">{{ title }}</p>
 			</header>
 			<section class="modal-card-body">
-				<b-message type="is-primary">
-					<b-field label="Task Name">
+				<b-field label="Task Name">
+					<b-message type="is-info" class="is-on-field">
 						<p class="has-text-dark">{{ taskName }}</p>
-					</b-field>
-				</b-message>
+					</b-message>
+				</b-field>
 				<div class="columns">
 					<div class="column">
 						<crud-input

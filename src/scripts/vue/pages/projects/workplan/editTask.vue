@@ -3,13 +3,9 @@
 		<header class="modal-card-head">
 			<p class="modal-card-title">{{ title }}</p>
 		</header>
-		<section class="modal-card-body" style="height: 75vh;">
-			<div class="container">
-				<form
-					:action="actionEvent"
-					method="POST"
-					enctype="multipart/form-data"
-				>
+		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
+			<section class="modal-card-body">
+				<div class="container">
 					<input
 						type="hidden"
 						name="workplanId"
@@ -17,81 +13,6 @@
 					/>
 					<input type="hidden" name="taskID" v-model="taskID" />
 					<div class="tile is-ancestor">
-						<div class="tile is-vertical is-parent">
-							<div class="tile is-child">
-								<b-message
-									title="Task Schedule"
-									type="is-primary"
-									:closable="false"
-								>
-									<div class="columns">
-										<div class="column">
-											<!-- Datepicker Start Date -->
-											<crud-input
-												type="datepicker"
-												label="Start Date"
-												name="start"
-												placeholder="Pick Start Date"
-												v-model="start"
-												date-locale="en"
-											>
-											</crud-input>
-											<!-- Datepicker Start Date -->
-										</div>
-										<div class="column">
-											<!-- Datepicker Finish Date -->
-											<crud-input
-												type="datepicker"
-												label="Finish Date"
-												name="finish"
-												placeholder="Pick End Date"
-												v-model="finish"
-												date-locale="en"
-											>
-												<template slot="helptext">
-													<p
-														:class="
-															'help ' +
-																check(true)
-														"
-													>
-														{{ check(false) }}
-													</p>
-												</template>
-											</crud-input>
-											<!-- Datepicker Finish Date -->
-										</div>
-									</div>
-
-									<div class="columns">
-										<div class="column">
-											<!-- Select Workdays -->
-											<crud-input
-												type="select"
-												label="Workdays Schema"
-												name="workdays"
-												placeholder="Choose Workdays Schema"
-												v-model="workdays"
-											>
-												<slot
-													name="workdays-option"
-												></slot>
-											</crud-input>
-											<!-- Select Workdays -->
-										</div>
-										<div class="column">
-											<b-field label="Duration of Days">
-												<span
-													disabled
-													class="button is-info is-fullwidth"
-													>{{ duration }}</span
-												>
-											</b-field>
-										</div>
-									</div>
-								</b-message>
-							</div>
-						</div>
 						<div class="tile is-vertical is-parent">
 							<div class="tile is-child">
 								<!-- Input Task Name -->
@@ -134,6 +55,7 @@
 									name="phase"
 									placeholder="Choose Task Phase"
 									v-model="phase"
+									input-style="margin-bottom:15px;"
 								>
 									<slot name="phase-option"></slot>
 								</crud-input>
@@ -146,6 +68,7 @@
 									name="predecessor"
 									placeholder="This Task Doesn't Have Predecessor"
 									v-model="predecessor"
+									input-style="margin-bottom:15px;"
 								>
 									<option
 										v-for="(opt, name, idx) in dataBaru"
@@ -165,27 +88,95 @@
 									</template>
 								</crud-input>
 								<!-- Select Predecessor -->
+							</div>
+						</div>
+						<div class="tile is-vertical is-parent is-7">
+							<div class="tile is-child">
+								<b-message
+									title="Task Schedule"
+									type="is-primary"
+									:closable="false"
+								>
+									<!-- Datepicker Start Date -->
+									<crud-input
+										type="datepicker"
+										label="Start Date"
+										name="start"
+										placeholder="Pick Start Date"
+										v-model="start"
+										date-locale="en"
+										input-style="margin-bottom:1em;"
+									>
+									</crud-input>
+									<!-- Datepicker Start Date -->
 
-								<div class="is-pulled-right">
-									<a
-										class="button is-danger"
-										@click="$parent.close()"
+									<!-- Datepicker Finish Date -->
+									<crud-input
+										type="datepicker"
+										label="Finish Date"
+										name="finish"
+										placeholder="Pick End Date"
+										v-model="finish"
+										date-locale="en"
+										input-style="margin-bottom:1em;"
 									>
-										Cancel
-									</a>
-									<button
-										class="button is-success"
-										type="submit"
-									>
-										Save Task
-									</button>
-								</div>
+										<template slot="helptext">
+											<p :class="'help ' + check(true)">
+												{{ check(false) }}
+											</p>
+										</template>
+									</crud-input>
+									<!-- Datepicker Finish Date -->
+
+									<div class="columns">
+										<div class="column">
+											<!-- Select Workdays -->
+											<crud-input
+												type="select"
+												label="Workdays Schema"
+												name="workdays"
+												placeholder="Choose Workdays Schema"
+												v-model="workdays"
+												input-style="margin-bottom:0px;"
+											>
+												<slot
+													name="workdays-option"
+												></slot>
+											</crud-input>
+											<!-- Select Workdays -->
+										</div>
+										<div class="column is-4">
+											<label class="label"
+												>Duration of Days</label
+											>
+											<b-message
+												type="is-danger"
+												class="is-on-field"
+											>
+												<p class="has-text-dark">
+													{{ duration }}
+												</p>
+											</b-message>
+										</div>
+									</div>
+								</b-message>
 							</div>
 						</div>
 					</div>
-				</form>
-			</div>
-		</section>
+				</div>
+			</section>
+
+			<section class="modal-card-foot is-clearfix is-block">
+				<div class="is-pulled-right">
+					<a class="button is-danger" @click="$parent.close()">
+						Cancel
+					</a>
+					<button class="button is-success" type="submit">
+						Save Task
+					</button>
+				</div>
+			</section>
+		</form>
 	</div>
 </template>
 

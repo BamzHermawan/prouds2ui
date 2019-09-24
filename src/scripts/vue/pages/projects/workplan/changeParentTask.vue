@@ -1,13 +1,17 @@
 <template>
 	<div class="card-modal">
-		<section class="modal-card-body">
-			<form :action="actionEvent" method="POST">
+		<form :action="actionEvent" method="POST">
+			<header class="modal-card-head">
+				<p class="modal-card-title">{{ title }}</p>
+			</header>
+			<section class="modal-card-body">
 				<crud-input
 					type="select"
 					v-model="subtask"
 					name="subtask"
 					label="Parent Task"
 					placeholder="Choose Parent Task"
+					input-style="margin-bottom:0px;"
 				>
 					<option :value="null">Has No Parent Task</option>
 					<option
@@ -19,11 +23,18 @@
 				</crud-input>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
-				<button class="button is-fullwidth is-success" type="submit">
-					Update Parent
-				</button>
-			</form>
-		</section>
+			</section>
+			<section class="modal-card-foot is-clearfix is-block">
+				<div class="is-pulled-right">
+					<b-button type="is-danger" @click="$parent.close()"
+						>Cancel</b-button
+					>
+					<button class="button is-success" type="submit">
+						Update Parent
+					</button>
+				</div>
+			</section>
+		</form>
 	</div>
 </template>
 

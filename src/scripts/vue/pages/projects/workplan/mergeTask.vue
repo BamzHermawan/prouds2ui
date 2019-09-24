@@ -6,7 +6,7 @@
 			</header>
 			<section class="modal-card-body">
 				<div style="margin-bottom:20px">
-					<b-message class="messagemergetask" type="is-info">
+					<b-message type="is-warning">
 						<p class="has-text-dark has-text-justified">
 							<b>Merge Task</b> allows you to move your resource's
 							task assignment and their timesheets to other task,
@@ -17,11 +17,11 @@
 						</p>
 					</b-message>
 				</div>
-				<b-message type="is-primary">
-					<b-field label="Task Name">
+				<b-field label="Task Name">
+					<b-message type="is-info" class="is-on-field">
 						<p class="has-text-dark">{{ taskName }}</p>
-					</b-field>
-				</b-message>
+					</b-message>
+				</b-field>
 				<crud-input
 					label="Destination Task"
 					v-model="destination"

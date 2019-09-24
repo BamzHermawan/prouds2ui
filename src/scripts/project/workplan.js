@@ -3,14 +3,14 @@ import Buefy from 'buefy';
 import Loader from "../loader.js";
 import NavBar from "../vue/components/topNavBar.vue";
 import EditTask from "./../vue/pages/projects/workplan/editTask.vue";
-import SetSchedule from "./../vue/pages/projects/workplan/setSchedule.vue";
 import SetProgress from "./../vue/pages/projects/workplan/setProgress.vue";
 import ChangeParentTask from "./../vue/pages/projects/workplan/changeParentTask.vue";
-import ChangePhaseTask from "./../vue/pages/projects/workplan/changePhaseTask.vue";
 import LinkPredecessor from "./../vue/pages/projects/workplan/linkPredecessor.vue";
 import AssignResource from "./../vue/pages/projects/workplan/assignResource.vue";
 import MergeTask from "./../vue/pages/projects/workplan/mergeTask.vue";
 import vGantt from "../vue/components/ganttchart.vue";
+
+import "../filters";
 
 Vue.use(Buefy);
 new Vue({
@@ -19,10 +19,8 @@ new Vue({
 		NavBar,
 		EditTask,
 		vGantt,
-		SetSchedule,
 		SetProgress,
 		ChangeParentTask,
-		ChangePhaseTask,
 		LinkPredecessor,
 		MergeTask,
 		AssignResource
@@ -30,10 +28,8 @@ new Vue({
 	data: {
 		modal: {
 			editTask: false,
-			setSchedule: false,
 			setProgress: false,
 			changeParentTask: false,
-			changePhaseTask: false,
 			linkPredecessor: false,
 			mergeTask: false,
 			assignResource: false
@@ -71,25 +67,29 @@ new Vue({
 		editTask() {
 			this.modal.editTask = true;
 		},
-		setSchedule() {
-			this.modal.setSchedule = true;
-		},
 		setProgress() {
 			this.modal.setProgress = true;
 		},
 		changeParentTask() {
-			this.modal.changeParentTask = true;
+			if (
+				!this.selectedTask.hasOwnProperty('changeableParent') ||
+				!this.selectedTask.changeableParent
+			){
+				this.$dialog.alert({
+					message: 'Sorry, but you cannot Change the parent of <b>' + this.selectedTask.pName + "</b>.",
+					type: 'is-warning'
+				});
+			}else{
+				this.modal.changeParentTask = true;
+			}
 		},
 		linkPredecessor() {
 			this.modal.linkPredecessor = true;
 		},
-		changePhaseTask() {
-			this.modal.changePhaseTask = true;
-		},
 		unlinkPredecessor() {
 			this.$dialog.confirm({
 				title: 'Unlink Predecessor',
-				message: 'Are you sure you want to remove predecessor from link ' + this.selectedTask.pName + ' ?',
+				message: 'Are you sure you want to remove predecessor from link <b>' + this.selectedTask.pName + '</b> ?',
 				confirmText: 'Oke',
 				type: 'is-danger',
 				hasIcon: true,

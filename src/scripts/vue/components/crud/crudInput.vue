@@ -259,9 +259,11 @@ export default {
 	},
 	mounted() {
 		if (this.type === "datepicker") {
-			document
-				.querySelector(".datepicker.is-small input.is-small")
-				.classList.remove("is-small");
+			let input = document.querySelector(
+				".datepicker.is-small input.is-small"
+			);
+			input.classList.remove("is-small");
+			input.nextElementSibling.classList.remove("is-small");
 		}
 	}
 };

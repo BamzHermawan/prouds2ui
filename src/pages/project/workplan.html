@@ -125,24 +125,13 @@
 									<b-menu-item @click="mergeTask" label="Merge Task" :active="false"></b-menu-item>
 								</b-menu-list>
 								<b-menu-list label="Quick Action">
-									<b-menu-item :active="false">
-										<template slot="label" slot-scope="props">
-											<b-dropdown position="is-bottom-left">
-												<a class="is-paddingless" slot="trigger">
-													<span>Change Parent Task</span>
-												</a>
-											
-												<b-dropdown-item aria-role="menu-item" :focusable="false" custom paddingless>
-													<change-parent-task title="Change Parent Task" :task="selectedTask" workplan-id="1"
-														action-event="http://localhost:5501/demo/post_detect.php">
-													</change-parent-task>
-												</b-dropdown-item>
-											</b-dropdown>
-										</template>
+									<b-menu-item @click="changeParentTask" label="Change Parent Task" :active="false">
 									</b-menu-item>
 									<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false">
 									</b-menu-item>
 									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false">
+									</b-menu-item>
+									<b-menu-item @click="unlinkPredecessor" label="Shrink Task" :active="false">
 									</b-menu-item>
 									<b-menu-item @click="deleteTask" label="Delete Task" :active="false"></b-menu-item>
 								</b-menu-list>
@@ -153,7 +142,7 @@
 			</div>
 		</div>
 
-		<b-modal :active.sync="modal.editTask" width="90vw" :can-cancel="false">
+		<b-modal :active.sync="modal.editTask" width="70vw">
 			<edit-task title="Edit Task" :task="selectedTask" workplan-id="1"
 				api-get-duration="http://localhost:5501/demo/getDuration.php"
 				action-event="http://localhost:5501/demo/post_detect.php">
@@ -171,21 +160,9 @@
 		</b-modal>
 
 		<b-modal class="had-max-width" :active.sync="modal.setProgress">
-			<set-progress title="Set Progress" :task="selectedTask" workplan-id="1"
+			<set-progress title="Update Progress" :task="selectedTask" workplan-id="1"
 				action-event="http://localhost:5501/demo/post_detect.php">
 			</set-progress>
-		</b-modal>
-
-		<b-modal class="had-max-width" :active.sync="modal.setSchedule">
-			<set-schedule title="Set Schedule" :task="selectedTask" workplan-id="1"
-				api-get-duration="http://localhost:5501/demo/getDuration.php"
-				action-event="http://localhost:5501/demo/post_detect.php">
-				<template slot="workdays-option">
-					<option selected style="display: none;"></option>
-					<option value="1">Normal : 5 Business days</option>
-					<option value="2">Medium : 10 Business days</option>
-				</template>
-			</set-schedule>
 		</b-modal>
 
 		<b-modal class="had-max-width" :active.sync="modal.changeParentTask">
@@ -244,8 +221,10 @@
 						"action": ""
 					}
 				],
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
+				changeableParent: false,
+				deleteTask: null,
+				shrinkTask: null,
+				unlinkPredecessor: null,
 			},
 			{
 				pID: 2,
@@ -274,8 +253,10 @@
 						"action": ""
 					}
 				],
+				changeableParent: true,
 				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
 				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
 				pID: 3,
@@ -304,8 +285,10 @@
 						"action": ""
 					}
 				],
+				changeableParent: true,
 				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
 				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
 				pID: 4,
@@ -334,8 +317,10 @@
 						"action": ""
 					}
 				],
+				changeableParent: true,
 				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
 				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
 				pID: 6,
@@ -365,8 +350,10 @@
 						"action": ""
 					}
 				],
+				changeableParent: true,
+				shrinkTask: null,
+				deleteTask: null,
 				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
 			},
 			{
 				pID: 7,
@@ -395,8 +382,10 @@
 						"action": ""
 					}
 				],
+				changeableParent: true,
 				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
 				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			}
 		],
 			RESOURCE_AVAILABLE = [

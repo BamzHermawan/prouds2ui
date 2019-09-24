@@ -3,75 +3,100 @@
 		<header class="modal-card-head">
 			<p class="modal-card-title">{{ title }}</p>
 		</header>
-		<section class="modal-card-body">
-			<form
-				:action="actionEvent"
-				method="POST"
-				enctype="multipart/form-data"
-			>
+		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
+			<section class="modal-card-body">
+				<b-field label="Task Name">
+					<b-message type="is-info" class="is-on-field">
+						<p class="has-text-dark">{{ taskName }}</p>
+					</b-message>
+				</b-field>
+
 				<div class="columns">
-					<div class="column is-6">
-						<p class="heading">Task Name</p>
-						{{ taskName }}
+					<div class="column">
+						<b-field label="Start Date">
+							<b-message type="is-info" class="is-on-field">
+								<p class="has-text-dark">
+									{{ start | moment }}
+								</p>
+							</b-message>
+						</b-field>
 					</div>
 					<div class="column">
-						<p class="heading">Start</p>
-						{{ start }}
-					</div>
-					<div class="column">
-						<p class="heading">Finish</p>
-						{{ finish }}
+						<b-field label="Finish Date">
+							<b-message type="is-info" class="is-on-field">
+								<p class="has-text-dark">
+									{{ finish | moment }}
+								</p>
+							</b-message>
+						</b-field>
 					</div>
 					<input type="hidden" name="users" v-model="checkId" />
 				</div>
-				<div class="columns">
-					<div class="column">
-						<p class="heading">
-							Currently assigned ({{ task.resource.length }})
-						</p>
-						<b-table :data="task.resource" :fields="[]">
-							<template slot-scope="props">
-								<b-table-column field="name" label="Name">
-									<span>{{ props.row.name }}</span>
-								</b-table-column>
-								<b-table-column field="status" label="Status">
-									<span>{{ props.row.status }}</span>
-								</b-table-column>
-								<b-table-column field="action" label="Action">
-									<span v-if="props.row.action !== ''">
-										<a :href="props.row.action"
-											>Set Completed</a
-										>
-									</span>
-								</b-table-column>
-							</template>
-						</b-table>
-					</div>
-					<div class="column">
-						<p class="heading">
-							Available ({{ resourceAvailable.length }})
-						</p>
-						<b-table
-							:data="resourceAvailable"
-							:fields="[]"
-							checkable
-							:checked-rows.sync="checkedRows"
-						>
-							<template slot-scope="props">
-								<b-table-column field="name" label="Name">
-									<span>{{ props.row.name }}</span>
-								</b-table-column>
-							</template>
-						</b-table>
-					</div>
-				</div>
+
+				<b-message
+					type="is-light"
+					class="has-paddingless-body"
+					:closable="false"
+					:title="'Currently assigned (' + task.resource.length + ')'"
+				>
+					<b-table :data="task.resource" :fields="[]" narrowed>
+						<template slot-scope="props">
+							<b-table-column field="name" label="Name">
+								<span>{{ props.row.name }}</span>
+							</b-table-column>
+							<b-table-column field="status" label="Status">
+								<span>{{ props.row.status }}</span>
+							</b-table-column>
+							<b-table-column field="action" label="Action">
+								<span v-if="props.row.action !== ''">
+									<b-button
+										tag="a"
+										size="is-small"
+										type="is-warning"
+										:href="props.row.action"
+										>Set Completed</b-button
+									>
+								</span>
+							</b-table-column>
+						</template>
+					</b-table>
+				</b-message>
+
+				<b-message
+					type="is-light"
+					class="has-paddingless-body"
+					:closable="false"
+					:title="'Available (' + resourceAvailable.length + ')'"
+				>
+					<b-table
+						:data="resourceAvailable"
+						:fields="[]"
+						checkable
+						narrowed
+						:checked-rows.sync="checkedRows"
+					>
+						<template slot-scope="props">
+							<b-table-column field="name" label="Name">
+								<span>{{ props.row.name }}</span>
+							</b-table-column>
+						</template>
+					</b-table>
+				</b-message>
+
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
-				<button class="button is-fullwidth is-success" type="submit">
-					Submit Document
-				</button>
-			</form>
-		</section>
+			</section>
+			<section class="modal-card-foot is-clearfix is-block">
+				<div class="is-pulled-right">
+					<b-button type="is-danger" @click="$parent.close()"
+						>Cancel</b-button
+					>
+					<button class="button is-success" type="submit">
+						Update Task Resource
+					</button>
+				</div>
+			</section>
+		</form>
 	</div>
 </template>
 

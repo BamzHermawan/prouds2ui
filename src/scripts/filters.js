@@ -2,12 +2,12 @@ import Vue from "vue";
 import moment from "./moment-locale.js";
 
 Vue.filter("moment", function (value) {
-	moment.locale("id");
+	moment.locale("en");
 	return moment(value, "YYYY-MM-DD").format("Do MMMM YYYY");
 });
 
 Vue.filter("datetime", function (value, showTime = false) {
-	moment.locale("id");
+	moment.locale("en");
 	let format = "Do MMMM YYYY";
 	if (showTime) format = "Do MMMM YYYY - HH:mm:ss";
 
