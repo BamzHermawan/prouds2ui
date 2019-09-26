@@ -48,13 +48,24 @@
 								<span>{{ props.row.status }}</span>
 							</b-table-column>
 							<b-table-column field="action" label="Action">
-								<span v-if="props.row.action !== ''">
+								<span v-if="props.row.actionComplete !== ''">
+									<b-button
+										tag="a"
+										size="is-small"
+										type="is-success"
+										style="min-width:95px"
+										:href="props.row.actionComplete"
+										>Set Complete</b-button
+									>
+								</span>
+								<span v-if="props.row.actionUnComplete !== ''">
 									<b-button
 										tag="a"
 										size="is-small"
 										type="is-warning"
-										:href="props.row.action"
-										>Set Completed</b-button
+										style="min-width:95px"
+										:href="props.row.actionUnComplete"
+										>Reassign Task</b-button
 									>
 								</span>
 							</b-table-column>

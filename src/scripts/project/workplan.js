@@ -74,12 +74,12 @@ new Vue({
 			if (
 				!this.selectedTask.hasOwnProperty('changeableParent') ||
 				!this.selectedTask.changeableParent
-			){
+			) {
 				this.$dialog.alert({
 					message: 'Sorry, but you cannot Change the parent of <b>' + this.selectedTask.pName + "</b>.",
 					type: 'is-warning'
 				});
-			}else{
+			} else {
 				this.modal.changeParentTask = true;
 			}
 		},
@@ -87,24 +87,64 @@ new Vue({
 			this.modal.linkPredecessor = true;
 		},
 		unlinkPredecessor() {
-			this.$dialog.confirm({
-				title: 'Unlink Predecessor',
-				message: 'Are you sure you want to remove predecessor from link <b>' + this.selectedTask.pName + '</b> ?',
-				confirmText: 'Oke',
-				type: 'is-danger',
-				hasIcon: true,
-				onConfirm: () => window.location.href = this.selectedTask.unlinkPredecessor
-			})
+			if (
+				this.selectedTask.hasOwnProperty('unlinkPredecessor') == null ||
+				!this.selectedTask.unlinkPredecessor
+			) {
+				this.$dialog.alert({
+					message: 'Sorry, <b>(' + this.selectedTask.pName + ")</b> doesn\'t have predecessor.",
+					type: 'is-warning'
+				});
+			} else {
+				this.$dialog.confirm({
+					title: 'Unlink Predecessor',
+					message: 'Are you sure you want to remove predecessor from link <b>' + this.selectedTask.pName + '</b> ?',
+					confirmText: 'Oke',
+					type: 'is-danger',
+					hasIcon: true,
+					onConfirm: () => window.location.href = this.selectedTask.unlinkPredecessor
+				})
+			}
+		},
+		shrinkTask() {
+			if (
+				this.selectedTask.hasOwnProperty('shrinkTask') == null ||
+				!this.selectedTask.shrinkTask
+			) {
+				this.$dialog.alert({
+					message: 'Sorry, but you cannot shrink <b>' + this.selectedTask.pName + "</b>.",
+					type: 'is-warning'
+				});
+			} else {
+				this.$dialog.confirm({
+					title: 'Shrink Task',
+					message: 'Are you sure you want to Shrink this task from link <b>' + this.selectedTask.pName + '</b> ?',
+					confirmText: 'Oke',
+					type: 'is-danger',
+					hasIcon: true,
+					onConfirm: () => window.location.href = this.selectedTask.unlinkShrink
+				})
+			}
 		},
 		deleteTask() {
-			this.$dialog.confirm({
-				title: 'Delete task',
-				message: 'Are you sure you want to <b>delete</b> ' + this.selectedTask.pName + ' ?',
-				confirmText: 'Oke',
-				type: 'is-danger',
-				hasIcon: true,
-				onConfirm: () => window.location.href = this.selectedTask.deleteTask
-			})
+			if (
+				this.selectedTask.hasOwnProperty('deleteTask') == null ||
+				!this.selectedTask.deleteTask
+			) {
+				this.$dialog.alert({
+					message: 'Sorry, but you cannot delete <b>' + this.selectedTask.pName + "</b>.",
+					type: 'is-warning'
+				});
+			} else {
+				this.$dialog.confirm({
+					title: 'Delete task',
+					message: 'Are you sure you want to <b>delete</b> ' + this.selectedTask.pName + ' ?',
+					confirmText: 'Oke',
+					type: 'is-danger',
+					hasIcon: true,
+					onConfirm: () => window.location.href = this.selectedTask.deleteTask
+				})
+			}
 		},
 		mergeTask() {
 			this.modal.mergeTask = true;

@@ -133,10 +133,6 @@ export default {
 			type: String,
 			required: true
 		},
-		taskId: {
-			type: String,
-			required: true
-		},
 		allowedFile: {
 			type: String,
 			required: true

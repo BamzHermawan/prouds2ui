@@ -22,21 +22,18 @@
 						<p class="has-text-dark">{{ taskName }}</p>
 					</b-message>
 				</b-field>
-				<crud-input
-					label="Destination Task"
-					v-model="destination"
-					name="destination"
-					type="select"
-					placeholder="Choose Task to Merge to"
-					input-style="margin-bottom: 0px;"
+				<p class="label">Destination Task</p>
+				<input type="hidden" name="destination" v-model="destination" />
+				<b-autocomplete
+					style="margin-bottom:0px;"
+					v-model="name"
+					placeholder="Choose Destination Task"
+					:open-on-focus="true"
+					:data="filterTaskName"
+					field="pName"
+					@select="option => (selected = option)"
 				>
-					<option
-						v-for="(opt, name, idx) in dataBaru"
-						:key="idx"
-						:value="opt.pID"
-						>{{ opt.pName }}</option
-					>
-				</crud-input>
+				</b-autocomplete>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
 			</section>
@@ -81,9 +78,33 @@ export default {
 		return {
 			dataBaru: GANTT,
 			taskName: this.task.pName,
-			destination: 1,
-			taskID: this.task.pID
+			taskID: this.task.pID,
+			destination: null,
+			name: "",
+			selected: null
 		};
+	},
+	watch: {
+		name: function() {
+			if (this.selected != undefined) {
+				this.destination = this.selected.pID;
+			} else {
+				this.destination = "";
+			}
+		}
+	},
+	computed: {
+		filterTaskName() {
+			return this.dataBaru.filter(option => {
+				let checkName =
+					option.pName
+						.toString()
+						.toLowerCase()
+						.indexOf(this.name.toLowerCase()) >= 0;
+
+				return checkName && option.pID != this.taskID;
+			});
+		}
 	}
 };
 </script>

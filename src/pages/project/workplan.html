@@ -131,7 +131,7 @@
 									</b-menu-item>
 									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false">
 									</b-menu-item>
-									<b-menu-item @click="unlinkPredecessor" label="Shrink Task" :active="false">
+									<b-menu-item @click="shrinkTask" label="Shrink Task" :active="false">
 									</b-menu-item>
 									<b-menu-item @click="deleteTask" label="Delete Task" :active="false"></b-menu-item>
 								</b-menu-list>
@@ -213,12 +213,14 @@
 					{
 						"name": "Zeid",
 						"status": "Assigned",
-						"action": "http://localhost:5500/project/workplan.html"
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
 					},
 					{
 						"name": "BilBIl",
 						"status": "Completed",
-						"action": ""
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: false,
@@ -245,12 +247,14 @@
 					{
 						"name": "Zeid",
 						"status": "Assigned",
-						"action": "http://localhost:5500/project/workplan.html"
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
 					},
 					{
 						"name": "BilBIl",
 						"status": "Completed",
-						"action": ""
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -277,12 +281,14 @@
 					{
 						"name": "Zeid",
 						"status": "Assigned",
-						"action": "http://localhost:5500/project/workplan.html"
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
 					},
 					{
 						"name": "BilBIl",
 						"status": "Completed",
-						"action": ""
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -309,12 +315,14 @@
 					{
 						"name": "Zeid",
 						"status": "Assigned",
-						"action": "http://localhost:5500/project/workplan.html"
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
 					},
 					{
 						"name": "BilBIl",
 						"status": "Completed",
-						"action": ""
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -342,12 +350,14 @@
 					{
 						"name": "Zeid",
 						"status": "Assigned",
-						"action": "http://localhost:5500/project/workplan.html"
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
 					},
 					{
 						"name": "BilBIl",
 						"status": "Completed",
-						"action": ""
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -374,12 +384,149 @@
 					{
 						"name": "Zeid",
 						"status": "Assigned",
-						"action": "http://localhost:5500/project/workplan.html"
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
 					},
 					{
 						"name": "BilBIl",
 						"status": "Completed",
-						"action": ""
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+					}
+				],
+				changeableParent: true,
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+			},
+			{
+				pID: 8,
+				pName: "Develop Front-End",
+				pStart: "2019-08-19",
+				pEnd: "2019-10-31",
+				duration: 100,
+				pClass: "gtaskgreen",
+				pComp: 57.81,
+				pGroup: 0,
+				pParent: 6,
+				pOpen: 0,
+				pDepend: 2,
+				work: 296,
+				workTotal: 512,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+					}
+				],
+				changeableParent: true,
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+			},
+			{
+				pID: 9,
+				pName: "Develop Front-End",
+				pStart: "2019-08-19",
+				pEnd: "2019-10-31",
+				duration: 100,
+				pClass: "gtaskgreen",
+				pComp: 57.81,
+				pGroup: 0,
+				pParent: 6,
+				pOpen: 0,
+				pDepend: 2,
+				work: 296,
+				workTotal: 512,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+					}
+				],
+				changeableParent: true,
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+			}, {
+				pID: 10,
+				pName: "Develop Front-End",
+				pStart: "2019-08-19",
+				pEnd: "2019-10-31",
+				duration: 100,
+				pClass: "gtaskgreen",
+				pComp: 57.81,
+				pGroup: 0,
+				pParent: 6,
+				pOpen: 0,
+				pDepend: 2,
+				work: 296,
+				workTotal: 512,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+					}
+				],
+				changeableParent: true,
+				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html",
+				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+			},
+			{
+				pID: 11,
+				pName: "Develop Front-End",
+				pStart: "2019-08-19",
+				pEnd: "2019-10-31",
+				duration: 100,
+				pClass: "gtaskgreen",
+				pComp: 57.81,
+				pGroup: 0,
+				pParent: 6,
+				pOpen: 0,
+				pDepend: 2,
+				work: 296,
+				workTotal: 512,
+				estProgress: 43,
+				resource: [
+					{
+						"name": "Zeid",
+						"status": "Assigned",
+						"actionComplete": "http://localhost:5500/project/workplan.html",
+						"actionUnComplete": ""
+					},
+					{
+						"name": "BilBIl",
+						"status": "Completed",
+						"actionComplete": "",
+						"actionUnComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,

@@ -10,22 +10,38 @@
 						<p class="has-text-dark">{{ taskName }}</p>
 					</b-message>
 				</b-field>
-
-				<crud-input
-					label="Predecessor"
-					type="select"
+				<input
+					type="hidden"
 					name="predecessor"
-					v-model="predecessor"
-					input-style="margin-bottom:0px;"
-				>
-					<option :value="null">Doesn't Have Predecessor</option>
-					<option
-						v-for="(opt, name, idx) in dataBaru"
-						:key="idx"
-						:value="opt.pID"
-						>{{ opt.pName }}</option
+					v-model="selectedOptions"
+				/>
+				<b-field>
+					<b-input
+						placeholder="Search Predecessor..."
+						type="search"
+						icon="magnify"
+						v-model="searchQuery"
 					>
-				</crud-input>
+					</b-input>
+				</b-field>
+				<b-select
+					multiple
+					expanded
+					native-size="5"
+					v-model="selectedOptions"
+				>
+					<option :value="null" class="has-background-grey-lighter"
+						><span class="has-text-dark"
+							>Doesn't have predecessor</span
+						></option
+					>
+					<option
+						v-for="(taska, index) in listTask"
+						:key="index"
+						:value="taska.pID"
+						>{{ taska.pName }}
+					</option>
+				</b-select>
 
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
@@ -72,8 +88,54 @@ export default {
 			dataBaru: GANTT,
 			taskName: this.task.pName,
 			predecessor: this.task.pDepend,
-			taskID: this.task.pID
+			taskID: this.task.pID,
+			taskNew: "",
+			listTask: [],
+			searchTask: [],
+			searchQuery: "",
+			name: ""
 		};
+	},
+	watch: {
+		searchQuery: function(newQuery, oldQuery) {
+			if (newQuery !== "") {
+				let self = this;
+				this.listTask = this.searchTask.filter(task =>
+					task.pName.toLowerCase().includes(newQuery.toLowerCase())
+				);
+			} else {
+				this.listTask = this.listTask;
+			}
+		}
+	},
+	computed: {
+		selectedOptions: {
+			get: function() {
+				return [this.taskNew];
+			},
+			set: function(newValue = []) {
+				if (newValue.length > 0) {
+					this.taskNew = newValue.shift();
+				} else {
+					this.taskNew = "";
+				}
+			}
+		},
+		filterTaskName() {
+			this.listTask = this.dataBaru.filter(option => {
+				let checkName =
+					option.pName
+						.toString()
+						.toLowerCase()
+						.indexOf(this.name.toLowerCase()) >= 0;
+
+				return checkName && option.pID != this.taskID;
+			});
+			this.searchTask = this.listTask;
+		}
+	},
+	mounted() {
+		this.filterTaskName();
 	}
 };
 </script>

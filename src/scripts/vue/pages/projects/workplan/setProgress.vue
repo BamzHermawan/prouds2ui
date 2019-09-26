@@ -24,11 +24,11 @@
 					</div>
 					<div class="column">
 						<b-field label="EOD Est. Progress (%)">
-							<span
-								class="button is-info is-fullwidth"
-								disabled
-								>{{ estProgress }}</span
-							>
+							<b-message type="is-dark" class="is-on-field">
+								<p class="has-text-light has-text-centered">
+									{{ estProgress }}
+								</p>
+							</b-message>
 						</b-field>
 					</div>
 				</div>

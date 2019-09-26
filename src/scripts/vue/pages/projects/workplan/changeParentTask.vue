@@ -5,24 +5,37 @@
 				<p class="modal-card-title">{{ title }}</p>
 			</header>
 			<section class="modal-card-body">
-				<crud-input
-					type="select"
-					v-model="subtask"
-					name="subtask"
-					label="Parent Task"
-					placeholder="Choose Parent Task"
-					input-style="margin-bottom:0px;"
-				>
-					<option :value="null">Has No Parent Task</option>
-					<option
-						v-for="(opt, name, idx) in dataBaru"
-						:key="idx"
-						:value="opt.pID"
-						>{{ opt.pName }}</option
-					>
-				</crud-input>
+				<p class="label">Parent Task</p>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
+				<input type="hidden" name="parent" v-model="selectedOptions" />
+				<b-field>
+					<b-input
+						placeholder="Search Parent..."
+						type="search"
+						icon="magnify"
+						v-model="searchQuery"
+					>
+					</b-input>
+				</b-field>
+				<b-select
+					multiple
+					expanded
+					native-size="5"
+					v-model="selectedOptions"
+				>
+					<option :value="null" class="has-background-grey-lighter"
+						><span class="has-text-dark"
+							>Doesn't have parent</span
+						></option
+					>
+					<option
+						v-for="(taska, index) in listTask"
+						:key="index"
+						:value="taska.pID"
+						>{{ taska.pName }}
+					</option>
+				</b-select>
 			</section>
 			<section class="modal-card-foot is-clearfix is-block">
 				<div class="is-pulled-right">
@@ -65,9 +78,54 @@ export default {
 		return {
 			dataBaru: GANTT,
 			taskName: this.task.pName,
-			subtask: this.task.pParent,
-			taskID: this.task.pID
+			taskID: this.task.pID,
+			taskNew: "",
+			listTask: [],
+			searchTask: [],
+			searchQuery: "",
+			name: ""
 		};
+	},
+	watch: {
+		searchQuery: function(newQuery, oldQuery) {
+			if (newQuery !== "") {
+				let self = this;
+				this.listTask = this.searchTask.filter(task =>
+					task.pName.toLowerCase().includes(newQuery.toLowerCase())
+				);
+			} else {
+				this.listTask = this.listTask;
+			}
+		}
+	},
+	computed: {
+		selectedOptions: {
+			get: function() {
+				return [this.taskNew];
+			},
+			set: function(newValue = []) {
+				if (newValue.length > 0) {
+					this.taskNew = newValue.shift();
+				} else {
+					this.taskNew = "";
+				}
+			}
+		},
+		filterTaskName() {
+			this.listTask = this.dataBaru.filter(option => {
+				let checkName =
+					option.pName
+						.toString()
+						.toLowerCase()
+						.indexOf(this.name.toLowerCase()) >= 0;
+
+				return checkName && option.pID != this.taskID;
+			});
+			this.searchTask = this.listTask;
+		}
+	},
+	mounted() {
+		this.filterTaskName();
 	}
 };
 </script>

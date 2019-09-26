@@ -5,7 +5,7 @@
 		</header>
 		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
 			<section class="modal-card-body">
-				<div class="container">
+				<div class="container" style="margin: 15px auto 12px auto;">
 					<input
 						type="hidden"
 						name="workplanId"
@@ -25,27 +25,24 @@
 									input-style="margin-bottom:15px;"
 								>
 								</crud-input>
-								<!-- Input Task Name -->
 
 								<!-- Select Parent Task -->
-								<crud-input
-									type="select"
-									label="Parent Task"
+								<p class="label">Parent Task</p>
+								<input
+									type="hidden"
 									name="subtask"
-									placeholder="Choose Parent Task"
 									v-model="subtask"
-									input-style="margin-bottom:15px;"
+								/>
+								<b-autocomplete
+									style="margin-bottom:15px;"
+									v-model="name"
+									placeholder="Choose Parent Task"
+									:open-on-focus="true"
+									:data="filterTaskName"
+									field="pName"
+									@select="option => (selected = option)"
 								>
-									<option value="0"
-										>Doesn't Have Parent</option
-									>
-									<option
-										v-for="(opt, name, idx) in dataBaru"
-										:key="idx"
-										:value="opt.pID"
-										>{{ opt.pName }}</option
-									>
-								</crud-input>
+								</b-autocomplete>
 								<!-- Select Parent Task -->
 
 								<!-- Select Task Phase -->
@@ -71,7 +68,9 @@
 									input-style="margin-bottom:15px;"
 								>
 									<option
-										v-for="(opt, name, idx) in dataBaru"
+										v-for="(opt,
+										name,
+										idx) in filterPredecessor"
 										:key="idx"
 										:value="opt.pID"
 										>{{ opt.pName }}</option
@@ -220,20 +219,17 @@ export default {
 			duration: 20,
 			checkboxPredecessor: "true",
 			predecessor: null,
-			subtask: this.task.pParent,
+			subtask: null,
+			curSubTask: this.task.pParent,
 			start: new Date(this.task.pStart),
 			finish: new Date(this.task.pEnd),
 			oldfinish: new Date(this.task.pEnd),
 			taskID: this.task.pID,
-			isLoading: false
+			isLoading: false,
+			name: "",
+			selected: null
 		};
 	},
-	// watch: {
-	// 	finish: function(newdata, olddata) {
-	// 		if (newdata > this.oldfinish) {
-	// 		}
-	// 	}
-	// },
 	methods: {
 		check(type) {
 			if (type) {
@@ -274,9 +270,46 @@ export default {
 		},
 		workdays: function() {
 			this.getDuration(this.start, this.finish, this.workdays);
+		},
+		name: function() {
+			if (this.selected != undefined) {
+				this.subtask = this.selected.pID;
+			} else {
+				this.subtask = this.curSubTask;
+			}
 		}
 	},
 	computed: {
+		filterTaskName() {
+			return this.dataBaru.filter(option => {
+				let checkName =
+					option.pName
+						.toString()
+						.toLowerCase()
+						.indexOf(this.name.toLowerCase()) >= 0;
+
+				return checkName && option.pID != this.taskID;
+			});
+		},
+		filterPredecessor() {
+			return this.dataBaru.filter(pre => {
+				let preFilter = pre;
+
+				return preFilter && pre.pID != this.taskID;
+			});
+		},
+		getParent() {
+			if (this.curSubTask != 0) {
+				let found = this.dataBaru.find(
+					task => task.pID === this.curSubTask
+				);
+				if (found != undefined && found.hasOwnProperty("pName")) {
+					this.name = found.pName;
+				} else {
+					return "";
+				}
+			}
+		},
 		formatedStart() {
 			// return new Date(moment(this.task.pStart, "YYYY-MM-DD"));
 			return moment(this.start).format("DD/MM/YYYY");
@@ -297,6 +330,7 @@ export default {
 	},
 	mounted() {
 		this.predecessor = this.task.pDepend ? this.task.pDepend : null;
+		this.getParent;
 	}
 };
 </script>
