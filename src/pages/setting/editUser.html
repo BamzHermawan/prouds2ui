@@ -32,43 +32,60 @@
 			{ label: '🔒 logout', link: '#logout', icon:'' },
 		]" home-link="../home.html"></nav-bar>
 		<side-bar :config-menu="[
-			{ label: 'Users', link:'users.html', icon:'account', active:false },
+			{ label: 'Users', link:'#users', icon:'account', active:true },
 			{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
-			{ label: 'Customer', link:'customer.html', icon:'account-star', active:true },
+			{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
 			{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false },
-			{ label: 'Import Data', link:'importdata.html', icon:'file-import', active:false }
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
 		]">
-			<div class="container is-section">
-				<p class="title is-size-3">CUSTOMER</p>
-				<column is-6>
-					<data-table :data="dataCustomer" :fields="[]" title="Customer List"></data-table>
-				</column>
-			</div>
+			<setting-form title="Edit User" action="http://localhost:5501/demo/post_detect.php" :form-data="[
+					{
+						type:'input',
+						label:'Nama User',
+						name:'name',
+						value: 'Ade'
+					},
+					{
+						type:'email',
+						label:'Email',
+						name:'email',
+						value: 'ade@gmail.com'
+					},
+					{
+						type:'select',
+						label:'BU',
+						name:'bu',
+						value: '1',
+						select: {
+							1: 'PMO',
+							2: 'Cloud',
+							3: 'BSD'
+						}
+					},
+					{
+						type:'select',
+						label:'Profile',
+						name:'profile',
+						value: '1',
+						select: {
+							1: 'PMO',
+							2: 'Manager',
+							3: 'Member'
+						}
+					}
+				]">
+
+			</setting-form>
 		</side-bar>
+
+		<br>
+
 	</div>
 
-	<script>
-		const DATACUSTOMER = [
-			{
-				customer_name: "Jiwasraya",
-				alamat: "JL. Ir. H. Juanda No. 34, Jakarta Pusat DKI Jakarta 10120 P:(021)3845031"
-			},
-			{
-				customer_name: "Ade Wiranata Putra",
-				alamat: "JL. Mayor Zurbi Bustan Lr. Mufakat III No.4048 Rt. 18 Rw. 04"
-			},
-			{
-				customer_name: "ariowidiatmoko",
-				alamat: "ARIO WIDIATMOKO"
-			}
-		];
-	</script>
-
-	<script src="../../scripts/setting/customer.js"></script>
+	<script src="../../scripts/setting/editUser.js"></script>
 </body>
 
 </html>

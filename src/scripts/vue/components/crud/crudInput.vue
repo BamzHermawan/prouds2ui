@@ -90,6 +90,7 @@
 				:required="required"
 				:disabled="disabled"
 				:loading="loading"
+				:maxlength="maxLength"
 			></b-input>
 			<slot name="helptext"></slot>
 			<div class="control">
@@ -114,6 +115,10 @@ export default {
 		inputStyle: {
 			type: String,
 			default: "margin-bottom: 23px;"
+		},
+		maxLength: {
+			type: String,
+			default: undefined
 		},
 		icon: {
 			type: String,

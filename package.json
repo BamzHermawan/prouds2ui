@@ -49,7 +49,8 @@
 		"shepherd.js": "^4.2.0",
 		"vue": "^2.6.10",
 		"vue-clazy-load": "^0.4.2",
-		"vue-hot-reload-api": "^2.3.3"
+		"vue-hot-reload-api": "^2.3.3",
+		"vue-jstree": "^2.1.6"
 	},
 	"alias": {
 		"vue": "./node_modules/vue/dist/vue.common.js"
