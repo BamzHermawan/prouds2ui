@@ -39,7 +39,8 @@
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false },
+			{ label: 'Import Data', link:'importdata.html', icon:'file-import', active:false }
 		]">
 			<div class="container is-section">
 				<p class="title is-size-3">BASELINE</p>
@@ -49,7 +50,7 @@
 							:data="props.BASELINE_STATUS.data" :columns="props.BASELINE_STATUS.fields"
 							del="http://localhost:5501/demo/post_detect.php?id={id}"
 							:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
 							<template slot="header">
 								<header class="card-header has-gradient-light">
@@ -84,7 +85,7 @@
 							:data="props.BASELINE_TYPE.data" :columns="props.BASELINE_TYPE.fields"
 							del="http://localhost:5501/demo/post_detect.php?id={id}"
 							:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
 							<template slot="header">
 								<header class="card-header has-gradient-light">

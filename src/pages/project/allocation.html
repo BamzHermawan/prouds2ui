@@ -69,19 +69,19 @@
 				<b-table-column field="nama" label="Name" sortable>
 					<span>{{ props.row.nama }}</span>
 				</b-table-column>
-				
+
 				<b-table-column field="bu" label="Business Unit" sortable>
 					{{ props.row.bu }}
 				</b-table-column>
-				
+
 				<b-table-column field="assigned_role" label="Assigned Role" sortable>
 					{{ props.row.assigned_role }}
 				</b-table-column>
-				
+
 				<b-table-column field="job_role" label="Job Role" sortable>
 					{{ props.row.job_role }}
 				</b-table-column>
-				
+
 				<!-- <b-table-column field="rate" label="Rate (Rp)" sortable centered class="has-text-right">
 					{{ props.row.rate | number_format }}
 				</b-table-column> -->
@@ -162,13 +162,14 @@
 							<th class="is-actual">Total Cost (Rp)</th>
 						</thead>
 						<tbody data-url="http://localhost:5501/demo/axios_check.php?return=ok">
-							<tr data-id="1" data-days= "80" data-qty="7" data-rate="750000">
+							<tr data-id="1" data-days="80" data-qty="7" data-rate="750000">
 								<td>Senior Programmer</td>
 								<td class="has-text-left">Analyst Programmer</td>
 								<td class="inner is-actual val-1-qty">-</td>
 								<td class="inner is-actual is-days-has-input">
 									<span v-show="!editPlan" class="animated fadeIn val-1-days">-</span>
-									<input v-show="editPlan" type="number" @change="daysChange" class="input is-small animated fadeIn"/>
+									<input v-show="editPlan" type="number" @change="daysChange"
+										class="input is-small animated fadeIn" />
 								</td>
 								<td class="inner is-actual val-1-mandays">-</td>
 								<td class="inner is-actual val-1-rate">-</td>
@@ -180,7 +181,8 @@
 								<td class="inner is-actual val-2-qty">-</td>
 								<td class="inner is-actual is-days-has-input">
 									<span v-show="!editPlan" class="animated fadeIn val-2-days">-</span>
-									<input v-show="editPlan" type="number" @change="daysChange" class="input is-small animated fadeIn" />
+									<input v-show="editPlan" type="number" @change="daysChange"
+										class="input is-small animated fadeIn" />
 								</td>
 								<td class="inner is-actual val-2-mandays">-</td>
 								<td class="inner is-actual val-2-rate">-</td>
@@ -206,23 +208,21 @@
 						</tfoot>
 					</table>
 
-					<p style="padding: 10px 0px 0px 10px;" class="is-pulled-left has-text-danger is-bold">note* : this is just a note about something that must be noted to user!</p>
+					<p style="padding: 10px 0px 0px 10px;" class="is-pulled-left has-text-danger is-bold">note* : this
+						is just a note about something that must be noted to user!</p>
 
 					<!-- Jika Data Kosong Footer ini boleh tidak ditampilkan -->
 					<footer class="card-footer has-gradient-light is-block is-clearfix">
 						<div v-if="editPlan" class="button-right">
-							<b-button type="is-success" size="is-small" :loading="loadingSavePlan" @click="saveEditPlan()">
+							<b-button type="is-success" size="is-small" :loading="loadingSavePlan"
+								@click="saveEditPlan()">
 								Save Plan
 							</b-button>
 							<b-button type="is-danger" size="is-small" @click="cancelEditPlan()">
 								Cancel
 							</b-button>
 						</div>
-						<b-button 
-							v-else
-							type="is-info" 
-							size="is-small" 
-							class="is-pulled-right" 
+						<b-button v-else type="is-info" size="is-small" class="is-pulled-right"
 							@click="editPlan = true">
 							Edit Plan
 						</b-button>

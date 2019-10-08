@@ -212,7 +212,7 @@ section.activity {
 	}	
 }
 
-.b-checkbox.checkbox .control-label {
+.b-checkbox.checkbox:not(.have-padding) .control-label {
 	padding-left: 0px !important;
 }
 
@@ -600,6 +600,22 @@ tr.gname {
 			background-color: lighten($warning, 30%);
 		}
 	}
+}
+
+.dropdown.is-small {
+	.dropdown-menu {
+		min-width: 8rem !important;
+	}
+}
+
+.searchFilter {
+	@include noSelect;
+	cursor: pointer;
+
+	&.is-active {
+		background-color: lighten($info, 35%);
+	}
+
 }
 
 @import "~bulma";

@@ -62,17 +62,22 @@
 					>
 					</b-input>
 				</b-field>
-				<article v-for="n in 3" :key="n" class="media">
+				<article v-for="n in perPage" :key="n" class="media">
 					<div class="media-content">
 						<div class="content">
 							<p class="title is-size-6 is-marginless">
-								Project Name
+								{{ newProjectPm[hitung(n)].projectName }}
 							</p>
 							<p class="is-marginless">
-								<span>P-SCC-XXXA</span>
-								<span style="margin-left: 10px;">USD. 300</span>
+								<span>{{ newProjectPm[hitung(n)].iwo }}</span>
+								<span style="margin-left: 10px;">{{
+									newProjectPm[hitung(n)].projectAmount
+								}}</span>
 							</p>
-							<p class="is-size-7">AM: Wawan Surnawan, M.T.</p>
+							<p class="is-size-7">
+								PM:
+								{{ newProjectPm[hitung(n)].pm }}
+							</p>
 						</div>
 					</div>
 					<div v-if="showAssignPm" class="media-right">
@@ -121,6 +126,15 @@
 						</b-dropdown>
 					</div>
 				</article>
+				<b-pagination
+					:total="total"
+					:current.sync="current"
+					:simple="true"
+					:per-page="perPage"
+					order="is-right"
+					style="margin-top:29px"
+				>
+				</b-pagination>
 			</section>
 		</div>
 		<div class="column is-section">
@@ -135,7 +149,7 @@
 				<nav class="level is-mobile">
 					<div class="level-item has-text-centered">
 						<div
-							class="box is-level-widget"
+							class="box is-level-widget searchFilter behind_schedule"
 							@click="filter('behind_schedule', 1)"
 						>
 							<p class="heading">Behind Schedule</p>
@@ -144,7 +158,7 @@
 					</div>
 					<div class="level-item has-text-centered">
 						<div
-							class="box is-level-widget"
+							class="box is-level-widget searchFilter bast_delay"
 							@click="filter('bast_delay', 2)"
 						>
 							<p class="heading">BAST Delay</p>
@@ -153,7 +167,7 @@
 					</div>
 					<div class="level-item has-text-centered">
 						<div
-							class="box is-level-widget"
+							class="box is-level-widget searchFilter top_delay"
 							@click="filter('top_delay', 3)"
 						>
 							<p class="heading">TOP Delay</p>
@@ -198,6 +212,129 @@
 						>
 							<span>{{ props.row.progress }}</span>
 						</b-table-column>
+						<b-table-column field="action" label="Action">
+							<b-dropdown
+								aria-role="list"
+								position="is-bottom-left"
+								class="is-small"
+							>
+								<button
+									class="button is-info is-small"
+									slot="trigger"
+								>
+									<span>⚙ Action</span>
+								</button>
+								<b-dropdown-item
+									v-for="(btn, index) in props.row
+										.dropdownAction"
+									:key="index"
+									aria-role="listitem"
+									has-link
+								>
+									<a @click="checkAction(btn.link, btn.label)"
+										><span>{{ btn.label }}</span></a
+									>
+								</b-dropdown-item>
+							</b-dropdown>
+						</b-table-column>
+					</template>
+					<template slot="top-right">
+						<div class="navbar-menu">
+							<div class="navbar-end">
+								<b-dropdown
+									position="is-bottom-left"
+									aria-role="menu"
+								>
+									<button
+										class="button is-info"
+										slot="trigger"
+									>
+										<span>Filter</span>
+									</button>
+									<b-dropdown-item
+										aria-role="menu-item"
+										:focusable="false"
+										custom
+										paddingless
+									>
+										<section class="modal-card-body">
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="Not Started"
+													>Not Started</b-checkbox
+												>
+											</div>
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="In Progress"
+													>In Progress</b-checkbox
+												>
+											</div>
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="Archived"
+													>Archived</b-checkbox
+												>
+											</div>
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="Proposed"
+													>Proposed</b-checkbox
+												>
+											</div>
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="Cancelled"
+													>Cancelled</b-checkbox
+												>
+											</div>
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="In Planning"
+													>In Planning</b-checkbox
+												>
+											</div>
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="On Hold"
+													>On Hold</b-checkbox
+												>
+											</div>
+											<div class="field">
+												<b-checkbox
+													class="have-padding"
+													type="is-info"
+													v-model="filterCheckbox"
+													native-value="Completed"
+													>Completed</b-checkbox
+												>
+											</div>
+										</section>
+									</b-dropdown-item>
+								</b-dropdown>
+							</div>
+						</div>
 					</template>
 				</data-table>
 			</section>
@@ -351,9 +488,11 @@ export default {
 		return {
 			projects: DATA,
 			dataku: DATA,
+			newProjectPm: NEWPROJECTPM,
 			users: USERS,
 			searchQuery: "",
 			search: "",
+			filterCheckbox: [],
 			modal: {
 				display: false,
 				imgLoader: true,
@@ -378,10 +517,31 @@ export default {
 				formTarget: ""
 			},
 			topFilter: false,
-			noFilter: ""
+			noFilter: "",
+			projectFilter: "",
+			total: NEWPROJECTPM.length,
+			current: 1,
+			perPage: 4
 		};
 	},
 	methods: {
+		hitung(n) {
+			let a = (this.current - 1) * this.perPage + (n - 1);
+			return a;
+		},
+		checkAction(link, label) {
+			this.$dialog.confirm({
+				title: label + " Project",
+				message:
+					"Are you sure you want to <b>" +
+					label +
+					"</b> this project ?",
+				confirmText: "Oke",
+				type: "is-danger",
+				hasIcon: true,
+				onConfirm: () => (window.location.href = link)
+			});
+		},
 		closeModal() {
 			this.searchQuery = "";
 			this.modal.display = false;
@@ -398,23 +558,35 @@ export default {
 			};
 		},
 		filter(filter, no) {
-			if (this.projectFilter === true && this.noFilter !== "") {
-				if (this.noFilter === no) {
-					this.projects = this.dataku;
-					this.noFilter = "";
-					this.projectFilter = false;
-				} else {
-					this.projects = this.dataku;
-					let self = this;
-					this.projects = this.projects.filter(post => post[filter]);
-					this.projectFilter = true;
-					this.noFilter = no;
-				}
+			let find = document.querySelectorAll(".searchFilter.is-active");
+			for (let i = 0; i < find.length; i++) {
+				find[i].classList.remove("is-active");
+			}
+			if (this.projectFilter !== "" && filter === this.projectFilter) {
+				this.projects = this.dataku;
+				this.projectFilter = "";
 			} else {
-				let self = this;
-				this.projects = this.projects.filter(post => post[filter]);
-				this.projectFilter = true;
-				this.noFilter = no;
+				this.projectFilter = filter;
+				this.projects = this.dataku.filter(post => {
+					if (!post.hasOwnProperty(filter)) {
+						return false;
+					} else {
+						return post[filter];
+					}
+				});
+
+				let card = document.querySelector("." + filter);
+				card.classList.add("is-active");
+			}
+		},
+		filterCheck(filter) {
+			if (filter.length > 0) {
+				this.projects = this.dataku;
+				this.projects = this.projects.filter(project =>
+					this.filterCheckbox.includes(project.status)
+				);
+			} else {
+				this.projects = this.dataku;
 			}
 		}
 	},
@@ -439,6 +611,9 @@ export default {
 			} else {
 				this.modal.userdata = this.users;
 			}
+		},
+		filterCheckbox: function(newQuery, oldQuery) {
+			this.filterCheck(newQuery);
 		}
 	},
 	computed: {

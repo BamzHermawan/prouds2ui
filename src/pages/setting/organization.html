@@ -11,6 +11,8 @@
 
 	<title>SETTING | PROUDS 2</title>
 
+	<script src="https://kit.fontawesome.com/55925e3d29.js" crossorigin="anonymous"></script>
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../../styles/main.scss">
@@ -39,57 +41,16 @@
 				{ label: 'Organization', link:'organization.html', icon:'account-group', active:true },
 				{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 				{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
-				{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+				{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false },
+				{ label: 'Import Data', link:'importdata.html', icon:'file-import', active:false }
 			]">
 			<div class="container is-section">
 				<div class="container is-section">
-					<crud ref="organizationTable" :paginated="5" narrowed margin="margin-bottom: "
-						:data="props.ORGANIZATION.data" :columns="props.ORGANIZATION.fields"
-						del="http://localhost:5501/demo/post_detect.php?id={id}"
-						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
-
-						<template slot="header">
-							<header class="card-header has-gradient-light">
-								<p class="card-header-title">Organization</p>
-							</header>
-						</template>
-
-						<template slot="message">
-							<div class="card-content" style="padding-bottom:0.5em;">
-								<b-message type="is-info">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
-									quae doloribus? Aperiam,
-									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
-									molestias eius magnam illum
-									debitis.
-								</b-message>
-							</div>
-						</template>
-
-						<template slot="forms" slot-scope="props">
-							<crud-form method="post" :action="props.action"
-								@cancel="$refs.organizationTable.showForm = false">
-								<crud-input type="text" label="Organization Name" placeholder="Organization Name"
-									name="org_name" :value="props.row.org_name">
-								</crud-input>
-								<crud-input type="text" label="Organization Level" placeholder="Organization Level"
-									name="org_level" :value="props.row.org_level">
-								</crud-input>
-								<crud-input type="text" label="Organization Code" placeholder="Organization Code"
-									name="org_code" :value="props.row.org_code">
-								</crud-input>
-								<crud-input type="text" label="Leader ID" placeholder="Leader ID" name="leader_id"
-									:value="props.row.leader_id">
-								</crud-input>
-							</crud-form>
-						</template>
-					</crud>
 					<crud ref="organizationLevelTable" :paginated="5" narrowed :data="props.ORGANIZATION_LEVEL.data"
 						:columns="props.ORGANIZATION_LEVEL.fields"
 						del="http://localhost:5501/demo/post_detect.php?id={id}"
 						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
 						<template slot="header">
 							<header class="card-header has-gradient-light">
@@ -121,122 +82,74 @@
 							</crud-form>
 						</template>
 					</crud>
+					<template>
+						<header class="card-header has-gradient-light">
+							<p class="card-header-title">Organization</p>
+						</header>
+						<br>
+						<div v-if="menuTree" style="margin-bottom: 20px">
+							<b-message type="is-warning">
+								<nav class="level">
+									<div class="level-left">
+										<div class="level-item">
+											<b-button @click="addBU" type="is-success is-small">Add BU</b-button>
+										</div>
+										<div class="level-item">
+											<b-button @click="editBU" type="is-success is-small">Edit</b-button>
+										</div>
+										<div class="level-item">
+											<b-button @click="deleteBU('http://localhost:5501/demo/post_detect.php?')"
+												type="is-success is-small">Delete</b-button>
+										</div>
+									</div>
+									<div class="level-right">
+										<div class="level-item">
+											<a @click="toggleSideBar()">
+												<span class="icon">
+													<i class="mdi mdi-close-box" aria-hidden="true"></i>
+												</span>
+											</a>
+										</div>
+									</div>
+								</nav>
+							</b-message>
+						</div>
+
+						<div class="columns">
+							<div class="column is-10">
+								<v-jstree id="orgTree" :data="organization" :draggable="drag"
+									@item-drag-start="dragStart" @item-drop="drop" allow-batch whole-row
+									@item-click="itemClick">
+								</v-jstree>
+							</div>
+							<div class="column" v-if="!drag">
+								<b-button @click="draggable" type="is-info">Active</b-button>
+							</div>
+							<div class="column" v-if="drag">
+								<b-button @click="closeDrag" type="is-danger">Cancel</b-button>
+								<b-button @click="saveDrag('http://localhost:5501/demo/post_detect.php?')"
+									type="is-success">save</b-button>
+							</div>
+						</div>
+
+					</template>
 				</div>
 			</div>
 		</side-bar>
+		<b-modal :active.sync="modal.addBU" width="500px">
+			<add-bu title="Add BU" :parent-id="buID" :parent-name="buName"
+				action-event="http://localhost:5501/demo/post_detect.php">
+			</add-bu>
+		</b-modal>
+		<b-modal :active.sync="modal.editBU" width="500px">
+			<edit-bu title="Add BU" :bu-id="buID" :bu-name="buName" :bu-code="buCode" :bu-head="buHead"
+				action-event="http://localhost:5501/demo/post_detect.php">
+			</edit-bu>
+		</b-modal>
 	</div>
 
 	<script>
 		const VAPPS = {
-			ORGANIZATION: {
-				fields: [
-					{
-						key: 'org_name',
-						label: 'Organization',
-						sortable: true,
-					},
-					{
-						key: 'org_level',
-						label: 'Organization Level',
-						sortable: true,
-					},
-					{
-						key: 'org_code',
-						label: 'Organization Code',
-						sortable: true
-					},
-					{
-						key: 'leader_id',
-						label: 'Leader ID',
-					}
-				],
-				data: [
-					{
-						"id": 0,
-						"org_name": "ALIQUA EX",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 1,
-						"org_name": "DOLORE CONSECTETUR",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 2,
-						"org_name": "MOLLIT ESSE",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 3,
-						"org_name": "NISI NON",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 4,
-						"org_name": "MAGNA EXCEPTEUR",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 5,
-						"org_name": "CONSECTETUR EU",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 6,
-						"org_name": "CUPIDATAT AD",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 7,
-						"org_name": "DUIS LABORUM",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 8,
-						"org_name": "LABORIS INCIDIDUNT",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 9,
-						"org_name": "SINT FUGIAT",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 10,
-						"org_name": "ULLAMCO ID",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					},
-					{
-						"id": 11,
-						"org_name": "CONSECTETUR REPREHENDERIT",
-						"org_level": "1",
-						"org_code": "",
-						"leader_id": "",
-					}
-				]
-			},
 			ORGANIZATION_LEVEL: {
 				fields: [
 					{
@@ -259,7 +172,7 @@
 					{
 						"id": 1,
 						"org_level": "DOLORE CONSECTETUR",
-						"leader_segment": "SVP"
+						"leader_segment": "SVP",
 					},
 					{
 						"id": 2,
@@ -312,7 +225,78 @@
 						"leader_segment": "VP"
 					}
 				]
-			}
+			},
+			ORGANIZATION: [
+				{
+					"text": "Telkomsigma",
+					"icon": "fa fa-briefcase",
+					"id": 1,
+					"isLeaf": false,
+					"opened": true,
+					"parent": 0
+				},
+				{
+					"text": "Solution Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 2,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 1
+				},
+				{
+					"text": "Banking Solution Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 3,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 1,
+				},
+				{
+					"text": "System Integration 1 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 4,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 2,
+				},
+				{
+					"text": "System Integration 2 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 5,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 2,
+				},
+				{
+					"text": "System Integration 2 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 6,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 5,
+				},
+				{
+					"text": "System Integration 2 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 7,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 6,
+				}
+
+			]
 		}
 	</script>
 
