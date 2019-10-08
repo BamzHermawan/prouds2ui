@@ -114,8 +114,32 @@ new Vue({
 		}
 	},
 	mounted() {
+		// if (this.props.ORGANIZATION != undefined) {
+		// 	this.organization = this.props.ORGANIZATION
+		// }
+
 		if (this.props.ORGANIZATION != undefined) {
-			this.organization = this.props.ORGANIZATION
+			var mappedArr = {},
+				arrElem,
+				mappedElem;
+
+			for (var i = 0; i < this.props.ORGANIZATION.length; i++) {
+				arrElem = this.props.ORGANIZATION[i];
+				mappedArr[arrElem.id] = arrElem;
+				mappedArr[arrElem.id]['children'] = [];
+			}
+
+			for (var id in mappedArr) {
+				if (mappedArr.hasOwnProperty(id)) {
+					mappedElem = mappedArr[id];
+					if (mappedElem.parent) {
+						mappedArr[mappedElem['parent']]['children'].push(mappedElem);
+					}
+					else {
+						this.organization.push(mappedElem);
+					}
+				}
+			}
 		}
 		Loader();
 	}
