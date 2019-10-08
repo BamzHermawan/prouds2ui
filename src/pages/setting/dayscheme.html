@@ -46,7 +46,7 @@
 				<crud ref="holidayTable" :paginated="5" narrowed :data="props.HOLIDAY.data"
 					:columns="props.HOLIDAY.fields" del="http://localhost:5501/demo/post_detect.php?id={id}"
 					:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-					:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+					:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
 					<template slot="header">
 						<header class="card-header has-gradient-light">

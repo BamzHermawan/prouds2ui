@@ -49,7 +49,7 @@
 							:data="props.ISSUE_STATUS.data" :columns="props.ISSUE_STATUS.fields"
 							del="http://localhost:5501/demo/post_detect.php?id={id}"
 							:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy>
+							:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
 							<template slot="header">
 								<header class="card-header has-gradient-light">
@@ -82,7 +82,7 @@
 					<div class="column is-6">
 						<crud ref="severityTable" :paginated="5" narrowed margin="margin-top: 0px;"
 							:data="props.ISSUE_SEVERITY.data" :columns="props.ISSUE_SEVERITY.fields"
-							del="http://localhost:5501/demo/post_detect.php?id={id}" copy
+							del="http://localhost:5501/demo/post_detect.php?id={id}"
 							:add="{ method: 'post', action: 'http://localhost:5501/demo/post_detect.php' }"
 							:edit="{ method: 'get', action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
