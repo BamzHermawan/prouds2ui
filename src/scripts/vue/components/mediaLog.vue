@@ -1,5 +1,8 @@
 <template>
 	<article class="media">
+		<div v-if="$slots.atLeft !== undefined" class="media-left">
+			<slot name="atLeft"></slot>
+		</div>
 		<vue-clazy-load
 			v-if="thumbnail !== undefined"
 			:src="thumbnail"
@@ -28,7 +31,7 @@
 				</b-message>
 			</div>
 		</div>
-		<div class="media-right">
+		<div v-if="$slots.action !== undefined" class="media-right">
 			<slot name="action"></slot>
 		</div>
 	</article>

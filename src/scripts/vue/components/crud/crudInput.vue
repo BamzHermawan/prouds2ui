@@ -1,10 +1,10 @@
 <template>
 	<div class="crudInput">
-		<label v-if="hasAddons !== ''" class="label"
+		<label v-if="hasAddons !== '' && label != undefined" class="label"
 			>{{ label }}{{ required ? "*" : "" }}</label
 		>
-		<div :class="'field' + hasAddons + color" :style="inputStyle">
-			<label v-if="hasAddons === ''" class="label"
+		<div :class="'field ' + hasAddons + color" :style="inputStyle">
+			<label v-if="hasAddons === '' && label != undefined" class="label"
 				>{{ label }}{{ required ? "*" : "" }}</label
 			>
 			<div v-if="type === 'datepicker'">
@@ -28,6 +28,7 @@
 					:position="datePosition"
 					:disabled="disabled"
 					:loading="loading"
+					:readonly="readonly"
 					size="is-small"
 				>
 					<b-button
@@ -51,6 +52,7 @@
 				:required="required"
 				:disabled="disabled"
 				:loading="loading"
+				:readonly="readonly"
 			>
 				<slot></slot>
 			</b-select>
@@ -62,6 +64,7 @@
 				v-model="model"
 				:disabled="disabled"
 				:loading="loading"
+				:readonly="readonly"
 			></b-numberinput>
 			<b-input
 				expanded
@@ -76,6 +79,7 @@
 				:required="required"
 				:disabled="disabled"
 				:loading="loading"
+				:readonly="readonly"
 			>
 			</b-input>
 			<b-input
@@ -91,6 +95,7 @@
 				:disabled="disabled"
 				:loading="loading"
 				:maxlength="maxLength"
+				:readonly="readonly"
 			></b-input>
 			<slot name="helptext"></slot>
 			<div class="control">
@@ -106,7 +111,7 @@ export default {
 	props: {
 		label: {
 			type: String,
-			required: true
+			default: undefined
 		},
 		color: {
 			type: String,
@@ -126,7 +131,7 @@ export default {
 		},
 		type: {
 			type: String,
-			required: true
+			default: "text"
 		},
 		name: {
 			type: String,
@@ -165,6 +170,10 @@ export default {
 			default: false
 		},
 		disabled: {
+			type: Boolean,
+			default: false
+		},
+		readonly: {
 			type: Boolean,
 			default: false
 		},

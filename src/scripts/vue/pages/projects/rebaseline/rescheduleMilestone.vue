@@ -31,15 +31,15 @@
 				<div class="columns">
 					<div class="column">
 						<b-field label="Current Start Date">
-							<b-message class="is-danger is-on-field">
-								<p>{{ getCurStart }}</p>
+							<b-message class="is-info is-on-field">
+								<p class="has-text-dark">{{ getCurStart }}</p>
 							</b-message>
 						</b-field>
 					</div>
 					<div class="column">
 						<b-field label="Current End Date">
-							<b-message class="is-danger is-on-field">
-								<p>{{ getCurEnd }}</p>
+							<b-message class="is-info is-on-field">
+								<p class="has-text-dark">{{ getCurEnd }}</p>
 							</b-message>
 						</b-field>
 					</div>
@@ -52,7 +52,7 @@
 							name="newStartDate"
 							placeholder="Pick Start Date"
 							date-locale="en"
-							input-style="margin-bottom: 14px;"
+							input-style="margin-bottom: 5px;"
 						>
 						</crud-input>
 					</div>
@@ -63,31 +63,29 @@
 							name="newEndDate"
 							placeholder="Pick Start Date"
 							date-locale="en"
-							input-style="margin-bottom: 14px;"
+							input-style="margin-bottom: 5px;"
 						>
 						</crud-input>
 					</div>
 				</div>
 
-				<p class="heading">
-					Document
-				</p>
+				<label class="label">Document</label>
 				<div class="columns">
 					<div class="column">
-						<div class="field">
-							<div class="control">
-								<b-input
-									readonly
-									v-model="documentName"
-								></b-input>
-							</div>
-						</div>
-						<b-field
-							:type="determineFieldStatus"
-							message="File yang dibolehkan: jpg, jpeg, png, doc, docx,
-							pdf, xls, xlsx, ppt, pptx ; File size maksimal 20MB"
+						<crud-input
+							readonly
+							:name="undefined"
+							:color="determineFieldStatus"
+							v-model="documentName"
 						>
-						</b-field>
+							<template slot="helptext">
+								<p :class="'help ' + determineFieldStatus">
+									File yang dibolehkan: jpg, jpeg, png, doc,
+									docx, pdf, xls, xlsx, ppt, pptx ; File size
+									maksimal 20MB
+								</p>
+							</template>
+						</crud-input>
 					</div>
 					<div class="column is-one-third">
 						<b-field>
@@ -209,7 +207,9 @@ export default {
 			);
 
 			if (found != undefined && found.hasOwnProperty("curStart")) {
-				return found.curStart;
+				return moment(found.curStart, "DD/MM/YYYY").format(
+					"Do MMMM YYYY"
+				);
 			} else {
 				return "-";
 			}
@@ -223,7 +223,9 @@ export default {
 			);
 
 			if (found != undefined && found.hasOwnProperty("curEnd")) {
-				return found.curEnd;
+				return moment(found.curEnd, "DD/MM/YYYY").format(
+					"Do MMMM YYYY"
+				);
 			} else {
 				return "-";
 			}
