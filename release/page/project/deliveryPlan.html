@@ -28,8 +28,8 @@
 					Delivery Plan
 				</h1>
 				<h2 class="subtitle">
-					<span class="has-text-warning">Development Prouds 2 UI</span>
-					<br><small class="has-text-grey-lighter">P-1908SCC-TEST</small>
+					<span class="has-text-warning">Project Aplikasi Web dan Mobile Untuk XXXXX</span>
+					<br><small class="has-text-grey-lighter">X-XXXXAAA-XXXX</small>
 				</h2>
 			</div>
 		</div>
@@ -42,17 +42,17 @@
 					<div class="level-item">
 						<div style="margin-right: 50px;">
 							<p class="heading">Project Manager</p>
-							<p class="title is-size-5">Ade Wiranata Putra</p>
+							<p class="title is-size-5">MOCHAMAD FAISHOL TRI AFANDI</p>
 						</div>
 					</div>
-					<div class="level-item">
+					<!-- <div class="level-item">
 						<div style="margin-right: 50px;">
 							<p class="heading">Project Status</p>
 							<p class="title is-size-5">
 								<span class="tag is-medium is-info">In Progress</span>
 							</p>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="level-right">
 					<button class="button is-danger" href="#">🏃‍ Exit Delivery Plan</button>
@@ -90,7 +90,7 @@
 			</div>
 		</nav>
 
-		<b-table ref="dTable" :header-checkable="false" :data="delivery" class="is-packed" checkbox-position="right" :checked-rows.sync="selected" :row-class="(row, index) => row.topStatus && 'has-background-warning'" :paginated="isPaginated" per-page="10" pagination-simple="" checkable="" detailed="" detail-key="id" show-detail-icon="">
+		<b-table ref="dTable" :header-checkable="false" :data="delivery" class="is-packed" checkbox-position="right" :checked-rows.sync="selected" :row-class="(row, index) => row.topStatus && 'has-background-warning'" :paginated="isPaginated" per-page="10" pagination-simple="" detailed="" detail-key="id" show-detail-icon="">
 			<template slot-scope="props">
 				<b-table-column field="period" label="Period" width="120" centered="">
 					{{ props.row.period }}

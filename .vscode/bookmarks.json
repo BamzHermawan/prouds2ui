@@ -8,5 +8,15 @@
 				"label": "Proses Menampilkan Form Edit"
 			}
 		]
+	},
+	{
+		"path": "$ROOTPATH$\\src\\scripts\\vue\\components\\mediaLog.vue",
+		"bookmarks": [
+			{
+				"line": 45,
+				"column": 19,
+				"label": ""
+			}
+		]
 	}
 ]

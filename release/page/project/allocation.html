@@ -54,29 +54,29 @@
 				<option>Technical Writer</option>
 			</template>
 
-			<!-- <template #got-to-resource-booking>
-				<a class="button is-info" href="resourceBooking.html">
+			<template #got-to-resource-booking="">
+				<a class="button is-info" href="/src/project\resourceBooking.html">
 					<span>Resource Booking 👉</span>
 				</a>
-			</template> -->
+			</template>
 
 			<template slot="column" slot-scope="props">
 				<b-table-column field="nama" label="Name" sortable="">
 					<span>{{ props.row.nama }}</span>
 				</b-table-column>
-				
+
 				<b-table-column field="bu" label="Business Unit" sortable="">
 					{{ props.row.bu }}
 				</b-table-column>
-				
+
 				<b-table-column field="assigned_role" label="Assigned Role" sortable="">
 					{{ props.row.assigned_role }}
 				</b-table-column>
-				
+
 				<b-table-column field="job_role" label="Job Role" sortable="">
 					{{ props.row.job_role }}
 				</b-table-column>
-				
+
 				<!-- <b-table-column field="rate" label="Rate (Rp)" sortable centered class="has-text-right">
 					{{ props.row.rate | number_format }}
 				</b-table-column> -->
@@ -124,15 +124,19 @@
 								<td class="inner is-plan">600,000</td>
 								<td class="inner is-plan">150,000,000</td>
 							</tr>
+							<tr>
+								<th>Total</th>
+								<td class="is-plan">12</td>
+								<td class="is-plan">130</td>
+								<td class="is-plan">810</td>
+								<td class="is-plan"></td>
+								<td class="is-plan">570,000,000</td>
+							</tr>
+							<tr>
+								<th>Internal Resources - Indirect</th>
+								<td colspan="5" class="is-plan">150,000,000</td>
+							</tr>
 						</tbody>
-						<tfoot>
-							<th>Total</th>
-							<td class="is-plan">12</td>
-							<td class="is-plan">130</td>
-							<td class="is-plan">810</td>
-							<td class="is-plan"></td>
-							<td class="is-plan">570,000,000</td>
-						</tfoot>
 					</table>
 				</b-collapse>
 
@@ -201,7 +205,8 @@
 						</tfoot>
 					</table>
 
-					<p style="padding: 10px 0px 0px 10px;" class="is-pulled-left has-text-danger is-bold">note* : this is just a note about something that must be noted to user!</p>
+					<p style="padding: 10px 0px 0px 10px;" class="is-pulled-left has-text-danger is-bold">note* : this
+						is just a note about something that must be noted to user!</p>
 
 					<!-- Jika Data Kosong Footer ini boleh tidak ditampilkan -->
 					<footer class="card-footer has-gradient-light is-block is-clearfix">

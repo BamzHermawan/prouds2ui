@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="/src/main.min.css">
+</head>
+
+<body class="add-margin">
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+	<div id="vapp">
+		<nav-bar :left-menu="[
+					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+					{ label: 'projects', link: '../projects.html', icon:'', active: false },
+					{ label: 'financial', link: '#financial', icon:'', active: false },
+					{ label: 'operation', link: '#opperation', icon:'', active: false },
+					{ label: 'setting', link: '#', icon:'', active: true },
+				]" :right-menu="[
+					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+					{ label: '🔒 logout', link: '#logout', icon:'' },
+				]" home-link="../home.html"></nav-bar>
+		<side-bar :config-menu="[
+					{ label: 'Users', link:'users.html', icon:'account', active:false },
+					{ label: 'Baseline', link:'baseline.html', icon:'briefcase', active:false },
+					{ label: 'Customer', link:'customer.html', icon:'account-star', active:false },
+					{ label: 'Issue', link:'issue.html', icon:'account-alert', active:false },
+					{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
+					{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
+					{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:false },
+					{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false },
+				{ label: 'Import Data', link:'importdata.html', icon:'file-import', active:true }
+				]">
+			<div class="container is-section" ref="actionTable" data-action="http://localhost:5501/demo/post_detect.php?">
+				<p class="title is-size-3">Import Data</p>
+				<form action="http://localhost:5501/demo/post_detect.php" method="post" enctype="multipart/form-data">
+					<b-upload v-model="selectedDocument" name="evidDoc" native="" required="" style="width:100%;" accept=".jpg,.jpeg,.doc,.docs">
+						<div v-if="selectedDocument==null">
+							<a class="button is-small is-info is-fullwidth">
+								<span class="mdi mdi-upload in-left"></span>
+								<span>Choose File</span>
+							</a>
+						</div>
+						<div v-if="selectedDocument != null" class="field has-addons is-marginless">
+							<div class="control">
+								<span v-if="selectedDocument" class="button is-static is-small">
+									{{ selectedDocument.name }}
+								</span>
+							</div>
+							<div class="control">
+								<button class="button is-success is-fullwidth is-small" type="submit">
+									<span class="mdi mdi-cloud-upload in-left"></span>
+									<span>Upload</span>
+								</button>
+							</div>
+						</div>
+					</b-upload>
+				</form>
+				<br>
+				<data-table title="New Users" :data="newuser" :fields="[]" ref="widget">
+					<template slot-scope="props">
+						<b-table-column field="nik" label="NIK" sortable="">
+							<span>{{ props.row.nik }}</span>
+						</b-table-column>
+						<b-table-column field="name" label="Name" sortable="">
+							<span>{{ props.row.name }}</span>
+						</b-table-column>
+						<b-table-column field="bu" label="Business Unit" sortable="">
+							<span>{{ props.row.bu }}</span>
+						</b-table-column>
+						<b-table-column field="profile" label="Profile">
+							<b-select v-model="props.row.profile" @input="(val) => changeProfile(val,props.row.nik)">
+								<option selected="" style="display: none;"></option>
+								<option value="1">Director</option>
+								<option value="2">Admin BU</option>
+								<option value="3">BU Head</option>
+								<option value="4">Leader</option>
+								<option value="5">Pm</option>
+								<option value="6">Team Member</option>
+								<option value="7">PROUDS</option>
+								<option value="8">HR Office</option>
+								<option value="9">Developer</option>
+								<option value="10">IT Internal</option>
+								<option value="11">CEO</option>
+								<option value="12">PM Coordinator</option>
+							</b-select>
+						</b-table-column>
+					</template>
+				</data-table>
+				<br>
+				<data-table title="Deactive Users" :data="deactiveuser" :fields="[]" ref="widget">
+					<template slot-scope="props">
+						<b-table-column field="nik" label="NIK" sortable="">
+							<span>{{ props.row.nik }}</span>
+						</b-table-column>
+						<b-table-column field="name" label="Name" sortable="">
+							<span>{{ props.row.name }}</span>
+						</b-table-column>
+						<b-table-column field="bu" label="Business Unit" sortable="">
+							<span>{{ props.row.bu }}</span>
+						</b-table-column>
+						<b-table-column field="profile" label="Profile">
+							<span>{{ props.row.profile }}</span>
+						</b-table-column>
+					</template>
+				</data-table>
+				<br>
+				<data-table title="Update Users" :data="updateuser" :fields="[]" ref="widget">
+					<template slot-scope="props">
+						<b-table-column field="nik" label="NIK" sortable="">
+							<span>{{ props.row.nik }}</span>
+						</b-table-column>
+						<b-table-column field="name" label="Name" sortable="">
+							<span>{{ props.row.name }}</span>
+						</b-table-column>
+						<b-table-column field="bu" label="Business Unit" sortable="">
+							<span>{{ props.row.bu }}</span>
+						</b-table-column>
+						<b-table-column field="profile" label="Profile">
+							<span>{{ props.row.profile }}</span>
+						</b-table-column>
+					</template>
+				</data-table>
+			</div>
+		</side-bar>
+	</div>
+
+	<script>var NEWUSER = [{
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "1"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "3"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "2"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "1"
+}],
+    DEACTIVEUSER = [{
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "Director"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "BU Head"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "Admin BU"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "Director"
+}],
+    UPDATEUSER = [{
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "Director"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "BU Head"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "Admin BU"
+}, {
+  "nik": "S20506017",
+  "name": "Mochamad Faishol Tri Afandi",
+  "bu": "Project Management Office",
+  "profile": "Director"
+}];</script>
+	<script src="/src/importData.min.js"></script>
+</body>
+
+</html>
