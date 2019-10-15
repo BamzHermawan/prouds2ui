@@ -6,7 +6,7 @@ import { notified, animate } from '../../scripts/tools.js';
 import NavBar from "./../vue/components/topNavBar.vue";
 import ContentPage from "./../vue/pages/projects/allocationController.vue";
 
-function numberPretty(str){
+function numberPretty(str) {
 	str += "";
 	var x = str.split(".");
 	var x1 = x[0];
@@ -35,11 +35,11 @@ new Vue({
 		planResource: {}
 	},
 	methods: {
-		cancelEditPlan(){
+		cancelEditPlan() {
 			this.cycleTablePlan();
 			this.editPlan = false;
 		},
-		saveEditPlan(){
+		saveEditPlan() {
 			let cook = [];
 			let columns = document.getElementsByClassName('is-days-has-input');
 			let apiURL = document.querySelector('#tablePlan>tbody').dataset.url;
@@ -63,42 +63,42 @@ new Vue({
 
 			let self = this;
 			Axios.post(apiURL, cooked, {
-					headers: {
-						"Content-Type": "application/x-www-form-urlencoded"
-					}
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded"
 				}
+			}
 			).then(({ data }) => {
-				if(data.status){
+				if (data.status) {
 					notified(self.$notification).success(data.message);
 					self.cycleTablePlan(true);
-				}else{
+				} else {
 					notified(self.$notification).error(data.message);
 					self.cycleTablePlan(true);
 				}
 
 				let el = document.getElementById('is-alert-message');
 				console.log(el.classList);
-				if(data.warning){
-					if(el.classList.contains('is-hidden')){
+				if (data.warning) {
+					if (el.classList.contains('is-hidden')) {
 						el.classList.remove('fadeOutUp');
 						el.classList.add('fadeInDown');
 						el.classList.remove('is-hidden');
 					}
-				}else{
-					if(!el.classList.contains('is-hidden')) {
+				} else {
+					if (!el.classList.contains('is-hidden')) {
 						el.classList.remove('fadeInDown');
 						animate('#is-alert-message', 'fadeOutUp', (target) => {
 							target.classList.add('is-hidden');
 						})
 					}
 				}
-				
+
 				self.editPlan = false;
 			}).catch(() => {
 				notified(self.$notification).error("Sorry, we can't connect to the server. Please try again later. 🙏");
 			})
 		},
-		cycleTablePlan(acceptNewValue = false){
+		cycleTablePlan(acceptNewValue = false) {
 			let columns = document.getElementsByClassName('is-days-has-input');
 			this.planSums.qty = 0;
 			this.planSums.mandays = 0;
@@ -110,9 +110,9 @@ new Vue({
 				let input = column.children[1];
 
 				// Checking if the input have value already
-				if(input.value !== undefined && input.value !== null && input.value !== ""){
+				if (input.value !== undefined && input.value !== null && input.value !== "") {
 					// if the days need to be overwrite with input value
-					if(acceptNewValue){
+					if (acceptNewValue) {
 						dataset.days = input.value;
 					} else {
 						dataset.days = dataset.curDays;
@@ -128,20 +128,20 @@ new Vue({
 
 			this.calculateSums();
 		},
-		daysChange({ target }){
+		daysChange({ target }) {
 			let dataset = target.parentElement.parentElement.dataset;
 			this.calculatePlan(dataset.id, dataset, target.value);
 		},
-		$val(id, key){
+		$val(id, key) {
 			let plan = this.resplan[id];
-			if (typeof plan === "object" && plan.hasOwnProperty(key)){
+			if (typeof plan === "object" && plan.hasOwnProperty(key)) {
 				return plan[key];
 			} else {
 				return 1;
 			}
 		},
-		calculatePlan(id, dataset, days_val = undefined){
-			if (days_val !== undefined){
+		calculatePlan(id, dataset, days_val = undefined) {
+			if (days_val !== undefined) {
 				dataset.days = days_val;
 			}
 
@@ -181,11 +181,11 @@ new Vue({
 		}
 	},
 	filters: {
-		numformat(value){
+		numformat(value) {
 			return numberPretty(value);
 		}
 	},
-	mounted(){
+	mounted() {
 		this.cycleTablePlan();
 		Loader();
 	}

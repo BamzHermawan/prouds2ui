@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>WORKPLAN | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../styles/main.scss">
+	<link href="../../../node_modules/jsgantt-improved/dist/jsgantt.css" rel="stylesheet" type="text/css" />
+	<script src="../../../node_modules/jsgantt-improved/dist/jsgantt.js" type="text/javascript"></script>
+</head>
+
+<body class="add-margin">
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+	<div id="vapp">
+		<nav-bar :left-menu="[
+					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+					{ label: 'projects', link: 'list.html', icon:'', active: true },
+					{ label: 'financial', link: '#financial', icon:'', active: false },
+					{ label: 'operation', link: '#opperation', icon:'', active: false },
+					{ label: 'setting', link: '../setting/users.html', icon:'', active: false },
+				]" :right-menu="[
+					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+					{ label: '🔒 logout', link: '#logout', icon:'' },
+				]" home-link="../home.html"></nav-bar>
+
+		<template class="info" v-if="showTable">
+			<section class="hero">
+				<div class="hero-body">
+					<div class="container">
+						<h2 class="subtitle">Project Assignment</h2>
+					</div>
+				</div>
+			</section>
+
+			<div class="container">
+				<data-table :show-all="false" :data="newproject" :fields="[]" ref="widget">
+					<template slot-scope="props">
+						<b-table-column field="opportunity" label="Opportunity" sortable>
+							<span>{{ props.row.opportunity }}</span>
+							<br>
+							<span>{{ props.row.won_date }}</span>
+						</b-table-column>
+						<b-table-column field="iwo_no" label="IWO No." sortable>
+							<span>{{ props.row.iwo_no }}</span>
+						</b-table-column>
+						<b-table-column field="project_name" label="Project Name" sortable>
+							<span><a href="detail.html">{{ props.row.project_name }}</a></span>
+						</b-table-column>
+						<b-table-column field="amount" label="Amount" sortable>
+							<span>{{ props.row.amount }}</span>
+						</b-table-column>
+						<b-table-column field="project_type" label="Project Type" sortable>
+							<span>{{ props.row.project_type }}</span>
+						</b-table-column>
+						<b-table-column field="related" label="Related" sortable>
+							<span>{{ props.row.related }}</span>
+						</b-table-column>
+						<b-table-column field="project_manager" label="Project Manager" sortable>
+							<span>{{ props.row.project_manager }}</span>
+						</b-table-column>
+						<b-table-column field="status" label="Status" sortable>
+							<span>{{ props.row.status }}</span>
+						</b-table-column>
+
+						<b-table-column field="action" label="Action">
+							<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+								<span class="mdi mdi-menu mdi-18px has-text-info" style="cursor: pointer !important;"
+									slot="trigger"></span>
+								<b-dropdown-item aria-role="listitem" has-link>
+									<a @click="assignPM(props.row,'PM')"><span
+											class="mdi mdi-account-plus"></span>Assign
+										PM</a>
+								</b-dropdown-item>
+								<b-dropdown-item aria-role="listitem" has-link>
+									<a @click="assignPM(props.row,'CoPM')"><span
+											class="mdi mdi-account-plus"></span>Assign
+										Co-PM</a>
+								</b-dropdown-item>
+								<b-dropdown-item aria-role="listitem" has-link>
+									<a @click="assignPM(props.row, 'Adm')"><span
+											class="mdi mdi-account-plus"></span>Assign
+										Project Admin</a>
+								</b-dropdown-item>
+								<b-dropdown-item aria-role="listitem" has-link>
+									<a @click="setUnitDelivery(props.row)"><span class="mdi mdi-briefcase"></span>Set
+										Unit
+										Delivery</a>
+								</b-dropdown-item>
+							</b-dropdown>
+						</b-table-column>
+					</template>
+				</data-table>
+			</div>
+		</template>
+
+		<assign-pm title="PM Assignment" name="PM" :listpm="listpm" :selected-project="selectedProject"
+			v-if="showAssignPM" action-add="http://localhost:5501/demo/post_detect.php"
+			action-update="http://localhost:5501/demo/post_detect.php">
+
+		</assign-pm>
+
+		<assign-co-pm title="Co PM Assignment" name="Co PM" :listpm="listpm" :selected-project="selectedProject"
+			v-if="showAssignCoPM" action-add="http://localhost:5501/demo/post_detect.php"
+			action-update="http://localhost:5501/demo/post_detect.php">
+
+		</assign-co-pm>
+
+		<assign-adm title="Project Administration Assignment" name="Project Adm" :listpm="listpm"
+			:selected-project="selectedProject" v-if="showAssignAdm"
+			action-add="http://localhost:5501/demo/post_detect.php"
+			action-update="http://localhost:5501/demo/post_detect.php">
+
+		</assign-adm>
+
+		<set-unit-delivery :unit-delivery="unitdelivery" :selected-project="selectedProject"
+			action-add="http://localhost:5501/demo/post_detect.php"
+			action-update="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
+
+		</set-unit-delivery>
+	</div>
+
+	<script>
+		const NEWPROJECT = [
+			{
+				"project_id": 1,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "",
+				"co_project_manager": "",
+				"project_adm": "Idong",
+				"unit_delivery": ""
+			},
+			{
+				"project_id": 2,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "System Integrasi 1 Delivery"
+			},
+			{
+				"project_id": 3,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Financial Solution Delivery"
+			},
+			{
+				"project_id": 4,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "SKN G 2 sharia kaltim",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Sigma Metrasys Solution"
+			},
+			{
+				"project_id": 5,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Pengembangan IPC Intercompany System Fase III di Lingkungan PT. Pelabuhan Indonesia II (Persero)",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Sigma Solusi Integrasi"
+			},
+			{
+				"project_id": 6,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Bulk Mandays Mprospera",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Managed Operation Delivery"
+			},
+			{
+				"project_id": 7,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Simplified Approva",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "System Integration 2 Delivery"
+			},
+			{
+				"project_id": 8,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "MMS HUB",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "Waiting for rebaseline",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Sigma Metrasys Corporate"
+			},
+			{
+				"project_id": 9,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "CR Agendaku",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "Waiting for rebaseline",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Project Development (Balicamp2)"
+			},
+			{
+				"project_id": 10,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Pemasangan Mesin ATM Bank Beng Cabang",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "Waiting for rebaseline",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "idong",
+				"unit_delivery": "Infrastructure Network & Solution Delivery"
+			}
+		],
+			LISTPM = [
+				{
+					"pm_id": "1",
+					"pm_name": "Martina Dillard",
+					"nik": "M20005413",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
+				},
+				{
+					"pm_id": "2",
+					"pm_name": "Alissa Newton",
+					"nik": "S20186428",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"pm_id": "3",
+					"pm_name": "Maryanne Watson",
+					"nik": "CRS20136833",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
+				},
+				{
+					"pm_id": "4",
+					"pm_name": "Bush Hunt",
+					"nik": "CRS20166397",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Cloud",
+					"last_project": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
+				},
+				{
+					"pm_id": "5",
+					"pm_name": "Cannon May",
+					"nik": "CRS20005337",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Zaid Mart Berkah Abadi Jaya seNusantara",
+				},
+				{
+					"pm_id": "6",
+					"pm_name": "Coleen Williamson",
+					"nik": "L20171511",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "PMO",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"pm_id": "7",
+					"pm_name": "Christa Townsend",
+					"nik": "S20065729",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Finance",
+					"last_project": "CR Agendaku",
+				},
+				{
+					"pm_id": "8",
+					"pm_name": "Alston Weeks",
+					"nik": "S20168519",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				},
+				{
+					"pm_id": "9",
+					"pm_name": "Joseph Pratt",
+					"nik": "S20012872",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				}
+			],
+			UNITDELIVERY = [
+				{
+					"bu_id": "1",
+					"business_unit": "Balicamp 1",
+					"directorate": "Solution and Delivery",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "2",
+					"business_unit": "Balicamp 2",
+					"directorate": "Solution and Delivery",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "3",
+					"business_unit": "Balicamp 3",
+					"directorate": "Solution and Delivery",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "4",
+					"business_unit": "Balicamp 4",
+					"directorate": "Solution and Delivery",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "5",
+					"business_unit": "Balicamp 5",
+					"directorate": "Solution and Delivery",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				}
+			]
+	</script>
+
+	<script src="../../scripts/project/listNewProject.js"></script>
+
+</body>
+
+</html>

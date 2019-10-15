@@ -568,7 +568,6 @@ export default {
 		},
 		passedCheckedRow(check) {
 			this.checkedRows = check;
-			console.log("cokcokok");
 		},
 		removeResource(resource) {
 			let findExist = this.fetchedRes.findIndex(

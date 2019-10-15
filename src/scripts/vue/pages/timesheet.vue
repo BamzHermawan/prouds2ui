@@ -174,7 +174,7 @@ export default {
 		}
 	},
 	mounted() {
-		console.log("Kocok : " + this.monday);
+		console.log(this.monday);
 	}
 };
 </script>
