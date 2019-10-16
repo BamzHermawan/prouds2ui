@@ -35,7 +35,7 @@
 
 		<section class="info">
 			<div v-if="showTable">
-				<data-table title="Project" :data="projectlist" :fields="[]" ref="widget">
+				<data-table :data="projectlist" :fields="[]" ref="widget">
 					<template slot-scope="props">
 						<b-table-column width="150" field="project_id" label="ID / IWO" sortable>
 							<span>{{ props.row.project_id }}</span>
@@ -75,9 +75,6 @@
 								position="is-bottom">
 								<span class="mdi mdi-send"></span>
 							</b-tooltip>
-							<b-tooltip v-if="props.row.status==='Close'" :label="props.row.status" position="is-bottom">
-								<span class="mdi mdi-cancel"></span>
-							</b-tooltip>
 							<b-tooltip v-if="props.row.status==='In Planning'" :label="props.row.status"
 								position="is-bottom">
 								<span class="mdi mdi-pencil-box-outline"></span>
@@ -95,14 +92,19 @@
 							</b-tooltip>
 							<b-tooltip v-if="props.row.status==='Closed'" :label="props.row.status"
 								position="is-bottom">
-								<span class="mdi mdi-close-circle"></span>
+								<span class="mdi mdi-cancel"></span>
 							</b-tooltip>
 						</b-table-column>
 
-
-
-						<!-- Action Untuk PM -->
 						<b-table-column field="action" label="Action">
+							<!-- Action Untuk PMO -->
+							<!-- <b-button type="is-info" size="is-small"> -->
+							<span class="mdi mdi-square-edit-outline mdi-18px has-text-info"
+								style="cursor: pointer !important;" @click="editProject(props.row)">
+							</span>
+							<!-- </b-button> -->
+
+							<!-- Action Untuk PM -->
 							<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
 								<span class="mdi mdi-menu mdi-18px has-text-info" style="cursor: pointer !important;"
 									slot="trigger"></span>
@@ -121,13 +123,45 @@
 							</b-dropdown>
 						</b-table-column>
 					</template>
+					<template slot="top-right">
+						<div class="navbar-menu">
+							<div class="columns">
+								<div class="column">
+									<p style="margin-top:5px">Status :</p>
+								</div>
+								<div class="column">
+									<b-select v-model="selectedStatus">
+										<option value="">All</option>
+										<option value="New">New</option>
+										<option value="Closed">Closed</option>
+										<option value="On Hold">On Hold</option>
+										<option value="Archived">Archived</option>
+										<option value="Proposed">Proposed</option>
+										<option value="Completed">Completed</option>
+										<option value="In Planning">In Planning</option>
+										<option value="In Progress">In Progress</option>
+										<option value="Waiting for Rebaseline">Waiting for Rebaseline</option>
+										<option value="Waiting for Initial Baseline">Waiting for Initial Baseline
+										</option>
+									</b-select>
+								</div>
+							</div>
+						</div>
+					</template>
 				</data-table>
 			</div>
-			<div v-if="!showTable">
+			<div class="container" v-if="showMilestone">
+				<div class="level">
+					<div class="level-left">
+						<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+							<ul>
+								<li><a href="list.html">Project</a></li>
+								<li class="is-active"><a href="#" aria-current="page">Set Milestone</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
 				<div class="card">
-					<header class="card-header">
-						<p class="card-header-title">Set Milestone</p>
-					</header>
 					<div class="card-content">
 						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 							<div class="container">
@@ -176,6 +210,97 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="container" v-if="showEdit">
+				<div class="level">
+					<div class="level-left">
+						<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+							<ul>
+								<li><a href="list.html">Project</a></li>
+								<li class="is-active"><a href="#" aria-current="page">Edit</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-content">
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+							<div class="container">
+								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 107px;"><b>Project ID</b></span>: {{form.project_id}}
+									<span style="margin-right: 20px; margin-left: 450px;"><b>IWO
+											No.</b></span>{{form.iwo}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 83px;"><b>Project Name</b></span>:
+									{{form.project_name}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 121px;"><b>Amount</b></span>: {{form.amount}} IDR
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 91px;"><b>Project Type</b></span>: {{form.project_type}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 68px;"><b>Contract Length</b></span>:
+									{{form.contract_length}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 47px;"><b>Contract Start Date</b></span>:
+									{{form.start}}
+									<span style="margin-right: 23px; margin-left: 434px;"><b>Contract End
+											Date</b></span>:
+									{{form.end}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 91px;"><b>Unit Delivery</b></span>:
+									{{form.unit_delivery}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 65px;"><b>Project Manager</b></span>:
+									{{form.project_manager}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 44px;"><b>Co Project Manager</b></span>:
+									{{form.co_project_manager}}
+								</p>
+								<div class="columns">
+									<div class="column">
+										<crud-input type="select" label="Classification" name="classification"
+											placeholder="Choose Classification" v-model="form.classification"
+											input-style="margin-bottom:15px;">
+											<option selected="" style="display: none;"></option>
+											<option value="1">Junior Project Manager</option>
+											<option value="2">Senior Projet Manager</option>
+										</crud-input>
+									</div>
+									<div class="column">
+										<crud-input type="select" label="Project Segment" name="project_segment"
+											placeholder="Choose Project Segment" v-model="form.project_segment"
+											input-style="margin-bottom:15px;">
+											<option selected="" style="display: none;"></option>
+											<option value="1">Banking & Finance</option>
+											<option value="2">Infrastructure</option>
+										</crud-input>
+									</div>
+								</div>
+
+								<section class="card-foot is-clearfix is-block">
+									<div class="is-pulled-right">
+										<a class="button is-danger" @click="editProject">
+											Cancel
+										</a>
+										<button class="button is-success" type="submit">
+											Save
+										</button>
+									</div>
+								</section>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</section>
 	</div>
 
@@ -190,9 +315,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "Waiting for Rebaseline",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -202,10 +332,15 @@
 				"customer": "PT. Telkom",
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
-				"project_manager": "Budi",
+				"project_manager": "Alpa",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "Waiting for Initial Baseline",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -216,9 +351,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "New",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -229,9 +369,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Andi",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "Archived",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -242,9 +387,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Tejo",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "In Progress",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -255,9 +405,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Suketi",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "Proposed",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -268,9 +423,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "CC",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "Closed",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -281,9 +441,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Romi",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "On Hold",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -294,9 +459,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Romi",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "In Planning",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			},
 			{
 				"project_id": "1900123",
@@ -307,9 +477,14 @@
 				"project_type": "Implementation",
 				"related_bu": "INS / BAS",
 				"project_manager": "Romi",
+				"co_project_manager": "Ade Wiranata Putra",
 				"status": "Completed",
 				"start": "20-10-2019",
-				"end": "31-12-2019"
+				"end": "31-12-2019",
+				"contract_length": 27,
+				"unit_delivery": "PMO",
+				"classification": 1,
+				"project_segment": 2
 			}
 		]
 	</script>

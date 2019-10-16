@@ -50,7 +50,7 @@
 							<br>
 							<span>{{ props.row.won_date }}</span>
 						</b-table-column>
-						<b-table-column field="iwo_no" label="IWO No." sortable>
+						<b-table-column width="130" field="iwo_no" label="IWO No." sortable>
 							<span>{{ props.row.iwo_no }}</span>
 						</b-table-column>
 						<b-table-column field="project_name" label="Project Name" sortable>
@@ -61,9 +61,6 @@
 						</b-table-column>
 						<b-table-column field="project_type" label="Project Type" sortable>
 							<span>{{ props.row.project_type }}</span>
-						</b-table-column>
-						<b-table-column field="related" label="Related" sortable>
-							<span>{{ props.row.related }}</span>
 						</b-table-column>
 						<b-table-column field="project_manager" label="Project Manager" sortable>
 							<span>{{ props.row.project_manager }}</span>
@@ -98,6 +95,24 @@
 								</b-dropdown-item>
 							</b-dropdown>
 						</b-table-column>
+					</template>
+					<template slot="top-right">
+						<div class="navbar-menu">
+							<div class="columns">
+								<div class="column">
+									<p style="margin-top: 5px;">Status :</p>
+								</div>
+								<div class="column">
+									<b-select v-model="selectedStatus">
+										<option value="">All</option>
+										<option value="New">New</option>
+										<option value="Waiting for Rebaseline">Waiting for Rebaseline</option>
+										<option value="Waiting for Initial Baseline">Waiting for Initial Baseline
+										</option>
+									</b-select>
+								</div>
+							</div>
+						</div>
 					</template>
 				</data-table>
 			</div>
@@ -245,7 +260,7 @@
 				"amount": "120.000.000",
 				"project_type": "Implementasi",
 				"related": "INS / BA",
-				"status": "Waiting for rebaseline",
+				"status": "Waiting for Rebaseline",
 				"project_manager": "Budi",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
@@ -260,7 +275,7 @@
 				"amount": "120.000.000",
 				"project_type": "Implementasi",
 				"related": "INS / BA",
-				"status": "Waiting for rebaseline",
+				"status": "Waiting for Rebaseline",
 				"project_manager": "Budi",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
@@ -275,7 +290,7 @@
 				"amount": "120.000.000",
 				"project_type": "Implementasi",
 				"related": "INS / BA",
-				"status": "Waiting for rebaseline",
+				"status": "Waiting for Initial Baseline",
 				"project_manager": "Budi",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "idong",

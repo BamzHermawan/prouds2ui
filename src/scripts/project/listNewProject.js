@@ -22,9 +22,17 @@ new Vue({
 		showAssignAdm: false,
 		showTable: true,
 		newproject: NEWPROJECT,
+		newprojectOri: NEWPROJECT,
 		listpm: LISTPM,
 		unitdelivery: UNITDELIVERY,
-		selectedProject: []
+		selectedProject: [],
+		selectedStatus: ""
+	},
+	watch: {
+		selectedStatus: function (newQuery, oldQuery) {
+			this.filterStatus(newQuery)
+			console.log(newQuery)
+		}
 	},
 	methods: {
 		setUnitDelivery(val) {
@@ -45,6 +53,16 @@ new Vue({
 				this.showTable = false
 				this.showAssignAdm = true
 				this.selectedProject = val
+			}
+		},
+		filterStatus(val) {
+			if (val !== "") {
+				this.newproject = this.newprojectOri;
+				this.newproject = this.newproject.filter(project =>
+					this.selectedStatus.includes(project.status)
+				);
+			} else {
+				this.newproject = this.newprojectOri;
 			}
 		}
 	},
