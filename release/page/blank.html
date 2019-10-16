@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<title>HOME | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="/src/main.min.css">
+</head>
+
+<body class="has-navbar-fixed-top">
+
+	<!-- <div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div> -->
+
+	<nav id="navbar">
+		<nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<a class="navbar-item" :href="homeLinkCheck">
+					<span class="mdi mdi-view-grid in-left"></span>
+					PROUDS
+				</a>
+		
+				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</a>
+			</div>
+		
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+					<a class="navbar-item">
+						Home
+					</a>
+		
+					<a class="navbar-item">
+						Documentation
+					</a>
+		
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">
+							More
+						</a>
+		
+						<div class="navbar-dropdown">
+							<a class="navbar-item">
+								About
+							</a>
+							<a class="navbar-item">
+								Jobs
+							</a>
+							<a class="navbar-item">
+								Contact
+							</a>
+							<hr class="navbar-divider">
+							<a class="navbar-item">
+								Report an issue
+							</a>
+						</div>
+					</div>
+				</div>
+		
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<div class="buttons">
+							<a class="button is-primary">
+								<strong>Sign up</strong>
+							</a>
+							<a class="button is-light">
+								Log in
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</nav>
+
+	<div class="prouds-wrapper">
+		<section class="sidebar section">
+			<aside class="menu">
+				<p class="menu-label">
+					General
+				</p>
+				<ul class="menu-list">
+					<li><a>Dashboard</a></li>
+					<li><a>Customers</a></li>
+				</ul>
+				<p class="menu-label">
+					Administration
+				</p>
+				<ul class="menu-list">
+					<li><a>Team Settings</a></li>
+					<li>
+						<a class="is-active">Manage Your Team</a>
+						<ul>
+							<li><a>Members</a></li>
+							<li><a>Plugins</a></li>
+							<li><a>Add a member</a></li>
+						</ul>
+					</li>
+					<li><a>Invitations</a></li>
+					<li><a>Cloud Storage Environment Settings</a></li>
+					<li><a>Authentication</a></li>
+				</ul>
+				<p class="menu-label">
+					Transactions
+				</p>
+				<ul class="menu-list">
+					<li><a>Payments</a></li>
+					<li><a>Transfers</a></li>
+					<li><a>Balance</a></li>
+				</ul>
+			</aside>
+		</section>
+		
+		<section id="vapp" class="section">
+			<div class="container">
+				<h1 class="title">Hello World</h1>
+				<h2 class="subtitle">This is content section</h2>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>
