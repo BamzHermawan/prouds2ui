@@ -23,15 +23,15 @@
 	</div>
 	<div id="vapp">
 		<nav-bar :left-menu="[
-					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
-					{ label: 'projects', link: '../projects.html', icon:'', active: true },
-					{ label: 'financial', link: '#financial', icon:'', active: false },
-					{ label: 'operation', link: '#opperation', icon:'', active: false },
-					{ label: 'setting', link: '../setting/users.html', icon:'', active: false },
-				]" :right-menu="[
-					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
-					{ label: '🔒 logout', link: '#logout', icon:'' },
-				]" home-link="../home.html"></nav-bar>
+			{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+			{ label: 'projects', link: '../projects.html', icon:'', active: true },
+			{ label: 'financial', link: '#financial', icon:'', active: false },
+			{ label: 'operation', link: '#opperation', icon:'', active: false },
+			{ label: 'setting', link: '../setting/users.html', icon:'', active: false },
+		]" :right-menu="[
+			{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+			{ label: '🔒 logout', link: '#logout', icon:'' },
+		]" home-link="../home.html"></nav-bar>
 
 		<section class="hero">
 			<div class="hero-body">
@@ -75,91 +75,144 @@
 					</div>
 				</nav>
 			</b-message>
-			<hr>
-			<p class="title is-size-4">Rebaseline List</p>
-			<div class="columns">
-				<div class="column">
-					<p class="title is-size-5">Mandays Recalculation</p>
-					<article class="media box">
-						<div class="media-content">
-							<div class="content">
-								<p>
-									<small>
-										<strong>Task Name : </strong>Mockup UI Developtmen
-									</small>
-									<div class="columns">
-										<div class="column">
-											<small>
-												<strong>Current Start Date : </strong>22/11/2019
-												<br>
-												<strong>Current End Date : </strong>22/11/2019
-											</small>
-										</div>
-										<div class="column">
-											<small>
-												<strong>New Start Date : </strong>28/11/2019
-												<br>
-												<strong>New End Date : </strong>31/12/2019
-											</small>
-										</div>
-									</div>
-								</p>
-								<a href="http://localhost:5500/project/listrebaseline.html"
-									class="button is-small is-info">
-									✅ Confirm
+		</div>
+
+		<section class="section">
+			<div class="container" style="margin-bottom: 2rem">
+				<div class="columns">
+					<div class="column">
+						<b-collapse class="card">
+							<div slot="trigger" slot-scope="props" class="card-header" role="button" aria-controls="contentIdForA11y3">
+								<p class="card-header-title">Rebaseline: Milestone</p>
+								<a class="card-header-icon">
+									<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+									</b-icon>
 								</a>
 							</div>
-						</div>
-					</article>
-				</div>
-				<div class="column">
-					<p class="title is-size-5">Reschedule Milestone</p>
-					<article class="media box">
-						<div class="media-content">
-							<div class="content">
-								<p>
-									<small><strong>Task Name : </strong>Mockup UI Developtmen</small>
-									<div class="columns">
-										<div class="column">
-											<small>
-												<strong>Current Start Date : </strong>22/11/2019
-												<br>
-												<strong>Current End Date : </strong>22/11/2019
-											</small>
-										</div>
-										<div class="column">
-											<small>
-												<strong>New Start Date : </strong>28/11/2019
-												<br>
-												<strong>New End Date : </strong>31/12/2019
-											</small>
-										</div>
-									</div>
-								</p>
+							<div class="card-content">
+								<b-table :data="props.milestoneType" :per-page="3" paginated pagination-simple>
+									<template slot-scope="props">
+										<b-table-column field="startDate" label="Start Date">
+											<span class="has-underline-info">{{ props.row.startDate }}</span>
+											<span style="margin: 0px 7px;">changed to</span>
+											<span class="has-underline-success">{{ props.row.newStartDate }}</span>
+										</b-table-column>
+						
+										<b-table-column field="finishDate" label="Finish Date">
+											<span class="has-underline-info">{{ props.row.finishDate }}</span>
+											<span style="margin: 0px 7px;">changed to</span>
+											<span class="has-underline-success">{{ props.row.newFinishDate }}</span>
+										</b-table-column>
+						
+										<b-table-column field="document" label="Evidence Document">
+											<a :href="props.row.document.link">{{ props.row.document.name }}</a>
+										</b-table-column>
+						
+										<b-table-column field="submit" label="Submit Date">
+											{{ props.row.submit | moment }}
+										</b-table-column>
+						
+										<b-table-column v-if="false" field="action" label="Action">
+											<b-button type="is-success" size="is-small">Approve</b-button>
+											<b-button type="is-danger" size="is-small">Reject</b-button>
+										</b-table-column>
+									</template>
+						
+									<template slot="bottom-left">
+										<a href="#historyRebaseline" class="button is-info">
+											<span class="mdi mdi-history in-left"></span> Rebaseline History
+										</a>
+									</template>
+						
+									<template slot="empty">
+										<b-message type="is-warning" class="has-text-centered">
+											Currently there is no milestone rebaseline in this project.
+										</b-message>
+									</template>
+								</b-table>
 							</div>
-						</div>
-					</article>
-				</div>
-				<div class="column">
-					<p class="title is-size-5">Cost Recalculation</p>
-					<article class="media box">
-						<div class="media-content">
-							<div class="content">
-								<p>
-									<small>
-										<strong>Task Name : </strong>Mockup UI Developtmen
-										<br>
-										<strong>Budget Actual Cost : </strong>1000000
-										<br>
-										<strong>Reallocation Date : </strong>31/12/2019
-									</small>
-								</p>
+						</b-collapse>
+					</div>
+					<div class="column is-one-third">
+						<b-collapse class="card">
+							<div slot="trigger" slot-scope="props" class="card-header" role="button">
+								<p class="card-header-title">Rebaseline: Budget</p>
+								<a class="card-header-icon">
+									<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+									</b-icon>
+								</a>
 							</div>
-						</div>
-					</article>
+							<div class="card-content">
+								<b-table :data="props.costType" :per-page="3" paginated pagination-simple>
+									<template slot-scope="{ row }">
+										<b-table-column field="actualCost" label="Actual Cost">
+											{{ row.actualCost | currency }}
+										</b-table-column>
+						
+										<b-table-column field="reallocationDate" label="Realocatation Date">
+											{{ row.reallocationDate | moment }}
+										</b-table-column>
+						
+										<b-table-column field="submit" label="Submit Date">
+											{{ row.submit | moment }}
+										</b-table-column>
+									</template>
+						
+									<template slot="bottom-left">
+										<a href="#historyRebaseline" class="button is-info">
+											<span class="mdi mdi-history in-left"></span> Rebaseline History
+										</a>
+									</template>
+						
+									<template slot="empty">
+										<b-message type="is-warning" class="has-text-centered">
+											Currently there is no budget rebaseline in this project.
+										</b-message>
+									</template>
+								</b-table>
+							</div>
+						</b-collapse>
+					</div>
 				</div>
 			</div>
-		</div>
+
+			<!-- Mandays Recalculation -->
+			<data-table :fields="[]" :data="props.mandaysType" title="Rebaseline: System Auto Calculation" :per-page="5"
+				:show-all="false">
+				<template slot-scope="props">
+					<b-table-column field="taskName" label="Task Name" sortable>
+						<span>{{ props.row.taskName }}</span>
+					</b-table-column>
+			
+					<b-table-column field="startDate" label="Start Date">
+						<span class="has-underline-info">{{ props.row.startDate }}</span>
+						<span style="margin: 0px 7px;">changed to</span>
+						<span class="has-underline-success">{{ props.row.newStartDate }}</span>
+					</b-table-column>
+			
+					<b-table-column field="finishDate" label="Finish Date">
+						<span class="has-underline-info">{{ props.row.finishDate }}</span>
+						<span style="margin: 0px 7px;">changed to</span>
+						<span class="has-underline-success">{{ props.row.newFinishDate }}</span>
+					</b-table-column>
+			
+					<b-table-column field="submit" label="Created Date">
+						{{ props.row.submit | moment }}
+					</b-table-column>
+			
+					<b-table-column field="action" label="Action">
+						<b-button type="is-success" size="is-small">Approve</b-button>
+						<b-button type="is-danger" size="is-small">Reject</b-button>
+					</b-table-column>
+				</template>
+			
+				<template slot="empty">
+					<b-message type="is-warning" class="has-text-centered">
+						Currently No User is Assigned 😢.
+					</b-message>
+				</template>
+			</data-table>
+		</section>
 
 		<b-modal width="650px" :active.sync="modal.milestone">
 			<milestone title="Reschedule Milestone" task-id="1" old-start="22/11/2019" old-end="28/11/2019"
@@ -173,27 +226,276 @@
 			</cost>
 		</b-modal>
 	</div>
+
+	<script>
+		const DATA = {
+			mandaysType: [
+				{
+					"id": 0,
+					"taskName": "esse pariatur sit",
+					"startDate": "21/09/2008",
+					"newStartDate": "24/12/2012",
+					"finishDate": "02/12/2018",
+					"newFinishDate": "28/02/2017",
+					"submit": "28/09/2018"
+				},
+				{
+					"id": 1,
+					"taskName": "dolore anim deserunt",
+					"startDate": "15/09/2011",
+					"newStartDate": "13/11/2012",
+					"finishDate": "22/08/2019",
+					"newFinishDate": "21/01/2015",
+					"submit": "25/10/2018"
+				},
+				{
+					"id": 2,
+					"taskName": "excepteur exercitation et",
+					"startDate": "16/02/2013",
+					"newStartDate": "06/03/2011",
+					"finishDate": "04/03/2017",
+					"newFinishDate": "12/09/2017",
+					"submit": "09/04/2019"
+				},
+				{
+					"id": 3,
+					"taskName": "veniam fugiat est",
+					"startDate": "22/01/2014",
+					"newStartDate": "09/04/2006",
+					"finishDate": "30/05/2016",
+					"newFinishDate": "20/11/2018",
+					"submit": "05/03/2018"
+				},
+				{
+					"id": 4,
+					"taskName": "ullamco ea sint",
+					"startDate": "04/11/2018",
+					"newStartDate": "13/05/2004",
+					"finishDate": "16/11/2014",
+					"newFinishDate": "24/08/2015",
+					"submit": "07/06/2018"
+				},
+				{
+					"id": 5,
+					"taskName": "anim do nulla",
+					"startDate": "27/05/2017",
+					"newStartDate": "29/09/2016",
+					"finishDate": "31/07/2015",
+					"newFinishDate": "08/01/2015",
+					"submit": "27/08/2018"
+				},
+				{
+					"id": 6,
+					"taskName": "enim pariatur fugiat",
+					"startDate": "14/02/2011",
+					"newStartDate": "28/09/2011",
+					"finishDate": "09/06/2017",
+					"newFinishDate": "18/12/2014",
+					"submit": "03/07/2019"
+				},
+				{
+					"id": 7,
+					"taskName": "minim elit magna",
+					"startDate": "29/07/2016",
+					"newStartDate": "06/08/2004",
+					"finishDate": "21/10/2014",
+					"newFinishDate": "04/05/2016",
+					"submit": "21/05/2019"
+				},
+				{
+					"id": 8,
+					"taskName": "esse ipsum eu",
+					"startDate": "05/11/2014",
+					"newStartDate": "27/06/2009",
+					"finishDate": "11/07/2015",
+					"newFinishDate": "25/08/2018",
+					"submit": "16/11/2018"
+				},
+				{
+					"id": 9,
+					"taskName": "culpa Lorem esse",
+					"startDate": "17/04/2018",
+					"newStartDate": "17/04/2006",
+					"finishDate": "17/10/2018",
+					"newFinishDate": "24/07/2018",
+					"submit": "25/04/2018"
+				},
+				{
+					"id": 10,
+					"taskName": "eu excepteur consequat",
+					"startDate": "28/03/2016",
+					"newStartDate": "03/04/2004",
+					"finishDate": "19/09/2016",
+					"newFinishDate": "02/02/2015",
+					"submit": "31/01/2018"
+				},
+				{
+					"id": 11,
+					"taskName": "irure cillum nisi",
+					"startDate": "23/11/2010",
+					"newStartDate": "12/10/2010",
+					"finishDate": "05/09/2018",
+					"newFinishDate": "02/01/2015",
+					"submit": "24/07/2018"
+				},
+				{
+					"id": 12,
+					"taskName": "irure minim esse",
+					"startDate": "12/05/2013",
+					"newStartDate": "06/09/2019",
+					"finishDate": "15/09/2015",
+					"newFinishDate": "06/05/2016",
+					"submit": "22/06/2019"
+				},
+				{
+					"id": 13,
+					"taskName": "exercitation duis sit",
+					"startDate": "27/09/2005",
+					"newStartDate": "31/10/2011",
+					"finishDate": "15/12/2016",
+					"newFinishDate": "22/01/2017",
+					"submit": "26/04/2018"
+				},
+				{
+					"id": 14,
+					"taskName": "duis ad minim",
+					"startDate": "22/07/2006",
+					"newStartDate": "03/04/2008",
+					"finishDate": "22/09/2019",
+					"newFinishDate": "01/03/2016",
+					"submit": "28/08/2019"
+				},
+				{
+					"id": 15,
+					"taskName": "veniam sit anim",
+					"startDate": "24/08/2009",
+					"newStartDate": "10/02/2019",
+					"finishDate": "24/02/2015",
+					"newFinishDate": "14/09/2017",
+					"submit": "16/11/2018"
+				},
+				{
+					"id": 16,
+					"taskName": "consectetur mollit dolore",
+					"startDate": "29/09/2005",
+					"newStartDate": "06/01/2007",
+					"finishDate": "12/09/2017",
+					"newFinishDate": "28/04/2016",
+					"submit": "22/04/2019"
+				},
+				{
+					"id": 17,
+					"taskName": "ipsum minim proident",
+					"startDate": "23/01/2007",
+					"newStartDate": "30/11/2016",
+					"finishDate": "26/12/2017",
+					"newFinishDate": "27/05/2016",
+					"submit": "05/06/2018"
+				},
+				{
+					"id": 18,
+					"taskName": "adipisicing laborum id",
+					"startDate": "14/07/2010",
+					"newStartDate": "31/01/2018",
+					"finishDate": "07/02/2017",
+					"newFinishDate": "12/03/2019",
+					"submit": "24/06/2019"
+				},
+				{
+					"id": 19,
+					"taskName": "sint irure exercitation",
+					"startDate": "11/08/2012",
+					"newStartDate": "09/02/2015",
+					"finishDate": "15/01/2018",
+					"newFinishDate": "01/05/2016",
+					"submit": "04/02/2019"
+				}
+			],
+			milestoneType: [
+				{
+					"id": 0,
+					"startDate": "23/06/2007",
+					"newStartDate": "06/06/2004",
+					"finishDate": "05/09/2017",
+					"newFinishDate": "01/01/2018",
+					"document": {
+						"name": "ex_proident_enim.ppt",
+						"link": "#dokumenEvidence"
+					},
+					"submit": "31/05/2018"
+				},
+				{
+					"id": 1,
+					"startDate": "17/12/2018",
+					"newStartDate": "12/01/2009",
+					"finishDate": "15/11/2015",
+					"newFinishDate": "02/04/2016",
+					"document": {
+						"name": "quis_reprehenderit_consequat.docx",
+						"link": "#dokumenEvidence"
+					},
+					"submit": "12/02/2018"
+				},
+				{
+					"id": 2,
+					"startDate": "17/04/2014",
+					"newStartDate": "28/09/2009",
+					"finishDate": "02/10/2015",
+					"newFinishDate": "14/08/2017",
+					"document": {
+						"name": "reprehenderit_minim_sunt.pdf",
+						"link": "#dokumenEvidence"
+					},
+					"submit": "28/06/2019"
+				}
+			],
+			costType: [
+				{
+					"id": 0,
+					"actualCost": 718548231,
+					"reallocationDate": "20/01/2008",
+					"submit": "17/04/2018"
+				},
+				{
+					"id": 1,
+					"actualCost": 757390741,
+					"reallocationDate": "02/07/2015",
+					"submit": "30/04/2018"
+				},
+				{
+					"id": 2,
+					"actualCost": 693409898,
+					"reallocationDate": "18/06/2017",
+					"submit": "02/04/2018"
+				},
+				{
+					"id": 3,
+					"actualCost": 636838061,
+					"reallocationDate": "07/12/2008",
+					"submit": "06/05/2018"
+				},
+				{
+					"id": 4,
+					"actualCost": 422402531,
+					"reallocationDate": "03/03/2015",
+					"submit": "14/02/2019"
+				},
+				{
+					"id": 5,
+					"actualCost": 835971949,
+					"reallocationDate": "02/02/2011",
+					"submit": "07/07/2019"
+				},
+				{
+					"id": 6,
+					"actualCost": 614705636,
+					"reallocationDate": "07/09/2007",
+					"submit": "17/09/2019"
+				}
+			]
+		}
+	</script>
 	<script src="../../scripts/project/listRebaseline.js"></script>
 
 </body>
-
-<script>
-	const DATA = [
-		{
-			taskID: 1,
-			taskName: "New Prouds Development Phase I",
-			curStart: "10/06/2019",
-			curEnd: "31/12/2019",
-			cost: "10000000000000"
-		},
-		{
-			taskID: 3,
-			taskName: "Analysis and Design",
-			curStart: "20/10/2019",
-			curEnd: "28/11/2019",
-			cost: "20000000000"
-		}
-	]
-</script>
-
 </html>

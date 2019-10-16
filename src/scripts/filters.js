@@ -3,7 +3,7 @@ import moment from "./moment-locale.js";
 
 Vue.filter("moment", function (value) {
 	moment.locale("en");
-	return moment(value, "YYYY-MM-DD").format("Do MMMM YYYY");
+	return moment(value, "DD/MM/YYYY").format("DD MMMM YYYY");
 });
 
 Vue.filter("datetime", function (value, showTime = false) {

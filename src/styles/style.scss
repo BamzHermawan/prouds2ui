@@ -1,0 +1,487 @@
+// @charset "utf-8";
+@import "~bulma/sass/utilities/_all";
+
+// Mixins ---------------------------------------------
+@import "mixin";
+
+// Font Import from google Font
+@import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed|Raleway:400,800&display=swap');
+
+$roboto: 'Roboto Condensed', sans-serif !important;
+$crete: 'Crete Round', serif !important;
+$dmserif: 'DM Serif Text', serif, !important;
+
+$p_font: $roboto;
+$h1_font: $crete;
+$h2_font: $dmserif;
+
+// Set your colors
+$primary: #D36464;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+$pink: rgb(250, 129, 150);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+	"pink": (rgb(250, 129, 150), $white),
+	"grey": (grey, $white),
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "twitter": ($twitter, $twitter-invert)
+);
+
+$heroBold: (
+	"pink": linear-gradient(90deg, rgb(183, 84, 203),rgb(232, 47, 180)),
+	"light": linear-gradient(90deg, $light,#cfcfdf),
+	"dark": linear-gradient(90deg, $dark,rgb(85, 85, 85)),
+	"danger": linear-gradient(45deg, rgb(221, 15, 86),rgb(198, 192, 66)),
+	"warning": linear-gradient(90deg, rgb(245, 220, 59),rgb(231, 184, 96)),
+	"info": linear-gradient(90deg, rgb(113, 136, 223),rgb(17, 213, 207)),
+	"success": linear-gradient(135deg, rgb(174, 243, 64),rgb(76, 165, 108))
+);
+
+// set sizes
+$tablet: 719px;
+$section-padding: 2.5rem;
+$section-padding-medium: 9rem 3rem;
+$section-padding-large: 18rem 3rem;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+//* @MAIN LAYOUT -----------------------------------------
+
+body {
+	font-family: $roboto;
+
+	& > .wrapper {
+		min-height: 100vh;
+		margin: 0px;
+		display: grid;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.sidebar {
+		display: none !important;
+	}
+
+	.wrapper {
+		grid-template-rows: 50px 1fr;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	/* no grid support? */
+	.sidebar {
+		grid-column: 1;
+        grid-row: 1 / 3;
+
+		float: left;
+		width: 275px;
+		padding: 1rem;
+
+		// background: linear-gradient(135deg, ghostwhite, rgb(233, 233, 233));
+		@include navbarGradient($light, ghostwhite);
+		-webkit-box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
+		-moz-box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
+		box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
+
+		.brand {
+			width: 100%;
+			margin-bottom: 1rem;
+
+			@include brand(36px, -1px);
+		}
+	}
+
+	.wrapper {
+		margin: 0 auto;
+		grid-template-columns: 275px 1fr;
+		grid-template-rows: 50px 1fr;
+
+		// &.sidebar-off {
+		// 	grid-template-columns: 0px 1fr;
+
+		// 	.sidebar {
+		// 		display: none;
+		// 	}
+		// }
+
+		&.sidebar-float {
+			grid-template-columns: 0px 1fr;
+			
+			.sidebar {
+				grid-column: none;
+				position: fixed;
+				height: 100vh;
+				z-index: -100;
+				width: 275px;
+
+				overflow-y: scroll;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
+			}
+
+			&.sidebar-auto .sidebar {
+				display: none;
+				z-index: 100;
+
+				-webkit-box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
+				-moz-box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
+				box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
+			}
+
+			&.sidebar-show .sidebar, & .sidebar:hover {
+				display: block !important;
+			}
+		}
+
+		& > .navbar {
+			grid-column: 2;
+			grid-row: 1;
+
+			float: right;
+			width: 80%;
+		}
+
+		& > .content {
+			grid-column: 2;
+			grid-row: 2;
+
+			float: right;
+			width: 80%;
+		}
+	}
+}
+
+@supports (display: grid) {
+  body > .wrapper {
+    & > .content, & > .navbar {
+		width: 100%;
+    	margin: 0;
+	}
+  }
+}
+
+//! -----------------------------------------------------
+//* @SIDEBAR ---------------------------------------------
+
+.side-list {
+	.parent-list {
+		width: 100%;
+		margin-top: 5px;
+		padding: 5px 8px;
+		display: block !important;
+		cursor: pointer;
+		
+		.list-title {
+			overflow: auto;
+		}
+
+		label {
+			float: left;
+			width: 80%;
+			font-size: 1rem;
+			cursor: pointer;
+			color: lighten($dark, 20%);
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+
+		.action {
+			margin: 0px;
+			float: right;
+			font-weight: bolder;
+			text-align: center;
+			color: $dark;
+		}
+	}
+
+	.parent-list:hover {
+		background: linear-gradient(135deg, rgba(245, 177, 77, 0.7),rgba(237, 53, 115, 0.7));
+		border-radius: 3px;
+	}
+
+	ul {
+		margin-top: .5rem;
+		margin-bottom: 1rem;
+		padding-left: 1rem;
+
+		.parent-list {
+			&:hover {
+				background: linear-gradient(135deg, rgba(248, 207, 144, 0.5),rgba(245, 126, 165, 0.5));
+			}
+			
+			label {
+				font-weight: normal;
+				text-transform: none;
+			}
+		}
+	}
+
+	.side-item {
+		cursor: pointer;
+
+		a {
+			padding: 5px 8px;
+			color: lighten($dark, 15%);
+			width: 100%;
+			display: block;
+		}
+
+		input {
+			padding: 5px 5px;
+			background-color: ghostwhite;
+			border: none;
+			width: calc(100% - 10px);
+			border-radius: 3px;
+			margin: 5px 5px;
+		}
+
+		&:hover {
+			background: linear-gradient(135deg, rgba(248, 207, 144, 0.5),rgba(245, 126, 165, 0.5));
+			border-radius: 3px;
+
+			&.media .media-right {
+				& > .mdi {
+					display: block;
+				}
+			}
+		}
+
+		&.media .media-right {
+			min-width: 26px;
+			margin-top: 5.5px;
+			margin-right: 6px;
+			margin-left: 2px;
+
+			.button {
+				padding-left: 2px;
+				padding-right: 2px;
+			}
+			
+			& > .mdi {
+				color: #fff;
+				display: none;
+			}
+		}
+
+		&.media + .media {
+			border-top: none;
+			margin-top: 0px;
+			padding-top: 0px;
+		}
+	}
+}
+
+//! -----------------------------------------------------
+//* @NAVBAR ----------------------------------------------
+
+.navbar.main {
+	padding-right: 15px;
+	@include sidebarGradient(rgb(243, 42, 76), rgb(223, 102, 72));
+}
+
+.main-navbar {
+	.navbar-item {
+		font-family: $roboto;
+		text-transform: uppercase;
+		
+		&.is-active:not(.hover-text) {
+			background: linear-gradient(90deg, rgb(206, 176, 77),rgb(229, 226, 55));
+			font-weight: bolder;
+			-webkit-text-fill-color: transparent;
+			-webkit-background-clip: text;
+			background-clip: text;
+		}
+
+		&.is-active.hover-text {
+			background-color: transparent !important;
+
+			.mdi {
+				color: $warning;
+			}
+
+			span[data-toggle="text"] {
+				display: block !important;
+
+				background: linear-gradient(90deg, rgb(206, 176, 77),rgb(229, 226, 55));
+				font-weight: bolder;
+				-webkit-text-fill-color: transparent;
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+		}
+	}
+}
+
+.navbar-burger {
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 480px) {
+	.navbar {
+		margin-bottom: 20px;
+	}
+
+	.navbar-end {
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top-color: $primary;
+		border-top-width: 2px;
+		border-top-style: solid;
+	}
+}
+
+//! -----------------------------------------------------
+//* @LOADER STYLING --------------------------------------
+
+.loader-wrapper {
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	align-content: center;
+	justify-content: center;
+	position: fixed;
+	z-index: 100;
+
+	background: linear-gradient(135deg, rgba(237, 53, 115, 0.7), rgba(245, 177, 77, 0.7));
+
+	img {
+		width: 200px;
+		padding-bottom:50px;
+		opacity: 0.7;
+	}
+}
+
+//! -----------------------------------------------------
+//* @MDI ICON --------------------------------------------
+
+.mdi {
+	margin-left: 5px;
+	margin-right: 5px;
+
+	&.in-right {
+		margin-right: 0px;
+	}
+
+	&.in-left {
+		margin-left: 0px;
+	}
+}
+
+.hover-text {
+	& > [data-toggle="text"] {
+		display: none !important;
+		margin-left: 5px;
+		margin-right: 5px;
+
+		&.in-right {
+			margin-left: 0px;
+		}
+
+		&.in-left {
+			margin-right: 0px;
+		}
+	}
+}
+
+.hover-text:hover > [data-toggle="text"] {
+	display: inline !important;
+}
+
+//! -----------------------------------------------------
+//* @HERO -----------------------------------------------
+
+.hero {
+	.hero-body {
+		padding: $section-padding;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+	}
+
+	&.is-medium > .hero-body {
+		padding: $section-padding-medium;
+	}
+
+	&.is-large > .hero-body {
+		padding: $section-padding-large;
+	}
+
+	&.is-bold {
+		@each $name, $gradient in $heroBold {
+			&.is-#{$name} {
+				background: $gradient !important;
+			}
+		}
+	}
+}
+
+//! -----------------------------------------------------
+//* @CONTENT --------------------------------------------
+
+.white-space {
+	display: block;
+	width: 100%;
+	height: 1rem;
+
+	&.is-small {
+		height: 0.5rem;
+	}
+
+	&.is-medium {
+		height: 2.5rem;
+	}
+
+	&.is-large {
+		height: 5rem;
+	}
+}
+
+.content li {
+	margin-top: 0.25em !important;
+}
+
+.breadcrumb li {
+	&.brand {
+		@include brand(1rem, -.5px);
+		background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
+		-webkit-text-fill-color: transparent;
+		-webkit-background-clip: text;
+		background-clip: text;
+
+		&:hover {
+			background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
+			-webkit-text-fill-color: transparent;
+			-webkit-background-clip: text;
+			background-clip: text;
+		}
+	}
+
+	a:hover {
+		background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
+		-webkit-text-fill-color: transparent;
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+
+	&.is-active a {
+		color: $dark;
+	}
+		
+}
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";

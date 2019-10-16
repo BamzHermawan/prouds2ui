@@ -17,9 +17,9 @@
 </head>
 
 <body>
-	<div class="loader-wrapper animated fadeIn">
+	<!-- <div class="loader-wrapper animated fadeIn">
 		<img src="http://localhost:5501/media/loader.gif">
-	</div>
+	</div> -->
 
 	<section class="hero is-primary is-bold">
 		<div class="hero-body">
@@ -59,11 +59,11 @@
 				<option>Technical Writer</option>
 			</template>
 
-			<!-- <template #got-to-resource-booking>
+			<template #got-to-resource-booking>
 				<a class="button is-info" href="resourceBooking.html">
 					<span>Resource Booking 👉</span>
 				</a>
-			</template> -->
+			</template>
 
 			<template slot="column" slot-scope="props">
 				<b-table-column field="nama" label="Name" sortable>
@@ -129,15 +129,19 @@
 								<td class="inner is-plan">600,000</td>
 								<td class="inner is-plan">150,000,000</td>
 							</tr>
+							<tr>
+								<th>Total</th>
+								<td class="is-plan">12</td>
+								<td class="is-plan">130</td>
+								<td class="is-plan">810</td>
+								<td class="is-plan"></td>
+								<td class="is-plan">570,000,000</td>
+							</tr>
+							<tr>
+								<th>Internal Resources - Indirect</th>
+								<td colspan="5" class="is-plan">150,000,000</td>
+							</tr>
 						</tbody>
-						<tfoot>
-							<th>Total</th>
-							<td class="is-plan">12</td>
-							<td class="is-plan">130</td>
-							<td class="is-plan">810</td>
-							<td class="is-plan"></td>
-							<td class="is-plan">570,000,000</td>
-						</tfoot>
 					</table>
 				</b-collapse>
 

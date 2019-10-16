@@ -77,7 +77,7 @@ new Vue({
 			) {
 				this.$dialog.alert({
 					message: 'Sorry, but you cannot Change the parent of <b>' + this.selectedTask.pName + "</b>.",
-					type: 'is-warning'
+					type: 'is-info'
 				});
 			} else {
 				this.modal.changeParentTask = true;
@@ -93,7 +93,7 @@ new Vue({
 			) {
 				this.$dialog.alert({
 					message: 'Sorry, <b>(' + this.selectedTask.pName + ")</b> doesn\'t have predecessor.",
-					type: 'is-warning'
+					type: 'is-info'
 				});
 			} else {
 				this.$dialog.confirm({
@@ -113,7 +113,7 @@ new Vue({
 			) {
 				this.$dialog.alert({
 					message: 'Sorry, but you cannot shrink <b>' + this.selectedTask.pName + "</b>.",
-					type: 'is-warning'
+					type: 'is-info'
 				});
 			} else {
 				this.$dialog.confirm({
@@ -133,7 +133,7 @@ new Vue({
 			) {
 				this.$dialog.alert({
 					message: 'Sorry, but you cannot delete <b>' + this.selectedTask.pName + "</b>.",
-					type: 'is-warning'
+					type: 'is-info'
 				});
 			} else {
 				this.$dialog.confirm({
