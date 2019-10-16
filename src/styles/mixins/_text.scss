@@ -1,0 +1,22 @@
+// Prouds text logo branding
+@mixin brand($size, $spacing){
+	font-family: 'Raleway', 'Roboto Condensed', sans-serif;
+	font-weight: bolder;
+	font-size: $size;
+	letter-spacing: $spacing;
+	background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+
+// Disable text block
+@mixin noSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}

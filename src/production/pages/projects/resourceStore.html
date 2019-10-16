@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+
+	<title>Resource Store | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/main.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+	<section class="hero is-primary is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Resource Booking
+				</h1>
+				<h2 class="subtitle">
+					<span class="has-text-warning">Search Engine:</span> Find your suitable Project Member Here 💪
+				</h2>
+			</div>
+		</div>
+	</section>
+
+	<section id="vapp" class="section" data-logged="Ade Wiranata Putra">
+		<search-menu ref="stepOne" api-detail-resource="http://localhost:5501/demo/getDetail.php"
+			api-search-engine="http://localhost:5501/demo/getResource.php"
+			api-post-saved="http://localhost:5501/demo/axios_check.php?return=integer-0-99-batchId">
+			<template slot="exit-button">
+				<a href="resourceBooking.html" class="button is-primary">🏃‍ Exit Booking Menu</a>
+			</template>
+			<template slot="cartButton">
+				<b-button type="is-success tour-step-9" @click="sendSavedResource" :loading="loadingBtn">Next Step: Pick
+					Booking Schedule 👉</b-button>
+			</template>
+			<template #level-select-master>
+				<option value="flint">Flint</option>
+				<option value="silver">Silver</option>
+				<option value="vane">Vane</option>
+				<option value="billy">Billy</option>
+				<option value="jack">Jack</option>
+			</template>
+		</search-menu>
+
+		<b-modal full-screen :active.sync="filter.active" has-modal-card :can-cancel="false"
+			@close="reloadLocalStorage">
+			<filter-menu start-date-name="startDate" end-date-name="endDate" user-id-name="users"
+				api-action="http://localhost:5501/demo/post_detect.php"
+				api-check-booking="http://localhost:5501/demo/getBooking.php"
+				api-detail-resource="http://localhost:5501/demo/getDetail.php"></filter-menu>
+		</b-modal>
+	</section>
+	<script>
+		const
+			SAVEDRESOURCE = {
+				batchId: "2",
+				resource: [
+					{
+						userId: "000008",
+						filters: {
+							role: "Project Manager"
+						}
+					},
+					{
+						userId: "000010",
+						filters: {
+							role: "Project Manager"
+						}
+					}
+				]
+			}
+		LISTPROJECT = [
+			{
+				"projectId": "1",
+				"projectName": "Prouds UI 2"
+			},
+			{
+				"projectId": "2",
+				"projectName": "GPIP 2019"
+			},
+			{
+				"projectId": "3",
+				"projectName": "Integrasi Sistem Pertamina"
+			},
+			{
+				"projectId": "4",
+				"projectName": "Integrasi Sistem AP2"
+			},
+			{
+				"projectId": "5",
+				"projectName": "Cloud SME"
+			},
+			{
+				"projectId": "6",
+				"projectName": "Indihome"
+			},
+			{
+				"projectId": "7",
+				"projectName": "Pentaho Development"
+			},
+			{
+				"projectId": "8",
+				"projectName": "Date Warehouse"
+			},
+			{
+				"projectId": "9",
+				"projectName": "FHCI BUMN"
+			}
+		]
+	</script>
+	<script src="../../scripts/project/resourceStore/controller.js"></script>
+</body>

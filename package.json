@@ -3,11 +3,13 @@
 	"version": "1.2.0",
 	"description": "Front-end HTML/CSS/JS for PRouDS",
 	"scripts": {
-		"bersih": "rm -rf dist",
+		"bersih": "rm -rf dist && rm -rf src/production/pages/dist && rm -rf src/development/pages/dist",
 		"demo": "cd release && php -S localhost:5501",
-		"ngoding": "yarn run bersih && parcel src/pages/**/*.html -p 5500",
-		"mantap": "node bundler.js -o release/page -s release/src src/pages/**/*.html",
-		"build": "parcel build src/pages/**/*.html -d release/page --public-url /src --no-source-maps --no-minify"
+		"ngoding": "yarn run bersih && parcel src/development/pages/**/*.html -p 5500",
+		"ngoding:pro": "yarn run bersih && parcel src/production/pages/**/*.html -p 5500",
+		"ngoding:pick": "yarn run bersih && parcel -p 5500",
+		"mantap": "node bundler.js -o release/page -s release/src src/production/pages/**/*.html",
+		"build": "parcel build src/production/pages/**/*.html -d release/page --public-url /src --no-source-maps --no-minify"
 	},
 	"author": "PMO Telkomsigma",
 	"devDependencies": {
@@ -53,6 +55,12 @@
 		"vue-jstree": "^2.1.6"
 	},
 	"alias": {
-		"vue": "./node_modules/vue/dist/vue.common.js"
+		"vue": "./node_modules/vue/dist/vue.common.js",
+		"helper-moment": "./src/helper/moment-locale.js",
+		"helper-tools": "./src/helper/tools.js",
+		"helper-loader": "./src/helper/loader.js",
+		"helper-filter": "./src/helper/filters.js",
+		"helper-tour": "./src/helper/tour.js",
+		"components": "./src/components/registry.js"
 	}
 }

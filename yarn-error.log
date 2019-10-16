@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add crudInput
+  C:\Program Files\nodejs\node.exe C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add helper-tour
 
 PATH: 
-  C:\Users\ARIOWI~1\AppData\Local\Temp\yarn--1568778798736-0.37463298094270026;D:\Projects\Telkomsigma\prouds2ui\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;D:\Oracle\product\11.2.0\client_1\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\wamp64\bin\php\php7.2.4;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AdoptOpenJDK\jdk8u192-b12\bin;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;C:\Android\android-sdk\tools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Ario Widiatmoko\AppData\Local\Microsoft\WindowsApps;C:\Users\Ario Widiatmoko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\Composer\vendor\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\cmder
+  C:\Users\ARIOWI~1\AppData\Local\Temp\yarn--1571221582212-0.4041596845552047;D:\Projects\Telkomsigma\prouds2ui\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;D:\Oracle\product\11.2.0\client_1\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\wamp64\bin\php\php7.2.4;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AdoptOpenJDK\jdk8u192-b12\bin;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;C:\Android\android-sdk\tools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Ario Widiatmoko\AppData\Local\Microsoft\WindowsApps;C:\Users\Ario Widiatmoko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\Composer\vendor\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\cmder
 
 Yarn version: 
   1.17.3
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/crudInput: Not found
+  Error: https://registry.yarnpkg.com/helper-tour: Not found
       at Request.params.callback [as _callback] (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66830:18)
       at Request.self.callback (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140464:22)
       at Request.emit (events.js:198:13)
@@ -32,11 +32,13 @@ npm manifest:
   	"version": "1.2.0",
   	"description": "Front-end HTML/CSS/JS for PRouDS",
   	"scripts": {
-  		"bersih": "rm -rf dist",
+  		"bersih": "rm -rf dist && rm -rf src/production/pages/dist && rm -rf src/development/pages/dist",
   		"demo": "cd release && php -S localhost:5501",
-  		"ngoding": "yarn run bersih && parcel src/pages/**/*.html -p 5500",
-  		"mantap": "node bundler.js -o release/page -s release/src src/pages/**/*.html",
-  		"build": "parcel build src/pages/**/*.html -d release/page --public-url /src --no-source-maps --no-minify"
+  		"ngoding:dev": "yarn run bersih && parcel src/development/pages/**/*.html -p 5500",
+  		"ngoding:pro": "yarn run bersih && parcel src/production/pages/**/*.html -p 5500",
+  		"ngoding:pick": "yarn run bersih && parcel -p 5500",
+  		"mantap": "node bundler.js -o release/page -s release/src src/production/pages/**/*.html",
+  		"build": "parcel build src/production/pages/**/*.html -d release/page --public-url /src --no-source-maps --no-minify"
   	},
   	"author": "PMO Telkomsigma",
   	"devDependencies": {
@@ -69,7 +71,7 @@ npm manifest:
   	},
   	"dependencies": {
   		"axios": "^0.19.0",
-  		"buefy": "^0.8.3",
+  		"buefy": "0.7.10",
   		"dhtmlx-gantt": "^6.2.3",
   		"highcharts": "^7.1.2",
   		"jsgantt-improved": "^2.2.11",
@@ -78,10 +80,17 @@ npm manifest:
   		"shepherd.js": "^4.2.0",
   		"vue": "^2.6.10",
   		"vue-clazy-load": "^0.4.2",
-  		"vue-hot-reload-api": "^2.3.3"
+  		"vue-hot-reload-api": "^2.3.3",
+  		"vue-jstree": "^2.1.6"
   	},
   	"alias": {
-  		"vue": "./node_modules/vue/dist/vue.common.js"
+  		"vue": "./node_modules/vue/dist/vue.common.js",
+  		"helper-tools": "./src/helper/tools.js",
+  		"helper-loader": "./src/helper/loader.js",
+  		"helper-moment": "./src/helper/moment-locale.js",
+  		"helper-filter": "./src/helper/filters.js",
+  		"helper-tour": "./src/helper/tour.js",
+  		"components": "./src/components/registry.js"
   	}
   }
 
@@ -1479,10 +1488,10 @@ Lockfile:
       electron-to-chromium "^1.3.188"
       node-releases "^1.1.25"
   
-  buefy@^0.8.3:
-    version "0.8.3"
-    resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.8.3.tgz#d8eefe6c3368dde5bc80abfa33cb42736de92604"
-    integrity sha512-01aHoCy4LAD08MmUahXC8mVqtGK/kzJ45ysXskwLWILAhyLMqkZ5fvdMKD9Ky6iDsMttPHdwUe2csmdnIx9caw==
+  buefy@0.7.10:
+    version "0.7.10"
+    resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.7.10.tgz#c9931114af9a40cb9a5314026309458241532049"
+    integrity sha512-jU9CTEQR1rozxagwEPB69qObBDwWl+4uCa6TjiPkqcqOb/uxq1uvyvCsVinADzjNjzOTFhUOuuSPQk8gsVEOzA==
     dependencies:
       bulma "0.7.5"
   
@@ -6214,6 +6223,11 @@ Lockfile:
     version "2.3.3"
     resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.3.tgz#2756f46cb3258054c5f4723de8ae7e87302a1ccf"
     integrity sha512-KmvZVtmM26BQOMK1rwUZsrqxEGeKiYSZGA7SNWE6uExx8UX/cj9hq2MRV/wWC3Cq6AoeDGk57rL9YMFRel/q+g==
+  
+  vue-jstree@^2.1.6:
+    version "2.1.6"
+    resolved "https://registry.yarnpkg.com/vue-jstree/-/vue-jstree-2.1.6.tgz#44827ad72953ed77da6590ce4e8f37f7787f8653"
+    integrity sha512-vtUmhLbfE2JvcnYNRXauJPkNJSRO/f9BTsbxV+ESXP/mMQPVUIYI4EkSHKSEOxVDHTU7SfLp/AxplmaAl6ctcg==
   
   vue-template-compiler@^2.6.10:
     version "2.6.10"

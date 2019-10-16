@@ -2,7 +2,8 @@
 @import "~bulma/sass/utilities/_all";
 
 // Mixins ---------------------------------------------
-@import "mixin";
+@import "mixins/gradient";
+@import "mixins/text";
 
 // Font Import from google Font
 @import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed|Raleway:400,800&display=swap');
@@ -49,6 +50,7 @@ $heroBold: (
 );
 
 // set sizes
+$size-1: 1.5rem;
 $tablet: 719px;
 $section-padding: 2.5rem;
 $section-padding-medium: 9rem 3rem;
@@ -91,7 +93,7 @@ body {
 		padding: 1rem;
 
 		// background: linear-gradient(135deg, ghostwhite, rgb(233, 233, 233));
-		@include navbarGradient($light, ghostwhite);
+		@include sidebarGradient($light, ghostwhite);
 		-webkit-box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
 		-moz-box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
 		box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
@@ -291,7 +293,7 @@ body {
 
 .navbar.main {
 	padding-right: 15px;
-	@include sidebarGradient(rgb(243, 42, 76), rgb(223, 102, 72));
+	@include navbarGradient(rgb(243, 42, 76), rgb(223, 102, 72));
 }
 
 .main-navbar {
