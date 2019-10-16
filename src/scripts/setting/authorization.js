@@ -28,19 +28,17 @@ new Vue({
 				this.showTable = false
 			}
 		},
-		editForm(cok) {
+		editForm(val) {
 			if (this.edit) {
+				this.tampung = ""
 				this.edit = false
 				this.showTable = true
 			} else {
-				this.tampung = cok
+				this.tampung = val
 				this.edit = true
 				this.showTable = false
 
 			}
-		},
-		tes() {
-
 		}
 	},
 	mounted() {

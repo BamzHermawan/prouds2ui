@@ -114,11 +114,8 @@ new Vue({
 		}
 	},
 	mounted() {
-		// if (this.props.ORGANIZATION != undefined) {
-		// 	this.organization = this.props.ORGANIZATION
-		// }
-
 		if (this.props.ORGANIZATION != undefined) {
+			// 	this.organization = this.props.ORGANIZATION
 			var mappedArr = {},
 				arrElem,
 				mappedElem;

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>DETAIL | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../styles/main.scss">
+	<link href="../../../node_modules/jsgantt-improved/dist/jsgantt.css" rel="stylesheet" type="text/css" />
+	<script src="../../../node_modules/jsgantt-improved/dist/jsgantt.js" type="text/javascript"></script>
+</head>
+
+<body class="add-margin">
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+	<div id="vapp">
+		<nav-bar :left-menu="[
+					{ label: 'opportunity', link: '#oppty', icon:'', active: false },
+					{ label: 'projects', link: 'list.html', icon:'', active: true },
+					{ label: 'financial', link: '#financial', icon:'', active: false },
+					{ label: 'operation', link: '#opperation', icon:'', active: false },
+					{ label: 'setting', link: '../setting/users.html', icon:'', active: false },
+				]" :right-menu="[
+					{ label: 'Ade Wiranata Putra', link: '#profile', icon:'mdi-account-circle' },
+					{ label: '🔒 logout', link: '#logout', icon:'' },
+				]" home-link="../home.html"></nav-bar>
+
+		<section class="info">
+
+			<div v-for="(date,idx) in tmp" :key="idx">
+				<div class="columns is-multiline">
+					<div class="column is-12">
+						{{tmp[idx]}}
+					</div>
+					<template v-for="(timesheet, index) in myTimesheet">
+						<span :key="index"></span>
+						<div class="column is-4" v-if="tmp[idx] === myTimesheet[index].start">
+							<div class="card" style="min-height: 200px;">
+								<div class="card-content">
+									<div style="min-height: 110px;">
+										<p> {{ timesheet.iwo }} </p>
+										<p> {{timesheet.project_name}} </p>
+										<p>task : {{timesheet.task}} </p>
+									</div>
+									<div class="level">
+										<div class="level-left">
+											<p>Start : {{timesheet.start}} </p>
+										</div>
+										<div class="level-right">
+											<p>End : {{timesheet.end}} </p>
+										</div>
+									</div>
+									<p style="margin-bottom: 10px">Progress of</p>
+									<div class="columns">
+										<div class="column">
+											<div class="level-left">
+												<p>Timesheet <small>60%</small></p>
+											</div>
+											<progress class="progress is-small is-success" :value="60" :max="100"
+												show-value></progress>
+										</div>
+										<div class="column">
+											<div class="level-right">
+												<p>Task <small>60%</small></p>
+											</div>
+											<progress class="progress is-small is-success" :value="60"
+												:max="100"></progress>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</template>
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+
+	<script>
+		const MYTIMESHEET = [
+			{
+				id: "1",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 1",
+				task: "Melakukan review dokumen teknis SOP dan User Guide",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "2",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 2",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "3",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 4",
+				task: "Melakukan review dokumen teknis SIT 3",
+				start: "2019-10-12",
+				end: "2019-12-30"
+			},
+			{
+				id: "4",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
+				task: "Melakukan review dokumen teknis SOP dan User Guide 3",
+				start: "2019-10-11",
+				end: "2019-12-30"
+			},
+			{
+				id: "5",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
+				task: "Melakukan review dokumen teknis SOP dan User Guide 4",
+				start: "2019-10-11",
+				end: "2019-12-30"
+			},
+			{
+				id: "6",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 3",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "7",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 2",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "8",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 2",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			}
+		]
+	</script>
+
+	<script src="../../scripts/project/myTimesheet.js"></script>
+
+</body>
+
+</html>
