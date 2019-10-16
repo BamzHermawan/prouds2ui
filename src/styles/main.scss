@@ -2,7 +2,8 @@
 @import "~bulma/sass/utilities/_all";
 
 // Mixins ---------------------------------------------
-@import "mixin";
+@import "mixins/gradient";
+@import "mixins/text";
 
 // Font Import from google Font
 @import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed&display=swap');

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+
+	<title>Resource Allocation | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/main.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<section class="hero is-primary is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Resource Allocation
+				</h1>
+				<h2 class="subtitle has-text-warning">
+					Development Prouds 2
+				</h2>
+			</div>
+			<br>
+			<div class="container">
+				<p class="is-size-5">
+					🏢 Project Management Office <span style="margin: 0px 14px;">|</span> 👨‍💼 PM. Ade Wiranata Putra
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="vapp" class="section">
+		<content-page ref="content" project-id="My-Yeaaaah-Project-ID"
+			action-new-role="http://localhost:5501/demo/post_detect.php?how=new-role"
+			action-new-member="http://localhost:5501/demo/post_detect.php?how=new-member"
+			action-change-role="http://localhost:5501/demo/post_detect.php?how=change-role"
+			api-fetch-level="http://localhost:5501/demo/level_api.php" alert-message="Waduh Bahaya!"
+			alert-type="is-danger">
+			<template slot="role-option">
+				<option selected style="display: none;"></option>
+				<option>Programmer Analyst</option>
+				<option>Programmer</option>
+				<option>Engineer</option>
+				<option>Senior Business Analyst</option>
+				<option>Junior Tester</option>
+				<option>Quality Assurance</option>
+				<option>Database Administrator</option>
+				<option>Technical Writer</option>
+			</template>
+
+			<template #got-to-resource-booking>
+				<a class="button is-info" href="resourceBooking.html">
+					<span>Resource Booking 👉</span>
+				</a>
+			</template>
+
+			<template slot="column" slot-scope="props">
+				<b-table-column field="nama" label="Name" sortable>
+					<span>{{ props.row.nama }}</span>
+				</b-table-column>
+
+				<b-table-column field="bu" label="Business Unit" sortable>
+					{{ props.row.bu }}
+				</b-table-column>
+
+				<b-table-column field="assigned_role" label="Assigned Role" sortable>
+					{{ props.row.assigned_role }}
+				</b-table-column>
+
+				<b-table-column field="job_role" label="Job Role" sortable>
+					{{ props.row.job_role }}
+				</b-table-column>
+
+				<!-- <b-table-column field="rate" label="Rate (Rp)" sortable centered class="has-text-right">
+					{{ props.row.rate | number_format }}
+				</b-table-column> -->
+			</template>
+
+			<template #summary-plan>
+				<b-message id="is-alert-message" class="animated" type="is-danger">
+					<span style="margin-right:5px;">⚠</span> Your allocated budget is more than your plan <br>
+					<span style="margin-right:5px;">⚠</span> Your allocated budget is more than your plan <br>
+				</b-message>
+
+				<b-collapse class="card table-summary-plan" :open="true">
+					<div slot="trigger" slot-scope="props" class="card-header" role="button">
+						<p class="card-header-title">
+							Resource Plan / BoQ
+						</p>
+						<a class="card-header-icon">
+							<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+							</b-icon>
+						</a>
+					</div>
+					<table class="table is-fullwidth">
+						<thead>
+							<th>Assigned Role</th>
+							<th class="is-plan">Qty</th>
+							<th class="is-plan">Day(s)</th>
+							<th class="is-plan">Manday(s)</th>
+							<th class="is-plan">Rate (Rp)</th>
+							<th class="is-plan">Total Cost (Rp)</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Senior Programmer</td>
+								<td class="inner is-plan">7</td>
+								<td class="inner is-plan">80</td>
+								<td class="inner is-plan">560</td>
+								<td class="inner is-plan">750,000</td>
+								<td class="inner is-plan">420,000,000</td>
+							</tr>
+							<tr>
+								<td>Engineer</td>
+								<td class="inner is-plan">5</td>
+								<td class="inner is-plan">50</td>
+								<td class="inner is-plan">250</td>
+								<td class="inner is-plan">600,000</td>
+								<td class="inner is-plan">150,000,000</td>
+							</tr>
+							<tr>
+								<th>Total</th>
+								<td class="is-plan">12</td>
+								<td class="is-plan">130</td>
+								<td class="is-plan">810</td>
+								<td class="is-plan"></td>
+								<td class="is-plan">570,000,000</td>
+							</tr>
+							<tr>
+								<th>Internal Resources - Indirect</th>
+								<td colspan="5" class="is-plan">150,000,000</td>
+							</tr>
+						</tbody>
+					</table>
+				</b-collapse>
+
+				<b-collapse class="card table-summary-plan" :open="true">
+					<div slot="trigger" slot-scope="props" class="card-header" role="button">
+						<p class="card-header-title">
+							Resource Planned by PM
+						</p>
+						<a class="card-header-icon">
+							<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+							</b-icon>
+						</a>
+					</div>
+					<table id="tablePlan" class="table is-fullwidth is-marginless">
+						<thead>
+							<th>Assigned Role</th>
+							<th>Job Role</th>
+							<th class="is-actual">Qty</th>
+							<th class="is-actual">Day(s)</th>
+							<th class="is-actual">Manday(s)</th>
+							<th class="is-actual">Rate (Rp)</th>
+							<th class="is-actual">Total Cost (Rp)</th>
+						</thead>
+						<tbody data-url="http://localhost:5501/demo/axios_check.php?return=ok">
+							<tr data-id="1" data-days="80" data-qty="7" data-rate="750000">
+								<td>Senior Programmer</td>
+								<td class="has-text-left">Analyst Programmer</td>
+								<td class="inner is-actual val-1-qty">-</td>
+								<td class="inner is-actual is-days-has-input">
+									<span v-show="!editPlan" class="animated fadeIn val-1-days">-</span>
+									<input v-show="editPlan" type="number" @change="daysChange"
+										class="input is-small animated fadeIn" />
+								</td>
+								<td class="inner is-actual val-1-mandays">-</td>
+								<td class="inner is-actual val-1-rate">-</td>
+								<td class="inner is-actual val-1-total">-</td>
+							</tr>
+							<tr data-id="2" data-days="50" data-qty="5" data-rate="600000">
+								<td>Engineer</td>
+								<td class="has-text-left">Junior Programmer</td>
+								<td class="inner is-actual val-2-qty">-</td>
+								<td class="inner is-actual is-days-has-input">
+									<span v-show="!editPlan" class="animated fadeIn val-2-days">-</span>
+									<input v-show="editPlan" type="number" @change="daysChange"
+										class="input is-small animated fadeIn" />
+								</td>
+								<td class="inner is-actual val-2-mandays">-</td>
+								<td class="inner is-actual val-2-rate">-</td>
+								<td class="inner is-actual val-2-total">-</td>
+							</tr>
+
+							<!-- Template Jika Data Kosong -->
+							<tr>
+								<td colspan="7" class="inner is-actual">
+									<p class="subtitle has-text-centered">Data Unavailable</p>
+								</td>
+							</tr>
+							<!-- Template Jika Data Kosong -->
+
+						</tbody>
+						<tfoot>
+							<th colspan="2">Total</th>
+							<td class="is-actual">{{ planSums.qty | numformat }}</td>
+							<td class="is-actual"></td>
+							<td class="is-actual">{{ planSums.mandays | numformat }}</td>
+							<td class="is-actual"></td>
+							<td class="is-actual">{{ planSums.total | numformat }}</td>
+						</tfoot>
+					</table>
+
+					<p style="padding: 10px 0px 0px 10px;" class="is-pulled-left has-text-danger is-bold">note* : this
+						is just a note about something that must be noted to user!</p>
+
+					<!-- Jika Data Kosong Footer ini boleh tidak ditampilkan -->
+					<footer class="card-footer has-gradient-light is-block is-clearfix">
+						<div v-if="editPlan" class="button-right">
+							<b-button type="is-success" size="is-small" :loading="loadingSavePlan"
+								@click="saveEditPlan()">
+								Save Plan
+							</b-button>
+							<b-button type="is-danger" size="is-small" @click="cancelEditPlan()">
+								Cancel
+							</b-button>
+						</div>
+						<b-button v-else type="is-info" size="is-small" class="is-pulled-right"
+							@click="editPlan = true">
+							Edit Plan
+						</b-button>
+					</footer>
+					<!-- Jika Data Kosong Footer ini boleh tidak ditampilkan -->
+
+				</b-collapse>
+			</template>
+		</content-page>
+	</section>
+
+	<script>
+		const RESOURCE = {
+			"member": [
+				{
+					"nik": "P2010942",
+					"nama": "Case Dudley",
+					"bu": "Songbird",
+					"job_role": "Junior Programmer",
+					"assigned_role": "Senior Programmer",
+					"rate": 850000,
+					"unassign_link": "#remove",
+					"status": true
+				},
+				{
+					"nik": "CRS2018356",
+					"nama": "Mcmahon Christian",
+					"bu": "Medifax",
+					"assigned_role": "Technical Writer",
+					"job_role": "Junior Programmer",
+					"rate": 550000,
+					"unassign_link": "#remove",
+					"status": false
+				},
+				{
+					"nik": "CRS2018300",
+					"nama": "Clarissa Snider",
+					"bu": "Medifax",
+					"assigned_role": "Junior Tester",
+					"job_role": "Junior Tester",
+					"rate": 450000,
+					"unassign_link": "#remove",
+					"status": false
+				},
+				{
+					"nik": "CRS2012829",
+					"nama": "Valenzuela Mccarthy",
+					"bu": "Comtrak",
+					"assigned_role": "Database Administrator",
+					"job_role": "Database Administrator",
+					"rate": 550000,
+					"unassign_link": "#remove",
+					"status": true
+				},
+				{
+					"nik": "CRS2016181",
+					"nama": "Rosales Rivas",
+					"bu": "Apexia",
+					"assigned_role": "Database Administrator",
+					"job_role": "Database Administrator",
+					"rate": 550000,
+					"unassign_link": "#remove",
+					"status": false
+				},
+				{
+					"nik": "P2012747",
+					"nama": "Woods Newton",
+					"bu": "Quadeebo",
+					"assigned_role": "Quality Assurance",
+					"job_role": "Quality Assurance",
+					"rate": 550000,
+					"unassign_link": "#remove",
+					"status": true
+				},
+			],
+			"plan": 4,
+			"actual": 6
+		}
+		const USERS = [
+			{
+				"nik": "M20005413",
+				"nama": "Martina Dillard",
+				"role": "Lorem Ippsum",
+				"bu": "Quilm",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
+			},
+			{
+				"nik": "S20186428",
+				"nama": "Alissa Newton",
+				"role": "Lorem Ippsum",
+				"bu": "Gracker",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+			},
+			{
+				"nik": "CRS20136833",
+				"nama": "Maryanne Watson",
+				"role": "Lorem Ippsum",
+				"bu": "Corepan",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
+			},
+			{
+				"nik": "CRS20166397",
+				"nama": "Bush Hunt",
+				"role": "Lorem Ippsum",
+				"bu": "Zytrex",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+			},
+			{
+				"nik": "CRS20005337",
+				"nama": "Cannon May",
+				"role": "Lorem Ippsum",
+				"bu": "Digifad",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=non"
+			},
+			{
+				"nik": "L20171511",
+				"nama": "Coleen Williamson",
+				"role": "Lorem Ippsum",
+				"bu": "Entogrok",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+			},
+			{
+				"nik": "S20065729",
+				"nama": "Christa Townsend",
+				"role": "Lorem Ippsum",
+				"bu": "Ovium",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+			},
+			{
+				"nik": "S20168519",
+				"nama": "Alston Weeks",
+				"role": "Lorem Ippsum",
+				"bu": "Zentix",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
+			},
+			{
+				"nik": "S20012872",
+				"nama": "Joseph Pratt",
+				"role": "Lorem Ippsum",
+				"bu": "Essensia",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+			},
+			{
+				"nik": "L20109899",
+				"nama": "Jennings Norman",
+				"role": "Lorem Ippsum",
+				"bu": "Eternis",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cillum"
+			},
+			{
+				"nik": "P20093418",
+				"nama": "Gertrude Sandoval",
+				"role": "Lorem Ippsum",
+				"bu": "Sloganaut",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+			},
+			{
+				"nik": "S20005469",
+				"nama": "Rhoda Lloyd",
+				"role": "Lorem Ippsum",
+				"bu": "Renovize",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliqua"
+			},
+			{
+				"nik": "CRS20104806",
+				"nama": "Florine Blake",
+				"role": "Lorem Ippsum",
+				"bu": "Enervate",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+			},
+			{
+				"nik": "L20062709",
+				"nama": "Cook Pennington",
+				"role": "Lorem Ippsum",
+				"bu": "Terrago",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=anim"
+			},
+			{
+				"nik": "S20087299",
+				"nama": "Baxter Glass",
+				"role": "Lorem Ippsum",
+				"bu": "Zidant",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+			},
+			{
+				"nik": "L2018935",
+				"nama": "French Ferguson",
+				"role": "Lorem Ippsum",
+				"bu": "Quinex",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=amet"
+			},
+			{
+				"nik": "S20083508",
+				"nama": "Benjamin Saunders",
+				"role": "Lorem Ippsum",
+				"bu": "Bitendrex",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=duis"
+			},
+			{
+				"nik": "S20139777",
+				"nama": "Holloway Hardin",
+				"role": "Lorem Ippsum",
+				"bu": "Vetron",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+			},
+			{
+				"nik": "S20028589",
+				"nama": "Gretchen Duran",
+				"role": "Lorem Ippsum",
+				"bu": "Gorganic",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
+			},
+			{
+				"nik": "CRS20175427",
+				"nama": "Fox Phelps",
+				"role": "Lorem Ippsum",
+				"bu": "Exposa",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=sit"
+			},
+			{
+				"nik": "CRS20182207",
+				"nama": "Maritza White",
+				"role": "Lorem Ippsum",
+				"bu": "Techtrix",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+			},
+			{
+				"nik": "S20142407",
+				"nama": "Warren Ochoa",
+				"role": "Lorem Ippsum",
+				"bu": "Geostele",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+			},
+			{
+				"nik": "M20011347",
+				"nama": "Mann Hudson",
+				"role": "Lorem Ippsum",
+				"bu": "Zipak",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+			},
+			{
+				"nik": "CRS20056394",
+				"nama": "Jordan Robertson",
+				"role": "Lorem Ippsum",
+				"bu": "Soprano",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cupidatat"
+			},
+			{
+				"nik": "M20169784",
+				"nama": "West Morrow",
+				"role": "Lorem Ippsum",
+				"bu": "Omatom",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=id"
+			},
+			{
+				"nik": "M20186408",
+				"nama": "Marissa Morton",
+				"role": "Lorem Ippsum",
+				"bu": "Portalis",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+			},
+			{
+				"nik": "P20105376",
+				"nama": "Vinson Joyce",
+				"role": "Lorem Ippsum",
+				"bu": "Exiand",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+			},
+			{
+				"nik": "CRS20127204",
+				"nama": "Navarro Herring",
+				"role": "Lorem Ippsum",
+				"bu": "Marketoid",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
+			},
+			{
+				"nik": "L20113959",
+				"nama": "Sheila Williams",
+				"role": "Lorem Ippsum",
+				"bu": "Dognosis",
+				"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
+			}
+		]
+	</script>
+
+	<script src="../../scripts/project/allocation/controller.js"></script>
+</body>
+
+</html>
