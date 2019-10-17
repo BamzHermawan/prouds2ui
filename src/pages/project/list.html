@@ -109,6 +109,12 @@
 								<span class="mdi mdi-menu mdi-18px has-text-info" style="cursor: pointer !important;"
 									slot="trigger"></span>
 								<b-dropdown-item aria-role="listitem" has-link>
+									</span><a @click="setInitialBaseline(props.row)"><span
+											class="mdi mdi-checkbox-marked-outline"></span>
+										Initial Baseline</a>
+								</b-dropdown-item>
+								<hr style="margin-top: 0; margin-bottom: 0;">
+								<b-dropdown-item aria-role="listitem" has-link>
 									</span><a @click="setMileStone(props.row)"><span
 											class="mdi mdi-calendar-check"></span> Set
 										Milestone</a>

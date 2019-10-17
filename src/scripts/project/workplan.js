@@ -92,7 +92,7 @@ new Vue({
 				!this.selectedTask.unlinkPredecessor
 			) {
 				this.$dialog.alert({
-					message: 'Sorry, <b>(' + this.selectedTask.pName + ")</b> doesn\'t have predecessor.",
+					message: "Sorry, <b>(" + this.selectedTask.pName + ")</b> doesn\'t have predecessor.",
 					type: 'is-warning'
 				});
 			} else {
