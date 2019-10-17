@@ -70,6 +70,10 @@ $tablet: 719px;
 }
 
 // ----------------------------------------------
+// LAYOUT STYLING
+
+
+// ----------------------------------------------
 // LOADER Styling
 
 .loader-wrapper {
@@ -477,24 +481,30 @@ tr.gname {
 }
 
 @each $color in $colors {
-	.has-gradient-#{nth($color, 1)} {
-		$thisColor: nth($color, 2);
-		$primeColor: nth($thisColor, 1);
+	$thisColor: nth($color, 2);
+	$primeColor: nth($thisColor, 1);
 
+	.has-gradient-#{nth($color, 1)} {
 		@include heroGradient($primeColor, darken($primeColor, 20%));
 	}
 
-	.has-gradient-#{nth($color, 1)}-lighter {
-		$thisColor: nth($color, 2);
-		$primeColor: nth($thisColor, 1);
+	.has-underline-#{nth($color, 1)} {
+		border-bottom: 1.7px solid $primeColor;
+	}
 
+	.has-gradient-#{nth($color, 1)}-lighter {
 		@include heroGradient(lighten($primeColor, 20%), lighten($primeColor, 10%));
 	}
 
 	.message {
+		&.has-media-list {
+			.media + .media {
+				padding-top: 1rem !important;
+				border-top: 1px solid $dark !important;
+			}
+		}
+
 		&.is-#{nth($color, 1)} {
-			$thisColor: nth($color, 2);
-			$primeColor: nth($thisColor, 1);
 			@include heroGradient(lighten($primeColor, 35%), lighten($primeColor, 20%));
 
 			.message-header {
@@ -508,6 +518,13 @@ tr.gname {
 				border-width: 0px 2px 2px !important;
 				border-color: lighten($primeColor, 10%);
 			}
+
+			&.has-media-list {
+				.media + .media {
+					padding-top: 1rem !important;
+					border-top: 1px solid $primeColor !important;
+				}
+			}
 		}
 
 		&.is-on-field .message-body{
@@ -520,9 +537,6 @@ tr.gname {
 	}
 
 	.field.is-#{nth($color, 1)} {
-		$thisColor: nth($color, 2);
-		$primeColor: nth($thisColor, 1);
-
 		.input, .select > select {
 			border-color: $primeColor !important;
 		}
@@ -615,7 +629,14 @@ tr.gname {
 	&.is-active {
 		background-color: lighten($info, 35%);
 	}
+}
 
+p.is-low-bottom {
+	margin-bottom: 0.5em !important;
+}
+
+p.has-top-margin {
+	margin-top: 1em !important;
 }
 
 @import "~bulma";

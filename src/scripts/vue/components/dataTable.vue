@@ -59,7 +59,7 @@
 					</div>
 				</nav>
 				<b-table
-					:paginated="!showAll && filteredlist.length > 5"
+					:paginated="!showAll && filteredlist.length > perPage"
 					:per-page="perPage"
 					:current-page.sync="currentPage"
 					:pagination-simple="true"

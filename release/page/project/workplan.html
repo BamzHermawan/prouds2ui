@@ -61,7 +61,7 @@
 			</div>
 		</section>
 
-		<div class="container">
+		<div class="container" style="min-height: 100vh;">
 			<div class="columns">
 				<div :class="'column ' + (showSideBar ? 'is-10' : '')">
 					<div class="card">
@@ -113,22 +113,24 @@
 							</a>
 						</header>
 						<div class="card-content is-paddingless">
-							<b-menu>
+							<b-menu class="is-workplan-task-menu">
 								<b-menu-list>
 									<b-menu-item @click="editTask" label="Edit Task" :active="false"></b-menu-item>
-									<b-menu-item @click="setProgress" label="Set Progress" :active="false">
+									<b-menu-item @click="assignResource" label="Assign Resource" :active="false">
 									</b-menu-item>
-									<b-menu-item @click="setSchedule" label="Set Schedule" :active="false">
+									<b-menu-item @click="setProgress" label="Update Progress" :active="false">
 									</b-menu-item>
+									<b-menu-item @click="mergeTask" label="Merge Task" :active="false"></b-menu-item>
+								</b-menu-list>
+								<b-menu-list label="Quick Action">
 									<b-menu-item @click="changeParentTask" label="Change Parent Task" :active="false">
 									</b-menu-item>
 									<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false">
 									</b-menu-item>
 									<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false">
 									</b-menu-item>
-									<b-menu-item @click="assignResource" label="Assign Resource" :active="false">
+									<b-menu-item @click="shrinkTask" label="Shrink Task" :active="false">
 									</b-menu-item>
-									<b-menu-item @click="mergeTask" label="Merge Task" :active="false"></b-menu-item>
 									<b-menu-item @click="deleteTask" label="Delete Task" :active="false"></b-menu-item>
 								</b-menu-list>
 							</b-menu>
@@ -138,7 +140,7 @@
 			</div>
 		</div>
 
-		<b-modal :active.sync="modal.editTask" full-screen="">
+		<b-modal :active.sync="modal.editTask" width="70vw">
 			<edit-task title="Edit Task" :task="selectedTask" workplan-id="1" api-get-duration="http://localhost:5501/demo/getDuration.php" action-event="http://localhost:5501/demo/post_detect.php">
 				<template slot="phase-option">
 					<option selected="" style="display: none;"></option>
@@ -153,37 +155,27 @@
 			</edit-task>
 		</b-modal>
 
-		<b-modal width="650px" :active.sync="modal.setProgress">
-			<set-progress title="Set Progress" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+		<b-modal class="had-max-width" :active.sync="modal.setProgress">
+			<set-progress title="Update Progress" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 			</set-progress>
 		</b-modal>
 
-		<b-modal width="650px" :active.sync="modal.setSchedule">
-			<set-schedule title="Set Schedule" :task="selectedTask" workplan-id="1" api-get-duration="http://localhost:5501/demo/getDuration.php" action-event="http://localhost:5501/demo/post_detect.php">
-				<template slot="workdays-option">
-					<option selected="" style="display: none;"></option>
-					<option value="1">Normal : 5 Business days</option>
-					<option value="2">Medium : 10 Business days</option>
-				</template>
-			</set-schedule>
-		</b-modal>
-
-		<b-modal width="650px" :active.sync="modal.changeParentTask">
+		<b-modal class="had-max-width" :active.sync="modal.changeParentTask">
 			<change-parent-task title="Change Parent Task" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 			</change-parent-task>
 		</b-modal>
 
-		<b-modal width="650px" :active.sync="modal.linkPredecessor">
+		<b-modal class="had-max-width" :active.sync="modal.linkPredecessor">
 			<link-predecessor title="Link Predecessor" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 			</link-predecessor>
 		</b-modal>
 
-		<b-modal width="650px" :active.sync="modal.mergeTask">
+		<b-modal class="had-max-width" :active.sync="modal.mergeTask">
 			<merge-task title="Merge Task" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 			</merge-task>
 		</b-modal>
 
-		<b-modal width="650px" :active.sync="modal.assignResource">
+		<b-modal class="had-max-width" :active.sync="modal.assignResource">
 			<assign-resource title="Assign Resource" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 			</assign-resource>
 		</b-modal>
@@ -209,14 +201,18 @@
   resource: [{
     "name": "Zeid",
     "status": "Assigned",
-    "action": "http://localhost:5500/project/workplan.html"
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
   }, {
     "name": "BilBIl",
     "status": "Completed",
-    "action": ""
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
   }],
-  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-  deleteTask: "http://localhost:5500/project/workplan.html"
+  changeableParent: false,
+  deleteTask: null,
+  shrinkTask: null,
+  unlinkPredecessor: null
 }, {
   pID: 2,
   pName: "Requirement Gathering",
@@ -235,14 +231,18 @@
   resource: [{
     "name": "Zeid",
     "status": "Assigned",
-    "action": "http://localhost:5500/project/workplan.html"
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
   }, {
     "name": "BilBIl",
     "status": "Completed",
-    "action": ""
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
   }],
+  changeableParent: true,
   unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-  deleteTask: "http://localhost:5500/project/workplan.html"
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
 }, {
   pID: 3,
   pName: "Analysis and Design",
@@ -261,14 +261,18 @@
   resource: [{
     "name": "Zeid",
     "status": "Assigned",
-    "action": "http://localhost:5500/project/workplan.html"
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
   }, {
     "name": "BilBIl",
     "status": "Completed",
-    "action": ""
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
   }],
+  changeableParent: true,
   unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-  deleteTask: "http://localhost:5500/project/workplan.html"
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
 }, {
   pID: 4,
   pName: "Mockup UI Development",
@@ -287,14 +291,18 @@
   resource: [{
     "name": "Zeid",
     "status": "Assigned",
-    "action": "http://localhost:5500/project/workplan.html"
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
   }, {
     "name": "BilBIl",
     "status": "Completed",
-    "action": ""
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
   }],
+  changeableParent: true,
   unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-  deleteTask: "http://localhost:5500/project/workplan.html"
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
 }, {
   pID: 6,
   pName: "Construction",
@@ -314,14 +322,18 @@
   resource: [{
     "name": "Zeid",
     "status": "Assigned",
-    "action": "http://localhost:5500/project/workplan.html"
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
   }, {
     "name": "BilBIl",
     "status": "Completed",
-    "action": ""
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
   }],
-  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-  deleteTask: "http://localhost:5500/project/workplan.html"
+  changeableParent: true,
+  shrinkTask: null,
+  deleteTask: null,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html"
 }, {
   pID: 7,
   pName: "Develop Front-End",
@@ -340,14 +352,138 @@
   resource: [{
     "name": "Zeid",
     "status": "Assigned",
-    "action": "http://localhost:5500/project/workplan.html"
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
   }, {
     "name": "BilBIl",
     "status": "Completed",
-    "action": ""
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
   }],
+  changeableParent: true,
   unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-  deleteTask: "http://localhost:5500/project/workplan.html"
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 8,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 9,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 10,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 11,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
 }],
     RESOURCE_AVAILABLE = [{
   "userid": "1234",

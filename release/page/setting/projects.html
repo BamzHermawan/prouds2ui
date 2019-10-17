@@ -39,13 +39,14 @@
 			{ label: 'Organization', link:'organization.html', icon:'account-group', active:false },
 			{ label: 'Authorization', link:'authorization.html', icon:'account-settings', active:false },
 			{ label: 'Projects', link:'projects.html', icon:'file-document-box', active:true },
-			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false }
+			{ label: 'Days Scheme', link:'dayscheme.html', icon:'calendar', active:false },
+			{ label: 'Import Data', link:'importdata.html', icon:'file-import', active:false }
 		]">
 			<div class="container is-section">
 				<div class="container is-section">
 					<div class="container is-section">
 						<p class="title is-size-3">PROJECT</p>
-						<crud ref="projectTypeTable" :paginated="5" narrowed="" margin="margin-bottom: " :data="props.PROJECT_TYPE.data" :columns="props.PROJECT_TYPE.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy="">
+						<crud ref="projectTypeTable" :paginated="5" narrowed="" margin="margin-bottom: " :data="props.PROJECT_TYPE.data" :columns="props.PROJECT_TYPE.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
 							<template slot="header">
 								<header class="card-header has-gradient-light">
@@ -75,7 +76,7 @@
 								</crud-form>
 							</template>
 						</crud>
-						<crud ref="projectLevelTable" :paginated="5" narrowed="" :data="props.PROJECT_LEVEL.data" :columns="props.PROJECT_LEVEL.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" copy="">
+						<crud ref="projectLevelTable" :paginated="5" narrowed="" :data="props.PROJECT_LEVEL.data" :columns="props.PROJECT_LEVEL.fields" del="http://localhost:5501/demo/post_detect.php?id={id}" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
 
 							<template slot="header">
 								<header class="card-header has-gradient-light">
