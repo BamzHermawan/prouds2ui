@@ -52,7 +52,7 @@ $heroBold: (
 // set sizes
 $size-1: 1.5rem;
 $tablet: 719px;
-$section-padding: 2.5rem;
+$section-padding: 1.8rem ;
 $section-padding-medium: 9rem 3rem;
 $section-padding-large: 18rem 3rem;
 
@@ -126,7 +126,7 @@ body {
 				grid-column: none;
 				position: fixed;
 				height: 100vh;
-				z-index: -100;
+				z-index: 100;
 				width: 275px;
 
 				overflow-y: scroll;
@@ -181,12 +181,55 @@ body {
 //* @SIDEBAR ---------------------------------------------
 
 .side-list {
+	.side-list {
+		.parent-list {
+			padding-left: 1rem;
+			border-top-left-radius: 0px !important;
+			border-bottom-left-radius: 0px !important;
+
+			label {
+				padding-left: 8px;
+			}
+		}
+
+		ul {
+			margin-left: 1.5rem;
+			border-left-color: lighten($primary, 15%);
+			border-left-style: solid;
+			border-left-width: 0.5px;
+		}
+
+		.side-item:hover:not(.is-active) {
+			border-top-left-radius: 0px !important;
+			border-bottom-left-radius: 0px !important;
+		}
+	}
+
 	.parent-list {
 		width: 100%;
 		margin-top: 5px;
 		padding: 5px 8px;
 		display: block !important;
 		cursor: pointer;
+
+		&:hover {
+			background: linear-gradient(135deg, rgba(245, 177, 77, 0.7),rgba(237, 53, 115, 0.7));
+			border-radius: 3px;
+		}
+
+		&.is-active {
+			background: linear-gradient(90deg, rgba(51, 138, 249, 0.5),rgba(47, 248, 255, 0.5));
+			border-radius: 3px;
+			
+			label {
+				color: $light !important;
+			}
+
+			.action .tag {
+				background-color: $info !important;
+				color: $light !important;
+			}
+		}
 		
 		.list-title {
 			overflow: auto;
@@ -211,15 +254,10 @@ body {
 		}
 	}
 
-	.parent-list:hover {
-		background: linear-gradient(135deg, rgba(245, 177, 77, 0.7),rgba(237, 53, 115, 0.7));
-		border-radius: 3px;
-	}
-
 	ul {
 		margin-top: .5rem;
 		margin-bottom: 1rem;
-		padding-left: 1rem;
+		// padding-left: 1rem;
 
 		.parent-list {
 			&:hover {
@@ -235,6 +273,9 @@ body {
 
 	.side-item {
 		cursor: pointer;
+		padding-left: 1rem;
+		margin-top: 5px;
+		margin-bottom: 5px;
 
 		a {
 			padding: 5px 8px;
@@ -252,15 +293,18 @@ body {
 			margin: 5px 5px;
 		}
 
-		&:hover {
+		&.is-active {
+			background: linear-gradient(90deg, rgba(51, 138, 249, 0.5),rgba(47, 248, 255, 0.5));
+			border-radius: 3px;
+			
+			a:not(.dropdown-item) {
+				color: $light !important;
+			}
+		}
+
+		&:hover:not(.is-active) {
 			background: linear-gradient(135deg, rgba(248, 207, 144, 0.5),rgba(245, 126, 165, 0.5));
 			border-radius: 3px;
-
-			&.media .media-right {
-				& > .mdi {
-					display: block;
-				}
-			}
 		}
 
 		&.media .media-right {
@@ -274,9 +318,30 @@ body {
 				padding-right: 2px;
 			}
 			
-			& > .mdi {
+			& > .action {
 				color: #fff;
 				display: none;
+			}
+
+			.dropdown {
+				&.is-bottom-left .dropdown-menu {
+					right: -5px;
+					top: 26px;
+				}
+
+				.dropdown-menu {
+					min-width: 75px;
+					.dropdown-content {
+						border-radius: 0px;
+						padding: 0px;
+					}
+				}
+			}
+		}
+
+		&.media:hover .media-right {
+			& > .action {
+				display: block;
 			}
 		}
 
@@ -410,8 +475,8 @@ body {
 .hero {
 	.hero-body {
 		padding: $section-padding;
-		padding-top: 1.5rem;
-		padding-bottom: 1.5rem;
+		padding-top: 1.8rem;
+		padding-bottom: 1.8rem;
 	}
 
 	&.is-medium > .hero-body {

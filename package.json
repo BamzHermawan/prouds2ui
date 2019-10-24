@@ -61,6 +61,7 @@
 		"helper-loader": "./src/helper/loader.js",
 		"helper-filter": "./src/helper/filters.js",
 		"helper-tour": "./src/helper/tour.js",
+		"helper-apis": "./src/helper/apis.js",
 		"components": "./src/components/registry.js"
 	}
 }

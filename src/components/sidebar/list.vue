@@ -11,7 +11,8 @@
 			<side-item
 				v-for="(item, i) in addedItem"
 				:key="i"
-				:link="item.link"
+				:href="item.link"
+				:edit="item.id"
 				>{{ item.text }}</side-item
 			>
 		</ul>
@@ -83,7 +84,6 @@ export default {
 		},
 		toggleList() {
 			this.isOpened = !this.isOpened;
-			console.log(this.$parent);
 		},
 		addList(text, link) {
 			//! Open list first, or it will show error
@@ -95,6 +95,9 @@ export default {
 
 			//* Add Item with text and link to list
 			this.addedItem.push({
+				// ID get dari server
+				id: Math.random().toString(),
+
 				link: link,
 				text: text
 			});

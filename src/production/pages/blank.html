@@ -25,41 +25,22 @@
 				<span>PROUDS</span>
 			</div>
 			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
+				<a id="sidenotif" href="#http://localhost:5500/notification.html" :class="notifClass">
 					<div class="list-title">
 						<label>
 							<span class="mdi mdi-bell-outline in-left"></span>
 							<span>Notification</span>
 						</label>
 						<div class="action">
-							<span class="tag is-warning">100</span>
+							<span class="tag is-warning">{{ notifCount }}</span>
 						</div>
 					</div>
 				</a>
 			</div>
-			<side-list label="List Title" name="main">
-				<side-item link="#standart">Standart Link Item</side-item>
-				<side-item link="#no-edit">No Edit Link Item</side-item>
-				<side-item :action="callNotif" edit="1">Show Notification</side-item>
-				<side-list label="sub-list" name="sub">
-					<side-item link="#help" no-edit>Sub Item 1</side-item>
-					<side-item link="#help" no-edit>Sub Item 2</side-item>
-					<side-item link="#help" no-edit>Sub Item 3</side-item>
-					<side-list label="sub-list 2" name="sub2">
-						<side-item link="#help" no-edit>Sub Item 1</side-item>
-						<side-item link="#help" no-edit>Sub Item 2</side-item>
-						<side-item link="#help" no-edit>Sub Item 3</side-item>
-					</side-list>
-				</side-list>
+
+			<side-list label="My Workspace" name="ws">
+				<side-item href="#">Help [default]</side-item>
 			</side-list>
-			
-			<side-list label="closed default" :open="false" name="second">
-				<side-item link="#standart">Standart Link Item</side-item>
-				<side-item link="#no-edit" no-edit>No Edit Link Item</side-item>
-				<side-item :action="callNotif" no-edit>Show Notification</side-item>
-			</side-list>
-			
-			<side-list label="default empty list" name="empty"></side-list>
 		</section>
 		
 		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
@@ -139,7 +120,7 @@
 			</section>
 			<section class="section">
 				<div class="container">
-					<h1 class="title">{{ hello }}</h1>
+					<h1 class="title">Hi, {{ userlog.nama }} 👋</h1>
 					<h2 class="subtitle">This is content section</h2>
 					
 					<span class="white-space"></span>
@@ -147,9 +128,9 @@
 					<b-message type="is-info">
 						<p>To Do!</p>
 						<ul>
-							<li>Buat global api script & config</li>
-							<li>Buat halaman Help/dokumentasi</li>
-							<li>Buat halaman notifikasi</li>
+							<li>✅ Buat global api script & config</li>
+							<li>⬜ Buat halaman Help/dokumentasi</li>
+							<li>⬜ Buat halaman notifikasi</li>
 						</ul>
 					</b-message>
 				</div>

@@ -1,5 +1,5 @@
 <template>
-	<li :class="listClass">
+	<li @mouseleave="closeDropdown" :class="listClass">
 		<div class="media-content" @click="doAction">
 			<a v-show="!onEdit" :href="href">
 				<slot></slot>
@@ -12,11 +12,18 @@
 			/>
 		</div>
 		<div v-if="!noEdit" class="media-right">
-			<span
+			<b-dropdown
+				ref="setting"
 				v-if="!onEdit"
-				class="mdi mdi-pencil"
-				@click="openEdit"
-			></span>
+				class="action"
+				position="is-bottom-left"
+				@active-change="closeAnyOpenEdit"
+			>
+				<span slot="trigger" class="mdi mdi-settings-outline"></span>
+
+				<b-dropdown-item @click="openEdit">Rename</b-dropdown-item>
+				<b-dropdown-item>Remove</b-dropdown-item>
+			</b-dropdown>
 			<div v-else class="field has-addons">
 				<div class="control">
 					<button class="button is-small is-success">
@@ -82,13 +89,42 @@ export default {
 		},
 		listClass() {
 			let style = "side-item";
-			style += this.active ? " is-active" : "";
 			style += !this.noEdit ? " media" : "";
+
+			let currentPage = window.location.href.toLowerCase();
+			let link = this.href !== undefined ? this.href.toLowerCase() : "";
+			if (this.active) {
+				style += " is-active";
+			} else if (link === currentPage) {
+				style += " is-active";
+			}
 
 			return style;
 		}
 	},
 	methods: {
+		closeDropdown() {
+			if (this.$refs.hasOwnProperty("setting")) {
+				if (this.$refs.setting === undefined) {
+					return false;
+				}
+
+				if (this.$refs.setting.hasOwnProperty("isActive")) {
+					if (this.$refs.setting.isActive) {
+						this.$refs.setting.toggle();
+					}
+				} else {
+					console.log("hidden " + this.edit);
+				}
+			}
+		},
+		closeAnyOpenEdit(dropdownShown) {
+			if (dropdownShown) {
+				if (typeof global.$sidebar.activeEdit === "object") {
+					global.$sidebar.activeEdit.cancelEdit();
+				}
+			}
+		},
 		cancelEdit() {
 			this.onEdit = false;
 			global.$sidebar.activeEdit = undefined;
