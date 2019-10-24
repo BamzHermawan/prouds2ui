@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">100</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Setting" name="project">
+				<side-item href="users.html">Users</side-item>
+				<side-item href="baseline.html">Baseline</side-item>
+				<side-item href="customer.html">Customer</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item>Organization</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
+				<side-item href="projects.html">Projects</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
+				<side-item>Import Data</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a href="../project/list.html" class="navbar-item">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="http://" class="navbar-item hover-text is-active">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="content">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Import Data</span>
+						</h1>
+
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container" ref="actionTable"
+					data-action="http://localhost:5501/demo/post_detect.php?">
+
+					<form action="http://localhost:5501/demo/post_detect.php" method="post"
+						enctype="multipart/form-data">
+						<b-upload v-model="selectedDocument" name="evidDoc" native required style="width:100%;"
+							accept=".jpg,.jpeg,.doc,.docs">
+							<div v-if="selectedDocument==null">
+								<a class="button is-small is-info is-fullwidth">
+									<span class="mdi mdi-upload in-left"></span>
+									<span>Choose File</span>
+								</a>
+							</div>
+							<div v-if="selectedDocument != null" class="field has-addons is-marginless">
+								<div class="control">
+									<span v-if="selectedDocument" class="button is-static is-small">
+										{{ selectedDocument.name }}
+									</span>
+								</div>
+								<div class="control">
+									<button class="button is-success is-fullwidth is-small" type="submit">
+										<span class="mdi mdi-cloud-upload in-left"></span>
+										<span>Upload</span>
+									</button>
+								</div>
+							</div>
+						</b-upload>
+					</form>
+					<!-- TODO: Ario -->
+					<!-- cek br nya di ganti atau tetap.  -->
+					<br>
+					<data-table-no-card title="New Users" :data="props.NEWUSER" :fields="[]" ref="widget">
+						<template slot-scope="props">
+							<b-table-column field="nik" label="NIK" sortable>
+								<span>{{ props.row.nik }}</span>
+							</b-table-column>
+							<b-table-column field="name" label="Name" sortable>
+								<span>{{ props.row.name }}</span>
+							</b-table-column>
+							<b-table-column field="bu" label="Business Unit" sortable>
+								<span>{{ props.row.bu }}</span>
+							</b-table-column>
+							<b-table-column field="profile" label="Profile">
+								<b-select v-model="props.row.profile"
+									@input="(val) => changeProfile(val,props.row.nik)">
+									<option selected style="display: none;"></option>
+									<option value="1">Director</option>
+									<option value="2">Admin BU</option>
+									<option value="3">BU Head</option>
+									<option value="4">Leader</option>
+									<option value="5">Pm</option>
+									<option value="6">Team Member</option>
+									<option value="7">PROUDS</option>
+									<option value="8">HR Office</option>
+									<option value="9">Developer</option>
+									<option value="10">IT Internal</option>
+									<option value="11">CEO</option>
+									<option value="12">PM Coordinator</option>
+								</b-select>
+							</b-table-column>
+						</template>
+					</data-table-no-card>
+					<!-- TODO: Ario -->
+					<!-- cek br nya di ganti atau tetap.  -->
+					<br>
+					<data-table-no-card title="Deactive Users" :data="props.DEACTIVEUSER" :fields="[]" ref="widget">
+						<template slot-scope="props">
+							<b-table-column field="nik" label="NIK" sortable>
+								<span>{{ props.row.nik }}</span>
+							</b-table-column>
+							<b-table-column field="name" label="Name" sortable>
+								<span>{{ props.row.name }}</span>
+							</b-table-column>
+							<b-table-column field="bu" label="Business Unit" sortable>
+								<span>{{ props.row.bu }}</span>
+							</b-table-column>
+							<b-table-column field="profile" label="Profile">
+								<span>{{ props.row.profile }}</span>
+							</b-table-column>
+						</template>
+					</data-table-no-card>
+					<!-- TODO: Ario -->
+					<!-- cek br nya di ganti atau tetap.  -->
+					<br>
+					<data-table-no-card title="Update Users" :data="props.UPDATEUSER" :fields="[]" ref="widget">
+						<template slot-scope="props">
+							<b-table-column field="nik" label="NIK" sortable>
+								<span>{{ props.row.nik }}</span>
+							</b-table-column>
+							<b-table-column field="name" label="Name" sortable>
+								<span>{{ props.row.name }}</span>
+							</b-table-column>
+							<b-table-column field="bu" label="Business Unit" sortable>
+								<span>{{ props.row.bu }}</span>
+							</b-table-column>
+							<b-table-column field="profile" label="Profile">
+								<span>{{ props.row.profile }}</span>
+							</b-table-column>
+						</template>
+					</data-table-no-card>
+
+				</div>
+			</section>
+		</section>
+	</div>
+
+	<script>
+		const VAPPS = {
+			NEWUSER: [
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "1"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "3"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "2"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "1"
+				}
+			],
+			DEACTIVEUSER: [
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "Director"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "BU Head"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "Admin BU"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "Director"
+				}
+			],
+			UPDATEUSER: [
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "Director"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "BU Head"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "Admin BU"
+				},
+				{
+					"nik": "S20506017",
+					"name": "Mochamad Faishol Tri Afandi",
+					"bu": "Project Management Office",
+					"profile": "Director"
+				}
+			]
+		}
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
+</body>
+
+</html>

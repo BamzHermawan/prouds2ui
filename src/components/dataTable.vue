@@ -6,9 +6,9 @@
 					{{ title }}
 				</p>
 				<slot name="head-right">
-					<b-switch v-model="showAll" style="margin-right:15px;"
+					<!-- <b-switch v-model="showAll" style="margin-right:15px;"
 						>Show All</b-switch
-					>
+					> -->
 				</slot>
 			</header>
 			<div class="card-content">
@@ -80,6 +80,7 @@
 					:class="addedClass()"
 					:row-class="rowClass"
 					:loading="isLoading"
+					style="font-size:11pt"
 				>
 					<template slot-scope="props">
 						<slot :row="props.row">
@@ -121,7 +122,9 @@
 										</b-dropdown-item>
 									</b-dropdown>
 								</template>
-								<span v-else> {{ props.row[col] }}</span>
+								<span v-else
+									><small>{{ props.row[col] }}</small></span
+								>
 							</b-table-column>
 						</slot>
 					</template>
@@ -167,7 +170,7 @@ export default {
 		},
 		perPage: {
 			type: Number,
-			default: 5
+			default: 10
 		},
 		showAll: {
 			type: Boolean,

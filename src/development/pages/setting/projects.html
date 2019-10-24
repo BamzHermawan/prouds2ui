@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">100</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Setting" name="project">
+				<side-item href="users.html">Users</side-item>
+				<side-item href="baseline.html">Baseline</side-item>
+				<side-item href="customer.html">Customer</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item>Organization</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
+				<side-item>Projects</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
+				<side-item href="importdata.html">Import Data</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a href="../project/list.html" class="navbar-item">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="http://" class="navbar-item hover-text is-active">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="content">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Projects</span>
+						</h1>
+
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+
+					<crud ref="projectTypeTable" :paginated="5" narrowed margin="margin-bottom: "
+						:data="props.PROJECT_TYPE.data" :columns="props.PROJECT_TYPE.fields"
+						del="http://localhost:5501/demo/post_detect.php?id={id}"
+						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
+
+						<template slot="header">
+							<header class="card-header has-gradient-light">
+								<p class="card-header-title">Project Type</p>
+							</header>
+						</template>
+
+						<template slot="message">
+							<div class="card-content" style="padding-bottom:0.5em;">
+								<b-message type="is-info">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
+									rerum
+									quae doloribus? Aperiam,
+									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+									molestias eius magnam illum
+									debitis.
+								</b-message>
+							</div>
+						</template>
+
+						<template slot="forms" slot-scope="props">
+							<crud-form method="post" :action="props.action"
+								@cancel="$refs.projectTypeTable.showForm = false">
+								<crud-input type="text" label="Project Type" placeholder="Project Type"
+									name="project_type" :value="props.row.project_type">
+								</crud-input>
+								<crud-input type="text" label="Category" placeholder="Category" name="category"
+									:value="props.row.category">
+								</crud-input>
+							</crud-form>
+						</template>
+					</crud>
+					<crud ref="projectLevelTable" :paginated="5" narrowed :data="props.PROJECT_LEVEL.data"
+						:columns="props.PROJECT_LEVEL.fields" del="http://localhost:5501/demo/post_detect.php?id={id}"
+						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
+
+						<template slot="header">
+							<header class="card-header has-gradient-light">
+								<p class="card-header-title">Project Level</p>
+							</header>
+						</template>
+
+						<template slot="message">
+							<div class="card-content" style="padding-bottom:0.5em;">
+								<b-message type="is-info">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
+									rerum
+									quae doloribus? Aperiam,
+									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+									molestias eius magnam illum
+									debitis.
+								</b-message>
+							</div>
+						</template>
+
+						<template slot="forms" slot-scope="props">
+							<crud-form method="post" :action="props.action"
+								@cancel="$refs.projectLevelTable.showForm = false">
+								<crud-input type="text" label="Project Type" placeholder="Project Type"
+									name="project_type" :value="props.row.project_type">
+								</crud-input>
+								<crud-input type="text" label="Category" placeholder="Category" name="category"
+									:value="props.row.category">
+								</crud-input>
+							</crud-form>
+						</template>
+					</crud>
+
+				</div>
+			</section>
+		</section>
+	</div>
+
+	<script>
+		const VAPPS = {
+			PROJECT_TYPE: {
+				fields: [
+					{
+						key: 'project_type',
+						label: 'Project Type',
+						sortable: true
+					},
+					{
+						key: 'category',
+						label: 'Category',
+						sortable: true
+					}
+				],
+				data: [
+					{
+						"id": 0,
+						"project_type": "ALIQUA EX",
+						"category": "Category 1"
+					},
+					{
+						"id": 1,
+						"project_type": "DOLORE CONSECTETUR",
+						"category": "Category 2"
+					},
+					{
+						"id": 2,
+						"project_type": "MOLLIT ESSE",
+						"category": "Category 3"
+					},
+					{
+						"id": 3,
+						"project_type": "NISI NON",
+						"category": "Category 1"
+					},
+					{
+						"id": 4,
+						"project_type": "MAGNA EXCEPTEUR",
+						"category": "Category 2"
+					},
+					{
+						"id": 5,
+						"project_type": "CONSECTETUR EU",
+						"category": "Category 3"
+					},
+					{
+						"id": 6,
+						"project_type": "CUPIDATAT AD",
+						"category": "Category 1"
+					},
+					{
+						"id": 7,
+						"project_type": "DUIS LABORUM",
+						"category": "Category 2"
+					},
+					{
+						"id": 8,
+						"project_type": "LABORIS INCIDIDUNT",
+						"category": "Category 3"
+					},
+					{
+						"id": 9,
+						"project_type": "SINT FUGIAT",
+						"category": "Category 1"
+					},
+					{
+						"id": 10,
+						"project_type": "ULLAMCO ID",
+						"category": "Category 2"
+					},
+					{
+						"id": 11,
+						"project_type": "CONSECTETUR REPREHENDERIT",
+						"category": "Category 3"
+					}
+				]
+			},
+			PROJECT_LEVEL: {
+				fields: [
+					{
+						key: 'project_type',
+						label: 'Project Type',
+						sortable: true
+					},
+					{
+						key: 'category',
+						label: 'Category',
+						sortable: true
+					}
+				],
+				data: [
+					{
+						"id": 0,
+						"project_type": "ALIQUA EX",
+						"category": "Category 1"
+					},
+					{
+						"id": 1,
+						"project_type": "DOLORE CONSECTETUR",
+						"category": "Category 2"
+					},
+					{
+						"id": 2,
+						"project_type": "MOLLIT ESSE",
+						"category": "Category 3"
+					},
+					{
+						"id": 3,
+						"project_type": "NISI NON",
+						"category": "Category 1"
+					},
+					{
+						"id": 4,
+						"project_type": "MAGNA EXCEPTEUR",
+						"category": "Category 2"
+					},
+					{
+						"id": 5,
+						"project_type": "CONSECTETUR EU",
+						"category": "Category 3"
+					},
+					{
+						"id": 6,
+						"project_type": "CUPIDATAT AD",
+						"category": "Category 1"
+					},
+					{
+						"id": 7,
+						"project_type": "DUIS LABORUM",
+						"category": "Category 2"
+					},
+					{
+						"id": 8,
+						"project_type": "LABORIS INCIDIDUNT",
+						"category": "Category 3"
+					},
+					{
+						"id": 9,
+						"project_type": "SINT FUGIAT",
+						"category": "Category 1"
+					},
+					{
+						"id": 10,
+						"project_type": "ULLAMCO ID",
+						"category": "Category 2"
+					},
+					{
+						"id": 11,
+						"project_type": "CONSECTETUR REPREHENDERIT",
+						"category": "Category 3"
+					}
+				]
+			}
+		}
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
+</body>
+
+</html>

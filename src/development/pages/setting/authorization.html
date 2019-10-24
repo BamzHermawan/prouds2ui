@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">100</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Setting" name="project">
+				<side-item href="users.html">Users</side-item>
+				<side-item href="baseline.html">Baseline</side-item>
+				<side-item href="customer.html">Customer</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item href="organization.html">Organization</side-item>
+				<side-item>Authorization</side-item>
+				<side-item href="projects.html">Projects</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
+				<side-item href="importdata.html">Import Data</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="http://" class="navbar-item hover-text is-active"">
+						<span class=" mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="content">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Authorization</span>
+						</h1>
+						<!-- <a @click="addFavorite">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span>Bookmark</span>
+						</a> -->
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+
+					<div class="card">
+						<slot name="header">
+							<header class="card-header">
+								<p class="card-header-title">Authorization</p>
+							</header>
+						</slot>
+						<div class="card-content" style="padding-bottom:0.5em;">
+							<b-message type="is-info">
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+								quae doloribus? Aperiam,
+								cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+								molestias eius magnam illum
+								debitis.
+							</b-message>
+						</div>
+						<b-table v-if="showTable" :data="props.DATA" :paginated="paginated !== 0" :per-page="paginated"
+							pagination-position="top" pagination-simple>
+							<template slot-scope="props">
+								<b-table-column width="175" field="profile_id" label="Profile ID" sortable>
+									<span>{{ props.row.id }}</span>
+								</b-table-column>
+								<b-table-column field="profil_name" label="Profile Name" sortable>
+									<span>{{ props.row.profile_name }}</span>
+								</b-table-column>
+								<b-table-column width="200" field="action" label="Action" sortable>
+									<b-button @click="editForm(props.row)" type="is-info" size="is-small">Edit
+									</b-button>
+									<b-button tag="a"
+										:href="'http://localhost:5501/demo/post_detect.php?id='+props.row.id"
+										type="is-danger" size="is-small">Delete
+									</b-button>
+								</b-table-column>
+							</template>
+							<template slot="top-left">
+								<b-button @click="addform" type="is-success">Add New</b-button>
+							</template>
+						</b-table>
+						<section class="card-content animated fadeIn" v-if="add">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-field label="Profile Name">
+									<b-input expanded name="profile_name"></b-input>
+								</b-field>
+								<input type="hidden" name="accessMenu" v-model="checkboxGroup">
+								<b-field label="Menu Access">
+									<div class="block">
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="1">
+											Home
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="2">
+											Project
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="3">
+											Financial
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="4">
+											Opportunity
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="5">
+											Operation
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="6">
+											Setting
+										</b-checkbox>
+									</div>
+
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="addform" style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+						<section class="card-content animated fadeIn" v-if="edit">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-field label="Profile Name">
+									<b-input expanded name="profile_name" :value="tampung.profile_name"></b-input>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="editForm" style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+					</div>
+
+				</div>
+			</section>
+		</section>
+	</div>
+
+	<script>
+		const VAPPS = {
+			DATA: [
+				{
+					id: 1,
+					profile_name: "PMO",
+					action: [
+						{
+							link: "editUser.html",
+							label: "Edit",
+							type: "is-info"
+						},
+						{
+							link: "editPassword.html",
+							label: "Ganti Password",
+							type: "is-success"
+						},
+						{
+							link: "#active",
+							label: "Active",
+							type: "is-danger"
+						}
+					]
+				},
+				{
+					id: 2,
+					profile_name: "PM Leader",
+					dropdownAction: [
+						{
+							link: "editUser.html",
+							label: "Edit"
+						},
+						{
+							link: "editPassword.html",
+							label: "Ganti Password"
+						},
+						{
+							link: "#active",
+							label: "Active"
+						}
+					]
+				},
+				{
+					id: 3,
+					profile_name: "PM",
+					dropdownAction: [
+						{
+							link: "editUser.html",
+							label: "Edit"
+						},
+						{
+							link: "editPassword.html",
+							label: "Ganti Password"
+						},
+						{
+							link: "#active",
+							label: "Active"
+						}
+					]
+				},
+				{
+					id: 4,
+					profile_name: "Team Member",
+					dropdownAction: [
+						{
+							link: "editUser.html",
+							label: "Edit"
+						},
+						{
+							link: "editPassword.html",
+							label: "Ganti Password"
+						},
+						{
+							link: "#active",
+							label: "Active"
+						}
+					]
+				},
+				{
+					id: 5,
+					profile_name: "AM",
+					dropdownAction: [
+						{
+							link: "editUser.html",
+							label: "Edit"
+						},
+						{
+							link: "editPassword.html",
+							label: "Ganti Password"
+						},
+						{
+							link: "#active",
+							label: "Active"
+						}
+					]
+				},
+				{
+					id: 6,
+					profile_name: "Purchasing",
+					dropdownAction: [
+						{
+							link: "editUser.html",
+							label: "Edit"
+						},
+						{
+							link: "editPassword.html",
+							label: "Ganti Password"
+						},
+						{
+							link: "#active",
+							label: "Active"
+						}
+					]
+				}
+			]
+		}
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
+</body>
+
+</html>

@@ -7,11 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<title>HELP | PROUDS 2</title>
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../styles/style.scss">
+	<link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
 <body>
@@ -38,9 +39,20 @@
 				</a>
 			</div>
 
-			<side-list label="My Workspace" name="ws">
-				<side-item link="#help">Help [default]</side-item>
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Setting" name="project">
+				<side-item href="users.html">Users</side-item>
+				<side-item href="baseline.html">Baseline</side-item>
+				<side-item>Customer</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item href="organization.html">Organization</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
+				<side-item href="projects.html">Projects</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
+				<side-item href="importdata.html">Import Data</side-item>
 			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
 		</section>
 
 		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
@@ -50,7 +62,7 @@
 						<span class="mdi mdi-chevron-left mdi-24px"></span>
 					</a>
 
-					<a class="navbar-item">
+					<a href="../project/list.html" class="navbar-item">
 						PROJECT
 					</a>
 
@@ -77,8 +89,8 @@
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="http://" class="navbar-item hover-text">
-						<span class="mdi mdi-settings-outline"></span>
+					<a href="http://" class="navbar-item hover-text is-active">
+						<span class=" mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
 
@@ -105,7 +117,7 @@
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Help Documentation</span>
+							<span>Customer</span>
 						</h1>
 						<!-- <a @click="addFavorite">
 							<span class="mdi mdi-bookmark-plus is-marginless"></span>
@@ -120,17 +132,36 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container">
-					<p>Hi, <b>{{ userlog.name }}</b> 👋</p>
-					<p>Welcome to <span class="brands">PROUDS</span>!. This application will help you organize project
-						and your timesheet. Do you have any question ? Please visit out <a href="#FAQ">F.A.Q</a> bellow.
-					</p>
+
+					<data-table-no-card :data="props.DATACUSTOMER" :fields="[]" title="Customer List">
+					</data-table-no-card>
+
 				</div>
 			</section>
 		</section>
 	</div>
 
-	<script src="../scripts/layout/controller.js"></script>
-	<script src="../scripts/help/controller.js"></script>
+	<script>
+		const VAPPS = {
+			DATACUSTOMER: [
+				{
+					customer_name: "Jiwasraya",
+					alamat: "JL. Ir. H. Juanda No. 34, Jakarta Pusat DKI Jakarta 10120 P:(021)3845031"
+				},
+				{
+					customer_name: "Ade Wiranata Putra",
+					alamat: "JL. Mayor Zurbi Bustan Lr. Mufakat III No.4048 Rt. 18 Rw. 04"
+				},
+				{
+					customer_name: "ariowidiatmoko",
+					alamat: "ARIO WIDIATMOKO"
+				}
+			]
+		}
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
 </body>
 
 </html>
