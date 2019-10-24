@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
-import Loader from '../../helper/loader';
-import {notified} from '../../helper/tools';
-import SideList from '../../components/sidebar/list.vue';
-import SideItem from '../../components/sidebar/item.vue';
+import Loader from 'helper-loader';
+import { notified } from 'helper-tools';
+import { sideList as SideList } from 'components';
+import { sideItem as SideItem } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
 var WRAPPER = document.querySelector('#main-layout');
@@ -23,20 +23,48 @@ Vue.use(Buefy);
 new Vue({
 	el: '#side-main',
 	components: { SideList, SideItem },
-	mounted(){
-		let sideItem = document.querySelector('.side-item');
-		for (let i = 0; i < sideItem.length; i++) {
-			const item = sideItem[i];
-			console.log(item);
-			item.addEventListener("click", function () {
-				console.log(item.querySelector('a[href]'));
-			});
+	data: {
+		notifCount: 0,
+	},
+	computed: {
+		notifClass(){
+			let style = "parent-list";
+			let el = document.querySelector('#sidenotif');
+			let href = el.getAttribute('href');
+
+			let currentPage = window.location.href.toLowerCase();
+			let link = href !== undefined ? href.toLowerCase() : "";
+			if (this.active) {
+				style += " is-active";
+			} else if (link === currentPage) {
+				style += " is-active";
+			}
+
+			return style;
 		}
 	},
 	methods: {
-		callNotif(){
-			notified(this.$notification).success("Hai ini hasil testing action!");
+		checkNotification(){
+			//TODO: Ade
+			// axios request ke server dapet list notifikasi,
+			// di cek jumlahnya masih sama kaya this.notifCount atau enggak
+			// kalau nambah tampilin notified Toast.
+
+			// jika notifikasi ada yang baru notifcount di sesuaikan jumlahnya 
+			// dan tampilkan notifikasinya. [loop]
+			notified(this.$notification).info().bottomRight('Notification Text');
+			this.notifCount++;
 		}
+	},
+	mounted(){
+
+		// get initial notification
+		this.checkNotification();
+
+		// check notification every 1 minute
+		setInterval(() => {
+			this.checkNotification();
+		}, 60000);
 	}
 });
 
