@@ -7,11 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<title>TEMPLATE LAYOUT | PROUDS 2</title>
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>PROJECT | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../styles/style.scss">
+	<link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
 <body>
@@ -39,16 +40,13 @@
 			</div>
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
-			<!-- <side-list label="List Title" name="main">
-				<side-item link="#standart">Standart Link Item</side-item>
-				<side-item link="#no-edit">No Edit Link Item</side-item>
-				<side-item :action="callNotif" edit="1">Show Notification</side-item>
-				<side-list label="sub-list" name="sub">
-					<side-item link="#help" no-edit>Sub Item 1</side-item>
-					<side-item link="#help" no-edit>Sub Item 2</side-item>
-					<side-item link="#help" no-edit>Sub Item 3</side-item>
-				</side-list>
-			</side-list> -->
+			<side-list label="Project" name="project">
+				<side-item href="list.html">Project</side-item>
+				<side-item href="projectassignment.html">Project Assignment</side-item>
+				<side-item href="../timesheet/timesheet.html">Timesheet</side-item>
+				<side-item href="../rebaseline.html">Rebaseline</side-item>
+				<side-item href="#no-edit">Closing</side-item>
+			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
 		</section>
@@ -115,7 +113,7 @@
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Blank Page</span>
+							<span>Detail Project</span>
 						</h1>
 						<!-- <a @click="addFavorite">
 							<span class="mdi mdi-bookmark-plus is-marginless"></span>
@@ -130,35 +128,112 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container">
-
-					<!-- This is content section -->
-					<!-- If your are using vue, mount it to contentApp -->
-					<!-- Example in your controller.js :
-
-						import Vue from 'vue';
-						import Buefy from 'buefy';
-
-						Vue.use(Buefy);
-						new Vue({
-							el: '#contentApp',
-							mounted() {
-								global.$loader.hide();
-							}
-						});
-						
-					 -->
-
-					<h2 class="subtitle">This is content section</h2>
-
-					<!-- End of content section -->
+					<!-- <h2 class="subtitle">Project List</h2> -->
+					<nav class="breadcrumb" aria-label="breadcrumbs">
+						<ul class="is-marginless">
+							<li><a href="projectAssignment.html">Project Assignment</a></li>
+							<li class="is-active"><a href="#" aria-current="page">Project Information</a></li>
+						</ul>
+					</nav>
+					<div class="columns">
+						<div class="column">
+							<b-field label="Project ID">
+								<p>1900123</p>
+							</b-field>
+						</div>
+						<div class="column">
+							<b-field label="IWO No.">
+								<p>P-1909-TTES0481</p>
+							</b-field>
+						</div>
+					</div>
+					<b-field label="Project Name">
+						<p>Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia</p>
+					</b-field>
+					<b-field label="Customer">
+						<p>PT. Telkom</p>
+					</b-field>
+					<div class="columns">
+						<div class="column">
+							<b-field label="Account Manager">
+								<p>S2010000001 / Pak Gembus</p>
+							</b-field>
+						</div>
+						<div class="column">
+							<b-field label="Won Date">
+								<p>10-01-2019</p>
+							</b-field>
+						</div>
+					</div>
+					<b-field label="Amount">
+						<p>120.000.000 IDR</p>
+					</b-field>
+					<b-field label="Amount">
+						<p>120.000.000 IDR</p>
+					</b-field>
+					<b-field label="Agreement Document">
+						<p>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+						</p>
+					</b-field>
+					<b-field label="Related Document">
+						<p>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+							<a href="#">a Link</a>
+						</p>
+					</b-field>
+					<b-field label="Project Type">
+						<p>Implementation / Managed Services / ......</p>
+					</b-field>
+					<b-field label="Contract Length">
+						<p>27 Month</p>
+					</b-field>
+					<div class="columns">
+						<div class="column">
+							<b-field label="Contract Start Date">
+								<p>20-10-2019</p>
+							</b-field>
+						</div>
+						<div class="column">
+							<b-field label="Contract End Date">
+								<p>31-12-2019</p>
+							</b-field>
+						</div>
+					</div>
+					<b-field label="Unit Delivery">
+						<p>Project Management Office</p>
+					</b-field>
+					<b-field label="Project Manager">
+						<p>Budi</p>
+					</b-field>
+					<b-field label="Background">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies
+							elit blandit non.
+							Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in</p>
+					</b-field>
+					<b-field label="Scope of Work">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies
+							elit blandit non.
+							Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in</p>
+					</b-field>
 
 				</div>
 			</section>
 		</section>
 	</div>
 
-	<script src="../scripts/layout/controller.js"></script>
-	<!-- Add content script controller here after layout controller -->
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/project/detail/detail.js"></script>
 </body>
 
 </html>

@@ -4,13 +4,14 @@ import Loader from 'helper-loader';
 import { notified } from 'helper-tools';
 import { sideList as SideList } from 'components';
 import { sideItem as SideItem } from 'components';
+import Axios from 'axios'
 
 // SIDEBAR TOGGLE SCRIPT
 var WRAPPER = document.querySelector('#main-layout');
 var SIDEBAR_TOGGLE = false;
 window.onload = sidebarToggleAnimation;
 document.querySelector('#toggle-sidebar')
-.addEventListener("click", sidebarToggleAnimation);
+	.addEventListener("click", sidebarToggleAnimation);
 
 // Tracking Mouse when entering sidebar area
 document.onmousemove = trackMouse;
@@ -22,25 +23,10 @@ global.$sidebar = {};
 Vue.use(Buefy);
 new Vue({
 	el: '#side-main',
-	components: { SideList, SideItem },
-	mounted(){
-		let sideItem = document.querySelector('.side-item');
-		for (let i = 0; i < sideItem.length; i++) {
-			const item = sideItem[i];
-			console.log(item);
-			item.addEventListener("click", function () {
-				console.log(item.querySelector('a[href]'));
-			});
-		}
-	},
-	methods: {
-		callNotif(){
-			notified(this.$notification).success("Hai ini hasil testing action!");
-		}
-	}
+	components: { SideList, SideItem }
 });
 
-function sidebarToggleAnimation(){
+function sidebarToggleAnimation() {
 	let btn = document.querySelector('#toggle-sidebar');
 	// clean toggle nodes
 	while (btn.firstChild) {
@@ -49,7 +35,7 @@ function sidebarToggleAnimation(){
 
 	document.querySelector('#main-layout .sidebar').classList.remove('animated', 'slideOutLeft');
 
-	if(SIDEBAR_TOGGLE){
+	if (SIDEBAR_TOGGLE) {
 		SIDEBAR_TOGGLE = false;
 
 		// add PROUDS Label
@@ -66,7 +52,7 @@ function sidebarToggleAnimation(){
 
 		WRAPPER.classList.remove('open-first');
 		WRAPPER.classList.add('sidebar-auto', 'sidebar-float');
-	}else{
+	} else {
 		SIDEBAR_TOGGLE = true;
 
 		// add chevron right
@@ -75,19 +61,19 @@ function sidebarToggleAnimation(){
 		span.classList.add('mdi', 'mdi-chevron-left', 'mdi-24px');
 		btn.appendChild(span);
 
-		if (!WRAPPER.classList.contains('open-first')){
+		if (!WRAPPER.classList.contains('open-first')) {
 			WRAPPER.classList.remove('sidebar-auto', 'sidebar-float');
 		}
 	}
 }
 
-function trackMouse(e){
-	if(e.clientX < 35){
+function trackMouse(e) {
+	if (e.clientX < 35) {
 		WRAPPER.classList.add('sidebar-show');
-	} else{
+	} else {
 		let sidebar = document.getElementById('side-main');
 		WRAPPER.classList.remove('sidebar-show');
-		if (getComputedStyle(sidebar, null).display === 'none'){
+		if (getComputedStyle(sidebar, null).display === 'none') {
 			if (typeof global.$sidebar.activeEdit === "object") {
 				global.$sidebar.activeEdit.cancelEdit();
 			}

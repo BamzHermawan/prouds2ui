@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>TIMESHEET | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">100</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="../project/list.html">Project</side-item>
+				<side-item href="../project/projectassignment.html">Project Assignment</side-item>
+				<side-item>Timesheet</side-item>
+				<side-item href="../rebaseline.html">Rebaseline</side-item>
+				<side-item href="#no-edit">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="../setting/users.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="content">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Timesheet</span>
+						</h1>
+						<!-- <a @click="addFavorite">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span>Bookmark</span>
+						</a> -->
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+
+					<div v-for="(date,idx) in tmp" :key="idx" v-if="showList">
+						<div class="columns is-multiline">
+							<div class="column is-12">
+								{{tmp[idx]}}
+							</div>
+							<template v-for="(timesheet, index) in myTimesheet">
+								<span :key="index"></span>
+								<div class="column is-4" v-if="tmp[idx] === myTimesheet[index].start">
+									<div class="card" style="min-height: 200px; cursor: pointer !important;"
+										@click="setTimesheet(timesheet)">
+										<div class="card-content">
+											<div style="min-height: 110px;">
+												<p> {{ timesheet.iwo }} </p>
+												<p> {{timesheet.project_name}} </p>
+												<p>task : {{timesheet.task}} </p>
+											</div>
+											<div class="level">
+												<div class="level-left">
+													<p>Start : {{timesheet.start}} </p>
+												</div>
+												<div class="level-right">
+													<p>End : {{timesheet.end}} </p>
+												</div>
+											</div>
+											<p style="margin-bottom: 10px">Progress of</p>
+											<div class="columns">
+												<div class="column">
+													<div class="level-left">
+														<p>Timesheet <small>60%</small></p>
+													</div>
+													<progress class="progress is-small is-success" :value="60"
+														:max="100" show-value></progress>
+												</div>
+												<div class="column">
+													<div class="level-right">
+														<p>Task <small>60%</small></p>
+													</div>
+													<progress class="progress is-small is-success" :value="60"
+														:max="100"></progress>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</template>
+						</div>
+					</div>
+
+					<form action="http://localhost:5501/demo/post_detect.php" method="POST" v-if="showForm">
+						<div class="columns">
+							<div class="column">
+								<p class="heading">Project</p>
+								<b-field>
+									<b-input type="hidden" name="project_id" :value="dataForm.project_id"></b-input>
+									<p>{{ dataForm.project_name }}</p>
+								</b-field>
+							</div>
+							<div class="column">
+								<b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
+								<p class="heading">Task</p>
+								<b-field>
+									<p>{{ dataForm.task }}</p>
+								</b-field>
+							</div>
+						</div>
+						<div class="columns">
+							<div class="column">
+								<p class="heading">Choose Date</p>
+								<b-field>
+									<b-datepicker placeholder="DD/MM/YYYY" :min-date="minDate" :max-date="maxDate"
+										name="date" required>
+									</b-datepicker>
+								</b-field>
+							</div>
+							<div class="column">
+								<p class="heading">Select Area</p>
+								<b-field>
+									<b-select expanded name="level" placeholder="-Select Area-" required>
+										<option selected style="display: none;"></option>
+										<option value="1">Jabodetabek</option>
+										<option value="2">Non Lokal Jawa</option>
+										<option value="3">Luar Jawa Dalam Negeri</option>
+										<option value="4">Luar Negeri</option>
+									</b-select>
+								</b-field>
+							</div>
+						</div>
+						<div class="columns">
+							<div class="column">
+								<p class="heading">Activity</p>
+								<b-field>
+									<b-input maxlength="200" type="textarea" name="activity" required></b-input>
+								</b-field>
+							</div>
+						</div>
+						<b-button type="is-danger" @click="setTimesheet">
+							Cancel
+						</b-button>
+						<button class="button is-success" type="submit">
+							Save
+						</button>
+					</form>
+
+				</div>
+			</section>
+		</section>
+	</div>
+
+	<script>
+		const MYTIMESHEET = [
+			{
+				id: "1",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 1,
+				task_id: 1,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 1",
+				task: "Melakukan review dokumen teknis SOP dan User Guide",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "2",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 2,
+				task_id: 2,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 2",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "3",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 3,
+				task_id: 3,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 4",
+				task: "Melakukan review dokumen teknis SIT 3",
+				start: "2019-10-12",
+				end: "2019-12-30"
+			},
+			{
+				id: "4",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 4,
+				task_id: 4,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
+				task: "Melakukan review dokumen teknis SOP dan User Guide 3",
+				start: "2019-10-11",
+				end: "2019-12-30"
+			},
+			{
+				id: "5",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 5,
+				task_id: 5,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
+				task: "Melakukan review dokumen teknis SOP dan User Guide 4",
+				start: "2019-10-11",
+				end: "2019-12-30"
+			},
+			{
+				id: "6",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 6,
+				task_id: 6,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 3",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "7",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 7,
+				task_id: 7,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 2",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			},
+			{
+				id: "8",
+				iwo: "P-1909SCC-TTESXXXX",
+				project_id: 8,
+				task_id: 8,
+				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
+				task: "Melakukan review dokumen teknis UAT 2",
+				start: "2019-10-10",
+				end: "2019-12-30"
+			}
+		]
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/timesheet/timesheet.js"></script>
+</body>
+
+</html>

@@ -64,7 +64,7 @@ $section-padding-large: 18rem 3rem;
 
 body {
 	font-family: $roboto;
-
+	
 	& > .wrapper {
 		min-height: 100vh;
 		margin: 0px;
@@ -483,6 +483,65 @@ body {
 		color: $dark;
 	}
 		
+}
+
+.gmainright {
+	width: 50% !important;
+	// margin-bottom: 43px !important;
+}
+.gmainleft {
+	width: 50% !important;
+
+	.gcontainercol {
+		min-width: 100%;
+
+		table {
+			min-width: 100%;
+		}
+	}
+
+	// .gspanning.gtaskname  {
+	// 	padding: 1px !important;
+	// 	vertical-align: middle;
+	// }
+}
+
+// .gtaskname div {
+// 	padding: 5px !important;
+// 	font-size: 12px !important;
+// }
+
+td.gmajorheading div{
+	padding: 5px !important;
+}
+
+// td.gspanning div {
+// 	padding: 9px !important;
+// }
+
+.gantt td {
+	// font-size: 11px;
+	padding: 2px !important;
+}
+
+tr.gname {
+	cursor: pointer !important;
+}
+
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
+.gcharttableh {
+	margin-bottom: 0px !important;
 }
 
 @import "~bulma";

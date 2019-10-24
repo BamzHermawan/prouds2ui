@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>PROJECT | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">100</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="list.html">Project</side-item>
+				<side-item>Project Assignment</side-item>
+				<side-item href="../timesheet/timesheet.html">Timesheet</side-item>
+				<side-item href="../rebaseline.html">Rebaseline</side-item>
+				<side-item href="#no-edit">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="content">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Project Assignment</span>
+						</h1>
+						<!-- <a @click="addFavorite">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span>Bookmark</span>
+						</a> -->
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+					<!-- <h2 class="subtitle">Project List</h2> -->
+
+					<div v-if="showTable">
+						<data-table-no-card :show-all="false" :data="newproject" :fields="[]" ref="widget">
+							<template slot-scope="props">
+								<b-table-column field="opportunity" label="Opportunity" sortable>
+									<span>{{ props.row.opportunity }}</span>
+									<br>
+									<span>{{ props.row.won_date }}</span>
+								</b-table-column>
+								<b-table-column width="130" field="iwo_no" label="IWO No." sortable>
+									<span>{{ props.row.iwo_no }}</span>
+								</b-table-column>
+								<b-table-column field="project_name" label="Project Name" sortable>
+									<span><a href="./detail.html">{{ props.row.project_name }}</a></span>
+								</b-table-column>
+								<b-table-column field="amount" label="Amount" sortable>
+									<span>{{ props.row.amount }}</span>
+								</b-table-column>
+								<b-table-column field="project_type" label="Project Type" sortable>
+									<span>{{ props.row.project_type }}</span>
+								</b-table-column>
+								<b-table-column field="project_manager" label="Project Manager" sortable>
+									<span>{{ props.row.project_manager }}</span>
+								</b-table-column>
+								<b-table-column field="status" label="Status" sortable>
+									<span>{{ props.row.status }}</span>
+								</b-table-column>
+
+								<b-table-column field="action" label="Action">
+									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+										<span class="mdi mdi-menu mdi-18px has-text-info"
+											style="cursor: pointer !important;" slot="trigger"></span>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="assign('PM',props.row)"><span
+													class="mdi mdi-account-plus"></span>Assign
+												PM</a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="assign('CoPM',props.row)"><span
+													class="mdi mdi-account-plus"></span>Assign
+												Co-PM</a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="assign('Adm',props.row)"><span
+													class="mdi mdi-account-plus"></span>Assign
+												Project Admin</a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="setUnitDelivery(props.row)"><span
+													class="mdi mdi-briefcase"></span>Set
+												Unit
+												Delivery</a>
+										</b-dropdown-item>
+									</b-dropdown>
+								</b-table-column>
+							</template>
+							<template slot="top-right">
+								<div class="navbar-menu">
+									<div class="columns">
+										<div class="column">
+											<p style="margin-top: 5px;">Status :</p>
+										</div>
+										<div class="column">
+											<b-select v-model="selectedStatus">
+												<option value="">All</option>
+												<option value="New">New</option>
+												<option value="Waiting for Rebaseline">Waiting for Rebaseline</option>
+												<option value="Waiting for Initial Baseline">Waiting for Initial
+													Baseline
+												</option>
+											</b-select>
+										</div>
+									</div>
+								</div>
+							</template>
+						</data-table-no-card>
+					</div>
+
+					<assign name="PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.PM"
+						action-add="http://localhost:5501/demo/post_detect.php"
+						action-update="http://localhost:5501/demo/post_detect.php">
+						<template #ade>
+							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+								<ul class="is-marginless">
+									<li><a @click="assign('PM')">Project Assignment</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Assign PM</a></li>
+								</ul>
+							</nav>
+						</template>
+					</assign>
+
+					<assign name="Co PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.CoPM"
+						action-add="http://localhost:5501/demo/post_detect.php"
+						action-update="http://localhost:5501/demo/post_detect.php">
+						<template #ade>
+							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+								<ul class="is-marginless">
+									<li><a @click="assign('Co PM')">Project Assignment</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Assign Co PM</a></li>
+								</ul>
+							</nav>
+						</template>
+					</assign>
+
+					<assign name="Project Adm" :listpm="listpm" :selected-project="selectedProject"
+						v-if="toggleForm.Adm" action-add="http://localhost:5501/demo/post_detect.php"
+						action-update="http://localhost:5501/demo/post_detect.php">
+						<template #ade>
+							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+								<ul class="is-marginless">
+									<li><a @click="assign('Adm')">Project Assignment</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Assign Adm PM</a></li>
+								</ul>
+							</nav>
+						</template>
+					</assign>
+
+					<set-unit-delivery :unit-delivery="unitdelivery" :selected-project="selectedProject"
+						action-add="http://localhost:5501/demo/post_detect.php"
+						action-update="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
+						<template #ade>
+							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+								<ul class="is-marginless">
+									<li><a @click="setUnitDelivery()">Project Assignment</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Set Unit Delivery</a></li>
+								</ul>
+							</nav>
+						</template>
+					</set-unit-delivery>
+
+				</div>
+			</section>
+		</section>
+	</div>
+
+	<script>
+		const NEWPROJECT = [
+			{
+				"project_id": 1,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "",
+				"co_project_manager": "",
+				"project_adm": "Idong",
+				"unit_delivery": ""
+			},
+			{
+				"project_id": 2,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "System Integrasi 1 Delivery"
+			},
+			{
+				"project_id": 3,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Financial Solution Delivery"
+			},
+			{
+				"project_id": 4,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "SKN G 2 sharia kaltim",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Sigma Metrasys Solution"
+			},
+			{
+				"project_id": 5,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Pengembangan IPC Intercompany System Fase III di Lingkungan PT. Pelabuhan Indonesia II (Persero)",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Sigma Solusi Integrasi"
+			},
+			{
+				"project_id": 6,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Bulk Mandays Mprospera",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Managed Operation Delivery"
+			},
+			{
+				"project_id": 7,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Simplified Approva",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "New",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "System Integration 2 Delivery"
+			},
+			{
+				"project_id": 8,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "MMS HUB",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "Waiting for Rebaseline",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Sigma Metrasys Corporate"
+			},
+			{
+				"project_id": 9,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "CR Agendaku",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "Waiting for Rebaseline",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "Idong",
+				"unit_delivery": "Project Development (Balicamp2)"
+			},
+			{
+				"project_id": 10,
+				"opportunity": "970101",
+				"iwo_no": "P-1909-TTES",
+				"won_date": "20-10-2019",
+				"project_name": "Pemasangan Mesin ATM Bank Beng Cabang",
+				"amount": "120.000.000",
+				"project_type": "Implementasi",
+				"related": "INS / BA",
+				"status": "Waiting for Initial Baseline",
+				"project_manager": "Budi",
+				"co_project_manager": "Ade Wiranata Putra",
+				"project_adm": "idong",
+				"unit_delivery": "Infrastructure Network & Solution Delivery"
+			}
+		],
+			LISTPM = [
+				{
+					"pm_id": "1",
+					"pm_name": "Martina Dillard",
+					"nik": "M20005413",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
+				},
+				{
+					"pm_id": "2",
+					"pm_name": "Alissa Newton",
+					"nik": "S20186428",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"pm_id": "3",
+					"pm_name": "Maryanne Watson",
+					"nik": "CRS20136833",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
+				},
+				{
+					"pm_id": "4",
+					"pm_name": "Bush Hunt",
+					"nik": "CRS20166397",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Cloud",
+					"last_project": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
+				},
+				{
+					"pm_id": "5",
+					"pm_name": "Cannon May",
+					"nik": "CRS20005337",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Zaid Mart Berkah Abadi Jaya seNusantara",
+				},
+				{
+					"pm_id": "6",
+					"pm_name": "Coleen Williamson",
+					"nik": "L20171511",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "PMO",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"pm_id": "7",
+					"pm_name": "Christa Townsend",
+					"nik": "S20065729",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Finance",
+					"last_project": "CR Agendaku",
+				},
+				{
+					"pm_id": "8",
+					"pm_name": "Alston Weeks",
+					"nik": "S20168519",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				},
+				{
+					"pm_id": "9",
+					"pm_name": "Joseph Pratt",
+					"nik": "S20012872",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				}
+			],
+			UNITDELIVERY = [
+				{
+					"bu_id": "1",
+					"business_unit": "Balicamp 1",
+					"pm_resources": "3",
+					"on_going_project": "2",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "2",
+					"business_unit": "Balicamp 2",
+					"pm_resources": "3",
+					"on_going_project": "2",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "3",
+					"business_unit": "Balicamp 3",
+					"pm_resources": "3",
+					"on_going_project": "2",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "4",
+					"business_unit": "Balicamp 4",
+					"pm_resources": "3",
+					"on_going_project": "2",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				},
+				{
+					"bu_id": "5",
+					"business_unit": "Balicamp 5",
+					"pm_resources": "3",
+					"on_going_project": "2",
+					"supervisor": "Ade Wiranata Putra", //VP atau Director
+				}
+			]
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/project/projectassignment/projectAssignment.js"></script>
+</body>
+
+</html>

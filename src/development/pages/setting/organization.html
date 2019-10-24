@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">100</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Setting" name="project">
+				<side-item href="users.html">Users</side-item>
+				<side-item href="baseline.html">Baseline</side-item>
+				<side-item href="customer.html">Customer</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item>Organization</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
+				<side-item href="projects.html">Projects</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
+				<side-item href="importdata.html">Import Data</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a href="../project/list.html" class="navbar-item">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="http://" class="navbar-item hover-text is-active">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="content">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Organization</span>
+						</h1>
+						<!-- <a @click="addFavorite">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span>Bookmark</span>
+						</a> -->
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+
+					<crud ref="organizationLevelTable" :paginated="5" narrowed :data="props.ORGANIZATION_LEVEL.data"
+						:columns="props.ORGANIZATION_LEVEL.fields"
+						del="http://localhost:5501/demo/post_detect.php?id={id}"
+						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
+
+						<template slot="header">
+							<header class="card-header has-gradient-light">
+								<p class="card-header-title">Organization Level</p>
+							</header>
+						</template>
+
+						<template slot="message">
+							<div class="card-content" style="padding-bottom:0.5em;">
+								<b-message type="is-info">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+									quae doloribus? Aperiam,
+									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+									molestias eius magnam illum
+									debitis.
+								</b-message>
+							</div>
+						</template>
+
+						<template slot="forms" slot-scope="props">
+							<crud-form method="post" :action="props.action"
+								@cancel="$refs.organizationLevelTable.showForm = false">
+								<crud-input type="text" label="Organization Level" placeholder="Organization Level"
+									name="org_level" :value="props.row.org_level">
+								</crud-input>
+								<crud-input type="text" label="Leader Segment" placeholder="Leader Segment"
+									name="leader_segment" :value="props.row.leader_segment">
+								</crud-input>
+							</crud-form>
+						</template>
+					</crud>
+
+					<header class="card-header has-gradient-light">
+						<p class="card-header-title">Organization</p>
+					</header>
+					<br>
+					<div v-if="menuTree">
+						<b-message type="is-warning">
+							<nav class="level">
+								<div class="level-left">
+									<div class="level-item">
+										<b-button @click="addBU" type="is-success is-small">Add BU</b-button>
+									</div>
+									<div class="level-item">
+										<b-button @click="editBU" type="is-success is-small">Edit</b-button>
+									</div>
+									<div class="level-item">
+										<b-button @click="deleteBU('http://localhost:5501/demo/post_detect.php?')"
+											type="is-success is-small">Delete</b-button>
+									</div>
+								</div>
+								<div class="level-right">
+									<div class="level-item">
+										<a @click="toggleSideBar()">
+											<span class="icon">
+												<i class="mdi mdi-close-box" aria-hidden="true"></i>
+											</span>
+										</a>
+									</div>
+								</div>
+							</nav>
+						</b-message>
+					</div>
+
+					<div class="columns">
+						<div class="column is-10">
+							<v-jstree id="orgTree" :data="organization" :draggable="drag" @item-drag-start="dragStart"
+								@item-drop="drop" allow-batch whole-row @item-click="itemClick">
+							</v-jstree>
+						</div>
+						<div class="column" v-if="!drag">
+							<b-button @click="draggable" type="is-info">Active</b-button>
+						</div>
+						<div class="column" v-if="drag">
+							<b-button @click="closeDrag" type="is-danger">Cancel</b-button>
+							<b-button @click="saveDrag('http://localhost:5501/demo/post_detect.php?')"
+								type="is-success">save</b-button>
+						</div>
+					</div>
+
+				</div>
+			</section>
+		</section>
+	</div>
+
+	<script>
+		const VAPPS = {
+			ORGANIZATION_LEVEL: {
+				fields: [
+					{
+						key: 'org_level',
+						label: 'Organization Level',
+						sortable: true,
+					},
+					{
+						key: 'leader_segment',
+						label: 'Leader Segment',
+						sortable: true,
+					}
+				],
+				data: [
+					{
+						"id": 0,
+						"org_level": "ALIQUA EX",
+						"leader_segment": "President Director"
+					},
+					{
+						"id": 1,
+						"org_level": "DOLORE CONSECTETUR",
+						"leader_segment": "SVP",
+					},
+					{
+						"id": 2,
+						"org_level": "MOLLIT ESSE",
+						"leader_segment": "VP"
+					},
+					{
+						"id": 3,
+						"org_level": "NISI NON",
+						"leader_segment": "President Director"
+					},
+					{
+						"id": 4,
+						"org_level": "MAGNA EXCEPTEUR",
+						"leader_segment": "SVP"
+					},
+					{
+						"id": 5,
+						"org_level": "CONSECTETUR EU",
+						"leader_segment": "VP"
+					},
+					{
+						"id": 6,
+						"org_level": "CUPIDATAT AD",
+						"leader_segment": "President Director"
+					},
+					{
+						"id": 7,
+						"org_level": "DUIS LABORUM",
+						"leader_segment": "SVP"
+					},
+					{
+						"id": 8,
+						"org_level": "LABORIS INCIDIDUNT",
+						"leader_segment": "VP"
+					},
+					{
+						"id": 9,
+						"org_level": "SINT FUGIAT",
+						"leader_segment": "President Director"
+					},
+					{
+						"id": 10,
+						"org_level": "ULLAMCO ID",
+						"leader_segment": "SVP"
+					},
+					{
+						"id": 11,
+						"org_level": "CONSECTETUR REPREHENDERIT",
+						"leader_segment": "VP"
+					}
+				]
+			},
+			ORGANIZATION: [
+				{
+					"text": "Telkomsigma",
+					"icon": "fa fa-briefcase",
+					"id": 1,
+					"isLeaf": false,
+					"opened": true,
+					"parent": 0
+				},
+				{
+					"text": "Solution Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 2,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 1
+				},
+				{
+					"text": "Banking Solution Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 3,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 1,
+				},
+				{
+					"text": "System Integration 1 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 4,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 2,
+				},
+				{
+					"text": "System Integration 2 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 5,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 2,
+				},
+				{
+					"text": "System Integration 2 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 6,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 5,
+				},
+				{
+					"text": "System Integration 2 Delivery",
+					"icon": "fa fa-briefcase",
+					"id": 7,
+					"BUHead": "Ade Wiranata Putra",
+					"BUCode": "123",
+					"isLeaf": false,
+					"opened": false,
+					"parent": 6,
+				}
+
+			]
+		}
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
+</body>
+
+</html>

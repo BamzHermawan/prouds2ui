@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">100</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Setting" name="project">
+				<side-item>Users</side-item>
+				<side-item href="baseline.html">Baseline</side-item>
+				<side-item href="customer.html">Customer</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item href="organization.html">Organization</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
+				<side-item href="projects.html">Projects</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
+				<side-item href="importdata.html">Import Data</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a href="../project/list.html" class="navbar-item">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="http://" class="navbar-item hover-text is-active">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="content">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Users</span>
+						</h1>
+						<!-- <a @click="addFavorite">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span>Bookmark</span>
+						</a> -->
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+
+					<div class="card">
+						<slot name="header">
+							<header class="card-header">
+								<p class="card-header-title">Internal</p>
+							</header>
+						</slot>
+						<div class="card-content" style="padding-bottom:0.5em;">
+							<b-message type="is-info">
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+								quae doloribus? Aperiam,
+								cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+								molestias eius magnam illum
+								debitis.
+							</b-message>
+						</div>
+						<b-table v-if="toggleTable.internal" :data="props.DATA_USER_INTERNAL"
+							:paginated="paginated !== 0" :per-page="paginated" pagination-position="top"
+							pagination-simple>
+							<template slot-scope="props">
+								<b-table-column field="user_id" label="User ID" sortable>
+									<span>{{ props.row.user_id }}</span>
+								</b-table-column>
+								<b-table-column field="name" label="Name" sortable>
+									<span>{{ props.row.name }}</span>
+								</b-table-column>
+								<b-table-column field="email" label="Email" sortable>
+									<span>{{ props.row.email }}</span>
+								</b-table-column>
+								<b-table-column field="bu" label="Business Unit" sortable>
+									<span>{{ props.row.bu }}</span>
+								</b-table-column>
+								<b-table-column field="profile" label="Profile" sortable>
+									<span>{{ props.row.profile }}</span>
+								</b-table-column>
+								<!-- TODO: Ario -->
+								<!-- css dropdown action -->
+								<b-table-column width="10" field="action" label="Action" sortable>
+									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+										<span class="mdi mdi-menu mdi-18px has-text-info"
+											style="cursor: pointer !important;" slot="trigger"></span>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="editUser('internal',props.row)"><span>Edit</span></a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="changePassword('internal',props.row)"><span>Change
+													Password</span></a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a><span>Archive</span></a>
+										</b-dropdown-item>
+									</b-dropdown>
+								</b-table-column>
+							</template>
+						</b-table>
+
+						<section class="card-content animated fadeIn" v-if="toggleEdit.internal">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-field label="User ID">
+									<b-input expanded name="user_id" :value="tampung.user_id"></b-input>
+								</b-field>
+								<b-field label="Name">
+									<b-input expanded name="name" :value="tampung.name"></b-input>
+								</b-field>
+								<b-field label="Email">
+									<b-input expanded name="email" :value="tampung.email"></b-input>
+								</b-field>
+								<b-field label="Business Unit">
+									<b-input expanded name="bu" :value="tampung.bu"></b-input>
+								</b-field>
+								<b-field label="Profile">
+									<b-input expanded name="profile" :value="tampung.profile"></b-input>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="editUser('internal')" style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+
+						<section class="card-content animated fadeIn" v-if="togglePassword.internal">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-input type="hidden" name="user_id" :value="tampung.user_id"></b-input>
+								<b-field label="Current Password">
+									<b-input type="password" name="currentPassword" password-reveal>
+									</b-input>
+								</b-field>
+								<b-field label="New Password">
+									<b-input type="password" name="newPassword" password-reveal>
+									</b-input>
+								</b-field>
+								<b-field label="Comfirm New Password">
+									<b-input type="password" name="confirmPassword" password-reveal>
+									</b-input>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="changePassword('internal')"
+										style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+					</div>
+					<!-- TODO: Ario -->
+					<!-- yang ini masih pakek br -->
+					<br>
+					<div class="card">
+						<slot name="header">
+							<header class="card-header">
+								<p class="card-header-title">External</p>
+							</header>
+						</slot>
+						<div class="card-content" style="padding-bottom:0.5em;">
+							<b-message type="is-info">
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+								quae doloribus? Aperiam,
+								cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+								molestias eius magnam illum
+								debitis.
+							</b-message>
+						</div>
+						<b-table v-if="toggleTable.external" :data="props.DATA_USER_EXTERNAL"
+							:paginated="paginated !== 0" :per-page="paginated" pagination-position="top"
+							pagination-simple>
+							<template slot-scope="props">
+								<b-table-column field="user_id" label="User ID" sortable>
+									<span>{{ props.row.user_id }}</span>
+								</b-table-column>
+								<b-table-column field="name" label="Name" sortable>
+									<span>{{ props.row.name }}</span>
+								</b-table-column>
+								<b-table-column field="email" label="Email" sortable>
+									<span>{{ props.row.email }}</span>
+								</b-table-column>
+								<b-table-column field="bu" label="Business Unit" sortable>
+									<span>{{ props.row.bu }}</span>
+								</b-table-column>
+								<b-table-column field="profile" label="Profile" sortable>
+									<span>{{ props.row.profile }}</span>
+								</b-table-column>
+								<!-- TODO: Ario -->
+								<!-- css dropdown action -->
+								<b-table-column width="10" field="action" label="Action" sortable>
+									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+										<span class="mdi mdi-menu mdi-18px has-text-info"
+											style="cursor: pointer !important;" slot="trigger"></span>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="editUser('external',props.row)"><span>Edit</span></a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a @click="changePassword('external',props.row)"><span>Change
+													Password</span></a>
+										</b-dropdown-item>
+										<b-dropdown-item aria-role="listitem" has-link>
+											<a><span>Archive</span></a>
+										</b-dropdown-item>
+									</b-dropdown>
+								</b-table-column>
+							</template>
+						</b-table>
+
+						<section class="card-content animated fadeIn" v-if="toggleEdit.external">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-field label="User ID">
+									<b-input expanded name="user_id" :value="tampung.user_id"></b-input>
+								</b-field>
+								<b-field label="Name">
+									<b-input expanded name="name" :value="tampung.name"></b-input>
+								</b-field>
+								<b-field label="Email">
+									<b-input expanded name="email" :value="tampung.email"></b-input>
+								</b-field>
+								<b-field label="Business Unit">
+									<b-input expanded name="bu" :value="tampung.bu"></b-input>
+								</b-field>
+								<b-field label="Profile">
+									<b-input expanded name="profile" :value="tampung.profile"></b-input>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="editUser('external')" style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+
+						<section class="card-content animated fadeIn" v-if="togglePassword.external">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-input type="hidden" name="user_id" :value="tampung.user_id"></b-input>
+								<b-field label="Current Password">
+									<b-input type="password" name="currentPassword" password-reveal>
+									</b-input>
+								</b-field>
+								<b-field label="New Password">
+									<b-input type="password" name="newPassword" password-reveal>
+									</b-input>
+								</b-field>
+								<b-field label="Comfirm New Password">
+									<b-input type="password" name="confirmPassword" password-reveal>
+									</b-input>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="changePassword('external')"
+										style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+					</div>
+
+				</div>
+			</section>
+		</section>
+	</div>
+
+	<script>
+		const VAPPS = {
+			DATA_USER_INTERNAL: [
+				{
+					user_id: "adewiranataputra",
+					name: "Ade Wiranata Putra",
+					email: "ade.wiranata@sigma.co.id",
+					bu: "PMO",
+					profile: "Manager",
+					status: true
+				},
+				{
+					user_id: "ariowidiatmoko",
+					name: "ARIO WIDIATMOKO",
+					email: "ario@sigma.co.id",
+					bu: "PMO",
+					profile: "Cell 3",
+					status: false
+				},
+				{
+					user_id: "ariowidiatmoko",
+					name: "ARIO WIDIATMOKO",
+					email: "ario@sigma.co.id",
+					bu: "PMO",
+					profile: "Cell 3",
+					status: false
+				}
+			],
+			DATA_USER_EXTERNAL: [
+				{
+					user_id: "adewiranataputra",
+					name: "Ade Wiranata Putra",
+					email: "ade.wiranata@sigma.co.id",
+					bu: "PMO",
+					profile: "Manager",
+					status: true
+				},
+				{
+					user_id: "ariowidiatmoko",
+					name: "ARIO WIDIATMOKO",
+					email: "ario@sigma.co.id",
+					bu: "PMO",
+					profile: "Cell 3",
+					status: false
+				},
+				{
+					user_id: "ariowidiatmoko",
+					name: "ARIO WIDIATMOKO",
+					email: "ario@sigma.co.id",
+					bu: "PMO",
+					profile: "Cell 3",
+					status: false
+				}
+			]
+		}
+	</script>
+
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/setting/settings.js"></script>
+</body>
+
+</html>
