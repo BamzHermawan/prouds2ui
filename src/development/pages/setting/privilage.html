@@ -42,9 +42,9 @@
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Setting" name="project">
 				<side-item href="authorization.html">Authorization</side-item>
-				<side-item href="baseline.html">Baseline</side-item>
+				<side-item active>Baseline</side-item>
 				<side-item href="customer.html">Customer</side-item>
-				<side-item active>Days Scheme</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
 				<side-item href="importdata.html">Import Data</side-item>
 				<side-item href="issue.html">Issue</side-item>
 				<side-item href="organization.html">Organization</side-item>
@@ -65,7 +65,7 @@
 						<span class="mdi mdi-chevron-left mdi-24px"></span>
 					</a>
 
-					<a href="../project/list.html" class="navbar-item">
+					<a class="navbar-item">
 						PROJECT
 					</a>
 
@@ -120,9 +120,12 @@
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Days Scheme</span>
+							<span>Project Privilage</span>
 						</h1>
-
+						<!-- <a @click="addFavorite">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span>Bookmark</span>
+						</a> -->
 						<a @click="addFavorite" class="hover-text">
 							<span class="mdi mdi-bookmark-plus is-marginless"></span>
 							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
@@ -133,112 +136,10 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 
-					<crud ref="holidayTable" :paginated="5" narrowed :data="props.HOLIDAY.data"
-						:columns="props.HOLIDAY.fields" del="http://localhost:5501/demo/post_detect.php?id={id}"
-						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
-
-						<template slot="header">
-							<header class="card-header has-gradient-light">
-								<p class="card-header-title">Holiday</p>
-							</header>
-						</template>
-
-						<template slot="message">
-							<div class="card-content" style="padding-bottom:0.5em;">
-								<b-message type="is-info">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
-									rerum
-									quae doloribus? Aperiam,
-									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
-									molestias eius magnam illum
-									debitis.
-								</b-message>
-							</div>
-						</template>
-
-						<template slot="forms" slot-scope="props">
-							<crud-form method="post" :action="props.action"
-								@cancel="$refs.holidayTable.showForm = false">
-								<crud-input type="text" label="Yaer" placeholder="Yaer" name="year"
-									:value="props.row.year">
-								</crud-input>
-								<crud-input type="datepicker" label="Start" placeholder="Start" name="start"
-									:value="props.row.start" date-input-format="DD/MM/YYYY">
-								</crud-input>
-								<crud-input type="datepicker" label="End" placeholder="End" name="end"
-									:value="props.row.end" date-input-format="DD/MM/YYYY">
-								</crud-input>
-								<crud-input type="text" label="Desc" placeholder="Desc" name="desc"
-									:value="props.row.desc">
-								</crud-input>
-							</crud-form>
-						</template>
-					</crud>
-
 				</div>
 			</section>
 		</section>
 	</div>
-
-	<script>
-		const VAPPS = {
-			HOLIDAY: {
-				fields: [
-					{
-						key: 'year',
-						label: 'Year',
-						sortable: true,
-					},
-					{
-						key: 'start',
-						label: 'Start',
-						sortable: true,
-					},
-					{
-						key: 'end',
-						label: 'End',
-						sortable: true,
-					},
-					{
-						key: 'desc',
-						label: 'Desc',
-						sortable: true,
-					}
-				],
-				data: [
-					{
-						"id": 0,
-						"year": "2019",
-						"start": "01/01/2019",
-						"end": "01/01/2019",
-						"desc": "Tahun Baru Masehi"
-					},
-					{
-						"id": 1,
-						"year": "2019",
-						"start": "05/02/2019",
-						"end": "05/02/2019",
-						"desc": "Tahun Baru Imlek"
-					},
-					{
-						"id": 2,
-						"year": "2019",
-						"start": "07/03/2019",
-						"end": "07/03/2019",
-						"desc": "Nyepi"
-					},
-					{
-						"id": 3,
-						"year": "2019",
-						"start": "03/04/2019",
-						"end": "03/04/2019",
-						"desc": "Isra' Miraj"
-					}
-				]
-			}
-		}
-	</script>
 
 	<script src="../../scripts/layout/controller.js"></script>
 	<script src="../../scripts/setting/settings.js"></script>
