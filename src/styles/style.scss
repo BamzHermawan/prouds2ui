@@ -108,7 +108,7 @@ body {
 
 	.wrapper {
 		margin: 0 auto;
-		grid-template-columns: 275px 1fr;
+		grid-template-columns: 275px calc(100vw - 275px);
 		grid-template-rows: 50px 1fr;
 
 		// &.sidebar-off {
