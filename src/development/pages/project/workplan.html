@@ -110,7 +110,7 @@
 			</div>
 		</nav>
 
-		<section id="vapp" class="content">
+		<section id="vapp" class="contentPage">
 			<section class="hero is-light is-bold">
 				<div class="hero-body">
 					<div class="container">
@@ -121,7 +121,7 @@
 							<span class="mdi mdi-bookmark-plus is-marginless"></span>
 							<span>Bookmark</span>
 						</a> -->
-						<a @click="addFavorite" class="hover-text">
+						<a @click="addFavorite('Workplan', 'http://google.com')" class="hover-text">
 							<span class="mdi mdi-bookmark-plus is-marginless"></span>
 							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
 						</a>
@@ -143,7 +143,7 @@
 
 					<div class="container">
 						<div class="columns">
-							<div :class="'column ' + (showSideBar ? 'is-10' : 'is-11')">
+							<div :class="'column ' + (showSideBar ? 'is-8' : '')">
 								<div class="card">
 									<header class="card-header">
 										<div class="card-header-title">
