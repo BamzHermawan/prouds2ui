@@ -14,7 +14,7 @@ import LinkPredecessor from "./linkPredecessor.vue"
 
 Vue.use(Buefy);
 new Vue({
-	el: '#contentApp',
+	el: '#vapp',
 	components: {
 		topNavBar, dataTableNoCard, crudInput, ganttchart, EditTask, AssignResource, SetProgress, MergeTask, ChangeParentTask, LinkPredecessor
 	},
@@ -51,6 +51,9 @@ new Vue({
 		showSideBar: false
 	},
 	methods: {
+		addFavorite(title, link) {
+			global.$sidebar.ws.addList(title, link);
+		},
 		toggleSideBar() {
 			if (this.showSideBar) {
 				let lastActive = document.querySelector("tr.gname.is-active");

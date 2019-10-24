@@ -89,6 +89,7 @@ export default {
 			//! Open list first, or it will show error
 			if (!this.isOpened) this.toggleList();
 
+			//TODO: Ade
 			//TODO: Ajax Axios send text and link to server
 			// After receiving result, add item to list.
 			//? Axios.post(...)
