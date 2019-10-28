@@ -11,7 +11,7 @@
 	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
@@ -41,7 +41,7 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Setting" name="project">
-				<side-item active>Authorization</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
 				<side-item href="baseline.html">Baseline</side-item>
 				<side-item href="customer.html">Customer</side-item>
 				<side-item href="dayscheme.html">Days Scheme</side-item>
@@ -49,7 +49,7 @@
 				<side-item href="issue.html">Issue</side-item>
 				<side-item href="organization.html">Organization</side-item>
 				<side-list label="Projects" name="pro">
-					<side-item href="privilage.html">Project Privilage</side-item>
+					<side-item active>Project Privilage</side-item>
 					<side-item href="typelevel.html">Type-Level</side-item>
 				</side-list>
 				<side-item href="users.html">Users</side-item>
@@ -92,7 +92,7 @@
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="http://" class="navbar-item hover-text is-active"">
+					<a href="http://" class="navbar-item hover-text is-active">
 						<span class=" mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -115,12 +115,12 @@
 			</div>
 		</nav>
 
-		<section id="vapp" class="contentPage">
+		<section id="vapp" class="content">
 			<section class="hero is-light is-bold">
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Authorization</span>
+							<span>Project Privilage</span>
 						</h1>
 						<!-- <a @click="addFavorite">
 							<span class="mdi mdi-bookmark-plus is-marginless"></span>
@@ -139,7 +139,7 @@
 					<div class="card">
 						<slot name="header">
 							<header class="card-header">
-								<p class="card-header-title">Authorization</p>
+								<p class="card-header-title">Project Manager Privilage</p>
 							</header>
 						</slot>
 						<div class="card-content" style="padding-bottom:0.5em;">
@@ -151,14 +151,23 @@
 								debitis.
 							</b-message>
 						</div>
-						<b-table v-if="showTable" :data="props.DATA" :paginated="paginated !== 0" :per-page="paginated"
+						<b-table v-if="showTable" :data="data" :paginated="paginated !== 0" :per-page="paginated"
 							pagination-position="top" pagination-simple>
 							<template slot-scope="props">
-								<b-table-column width="175" field="profile_id" label="Profile ID" sortable>
-									<span>{{ props.row.id }}</span>
+								<b-table-column width="175" field="project_manager" label="Project Manager" sortable>
+									<span>{{ props.row.project_manager }}</span>
 								</b-table-column>
-								<b-table-column field="profil_name" label="Profile Name" sortable>
-									<span>{{ props.row.profile_name }}</span>
+								<b-table-column field="classification" label="Classification" sortable>
+									<span>{{ props.row.classification }}</span>
+								</b-table-column>
+								<b-table-column field="dominant_segment" label="Dominant Segment" sortable>
+									<span>{{ props.row.dominant_segment }}</span>
+								</b-table-column>
+								<b-table-column field="koordinator" label="Koordinator" sortable>
+									<span>{{ props.row.koordinator }}</span>
+								</b-table-column>
+								<b-table-column field="privilage_level" label="Privilage Level" sortable>
+									<span>{{ props.row.privilage_level }}</span>
 								</b-table-column>
 								<b-table-column width="200" field="action" label="Action" sortable>
 									<b-button @click="editForm(props.row)" type="is-info" size="is-small">Edit
@@ -170,37 +179,52 @@
 								</b-table-column>
 							</template>
 							<template slot="top-left">
-								<b-button @click="addform" type="is-success">Add New</b-button>
+								<div class="level">
+									<div class="level-left">
+										<b-button @click="addform" type="is-success">Add New</b-button>
+									</div>
+									<div class="level-right">
+										<div class="column">
+											<p>Privilage Level :</p>
+										</div>
+										<div class="column">
+											<b-select v-model="selectedLevel">
+												<option value="">All</option>
+												<option value="Project Manager">Project Manager</option>
+												<option value="Tes Ajah">Tes Ajah</option>
+												<option value="Project Admin">Project Admin</option>
+												<option value="Operation Manager">Operation Manager</option>
+											</b-select>
+										</div>
+									</div>
+								</div>
 							</template>
 						</b-table>
 						<section class="card-content animated fadeIn" v-if="add">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-field label="Profile Name">
-									<b-input expanded name="profile_name"></b-input>
+								<b-field label="Project Manager">
+									<b-input expanded name="Project Manager"></b-input>
 								</b-field>
-								<input type="hidden" name="accessMenu" v-model="checkboxGroup">
-								<b-field label="Menu Access">
-									<div class="block">
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="1">
-											Home
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="2">
-											Project
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="3">
-											Financial
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="4">
-											Opportunity
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="5">
-											Operation
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="6">
-											Setting
-										</b-checkbox>
-									</div>
-
+								<b-field label="Dominant Segment">
+									<b-select expanded name="dominant_segment">
+										<option value="Bangking & Finance">Banking & Finance</option>
+										<option value="Insfrastruktur">Insfrastruktur</option>
+										<option value="Cloud">Cloud</option>
+									</b-select>
+								</b-field>
+								<b-field label="Koordinator">
+									<b-select expanded name="koordinator">
+										<option value="Ade Wiranata Putra">Ade Wiranata Putra</option>
+										<option value="Boy">Boy</option>
+									</b-select>
+								</b-field>
+								<b-field label="Privilage Level">
+									<b-select expanded name="privilage_level">
+										<option value="Project Manager">Project Manager</option>
+										<option value="Tes Ajah">Tes Ajah</option>
+										<option value="Project Admin">Project Admin</option>
+										<option value="Operation Manager">Operation Manager</option>
+									</b-select>
 								</b-field>
 								<div style="margin-top: 28px;">
 									<b-button type="is-danger" @click="addform" style="min-width: 150px;">
@@ -214,8 +238,29 @@
 						</section>
 						<section class="card-content animated fadeIn" v-if="edit">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-field label="Profile Name">
-									<b-input expanded name="profile_name" :value="tampung.profile_name"></b-input>
+								<b-field label="Project Manager">
+									<b-input expanded name="Project Manager" :value="tampung.project_manager"></b-input>
+								</b-field>
+								<b-field label="Dominant Segment">
+									<b-select expanded name="dominant_segment" :value="tampung.dominant_segment">
+										<option value="Bangking & Finance">Banking & Finance</option>
+										<option value="Insfrastruktur">Insfrastruktur</option>
+										<option value="Cloud">Cloud</option>
+									</b-select>
+								</b-field>
+								<b-field label="Koordinator">
+									<b-select expanded name="koordinator" :value="tampung.koordinator">
+										<option value="Ade Wiranata Putra">Ade Wiranata Putra</option>
+										<option value="Boy">Boy</option>
+									</b-select>
+								</b-field>
+								<b-field label="Privilage Level">
+									<b-select expanded name="privilage_level" :value="tampung.privilage_level">
+										<option value="Project Manager">Project Manager</option>
+										<option value="Tes Ajah">Tes Ajah</option>
+										<option value="Project Admin">Project Admin</option>
+										<option value="Operation Manager">Operation Manager</option>
+									</b-select>
 								</b-field>
 								<div style="margin-top: 28px;">
 									<b-button type="is-danger" @click="editForm" style="min-width: 150px;">
@@ -236,117 +281,38 @@
 
 	<script>
 		const VAPPS = {
-			DATA: [
+			PRIVILAGE: [
 				{
-					id: 1,
-					profile_name: "PMO",
-					action: [
-						{
-							link: "editUser.html",
-							label: "Edit",
-							type: "is-info"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password",
-							type: "is-success"
-						},
-						{
-							link: "#active",
-							label: "Active",
-							type: "is-danger"
-						}
-					]
+					"id": 0,
+					"project_manager": "Martina Dillard",
+					"classification": "Senior",
+					"dominant_segment": "Bangking & Finance",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Project Manager"
 				},
 				{
-					id: 2,
-					profile_name: "PM Leader",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					"id": 1,
+					"project_manager": "Alissa Newton",
+					"classification": "Senior",
+					"dominant_segment": "Infrastructure",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Tes Ajah"
 				},
 				{
-					id: 3,
-					profile_name: "PM",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					"id": 2,
+					"project_manager": "Maryanne Watson",
+					"classification": "Junior",
+					"dominant_segment": "Cloud",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Project Admin"
 				},
 				{
-					id: 4,
-					profile_name: "Team Member",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
-				},
-				{
-					id: 5,
-					profile_name: "AM",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
-				},
-				{
-					id: 6,
-					profile_name: "Purchasing",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					"id": 3,
+					"project_manager": "Cannon May",
+					"classification": "Junior",
+					"dominant_segment": "Bangking & Finance",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Operation Manager"
 				}
 			]
 		}

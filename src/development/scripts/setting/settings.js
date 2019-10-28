@@ -19,6 +19,8 @@ new Vue({
 			name: 'Ade Wiranat Putra'
 		},
 		props: VAPPS,
+		data: [],
+		dataOri: [],
 		organization: [],
 		drag: false,
 		menuTree: false,
@@ -51,7 +53,14 @@ new Vue({
 		showTable: true,
 		paginated: 5,
 		checkboxGroup: [],
-		tampung: ""
+		tampung: "",
+		selectedLevel: ""
+	},
+	watch: {
+		selectedLevel: function (newQuery, oldQuery) {
+			this.props = this.propsOri
+			this.filterLevel(newQuery)
+		}
 	},
 	methods: {
 		itemClick(node) {
@@ -173,6 +182,15 @@ new Vue({
 			this.toggleTable[idd] = !this.toggleTable[idd]
 			this.togglePassword[idd] = !this.togglePassword[idd]
 			this.tampung = val
+		},
+		filterLevel(val) {
+			if (val !== "") {
+				this.data = this.data.filter(level =>
+					this.selectedLevel.includes(level.privilage_level)
+				);
+			} else {
+				this.data = this.dataOri
+			}
 		}
 	},
 	computed: {
@@ -231,6 +249,11 @@ new Vue({
 					}
 				}
 			}
+		}
+
+		if (this.props.PRIVILAGE != undefined) {
+			this.data = this.props.PRIVILAGE
+			this.dataOri = this.props.PRIVILAGE
 		}
 		Loader.hide();
 	}

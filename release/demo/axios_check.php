@@ -25,6 +25,7 @@ if(!empty($_GET['return'])){
 	echo json_encode([
 		"post" => $_POST,
 		"get" => $_GET,
+		"file" => $_FILES,
 		"input" => json_decode(file_get_contents("php://input"))
 	]);
 }

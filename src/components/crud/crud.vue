@@ -76,6 +76,9 @@
 				</template>
 				<template slot="top-left">
 					<div class="level-item">
+						<slot name="top-left-before"></slot>
+					</div>
+					<div class="level-item">
 						<b-button
 							tag="a"
 							:href="parseActionLink(add)"
@@ -83,6 +86,9 @@
 							type="is-success"
 							>Add New</b-button
 						>
+					</div>
+					<div class="level-item">
+						<slot name="top-left-after"></slot>
 					</div>
 				</template>
 				<template slot="empty">

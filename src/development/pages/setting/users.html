@@ -41,15 +41,18 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Setting" name="project">
-				<side-item>Users</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
 				<side-item href="baseline.html">Baseline</side-item>
 				<side-item href="customer.html">Customer</side-item>
-				<side-item href="issue.html">Issue</side-item>
-				<side-item href="organization.html">Organization</side-item>
-				<side-item href="authorization.html">Authorization</side-item>
-				<side-item href="projects.html">Projects</side-item>
 				<side-item href="dayscheme.html">Days Scheme</side-item>
 				<side-item href="importdata.html">Import Data</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item href="organization.html">Organization</side-item>
+				<side-list label="Projects" name="pro">
+					<side-item href="privilage.html">Project Privilage</side-item>
+					<side-item href="typelevel.html">Type-Level</side-item>
+				</side-list>
+				<side-item active>Users</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -220,15 +223,15 @@
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 								<b-input type="hidden" name="user_id" :value="tampung.user_id"></b-input>
 								<b-field label="Current Password">
-									<b-input type="password" name="currentPassword" password-reveal>
+									<b-input type="password" name="currentPassword" password-reveal required>
 									</b-input>
 								</b-field>
 								<b-field label="New Password">
-									<b-input type="password" name="newPassword" password-reveal>
+									<b-input type="password" name="newPassword" password-reveal required>
 									</b-input>
 								</b-field>
 								<b-field label="Comfirm New Password">
-									<b-input type="password" name="confirmPassword" password-reveal>
+									<b-input type="password" name="confirmPassword" password-reveal required>
 									</b-input>
 								</b-field>
 								<div style="margin-top: 28px;">

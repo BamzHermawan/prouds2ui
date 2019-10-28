@@ -42,15 +42,18 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Setting" name="project">
-				<side-item href="users.html">Users</side-item>
+				<side-item href="authorization.html">Authorization</side-item>
 				<side-item href="baseline.html">Baseline</side-item>
 				<side-item href="customer.html">Customer</side-item>
-				<side-item href="issue.html">Issue</side-item>
-				<side-item>Organization</side-item>
-				<side-item href="authorization.html">Authorization</side-item>
-				<side-item href="projects.html">Projects</side-item>
 				<side-item href="dayscheme.html">Days Scheme</side-item>
 				<side-item href="importdata.html">Import Data</side-item>
+				<side-item href="issue.html">Issue</side-item>
+				<side-item active>Organization</side-item>
+				<side-list label="Projects" name="pro">
+					<side-item href="privilage.html">Project Privilage</side-item>
+					<side-item href="typelevel.html">Type-Level</side-item>
+				</side-list>
+				<side-item href="users.html">Users</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -184,7 +187,8 @@
 											<b-button @click="editBU" type="is-success is-small">Edit</b-button>
 										</div>
 										<div class="level-item">
-											<b-button @click="deleteBU('http://localhost:5501/demo/post_detect.php?')" type="is-success is-small">
+											<b-button @click="deleteBU('http://localhost:5501/demo/post_detect.php?')"
+												type="is-success is-small">
 												Delete</b-button>
 										</div>
 									</div>
@@ -206,13 +210,14 @@
 							</template>
 							<template v-if="drag">
 								<b-button @click="closeDrag" type="is-danger">Cancel</b-button>
-								<b-button @click="saveDrag('http://localhost:5501/demo/post_detect.php?')" type="is-success">save</b-button>
+								<b-button @click="saveDrag('http://localhost:5501/demo/post_detect.php?')"
+									type="is-success">save</b-button>
 							</template>
 						</div>
 					</nav>
 
-					<v-jstree id="orgTree" :data="organization" :draggable="drag" @item-drag-start="dragStart" @item-drop="drop" allow-batch
-						whole-row @item-click="itemClick">
+					<v-jstree id="orgTree" :data="organization" :draggable="drag" @item-drag-start="dragStart"
+						@item-drop="drop" allow-batch whole-row @item-click="itemClick">
 					</v-jstree>
 
 				</div>
