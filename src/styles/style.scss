@@ -56,6 +56,8 @@ $section-padding: 1.8rem ;
 $section-padding-medium: 9rem 3rem;
 $section-padding-large: 18rem 3rem;
 
+$table-striped-row-even-background-color: lighten($light, 2%);
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -611,6 +613,49 @@ tr.gname {
 
 .breadcrumb.has-succeeds-separator li + li::before {
     content: ">" !important;
+}
+
+// Vertical align td to middle
+td.align-middle {
+	vertical-align: middle !important;
+}
+
+.dropdown {
+	.dropdown-trigger > .mdi.mdi-menu-custom {
+		cursor: pointer;
+		color: $info;
+
+		&::before {
+    		content: "\F35C";
+		}
+	}
+
+	&.is-active {
+		.dropdown-trigger > .mdi.mdi-menu-custom::before {
+			content: "\FB87";
+		}
+	}
+}
+
+.dropdown-label {
+	font-size: 0.8rem !important;
+	font-weight: bold;
+	text-align: left;
+}
+
+.button.is-bookmark {
+	font-size: 0.75rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	margin-top: 8px;
+
+	.mdi {
+		margin: 0px;
+	}
+
+	span[data-toggle="text"] {
+		margin-left: 5px;
+	}
 }
 
 @import "~bulma";

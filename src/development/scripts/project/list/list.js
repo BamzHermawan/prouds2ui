@@ -6,6 +6,7 @@ import Loader from 'helper-loader';
 import { crudInput } from 'components';
 import { notified } from 'helper-tools'
 import Axios from 'axios'
+import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({

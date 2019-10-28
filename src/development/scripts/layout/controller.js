@@ -1,10 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
-import { notified } from 'helper-tools';
-import { sideList as SideList } from 'components';
-import { sideItem as SideItem } from 'components';
-import Axios from 'axios'
+import { sideList as SideList, sideItem as SideItem, bookmarkButton } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
 var WRAPPER = document.querySelector('#main-layout');
@@ -22,9 +19,17 @@ global.$sidebar = {};
 
 Vue.use(Buefy);
 new Vue({
+	name: 'Sidebar',
 	el: '#side-main',
 	components: { SideList, SideItem }
 });
+
+// Instance for Page Bookmark
+new Vue({
+	name: 'Bookmark',
+	el: '#bookmarkPage',
+	components: { bookmarkButton }
+})
 
 function sidebarToggleAnimation() {
 	let btn = document.querySelector('#toggle-sidebar');

@@ -1,9 +1,9 @@
-// DataTable
-import dataTable from "./dataTable.vue";
 import mediaLog from "./mediaLog.vue";
 import notified from "./notified.vue";
+import bookmarkButton from "./sidebar/bookmark.vue";
 
-// DATATABLE NO CARD
+// DATATABLE
+import dataTable from "./dataTable.vue";
 import dataTableNoCard from "./dataTable/nocard.vue";
 
 // CRUD COMPONENTS
@@ -19,10 +19,11 @@ import topNavBar from "./topNavBar.vue";
 // GANTTCHART
 import ganttchart from "./ganttchart.vue"
 
-module.exports.dataTable = dataTable;
 module.exports.mediaLog = mediaLog;
 module.exports.notified = notified;
+module.exports.bookmarkButton = bookmarkButton;
 
+module.exports.dataTable = dataTable;
 module.exports.dataTableNoCard = dataTableNoCard;
 
 module.exports.crud = crud;

@@ -54,6 +54,7 @@
 			:class="addedClass()"
 			:row-class="rowClass"
 			:loading="isLoading"
+			:striped="striped"
 			style="font-size:11pt"
 		>
 			<template slot-scope="props">
@@ -177,6 +178,10 @@ export default {
 			default: function() {}
 		},
 		isLoading: {
+			default: false
+		},
+		striped: {
+			type: Boolean,
 			default: false
 		}
 	},
