@@ -42,15 +42,15 @@
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Setting" name="project">
 				<side-item href="authorization.html">Authorization</side-item>
-				<side-item active>Baseline</side-item>
+				<side-item href="baseline.html">Baseline</side-item>
 				<side-item href="customer.html">Customer</side-item>
 				<side-item href="dayscheme.html">Days Scheme</side-item>
 				<side-item href="importdata.html">Import Data</side-item>
 				<side-item href="issue.html">Issue</side-item>
 				<side-item href="organization.html">Organization</side-item>
 				<side-list label="Projects" name="pro">
-					<side-item link="privilage.html">Project Privilage</side-item>
-					<side-item link="typelevel.html">Type-Level</side-item>
+					<side-item active>Project Privilage</side-item>
+					<side-item href="typelevel.html">Type-Level</side-item>
 				</side-list>
 				<side-item href="users.html">Users</side-item>
 			</side-list>
@@ -65,7 +65,7 @@
 						<span class="mdi mdi-chevron-left mdi-24px"></span>
 					</a>
 
-					<a class="navbar-item">
+					<a href="../project/list.html" class="navbar-item">
 						PROJECT
 					</a>
 
@@ -136,10 +136,187 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 
+					<div class="card">
+						<slot name="header">
+							<header class="card-header">
+								<p class="card-header-title">Project Manager Privilage</p>
+							</header>
+						</slot>
+						<div class="card-content" style="padding-bottom:0.5em;">
+							<b-message type="is-info">
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+								quae doloribus? Aperiam,
+								cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+								molestias eius magnam illum
+								debitis.
+							</b-message>
+						</div>
+						<b-table v-if="showTable" :data="data" :paginated="paginated !== 0" :per-page="paginated"
+							pagination-position="top" pagination-simple>
+							<template slot-scope="props">
+								<b-table-column width="175" field="project_manager" label="Project Manager" sortable>
+									<span>{{ props.row.project_manager }}</span>
+								</b-table-column>
+								<b-table-column field="classification" label="Classification" sortable>
+									<span>{{ props.row.classification }}</span>
+								</b-table-column>
+								<b-table-column field="dominant_segment" label="Dominant Segment" sortable>
+									<span>{{ props.row.dominant_segment }}</span>
+								</b-table-column>
+								<b-table-column field="koordinator" label="Koordinator" sortable>
+									<span>{{ props.row.koordinator }}</span>
+								</b-table-column>
+								<b-table-column field="privilage_level" label="Privilage Level" sortable>
+									<span>{{ props.row.privilage_level }}</span>
+								</b-table-column>
+								<b-table-column width="200" field="action" label="Action" sortable>
+									<b-button @click="editForm(props.row)" type="is-info" size="is-small">Edit
+									</b-button>
+									<b-button tag="a"
+										:href="'http://localhost:5501/demo/post_detect.php?id='+props.row.id"
+										type="is-danger" size="is-small">Delete
+									</b-button>
+								</b-table-column>
+							</template>
+							<template slot="top-left">
+								<div class="level">
+									<div class="level-left">
+										<b-button @click="addform" type="is-success">Add New</b-button>
+									</div>
+									<div class="level-right">
+										<div class="column">
+											<p>Privilage Level :</p>
+										</div>
+										<div class="column">
+											<b-select v-model="selectedLevel">
+												<option value="">All</option>
+												<option value="Project Manager">Project Manager</option>
+												<option value="Tes Ajah">Tes Ajah</option>
+												<option value="Project Admin">Project Admin</option>
+												<option value="Operation Manager">Operation Manager</option>
+											</b-select>
+										</div>
+									</div>
+								</div>
+							</template>
+						</b-table>
+						<section class="card-content animated fadeIn" v-if="add">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-field label="Project Manager">
+									<b-input expanded name="Project Manager"></b-input>
+								</b-field>
+								<b-field label="Dominant Segment">
+									<b-select expanded name="dominant_segment">
+										<option value="Bangking & Finance">Banking & Finance</option>
+										<option value="Insfrastruktur">Insfrastruktur</option>
+										<option value="Cloud">Cloud</option>
+									</b-select>
+								</b-field>
+								<b-field label="Koordinator">
+									<b-select expanded name="koordinator">
+										<option value="Ade Wiranata Putra">Ade Wiranata Putra</option>
+										<option value="Boy">Boy</option>
+									</b-select>
+								</b-field>
+								<b-field label="Privilage Level">
+									<b-select expanded name="privilage_level">
+										<option value="Project Manager">Project Manager</option>
+										<option value="Tes Ajah">Tes Ajah</option>
+										<option value="Project Admin">Project Admin</option>
+										<option value="Operation Manager">Operation Manager</option>
+									</b-select>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="addform" style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+						<section class="card-content animated fadeIn" v-if="edit">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-field label="Project Manager">
+									<b-input expanded name="Project Manager" :value="tampung.project_manager"></b-input>
+								</b-field>
+								<b-field label="Dominant Segment">
+									<b-select expanded name="dominant_segment" :value="tampung.dominant_segment">
+										<option value="Bangking & Finance">Banking & Finance</option>
+										<option value="Insfrastruktur">Insfrastruktur</option>
+										<option value="Cloud">Cloud</option>
+									</b-select>
+								</b-field>
+								<b-field label="Koordinator">
+									<b-select expanded name="koordinator" :value="tampung.koordinator">
+										<option value="Ade Wiranata Putra">Ade Wiranata Putra</option>
+										<option value="Boy">Boy</option>
+									</b-select>
+								</b-field>
+								<b-field label="Privilage Level">
+									<b-select expanded name="privilage_level" :value="tampung.privilage_level">
+										<option value="Project Manager">Project Manager</option>
+										<option value="Tes Ajah">Tes Ajah</option>
+										<option value="Project Admin">Project Admin</option>
+										<option value="Operation Manager">Operation Manager</option>
+									</b-select>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="editForm" style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+					</div>
+
 				</div>
 			</section>
 		</section>
 	</div>
+
+	<script>
+		const VAPPS = {
+			PRIVILAGE: [
+				{
+					"id": 0,
+					"project_manager": "Martina Dillard",
+					"classification": "Senior",
+					"dominant_segment": "Bangking & Finance",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Project Manager"
+				},
+				{
+					"id": 1,
+					"project_manager": "Alissa Newton",
+					"classification": "Senior",
+					"dominant_segment": "Infrastructure",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Tes Ajah"
+				},
+				{
+					"id": 2,
+					"project_manager": "Maryanne Watson",
+					"classification": "Junior",
+					"dominant_segment": "Cloud",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Project Admin"
+				},
+				{
+					"id": 3,
+					"project_manager": "Cannon May",
+					"classification": "Junior",
+					"dominant_segment": "Bangking & Finance",
+					"koordinator": "Ade Wiranata Putra",
+					"privilage_level": "Operation Manager"
+				}
+			]
+		}
+	</script>
 
 	<script src="../../scripts/layout/controller.js"></script>
 	<script src="../../scripts/setting/settings.js"></script>
