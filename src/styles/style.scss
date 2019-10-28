@@ -64,13 +64,20 @@ $table-striped-row-even-background-color: lighten($light, 2%);
 
 //* @MAIN LAYOUT -----------------------------------------
 
+*::-webkit-scrollbar {
+	display: none;
+}
+
 body {
 	font-family: $roboto;
+	overflow: hidden;
 	
 	& > .wrapper {
 		min-height: 100vh;
 		margin: 0px;
 		display: grid;
+
+		overflow: hidden;
 	}
 }
 
@@ -79,8 +86,12 @@ body {
 		display: none !important;
 	}
 
+	.info-bottom-bar {
+		display: none !important;
+	}
+
 	.wrapper {
-		grid-template-rows: 50px 1fr;
+		grid-template-rows: 50px calc(100vh - 85px) 35px;
 	}
 }
 
@@ -88,7 +99,7 @@ body {
 	/* no grid support? */
 	.sidebar {
 		grid-column: 1;
-        grid-row: 1 / 3;
+        grid-row: 1 / 4;
 
 		float: left;
 		width: 275px;
@@ -111,7 +122,7 @@ body {
 	.wrapper {
 		margin: 0 auto;
 		grid-template-columns: 275px calc(100vw - 275px);
-		grid-template-rows: 50px 1fr;
+		grid-template-rows: 50px calc(100vh - 85px) 35px;
 
 		// &.sidebar-off {
 		// 	grid-template-columns: 0px 1fr;
@@ -166,20 +177,33 @@ body {
 
 			float: right;
 			width: 80%;
+
+			overflow-y: scroll;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
+		& > .info-bottom-bar {
+			grid-column: 2;
+			grid-row: 3;
+
+			float: right;
+			width: 80%;
 		}
 	}
 }
 
 @supports (display: grid) {
   body > .wrapper {
-    & > .contentPage, & > .navbar {
+    & > .contentPage, & > .navbar, & > .info-bottom-bar {
 		width: 100%;
     	margin: 0;
 	}
   }
 }
 
-//! -----------------------------------------------------
+//! ------------------------------------------------------
 //* @SIDEBAR ---------------------------------------------
 
 .side-list {
@@ -414,7 +438,16 @@ body {
 	}
 }
 
-//! -----------------------------------------------------
+//! ------------------------------------------------------
+//* @INFOBAR ---------------------------------------------
+
+.info-bottom-bar {
+	background-color: $dark;
+	color: $light;
+	padding: 5px;
+}
+
+//! ------------------------------------------------------
 //* @LOADER STYLING --------------------------------------
 
 .loader-wrapper {
