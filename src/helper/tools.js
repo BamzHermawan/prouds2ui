@@ -151,3 +151,14 @@ module.exports.getCookie = (name) => {
 	var parts = value.split("; " + name + "=");
 	if (parts.length == 2) return parts.pop().split(";").shift();
 }
+
+module.exports.checkConnection = (actor) => {
+	if (window.navigator.onLine) {
+		return true;
+	} else {
+		this.notified(actor)
+			.alert("Sorry we can't connect to server, you sure have internet connection ? 🤔");
+		
+		return false;
+	}
+}

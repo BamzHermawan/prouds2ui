@@ -62,6 +62,11 @@ $table-striped-row-even-background-color: lighten($light, 2%);
   box-sizing: border-box;
 }
 
+//? Pastikan ke mas papang mau pake infobar
+html {
+	overflow: hidden !important;
+}
+
 //* @MAIN LAYOUT -----------------------------------------
 
 *::-webkit-scrollbar {
@@ -86,12 +91,14 @@ body {
 		display: none !important;
 	}
 
+	//? Pastikan ke mas papang mau pake infobar
+	//! delete every info-bottom-bar
 	.info-bottom-bar {
 		display: none !important;
 	}
 
 	.wrapper {
-		grid-template-rows: 50px calc(100vh - 85px) 35px;
+		grid-template-rows: 50px calc(100vh - 80px) 30px;
 	}
 }
 
@@ -122,15 +129,12 @@ body {
 	.wrapper {
 		margin: 0 auto;
 		grid-template-columns: 275px calc(100vw - 275px);
-		grid-template-rows: 50px calc(100vh - 85px) 35px;
+		grid-template-rows: 50px calc(100vh - 80px) 30px;
 
-		// &.sidebar-off {
-		// 	grid-template-columns: 0px 1fr;
-
-		// 	.sidebar {
-		// 		display: none;
-		// 	}
-		// }
+		.sidebar {
+			overflow-y: auto !important;
+			position: relative;
+		}
 
 		&.sidebar-float {
 			grid-template-columns: 0px 1fr;
@@ -141,12 +145,6 @@ body {
 				height: 100vh;
 				z-index: 100;
 				width: 275px;
-
-				overflow-y: scroll;
-
-				&::-webkit-scrollbar {
-					display: none;
-				}
 			}
 
 			&.sidebar-auto .sidebar {
@@ -175,15 +173,16 @@ body {
 			grid-column: 2;
 			grid-row: 2;
 
+			position: relative;
 			float: right;
 			width: 80%;
 
-			overflow-y: scroll;
-			&::-webkit-scrollbar {
-				display: none;
-			}
+			//? Pastikan ke mas papang mau pake infobar
+			//? kalau gak pake ini harus diapus sampe hide-scrollbar
+			overflow: auto;
 		}
 
+		//? Pastikan ke mas papang mau pake infobar
 		& > .info-bottom-bar {
 			grid-column: 2;
 			grid-row: 3;
@@ -444,6 +443,7 @@ body {
 .info-bottom-bar {
 	background-color: $dark;
 	color: $light;
+	font-size: .8rem;
 	padding: 5px;
 }
 
@@ -532,6 +532,208 @@ body {
 }
 
 //! -----------------------------------------------------
+//* @GANTTCHART -----------------------------------------
+
+.gmainright {
+	width: 50% !important;
+}
+
+.gmainleft {
+	width: 50% !important;
+
+	.gcontainercol {
+		min-width: 100%;
+
+		table {
+			min-width: 100%;
+		}
+	}
+}
+
+td.gmajorheading div{
+	padding: 5px !important;
+}
+
+.gantt td {
+	padding: 2px !important;
+}
+
+tr.gname {
+	cursor: pointer !important;
+}
+
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
+.gcharttableh {
+	margin-bottom: 0px !important;
+}
+
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
+//! -----------------------------------------------------
+//* @CARD -----------------------------------------------
+
+.card {
+	.card-header {
+		@include heroGradient($light, darken($light, 20%));
+	}
+
+	&.collapse {
+		.card-header .icon {
+			color: $light !important;
+		}
+
+		.card-footer {
+			padding: 8px 12px;
+
+			.button {
+				min-width: 95px;
+			}
+
+			.button-right {
+				float: right !important;
+
+				& > .button:first-child {
+					margin-right: 5px;
+				}
+			}
+		}
+
+		td {
+			vertical-align: middle;
+			height: 42px !important;
+		}
+
+		td.is-days-has-input {
+			width: 150px;
+
+			input.input {
+				text-align: center !important;
+
+				&::-webkit-inner-spin-button, 
+				&::-webkit-outer-spin-button {  
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+@each $color in $colors {
+	$thisColor: nth($color, 2);
+	$primeColor: nth($thisColor, 1);
+
+	.has-gradient-#{nth($color, 1)} {
+		@include heroGradient($primeColor, darken($primeColor, 20%));
+	}
+
+	.has-underline-#{nth($color, 1)} {
+		border-bottom: 1.7px solid $primeColor;
+	}
+
+	.has-gradient-#{nth($color, 1)}-lighter {
+		@include heroGradient(lighten($primeColor, 20%), lighten($primeColor, 10%));
+	}
+
+	.message {
+		@include heroGradient(lighten(#dbdbdb, 35%), lighten(#dbdbdb, 20%));
+		
+		.message-header {
+			@include heroGradient(lighten(#4a4a4a, 15%), lighten(#4a4a4a, 5%));
+			font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+
+		.message-header + .message-body {
+			background-color: #dbdbdb;
+			border-width: 0px 2px 2px !important;
+			border-color: lighten(#4a4a4a, 5%);
+		}
+
+		&.has-media-list {
+			.media + .media {
+				padding-top: 1rem !important;
+				border-top: 1px solid $dark !important;
+			}
+		}
+
+		&.is-#{nth($color, 1)} {
+			@include heroGradient(lighten($primeColor, 35%), lighten($primeColor, 20%));
+
+			.message-header {
+				@include heroGradient(lighten($primeColor, 15%), lighten($primeColor, 5%));
+				color: nth($thisColor, 2) !important;
+				font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+
+			.message-header + .message-body {
+				background-color: lighten($primeColor, 75%);
+				border-width: 0px 2px 2px !important;
+				border-color: lighten($primeColor, 10%);
+			}
+
+			&.has-media-list {
+				.media + .media {
+					padding-top: 1rem !important;
+					border-top: 1px solid $primeColor !important;
+				}
+			}
+		}
+
+		&.is-on-field .message-body{
+			padding: 0.4em 1em !important;
+		}
+
+		&.has-paddingless-body .message-body{
+			padding: 0px !important;
+		}
+	}
+
+	.field.is-#{nth($color, 1)} {
+		.input, .select > select {
+			border-color: $primeColor !important;
+		}
+
+		.select:not(.is-multiple):not(.is-loading)::after {
+			border-color: darken($primeColor, 15%) !important;
+		}
+
+		.control > .icon {
+			color: $primeColor !important;
+		}
+	}
+}
+
+.datepicker .datepicker-content {
+    height: auto !important;
+}
+
+.datepicker {
+	.dropdown-menu {
+		margin-bottom: 1rem;
+	}
+}
+
+//! -----------------------------------------------------
 //* @CONTENT --------------------------------------------
 
 .white-space {
@@ -585,65 +787,6 @@ body {
 		
 }
 
-.gmainright {
-	width: 50% !important;
-	// margin-bottom: 43px !important;
-}
-.gmainleft {
-	width: 50% !important;
-
-	.gcontainercol {
-		min-width: 100%;
-
-		table {
-			min-width: 100%;
-		}
-	}
-
-	// .gspanning.gtaskname  {
-	// 	padding: 1px !important;
-	// 	vertical-align: middle;
-	// }
-}
-
-// .gtaskname div {
-// 	padding: 5px !important;
-// 	font-size: 12px !important;
-// }
-
-td.gmajorheading div{
-	padding: 5px !important;
-}
-
-// td.gspanning div {
-// 	padding: 9px !important;
-// }
-
-.gantt td {
-	// font-size: 11px;
-	padding: 2px !important;
-}
-
-tr.gname {
-	cursor: pointer !important;
-}
-
-tr.gname {
-	td {
-		vertical-align: middle;
-	}
-
-	&.is-active {
-		td {
-			background-color: rgb(194, 212, 247);
-		}
-	}
-}
-
-.gcharttableh {
-	margin-bottom: 0px !important;
-}
-
 .breadcrumb.has-succeeds-separator li + li::before {
     content: ">" !important;
 }
@@ -689,6 +832,65 @@ td.align-middle {
 	span[data-toggle="text"] {
 		margin-left: 5px;
 	}
+}
+
+.b-table {
+	.level:not(.top) {
+        padding-bottom: 0px !important;
+	}	
+}
+
+.message.is-modal {
+	height: 100vh;
+
+	.message-body {
+		overflow-y:scroll;
+		height: calc(100% - 56px);
+	}
+}
+
+.is-packed > .table-wrapper > .table {
+	td {
+		padding: 5px 0.75em !important;
+		vertical-align: middle;
+	}
+}
+
+.card {
+	.b-table {
+		.table.is-narrow {
+			th {
+				padding: 0.5em 0.75em !important;
+			}
+		}
+
+		.top {
+			margin: 15px !important;
+		}
+	}
+}
+
+.searchFilter {
+	@include noSelect;
+	cursor: pointer;
+
+	&.is-active {
+		background-color: lighten($info, 35%);
+	}
+}
+
+p.is-low-bottom {
+	margin-bottom: 0.5em !important;
+}
+
+p.has-top-margin {
+	margin-top: 1em !important;
+}
+
+.button.is-long {
+	min-width: 150px;
+	padding-left: 2rem;
+	padding-right: 2rem;
 }
 
 @import "~bulma";
