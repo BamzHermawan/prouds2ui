@@ -3,6 +3,7 @@
 		<span class="mdi mdi-bookmark-plus is-marginless"></span>
 		<span>Bookmark</span>
 	</a> -->
+
 	<button @click="sendAPI" :class="btnClass" :disabled="active">
 		<span class="mdi mdi-bookmark-plus is-left"></span>
 		<span data-toggle="text" class="animated fadeIn in-right faster"
@@ -16,14 +17,11 @@ import { notified } from "helper-tools";
 export default {
 	data() {
 		return {
-			active: this.isBooked
+			active: this.isBooked,
+			title: ""
 		};
 	},
 	props: {
-		title: {
-			type: String,
-			required: true
-		},
 		isBooked: {
 			type: Boolean,
 			default: false
@@ -48,14 +46,27 @@ export default {
 	},
 	methods: {
 		sendAPI() {
-			//TODO: Ade
-			// Buat api untuk kirim link dan title server
-			// kalau sukses/error tampilin notifikasi
-			this.successBook();
-			this.active = true;
+			this.$dialog.prompt({
+				message: `Bookmark Name`,
+				confirmText: "Save",
+				type: "is-success",
+				inputAttrs: {
+					placeholder: "Fill a name",
+					maxlength: 18
+				},
+				trapFocus: true,
+				onConfirm: value => {
+					this.title = value;
+					//TODO: Ade
+					// Buat api untuk kirim link dan title server
+					// kalau sukses/error tampilin notifikasi
+					this.successBook();
+					this.active = true;
 
-			// Tambah ke list sidebar My Workspace (ws)
-			global.$sidebar.ws.addList(this.title, this.link);
+					// Tambah ke list sidebar My Workspace (ws)
+					global.$sidebar.ws.addList(this.title, this.link);
+				}
+			});
 		},
 
 		//? Notifikasi jika halaman berhasil di bookmark

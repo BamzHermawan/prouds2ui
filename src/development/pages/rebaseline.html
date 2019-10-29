@@ -42,7 +42,7 @@
 			<side-list label="Project" name="project">
 				<side-item href="project/list.html">Project</side-item>
 				<side-item href="project/projectassignment.html">Project Assignment</side-item>
-				<side-item href="timesheet/timesheet.html">Timesheet</side-item>
+				<side-item href="timesheet.html">Timesheet</side-item>
 				<side-item href="#no-edit">Rebaseline</side-item>
 				<side-item href="#no-edit">Closing</side-item>
 			</side-list>
@@ -94,7 +94,7 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="profile/editProfile.html" class="navbar-item">Account Profile</a>
 							<a href="#help" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
@@ -114,14 +114,9 @@
 						<h1 class="title is-marginless">
 							<span>Rebaseline</span>
 						</h1>
-						<!-- <a @click="addFavorite">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span>Bookmark</span>
-						</a> -->
-						<a @click="addFavorite" class="hover-text">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
-						</a>
+						<div id="bookmarkPage">
+							<bookmark-button></bookmark-button>
+						</div>
 					</div>
 				</div>
 			</section>

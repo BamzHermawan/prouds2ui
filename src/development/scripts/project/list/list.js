@@ -34,7 +34,6 @@ new Vue({
 	methods: {
 		setInitialBaseline(val) {
 
-			// this.isLoading = true;
 			let self = this;
 			return Axios.get('http://localhost:5501/demo/getNotification.php', {
 				params: { project_id: val.project_id }

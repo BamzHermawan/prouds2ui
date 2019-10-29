@@ -102,7 +102,7 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="../profile/editProfile.html" class="navbar-item">Account Profile</a>
 							<a href="#help" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
@@ -122,14 +122,9 @@
 						<h1 class="title is-marginless">
 							<span>Authorization</span>
 						</h1>
-						<!-- <a @click="addFavorite">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span>Bookmark</span>
-						</a> -->
-						<a @click="addFavorite" class="hover-text">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
-						</a>
+						<div id="bookmarkPage">
+							<bookmark-button></bookmark-button>
+						</div>
 					</div>
 				</div>
 			</section>

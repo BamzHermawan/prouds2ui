@@ -14,7 +14,7 @@ import LinkPredecessor from "./linkPredecessor.vue"
 
 Vue.use(Buefy);
 new Vue({
-	el: '#vapp',
+	el: '#contentApp',
 	components: {
 		topNavBar, dataTableNoCard, crudInput, ganttchart, EditTask, AssignResource, SetProgress, MergeTask, ChangeParentTask, LinkPredecessor
 	},
