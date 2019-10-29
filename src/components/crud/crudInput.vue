@@ -163,7 +163,7 @@ export default {
 		},
 		dateLocale: {
 			type: String,
-			default: "id"
+			default: "en"
 		},
 		inline: {
 			type: Boolean,

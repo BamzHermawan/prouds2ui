@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
+import PerfectScrollbar from 'perfect-scrollbar';
 import { sideList as SideList, sideItem as SideItem, bookmarkButton } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
@@ -12,6 +13,10 @@ document.querySelector('#toggle-sidebar')
 
 // Tracking Mouse when entering sidebar area
 document.onmousemove = trackMouse;
+
+// Start Perfect Scrollbar
+new PerfectScrollbar('.contentPage');
+new PerfectScrollbar('#side-main');
 
 // GLOBAL VAR FOR LOADER
 global.$loader = Loader;

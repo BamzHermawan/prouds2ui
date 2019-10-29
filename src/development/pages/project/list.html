@@ -12,6 +12,7 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
 	<link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
@@ -193,13 +194,13 @@
 								<b-table-column field="action" label="Action" width="75" centered class="align-middle">
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PMO -->
-									<!-- <span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
+									<span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
 										style="cursor: pointer !important;" @click="editProject(props.row)">
-									</span> -->
+									</span>
 
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PM -->
-									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+									<!-- <b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
 										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
 										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item has-link>
@@ -227,7 +228,7 @@
 												Task
 											</a>
 										</b-dropdown-item>
-									</b-dropdown>
+									</b-dropdown> -->
 								</b-table-column>
 							</template>
 							<template slot="top-right">
@@ -264,150 +265,136 @@
 					</div>
 
 					<div v-if="showMilestone">
-						<div class="card">
-							<div class="card-content">
-								<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-									<div class="container">
-										<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
-										<b-field label="Project Name">
-											<p>{{form.project_name}}</p>
-										</b-field>
-										<div class="columns">
-											<div class="column">
-												<b-field label="Current Start Date">
-													<p>{{form.start}}</p>
-												</b-field>
+						<h1 class="title is-small">Set Milestone</h1>
+						<h2 class="subtitle is-small">{{form.project_name}}</h2>
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+							<div class="container">
+								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
+								<div class="columns">
+									<div class="column">
+										<b-message type="is-info" :closable="false">
+											<div class="field">
+												<label class="is-marginless has-text-weight-bold">Current Start
+													Date</label>
+												<p>{{form.start | moment}}</p>
 											</div>
-											<div class="column">
-												<b-field label="Current Start Date">
-													<p>{{form.end}}</p>
-												</b-field>
-											</div>
-										</div>
-										<div class="columns">
-											<div class="column">
-												<b-field label="New Start Date">
-													<b-datepicker expanded placeholder="DD/MM/YYYY" name="start">
-													</b-datepicker>
-												</b-field>
-											</div>
-											<div class="column">
-												<b-field label="New End Date">
-													<b-datepicker expanded placeholder="DD/MM/YYYY" name="end">
-													</b-datepicker>
-												</b-field>
-											</div>
-										</div>
-										<section class="card-foot is-clearfix is-block">
-											<div class="is-pulled-right">
-												<a class="button is-danger" @click="setMileStone">
-													Cancel
-												</a>
-												<button class="button is-success" type="submit">
-													Save
-												</button>
-											</div>
-										</section>
+										</b-message>
 									</div>
-								</form>
+									<div class="column">
+										<b-message type="is-info" :closable="false">
+											<div class="field">
+												<label class="is-marginless has-text-weight-bold">Current End
+													Date</label>
+												<p>{{form.end | moment}}</p>
+											</div>
+										</b-message>
+									</div>
+								</div>
+								<div class="columns">
+									<div class="column">
+										<crud-input type="datepicker" label="Start Date"
+											placeholder="Pick new start date" date-input-format="DD/MM/YYYY"
+											name="start" :value="form.start">
+										</crud-input>
+									</div>
+									<div class="column">
+										<crud-input type="datepicker" label="End Date" placeholder="Pick new end date"
+											date-input-format="DD/MM/YYYY" name="end" :value="form.end">
+										</crud-input>
+									</div>
+								</div>
+								<nav class="level">
+									<div class="level-left">
+										<button class="button is-danger is-long" @click="setMileStone">
+											<span>Exit</span>
+										</button>
+									</div>
+									<div class="level-right">
+										<button class="button is-success is-long" type="submit">
+											<span>Save Milestone</span>
+										</button>
+									</div>
+								</nav>
 							</div>
-						</div>
+						</form>
 					</div>
 
 					<div v-if="showEdit">
-						<div class="card">
-							<div class="card-content">
-								<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-									<div class="container">
-										<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
-										<p>
-											<div class="level" style="margin-bottom: -5px;">
-												<div class="level-left">
-													<span style="margin-right: 107px;"><b>Project ID</b></span>:
-													{{form.project_id}}
-												</div>
-												<div class="level-right">
-													<span style="margin-right: 20px; margin-left: 450px;"><b>IWO
-															No.</b></span>{{form.iwo}}
-												</div>
-											</div>
-										</p>
-										<p style="margin-bottom: 10px;">
-											<span style="margin-right: 83px;"><b>Project Name</b></span>:
-											{{form.project_name}}
-										</p>
-										<p style="margin-bottom: 10px;">
-											<span style="margin-right: 121px;"><b>Amount</b></span>: {{form.amount}} IDR
-										</p>
-										<p style="margin-bottom: 10px;">
-											<span style="margin-right: 91px;"><b>Project Type</b></span>:
-											{{form.project_type}}
-										</p>
-										<p style="margin-bottom: 10px;">
-											<span style="margin-right: 68px;"><b>Contract Length</b></span>:
-											{{form.contract_length}}
-										</p>
-										<p>
-											<div class="level" style="margin-bottom: -5px; margin-top: -5px;">
-												<div class="level-left">
-													<span style="margin-right: 47px;"><b>Contract Start Date</b></span>:
-													{{form.start}}
-												</div>
-												<div class="level-right">
-													<span style="margin-right: 23px; margin-left: 434px;"><b>Contract
-															End
-															Date</b></span>:
-													{{form.end}}
-												</div>
-											</div>
-										</p>
-										<p style="margin-bottom: 10px;">
-											<span style="margin-right: 91px;"><b>Unit Delivery</b></span>:
-											{{form.unit_delivery}}
-										</p>
-										<p style="margin-bottom: 10px;">
-											<span style="margin-right: 65px;"><b>Project Manager</b></span>:
-											{{form.project_manager}}
-										</p>
-										<p style="margin-bottom: 10px;">
-											<span style="margin-right: 44px;"><b>Co Project Manager</b></span>:
-											{{form.co_project_manager}}
-										</p>
-										<div class="columns">
-											<div class="column">
-												<crud-input type="select" label="Classification" name="classification"
-													placeholder="Choose Classification" v-model="form.classification"
-													input-style="margin-bottom:15px;">
-													<option selected="" style="display: none;"></option>
-													<option value="1">Junior Project Manager</option>
-													<option value="2">Senior Projet Manager</option>
-												</crud-input>
-											</div>
-											<div class="column">
-												<crud-input type="select" label="Project Segment" name="project_segment"
-													placeholder="Choose Project Segment" v-model="form.project_segment"
-													input-style="margin-bottom:15px;">
-													<option selected="" style="display: none;"></option>
-													<option value="1">Banking & Finance</option>
-													<option value="2">Infrastructure</option>
-												</crud-input>
-											</div>
+						<p class="is-small">{{form.project_name}}</p>
+						<p class="is-small">{{form.project_id}} | {{ form.iwo }}</p>
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+							<div class="container">
+								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 121px;"><b>Amount</b></span>: {{form.amount}} IDR
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 91px;"><b>Project Type</b></span>:
+									{{form.project_type}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 68px;"><b>Contract Length</b></span>:
+									{{form.contract_length}}
+								</p>
+								<p>
+									<div class="level" style="margin-bottom: -5px; margin-top: -5px;">
+										<div class="level-left">
+											<span style="margin-right: 47px;"><b>Contract Start Date</b></span>:
+											{{form.start}}
 										</div>
-
-										<section class="card-foot is-clearfix is-block">
-											<div class="is-pulled-right">
-												<a class="button is-danger" @click="editProject">
-													Cancel
-												</a>
-												<button class="button is-success" type="submit">
-													Save
-												</button>
-											</div>
-										</section>
+										<div class="level-right">
+											<span style="margin-right: 23px; margin-left: 434px;"><b>Contract
+													End
+													Date</b></span>:
+											{{form.end}}
+										</div>
 									</div>
-								</form>
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 91px;"><b>Unit Delivery</b></span>:
+									{{form.unit_delivery}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 65px;"><b>Project Manager</b></span>:
+									{{form.project_manager}}
+								</p>
+								<p style="margin-bottom: 10px;">
+									<span style="margin-right: 44px;"><b>Co Project Manager</b></span>:
+									{{form.co_project_manager}}
+								</p>
+								<div class="columns">
+									<div class="column">
+										<crud-input type="select" label="Classification" name="classification"
+											placeholder="Choose Classification" v-model="form.classification"
+											input-style="margin-bottom:15px;">
+											<option selected="" style="display: none;"></option>
+											<option value="1">Junior Project Manager</option>
+											<option value="2">Senior Projet Manager</option>
+										</crud-input>
+									</div>
+									<div class="column">
+										<crud-input type="select" label="Project Segment" name="project_segment"
+											placeholder="Choose Project Segment" v-model="form.project_segment"
+											input-style="margin-bottom:15px;">
+											<option selected="" style="display: none;"></option>
+											<option value="1">Banking & Finance</option>
+											<option value="2">Infrastructure</option>
+										</crud-input>
+									</div>
+								</div>
+
+								<section class="card-foot is-clearfix is-block">
+									<div class="is-pulled-right">
+										<a class="button is-danger" @click="editProject">
+											Cancel
+										</a>
+										<button class="button is-success" type="submit">
+											Save
+										</button>
+									</div>
+								</section>
 							</div>
-						</div>
+						</form>
 					</div>
 
 				</div>
@@ -418,17 +405,15 @@
 			<nav class="level">
 				<div class="level-left">
 					<div class="level-item">
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum doloremque labore,
-							necessitatibus
-							voluptatum rerum consequuntur!</p>
+						<p>Copyright &copy; Telkomsigma, 2019.</p>
 					</div>
 				</div>
 				<div class="level-right">
 					<div class="level-item">
-						My Utilization
+						Performance Entry: 100%
 					</div>
 					<div class="level-item">
-						My Performance
+						Utilization: 100%
 					</div>
 				</div>
 			</nav>
