@@ -71,11 +71,9 @@ export default {
 
 		//? Notifikasi jika halaman berhasil di bookmark
 		successBook() {
-			notified(this.$notification)
-				.success()
-				.bottomRight(
-					"Halaman ini berhasil ditambahkan ke My Workspace 👍"
-				);
+			notified(this.$notification).success(
+				"Halaman ini berhasil ditambahkan ke My Workspace 👍"
+			);
 		},
 
 		//! Notifikasi jika halaman gagal di bookmark

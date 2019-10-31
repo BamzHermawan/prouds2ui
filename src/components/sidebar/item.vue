@@ -1,9 +1,12 @@
 <template>
 	<li @mouseleave="closeDropdown" :class="listClass">
 		<div class="media-content" @click="doAction">
-			<a v-show="!onEdit" :href="href">
+			<linker
+				v-show="!onEdit"
+				:href="href === undefined ? '@refresh' : href"
+			>
 				<slot></slot>
-			</a>
+			</linker>
 			<input
 				v-show="onEdit"
 				ref="input"
@@ -44,7 +47,10 @@
 </template>
 
 <script>
+import linker from "../linker";
+import { loadStorage } from "helper-tools";
 export default {
+	components: { linker },
 	props: {
 		href: {
 			type: String,
@@ -93,6 +99,7 @@ export default {
 
 			let currentPage = window.location.href.toLowerCase();
 			let link = this.href !== undefined ? this.href.toLowerCase() : "";
+
 			if (this.active) {
 				style += " is-active";
 			} else if (link === currentPage) {
@@ -151,8 +158,6 @@ export default {
 		doAction() {
 			if (this.href === undefined) {
 				this.action();
-			} else {
-				window.location = this.href;
 			}
 		}
 	}

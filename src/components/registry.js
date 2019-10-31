@@ -1,5 +1,6 @@
 import mediaLog from "./mediaLog.vue";
 import notified from "./notified.vue";
+import linker from "./linker.vue";
 import bookmarkButton from "./sidebar/bookmark.vue";
 
 // DATATABLE
@@ -21,6 +22,7 @@ import ganttchart from "./ganttchart.vue"
 
 module.exports.mediaLog = mediaLog;
 module.exports.notified = notified;
+module.exports.linker = linker;
 module.exports.bookmarkButton = bookmarkButton;
 
 module.exports.dataTable = dataTable;

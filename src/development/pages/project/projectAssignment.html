@@ -41,8 +41,8 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item href="list.html">Project</side-item>
-				<side-item>Project Assignment</side-item>
+				<side-item href="list.html">Project List</side-item>
+				<side-item active>Project Assignment</side-item>
 				<side-item href="../timesheet.html">Timesheet</side-item>
 				<side-item href="../rebaseline.html">Rebaseline</side-item>
 				<side-item href="#no-edit">Closing</side-item>
@@ -122,7 +122,7 @@
 				</div>
 			</section>
 			<section class="section">
-				<div id="contentApp" class="container">
+				<div id="contentApp" class="container" data-title="Project Assignment">
 					<!-- <h2 class="subtitle">Project List</h2> -->
 
 					<div v-if="showTable">
@@ -137,7 +137,7 @@
 									<span>{{ props.row.iwo_no }}</span>
 								</b-table-column>
 								<b-table-column field="project_name" label="Project Name" sortable>
-									<span><a href="./detail.html">{{ props.row.project_name }}</a></span>
+									<linker href="detail.html">{{ props.row.project_name }}</linker>
 								</b-table-column>
 								<b-table-column field="amount" label="Amount" sortable>
 									<span>{{ props.row.amount }}</span>

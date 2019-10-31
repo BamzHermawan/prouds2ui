@@ -42,7 +42,7 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item active>Project</side-item>
+				<side-item active>Project List</side-item>
 				<side-item href="projectassignment.html">Project Assignment</side-item>
 				<side-item href="../timesheet.html">Timesheet</side-item>
 				<side-item href="../rebaseline.html">Rebaseline</side-item>
@@ -123,11 +123,11 @@
 				</div>
 			</section>
 			<section class="section">
-				<div id="contentApp" class="container">
+				<div id="contentApp" class="container" data-title="Project List">
 
 					<!-- <h2 class="subtitle">Project List</h2> -->
 
-					<div v-if="showTable">
+					<div v-if="showTable" id="tableProject" class="animated">
 						<data-table-no-card :data="projectlist" :fields="[]" ref="widget" striped>
 							<template slot-scope="props">
 								<b-table-column width="160" field="project_id" label="Project ID / IWO No" sortable
@@ -136,9 +136,9 @@
 									<p>{{props.row.iwo}}</p>
 								</b-table-column>
 								<b-table-column width="300" field="project_name" label="Project Name" sortable>
-									<span><a href="./detail.html">{{ props.row.project_name }}</a></span>
+									<linker href="detail.html">{{ props.row.project_name }}</linker>
 								</b-table-column>
-								<b-table-column field="amount" label="Amount (IDR)" sortable class="align-middle">
+								<b-table-column width="100" field="amount" label="Amount (IDR)" sortable class="align-middle">
 									<p class="has-text-right">{{ props.row.amount | currency }}</p>
 								</b-table-column>
 								<b-table-column field="customer" label="Customer" sortable class="align-middle">
@@ -147,7 +147,7 @@
 								<b-table-column field="project_type" label="Project Type" sortable class="align-middle">
 									<span>{{ props.row.project_type }}</span>
 								</b-table-column>
-								<b-table-column field="project_manager" label="Project Manager" sortable
+								<b-table-column width="175" field="project_manager" label="Project Manager" sortable
 									class="align-middle">
 									<span>{{ props.row.project_manager }}</span>
 								</b-table-column>
@@ -157,18 +157,13 @@
 										<span class="mdi mdi-24px mdi-file-plus-outline has-text-warning"></span>
 									</b-tooltip>
 									<b-tooltip
-										v-if="props.row.status==='Waiting to Initial Baseline' || props.row.status==='Waiting for Initial Baseline'"
+										v-if="props.row.status==='Waiting to Initial Baseline' || props.row.status==='Waiting to Rebaseline'"
 										type="is-dark" :label="props.row.status" position="is-left">
-										<span class="mdi mdi-24px mdi-timer has-text-warning"></span>
+										<span class="mdi mdi-24px mdi-timer-sand has-text-warning"></span>
 									</b-tooltip>
 									<b-tooltip v-if="props.row.status==='In Progress'" type="is-dark"
 										:label="props.row.status" position="is-left">
-										<span class="mdi mdi-24px mdi-progress-wrench has-text-success"></span>
-									</b-tooltip>
-									<b-tooltip
-										v-if="props.row.status==='Waiting to Rebaseline' || props.row.status==='Waiting for Initial Baseline'"
-										type="is-dark" :label="props.row.status" position="is-left">
-										<span class="mdi mdi-24px mdi-timer has-text-warning"></span>
+										<span class="mdi mdi-24px mdi-timer has-text-success"></span>
 									</b-tooltip>
 									<b-tooltip v-if="props.row.status==='On Hold'" type="is-dark"
 										:label="props.row.status" position="is-left">
@@ -183,24 +178,27 @@
 										:label="props.row.status" position="is-left">
 										<span class="mdi mdi-24px mdi-file-cancel-outline has-text-danger"></span>
 									</b-tooltip>
-									<!-- TODO: Ario  -->
-									<!-- Icon untuk dropped -->
 									<b-tooltip v-if="props.row.status==='Dropped'" type="is-dark"
 										:label="props.row.status" position="is-left">
-										<span class="mdi mdi-24px mdi-file-cancel-outline has-text-danger"></span>
+										<span class="mdi mdi-24px mdi-file-remove has-text-danger"></span>
+									</b-tooltip>
+									<b-tooltip v-if="props.row.status==='On Going Operation'" type="is-dark"
+										:label="props.row.status" position="is-left">
+										<span class="mdi mdi-24px mdi-progress-wrench has-text-success"></span>
 									</b-tooltip>
 								</b-table-column>
 
 								<b-table-column field="action" label="Action" width="75" centered class="align-middle">
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PMO -->
-									<span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
+									<!-- <span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
 										style="cursor: pointer !important;" @click="editProject(props.row)">
-									</span>
+									</span> -->
+									<!-- Ini untuk action PMO -->
 
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PM -->
-									<!-- <b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
 										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
 										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item has-link>
@@ -228,7 +226,9 @@
 												Task
 											</a>
 										</b-dropdown-item>
-									</b-dropdown> -->
+									</b-dropdown>
+									<!-- Ini untuk action PM -->
+
 								</b-table-column>
 							</template>
 							<template slot="top-right">
@@ -264,14 +264,42 @@
 						</data-table-no-card>
 					</div>
 
-					<div v-if="showMilestone">
-						<h1 class="title is-small">Set Milestone</h1>
-						<h2 class="subtitle is-small">{{form.project_name}}</h2>
+					<div v-if="showMilestone" id="setMilestoneForm" class="animated fadeIn faster">
+						<div class="columns is-marginless">
+							<div class="column is-8-desktop content is-marginless is-paddingless">
+								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">{{ form.project_name }}</h3>
+								<b-field grouped>
+									<div class="control">
+										<b-taglist attached>
+											<b-tag type="is-dark">ID</b-tag>
+											<b-tag type="is-info">{{form.project_id}}</b-tag>
+										</b-taglist>
+									</div>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">IWO</b-tag>
+											<b-tag type="is-info">{{ form.iwo }}</b-tag>
+										</b-taglist>
+									</div>
+								</b-field>
+							</div>
+							<div class="column is-clearfix is-paddingless">
+								<a class="button is-danger is-long is-pulled-right" @click="setMileStone(null)">
+									◀ Back
+								</a>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="content is-marginless">
+							<h3 class="is-small has-text-weight-light is-reduced-margin">Set Milestone</h3>
+						</div>
 						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 							<div class="container">
 								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
-								<div class="columns">
-									<div class="column">
+								<div class="columns is-marginless is-paddingless">
+									<div class="column has-no-left-padding">
 										<b-message type="is-info" :closable="false">
 											<div class="field">
 												<label class="is-marginless has-text-weight-bold">Current Start
@@ -280,7 +308,7 @@
 											</div>
 										</b-message>
 									</div>
-									<div class="column">
+									<div class="column has-no-right-padding">
 										<b-message type="is-info" :closable="false">
 											<div class="field">
 												<label class="is-marginless has-text-weight-bold">Current End
@@ -290,111 +318,127 @@
 										</b-message>
 									</div>
 								</div>
-								<div class="columns">
-									<div class="column">
+								<div class="columns is-marginless is-paddingless">
+									<div class="column has-no-left-padding">
 										<crud-input type="datepicker" label="Start Date"
 											placeholder="Pick new start date" date-input-format="DD/MM/YYYY"
 											name="start" :value="form.start">
 										</crud-input>
 									</div>
-									<div class="column">
+									<div class="column has-no-right-padding">
 										<crud-input type="datepicker" label="End Date" placeholder="Pick new end date"
 											date-input-format="DD/MM/YYYY" name="end" :value="form.end">
 										</crud-input>
 									</div>
 								</div>
-								<nav class="level">
-									<div class="level-left">
-										<button class="button is-danger is-long" @click="setMileStone">
-											<span>Exit</span>
-										</button>
-									</div>
-									<div class="level-right">
-										<button class="button is-success is-long" type="submit">
-											<span>Save Milestone</span>
-										</button>
-									</div>
-								</nav>
+								<div class="is-clearfix">
+									<button class="button is-success is-long is-pulled-right" type="submit">
+										<span>Save Milestone</span>
+									</button>
+								</div>
 							</div>
 						</form>
 					</div>
 
-					<div v-if="showEdit">
-						<p class="is-small">{{form.project_name}}</p>
-						<p class="is-small">{{form.project_id}} | {{ form.iwo }}</p>
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-							<div class="container">
-								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
-								<p style="margin-bottom: 10px;">
-									<span style="margin-right: 121px;"><b>Amount</b></span>: {{form.amount}} IDR
-								</p>
-								<p style="margin-bottom: 10px;">
-									<span style="margin-right: 91px;"><b>Project Type</b></span>:
-									{{form.project_type}}
-								</p>
-								<p style="margin-bottom: 10px;">
-									<span style="margin-right: 68px;"><b>Contract Length</b></span>:
-									{{form.contract_length}}
-								</p>
-								<p>
-									<div class="level" style="margin-bottom: -5px; margin-top: -5px;">
-										<div class="level-left">
-											<span style="margin-right: 47px;"><b>Contract Start Date</b></span>:
-											{{form.start}}
-										</div>
-										<div class="level-right">
-											<span style="margin-right: 23px; margin-left: 434px;"><b>Contract
-													End
-													Date</b></span>:
-											{{form.end}}
-										</div>
+					<div v-if="showEdit" id="editProjectForm" class="animated fadeIn faster">
+						<div class="columns is-marginless">
+							<div class="column is-8-desktop content is-marginless is-paddingless">
+								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">{{ form.project_name }}</h3>
+								<b-field grouped>
+									<div class="control">
+										<b-taglist attached>
+											<b-tag type="is-dark">ID</b-tag>
+											<b-tag type="is-info">{{form.project_id}}</b-tag>
+										</b-taglist>
 									</div>
-								</p>
-								<p style="margin-bottom: 10px;">
-									<span style="margin-right: 91px;"><b>Unit Delivery</b></span>:
-									{{form.unit_delivery}}
-								</p>
-								<p style="margin-bottom: 10px;">
-									<span style="margin-right: 65px;"><b>Project Manager</b></span>:
-									{{form.project_manager}}
-								</p>
-								<p style="margin-bottom: 10px;">
-									<span style="margin-right: 44px;"><b>Co Project Manager</b></span>:
-									{{form.co_project_manager}}
-								</p>
-								<div class="columns">
-									<div class="column">
-										<crud-input type="select" label="Classification" name="classification"
-											placeholder="Choose Classification" v-model="form.classification"
-											input-style="margin-bottom:15px;">
-											<option selected="" style="display: none;"></option>
-											<option value="1">Junior Project Manager</option>
-											<option value="2">Senior Projet Manager</option>
-										</crud-input>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">IWO</b-tag>
+											<b-tag type="is-info">{{ form.iwo }}</b-tag>
+										</b-taglist>
 									</div>
-									<div class="column">
-										<crud-input type="select" label="Project Segment" name="project_segment"
-											placeholder="Choose Project Segment" v-model="form.project_segment"
-											input-style="margin-bottom:15px;">
-											<option selected="" style="display: none;"></option>
-											<option value="1">Banking & Finance</option>
-											<option value="2">Infrastructure</option>
-										</crud-input>
+								</b-field>
+							</div>
+							<div class="column is-clearfix is-paddingless">
+								<a class="button is-danger is-long is-pulled-right" @click="editProject">
+									◀ Back
+								</a>
+							</div>
+						</div>
+
+						<!-- Add horizontal line -->
+						<hr>
+
+						<div class="container">
+							<div class="columns">
+								<div class="column is-8 content">
+									<h3 class="is-small has-text-weight-light">Project Profile</h3>
+									<div class="columns is-multiline">
+										<div class="column is-3-fullhd is-6-desktop">
+											<b-field label="Project Type">
+												<p>{{form.project_type}}</p>
+											</b-field>
+										</div>
+										<div class="column is-3-fullhd is-6-desktop">
+											<b-field label="Amount">
+												<p>{{form.amount | currency}} IDR</p>
+											</b-field>
+										</div>
+										<div class="column is-6-fullhd is-12-desktop">
+											<b-field label="Contract Length">
+												<p class="is-marginless">
+													<span>{{form.contract_length}} Months</span>
+													<span style="margin-right: 25px;"></span>
+													<span class="icon is-small">
+														<span class="mdi mdi-calendar-clock"></span>
+													</span>
+													<span>{{form.start | moment}} - {{form.end | moment}}</span>
+												</p>
+											</b-field>
+										</div>
+										
+										<div class="column is-3-fullhd is-6-desktop">
+											<b-field label="Project Manager">
+												<p>{{form.project_manager}}</p>
+											</b-field>
+										</div>
+										<div class="column is-3-fullhd is-6-desktop">
+											<b-field label="Co-Project Manager">
+												<p>{{form.co_project_manager}}</p>
+											</b-field>
+										</div>
+
+										<div class="column is-6-fullhd is-12-desktop">
+											<b-field label="Delivery Unit">
+												<p>{{form.unit_delivery}}</p>
+											</b-field>
+										</div>
 									</div>
 								</div>
-
-								<section class="card-foot is-clearfix is-block">
-									<div class="is-pulled-right">
-										<a class="button is-danger" @click="editProject">
-											Cancel
-										</a>
-										<button class="button is-success" type="submit">
-											Save
-										</button>
+								<div class="column add-border-left" style="min-height: 325px;">
+									<div style="padding: 0px 10px;">
+										<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+											<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
+											<crud-input type="select" style="width: 100%;" name="classification" label="Classification"
+												placeholder="Choose Classification" v-model="form.classification">
+												<option selected="" style="display: none;"></option>
+												<option value="1">Junior Project Manager</option>
+												<option value="2">Senior Projet Manager</option>
+											</crud-input>
+											<crud-input type="select" style="width: 100%;" name="project_segment" label="Project Segment"
+												placeholder="Choose Project Segment" v-model="form.project_segment">
+												<option selected="" style="display: none;"></option>
+												<option value="1">Banking & Finance</option>
+												<option value="2">Infrastructure</option>
+											</crud-input>
+											<button class="button is-success is-fullwidth" type="submit">
+												Save
+											</button>
+										</form>
 									</div>
-								</section>
+								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 
 				</div>
@@ -428,10 +472,10 @@
 				"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
 				"amount": 30000000,
 				"customer": "PT. Pyramax",
-				"project_type": "Type B",
-				"project_manager": "Mable Padilla",
-				"co_project_manager": "Callahan Harrison",
-				"status": "New",
+				"project_type": "Managed Services",
+				"project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
+				"co_project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
+				"status": "On Going Operation",
 				"start": "09-01-07",
 				"end": "01-12-02",
 				"contract_length": 21,
@@ -462,7 +506,7 @@
 				"project_name": "elit aliqua irure ut sint cillum tempor fugiat culpa nostrud adipisicing qui incididunt dolore",
 				"amount": 100000000,
 				"customer": "PT. Quantalia",
-				"project_type": "Type A",
+				"project_type": "Research and Development",
 				"project_manager": "Chapman Patterson",
 				"co_project_manager": "Nellie Kerr",
 				"status": "Completed",
@@ -482,13 +526,13 @@
 				"project_type": "Implementation",
 				"project_manager": "Jeanie Hudson",
 				"co_project_manager": "Sheree Steele",
-				"status": "Completed",
+				"status": "New",
 				"start": "07-03-17",
 				"end": "27-11-17",
 				"contract_length": 76,
 				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
+				"classification": null,
+				"project_segment": null
 			},
 			{
 				"project_id": 453204,

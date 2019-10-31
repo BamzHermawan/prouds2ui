@@ -1,10 +1,7 @@
 import Vue from 'vue';
-import Buefy from 'buefy'
-import { topNavBar } from "components";
-import { dataTableNoCard } from "components";
-import Loader from 'helper-loader';
-import { crudInput } from 'components';
-import { notified, checkConnection } from 'helper-tools'
+import Buefy from 'buefy';
+import { notified, checkConnection, animate } from 'helper-tools'
+import { dataTableNoCard, crudInput, linker } from "components";
 import Axios from 'axios'
 import 'helper-filter';
 
@@ -12,7 +9,7 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		topNavBar, dataTableNoCard, crudInput, Axios, notified
+		dataTableNoCard, crudInput, notified, linker
 	},
 	data: {
 		userlog: {
@@ -91,24 +88,42 @@ new Vue({
 		},
 		setMileStone(val) {
 			if (this.showTable) {
-				this.showTable = false
-				this.showMilestone = true
 				this.form = val
+				animate('#tableProject', 'fadeOut faster', (el) => {
+					this.showTable = false;
+					this.showMilestone = true;
+
+					el.classList.add('fadeIn');
+				});
 			} else {
-				this.showTable = true
-				this.showMilestone = false
-				this.form = ""
+				document.querySelector('#setMilestoneForm').classList.remove('fadeIn', 'faster');
+				animate('#setMilestoneForm', 'fadeOut faster', (el) => {
+					this.showTable = true;
+					this.showMilestone = false;
+
+					document.querySelector('#tableProject').classList.add('fadeIn faster');
+					this.form = ""
+				});
 			}
 		},
 		editProject(val) {
 			if (this.showTable) {
-				this.showTable = false
-				this.showEdit = true
 				this.form = val
+				animate('#tableProject', 'fadeOut faster', (el) => {
+					this.showTable = false;
+					this.showEdit = true;
+
+					el.classList.add('fadeIn');
+				});
 			} else {
-				this.showTable = true
-				this.showEdit = false
-				this.form = ""
+				document.querySelector('#editProjectForm').classList.remove('fadeIn', 'faster');
+				animate('#editProjectForm', 'fadeOut faster', (el) => {
+					this.showTable = true;
+					this.showEdit = false;
+
+					document.querySelector('#tableProject').classList.add('fadeIn faster');
+					this.form = ""
+				});
 			}
 		},
 		filterStatus(val) {
@@ -123,6 +138,6 @@ new Vue({
 		}
 	},
 	mounted() {
-		Loader.hide();
+		global.$loader.hide();
 	}
 });

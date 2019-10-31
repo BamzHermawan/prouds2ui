@@ -1,16 +1,14 @@
 import Vue from 'vue';
-import Buefy from 'buefy'
-import { topNavBar } from "components";
-import { dataTableNoCard } from "components";
-import Loader from 'helper-loader';
-import Assign from "./assign.vue"
-import SetUnitDelivery from "./unitDelivery.vue"
+import Buefy from 'buefy';
+import { dataTableNoCard, linker } from "components";
+import Assign from "./assign.vue";
+import SetUnitDelivery from "./unitDelivery.vue";
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		topNavBar, dataTableNoCard, Assign, SetUnitDelivery
+		linker, dataTableNoCard, Assign, SetUnitDelivery
 	},
 	data: {
 		userlog: {
@@ -63,6 +61,6 @@ new Vue({
 		}
 	},
 	mounted() {
-		Loader.hide();
+		global.$loader.hide();
 	}
 });

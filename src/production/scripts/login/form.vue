@@ -5,7 +5,7 @@
 			class="message is-small is-warning animated fadeIn"
 		>
 			<div class="message-header">
-				<p>Gagal Login</p>
+				<p>Login Failed</p>
 				<a class="is-small">⚠</a>
 			</div>
 			<div class="message-body">
@@ -14,7 +14,7 @@
 		</article>
 		<form :action="action" method="POST" @submit="doLogin">
 			<div class="field no-margin-top">
-				<label class="label" for="email">📧 Email</label>
+				<label class="label" for="email">📧 Username</label>
 				<div class="control">
 					<input
 						class="input"
@@ -22,7 +22,8 @@
 						id="email"
 						v-model="email"
 						:name="emailName"
-						placeholder="Your Sigma Email"
+						placeholder="Your Email / NIK"
+						required
 					/>
 				</div>
 			</div>
@@ -36,6 +37,7 @@
 						v-model="password"
 						:name="passwordName"
 						placeholder="Your Password"
+						required
 					/>
 				</div>
 			</div>
@@ -102,15 +104,16 @@ export default {
 		doLogin(e) {
 			this.errors = [];
 			this.validation = this.email != "";
-			if (!this.validation) this.errors.push("Email Tidak Boleh Kosong");
+			if (!this.validation) this.errors.push("Username can not be empty");
 
 			this.validation = this.password != "";
-			if (!this.validation)
-				this.errors.push("Password Tidak Boleh Kosong");
+			if (!this.validation) this.errors.push("Password Can not be empty");
 
 			this.validation = window.navigator.onLine;
 			if (!this.validation)
-				this.errors.push("Koneksi Internet Tidak Terdeteksi");
+				this.errors.push(
+					"We can't connect to server, please check your connection"
+				);
 
 			if (!this.validation) {
 				e.preventDefault();

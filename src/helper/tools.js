@@ -82,9 +82,11 @@ module.exports.loadStorage = function(key) {
 
 		if (data !== null) {
 			resolve(data);
+		}else{
+			reject(null);
 		}
 
-		reject(false);
+		reject("Error with loadStorage Helper Tools");
 	})
 }
 
