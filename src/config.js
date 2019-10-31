@@ -7,7 +7,12 @@ module.exports = {
 	listAPI: {
 
 		// Get User Session
-		userLogin: 'userLog.php'
+		userLogin: 'userLog.php',
+		setInitialBaseline: 'getNotification.php',
+		sendInitialBaseline: 'axios_check.php',
+		sendBookmark: 'axios_check.php',
+		getDuration: 'getDuration.php',
+		uploadFoto: 'axios_check.php'
 	}
 
 }

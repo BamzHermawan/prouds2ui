@@ -6,7 +6,7 @@ import { getCookie } from 'helper-tools';
 Vue.use(Buefy);
 new Vue({
 	el: '#vapp',
-	data(){
+	data() {
 		return {
 			hello: "Hi semua 👋, ini Hello World",
 			userlog: {
@@ -18,11 +18,11 @@ new Vue({
 		}
 	},
 	methods: {
-		addFavorite(){
+		addFavorite() {
 			global.$sidebar.ws.addList('Blank Page', 'http://localhost:5500/blank.html');
 		}
 	},
-	mounted(){
+	mounted() {
 		global.$loader.hide();
 
 		// get user login data

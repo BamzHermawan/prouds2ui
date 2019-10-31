@@ -97,34 +97,52 @@
 									:closable="false"
 								>
 									<!-- Datepicker Start Date -->
-									<crud-input
-										type="datepicker"
-										label="Start Date"
+									<label class="label">Start Date</label>
+									<b-datepicker
+										expanded
+										icon="calendar"
 										name="start"
-										placeholder="Pick Start Date"
 										v-model="start"
-										date-locale="en"
-										input-style="margin-bottom:1em;"
+										style="margin-bottom:1em;"
+										size="is-small"
+										:date-formatter="dateFormater"
 									>
-									</crud-input>
+										<b-button
+											@click="model = null"
+											type="is-grey"
+											class="is-fullwidth"
+										>
+											<span
+												class="mdi mdi-calendar-remove in-left"
+											></span>
+											Clear Selection
+										</b-button>
+									</b-datepicker>
 									<!-- Datepicker Start Date -->
 
 									<!-- Datepicker Finish Date -->
-									<crud-input
-										type="datepicker"
-										label="Finish Date"
+									<label class="label">Finish Date</label>
+									<b-datepicker
+										expanded
+										icon="calendar"
 										name="finish"
-										placeholder="Pick End Date"
+										:min-date="minDate"
 										v-model="finish"
-										date-locale="en"
-										input-style="margin-bottom:1em;"
+										style="margin-bottom:1em;"
+										size="is-small"
+										:date-formatter="dateFormater"
 									>
-										<template slot="helptext">
-											<p :class="'help ' + check(true)">
-												{{ check(false) }}
-											</p>
-										</template>
-									</crud-input>
+										<b-button
+											@click="model = null"
+											type="is-grey"
+											class="is-fullwidth"
+										>
+											<span
+												class="mdi mdi-calendar-remove in-left"
+											></span>
+											Clear Selection
+										</b-button>
+									</b-datepicker>
 									<!-- Datepicker Finish Date -->
 
 									<div class="columns">
@@ -182,10 +200,10 @@
 <script>
 // TODO: Selesaikan Halaman Modal!
 
-import moment from "helper-moment";
-import Axios from "axios";
+import Moment from "helper-moment";
 import { crudInput } from "components";
 import { notified } from "helper-tools";
+import api from "helper-apis";
 export default {
 	components: { crudInput },
 	props: {
@@ -230,34 +248,6 @@ export default {
 			selected: null
 		};
 	},
-	methods: {
-		check(type) {
-			if (type) {
-				return this.finishisoverflow ? "is-danger" : undefined;
-			} else {
-				return this.finishisoverflow
-					? "The date you choose must be approved by PMO"
-					: undefined;
-			}
-		},
-		getDuration(start, finish, workdays) {
-			this.isLoading = true;
-			let self = this;
-			return Axios.get(this.apiGetDuration, {
-				params: { start: start, finish: finish, workdays: workdays }
-			})
-				.then(function(response) {
-					let dur = response.data;
-					self.duration = dur.duration;
-				})
-				.catch(function(error) {
-					notified(self.$toast).error(
-						"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
-					);
-				})
-				.finally(() => (self.isLoading = false));
-		}
-	},
 	watch: {
 		start: function() {
 			if (this.start > this.finish) {
@@ -266,7 +256,7 @@ export default {
 			this.getDuration(this.start, this.finish, this.workdays);
 		},
 		finish: function() {
-			this.getDuration(this.start, this.finish, this.workdays);
+			// this.getDuration(this.start, this.finish, this.workdays);
 		},
 		workdays: function() {
 			this.getDuration(this.start, this.finish, this.workdays);
@@ -277,6 +267,59 @@ export default {
 			} else {
 				this.subtask = this.curSubTask;
 			}
+		}
+	},
+	methods: {
+		check(type) {
+			if (type) {
+				return this.finishisoverflow ? "is-danger" : undefined;
+			} else {
+				return this.finishisoverflow
+					? "The date you choose must be approved by PMO"
+					: undefined;
+			}
+		},
+		dateFormater(date) {
+			if (date) {
+				Moment.locale("en");
+				return Moment(date).format("dddd, DD MMMM YYYY");
+			} else {
+				return "";
+			}
+		},
+		getDuration(start, finish, workdays) {
+			this.isLoading = true;
+			let self = this;
+
+			api.getDuration(start, finish, workdays)
+				.then(response => {
+					let dur = response.data;
+					self.duration = dur.duration;
+				})
+				.catch(function(error) {
+					console.log("error asking for baseline");
+					if (checkConnection(self.notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				})
+				.finally(() => (self.isLoading = false));
+			// let self = this;
+			// return axios
+			// 	.get(this.apiGetDuration, {
+			// 		params: { start: start, finish: finish, workdays: workdays }
+			// 	})
+			// 	.then(function(response) {
+			// 		let dur = response.data;
+			// 		self.duration = dur.duration;
+			// 	})
+			// 	.catch(function(error) {
+			// 		notified(self.$toast).error(
+			// 			"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
+			// 		);
+			// 	})
+			// 	.finally(() => (self.isLoading = false));
 		}
 	},
 	computed: {
@@ -310,14 +353,7 @@ export default {
 				}
 			}
 		},
-		formatedStart() {
-			// return new Date(moment(this.task.pStart, "YYYY-MM-DD"));
-			return moment(this.start).format("DD/MM/YYYY");
-		},
-		formatedFinish() {
-			return moment(this.finish).format("DD/MM/YYYY");
-		},
-		formatedMinDate() {
+		minDate() {
 			return new Date(
 				this.start.getFullYear(),
 				this.start.getMonth(),

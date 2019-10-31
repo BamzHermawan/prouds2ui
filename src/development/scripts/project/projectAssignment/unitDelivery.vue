@@ -7,23 +7,11 @@
 			<span style="margin-left:400px; margin-right:20px"
 				><b>IWO No.</b></span
 			>
-			{{ selectedProject.iwo_no }}
+			{{ selectedProject.iwo }}
 		</p>
 		<p>
 			<span style="margin-right:74px"><b>Project Name</b> </span>:
 			{{ selectedProject.project_name }}
-		</p>
-		<p>
-			<span style="margin-right:55px"><b>Project Manager</b> </span>:
-			{{ selectedProject.project_manager }}
-		</p>
-		<p>
-			<span style="margin-right:30px"><b>Co- Project Manager</b> </span>:
-			{{ selectedProject.co_project_manager }}
-		</p>
-		<p>
-			<span style="margin-right:84px"><b>Project Adm</b> </span>:
-			{{ selectedProject.project_adm }}
 		</p>
 		<p>
 			<span style="margin-right:82px"><b>Unit Delivery</b> </span>:

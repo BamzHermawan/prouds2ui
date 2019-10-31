@@ -7,27 +7,23 @@
 			<span style="margin-left:400px; margin-right:20px"
 				><b>IWO No.</b></span
 			>
-			{{ selectedProject.iwo_no }}
+			{{ selectedProject.iwo }}
 		</p>
 		<p>
 			<span style="margin-right:73px"><b>Project Name</b> </span>:
 			{{ selectedProject.project_name }}
 		</p>
-		<p>
+		<p v-if="name === 'PM'">
 			<span style="margin-right:54px"><b>Project Manager</b> </span>:
 			{{ selectedProject.project_manager }}
 		</p>
-		<p>
+		<p v-if="name === 'Co PM'">
 			<span style="margin-right:28px"><b>Co- Project Manager</b> </span>:
 			{{ selectedProject.co_project_manager }}
 		</p>
-		<p>
+		<p v-if="name === 'Project Adm'">
 			<span style="margin-right:82px"><b>Project Adm</b> </span>:
 			{{ selectedProject.project_adm }}
-		</p>
-		<p>
-			<span style="margin-right:80px"><b>Unit Delivery</b> </span>:
-			{{ selectedProject.unit_delivery }}
 		</p>
 		<hr />
 		<data-table-no-card :data="listpm" :fields="[]" ref="widget">

@@ -12,6 +12,7 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
 	<link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
@@ -40,7 +41,7 @@
 			</div>
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
-			<side-list label="Setting" name="project">
+			<side-list label="Setting" name="setting">
 				<side-item href="authorization.html">Authorization</side-item>
 				<side-item active>Baseline</side-item>
 				<side-item href="customer.html">Customer</side-item>
@@ -122,14 +123,9 @@
 						<h1 class="title is-marginless">
 							<span>Baseline</span>
 						</h1>
-						<!-- <a @click="addFavorite">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span>Bookmark</span>
-						</a> -->
-						<a @click="addFavorite" class="hover-text">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
-						</a>
+						<div id="bookmarkPage">
+							<bookmark-button></bookmark-button>
+						</div>
 					</div>
 				</div>
 			</section>

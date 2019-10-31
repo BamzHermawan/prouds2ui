@@ -3,6 +3,7 @@ import Buefy from 'buefy';
 import { notified, checkConnection, animate } from 'helper-tools'
 import { dataTableNoCard, crudInput, linker } from "components";
 import Axios from 'axios'
+import api from 'helper-apis';
 import 'helper-filter';
 
 Vue.use(Buefy);
@@ -31,20 +32,14 @@ new Vue({
 	methods: {
 		sendInitialBaseline(val) {
 			let self = this;
-			let bundle = { project_id: val.project_id };
-
-			Axios.post('http://localhost:5501/demo/axios_check.php', bundle,
-				{
-					headers: {
-						"Content-Type": "application/x-www-form-urlencoded"
-					}
-				})
-				.then(function (response) {
+			// let bundle = { project_id: val.project }
+			api.sendInitialBaseline(val.project_id)
+				.then((response) => {
 					notified(self.$notification)
 						.success("Project <b class='has-text-dark'>" + val.iwo + "</b> baseline has been successfully initiated. 🏃‍");
 				})
 				.catch(function (error) {
-					console.log('error starting for baseline');
+					console.log('error asking for baseline');
 					if (checkConnection(self.notification)) {
 						notified(self.$notification).error(
 							"Sorry we are encountering a problem, please try again later. 🙏"
@@ -54,15 +49,12 @@ new Vue({
 		},
 		setInitialBaseline(val) {
 			let self = this;
-			return Axios.get('http://localhost:5501/demo/getNotification.php', {
-				params: { project_id: val.project_id }
-			})
-				.then(function (response) {
-					console.log(response)
-					let msg = response.data;
-					if (msg.name != "") {
+			api.setInitialBaseline(val.project_id)
+				.then((response) => {
+					let message = response.data;
+					if (message != "") {
 						self.$dialog.alert({
-							message: msg.name,
+							message: message,
 							type: 'is-warning'
 						});
 					} else {
@@ -76,6 +68,7 @@ new Vue({
 							}
 						})
 					}
+
 				})
 				.catch(function (error) {
 					console.log('error asking for baseline');

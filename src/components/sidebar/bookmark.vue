@@ -14,6 +14,7 @@
 
 <script>
 import { notified } from "helper-tools";
+import api from "helper-apis";
 export default {
 	data() {
 		return {
@@ -57,23 +58,35 @@ export default {
 				trapFocus: true,
 				onConfirm: value => {
 					this.title = value;
-					//TODO: Ade
-					// Buat api untuk kirim link dan title server
-					// kalau sukses/error tampilin notifikasi
-					this.successBook();
-					this.active = true;
+					let val = {
+						title: this.title,
+						link: this.link
+					};
 
-					// Tambah ke list sidebar My Workspace (ws)
-					global.$sidebar.ws.addList(this.title, this.link);
+					let self = this;
+					api.sendBookmark(val)
+						.then(response => {
+							self.successBook();
+							self.active = true;
+
+							// Tambah ke list sidebar My Workspace (ws)
+							global.$sidebar.ws.addList(this.title, this.link);
+						})
+						.catch(function(error) {
+							console.log("error saving bookmark");
+							self.errorBook();
+						});
 				}
 			});
 		},
 
 		//? Notifikasi jika halaman berhasil di bookmark
 		successBook() {
-			notified(this.$notification).success(
-				"Halaman ini berhasil ditambahkan ke My Workspace 👍"
-			);
+			notified(this.$notification)
+				.success()
+				.topRight(
+					"This page was successfully added to My Workspace 👍"
+				);
 		},
 
 		//! Notifikasi jika halaman gagal di bookmark
@@ -82,13 +95,13 @@ export default {
 				notified(this.$notification)
 					.error()
 					.bottomRight(
-						"Mohon maaf kami mengalami kendala, silakan coba lagi dalam beberapa saat 🙏"
+						"Sorry we are having a trouble, please try again later 🙏"
 					);
 			} else {
 				notified(this.$notification)
 					.alert()
 					.bottomRight(
-						"Kami tidak dapat tersambung dengan server, apakah kamu terhubung ke internet ? 🤔"
+						"We can't connect to server, you sure have internet connection ? 🤔"
 					);
 			}
 		}
