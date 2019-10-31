@@ -12,123 +12,134 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="/src/main.min.css">
-</head>
+<link rel="stylesheet" href="/src/main.min.css"></head>
 
-<body class="has-navbar-fixed-top">
-
-	<!-- <div class="loader-wrapper animated fadeIn">
+<body>
+	<div class="loader-wrapper animated fadeIn">
 		<img src="http://localhost:5501/media/loader.gif">
-	</div> -->
+	</div>
 
-	<nav id="navbar">
-		<nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
-			<div class="navbar-brand">
-				<a class="navbar-item" :href="homeLinkCheck">
-					<span class="mdi mdi-view-grid in-left"></span>
-					PROUDS
-				</a>
-		
-				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-				</a>
+	<div id="main-layout" class="wrapper open-first">		
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
 			</div>
-		
-			<div id="navbarBasicExample" class="navbar-menu">
-				<div class="navbar-start">
-					<a class="navbar-item">
-						Home
-					</a>
-		
-					<a class="navbar-item">
-						Documentation
-					</a>
-		
-					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
-							More
-						</a>
-		
-						<div class="navbar-dropdown">
-							<a class="navbar-item">
-								About
-							</a>
-							<a class="navbar-item">
-								Jobs
-							</a>
-							<a class="navbar-item">
-								Contact
-							</a>
-							<hr class="navbar-divider">
-							<a class="navbar-item">
-								Report an issue
-							</a>
+			<div class="side-list animated slideInLeft faster">
+				<a id="sidenotif" href="#http://localhost:5500/notification.html" :class="notifClass">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{ notifCount }}</span>
 						</div>
 					</div>
+				</a>
+			</div>
+
+			<side-list label="My Workspace" name="ws">
+				<side-item href="#">Help [default]</side-item>
+			</side-list>
+		</section>
+		
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+		
+					<a class="navbar-item">
+						Resource
+					</a>
+		
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
 				</div>
 		
 				<div class="navbar-end">
-					<div class="navbar-item">
-						<div class="buttons">
-							<a class="button is-primary">
-								<strong>Sign up</strong>
-							</a>
-							<a class="button is-light">
-								Log in
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="http://" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="#profile" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</nav>
-	</nav>
 
-	<div class="prouds-wrapper">
-		<section class="sidebar section">
-			<aside class="menu">
-				<p class="menu-label">
-					General
-				</p>
-				<ul class="menu-list">
-					<li><a>Dashboard</a></li>
-					<li><a>Customers</a></li>
-				</ul>
-				<p class="menu-label">
-					Administration
-				</p>
-				<ul class="menu-list">
-					<li><a>Team Settings</a></li>
-					<li>
-						<a class="is-active">Manage Your Team</a>
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Blank Page</span>
+						</h1>
+						<!-- <a @click="addFavorite">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span>Bookmark</span>
+						</a> -->
+						<a @click="addFavorite" class="hover-text">
+							<span class="mdi mdi-bookmark-plus is-marginless"></span>
+							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div class="container">
+					<h1 class="title">Hi, {{ userlog.nama }} 👋</h1>
+					<h2 class="subtitle">This is content section</h2>
+					
+					<span class="white-space"></span>
+					
+					<b-message type="is-info">
+						<p>To Do!</p>
 						<ul>
-							<li><a>Members</a></li>
-							<li><a>Plugins</a></li>
-							<li><a>Add a member</a></li>
+							<li>✅ Buat global api script & config</li>
+							<li>⬜ Buat halaman Help/dokumentasi</li>
+							<li>⬜ Buat halaman notifikasi</li>
 						</ul>
-					</li>
-					<li><a>Invitations</a></li>
-					<li><a>Cloud Storage Environment Settings</a></li>
-					<li><a>Authentication</a></li>
-				</ul>
-				<p class="menu-label">
-					Transactions
-				</p>
-				<ul class="menu-list">
-					<li><a>Payments</a></li>
-					<li><a>Transfers</a></li>
-					<li><a>Balance</a></li>
-				</ul>
-			</aside>
-		</section>
-		
-		<section id="vapp" class="section">
-			<div class="container">
-				<h1 class="title">Hello World</h1>
-				<h2 class="subtitle">This is content section</h2>
-			</div>
+					</b-message>
+				</div>
+			</section>
 		</section>
 	</div>
+
+	<script src="/src/blank.min.js"></script>
+	<script src="/src/blank.min.js"></script>
 </body>
 
 </html>
