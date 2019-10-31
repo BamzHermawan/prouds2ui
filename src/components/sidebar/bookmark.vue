@@ -14,6 +14,7 @@
 
 <script>
 import { notified } from "helper-tools";
+import api from "helper-apis";
 export default {
 	data() {
 		return {
@@ -57,14 +58,29 @@ export default {
 				trapFocus: true,
 				onConfirm: value => {
 					this.title = value;
-					//TODO: Ade
-					// Buat api untuk kirim link dan title server
-					// kalau sukses/error tampilin notifikasi
-					this.successBook();
-					this.active = true;
+					let val = [
+						{
+							title: this.title,
+							link: this.link
+						}
+					];
+					let self = this;
+					api.sendBookmark(val)
+						.then(response => {
+							this.successBook();
+							this.active = true;
 
-					// Tambah ke list sidebar My Workspace (ws)
-					global.$sidebar.ws.addList(this.title, this.link);
+							// Tambah ke list sidebar My Workspace (ws)
+							global.$sidebar.ws.addList(this.title, this.link);
+						})
+						.catch(function(error) {
+							console.log("error asking for baseline");
+							if (checkConnection(self.notification)) {
+								notified(self.$notification).error(
+									"Sorry we are encountering a problem, please try again later. 🙏"
+								);
+							}
+						});
 				}
 			});
 		},
@@ -73,8 +89,8 @@ export default {
 		successBook() {
 			notified(this.$notification)
 				.success()
-				.bottomRight(
-					"Halaman ini berhasil ditambahkan ke My Workspace 👍"
+				.topRight(
+					"This page was successfully added to My Workspace 👍"
 				);
 		},
 

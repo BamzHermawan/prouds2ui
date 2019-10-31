@@ -3,7 +3,7 @@
 $users = [
 	[
 		"nik" => "CRSXXXXXX1",
-		"nama" => "Ade Sukses Sentosa",
+		"nama" => "Ade Wiranta Putra",
 		"avatar" => "http://localhost:5501/demo/user_avatar.php",
 		"userBU" => "Project Management Office"
 	],
@@ -15,7 +15,7 @@ $users = [
 	],
 	[
 		"nik" => "CRSXXXXXX3",
-		"nama" => "Ade Kurang Apa Coba",
+		"nama" => "Boy",
 		"avatar" => "http://localhost:5501/demo/user_avatar.php",
 		"userBU" => "Project Management Office"
 	],

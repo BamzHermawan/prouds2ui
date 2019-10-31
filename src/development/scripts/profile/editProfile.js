@@ -3,7 +3,7 @@ import Buefy from 'buefy'
 import { topNavBar } from "components";
 import Loader from 'helper-loader';
 import { crudInput } from 'components';
-import axios from 'Axios'
+import api from 'helper-apis';
 import { notified } from "helper-tools";
 
 Vue.use(Buefy);
@@ -63,24 +63,20 @@ new Vue({
 			let self = this
 
 			formData.append('file', this.selectedDocument);
-			console.log(this.selectedDocument)
 
-			axios.post('http://localhost:5501/demo/axios_check.php',
-				formData,
-				{
-					headers: {
-						'Content-Type': 'multipart/form-data'
-					}
-				}
-			).then(function (response) {
-				notified(self.$notification).success("Success");
-			})
+			api.uploadFoto(formData)
+				.then((response) => {
+					notified(self.$notification)
+						.success("photo uploaded successfully");
+				})
 				.catch(function (error) {
-					notified(self.$notification).error(
-						"Mohon Maaf Kami Tidak dapat Terhubung dengan Server, Silakan Cek Koneksi Anda. Terimakasih 🙏"
-					);
+					console.log('error asking for baseline');
+					if (checkConnection(self.notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
 				});
-
 		},
 	},
 	computed: {

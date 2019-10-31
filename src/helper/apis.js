@@ -4,7 +4,7 @@ import axios from 'axios';
 let $api = $config.listAPI;
 
 // set up global config if there is none
-if(global.$config === undefined){
+if (global.$config === undefined) {
 	global.$config = $config;
 }
 
@@ -57,4 +57,32 @@ module.exports.getUserByNIK = (nik) => {
 	return request.get($api.userLogin, {
 		params: { nik }
 	});
+}
+
+module.exports.sendBookmark = (val) => {
+	return request($api.sendBookmark, {
+		params: { title: val.project_id, link: val.link }
+	});
+}
+
+module.exports.setInitialBaseline = (project_id) => {
+	return request.get($api.setInitialBaseline, {
+		params: { project_id: project_id }
+	});
+}
+
+module.exports.sendInitialBaseline = (project_id) => {
+	return request($api.sendInitialBaseline, {
+		params: { project_id: project_id }
+	});
+}
+
+module.exports.getDuration = (start, finish, workdays) => {
+	return request.get($api.getDuration, {
+		params: { start: start, finish: finish, workdays: workdays }
+	});
+}
+
+module.exports.uploadFoto = (file) => {
+	return request.post($api.uploadFoto, file);
 }
