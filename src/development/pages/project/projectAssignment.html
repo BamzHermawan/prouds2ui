@@ -126,37 +126,45 @@
 				<div id="contentApp" class="container" data-title="Project Assignment">
 					<!-- <h2 class="subtitle">Project List</h2> -->
 
-					<div v-if="showTable">
-						<data-table-no-card :show-all="false" :data="newproject" :fields="[]" ref="widget">
+					<div v-if="showTable" id="tableProject" class="animated">
+						<data-table-no-card :show-all="false" :data="newproject" :fields="[]" ref="widget" striped>
 							<template slot-scope="props">
-								<b-table-column field="opportunity" label="Opportunity" sortable>
+								<b-table-column field="opportunity" label="Opportunity" sortable class="align-middle">
 									<span>{{ props.row.opportunity }}</span>
 									<br>
 									<span>{{ props.row.won_date }}</span>
 								</b-table-column>
-								<b-table-column width="130" field="iwo" label="IWO No." sortable>
+								<b-table-column width="170" field="iwo" label="IWO No." sortable>
 									<span>{{ props.row.iwo }}</span>
 								</b-table-column>
-								<b-table-column field="project_name" label="Project Name" sortable>
+								<b-table-column width="300" field="project_name" label="Project Name" sortable>
 									<linker href="detail.html">{{ props.row.project_name }}</linker>
 								</b-table-column>
-								<b-table-column field="amount" label="Amount" sortable>
-									<span>{{ props.row.amount }}</span>
+								<b-table-column field="amount" label="Amount (IDR)" sortable class="align-middle">
+									<span>{{ props.row.amount | currency }}</span>
 								</b-table-column>
-								<b-table-column field="project_type" label="Project Type" sortable>
+								<b-table-column width="20" field="project_type" label="Project Type" sortable>
 									<span>{{ props.row.project_type }}</span>
 								</b-table-column>
-								<b-table-column field="project_manager" label="Project Manager" sortable>
+								<b-table-column width="175" field="project_manager" label="Project Manager" sortable>
 									<span>{{ props.row.project_manager }}</span>
 								</b-table-column>
-								<b-table-column field="status" label="Status" sortable>
-									<span>{{ props.row.status }}</span>
+								<b-table-column width="50" field="status" label="Status" sortable>
+									<b-tooltip v-if="props.row.status==='New'" type="is-dark" :label="props.row.status"
+										position="is-left">
+										<span class="mdi mdi-24px mdi-file-plus-outline has-text-warning"></span>
+									</b-tooltip>
+									<b-tooltip
+										v-if="props.row.status==='Waiting to Initial Baseline' || props.row.status==='Waiting to Rebaseline'"
+										type="is-dark" :label="props.row.status" position="is-left">
+										<span class="mdi mdi-24px mdi-timer-sand has-text-warning"></span>
+									</b-tooltip>
 								</b-table-column>
 
 								<b-table-column field="action" label="Action">
 									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
-										<span class="mdi mdi-menu mdi-18px has-text-info"
-											style="cursor: pointer !important;" slot="trigger"></span>
+										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
+										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item aria-role="listitem" has-link>
 											<a @click="assign('PM',props.row)"><span
 													class="mdi mdi-account-plus"></span>Assign
@@ -191,8 +199,8 @@
 											<b-select v-model="selectedStatus">
 												<option value="">All</option>
 												<option value="New">New</option>
-												<option value="Waiting for Rebaseline">Waiting for Rebaseline</option>
-												<option value="Waiting for Initial Baseline">Waiting for Initial
+												<option value="Waiting to Rebaseline">Waiting to Rebaseline</option>
+												<option value="Waiting to Initial Baseline">Waiting to Initial
 													Baseline
 												</option>
 											</b-select>
@@ -203,8 +211,8 @@
 						</data-table-no-card>
 					</div>
 
-					<assign name="PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.PM"
-						action-add="http://localhost:5501/demo/post_detect.php"
+					<assign name="PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.PM" id="PM"
+						class="animated fadeIn faster" action-add="http://localhost:5501/demo/post_detect.php"
 						action-update="http://localhost:5501/demo/post_detect.php">
 						<template #ade>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
@@ -217,7 +225,7 @@
 					</assign>
 
 					<assign name="Co PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.CoPM"
-						action-add="http://localhost:5501/demo/post_detect.php"
+						id="CoPM" class="animated fadeIn faster" action-add="http://localhost:5501/demo/post_detect.php"
 						action-update="http://localhost:5501/demo/post_detect.php">
 						<template #ade>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
@@ -230,7 +238,8 @@
 					</assign>
 
 					<assign name="Project Adm" :listpm="listpm" :selected-project="selectedProject"
-						v-if="toggleForm.Adm" action-add="http://localhost:5501/demo/post_detect.php"
+						v-if="toggleForm.Adm" id="Adm" class="animated fadeIn faster"
+						action-add="http://localhost:5501/demo/post_detect.php"
 						action-update="http://localhost:5501/demo/post_detect.php">
 						<template #ade>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
@@ -243,6 +252,7 @@
 					</assign>
 
 					<set-unit-delivery :unit-delivery="unitdelivery" :selected-project="selectedProject"
+						id="setUnitDelivery" class="animated fadeIn faster"
 						action-add="http://localhost:5501/demo/post_detect.php"
 						action-update="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
 						<template #ade>
@@ -265,14 +275,14 @@
 			{
 				"project_id": 1,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
-				"project_name": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
-				"amount": "120.000.000",
-				"project_type": "Implementasi",
+				"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
+				"amount": "12000000000",
+				"project_type": "implementasi",
 				"related": "INS / BA",
 				"status": "New",
-				"project_manager": "",
+				"project_manager": "Ade Wiranata Putra",
 				"co_project_manager": "",
 				"project_adm": "Idong",
 				"unit_delivery": ""
@@ -280,14 +290,14 @@
 			{
 				"project_id": 2,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
-				"project_name": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
-				"amount": "120.000.000",
-				"project_type": "Implementasi",
+				"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
+				"amount": "1200000000",
+				"project_type": "Managed Services",
 				"related": "INS / BA",
-				"status": "New",
-				"project_manager": "Budi",
+				"status": "Waiting to Rebaseline",
+				"project_manager": " 	Shelton Richmond",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "System Integrasi 1 Delivery"
@@ -295,14 +305,14 @@
 			{
 				"project_id": 3,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
-				"amount": "120.000.000",
-				"project_type": "Implementasi",
+				"amount": "1200000000",
+				"project_type": "Research and Development",
 				"related": "INS / BA",
-				"status": "New",
-				"project_manager": "Budi",
+				"status": "Waiting to Initial Baseline",
+				"project_manager": "Chapman Patterson",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "Financial Solution Delivery"
@@ -310,14 +320,14 @@
 			{
 				"project_id": 4,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "SKN G 2 sharia kaltim",
-				"amount": "120.000.000",
-				"project_type": "Implementasi",
+				"amount": "1200000000",
+				"project_type": "Type B",
 				"related": "INS / BA",
-				"status": "New",
-				"project_manager": "Budi",
+				"status": "Waiting to Rebaseline",
+				"project_manager": "Jeanie Hudson",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "Sigma Metrasys Solution"
@@ -325,14 +335,14 @@
 			{
 				"project_id": 5,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "Pengembangan IPC Intercompany System Fase III di Lingkungan PT. Pelabuhan Indonesia II (Persero)",
-				"amount": "120.000.000",
-				"project_type": "Implementasi",
+				"amount": "1200000000",
+				"project_type": "Type B",
 				"related": "INS / BA",
-				"status": "New",
-				"project_manager": "Budi",
+				"status": "Waiting to Initial Baseline",
+				"project_manager": "Delia Vaughn",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "Sigma Solusi Integrasi"
@@ -340,14 +350,14 @@
 			{
 				"project_id": 6,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "Bulk Mandays Mprospera",
-				"amount": "120.000.000",
-				"project_type": "Implementasi",
+				"amount": "1200000000",
+				"project_type": "Type B",
 				"related": "INS / BA",
 				"status": "New",
-				"project_manager": "Budi",
+				"project_manager": "Terrell Willis",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "Managed Operation Delivery"
@@ -355,14 +365,14 @@
 			{
 				"project_id": 7,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "Simplified Approva",
-				"amount": "120.000.000",
+				"amount": "1200000000",
 				"project_type": "Implementasi",
 				"related": "INS / BA",
 				"status": "New",
-				"project_manager": "Budi",
+				"project_manager": "Monroe Duffy",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "System Integration 2 Delivery"
@@ -370,14 +380,14 @@
 			{
 				"project_id": 8,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "MMS HUB",
-				"amount": "120.000.000",
+				"amount": "1200000000",
 				"project_type": "Implementasi",
 				"related": "INS / BA",
-				"status": "Waiting for Rebaseline",
-				"project_manager": "Budi",
+				"status": "Waiting to Rebaseline",
+				"project_manager": "Thompson Ortiz",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "Sigma Metrasys Corporate"
@@ -385,14 +395,14 @@
 			{
 				"project_id": 9,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "CR Agendaku",
-				"amount": "120.000.000",
+				"amount": "1200000000",
 				"project_type": "Implementasi",
 				"related": "INS / BA",
-				"status": "Waiting for Rebaseline",
-				"project_manager": "Budi",
+				"status": "Waiting to Rebaseline",
+				"project_manager": "Taylor Velazquez",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "Idong",
 				"unit_delivery": "Project Development (Balicamp2)"
@@ -400,14 +410,14 @@
 			{
 				"project_id": 10,
 				"opportunity": "970101",
-				"iwo": "P-1909-TTES",
+				"iwo": "P-1909SCC-TTES0481",
 				"won_date": "20-10-2019",
 				"project_name": "Pemasangan Mesin ATM Bank Beng Cabang",
-				"amount": "120.000.000",
+				"amount": "1200000000",
 				"project_type": "Implementasi",
 				"related": "INS / BA",
-				"status": "Waiting for Initial Baseline",
-				"project_manager": "Budi",
+				"status": "Waiting to Initial Baseline",
+				"project_manager": "Denise Wolf",
 				"co_project_manager": "Ade Wiranata Putra",
 				"project_adm": "idong",
 				"unit_delivery": "Infrastructure Network & Solution Delivery"

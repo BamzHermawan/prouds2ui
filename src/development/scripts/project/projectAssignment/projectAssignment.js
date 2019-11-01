@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import { dataTableNoCard, linker } from "components";
+import { animate } from 'helper-tools'
 import Assign from "./assign.vue";
 import SetUnitDelivery from "./unitDelivery.vue";
+import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
@@ -39,15 +41,46 @@ new Vue({
 	},
 	methods: {
 		setUnitDelivery(val = undefined) {
-			this.showTable = !this.showTable
-			this.showUnitDelivery = !this.showUnitDelivery
-			this.selectedProject = val
+			if (this.showTable) {
+				this.selectedProject = val
+				animate('#tableProject', 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.showUnitDelivery = !this.showUnitDelivery
+
+					el.classList.add('fadeIn');
+				});
+			} else {
+				document.querySelector('#setUnitDelivery').classList.remove('fadeIn', 'faster');
+				animate('#setUnitDelivery', 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.showUnitDelivery = !this.showUnitDelivery
+
+					document.querySelector('#setUnitDelivery').classList.add('fadeIn faster');
+					this.selectedProject = ""
+				});
+			}
+
+
 		},
 		assign(idd, val = undefined) {
-			this.showTable = !this.showTable
-			this.toggleForm[idd] = !this.toggleForm[idd]
+			if (this.showTable) {
+				this.selectedProject = val
+				animate('#tableProject', 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.toggleForm[idd] = !this.toggleForm[idd]
 
-			this.selectedProject = val
+					el.classList.add('fadeIn');
+				});
+			} else {
+				document.querySelector('#' + idd).classList.remove('fadeIn', 'faster');
+				animate('#' + idd, 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.toggleForm[idd] = !this.toggleForm[idd]
+
+					document.querySelector('#tableProject').classList.add('fadeIn faster');
+					this.selectedProject = ""
+				});
+			}
 		},
 		filterStatus(val) {
 			if (val !== "") {
