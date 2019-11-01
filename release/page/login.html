@@ -13,12 +13,46 @@
 <link rel="stylesheet" href="/src/login.min.css"></head>
 
 <body>
-	<div id="logo-prouds" data-url="http://localhost:5501/media/full-logo.png"></div>
-	<div id="logo-sigma" data-url="http://localhost:5501/media/telkomsigma.png"></div>
-	<div id="vapp" class="container" emailName="emailUser" passwordName="passwordUser" action="http://localhost:5501/index.php" bg-image="http://localhost:5501/media/login-bg.jpeg" loginAlert=""></div>
+	<div id="vapp" class="loginPage">
+		<!-- Link Background Image -->
+		<section class="banner" style="background-image: url('http://localhost:5501/media/login-bg.jpeg');">
+			<div class="welcoming">
+				<p class="is-hidden-mobile">
+					👋 Welcome Back 👋
+				</p>
+
+				<!-- <h1>PROUDS</h1>
+					<p class="sub-title">
+						Project Management and Resource Delivery System
+					</p> -->
+
+				<p class="has-text-centered">
+					<img class="prouds-logo" src="http://localhost:5501/media/full-logo.png" alt="Prouds Logo">
+				</p>
+			</div>
+			<slot>
+				<div class="banner-footer">
+					<!-- Text Footer -->
+					<p>
+						Login with your sigma.co.id email or NIK to access
+						prouds.
+					</p>
+					<!-- Text Footer -->
+				</div>
+			</slot>
+		</section>
+
+		<!-- Form Login -->
+		<section class="form">
+			<login-form email-name="emailUser" password-name="passwordUser" action="http://localhost:5501/index.php" login-alert="Bisa Login" class="login-form">
+		</login-form></section>
+		<!-- Form Login -->
+
+		<!-- Logo Sigma -->
+		<img class="logo-telkomsigma" src="http://localhost:5501/media/telkomsigma.png" alt="Logo Telkomsigma">
+		<!-- Logo Sigma -->
+	</div>
 	<script src="/src/login.min.js"></script>
 </body>
-
-
 
 </html>
