@@ -12,7 +12,12 @@
 				{{ errorString }}
 			</div>
 		</article>
-		<form :action="action" method="POST" @submit="doLogin">
+		<form
+			:action="action"
+			method="POST"
+			@submit="doLogin"
+			:autocomplete="autocomplete"
+		>
 			<div class="field no-margin-top">
 				<label class="label" for="email">📧 Username</label>
 				<div class="control">
@@ -90,6 +95,10 @@ export default {
 		loginAlert: {
 			type: String,
 			required: false
+		},
+		autocomplete: {
+			type: String,
+			default: "off"
 		}
 	},
 	data() {
