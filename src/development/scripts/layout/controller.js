@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { sideList as SideList, sideItem as SideItem, bookmarkButton } from 'components';
+import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
 var WRAPPER = document.querySelector('#main-layout');
@@ -34,6 +34,13 @@ new Vue({
 	name: 'Bookmark',
 	el: '#bookmarkPage',
 	components: { bookmarkButton }
+});
+
+// Instance for Page Bookmark
+new Vue({
+	name: 'infoFooter',
+	el: '#infoFooter',
+	components: { infoFooter }
 })
 
 function sidebarToggleAnimation() {
