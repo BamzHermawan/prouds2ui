@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import Buefy from 'buefy'
-import { topNavBar } from "components";
-import { dataTableNoCard } from "components";
+import { dataTableNoCard, crudInput, ganttchart } from 'components';
 import Loader from 'helper-loader';
-import { crudInput } from 'components';
-import { ganttchart } from 'components';
+import { animate } from 'helper-tools';
 import EditTask from "./editTask.vue"
 import AssignResource from "./assignResource.vue"
 import SetProgress from "./setProgress.vue"
@@ -16,12 +14,17 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		topNavBar, dataTableNoCard, crudInput, ganttchart, EditTask, AssignResource, SetProgress, MergeTask, ChangeParentTask, LinkPredecessor
+		dataTableNoCard, 
+		crudInput, 
+		ganttchart, 
+		EditTask, 
+		AssignResource, 
+		SetProgress,
+		MergeTask, 
+		ChangeParentTask, 
+		LinkPredecessor
 	},
 	data: {
-		userlog: {
-			name: 'Ade Wiranat Putra'
-		},
 		modal: {
 			editTask: false,
 			setProgress: false,
@@ -55,14 +58,21 @@ new Vue({
 			global.$sidebar.ws.addList(title, link);
 		},
 		toggleSideBar() {
+			let self = this;
 			if (this.showSideBar) {
 				let lastActive = document.querySelector("tr.gname.is-active");
 				if (lastActive !== null) {
 					lastActive.classList.remove("is-active");
 				}
-			}
 
-			this.showSideBar = !this.showSideBar;
+				document.querySelector('.floating-taskbar').classList.remove('fadeInRight');
+				animate('.floating-taskbar', 'fadeOutRight', (el) => {
+					el.classList.add('fadeInRight');
+					self.showSideBar = false;
+				});
+			}else{
+				self.showSideBar = true;
+			}
 		},
 		editTask() {
 			this.modal.editTask = true;

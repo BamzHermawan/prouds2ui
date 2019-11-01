@@ -18,7 +18,7 @@
 				<div class="control">
 					<input
 						class="input"
-						type="email"
+						type="text"
 						id="email"
 						v-model="email"
 						:name="emailName"

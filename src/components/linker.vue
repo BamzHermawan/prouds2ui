@@ -52,6 +52,20 @@ export default {
 				this.current.title = this.savePageTitle;
 			}
 		},
+		checkSideItem(title) {
+			let sideitem = document.getElementsByClassName("side-item");
+			for (let i = 0; i < sideitem.length; i++) {
+				let item = sideitem[i];
+				let link = item.querySelector(".media-content > a");
+
+				if (
+					link.innerHTML == title &&
+					!item.classList.contains("is-active")
+				) {
+					item.classList.add("is-active");
+				}
+			}
+		},
 		loadNavigation() {
 			let self = this;
 			let index = undefined;
@@ -81,6 +95,10 @@ export default {
 						if (nav[index] !== undefined) {
 							self.title = nav[index].title;
 							self.nextLink = nav[index].href;
+
+							if (index === 0) {
+								self.checkSideItem(self.title);
+							}
 						} else {
 							self.nextLink = false;
 							self.title = "refresh";

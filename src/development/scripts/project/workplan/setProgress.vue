@@ -51,7 +51,7 @@
 
 <script>
 import moment from "helper-moment";
-import crudInput from "components";
+import { crudInput } from "components";
 export default {
 	components: { crudInput },
 	props: {

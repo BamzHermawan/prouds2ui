@@ -1,5 +1,6 @@
 // @charset "utf-8";
-@import "~bulma/sass/utilities/_all";
+@import "../../node_modules/bulma/sass/utilities/_all";
+@import "../../node_modules/bulma/bulma.sass";
 
 // Mixins ---------------------------------------------
 @import "mixins/gradient";
@@ -53,6 +54,7 @@ $heroBold: (
 $size-1: 1.5rem;
 $tablet: 719px;
 $section-padding: 1.8rem ;
+$panel-heading-size: 1rem;
 $section-padding-medium: 9rem 3rem;
 $section-padding-large: 18rem 3rem;
 
@@ -596,6 +598,30 @@ tr.gname {
 	}
 }
 
+.floating-taskbar {
+	width: 200px;
+    position: fixed;
+    right: 5px;
+    top: 200px;
+	z-index: 35;
+	
+	.menu-label {
+		background-color: #eaeaff;
+		text-align: center;
+		padding-top: .7rem;
+		padding-bottom: .7rem;
+		margin: 0px !important;
+	}
+
+	.menu-label + .menu-list {
+		background-color: #eaeaff;
+
+		li {
+			margin-top: 0px !important;
+		}
+	}
+}
+
 //! -----------------------------------------------------
 //* @CARD -----------------------------------------------
 
@@ -903,6 +929,18 @@ td.align-middle {
 	border-right-color: whitesmoke;
 	border-right-style: solid;
 	border-right-width: 2px;
+}
+
+p.add-divider-bellow {
+	border-bottom: solid #dadada 1px;
+    margin-bottom: 5px !important;
+    padding-bottom: 5px;
+}
+
+p.add-divider-top {
+	border-top: solid #dadada 1px;
+    margin-top: 5px !important;
+    padding-top: 5px;
 }
 
 .button.is-long {
