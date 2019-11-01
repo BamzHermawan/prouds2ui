@@ -32,8 +32,8 @@ new Vue({
 	methods: {
 		sendInitialBaseline(val) {
 			let self = this;
-			// let bundle = { project_id: val.project }
-			api.sendInitialBaseline(val.project_id)
+			let bundle = { project_id: val.project }
+			api.sendInitialBaseline(bundle)
 				.then((response) => {
 					notified(self.$notification)
 						.success("Project <b class='has-text-dark'>" + val.iwo + "</b> baseline has been successfully initiated. 🏃‍");

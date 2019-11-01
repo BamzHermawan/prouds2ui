@@ -51,17 +51,17 @@ module.exports.setInitialBaseline = (project_id) => {
 	});
 }
 
-module.exports.sendInitialBaseline = (project_id) => {
-	return request.post($api.sendInitialBaseline, pack({ project_id }), {
+module.exports.sendInitialBaseline = bundle => {
+	return request.post($api.sendInitialBaseline, pack({ bundle }), {
 		headers: {
 			"Content-Type": 'application/x-www-form-urlencoded'
 		}
 	});
 }
 
-module.exports.getDuration = (start, finish, workdays) => {
+module.exports.getDuration = (bundle) => {
 	return request.get($api.getDuration, {
-		params: { start: start, finish: finish, workdays: workdays }
+		params: bundle
 	});
 }
 

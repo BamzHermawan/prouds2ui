@@ -138,7 +138,8 @@
 								<b-table-column width="300" field="project_name" label="Project Name" sortable>
 									<linker href="detail.html">{{ props.row.project_name }}</linker>
 								</b-table-column>
-								<b-table-column width="100" field="amount" label="Amount (IDR)" sortable class="align-middle">
+								<b-table-column width="100" field="amount" label="Amount (IDR)" sortable
+									class="align-middle">
 									<p class="has-text-right">{{ props.row.amount | currency }}</p>
 								</b-table-column>
 								<b-table-column field="customer" label="Customer" sortable class="align-middle">
@@ -267,7 +268,8 @@
 					<div v-if="showMilestone" id="setMilestoneForm" class="animated fadeIn faster">
 						<div class="columns is-marginless">
 							<div class="column is-8-desktop content is-marginless is-paddingless">
-								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">{{ form.project_name }}</h3>
+								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">
+									{{ form.project_name }}</h3>
 								<b-field grouped>
 									<div class="control">
 										<b-taglist attached>
@@ -343,7 +345,8 @@
 					<div v-if="showEdit" id="editProjectForm" class="animated fadeIn faster">
 						<div class="columns is-marginless">
 							<div class="column is-8-desktop content is-marginless is-paddingless">
-								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">{{ form.project_name }}</h3>
+								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">
+									{{ form.project_name }}</h3>
 								<b-field grouped>
 									<div class="control">
 										<b-taglist attached>
@@ -396,7 +399,7 @@
 												</p>
 											</b-field>
 										</div>
-										
+
 										<div class="column is-3-fullhd is-6-desktop">
 											<b-field label="Project Manager">
 												<p>{{form.project_manager}}</p>
@@ -419,14 +422,16 @@
 									<div style="padding: 0px 10px;">
 										<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 											<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
-											<crud-input type="select" style="width: 100%;" name="classification" label="Classification"
-												placeholder="Choose Classification" v-model="form.classification">
+											<crud-input type="select" style="width: 100%;" name="classification"
+												label="Classification" placeholder="Choose Classification"
+												v-model="form.classification">
 												<option selected="" style="display: none;"></option>
 												<option value="1">Junior Project Manager</option>
 												<option value="2">Senior Projet Manager</option>
 											</crud-input>
-											<crud-input type="select" style="width: 100%;" name="project_segment" label="Project Segment"
-												placeholder="Choose Project Segment" v-model="form.project_segment">
+											<crud-input type="select" style="width: 100%;" name="project_segment"
+												label="Project Segment" placeholder="Choose Project Segment"
+												v-model="form.project_segment">
 												<option selected="" style="display: none;"></option>
 												<option value="1">Banking & Finance</option>
 												<option value="2">Infrastructure</option>
