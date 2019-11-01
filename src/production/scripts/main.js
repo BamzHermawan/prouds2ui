@@ -10,7 +10,7 @@ var WRAPPER = document.querySelector('#main-layout');
 var SIDEBAR_TOGGLE = false;
 window.onload = sidebarToggleAnimation;
 document.querySelector('#toggle-sidebar')
-.addEventListener("click", sidebarToggleAnimation);
+	.addEventListener("click", sidebarToggleAnimation);
 
 // Tracking Mouse when entering sidebar area
 document.onmousemove = trackMouse;
@@ -27,7 +27,7 @@ new Vue({
 		notifCount: 0,
 	},
 	computed: {
-		notifClass(){
+		notifClass() {
 			let style = "parent-list";
 			let el = document.querySelector('#sidenotif');
 			let href = el.getAttribute('href');
@@ -44,7 +44,8 @@ new Vue({
 		}
 	},
 	methods: {
-		checkNotification(){
+		checkNotification() {
+			console.log("ade")
 			//TODO: Ade
 			// axios request ke server dapet list notifikasi,
 			// di cek jumlahnya masih sama kaya this.notifCount atau enggak
@@ -56,7 +57,7 @@ new Vue({
 			this.notifCount++;
 		}
 	},
-	mounted(){
+	mounted() {
 
 		// get initial notification
 		this.checkNotification();
@@ -68,7 +69,7 @@ new Vue({
 	}
 });
 
-function sidebarToggleAnimation(){
+function sidebarToggleAnimation() {
 	let btn = document.querySelector('#toggle-sidebar');
 	// clean toggle nodes
 	while (btn.firstChild) {
@@ -77,7 +78,7 @@ function sidebarToggleAnimation(){
 
 	document.querySelector('#main-layout .sidebar').classList.remove('animated', 'slideOutLeft');
 
-	if(SIDEBAR_TOGGLE){
+	if (SIDEBAR_TOGGLE) {
 		SIDEBAR_TOGGLE = false;
 
 		// add PROUDS Label
@@ -94,7 +95,7 @@ function sidebarToggleAnimation(){
 
 		WRAPPER.classList.remove('open-first');
 		WRAPPER.classList.add('sidebar-auto', 'sidebar-float');
-	}else{
+	} else {
 		SIDEBAR_TOGGLE = true;
 
 		// add chevron right
@@ -103,19 +104,19 @@ function sidebarToggleAnimation(){
 		span.classList.add('mdi', 'mdi-chevron-left', 'mdi-24px');
 		btn.appendChild(span);
 
-		if (!WRAPPER.classList.contains('open-first')){
+		if (!WRAPPER.classList.contains('open-first')) {
 			WRAPPER.classList.remove('sidebar-auto', 'sidebar-float');
 		}
 	}
 }
 
-function trackMouse(e){
-	if(e.clientX < 35){
+function trackMouse(e) {
+	if (e.clientX < 35) {
 		WRAPPER.classList.add('sidebar-show');
-	} else{
+	} else {
 		let sidebar = document.getElementById('side-main');
 		WRAPPER.classList.remove('sidebar-show');
-		if (getComputedStyle(sidebar, null).display === 'none'){
+		if (getComputedStyle(sidebar, null).display === 'none') {
 			if (typeof global.$sidebar.activeEdit === "object") {
 				global.$sidebar.activeEdit.cancelEdit();
 			}

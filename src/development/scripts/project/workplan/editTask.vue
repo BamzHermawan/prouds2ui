@@ -290,8 +290,12 @@ export default {
 		getDuration(start, finish, workdays) {
 			this.isLoading = true;
 			let self = this;
-
-			api.getDuration(start, finish, workdays)
+			let bundle = {
+				start: start,
+				finish: finish,
+				workdays: workdays
+			};
+			api.getDuration(bundle)
 				.then(response => {
 					let dur = response.data;
 					self.duration = dur.duration;

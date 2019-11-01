@@ -1,23 +1,46 @@
 <template>
 	<div class="container">
 		<slot name="ade"></slot>
-		<p>
-			<span style="margin-right:98px"><b>Project ID</b> </span>:
-			{{ selectedProject.project_id }}
-			<span style="margin-left:400px; margin-right:20px"
-				><b>IWO No.</b></span
+		<div class="columns is-marginless">
+			<div
+				class="column is-12-desktop content is-marginless is-paddingless"
 			>
-			{{ selectedProject.iwo }}
-		</p>
-		<p>
-			<span style="margin-right:74px"><b>Project Name</b> </span>:
-			{{ selectedProject.project_name }}
-		</p>
-		<p>
-			<span style="margin-right:82px"><b>Unit Delivery</b> </span>:
-			{{ selectedProject.unit_delivery }}
-		</p>
+				<h3
+					class="is-small has-text-weight-light is-reduced-margin is-uppercase"
+				>
+					{{ selectedProject.project_name }}
+				</h3>
+				<b-field grouped>
+					<div class="control">
+						<b-taglist attached>
+							<b-tag type="is-dark">ID</b-tag>
+							<b-tag type="is-info">{{
+								selectedProject.project_id
+							}}</b-tag>
+						</b-taglist>
+					</div>
+					<div class="control">
+						<b-taglist attached size="are-medium">
+							<b-tag type="is-dark">IWO</b-tag>
+							<b-tag type="is-info">{{
+								selectedProject.iwo
+							}}</b-tag>
+						</b-taglist>
+					</div>
+					<div class="control">
+						<b-taglist attached size="are-medium">
+							<b-tag type="is-dark">Unit Delivery</b-tag>
+							<b-tag type="is-info">{{
+								selectedProject.unit_delivery
+							}}</b-tag>
+						</b-taglist>
+					</div>
+				</b-field>
+			</div>
+		</div>
+
 		<hr />
+
 		<data-table-no-card
 			:show-all="false"
 			:data="unitDelivery"
