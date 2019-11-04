@@ -61,9 +61,7 @@ new Vue({
 		},
 		checkLoader(){
 			let check = global.$loader.isOpen();
-			console.log('check loading: ' + check);
 			if (check) {
-				console.log('closing loading');
 				global.$loader.hide();
 			}
 		}
@@ -80,8 +78,8 @@ new Vue({
 		// 	this.checkNotification();
 		// }, 300000);
 
-		// // check if loader still on after .3 second
-		// setTimeout(this.checkLoader, 3000);
+		// check if loader still on after .3 second
+		setTimeout(this.checkLoader, 3000);
 	}
 });
 
