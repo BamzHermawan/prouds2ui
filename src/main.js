@@ -86,19 +86,19 @@ new Vue({
 		setInterval(() => {
 			this.checkNotification();
 		}, 600);
+
+		// // get initial notification
+		// this.checkNotification(false);
+
+		// // check notification every 1 minute
+		// setTimeout(() => {
+		// 	// let count = self.notifCount;
+		// 	this.checkNotification();
+		// }, 300000);
+
+		// // check if loader still on after .3 second
+		// setTimeout(this.checkLoader, 3000);
 	}
-	// // get initial notification
-	// this.checkNotification(false);
-
-	// // check notification every 1 minute
-	// setTimeout(() => {
-	// 	// let count = self.notifCount;
-	// 	this.checkNotification();
-	// }, 300000);
-
-	// // check if loader still on after .3 second
-	// setTimeout(this.checkLoader, 3000);
-}
 });
 
 var bmPage = document.querySelector("#bookmarkPage");
