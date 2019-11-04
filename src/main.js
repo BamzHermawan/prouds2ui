@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { notified } from 'helper-tools';
+import { notified, checkConnection } from 'helper-tools';
+import api from 'helper-apis'
 import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
@@ -29,9 +30,14 @@ new Vue({
 	el: '#side-main',
 	components: { SideList, SideItem },
 	data: {
-		notifCount: 0,
+		notifTotal: 0,
 		userlog: {
 			user_id: '1'
+		}
+	},
+	computed: {
+		notifCount() {
+			return this.notifTotal + 1
 		}
 	},
 	methods: {
@@ -41,63 +47,49 @@ new Vue({
 			api.getNotification(bundle)
 				.then((response) => {
 					let notif = response.data
-					let check = ""
-					let a = ""
-					if (notif.length > self.notifCount) {
-						check = notif.length - self.notifCount
-						if (check > 3) {
-							check = 3
+					if (notif.length > self.notifTotal) {
+						self.notifTotal = notif.length
+						if (showAlert) {
+							notified(self.$notification).info("You have <b>" + self.notifCount + "<b> new notification");
 						}
-						a = notif.length - check
-						for (let index = a; index < notif.length; index++) {
-							if (showAlert) {
-								notified(self.$notification).info(notif[index].notif);
-							}
-						}
-						self.notifCount = notif.length
 					}
 				})
 				.catch(function (error) {
-					console.log('error asking for baseline');
+					console.log('error asking for notification');
 					if (checkConnection(self.notification)) {
 						if (showAlert) {
-							notified(self.$notification).error(
-								"Sorry we are encountering a problem, please try again later. 🙏"
-							);
+							if (showAlert) {
+								notified(self.$notification).error(
+									"Sorry we are encountering a problem, please try again later. 🙏"
+								);
+							}
 						}
 					}
 				});
 		},
 		checkLoader() {
 			let check = global.$loader.isOpen();
-			console.log('check loading: ' + check);
+			// console.log('check loading: ' + check);
 			if (check) {
-				console.log('closing loading');
+				// console.log('closing loading');
 				global.$loader.hide();
 			}
 		}
 	},
 	mounted() {
 		let self = this;
+
 		// get initial notification
 		this.checkNotification(false);
 
 		// check notification every 1 minute
 		setInterval(() => {
-			this.checkNotification();
-		}, 600);
+			// let count = self.notifTotal;
+			self.checkNotification();
+		}, 300000);
 
-		// // get initial notification
-		// this.checkNotification(false);
-
-		// // check notification every 1 minute
-		// setTimeout(() => {
-		// 	// let count = self.notifCount;
-		// 	this.checkNotification();
-		// }, 300000);
-
-		// // check if loader still on after .3 second
-		// setTimeout(this.checkLoader, 3000);
+		// check if loader still on after .3 second
+		setTimeout(this.checkLoader, 3000);
 	}
 });
 

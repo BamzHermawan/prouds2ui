@@ -20,49 +20,54 @@ new Vue({
 		allowedFile: "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx",
 		profile: true,
 		password: false,
-		newPw: "",
-		confirmPw: "",
-		typeNew: "",
-		msgNew: "",
-		typeConfirm: "",
-		msgConfirm: "",
+		validation: {
+			newPw: {
+				msg: "",
+				type: "",
+				valid: false
+			},
+			confirmPw: {
+				msg: "",
+				type: "",
+				valid: false
+			}
+		},
 		currentPw: "",
-		validNew: false,
-		validConfirm: false
+		newPw: "",
+		confirmPw: ""
 	},
 	watch: {
 		newPw: function (newQuery) {
 			if (newQuery === this.currentPw) {
-				this.typeNew = "is-danger"
-				this.msgNew = "The new password cannot be the same as the previous password"
-				this.validNew = false
+				this.validation.newPw.type = "is-danger"
+				this.validation.newPw.msg = "The new password cannot be the same as the previous password"
+				this.validation.newPw.valid = false
 			} else {
-				this.typeNew = ""
-				this.msgNew = ""
-				this.validNew = true
+				this.validation.newPw.type = ""
+				this.validation.newPw.msg = ""
+				this.validation.newPw.valid = true
 			}
 
-			if (this.confirmPw !== "") {
-				if (this.confirmPw !== newQuery) {
-					this.typeConfirm = "is-danger"
-					this.msgConfirm = "The password does not match"
-					this.validConfirm = false
-				} else {
-					this.typeConfirm = ""
-					this.msgConfirm = ""
-					this.validConfirm = true
-				}
+			// kondisi merubah password ketika confirm password telah terisi untuk menyamakan new password dengan current password
+			if (this.confirmPw !== "" && this.confirmPw !== newQuery) {
+				this.validation.confirmPw.type = "is-danger"
+				this.validation.confirmPw.msg = "The password does not match"
+				this.validation.confirmPw.valid = false
+			} else {
+				this.validation.confirmPw.type = ""
+				this.validation.confirmPw.msg = ""
+				this.validation.confirmPw.valid = true
 			}
 		},
 		confirmPw: function (newQuery) {
 			if (this.newPw !== newQuery) {
-				this.typeConfirm = "is-danger"
-				this.msgConfirm = "The password does not match"
-				this.validConfirm = false
+				this.validation.confirmPw.type = "is-danger"
+				this.validation.confirmPw.msg = "The password does not match"
+				this.validation.confirmPw.valid = false
 			} else {
-				this.typeConfirm = ""
-				this.msgConfirm = ""
-				this.validConfirm = true
+				this.validation.confirmPw.type = ""
+				this.validation.confirmPw.msg = ""
+				this.validation.confirmPw.valid = true
 			}
 		}
 	},
@@ -98,10 +103,21 @@ new Vue({
 		toggleEditPassword() {
 			this.password = true
 			this.profile = false
+			this.clearValidation()
 		},
 		toggleEditProfile() {
 			this.profile = true
 			this.password = false
+			this.clearValidation()
+		},
+		clearValidation() {
+			this.currentPw = ""
+			this.newPw = ""
+			this.confirmPw = ""
+			this.typeNew = ""
+			this.typeConfirm = ""
+			this.msgNew = ""
+			this.msgConfirm = ""
 		},
 		uploadFoto() {
 			let formData = new FormData();

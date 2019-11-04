@@ -33,7 +33,7 @@
 							<span>Notification</span>
 						</label>
 						<div class="action">
-							<span class="tag is-warning">100</span>
+							<span class="tag is-warning">{{notifCount}}</span>
 						</div>
 					</div>
 				</a>
@@ -201,21 +201,24 @@
 											v-model="currentPw" password-reveal required>
 										</b-input>
 									</b-field>
-									<b-field label="New Password" :message="msgNew" :type="typeNew">
+									<b-field label="New Password" :message="validation.newPw.msg"
+										:type="validation.newPw.type">
 										<b-input type="password" placeholder="New Password" name="newPassword"
 											v-model="newPw" password-reveal required>
 										</b-input>
 									</b-field>
-									<b-field label="Comfirm New Password" :message="msgConfirm" :type="typeConfirm">
+									<b-field label="Comfirm New Password" :message="validation.confirmPw.msg"
+										:type="validation.confirmPw.type">
 										<b-input type="password" placeholder="Confrim Password" name="confirmPassword"
 											v-model="confirmPw" password-reveal required>
 										</b-input>
 									</b-field>
-									<button class="button is-success" type="submit" v-if="validNew && validConfirm">
+									<button class="button is-success" type="submit"
+										v-if="validation.newPw.valid && validation.confirmPw.valid">
 										Save
 									</button>
-									<button class="button is-success" type="submit" v-if="!validNew || !validConfirm"
-										disabled>
+									<button class="button is-success" type="submit"
+										v-if="!validation.newPw.valid || !validation.confirmPw.valid" disabled>
 										Save
 									</button>
 								</b-message>
