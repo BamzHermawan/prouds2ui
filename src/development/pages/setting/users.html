@@ -34,7 +34,7 @@
 							<span>Notification</span>
 						</label>
 						<div class="action">
-							<span class="tag is-warning">100</span>
+							<span class="tag is-warning">{{notifCount}}</span>
 						</div>
 					</div>
 				</a>
@@ -219,15 +219,18 @@
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 								<b-input type="hidden" name="user_id" :value="tampung.user_id"></b-input>
 								<b-field label="Current Password">
-									<b-input type="password" name="currentPassword" password-reveal required>
+									<b-input type="password" name="currentPassword" placeholder="Current Password"
+										v-model="currentPw" password-reveal required>
 									</b-input>
 								</b-field>
-								<b-field label="New Password">
-									<b-input type="password" name="newPassword" password-reveal required>
+								<b-field label="New Password" :message="msgNew" :type="typeNew">
+									<b-input type="password" name="newPassword" placeholder="New Password"
+										v-model="newPw" password-reveal required>
 									</b-input>
 								</b-field>
-								<b-field label="Comfirm New Password">
-									<b-input type="password" name="confirmPassword" password-reveal required>
+								<b-field label="Comfirm New Password" :message="msgConfirm" :type="typeConfirm">
+									<b-input type="password" name="confirmPassword" placeholder="Confrim Password"
+										v-model="confirmPw" password-reveal required>
 									</b-input>
 								</b-field>
 								<div style="margin-top: 28px;">
@@ -235,7 +238,12 @@
 										style="min-width: 150px;">
 										Cancel
 									</b-button>
-									<button style="min-width: 150px;" class="button is-success" type="submit">
+									<button style="min-width: 150px;" class="button is-success" type="submit"
+										v-if="validNew && validConfirm">
+										Save
+									</button>
+									<button style="min-width: 150px;" class="button is-success" type="submit"
+										v-if="!validNew || !validConfirm" disabled>
 										Save
 									</button>
 								</div>
@@ -332,23 +340,31 @@
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 								<b-input type="hidden" name="user_id" :value="tampung.user_id"></b-input>
 								<b-field label="Current Password">
-									<b-input type="password" name="currentPassword" password-reveal>
+									<b-input type="password" name="currentPassword" placeholder="Current Password"
+										v-model="currentPw" password-reveal required>
 									</b-input>
 								</b-field>
-								<b-field label="New Password">
-									<b-input type="password" name="newPassword" password-reveal>
+								<b-field label="New Password" :message="msgNew" :type="typeNew">
+									<b-input type="password" name="newPassword" placeholder="New Password"
+										v-model="newPw" password-reveal required>
 									</b-input>
 								</b-field>
-								<b-field label="Comfirm New Password">
-									<b-input type="password" name="confirmPassword" password-reveal>
+								<b-field label="Comfirm New Password" :message="msgConfirm" :type="typeConfirm">
+									<b-input type="password" name="confirmPassword" placeholder="Confrim Password"
+										v-model="confirmPw" password-reveal required>
 									</b-input>
 								</b-field>
 								<div style="margin-top: 28px;">
-									<b-button type="is-danger" @click="changePassword('external')"
+									<b-button type="is-danger" @click="changePassword('internal')"
 										style="min-width: 150px;">
 										Cancel
 									</b-button>
-									<button style="min-width: 150px;" class="button is-success" type="submit">
+									<button style="min-width: 150px;" class="button is-success" type="submit"
+										v-if="validNew && validConfirm">
+										Save
+									</button>
+									<button style="min-width: 150px;" class="button is-success" type="submit"
+										v-if="!validNew || !validConfirm" disabled>
 										Save
 									</button>
 								</div>

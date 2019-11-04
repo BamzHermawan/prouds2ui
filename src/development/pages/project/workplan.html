@@ -36,7 +36,7 @@
 							<span>Notification</span>
 						</label>
 						<div class="action">
-							<span class="tag is-warning">100</span>
+							<span class="tag is-warning">{{notifCount}}</span>
 						</div>
 					</div>
 				</a>
@@ -132,10 +132,11 @@
 							<li class="is-active"><a href="#" aria-current="page">Workplan</a></li>
 						</ul>
 					</nav>
-					
+
 					<div class="columns is-marginless">
 						<div class="column is-8-desktop content is-marginless is-paddingless">
-							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome App Mantap Super Jaya
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
+								App Mantap Super Jaya
 								Semua Suka Sampai Mendunia</h3>
 							<b-field grouped>
 								<div class="control">
@@ -170,11 +171,9 @@
 													<span>Upload XML</span>
 												</a>
 											</div>
-											<div v-if="selectedDocument != null"
-												class="field has-addons is-marginless">
+											<div v-if="selectedDocument != null" class="field has-addons is-marginless">
 												<div class="control">
-													<span v-if="selectedDocument"
-														class="button is-static is-small">
+													<span v-if="selectedDocument" class="button is-static is-small">
 														{{ selectedDocument.name }}
 													</span>
 												</div>
@@ -222,11 +221,13 @@
 										</b-menu-item>
 									</b-menu-list>
 									<b-menu-list label="Quick Action">
-										<b-menu-item @click="changeParentTask" label="Change Parent Task" :active="false">
+										<b-menu-item @click="changeParentTask" label="Change Parent Task"
+											:active="false">
 										</b-menu-item>
 										<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false">
 										</b-menu-item>
-										<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false">
+										<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor"
+											:active="false">
 										</b-menu-item>
 										<b-menu-item @click="shrinkTask" label="Shrink Task" :active="false">
 										</b-menu-item>

@@ -34,7 +34,7 @@
 							<span>Notification</span>
 						</label>
 						<div class="action">
-							<span class="tag is-warning">100</span>
+							<span class="tag is-warning">{{notifCount}}</span>
 						</div>
 					</div>
 				</a>
@@ -109,7 +109,7 @@
 			</div>
 		</nav>
 
-		<section id="vapp" class="contentPage" >
+		<section id="vapp" class="contentPage">
 			<section class="hero is-light is-bold">
 				<div class="hero-body">
 					<div class="container">
@@ -126,14 +126,17 @@
 				<div id="contentApp" class="container" data-title="Detail Project">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul class="is-marginless">
-							<li><linker href="@back"></linker></li>
+							<li>
+								<linker href="@back"></linker>
+							</li>
 							<li class="is-active"><a href="#" aria-current="page">Project Information</a></li>
 						</ul>
 					</nav>
 
 					<div class="columns is-marginless">
 						<div class="column is-8-desktop content is-marginless is-paddingless">
-							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia</h3>
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
+								App Mantap Super Jaya Semua Suka Sampai Mendunia</h3>
 							<b-field grouped>
 								<div class="control">
 									<b-taglist attached>
@@ -150,7 +153,7 @@
 							</b-field>
 						</div>
 					</div>
-					
+
 					<hr>
 
 					<div class="columns">
@@ -169,7 +172,8 @@
 								<div class="column content is-marginless is-6">
 									<b-field label="Amount">
 										<b-message type="is-info" size="is-small">
-											<h4 class="is-marginless has-text-weight-light">{{ '120000000' | currency }} IDR</h4>
+											<h4 class="is-marginless has-text-weight-light">{{ '120000000' | currency }}
+												IDR</h4>
 										</b-message>
 									</b-field>
 								</div>
@@ -296,14 +300,21 @@
 							</div>
 
 							<b-field label="Background">
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis, deleniti voluptatibus harum optio corrupti sapiente. Ut, explicabo?</p>
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora
+									placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis,
+									deleniti voluptatibus harum optio corrupti sapiente. Ut, explicabo?</p>
 							</b-field>
 							<b-field label="Scope of Work">
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-								dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-								book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-								unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-								recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+									Ipsum has been the industry's standard
+									dummy text ever since the 1500s, when an unknown printer took a galley of type and
+									scrambled it to make a type specimen
+									book. It has survived not only five centuries, but also the leap into electronic
+									typesetting, remaining essentially
+									unchanged. It was popularised in the 1960s with the release of Letraset sheets
+									containing Lorem Ipsum passages, and more
+									recently with desktop publishing software like Aldus PageMaker including versions of
+									Lorem Ipsum.</p>
 							</b-field>
 						</div>
 					</div>

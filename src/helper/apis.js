@@ -68,3 +68,9 @@ module.exports.getDuration = (bundle) => {
 module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }
+
+module.exports.getNotification = (bundle) => {
+	return request.get($api.getNotification, {
+		params: bundle
+	});
+}

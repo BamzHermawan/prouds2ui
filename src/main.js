@@ -30,36 +30,34 @@ new Vue({
 	components: { SideList, SideItem },
 	data: {
 		notifCount: 0,
-	},
-	computed: {
-		notifClass() {
-			let style = "parent-list";
-			let el = document.querySelector('#sidenotif');
-			let href = el.getAttribute('href');
-
-			let currentPage = window.location.href.toLowerCase();
-			let link = href !== undefined ? href.toLowerCase() : "";
-			if (this.active) {
-				style += " is-active";
-			} else if (link === currentPage) {
-				style += " is-active";
-			}
-
-			return style;
+		userlog: {
+			user_id: '1'
 		}
 	},
 	methods: {
-		checkNotification() {
-			console.log("ade")
-			//TODO: Ade
-			// axios request ke server dapet list notifikasi,
-			// di cek jumlahnya masih sama kaya this.notifCount atau enggak
-			// kalau nambah tampilin notified Toast.
-
-			// jika notifikasi ada yang baru notifcount di sesuaikan jumlahnya 
-			// dan tampilkan notifikasinya. [loop]
-			notified(this.$notification).info().bottomRight('Notification Text');
-			this.notifCount++;
+		checkNotification(showAlert = true) {
+			let self = this;
+			let bundle = { user_id: this.userlog.user_id }
+			api.getNotification(bundle)
+				.then((response) => {
+					let notif = response.data
+					if (notif.length > self.notifCount) {
+						self.notifCount = notif.length
+						if (showAlert) {
+							notified(self.$notification).info("You have <b>" + self.notifCount + "</b> new notification");
+						}
+					}
+				})
+				.catch(function (error) {
+					console.log('error asking for baseline');
+					if (checkConnection(self.notification)) {
+						if (showAlert) {
+							notified(self.$notification).error(
+								"Sorry we are encountering a problem, please try again later. 🙏"
+							);
+						}
+					}
+				});
 		},
 		checkLoader(){
 			let check = global.$loader.isOpen();
@@ -73,17 +71,17 @@ new Vue({
 	mounted() {
 		let self = this;
 
-		// get initial notification
-		this.checkNotification();
+		// // get initial notification
+		// this.checkNotification(false);
 
-		// check notification every 1 minute
-		setTimeout(() => {
-			// let count = self.notifCount;
-			this.checkNotification();
-		}, 300000);
+		// // check notification every 1 minute
+		// setTimeout(() => {
+		// 	// let count = self.notifCount;
+		// 	this.checkNotification();
+		// }, 300000);
 
-		// check if loader still on after .3 second
-		setTimeout(this.checkLoader, 3000);
+		// // check if loader still on after .3 second
+		// setTimeout(this.checkLoader, 3000);
 	}
 });
 

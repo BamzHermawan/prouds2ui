@@ -19,7 +19,52 @@ new Vue({
 		selectedDocument: null,
 		allowedFile: "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx",
 		profile: true,
-		password: false
+		password: false,
+		newPw: "",
+		confirmPw: "",
+		typeNew: "",
+		msgNew: "",
+		typeConfirm: "",
+		msgConfirm: "",
+		currentPw: "",
+		validNew: false,
+		validConfirm: false
+	},
+	watch: {
+		newPw: function (newQuery) {
+			if (newQuery === this.currentPw) {
+				this.typeNew = "is-danger"
+				this.msgNew = "The new password cannot be the same as the previous password"
+				this.validNew = false
+			} else {
+				this.typeNew = ""
+				this.msgNew = ""
+				this.validNew = true
+			}
+
+			if (this.confirmPw !== "") {
+				if (this.confirmPw !== newQuery) {
+					this.typeConfirm = "is-danger"
+					this.msgConfirm = "The password does not match"
+					this.validConfirm = false
+				} else {
+					this.typeConfirm = ""
+					this.msgConfirm = ""
+					this.validConfirm = true
+				}
+			}
+		},
+		confirmPw: function (newQuery) {
+			if (this.newPw !== newQuery) {
+				this.typeConfirm = "is-danger"
+				this.msgConfirm = "The password does not match"
+				this.validConfirm = false
+			} else {
+				this.typeConfirm = ""
+				this.msgConfirm = ""
+				this.validConfirm = true
+			}
+		}
 	},
 	methods: {
 		checkExtention(filename) {
