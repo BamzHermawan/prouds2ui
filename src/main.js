@@ -41,11 +41,20 @@ new Vue({
 			api.getNotification(bundle)
 				.then((response) => {
 					let notif = response.data
+					let check = ""
+					let a = ""
 					if (notif.length > self.notifCount) {
-						self.notifCount = notif.length
-						if (showAlert) {
-							notified(self.$notification).info("You have <b>" + self.notifCount + "</b> new notification");
+						check = notif.length - self.notifCount
+						if (check > 3) {
+							check = 3
 						}
+						a = notif.length - check
+						for (let index = a; index < notif.length; index++) {
+							if (showAlert) {
+								notified(self.$notification).info(notif[index].notif);
+							}
+						}
+						self.notifCount = notif.length
 					}
 				})
 				.catch(function (error) {
@@ -59,7 +68,7 @@ new Vue({
 					}
 				});
 		},
-		checkLoader(){
+		checkLoader() {
 			let check = global.$loader.isOpen();
 			if (check) {
 				global.$loader.hide();
@@ -68,6 +77,13 @@ new Vue({
 	},
 	mounted() {
 		let self = this;
+		// get initial notification
+		this.checkNotification(false);
+
+		// check notification every 1 minute
+		setInterval(() => {
+			this.checkNotification();
+		}, 600);
 
 		// // get initial notification
 		// this.checkNotification(false);
