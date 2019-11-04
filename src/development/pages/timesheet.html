@@ -128,7 +128,9 @@
 					<div v-for="(date,idx) in tmp" :key="idx" v-if="showList">
 						<div class="columns is-multiline">
 							<div class="column is-12">
-								{{tmp[idx]}}
+								<b-message type="is-grey" size="is-small">
+									<h4 class="is-marginless has-text-weight-bold">{{tmp[idx]}}</h4>
+								</b-message>
 							</div>
 							<template v-for="(timesheet, index) in myTimesheet">
 								<span :key="index"></span>
@@ -246,8 +248,8 @@
 				task_id: 1,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 1",
 				task: "Melakukan review dokumen teknis SOP dan User Guide",
-				start: "2019-10-10",
-				end: "2019-12-30"
+				start: "10/10/2019",
+				end: "30/12/2019"
 			},
 			{
 				id: "2",
@@ -256,8 +258,8 @@
 				task_id: 2,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 2",
-				start: "2019-10-10",
-				end: "2019-12-30"
+				start: "10/10/2019",
+				end: "30/12/2019"
 			},
 			{
 				id: "3",
@@ -266,8 +268,8 @@
 				task_id: 3,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 4",
 				task: "Melakukan review dokumen teknis SIT 3",
-				start: "2019-10-12",
-				end: "2019-12-30"
+				start: "12/10/2019",
+				end: "30/12/2019"
 			},
 			{
 				id: "4",
@@ -276,8 +278,8 @@
 				task_id: 4,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
 				task: "Melakukan review dokumen teknis SOP dan User Guide 3",
-				start: "2019-10-11",
-				end: "2019-12-30"
+				start: "11/10/2019",
+				end: "30/12/2019"
 			},
 			{
 				id: "5",
@@ -286,8 +288,8 @@
 				task_id: 5,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
 				task: "Melakukan review dokumen teknis SOP dan User Guide 4",
-				start: "2019-10-11",
-				end: "2019-12-30"
+				start: "11/10/2019",
+				end: "30/12/2019"
 			},
 			{
 				id: "6",
@@ -296,8 +298,8 @@
 				task_id: 6,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 3",
-				start: "2019-10-10",
-				end: "2019-12-30"
+				start: "10/10/2019",
+				end: "30/12/2019"
 			},
 			{
 				id: "7",
@@ -306,8 +308,8 @@
 				task_id: 7,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 2",
-				start: "2019-10-10",
-				end: "2019-12-30"
+				start: "10/10/2019",
+				end: "30/12/2019"
 			},
 			{
 				id: "8",
@@ -316,8 +318,8 @@
 				task_id: 8,
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 2",
-				start: "2019-10-10",
-				end: "2019-12-30"
+				start: "10/10/2019",
+				end: "30/12/2019"
 			}
 		]
 	</script>
