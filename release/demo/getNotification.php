@@ -43,6 +43,9 @@ if(!empty($_GET["user_id"])){
 		],
 		[
 			"notif" => "14"
+		],
+		[
+			"notif" => "15"
 		]
 	];
 	echo json_encode($prep);

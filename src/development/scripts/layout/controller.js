@@ -36,7 +36,7 @@ new Vue({
 		notifCount: 0
 	},
 	methods: {
-		checkNotification() {
+		checkNotification(showAlert = true) {
 			let self = this;
 			let bundle = { user_id: this.userlog.user_id }
 			api.getNotification(bundle)
@@ -44,22 +44,26 @@ new Vue({
 					let notif = response.data
 					if (notif.length > this.notifCount) {
 						self.notifCount = notif.length
-						notified(this.$notification).info("You have <b>" + self.notifCount + "</b> new notification");
+						if (showAlert) {
+							notified(this.$notification).info("You have <b>" + self.notifCount + "</b> new notification");
+						}
 					}
 				})
 				.catch(function (error) {
 					console.log('error asking for baseline');
 					if (checkConnection(self.notification)) {
-						notified(self.$notification).error(
-							"Sorry we are encountering a problem, please try again later. 🙏"
-						);
+						if (showAlert) {
+							notified(self.$notification).error(
+								"Sorry we are encountering a problem, please try again later. 🙏"
+							);
+						}
 					}
 				});
 		}
 	},
 	mounted() {
 		// get initial notification
-		this.checkNotification();
+		this.checkNotification(false);
 
 		// check notification every 1 minute
 		setInterval(() => {

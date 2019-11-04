@@ -197,21 +197,25 @@
 								<b-message title="Edit Password" type="is-primary" :closable="false">
 									<b-input type="hidden" name="user_id" value="1234"></b-input>
 									<b-field label="Current Password">
-										<b-input type="password" minlength="7" name="currentPassword" password-reveal
-											required>
+										<b-input type="password" placeholder="Current Password" name="currentPassword"
+											v-model="currentPw" password-reveal required>
 										</b-input>
 									</b-field>
-									<b-field label="New Password">
-										<b-input type="password" minlength="7" name="newPassword" password-reveal
-											required>
+									<b-field label="New Password" :message="msgNew" :type="typeNew">
+										<b-input type="password" placeholder="New Password" name="newPassword"
+											v-model="newPw" password-reveal required>
 										</b-input>
 									</b-field>
-									<b-field label="Comfirm New Password">
-										<b-input type="password" minlength="7" name="confirmPassword" password-reveal
-											required>
+									<b-field label="Comfirm New Password" :message="msgConfirm" :type="typeConfirm">
+										<b-input type="password" placeholder="Confrim Password" name="confirmPassword"
+											v-model="confirmPw" password-reveal required>
 										</b-input>
 									</b-field>
-									<button class="button is-success" type="submit">
+									<button class="button is-success" type="submit" v-if="validNew && validConfirm">
+										Save
+									</button>
+									<button class="button is-success" type="submit" v-if="!validNew || !validConfirm"
+										disabled>
 										Save
 									</button>
 								</b-message>

@@ -54,12 +54,55 @@ new Vue({
 		paginated: 5,
 		checkboxGroup: [],
 		tampung: "",
-		selectedLevel: ""
+		selectedLevel: "",
+		newPw: "",
+		confirmPw: "",
+		typeNew: "",
+		msgNew: "",
+		typeConfirm: "",
+		msgConfirm: "",
+		currentPw: "",
+		validNew: false,
+		validConfirm: false
 	},
 	watch: {
 		selectedLevel: function (newQuery, oldQuery) {
 			this.props = this.propsOri
 			this.filterLevel(newQuery)
+		},
+		newPw: function (newQuery) {
+			if (newQuery === this.currentPw) {
+				this.typeNew = "is-danger"
+				this.msgNew = "The new password cannot be the same as the previous password"
+				this.validNew = false
+			} else {
+				this.typeNew = ""
+				this.msgNew = ""
+				this.validNew = true
+			}
+
+			if (this.confirmPw !== "") {
+				if (this.confirmPw !== newQuery) {
+					this.typeConfirm = "is-danger"
+					this.msgConfirm = "The password does not match"
+					this.validConfirm = false
+				} else {
+					this.typeConfirm = ""
+					this.msgConfirm = ""
+					this.validConfirm = true
+				}
+			}
+		},
+		confirmPw: function (newQuery) {
+			if (this.newPw !== newQuery) {
+				this.typeConfirm = "is-danger"
+				this.msgConfirm = "The password does not match"
+				this.validConfirm = false
+			} else {
+				this.typeConfirm = ""
+				this.msgConfirm = ""
+				this.validConfirm = true
+			}
 		}
 	},
 	methods: {
