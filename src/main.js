@@ -69,9 +69,7 @@ new Vue({
 		},
 		checkLoader() {
 			let check = global.$loader.isOpen();
-			// console.log('check loading: ' + check);
 			if (check) {
-				// console.log('closing loading');
 				global.$loader.hide();
 			}
 		}
