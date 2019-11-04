@@ -8,11 +8,12 @@ module.exports = {
 
 		// Get User Session
 		userLogin: 'userLog.php',
-		setInitialBaseline: 'getNotification.php',
+		setInitialBaseline: 'getNotifInitial.php',
 		sendInitialBaseline: 'axios_check.php',
 		sendBookmark: 'axios_check.php',
 		getDuration: 'getDuration.php',
-		uploadFoto: 'axios_check.php'
+		uploadFoto: 'axios_check.php',
+		getNotification: 'getNotification.php'
 	}
 
 }

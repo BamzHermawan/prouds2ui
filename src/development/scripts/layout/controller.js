@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
+import { notified, checkConnection } from 'helper-tools';
 import PerfectScrollbar from 'perfect-scrollbar';
+import api from 'helper-apis';
 import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
@@ -26,7 +28,44 @@ Vue.use(Buefy);
 new Vue({
 	name: 'Sidebar',
 	el: '#side-main',
-	components: { SideList, SideItem }
+	components: { SideList, SideItem },
+	data: {
+		userlog: {
+			user_id: '1'
+		},
+		notifCount: 0
+	},
+	methods: {
+		checkNotification() {
+			let self = this;
+			let bundle = { user_id: this.userlog.user_id }
+			api.getNotification(bundle)
+				.then((response) => {
+					let notif = response.data
+					if (notif.length > this.notifCount) {
+						self.notifCount = notif.length
+						notified(this.$notification).info("You have <b>" + self.notifCount + "</b> new notification");
+					}
+				})
+				.catch(function (error) {
+					console.log('error asking for baseline');
+					if (checkConnection(self.notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				});
+		}
+	},
+	mounted() {
+		// get initial notification
+		this.checkNotification();
+
+		// check notification every 1 minute
+		setInterval(() => {
+			this.checkNotification();
+		}, 60000);
+	}
 });
 
 // Instance for Page Bookmark
