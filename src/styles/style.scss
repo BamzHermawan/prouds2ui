@@ -7,15 +7,15 @@
 @import "mixins/text";
 
 // Font Import from google Font
-@import url('https://fonts.googleapis.com/css?family=Crete+Round|DM+Serif+Text|Roboto+Condensed|Raleway:400,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Crete+Round|Roboto+Condensed|Raleway:400,800|Staatliches&display=swap');
 
 $roboto: 'Roboto Condensed', sans-serif !important;
 $crete: 'Crete Round', serif !important;
-$dmserif: 'DM Serif Text', serif, !important;
+$staat: 'Staatliches', cursive !important;
 
 $p_font: $roboto;
-$h1_font: $crete;
-$h2_font: $dmserif;
+$h1_font: $staat;
+$h2_font: $crete;
 
 // Set your colors
 $primary: #D36464;
@@ -138,31 +138,6 @@ body {
 			position: relative;
 		}
 
-		&.sidebar-float {
-			grid-template-columns: 0px 1fr;
-			
-			.sidebar {
-				grid-column: none;
-				position: fixed;
-				height: 100vh;
-				z-index: 100;
-				width: 275px;
-			}
-
-			&.sidebar-auto .sidebar {
-				display: none;
-				z-index: 100;
-
-				-webkit-box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
-				-moz-box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
-				box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
-			}
-
-			&.sidebar-show .sidebar, & .sidebar:hover {
-				display: block !important;
-			}
-		}
-
 		& > .navbar {
 			grid-column: 2;
 			grid-row: 1;
@@ -179,25 +154,65 @@ body {
 			float: right;
 			width: 80%;
 
-			//? Pastikan ke mas papang mau pake infobar
-			//? kalau gak pake ini harus diapus sampe hide-scrollbar
 			overflow: auto;
 		}
 
-		//? Pastikan ke mas papang mau pake infobar
-		& > .info-bottom-bar {
+		& .info-bottom-bar {
 			grid-column: 2;
 			grid-row: 3;
 
 			float: right;
 			width: 80%;
 		}
+
+		&.sidebar-float {
+			grid-template-columns: 1fr;
+			
+			.sidebar {
+				grid-column: none;
+				position: fixed;
+				height: 100vh;
+				z-index: 100;
+				width: 275px;
+			}
+
+			& > .navbar {
+				grid-column: 1;
+				grid-row: 1;
+				width: 100%;
+			}
+
+			& > .contentPage {
+				grid-column: 1;
+				grid-row: 2;
+				width: 100%;
+			}
+
+			& .info-bottom-bar {
+				grid-column: 1;
+				grid-row: 3;
+				width: 100%;
+			}
+
+			&.sidebar-auto .sidebar {
+				display: none;
+				z-index: 100;
+
+				-webkit-box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
+				-moz-box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
+				box-shadow: 0px 0px 15px 1px rgba(119, 119, 119, 0.75);
+			}
+
+			&.sidebar-show .sidebar, & .sidebar:hover {
+				display: block !important;
+			}
+		}
 	}
 }
 
 @supports (display: grid) {
   body > .wrapper {
-    & > .contentPage, & > .navbar, & > .info-bottom-bar {
+    & > .contentPage, & > .navbar, & .info-bottom-bar {
 		width: 100%;
     	margin: 0;
 	}
@@ -688,26 +703,6 @@ tr.gname {
 	}
 
 	.message {
-		@include heroGradient(lighten(#dbdbdb, 35%), lighten(#dbdbdb, 20%));
-		
-		.message-header {
-			@include heroGradient(lighten(#4a4a4a, 15%), lighten(#4a4a4a, 5%));
-			font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-		}
-
-		.message-header + .message-body {
-			background-color: #dbdbdb;
-			border-width: 0px 2px 2px !important;
-			border-color: lighten(#4a4a4a, 5%);
-		}
-
-		&.has-media-list {
-			.media + .media {
-				padding-top: 1rem !important;
-				border-top: 1px solid $dark !important;
-			}
-		}
-
 		&.is-#{nth($color, 1)} {
 			@include heroGradient(lighten($primeColor, 35%), lighten($primeColor, 20%));
 
@@ -751,6 +746,35 @@ tr.gname {
 
 		.control > .icon {
 			color: $primeColor !important;
+		}
+	}
+}
+
+.message{
+	@include heroGradient(lighten(#dbdbdb, 35%), lighten(#dbdbdb, 20%));
+		
+	.message-header {
+		@include heroGradient(lighten(#4a4a4a, 15%), lighten(#4a4a4a, 5%));
+		font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+
+	.message-header + .message-body {
+		background-color: #dbdbdb;
+		border-width: 0px 2px 2px !important;
+		border-color: lighten(#4a4a4a, 5%);
+	}
+
+	&.has-media-list {
+		.media + .media {
+			padding-top: 1rem !important;
+			border-top: 1px solid $dark !important;
+		}
+	}
+	
+	&.is-timesheet {
+		background: linear-gradient(90deg, rgba(51, 138, 249, 0.5), rgba(47, 248, 255, 0.5)) !important;
+		.message-body {
+			border-color: blue;
 		}
 	}
 }
@@ -949,6 +973,41 @@ p.add-divider-top {
 	padding-right: 2rem;
 }
 
+.timesheet {
+	box-shadow: none !important;
+	border: solid rgb(189, 189, 189) 1px;
+	border-radius: 5px;
+
+	&:hover {
+		box-shadow: 0 0.5em 1em -0.125em #0a0a0a1a !important;
+	}
+
+	.card-content:first-child {
+		background-color: beige;
+		min-height: 96px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			text-align: center;
+		}
+	}
+
+	.timesheet-progress {
+		width: 100%;
+		progress {
+			border-radius: 0px;
+		}
+
+		p {
+			font-size: .75em;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+	}
+}
+
 //! -----------------------------------------------------
 //* @PADDING - @MARGIN ----------------------------------
 
@@ -972,6 +1031,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .has-no-right-padding {
 	padding-right: 0px !important;
+}
+
+//! -----------------------------------------------------
+//* @404 ------------------------------------------------
+
+.is-404-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: ghostwhite;
+
+	h1 {
+		font-size: 10rem;
+		line-height: 10rem;
+		font-family: $staat;
+		color: darkseagreen;
+		text-shadow: 4px 4px 0px rgb(110, 124, 206);
+	}
+
+	p {
+		font-weight: bolder;
+		font-family: $crete;
+	}
 }
 
 @import "~bulma";

@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
+import PerfectScrollbar from 'perfect-scrollbar';
 import { notified } from 'helper-tools';
-import { sideList as SideList } from 'components';
-import { sideItem as SideItem } from 'components';
+import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
 var WRAPPER = document.querySelector('#main-layout');
@@ -15,12 +15,17 @@ document.querySelector('#toggle-sidebar')
 // Tracking Mouse when entering sidebar area
 document.onmousemove = trackMouse;
 
+// Start Perfect Scrollbar
+new PerfectScrollbar('.contentPage');
+new PerfectScrollbar('#side-main');
+
 // GLOBAL VAR FOR LOADER
 global.$loader = Loader;
 global.$sidebar = {};
 
 Vue.use(Buefy);
 new Vue({
+	name: 'Sidebar',
 	el: '#side-main',
 	components: { SideList, SideItem },
 	data: {
@@ -55,19 +60,52 @@ new Vue({
 			// dan tampilkan notifikasinya. [loop]
 			notified(this.$notification).info().bottomRight('Notification Text');
 			this.notifCount++;
+		},
+		checkLoader(){
+			let check = global.$loader.isOpen();
+			console.log('check loading: ' + check);
+			if (check) {
+				console.log('closing loading');
+				global.$loader.hide();
+			}
 		}
 	},
 	mounted() {
+		let self = this;
 
 		// get initial notification
 		this.checkNotification();
 
 		// check notification every 1 minute
-		setInterval(() => {
+		setTimeout(() => {
+			// let count = self.notifCount;
 			this.checkNotification();
-		}, 60000);
+		}, 300000);
+
+		// check if loader still on after .3 second
+		setTimeout(this.checkLoader, 3000);
 	}
 });
+
+var bmPage = document.querySelector("#bookmarkPage");
+if (bmPage !== null) {
+	// Instance for Page Bookmark
+	new Vue({
+		name: 'Bookmark',
+		el: '#bookmarkPage',
+		components: { bookmarkButton }
+	});
+}
+
+var ifooter = document.querySelector("#infoFooter");
+if (ifooter !== null) {
+	// Instance for Page Bookmark
+	new Vue({
+		name: 'infoFooter',
+		el: '#infoFooter',
+		components: { infoFooter }
+	})
+}
 
 function sidebarToggleAnimation() {
 	let btn = document.querySelector('#toggle-sidebar');

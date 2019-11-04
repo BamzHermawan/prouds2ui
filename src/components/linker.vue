@@ -39,8 +39,12 @@ export default {
 			documentTitle = documentTitle.split(" | ").shift();
 
 			// second choice
-			let contentTitle = document.querySelector("#contentApp").dataset
-				.title;
+			let contentTitle = document.querySelector("#contentApp");
+			if (contentTitle !== null) {
+				contentTitle = contentTitle.dataset.title;
+			} else {
+				contentTitle = undefined;
+			}
 
 			if (this.current.title === undefined) {
 				if (contentTitle === undefined) {

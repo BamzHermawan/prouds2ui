@@ -26,7 +26,51 @@ Vue.use(Buefy);
 new Vue({
 	name: 'Sidebar',
 	el: '#side-main',
-	components: { SideList, SideItem }
+	components: { SideList, SideItem },
+	data: {
+		notifCount: 0,
+	},
+	computed: {
+		notifClass() {
+			let style = "parent-list";
+			let el = document.querySelector('#sidenotif');
+			let href = el.getAttribute('href');
+
+			let currentPage = window.location.href.toLowerCase();
+			let link = href !== undefined ? href.toLowerCase() : "";
+			if (this.active) {
+				style += " is-active";
+			} else if (link === currentPage) {
+				style += " is-active";
+			}
+
+			return style;
+		}
+	},
+	methods: {
+		checkNotification() {
+			console.log("ade")
+			//TODO: Ade
+			// axios request ke server dapet list notifikasi,
+			// di cek jumlahnya masih sama kaya this.notifCount atau enggak
+			// kalau nambah tampilin notified Toast.
+
+			// jika notifikasi ada yang baru notifcount di sesuaikan jumlahnya 
+			// dan tampilkan notifikasinya. [loop]
+			notified(this.$notification).info().bottomRight('Notification Text');
+			this.notifCount++;
+		}
+	},
+	mounted() {
+
+		// get initial notification
+		this.checkNotification();
+
+		// check notification every 1 minute
+		setInterval(() => {
+			this.checkNotification();
+		}, 60000);
+	}
 });
 
 // Instance for Page Bookmark

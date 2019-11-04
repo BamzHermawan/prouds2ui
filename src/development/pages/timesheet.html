@@ -126,49 +126,46 @@
 				<div id="contentApp" class="container">
 
 					<div v-for="(date,idx) in tmp" :key="idx" v-if="showList">
-						<div class="columns is-multiline">
+						<div class="columns is-multiline" style="margin-bottom: 15px;">
 							<div class="column is-12">
-								<b-message type="is-grey" size="is-small">
+								<b-message type="is-timesheet" size="is-small">
 									<h4 class="is-marginless has-text-weight-bold">{{tmp[idx]}}</h4>
 								</b-message>
 							</div>
 							<template v-for="(timesheet, index) in myTimesheet">
 								<span :key="index"></span>
-								<div class="column is-4" v-if="tmp[idx] === myTimesheet[index].start">
-									<div class="card" style="min-height: 200px; cursor: pointer !important;"
+								<div class="column is-4-widescreen is-6-tablet" v-if="tmp[idx] === myTimesheet[index].start">
+									<div class="card timesheet" style="min-height: 200px; cursor: pointer !important;"
 										@click="setTimesheet(timesheet)">
 										<div class="card-content">
-											<div style="min-height: 110px;">
-												<p> {{ timesheet.iwo }} </p>
-												<p> {{timesheet.project_name}} </p>
-												<p>task : {{timesheet.task}} </p>
-											</div>
-											<div class="level">
-												<div class="level-left">
-													<p>Start : {{timesheet.start}} </p>
-												</div>
-												<div class="level-right">
-													<p>End : {{timesheet.end}} </p>
-												</div>
-											</div>
-											<p style="margin-bottom: 10px">Progress of</p>
-											<div class="columns">
-												<div class="column">
-													<div class="level-left">
-														<p>Timesheet <small>60%</small></p>
-													</div>
-													<progress class="progress is-small is-success" :value="60"
-														:max="100" show-value></progress>
-												</div>
-												<div class="column">
-													<div class="level-right">
-														<p>Task <small>60%</small></p>
-													</div>
-													<progress class="progress is-small is-success" :value="60"
-														:max="100"></progress>
-												</div>
-											</div>
+											<p class="has-text-weight-bold">{{ timesheet.task }}</p>
 										</div>
+										<div class="card-content content is-marginless">
+											<p class="has-text-weight-bold is-marginless">{{ timesheet.project_name }}</p>
+											<b-tag type="is-info">{{ timesheet.iwo }}</b-tag>
+											
+											<p class="has-top-margin">
+												<span class="icon is-small">
+													<span class="mdi mdi-calendar-clock"></span>
+												</span>
+												<span>{{ timesheet.start | moment}} - {{ timesheet.end | moment }}</span>
+											</p>
+										</div>
+
+										<footer class="card-footer">
+											<div class="card-footer-item">
+												<div class="timesheet-progress">
+													<p>Timesheet [60%]</p>
+													<progress class="progress is-small is-success" :value="60" :max="100" show-value></progress>
+												</div>
+											</div>
+											<div class="card-footer-item">
+												<div class="timesheet-progress">
+													<p>Task [60%]</p>
+													<progress class="progress is-small is-success" :value="60" :max="100"></progress>
+												</div>
+											</div>
+										</footer>
 									</div>
 								</div>
 							</template>
