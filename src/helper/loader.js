@@ -14,3 +14,12 @@ module.exports.show = function () {
 	el.classList.add('fadeIn');
 	el.classList.remove('is-hidden');
 }
+
+module.exports.isOpen = function () {
+	var el = document.querySelector(".loader-wrapper");
+	if(el !== null) {
+		return getComputedStyle(el).display !== 'none';
+	} else {
+		return false;
+	}
+}

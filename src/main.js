@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
+import PerfectScrollbar from 'perfect-scrollbar';
 import { notified } from 'helper-tools';
-import { sideList as SideList } from 'components';
-import { sideItem as SideItem } from 'components';
+import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
 var WRAPPER = document.querySelector('#main-layout');
@@ -15,59 +15,111 @@ document.querySelector('#toggle-sidebar')
 // Tracking Mouse when entering sidebar area
 document.onmousemove = trackMouse;
 
+// Start Perfect Scrollbar
+new PerfectScrollbar('.contentPage');
+new PerfectScrollbar('#side-main');
+
 // GLOBAL VAR FOR LOADER
 global.$loader = Loader;
 global.$sidebar = {};
 
 Vue.use(Buefy);
 new Vue({
+	name: 'Sidebar',
 	el: '#side-main',
 	components: { SideList, SideItem },
 	data: {
 		notifCount: 0,
-	},
-	computed: {
-		notifClass() {
-			let style = "parent-list";
-			let el = document.querySelector('#sidenotif');
-			let href = el.getAttribute('href');
-
-			let currentPage = window.location.href.toLowerCase();
-			let link = href !== undefined ? href.toLowerCase() : "";
-			if (this.active) {
-				style += " is-active";
-			} else if (link === currentPage) {
-				style += " is-active";
-			}
-
-			return style;
+		userlog: {
+			user_id: '1'
 		}
 	},
 	methods: {
-		checkNotification() {
-			console.log("ade")
-			//TODO: Ade
-			// axios request ke server dapet list notifikasi,
-			// di cek jumlahnya masih sama kaya this.notifCount atau enggak
-			// kalau nambah tampilin notified Toast.
-
-			// jika notifikasi ada yang baru notifcount di sesuaikan jumlahnya 
-			// dan tampilkan notifikasinya. [loop]
-			notified(this.$notification).info().bottomRight('Notification Text');
-			this.notifCount++;
+		checkNotification(showAlert = true) {
+			let self = this;
+			let bundle = { user_id: this.userlog.user_id }
+			api.getNotification(bundle)
+				.then((response) => {
+					let notif = response.data
+					let check = ""
+					let a = ""
+					if (notif.length > self.notifCount) {
+						check = notif.length - self.notifCount
+						if (check > 3) {
+							check = 3
+						}
+						a = notif.length - check
+						for (let index = a; index < notif.length; index++) {
+							if (showAlert) {
+								notified(self.$notification).info(notif[index].notif);
+							}
+						}
+						self.notifCount = notif.length
+					}
+				})
+				.catch(function (error) {
+					console.log('error asking for baseline');
+					if (checkConnection(self.notification)) {
+						if (showAlert) {
+							notified(self.$notification).error(
+								"Sorry we are encountering a problem, please try again later. 🙏"
+							);
+						}
+					}
+				});
+		},
+		checkLoader() {
+			let check = global.$loader.isOpen();
+			console.log('check loading: ' + check);
+			if (check) {
+				console.log('closing loading');
+				global.$loader.hide();
+			}
 		}
 	},
 	mounted() {
-
+		let self = this;
 		// get initial notification
-		this.checkNotification();
+		this.checkNotification(false);
 
 		// check notification every 1 minute
 		setInterval(() => {
 			this.checkNotification();
-		}, 60000);
+		}, 600);
 	}
+	// // get initial notification
+	// this.checkNotification(false);
+
+	// // check notification every 1 minute
+	// setTimeout(() => {
+	// 	// let count = self.notifCount;
+	// 	this.checkNotification();
+	// }, 300000);
+
+	// // check if loader still on after .3 second
+	// setTimeout(this.checkLoader, 3000);
+}
 });
+
+var bmPage = document.querySelector("#bookmarkPage");
+if (bmPage !== null) {
+	// Instance for Page Bookmark
+	new Vue({
+		name: 'Bookmark',
+		el: '#bookmarkPage',
+		components: { bookmarkButton }
+	});
+}
+
+var ifooter = document.querySelector("#infoFooter");
+if (ifooter !== null) {
+	// Instance for Page Bookmark
+	new Vue({
+		name: 'infoFooter',
+		el: '#infoFooter',
+		components: { infoFooter }
+	})
+}
 
 function sidebarToggleAnimation() {
 	let btn = document.querySelector('#toggle-sidebar');

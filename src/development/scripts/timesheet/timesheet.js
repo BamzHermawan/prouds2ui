@@ -1,15 +1,11 @@
 import Vue from 'vue';
-import Buefy from 'buefy'
-import { topNavBar } from "components";
+import Buefy from 'buefy';
 import Loader from 'helper-loader';
-import Moment from 'helper-moment'
+import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
-	components: {
-		topNavBar, Moment
-	},
 	data: {
 		userlog: {
 			name: 'Ade Wiranat Putra'
