@@ -49,7 +49,9 @@
 				<side-item href="#no-edit">Closing</side-item>
 			</side-list>
 
-			<side-list label="My Workspace" name="ws"></side-list>
+			<side-list label="My Workspace" name="ws">
+				<side-item href="../maintenance.html">Help [default]</side-item>
+			</side-list>
 		</section>
 
 		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
@@ -81,12 +83,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="http://" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="../setting/authorization.html" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -96,8 +98,8 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../profile/editProfile.html" class="navbar-item">Account Profile</a>
-							<a href="#help" class="navbar-item">Need Help ?</a>
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -886,7 +888,7 @@
 		];
 	</script>
 
-	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../../main.js"></script>
 	<script src="../../scripts/project/list/list.js"></script>
 </body>
 

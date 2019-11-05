@@ -29,6 +29,8 @@
 					:disabled="disabled"
 					:loading="loading"
 					:readonly="readonly"
+					:min-date="minDateFormated"
+					:max-date="maxDateFormated"
 					size="is-small"
 				>
 					<b-button
@@ -107,6 +109,7 @@
  
 <script>
 import Moment from "helper-moment";
+import { momentFormatter } from "helper-tools";
 export default {
 	props: {
 		label: {
@@ -156,7 +159,7 @@ export default {
 			default: undefined
 		},
 		dateInputFormat: {
-			default: undefined
+			default: "DD/MM/YYYY"
 		},
 		dateOutputFormat: {
 			default: "DD/MM/YYYY"
@@ -164,6 +167,12 @@ export default {
 		dateLocale: {
 			type: String,
 			default: "en"
+		},
+		minDate: {
+			default: undefined
+		},
+		maxDate: {
+			default: undefined
 		},
 		inline: {
 			type: Boolean,
@@ -230,6 +239,26 @@ export default {
 
 				Moment.locale(this.dateLocale);
 				return Moment(this.model).format(this.dateOutputFormat);
+			}
+		},
+		minDateFormated() {
+			if (
+				this.minDate !== undefined &&
+				typeof this.minDate !== "string"
+			) {
+				return this.minDate;
+			} else {
+				return momentFormatter(Moment, this.minDate, true);
+			}
+		},
+		maxDateFormated() {
+			if (
+				this.maxDate !== undefined &&
+				typeof this.maxDate !== "string"
+			) {
+				return this.maxDate;
+			} else {
+				return momentFormatter(Moment, this.maxDate, true);
 			}
 		}
 	},

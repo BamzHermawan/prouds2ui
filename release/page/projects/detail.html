@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+	<title>PROJECT | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../src/style.min.css">
+	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="list.html">Project List</side-item>
+				<side-item href="../maintenance.html">Project Assignment</side-item>
+				<side-item href="../maintenance.html">Timesheet</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws">
+				<side-item href="../maintenance.html">Help [default]</side-item>
+			</side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Detail Project</span>
+						</h1>
+						<div id="bookmarkPage">
+							<bookmark-button title="Detail Project"></bookmark-button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container" data-title="Detail Project">
+					<nav class="breadcrumb" aria-label="breadcrumbs">
+						<ul class="is-marginless">
+							<li>
+								<linker href="@back"></linker>
+							</li>
+							<li class="is-active"><a href="#" aria-current="page">Project Information</a></li>
+						</ul>
+					</nav>
+
+					<div class="columns is-marginless">
+						<div class="column is-8-desktop content is-marginless is-paddingless">
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
+								App Mantap Super Jaya Semua Suka Sampai Mendunia</h3>
+							<b-field grouped="">
+								<div class="control">
+									<b-taglist attached="">
+										<b-tag type="is-dark">ID</b-tag>
+										<b-tag type="is-info">1900123</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached="" size="are-medium">
+										<b-tag type="is-dark">IWO</b-tag>
+										<b-tag type="is-info">P-1909-TTES0481</b-tag>
+									</b-taglist>
+								</div>
+							</b-field>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="columns">
+						<div class="column is-5-desktop add-border-right">
+							<div class="content">
+								<h3 class="is-small has-text-weight-light">Commercial Information</h3>
+							</div>
+							<div class="columns is-multiline">
+								<div class="column is-6">
+									<b-field label="Customer">
+										<div>
+											<p>PT. Maju Bersama Tidak Mundur Walau Sengsara</p>
+										</div>
+									</b-field>
+								</div>
+								<div class="column content is-marginless is-6">
+									<b-field label="Amount">
+										<b-message type="is-info" size="is-small">
+											<h4 class="is-marginless has-text-weight-light">{{ '120000000' | currency }}
+												IDR</h4>
+										</b-message>
+									</b-field>
+								</div>
+								<div class="column is-6">
+									<b-field label="Account Manager">
+										<div>
+											<p class="add-divider-bellow">S2010000001</p>
+											<p>Pak Gembus Sedap Maknyus</p>
+										</div>
+									</b-field>
+								</div>
+								<div class="column is-6">
+									<b-field label="Won Date">
+										<p>{{ '10/01/2019' | moment }}</p>
+									</b-field>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="content">
+								<h3 class="is-small has-text-weight-light">Agreement Document</h3>
+							</div>
+							<ul>
+								<li>
+									<a href="#revisi1" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Desain Frontend revisi kemarin.docx</span>
+									</a>
+								</li>
+								<li>
+									<a href="#revisi2" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Desain Frontend revisi terakhir bismilah.docx</span>
+									</a>
+								</li>
+								<li>
+									<a href="#lowongan" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Lamaran Lowongan VP - Ade.pdf</span>
+									</a>
+								</li>
+								<li>
+									<a href="#proposal" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>PROPOSAL NAIK GAJI.docx</span>
+									</a>
+								</li>
+							</ul>
+
+							<hr>
+
+							<div class="content">
+								<h3 class="is-small has-text-weight-light">Related Document</h3>
+							</div>
+							<ul>
+								<li>
+									<a href="#trik" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Trik-Trik cepat naik gaji.pdf</span>
+									</a>
+								</li>
+								<li>
+									<a href="#pedoman" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Pedoman menjadi ganteng sedunia bradd pitt pun kalah.pdf</span>
+									</a>
+								</li>
+								<li>
+									<a href="#lowongan" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Mau cepat kaya ? ayo lakukan ini.mp4</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="column is-7-desktop content">
+							<h3 class="is-small has-text-weight-light">Deliverable Information</h3>
+							<div class="columns is-multiline">
+								<div class="column is-4-desktop">
+									<b-field label="Project Type">
+										<p>Implementation</p>
+									</b-field>
+								</div>
+								<div class="column is-8-desktop">
+									<b-field label="Contract Length">
+										<p class="is-marginless">
+											<span>27 Months</span>
+											<span style="margin-right: 25px;"></span>
+											<br class="is-hidden-widescreen">
+											<span class="icon is-small">
+												<span class="mdi mdi-calendar-clock"></span>
+											</span>
+											<span>{{ '20/10/2019' | moment}} - {{ '31/12/2019' | moment}}</span>
+										</p>
+									</b-field>
+								</div>
+
+								<div class="column is-4-desktop">
+									<b-field label="Unit Delivery">
+										<p>Project Management Office</p>
+									</b-field>
+								</div>
+
+								<div class="column is-8-desktop">
+									<b-field label="Project Manager">
+										<p>Zaid Kencana Jaya</p>
+									</b-field>
+								</div>
+							</div>
+
+							<b-field label="Background">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora
+									placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis,
+									deleniti voluptatibus harum optio corrupti sapiente. Ut, explicabo?</p>
+							</b-field>
+							<b-field label="Scope of Work">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+									Ipsum has been the industry's standard
+									dummy text ever since the 1500s, when an unknown printer took a galley of type and
+									scrambled it to make a type specimen
+									book. It has survived not only five centuries, but also the leap into electronic
+									typesetting, remaining essentially
+									unchanged. It was popularised in the 1960s with the release of Letraset sheets
+									containing Lorem Ipsum passages, and more
+									recently with desktop publishing software like Aldus PageMaker including versions of
+									Lorem Ipsum.</p>
+							</b-field>
+						</div>
+					</div>
+
+				</div>
+			</section>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer entry="100" utilization="100"></info-footer>
+		</section>
+	</div>
+
+	<script src="../../src/main.min.js"></script>
+	<script src="../../src/projects/detail.min.js"></script>
+</body>
+
+</html>

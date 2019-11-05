@@ -1,6 +1,9 @@
 <?php
 
-if(empty($_GET['nik'])){
+if(!empty($_GET['size'])){
+	header("Location: https://placekitten.com/g/" . str_replace('-', '/', $_GET['size']));
+	die();
+} else if(empty($_GET['nik'])){
 	header("Location: https://picsum.photos/" . rand(480, 960));
 	die();
 }else if($_GET['nik'] == 'CRS2019119'){

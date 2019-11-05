@@ -141,7 +141,7 @@
 											<p class="has-text-weight-bold">{{ timesheet.task }}</p>
 										</div>
 										<div class="card-content content is-marginless">
-											<p class="has-text-weight-bold is-marginless">{{ timesheet.project_name }}</p>
+											<p class="has-text-weight-bold is-marginless" style="max-width:95%;">{{ timesheet.project_name }}</p>
 											<b-tag type="is-info">{{ timesheet.iwo }}</b-tag>
 											
 											<p class="has-top-margin">
@@ -172,61 +172,79 @@
 						</div>
 					</div>
 
-					<form action="http://localhost:5501/demo/post_detect.php" method="POST" v-if="showForm">
-						<div class="columns">
-							<div class="column">
-								<p class="heading">Project</p>
-								<b-field>
-									<b-input type="hidden" name="project_id" :value="dataForm.project_id"></b-input>
-									<p>{{ dataForm.project_name }}</p>
+					<div v-if="showForm" class="animated fadeIn faster">
+						<div class="columns is-marginless">
+							<div class="column is-8-desktop content is-marginless is-paddingless">
+								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">
+									{{ dataForm.project_name }}</h3>
+								<b-field grouped>
+									<div class="control">
+										<b-taglist attached>
+											<b-tag type="is-dark">ID</b-tag>
+											<b-tag type="is-info">{{ dataForm.project_id }}</b-tag>
+										</b-taglist>
+									</div>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">IWO</b-tag>
+											<b-tag type="is-info">{{ dataForm.iwo }}</b-tag>
+										</b-taglist>
+									</div>
 								</b-field>
 							</div>
-							<div class="column">
-								<b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
-								<p class="heading">Task</p>
-								<b-field>
-									<p>{{ dataForm.task }}</p>
-								</b-field>
+							<div class="column is-clearfix is-paddingless">
+								<a class="button is-danger is-long is-pulled-right" @click="setTimesheet">
+									◀ Back
+								</a>
 							</div>
 						</div>
-						<div class="columns">
-							<div class="column">
-								<p class="heading">Choose Date</p>
-								<b-field>
-									<b-datepicker placeholder="DD/MM/YYYY" :min-date="minDate" :max-date="maxDate"
-										name="date" required>
-									</b-datepicker>
-								</b-field>
-							</div>
-							<div class="column">
-								<p class="heading">Select Area</p>
-								<b-field>
-									<b-select expanded name="level" placeholder="-Select Area-" required>
+
+						<!-- Add horizontal line -->
+						<hr>
+
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+							<div class="columns">
+								<div class="column is-8-desktop add-border-right">
+									<b-message type="is-info" size="is-small" title="Task" :closable="false">
+										<div class="content">
+											<b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
+											<p class="has-text-weight-light">{{ dataForm.task }}</p>
+										</div>
+									</b-message>
+								
+									<b-field label="Activity">
+										<b-input maxlength="200" type="textarea" name="activity" placeholder="Describe your activity related to this task so that your pm could understand what you do." required></b-input>
+									</b-field>
+								</div>
+								<div class="column is-4-desktop">
+									<crud-input 
+										type="datepicker" 
+										name="date" 
+										:min-date="minDate"
+										:max-date="maxDate"
+										label="Timesheet Date" 
+										placeholder="Choose Date">
+									</crud-input>
+
+									<crud-input 
+										type="select" 
+										name="level" 
+										label="Select Area" 
+										placeholder="Choose area location">
 										<option selected style="display: none;"></option>
 										<option value="1">Jabodetabek</option>
 										<option value="2">Non Lokal Jawa</option>
 										<option value="3">Luar Jawa Dalam Negeri</option>
 										<option value="4">Luar Negeri</option>
-									</b-select>
-								</b-field>
-							</div>
-						</div>
-						<div class="columns">
-							<div class="column">
-								<p class="heading">Activity</p>
-								<b-field>
-									<b-input maxlength="200" type="textarea" name="activity" required></b-input>
-								</b-field>
-							</div>
-						</div>
-						<b-button type="is-danger" @click="setTimesheet">
-							Cancel
-						</b-button>
-						<button class="button is-success" type="submit">
-							Save
-						</button>
-					</form>
+									</crud-input>
 
+									<button class="button is-success is-long" type="submit">
+										Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</section>
 		</section>

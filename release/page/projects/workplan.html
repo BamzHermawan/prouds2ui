@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+	<title>WORKPLAN | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../src/style.min.css">
+	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+
+	<!-- JSGanttChart -->
+	<link rel="stylesheet" href="../../src/jsgantt.min.css">
+	<script src="../../src/jsgantt.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="list.html" active="">Project List</side-item>
+				<side-item href="../maintenance.html">Project Assignment</side-item>
+				<side-item href="../maintenance.html">Timesheet</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws">
+				<side-item href="../maintenance.html">Help [default]</side-item>
+			</side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Workplan</span>
+						</h1>
+						<div id="bookmarkPage">
+							<bookmark-button></bookmark-button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+					<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+						<ul class="is-marginless">
+							<li><a href="/src/projects\list.html">Project List</a></li>
+							<li class="is-active"><a href="#" aria-current="page">Workplan</a></li>
+						</ul>
+					</nav>
+
+					<div class="columns is-marginless">
+						<div class="column is-8-desktop content is-marginless is-paddingless">
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
+								App Mantap Super Jaya
+								Semua Suka Sampai Mendunia</h3>
+							<b-field grouped="">
+								<div class="control">
+									<b-taglist attached="">
+										<b-tag type="is-dark">ID</b-tag>
+										<b-tag type="is-info">1900123</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached="" size="are-medium">
+										<b-tag type="is-dark">IWO</b-tag>
+										<b-tag type="is-info">P-1909-TTES0481</b-tag>
+									</b-taglist>
+								</div>
+							</b-field>
+						</div>
+					</div>
+
+					<span class="white-space"></span>
+
+					<div class="container">
+						<div class="card">
+							<header class="card-header">
+								<div class="card-header-title">
+									<form action="http://localhost:5501/demo/post_detect.php" method="post" enctype="multipart/form-data">
+										<b-upload v-model="selectedDocument" name="evidDoc" native="" required="" style="width:100%;" accept=".xml">
+											<div v-if="selectedDocument==null">
+												<a class="button is-small is-info is-fullwidth">
+													<span class="mdi mdi-upload in-left"></span>
+													<span>Upload XML</span>
+												</a>
+											</div>
+											<div v-if="selectedDocument != null" class="field has-addons is-marginless">
+												<div class="control">
+													<span v-if="selectedDocument" class="button is-static is-small">
+														{{ selectedDocument.name }}
+													</span>
+												</div>
+												<div class="control">
+													<button class="button is-success is-fullwidth is-small" type="submit">
+														📬 Send File
+													</button>
+												</div>
+											</div>
+										</b-upload>
+									</form>
+								</div>
+							</header>
+							<section class="card-content">
+								<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
+								<ganttchart action-event="http://localhost:5501/demo/post_detect.php">
+								</ganttchart>
+							</section>
+						</div>
+					</div>
+
+					<div class="floating-taskbar animated fadeInRight" v-if="showSideBar">
+						<div class="card">
+							<header class="card-header">
+								<p class="card-header-title">
+									Task Menu
+								</p>
+								<a @click="toggleSideBar" class="card-header-icon">
+									<span class="icon">
+										<i class="mdi mdi-close-box" aria-hidden="true"></i>
+									</span>
+								</a>
+							</header>
+							<div class="card-content is-paddingless">
+								<b-menu class="is-workplan-task-menu">
+									<b-menu-list>
+										<b-menu-item @click="editTask" label="Edit Task" :active="false">
+										</b-menu-item>
+										<b-menu-item @click="assignResource" label="Assign Resource" :active="false">
+										</b-menu-item>
+										<b-menu-item @click="setProgress" label="Update Progress" :active="false">
+										</b-menu-item>
+										<b-menu-item @click="mergeTask" label="Merge Task" :active="false">
+										</b-menu-item>
+									</b-menu-list>
+									<b-menu-list label="Quick Action">
+										<b-menu-item @click="changeParentTask" label="Change Parent Task" :active="false">
+										</b-menu-item>
+										<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false">
+										</b-menu-item>
+										<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor" :active="false">
+										</b-menu-item>
+										<b-menu-item @click="shrinkTask" label="Shrink Task" :active="false">
+										</b-menu-item>
+										<b-menu-item @click="deleteTask" label="Delete Task" :active="false">
+										</b-menu-item>
+									</b-menu-list>
+								</b-menu>
+							</div>
+						</div>
+					</div>
+
+					<b-modal :active.sync="modal.editTask" width="70vw">
+						<edit-task title="Edit Task" :task="selectedTask" workplan-id="1" api-get-duration="http://localhost:5501/demo/getDuration.php" action-event="http://localhost:5501/demo/post_detect.php">
+							<template slot="phase-option">
+								<option selected="" style="display: none;"></option>
+								<option value="1">Planning</option>
+								<option value="2">Development</option>
+							</template>
+							<template slot="workdays-option">
+								<option selected="" style="display: none;"></option>
+								<option value="1">Normal : 5 Business days</option>
+								<option value="2">Medium : 10 Business days</option>
+							</template>
+						</edit-task>
+					</b-modal>
+
+					<b-modal class="had-max-width" :active.sync="modal.assignResource">
+						<assign-resource title="Assign Resource" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						</assign-resource>
+					</b-modal>
+
+					<b-modal class="had-max-width" :active.sync="modal.setProgress">
+						<set-progress title="Update Progress" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						</set-progress>
+					</b-modal>
+
+					<b-modal class="had-max-width" :active.sync="modal.mergeTask">
+						<merge-task title="Merge Task" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						</merge-task>
+					</b-modal>
+
+					<b-modal class="had-max-width" :active.sync="modal.changeParentTask">
+						<change-parent-task title="Change Parent Task" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						</change-parent-task>
+					</b-modal>
+
+					<b-modal class="had-max-width" :active.sync="modal.linkPredecessor">
+						<link-predecessor title="Link Predecessor" :task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						</link-predecessor>
+					</b-modal>
+
+				</div>
+			</section>
+
+			<span class="white-space"></span>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer entry="100" utilization="100"></info-footer>
+		</section>
+	</div>
+
+	<script>var GANTT = [{
+  pID: 1,
+  pName: "New Prouds Development Phase I",
+  pStart: "2019-06-10",
+  pEnd: "2019-12-31",
+  duration: 100,
+  pClass: "gtaskred",
+  pMile: 0,
+  pComp: 40,
+  pGroup: 1,
+  pParent: 0,
+  pOpen: 1,
+  pDepend: 0,
+  work: 1800,
+  workTotal: 6272,
+  estProgress: 43,
+  phase: 2,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: false,
+  deleteTask: null,
+  shrinkTask: null,
+  unlinkPredecessor: null
+}, {
+  pID: 2,
+  pName: "Requirement Gathering",
+  pStart: "",
+  pEnd: "",
+  duration: 100,
+  pClass: "gtaskyellow",
+  pComp: 0,
+  pGroup: 0,
+  pParent: 1,
+  pOpen: 1,
+  pDepend: 1,
+  work: 352,
+  workTotal: 350,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 3,
+  pName: "Analysis and Design",
+  pStart: "2019-06-17",
+  pEnd: "2019-07-12",
+  duration: 100,
+  pClass: "gtaskpink",
+  pComp: 80,
+  pGroup: 0,
+  pParent: 1,
+  pOpen: 1,
+  pDepend: 3,
+  work: 352,
+  workTotal: 350,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 4,
+  pName: "Mockup UI Development",
+  pStart: "2019-06-06",
+  pEnd: "2019-10-18",
+  duration: 100,
+  pClass: "gtaskred",
+  pComp: 27.33,
+  pGroup: 0,
+  pParent: 1,
+  pOpen: 1,
+  pDepend: 3,
+  work: 352,
+  workTotal: 350,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 6,
+  pName: "Construction",
+  pStart: "",
+  pEnd: "",
+  duration: 100,
+  pClass: "gtaskblue",
+  pMile: 1,
+  pComp: 0,
+  pGroup: 1,
+  pParent: 1,
+  pOpen: 1,
+  pDepend: 1,
+  work: 352,
+  workTotal: 350,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  shrinkTask: null,
+  deleteTask: null,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html"
+}, {
+  pID: 7,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 8,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 9,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 10,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}, {
+  pID: 11,
+  pName: "Develop Front-End",
+  pStart: "2019-08-19",
+  pEnd: "2019-10-31",
+  duration: 100,
+  pClass: "gtaskgreen",
+  pComp: 57.81,
+  pGroup: 0,
+  pParent: 6,
+  pOpen: 0,
+  pDepend: 2,
+  work: 296,
+  workTotal: 512,
+  estProgress: 43,
+  phase: 1,
+  resource: [{
+    "name": "Zeid",
+    "status": "Assigned",
+    "actionComplete": "http://localhost:5500/project/workplan.html",
+    "actionUnComplete": ""
+  }, {
+    "name": "BilBIl",
+    "status": "Completed",
+    "actionComplete": "",
+    "actionUnComplete": "http://localhost:5500/project/workplan.html"
+  }],
+  changeableParent: true,
+  unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+  deleteTask: "http://localhost:5500/project/workplan.html",
+  shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff"
+}],
+    RESOURCE_AVAILABLE = [{
+  "userid": "1234",
+  "name": "Ario"
+}, {
+  "userid": "5678",
+  "name": "Moklo"
+}];</script>
+
+	<script src="../../src/main.min.js"></script>
+	<script src="../../src/projects/workplan.min.js"></script>
+</body>
+
+</html>

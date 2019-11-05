@@ -148,12 +148,24 @@ module.exports.randomSmile = function(request = undefined){
 	return smiles[index];
 }
 
+/**
+ * getCookie by name
+ *
+ * @param {*} name
+ * @returns value
+ */
 module.exports.getCookie = (name) => {
 	var value = "; " + document.cookie;
 	var parts = value.split("; " + name + "=");
 	if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
+/**
+ * Check Connection Offline / Online
+ *
+ * @param {*} actor
+ * @returns Boolean
+ */
 module.exports.checkConnection = (actor) => {
 	if (window.navigator.onLine) {
 		return true;
@@ -163,4 +175,35 @@ module.exports.checkConnection = (actor) => {
 		
 		return false;
 	}
+}
+
+module.exports.momentFormatter = (Moment, stringDate, returnJSDate = false) => {
+	if(stringDate === undefined){
+		return undefined;
+	}
+
+	const format = ['day', 'week', 'month', 'year'];
+	var cook = undefined;
+
+	if (stringDate == "today") {
+		cook = Moment();
+	} else if (stringDate == "tomorrow") {
+		cook = Moment().add(1, "days");
+	} else if (stringDate == "yesterday") {
+		cook = Moment().subtract(1, "days");
+	} else if (stringDate.includes('next')) {
+		let found = format.find(key => stringDate.includes(key));
+		cook = Moment().add(1, found + 's');
+	} else if (stringDate.includes('last')) {
+		let found = format.find(key => stringDate.includes(key));
+		cook = Moment().subtract(1, found + 's');
+	} else if (Moment(stringDate).isValid()) {
+		cook = Moment(stringDate);
+	}
+
+	if (cook !== undefined && returnJSDate) {
+		cook = new Date(cook);
+	}
+
+	return cook;
 }

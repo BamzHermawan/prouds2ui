@@ -1,15 +1,14 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
+import { crudInput } from 'components';
 import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
+	components: { crudInput },
 	data: {
-		userlog: {
-			name: 'Ade Wiranat Putra'
-		},
 		minDate: new Date(),
 		maxDate: new Date(),
 		today: "",
@@ -51,6 +50,9 @@ new Vue({
 			this.showList = !this.showList
 			this.showForm = !this.showForm
 			this.dataForm = val
+
+			document.querySelector('.contentPage').scrollTop = 0;
+			global.psContent.update();
 		}
 	},
 	mounted() {

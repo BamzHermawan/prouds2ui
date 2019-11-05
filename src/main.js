@@ -17,8 +17,8 @@ document.querySelector('#toggle-sidebar')
 document.onmousemove = trackMouse;
 
 // Start Perfect Scrollbar
-new PerfectScrollbar('.contentPage');
-new PerfectScrollbar('#side-main');
+global.psContent = new PerfectScrollbar('.contentPage');
+global.psSide = new PerfectScrollbar('#side-main');
 
 // GLOBAL VAR FOR LOADER
 global.$loader = Loader;
