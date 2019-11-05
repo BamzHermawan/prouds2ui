@@ -38,6 +38,7 @@ new Vue({
 		selectedDocument: null,
 		edit: false,
 		add: false,
+		privilage: false,
 		toggleEdit: {
 			internal: false,
 			external: false,
@@ -211,9 +212,23 @@ new Vue({
 			if (this.add) {
 				this.add = false
 				this.showTable = true
+				this.checkboxGroup = []
 			} else {
 				this.add = true
 				this.showTable = false
+				this.checkboxGroup = []
+			}
+		},
+		privilageForm(val) {
+			if (this.privilage) {
+				this.showTable = true
+				this.privilage = false
+				this.checkboxGroup = []
+			} else {
+				this.showTable = false
+				this.privilage = true
+				this.checkboxGroup = ""
+				this.checkboxGroup = val.checkBoxGroup
 			}
 		},
 		editForm(val) {

@@ -3,6 +3,7 @@ import Buefy from 'buefy'
 import { topNavBar } from "components";
 import { mediaLog } from "components";
 import { dataTable } from "components";
+import { animate } from 'helper-tools'
 import Loader from 'helper-loader';
 import 'helper-filter'
 import Cost from "./cost.vue"
@@ -20,18 +21,53 @@ new Vue({
 		},
 		modal: {
 			milestone: false,
-			cost: false
+			// cost: false
 		},
 		props: DATA,
 		milestoneShowAction: false,
 		selectedDocument: null,
+		showTable: true,
+		showCost: false,
+		showMilestone: false
 	},
 	methods: {
 		editMilestone() {
-			this.modal.milestone = !this.modal.milestone
+			if (this.showTable) {
+				console.log("Ade")
+				animate('#tableRebaseline', 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.showMilestone = !this.showMilestone
+
+					el.classList.add('fadeIn');
+				});
+			} else {
+				document.querySelector('#milestone').classList.remove('fadeIn', 'faster');
+				animate('#milestone', 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.showMilestone = !this.showMilestone
+
+					document.querySelector('#tableRebaseline').classList.add('fadeIn faster');
+				});
+			}
 		},
 		editCost() {
-			this.modal.cost = !this.modal.cost
+			if (this.showTable) {
+				console.log("Ade")
+				animate('#tableRebaseline', 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.showCost = !this.showCost
+
+					el.classList.add('fadeIn');
+				});
+			} else {
+				document.querySelector('#cost').classList.remove('fadeIn', 'faster');
+				animate('#cost', 'fadeOut faster', (el) => {
+					this.showTable = !this.showTable
+					this.showCost = !this.showCost
+
+					document.querySelector('#tableRebaseline').classList.add('fadeIn faster');
+				});
+			}
 		}
 	},
 	mounted() {
