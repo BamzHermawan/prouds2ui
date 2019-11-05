@@ -14,14 +14,14 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		dataTableNoCard, 
-		crudInput, 
-		ganttchart, 
-		EditTask, 
-		AssignResource, 
+		dataTableNoCard,
+		crudInput,
+		ganttchart,
+		EditTask,
+		AssignResource,
 		SetProgress,
-		MergeTask, 
-		ChangeParentTask, 
+		MergeTask,
+		ChangeParentTask,
 		LinkPredecessor
 	},
 	data: {
@@ -70,7 +70,7 @@ new Vue({
 					el.classList.add('fadeInRight');
 					self.showSideBar = false;
 				});
-			}else{
+			} else {
 				self.showSideBar = true;
 			}
 		},

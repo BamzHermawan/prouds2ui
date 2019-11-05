@@ -1,119 +1,105 @@
 <template>
-	<div class="card-modal">
-		<header class="modal-card-head">
-			<p class="modal-card-title">{{ title }}</p>
-		</header>
-		<section class="modal-card-body" style="height: auto;">
-			<form
-				:action="actionEvent"
-				method="POST"
-				enctype="multipart/form-data"
-			>
-				<div class="columns">
-					<div class="column">
-						<p class="label">Task Name</p>
-						<input
-							type="hidden"
-							name="taskID"
-							v-model="selectedTask"
-						/>
-						<b-autocomplete
-							v-model="name"
-							placeholder="Choose Task Name"
-							:open-on-focus="true"
-							:data="filterTaskName"
-							field="taskName"
-							@select="option => (selected = option)"
-						>
-						</b-autocomplete>
-					</div>
+	<div class="container">
+		<slot name="ade"></slot>
+		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
+			<div class="columns">
+				<div class="column">
+					<p class="label">Task Name</p>
+					<input type="hidden" name="taskID" v-model="selectedTask" />
+					<b-autocomplete
+						v-model="name"
+						placeholder="Choose Task Name"
+						:open-on-focus="true"
+						:data="filterTaskName"
+						field="taskName"
+						@select="option => (selected = option)"
+					>
+					</b-autocomplete>
 				</div>
-				<div class="columns">
-					<div class="column">
-						<b-field label="Current Start Date">
-							<b-message class="is-info is-on-field">
-								<p class="has-text-dark">{{ getCurStart }}</p>
-							</b-message>
-						</b-field>
-					</div>
-					<div class="column">
-						<b-field label="Current End Date">
-							<b-message class="is-info is-on-field">
-								<p class="has-text-dark">{{ getCurEnd }}</p>
-							</b-message>
-						</b-field>
-					</div>
+			</div>
+			<div class="columns">
+				<div class="column">
+					<b-field label="Current Start Date">
+						<b-message class="is-info is-on-field">
+							<p class="has-text-dark">{{ getCurStart }}</p>
+						</b-message>
+					</b-field>
 				</div>
-				<div class="columns">
-					<div class="column">
-						<crud-input
-							type="datepicker"
-							label="New Start Date"
-							name="newStartDate"
-							placeholder="Pick Start Date"
-							date-locale="en"
-							input-style="margin-bottom: 5px;"
-						>
-						</crud-input>
-					</div>
-					<div class="column">
-						<crud-input
-							type="datepicker"
-							label="New End Date"
-							name="newEndDate"
-							placeholder="Pick Start Date"
-							date-locale="en"
-							input-style="margin-bottom: 5px;"
-						>
-						</crud-input>
-					</div>
+				<div class="column">
+					<b-field label="Current End Date">
+						<b-message class="is-info is-on-field">
+							<p class="has-text-dark">{{ getCurEnd }}</p>
+						</b-message>
+					</b-field>
 				</div>
+			</div>
+			<div class="columns">
+				<div class="column">
+					<crud-input
+						type="datepicker"
+						label="New Start Date"
+						name="newStartDate"
+						placeholder="Pick Start Date"
+						date-locale="en"
+						input-style="margin-bottom: 5px;"
+					>
+					</crud-input>
+				</div>
+				<div class="column">
+					<crud-input
+						type="datepicker"
+						label="New End Date"
+						name="newEndDate"
+						placeholder="Pick Start Date"
+						date-locale="en"
+						input-style="margin-bottom: 5px;"
+					>
+					</crud-input>
+				</div>
+			</div>
 
-				<label class="label">Document</label>
-				<div class="columns">
-					<div class="column">
-						<crud-input
-							readonly
-							name="documentName"
-							:color="determineFieldStatus"
-							v-model="documentName"
+			<label class="label">Document</label>
+			<div class="columns">
+				<div class="column">
+					<crud-input
+						readonly
+						name="documentName"
+						:color="determineFieldStatus"
+						v-model="documentName"
+					>
+						<template slot="helptext">
+							<p :class="'help ' + determineFieldStatus">
+								File yang dibolehkan: jpg, jpeg, png, doc, docx,
+								pdf, xls, xlsx, ppt, pptx ; File size maksimal
+								20MB
+							</p>
+						</template>
+					</crud-input>
+				</div>
+				<div class="column is-one-third">
+					<b-field>
+						<b-upload
+							v-model="selectedDocument"
+							name="evidDoc"
+							native
+							required
+							style="width:100%;"
 						>
-							<template slot="helptext">
-								<p :class="'help ' + determineFieldStatus">
-									File yang dibolehkan: jpg, jpeg, png, doc,
-									docx, pdf, xls, xlsx, ppt, pptx ; File size
-									maksimal 20MB
-								</p>
-							</template>
-						</crud-input>
-					</div>
-					<div class="column is-one-third">
-						<b-field>
-							<b-upload
-								v-model="selectedDocument"
-								name="evidDoc"
-								native
-								required
-								style="width:100%;"
-							>
-								<a class="button is-info is-fullwidth">
-									<b-icon icon="upload"></b-icon>
-									<span>Browse File</span>
-								</a>
-							</b-upload>
-						</b-field>
-					</div>
+							<a class="button is-info is-fullwidth">
+								<b-icon icon="upload"></b-icon>
+								<span>Browse File</span>
+							</a>
+						</b-upload>
+					</b-field>
 				</div>
-				<div class="is-pulled-right">
-					<a class="button is-danger" @click="$parent.close()">
-						Cancel
-					</a>
-					<button class="button is-success" type="submit">
-						Save
-					</button>
-				</div>
-			</form>
-		</section>
+			</div>
+			<div class="is-pulled-right">
+				<button class="button is-success is-long" type="submit">
+					Save
+				</button>
+			</div>
+			<br />
+		</form>
 	</div>
 </template>
 

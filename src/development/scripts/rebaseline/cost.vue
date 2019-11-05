@@ -1,57 +1,56 @@
 <template>
-	<div class="card-modal">
-		<header class="modal-card-head">
-			<p class="modal-card-title">{{ title }}</p>
-		</header>
-		<section class="modal-card-body" style="height: auto;">
-			<form :action="actionEvent" method="POST">
-				<div class="columns">
-					<div class="column">
-						<p class="label">Task Name</p>
-						<input
-							type="hidden"
-							name="taskID"
-							v-model="selectedTask"
-						/>
-						<b-autocomplete
-							v-model="name"
-							placeholder="Choose Task Name"
-							:open-on-focus="true"
-							:data="filterTaskName"
-							field="taskName"
-							@select="option => (selected = option)"
-						>
-						</b-autocomplete>
-					</div>
+	<div class="container">
+		<slot name="ade"></slot>
+		<form :action="actionEvent" method="POST">
+			<div class="columns">
+				<div class="column">
+					<p class="label">Task Name</p>
+					<input type="hidden" name="taskID" v-model="selectedTask" />
+					<b-autocomplete
+						v-model="name"
+						placeholder="Choose Task Name"
+						:open-on-focus="true"
+						:data="filterTaskName"
+						field="taskName"
+						@select="option => (selected = option)"
+					>
+					</b-autocomplete>
 				</div>
-				<input type="hidden" name="actualCost" v-model="getCost" />
-				<crud-input
+			</div>
+			<input type="hidden" name="actualCost" v-model="getCost" />
+			<b-field label="Budget Actual Cost" v-if="selectedTask === null">
+				<b-input
 					type="text"
-					label="Budget Actual Cost"
-					:value="getCost | currency"
-					@input="actualCostUnformat"
-					name=""
-				>
-				</crud-input>
-				<crud-input
-					type="datepicker"
-					label="Reallocation Date"
-					name="reallocationDate"
-					placeholder="Pick Reallocation Date"
-					date-locale="en"
-					input-style="margin-bottom: 14px;"
-				>
-				</crud-input>
-				<div class="is-pulled-right">
-					<a class="button is-danger" @click="$parent.close()">
-						Cancel
-					</a>
-					<button class="button is-success" type="submit">
-						Save
-					</button>
-				</div>
-			</form>
-		</section>
+					placeholder="10.000.000"
+					disabled
+				></b-input>
+			</b-field>
+			<crud-input
+				v-if="selectedTask !== null"
+				type="text"
+				label="Budget Actual Cost"
+				placeholder="10.000.000"
+				:value="getCost | currency"
+				@input="actualCostUnformat"
+				name=""
+			>
+			</crud-input>
+			<crud-input
+				type="datepicker"
+				label="Reallocation Date"
+				name="reallocationDate"
+				placeholder="Pick Reallocation Date"
+				date-locale="en"
+				input-style="margin-bottom: 0px;"
+			>
+			</crud-input>
+			<br />
+			<div class="is-pulled-right">
+				<button class="button is-success is-long" type="submit">
+					Save
+				</button>
+			</div>
+		</form>
 	</div>
 </template>
 
@@ -79,7 +78,7 @@ export default {
 	},
 	data() {
 		return {
-			selectedTask: "null",
+			selectedTask: null,
 			dataBaru: DATA.allTask,
 			name: "",
 			selected: null
@@ -104,12 +103,15 @@ export default {
 		},
 		getCost: {
 			get() {
+				let found = "";
 				if (this.selected != undefined) {
 					this.selectedTask = this.selected.taskID;
+					found = this.dataBaru.find(
+						task => task.taskID === this.selectedTask
+					);
+				} else {
+					this.selectedTask = null;
 				}
-				let found = this.dataBaru.find(
-					task => task.taskID === this.selectedTask
-				);
 
 				if (found != undefined && found.hasOwnProperty("cost")) {
 					return found.cost;

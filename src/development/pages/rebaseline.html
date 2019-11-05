@@ -124,135 +124,151 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 
-					<b-message type="is-warning">
-						<nav class="level">
-							<div class="level-left">
-								<label class="label">Rebaseline Type</label>
-							</div>
-							<div class="level-right">
-								<div class="level-item">
-									<b-button type="is-success" @click="editMilestone">
-										Reschedule Milestone
-									</b-button>
+					<div v-if="showTable" id="tableRebaseline" class="animated">
+						<b-message type="is-warning">
+							<nav class="level">
+								<div class="level-left">
+									<label class="label">Rebaseline Type</label>
 								</div>
-								<div class="level-item">
-									<b-button type="is-success" @click="editCost">
-										Cost Reallocation
-									</b-button>
+								<div class="level-right">
+									<div class="level-item">
+										<b-button type="is-success" @click="editMilestone">
+											Reschedule Milestone
+										</b-button>
+									</div>
+									<div class="level-item">
+										<b-button type="is-success" @click="editCost">
+											Cost Reallocation
+										</b-button>
+									</div>
 								</div>
-							</div>
-						</nav>
-					</b-message>
+							</nav>
+						</b-message>
 
-					<data-table :fields="[]" :show-all="false" :data="props.milestoneType" title="Milestone">
-						<template slot-scope="props">
-							<b-table-column field="taskName" label="Task Name">
-								<span>{{ props.row.taskName }}</span>
-							</b-table-column>
-							<b-table-column field="start" label="Start Date">
-								<span class="has-underline-info">{{ props.row.start }}</span>
-								<span style="margin: 0px 7px;">changed to</span>
-								<span class="has-underline-success">{{ props.row.newstart }}</span>
-							</b-table-column>
-							<b-table-column field="finish" label="Finish Date">
-								<span class="has-underline-info">{{ props.row.finish }}</span>
-								<span style="margin: 0px 7px;">changed to</span>
-								<span class="has-underline-success">{{ props.row.newfinish }}</span>
-							</b-table-column>
-							<b-table-column field="submit" label="Created Date">
-								{{ props.row.submit | moment }}
-							</b-table-column>
-						</template>
-						<template slot="empty">
-							<b-message type="is-warning" class="has-text-centered">
-								Currently No User is Assigned 😢.
-							</b-message>
-						</template>
-						<template slot="top-right">
-							<span></span>
-						</template>
-					</data-table>
-					<br>
-					<data-table :fields="[]" :show-all="false" :data="props.costType" title="Cost Reallocation">
-						<template slot-scope="props">
-							<b-table-column field="taskName" label="Task Name">
-								<span>{{ props.row.taskName }}</span>
-							</b-table-column>
-							<b-table-column field="start" label="Start Date">
-								<span class="has-underline-info">{{ props.row.start }}</span>
-								<span style="margin: 0px 7px;">changed to</span>
-								<span class="has-underline-success">{{ props.row.newstart }}</span>
-							</b-table-column>
-							<b-table-column field="finish" label="Finish Date">
-								<span class="has-underline-info">{{ props.row.finish }}</span>
-								<span style="margin: 0px 7px;">changed to</span>
-								<span class="has-underline-success">{{ props.row.newfinish }}</span>
-							</b-table-column>
-							<b-table-column field="submit" label="Created Date">
-								{{ props.row.submit | moment }}
-							</b-table-column>
-						</template>
-						<template slot="empty">
-							<b-message type="is-warning" class="has-text-centered">
-								Currently No User is Assigned 😢.
-							</b-message>
-						</template>
-						<template slot="top-right">
-							<span></span>
-						</template>
-					</data-table>
-					<br>
-					<data-table :fields="[]" :show-all="false" :data="props.mandaysType"
-						title="Rebaseline: System Auto Calculation" :per-page="5" :show-all="false">
-						<template slot-scope="props">
-							<b-table-column field="taskName" label="Task Name" sortable>
-								<span>{{ props.row.taskName }}</span>
-							</b-table-column>
+						<data-table :fields="[]" :show-all="false" :data="props.milestoneType" title="Milestone">
+							<template slot-scope="props">
+								<b-table-column field="taskName" label="Task Name">
+									<span>{{ props.row.taskName }}</span>
+								</b-table-column>
+								<b-table-column field="start" label="Start Date">
+									<span class="has-underline-info">{{ props.row.start }}</span>
+									<span style="margin: 0px 7px;">changed to</span>
+									<span class="has-underline-success">{{ props.row.newstart }}</span>
+								</b-table-column>
+								<b-table-column field="finish" label="Finish Date">
+									<span class="has-underline-info">{{ props.row.finish }}</span>
+									<span style="margin: 0px 7px;">changed to</span>
+									<span class="has-underline-success">{{ props.row.newfinish }}</span>
+								</b-table-column>
+								<b-table-column field="submit" label="Created Date">
+									{{ props.row.submit | moment }}
+								</b-table-column>
+							</template>
+							<template slot="empty">
+								<b-message type="is-warning" class="has-text-centered">
+									Currently No User is Assigned 😢.
+								</b-message>
+							</template>
+							<template slot="top-right">
+								<span></span>
+							</template>
+						</data-table>
+						<br>
+						<data-table :fields="[]" :show-all="false" :data="props.costType" title="Cost Reallocation">
+							<template slot-scope="props">
+								<b-table-column field="taskName" label="Task Name">
+									<span>{{ props.row.taskName }}</span>
+								</b-table-column>
+								<b-table-column field="start" label="Start Date">
+									<span class="has-underline-info">{{ props.row.start }}</span>
+									<span style="margin: 0px 7px;">changed to</span>
+									<span class="has-underline-success">{{ props.row.newstart }}</span>
+								</b-table-column>
+								<b-table-column field="finish" label="Finish Date">
+									<span class="has-underline-info">{{ props.row.finish }}</span>
+									<span style="margin: 0px 7px;">changed to</span>
+									<span class="has-underline-success">{{ props.row.newfinish }}</span>
+								</b-table-column>
+								<b-table-column field="submit" label="Created Date">
+									{{ props.row.submit | moment }}
+								</b-table-column>
+							</template>
+							<template slot="empty">
+								<b-message type="is-warning" class="has-text-centered">
+									Currently No User is Assigned 😢.
+								</b-message>
+							</template>
+							<template slot="top-right">
+								<span></span>
+							</template>
+						</data-table>
+						<br>
+						<data-table :fields="[]" :show-all="false" :data="props.mandaysType"
+							title="Rebaseline: System Auto Calculation" :per-page="5" :show-all="false">
+							<template slot-scope="props">
+								<b-table-column field="taskName" label="Task Name" sortable>
+									<span>{{ props.row.taskName }}</span>
+								</b-table-column>
 
-							<b-table-column field="start" label="Start Date">
-								<span class="has-underline-info">{{ props.row.start }}</span>
-								<span style="margin: 0px 7px;">changed to</span>
-								<span class="has-underline-success">{{ props.row.newstart }}</span>
-							</b-table-column>
+								<b-table-column field="start" label="Start Date">
+									<span class="has-underline-info">{{ props.row.start }}</span>
+									<span style="margin: 0px 7px;">changed to</span>
+									<span class="has-underline-success">{{ props.row.newstart }}</span>
+								</b-table-column>
 
-							<b-table-column field="finish" label="Finish Date">
-								<span class="has-underline-info">{{ props.row.finish }}</span>
-								<span style="margin: 0px 7px;">changed to</span>
-								<span class="has-underline-success">{{ props.row.newfinish }}</span>
-							</b-table-column>
+								<b-table-column field="finish" label="Finish Date">
+									<span class="has-underline-info">{{ props.row.finish }}</span>
+									<span style="margin: 0px 7px;">changed to</span>
+									<span class="has-underline-success">{{ props.row.newfinish }}</span>
+								</b-table-column>
 
-							<b-table-column field="submit" label="Created Date">
-								{{ props.row.submit | moment }}
-							</b-table-column>
+								<b-table-column field="submit" label="Created Date">
+									{{ props.row.submit | moment }}
+								</b-table-column>
 
-							<b-table-column field="action" label="Action">
-								<b-button type="is-success" size="is-small">Approve</b-button>
-								<b-button type="is-danger" size="is-small">Reject</b-button>
-							</b-table-column>
+								<b-table-column field="action" label="Action">
+									<b-button type="is-success" size="is-small">Approve</b-button>
+									<b-button type="is-danger" size="is-small">Reject</b-button>
+								</b-table-column>
+							</template>
+
+							<template slot="empty">
+								<b-message type="is-warning" class="has-text-centered">
+									Currently No User is Assigned 😢.
+								</b-message>
+							</template>
+							<template slot="top-right">
+								<span></span>
+							</template>
+						</data-table>
+					</div>
+
+					<milestone v-if="showMilestone" id="milestone" title="Reschedule Milestone" task-id="1"
+						old-start="22/11/2019" old-end="28/11/2019"
+						action-event="http://localhost:5501/demo/post_detect.php"
+						allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx">
+						<template #ade>
+							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+								<ul class="is-marginless">
+									<li><a @click="editMilestone">Rebaseline</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Reschedule Milestone</a></li>
+								</ul>
+							</nav>
 						</template>
-
-						<template slot="empty">
-							<b-message type="is-warning" class="has-text-centered">
-								Currently No User is Assigned 😢.
-							</b-message>
+					</milestone>
+					<cost v-if="showCost" title="Cost Reallocation" task-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php"
+						allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx" id="cost"
+						class="animated fadeIn faster">
+						<template #ade>
+							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+								<ul class="is-marginless">
+									<li><a @click="editCost">Rebaseline</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Cost Reallocation</a></li>
+								</ul>
+							</nav>
 						</template>
-						<template slot="top-right">
-							<span></span>
-						</template>
-					</data-table>
-
-					<b-modal width="650px" :active.sync="modal.milestone">
-						<milestone title="Reschedule Milestone" task-id="1" old-start="22/11/2019" old-end="28/11/2019"
-							action-event="http://localhost:5501/demo/post_detect.php"
-							allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx">
-						</milestone>
-					</b-modal>
-					<b-modal width="650px" :active.sync="modal.cost">
-						<cost title="Cost Reallocation" task-id="1"
-							action-event="http://localhost:5501/demo/post_detect.php"
-							allowed-file="jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx">
-						</cost>
-					</b-modal>
+					</cost>
 				</div>
 			</section>
 		</section>

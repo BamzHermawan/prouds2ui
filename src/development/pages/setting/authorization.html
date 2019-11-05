@@ -151,13 +151,16 @@
 							pagination-position="top" pagination-simple>
 							<template slot-scope="props">
 								<b-table-column width="175" field="profile_id" label="Profile ID" sortable>
-									<span>{{ props.row.id }}</span>
+									<span>{{ props.row.profile_id }}</span>
 								</b-table-column>
 								<b-table-column field="profil_name" label="Profile Name" sortable>
 									<span>{{ props.row.profile_name }}</span>
 								</b-table-column>
 								<b-table-column width="200" field="action" label="Action" sortable>
 									<b-button @click="editForm(props.row)" type="is-info" size="is-small">Edit
+									</b-button>
+									<b-button @click="privilageForm(props.row)" type="is-success" size="is-small">
+										Akses
 									</b-button>
 									<b-button tag="a"
 										:href="'http://localhost:5501/demo/post_detect.php?id='+props.row.id"
@@ -166,7 +169,7 @@
 								</b-table-column>
 							</template>
 							<template slot="top-left">
-								<b-button @click="addform" type="is-success">Add New</b-button>
+								<b-button @click="addform(props.row)" type="is-success">Add New</b-button>
 							</template>
 						</b-table>
 						<section class="card-content animated fadeIn" v-if="add">
@@ -196,7 +199,6 @@
 											Setting
 										</b-checkbox>
 									</div>
-
 								</b-field>
 								<div style="margin-top: 28px;">
 									<b-button type="is-danger" @click="addform" style="min-width: 150px;">
@@ -210,11 +212,48 @@
 						</section>
 						<section class="card-content animated fadeIn" v-if="edit">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-field label="Profile Name">
+								<b-input expanded name="profil_id" :value="tampung.profile_id" type="hidden"></b-input>
+								<b-field label="Privilage">
 									<b-input expanded name="profile_name" :value="tampung.profile_name"></b-input>
 								</b-field>
 								<div style="margin-top: 28px;">
 									<b-button type="is-danger" @click="editForm" style="min-width: 150px;">
+										Cancel
+									</b-button>
+									<button style="min-width: 150px;" class="button is-success" type="submit">
+										Save
+									</button>
+								</div>
+							</form>
+						</section>
+						<section class="card-content animated fadeIn" v-if="privilage">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-input expanded name="profil_id" :value="tampung.profile_id" type="hidden"></b-input>
+								<input type="hidden" name="accessMenu" v-model="checkboxGroup">
+								<b-field label="Menu Access">
+									<div class="block">
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="1">
+											Home
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="2">
+											Project
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="3">
+											Financial
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="4">
+											Opportunity
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="5">
+											Operation
+										</b-checkbox>
+										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="6">
+											Setting
+										</b-checkbox>
+									</div>
+								</b-field>
+								<div style="margin-top: 28px;">
+									<b-button type="is-danger" @click="privilageForm" style="min-width: 150px;">
 										Cancel
 									</b-button>
 									<button style="min-width: 150px;" class="button is-success" type="submit">
@@ -238,115 +277,40 @@
 		const VAPPS = {
 			DATA: [
 				{
-					id: 1,
+					profile_id: 1,
 					profile_name: "PMO",
-					action: [
-						{
-							link: "editUser.html",
-							label: "Edit",
-							type: "is-info"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password",
-							type: "is-success"
-						},
-						{
-							link: "#active",
-							label: "Active",
-							type: "is-danger"
-						}
-					]
+					privilage: "1",
+					checkBoxGroup: ["1", "2", "3"]
 				},
 				{
-					id: 2,
+					profile_id: 2,
 					profile_name: "PM Leader",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					privilage: "2",
+					checkBoxGroup: ["2", "4"]
 				},
 				{
-					id: 3,
+					profile_id: 3,
 					profile_name: "PM",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					privilage: "3",
+					checkBoxGroup: ["1", "2", "3"]
 				},
 				{
-					id: 4,
+					profile_id: 4,
 					profile_name: "Team Member",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					privilage: "4",
+					checkBoxGroup: ["2", "3"]
 				},
 				{
-					id: 5,
+					profile_id: 5,
 					profile_name: "AM",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					privilage: "2",
+					checkBoxGroup: ["1", "2", "3"]
 				},
 				{
-					id: 6,
+					profile_id: 6,
 					profile_name: "Purchasing",
-					dropdownAction: [
-						{
-							link: "editUser.html",
-							label: "Edit"
-						},
-						{
-							link: "editPassword.html",
-							label: "Ganti Password"
-						},
-						{
-							link: "#active",
-							label: "Active"
-						}
-					]
+					privilage: "1",
+					checkBoxGroup: ["1", "2", "3"]
 				}
 			]
 		}
