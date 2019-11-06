@@ -143,7 +143,7 @@ function sidebarToggleAnimation() {
 		// add chevron right
 		let span = document.createElement("span");
 		span.classList.add('animated', 'fadeIn');
-		span.classList.add('mdi', 'mdi-chevron-left', 'mdi-24px');
+		span.classList.add('mdi', 'mdi-dots-vertical', 'mdi-24px');
 		btn.appendChild(span);
 
 		if (!WRAPPER.classList.contains('open-first')) {
