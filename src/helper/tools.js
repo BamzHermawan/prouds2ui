@@ -207,3 +207,31 @@ module.exports.momentFormatter = (Moment, stringDate, returnJSDate = false) => {
 
 	return cook;
 }
+
+module.exports.isEmpty = (value) => {
+	return !(value !== "" && value !== undefined && value !== null);
+}
+
+module.exports.parseURLRoute = () => {
+	let url = window.location.href;
+	let route = url.split('#');
+
+	if (route.length <= 1){
+		return false;
+	} else {
+		let localRoute = route[route.length - 1];
+		let parsedRoute = localRoute.split('/');
+
+		if (parsedRoute <= 1){
+			return {
+				route: localRoute,
+				args: []
+			};
+		} else {
+			return {
+				route: parsedRoute[0],
+				args: parsedRoute.slice(1)
+			};
+		}
+	}
+}

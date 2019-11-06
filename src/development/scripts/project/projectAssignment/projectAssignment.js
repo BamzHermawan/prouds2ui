@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import { dataTableNoCard, linker } from "components";
-import { animate } from 'helper-tools'
+import { animate, isEmpty, parseURLRoute } from 'helper-tools'
 import Assign from "./assign.vue";
 import SetUnitDelivery from "./unitDelivery.vue";
 import 'helper-filter';
@@ -40,6 +40,7 @@ new Vue({
 		}
 	},
 	methods: {
+		isEmpty: isEmpty,
 		setUnitDelivery(val = undefined) {
 			if (this.showTable) {
 				this.selectedProject = val
@@ -95,5 +96,31 @@ new Vue({
 	},
 	mounted() {
 		global.$loader.hide();
+		
+		let routes = parseURLRoute();
+		if (routes !== false){
+			if(routes.args.length > 0){
+				let project = this.newprojectOri.find((row) => row.project_id == routes.args[0]);
+				if(project !== undefined){
+					switch (routes.route) {
+						case 'setpm':
+							this.assign('PM', project);
+							break;
+	
+						case 'setcopm':
+							this.assign('CoPM', project);
+							break;
+	
+						case 'setadmin':
+							this.assign('Adm', project);
+							break;
+	
+						case 'setunit':
+							this.setUnitDelivery(project);
+							break;
+					}
+				}
+			}
+		}
 	}
 });

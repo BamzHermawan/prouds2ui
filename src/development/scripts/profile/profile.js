@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy'
-import { topNavBar } from "components";
 import Loader from 'helper-loader';
-import { crudInput } from 'components';
+import { crudInput, easterEgg as whiteSpace } from 'components';
 import api from 'helper-apis';
 import { notified } from "helper-tools";
 
@@ -10,7 +9,7 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		topNavBar, crudInput
+		whiteSpace, crudInput
 	},
 	data: {
 		userlog: {
@@ -34,7 +33,8 @@ new Vue({
 		},
 		currentPw: "",
 		newPw: "",
-		confirmPw: ""
+		confirmPw: "",
+		easterEgg: false,
 	},
 	watch: {
 		newPw: function (newQuery) {

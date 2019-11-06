@@ -96,7 +96,7 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../profile/editProfile.html" class="navbar-item">Account Profile</a>
+							<a href="../profile.html" class="navbar-item">Account Profile</a>
 							<a href="#help" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
@@ -136,7 +136,7 @@
 									<p>{{props.row.iwo}}</p>
 								</b-table-column>
 								<b-table-column width="300" field="project_name" label="Project Name" sortable>
-									<linker href="detail.html">{{ props.row.project_name }}</linker>
+									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}</linker>
 								</b-table-column>
 								<b-table-column width="100" field="amount" label="Amount (IDR)" sortable
 									class="align-middle">
@@ -155,7 +155,7 @@
 								<b-table-column field="status" label="Status" width="75" centered class="align-middle">
 									<b-tooltip v-if="props.row.status==='New'" type="is-dark" :label="props.row.status"
 										position="is-left">
-										<span class="mdi mdi-24px mdi-file-plus-outline has-text-warning"></span>
+										<span class="mdi mdi-24px mdi-file-plus-outline has-text-info"></span>
 									</b-tooltip>
 									<b-tooltip
 										v-if="props.row.status==='Waiting to Initial Baseline' || props.row.status==='Waiting to Rebaseline'"

@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<slot name="ade"></slot>
+		<slot name="breadcrumb"></slot>
 		<div class="columns is-marginless">
 			<div
 				class="column is-12-desktop content is-marginless is-paddingless"
@@ -30,9 +30,12 @@
 					<div class="control" v-if="name === 'PM'">
 						<b-taglist attached size="are-medium">
 							<b-tag type="is-dark">Project Manager</b-tag>
-							<b-tag type="is-info">{{
-								selectedProject.project_manager
-							}}</b-tag>
+							<b-tag
+								v-if="!isEmpty(selectedProject.project_manager)"
+								type="is-info"
+								>{{ selectedProject.project_manager }}</b-tag
+							>
+							<b-tag v-else type="is-danger">EMPTY</b-tag>
 						</b-taglist>
 					</div>
 					<div class="control" v-if="name === 'Co PM'">
@@ -56,7 +59,13 @@
 		</div>
 
 		<hr />
-		<data-table-no-card :data="listpm" :fields="[]" ref="widget">
+		<data-table-no-card
+			striped
+			hoverable
+			:data="listpm"
+			:fields="[]"
+			ref="widget"
+		>
 			<template slot-scope="props">
 				<b-table-column
 					field="project_manager"
@@ -112,6 +121,7 @@
 
 <script>
 import { dataTableNoCard } from "components";
+import { isEmpty } from "helper-tools";
 export default {
 	components: {
 		dataTableNoCard
@@ -139,6 +149,7 @@ export default {
 		}
 	},
 	methods: {
+		isEmpty: isEmpty,
 		sendPM(val) {
 			let self = this;
 			let action = "";

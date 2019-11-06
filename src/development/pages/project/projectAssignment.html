@@ -96,7 +96,7 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../profile/editProfile.html" class="navbar-item">Account Profile</a>
+							<a href="../profile.html" class="navbar-item">Account Profile</a>
 							<a href="#help" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
@@ -147,7 +147,10 @@
 									<span>{{ props.row.project_type }}</span>
 								</b-table-column>
 								<b-table-column width="175" field="project_manager" label="Project Manager" sortable>
-									<span>{{ props.row.project_manager }}</span>
+									<span v-if="!isEmpty(props.row.project_manager)">
+										{{ props.row.project_manager }}
+									</span>
+									<b v-else class="has-text-danger">EMPTY</b>
 								</b-table-column>
 								<b-table-column width="50" field="status" label="Status" sortable>
 									<b-tooltip v-if="props.row.status==='New'" type="is-dark" :label="props.row.status"
@@ -166,22 +169,22 @@
 										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
 										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item aria-role="listitem" has-link>
-											<a @click="assign('PM',props.row)"><span
+											<a :href="'#setpm/'+props.row.project_id" @click="assign('PM',props.row)"><span
 													class="mdi mdi-account-plus"></span>Assign
 												PM</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link>
-											<a @click="assign('CoPM',props.row)"><span
+											<a :href="'#setcopm/'+props.row.project_id" @click="assign('CoPM',props.row)"><span
 													class="mdi mdi-account-plus"></span>Assign
 												Co-PM</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link>
-											<a @click="assign('Adm',props.row)"><span
+											<a :href="'#setadmin/'+props.row.project_id" @click="assign('Adm',props.row)"><span
 													class="mdi mdi-account-plus"></span>Assign
 												Project Admin</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link>
-											<a @click="setUnitDelivery(props.row)"><span
+											<a :href="'#setunit/'+props.row.project_id" @click="setUnitDelivery(props.row)"><span
 													class="mdi mdi-briefcase"></span>Set
 												Unit
 												Delivery</a>
@@ -214,10 +217,10 @@
 					<assign name="PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.PM" id="PM"
 						class="animated fadeIn faster" action-add="http://localhost:5501/demo/post_detect.php"
 						action-update="http://localhost:5501/demo/post_detect.php">
-						<template #ade>
+						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
-									<li><a @click="assign('PM')">Project Assignment</a></li>
+									<li><a href="#" @click="assign('PM')">Project Assignment</a></li>
 									<li class="is-active"><a href="#" aria-current="page">Assign PM</a></li>
 								</ul>
 							</nav>
@@ -227,10 +230,10 @@
 					<assign name="Co PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.CoPM"
 						id="CoPM" class="animated fadeIn faster" action-add="http://localhost:5501/demo/post_detect.php"
 						action-update="http://localhost:5501/demo/post_detect.php">
-						<template #ade>
+						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
-									<li><a @click="assign('CoPM')">Project Assignment</a></li>
+									<li><a href="#" @click="assign('CoPM')">Project Assignment</a></li>
 									<li class="is-active"><a href="#" aria-current="page">Assign Co PM</a></li>
 								</ul>
 							</nav>
@@ -241,10 +244,10 @@
 						v-if="toggleForm.Adm" id="Adm" class="animated fadeIn faster"
 						action-add="http://localhost:5501/demo/post_detect.php"
 						action-update="http://localhost:5501/demo/post_detect.php">
-						<template #ade>
+						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
-									<li><a @click="assign('Adm')">Project Assignment</a></li>
+									<li><a href="#" @click="assign('Adm')">Project Assignment</a></li>
 									<li class="is-active"><a href="#" aria-current="page">Assign Adm PM</a></li>
 								</ul>
 							</nav>
@@ -258,7 +261,7 @@
 						<template #ade>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
-									<li><a @click="setUnitDelivery()">Project Assignment</a></li>
+									<li><a href="#" @click="setUnitDelivery()">Project Assignment</a></li>
 									<li class="is-active"><a href="#" aria-current="page">Set Unit Delivery</a></li>
 								</ul>
 							</nav>
@@ -270,7 +273,9 @@
 		</section>
 
 		<section id="infoFooter">
-			<info-footer entry="100" utilization="100"></info-footer>
+			<info-footer entry="100" utilization="100">
+				<marquee behavior="scroll" direction="left">Hi All, we have announcement to make! <b class="has-text-warning">Ade Wiranata Putra</b> from PMO would like to treat you all. Call us soon before he changed his mind. 🍖</marquee>
+			</info-footer>
 		</section>
 	</div>
 
@@ -286,7 +291,7 @@
 				"project_type": "implementasi",
 				"related": "INS / BA",
 				"status": "New",
-				"project_manager": "Ade Wiranata Putra",
+				"project_manager": "",
 				"co_project_manager": "",
 				"project_adm": "Idong",
 				"unit_delivery": ""
