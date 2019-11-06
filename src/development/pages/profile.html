@@ -126,7 +126,7 @@
 				<div v-if="profile" id="profile">
 					<div class="profile-picture">
 						<figure class="image">
-							<img src="http://localhost:5501/media/useravatar/CRS2019000.jpeg">
+							<img id="geeg-receiver" src="http://localhost:5501/media/useravatar/CRS2019000.jpeg">
 							<div class="middle">
 								<b-input type="hidden" name="documentName" :color="determineFieldStatus" v-model="documentName"></b-input>
 								<b-field>
@@ -144,7 +144,7 @@
 					<section class="section">
 						<div class="has-buff-padding content">
 							<p class="is-username">Ade Wiranata Putra</p>
-							<span class="tag is-medium has-gradient-warning-lighter">CRS2019000</span>
+							<span id="geeg-key" class="tag is-medium has-gradient-warning-lighter">CRS2019000</span>
 
 							<span class="white-space is-medium"></span>
 
@@ -219,8 +219,8 @@
 					</div>
 				</div>
 
-				<div v-if="easterEgg">
-					<white-space></white-space>
+				<div v-if="geeg">
+					<geeg-form></geeg-form>
 				</div>
 
 				<div class="tile is-vertical is-parent is-12" v-if="password">

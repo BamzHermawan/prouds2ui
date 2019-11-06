@@ -1,10 +1,19 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<p class="is-username">Easter Egg: Hidden Feature!</p>
-			<p class="subtitle">
-				Congratulation, you found our hidden feature .. 🎉
-			</p>
+			<div class="columns">
+				<div class="column is-10">
+					<p class="is-username">Easter Egg: Hidden Feature!</p>
+					<p class="subtitle">
+						Congratulation, you found our hidden feature .. 🎉
+					</p>
+				</div>
+				<div class="column is-2">
+					<button @click="closeGift" class="button is-danger">
+						Close Gift
+					</button>
+				</div>
+			</div>
 
 			<hr />
 
@@ -45,6 +54,11 @@ export default {
 		};
 	},
 	methods: {
+		closeGift() {
+			if (this.$parent.geeg != undefined) {
+				this.$parent.geeg = false;
+			}
+		},
 		backgroundURL() {
 			const sidebar = document.querySelector("#side-main");
 			if (this.sidebar.bg !== "") {

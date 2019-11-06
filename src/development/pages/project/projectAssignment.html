@@ -171,12 +171,12 @@
 										<b-dropdown-item aria-role="listitem" has-link>
 											<a :href="'#setpm/'+props.row.project_id" @click="assign('PM',props.row)"><span
 													class="mdi mdi-account-plus"></span>Assign
-												PM</a>
+												Project Manager</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link>
 											<a :href="'#setcopm/'+props.row.project_id" @click="assign('CoPM',props.row)"><span
 													class="mdi mdi-account-plus"></span>Assign
-												Co-PM</a>
+												Co-Project Manager</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link>
 											<a :href="'#setadmin/'+props.row.project_id" @click="assign('Adm',props.row)"><span
@@ -221,7 +221,7 @@
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
 									<li><a href="#" @click="assign('PM')">Project Assignment</a></li>
-									<li class="is-active"><a href="#" aria-current="page">Assign PM</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Assign Project Manager</a></li>
 								</ul>
 							</nav>
 						</template>
@@ -234,7 +234,7 @@
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
 									<li><a href="#" @click="assign('CoPM')">Project Assignment</a></li>
-									<li class="is-active"><a href="#" aria-current="page">Assign Co PM</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Assign Co-Project Manager</a></li>
 								</ul>
 							</nav>
 						</template>
@@ -248,7 +248,7 @@
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
 									<li><a href="#" @click="assign('Adm')">Project Assignment</a></li>
-									<li class="is-active"><a href="#" aria-current="page">Assign Adm PM</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Assign Project Admin</a></li>
 								</ul>
 							</nav>
 						</template>

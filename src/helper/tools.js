@@ -148,6 +148,40 @@ module.exports.randomSmile = function(request = undefined){
 	return smiles[index];
 }
 
+module.exports.geeg = (callback) => {
+	const key = Math.random().toString(36).substring(8);
+	const giftKey = document.querySelector('#geeg-key');
+	const receiver = document.querySelector('#geeg-receiver');
+	const giftEvent = new Event(key);
+
+	if(giftKey === null) return false;
+	if(receiver === null) return false;
+	
+	giftKey.addEventListener('dblclick', function(){
+		giftKey.setAttribute('draggable', true);
+	});
+
+	giftKey.addEventListener('dragstart', (e) => {
+		e.dataTransfer.setData("giftkey", key);
+	});
+
+	giftKey.addEventListener(key, callback);
+
+	receiver.addEventListener('dragover', (e) => {
+		e.preventDefault();
+	});
+
+	receiver.addEventListener('drop', (e) => {
+		e.preventDefault();
+		let received = e.dataTransfer.getData("giftkey");
+		if (received === key){
+			giftKey.dispatchEvent(giftEvent);
+		}
+	});
+
+	return key;
+}
+
 /**
  * getCookie by name
  *

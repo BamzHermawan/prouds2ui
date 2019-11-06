@@ -30,9 +30,12 @@
 					<div class="control">
 						<b-taglist attached size="are-medium">
 							<b-tag type="is-dark">Unit Delivery</b-tag>
-							<b-tag type="is-info">{{
-								selectedProject.unit_delivery
-							}}</b-tag>
+							<b-tag
+								v-if="!isEmpty(selectedProject.unit_delivery)"
+								type="is-info"
+								>{{ selectedProject.unit_delivery }}</b-tag
+							>
+							<b-tag v-else type="is-danger">EMPTY</b-tag>
 						</b-taglist>
 					</div>
 				</b-field>
@@ -46,6 +49,8 @@
 			:data="unitDelivery"
 			:fields="[]"
 			ref="widget"
+			striped
+			hoverable
 		>
 			<template slot-scope="props">
 				<b-table-column field="bu" label="Business Unit" sortable>
@@ -54,15 +59,21 @@
 				<b-table-column
 					field="pm_resources"
 					label="PM Resources"
+					width="125"
+					centered
 					sortable
 				>
+					<span class="mdi mdi-account-tie in-left"></span>
 					<span>{{ props.row.pm_resources }}</span>
 				</b-table-column>
 				<b-table-column
 					field="on_going_project"
 					label="On Going Project"
+					width="125"
+					centered
 					sortable
 				>
+					<span class="mdi mdi-timer in-left"></span>
 					<span>{{ props.row.on_going_project }}</span>
 				</b-table-column>
 				<b-table-column
@@ -72,10 +83,17 @@
 				>
 					<span>{{ props.row.supervisor }}</span>
 				</b-table-column>
-				<b-table-column field="action" label="Action" sortable>
+				<b-table-column
+					field="action"
+					label="Action"
+					centered
+					width="125"
+					sortable
+				>
 					<a
 						@click="send(props.row)"
-						style="cursor: pointer !important;"
+						style="cursor: pointer !important; padding:1px; height:21px;"
+						class="button is-success is-small"
 						><span class="mdi mdi-checkbox-marked-outline"></span
 					></a>
 				</b-table-column>
@@ -89,6 +107,7 @@
 
 <script>
 import { dataTableNoCard } from "components";
+import { isEmpty } from "helper-tools";
 export default {
 	components: {
 		dataTableNoCard
@@ -112,6 +131,7 @@ export default {
 		}
 	},
 	methods: {
+		isEmpty: isEmpty,
 		send(val) {
 			let self = this;
 			let action = "";
@@ -119,21 +139,24 @@ export default {
 			if (this.selectedProject.unit_delivery !== "") {
 				action = this.actionUpdate;
 				msg =
-					"Unit Delivery is already exists, would you like to change / replace it ?";
+					"Unit Delivery is selected to <b>" +
+					this.selectedProject.unit_delivery +
+					"</b>, and you want to change selected to <b>" +
+					val.business_unit +
+					"</b>, are you sure ?";
 			} else {
 				action = this.actionAdd;
 				msg =
-					"Are you sure select <b>" +
+					"You want to select <b>" +
 					val.business_unit +
-					"</b> as Unit Delivery ? ";
+					"</b> as Unit Delivery, are you sure ? ";
 			}
 
 			this.$dialog.confirm({
 				title: "Confirm Changes",
 				message: msg,
-				confirmText: "Oke",
-				type: "is-danger",
-				hasIcon: true,
+				confirmText: "Yes, Sure!",
+				type: "is-success",
 				onConfirm: () => {
 					let form = document.createElement("form");
 					form.setAttribute("action", action);

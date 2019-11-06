@@ -53,7 +53,7 @@
 					</div>
 					<div class="control" v-if="name === 'Project Adm'">
 						<b-taglist attached size="are-medium">
-							<b-tag type="is-dark">Project Adm</b-tag>
+							<b-tag type="is-dark">Project Admin</b-tag>
 							<b-tag
 								v-if="!isEmpty(selectedProject.project_adm)"
 								type="is-info"
@@ -75,11 +75,7 @@
 			ref="widget"
 		>
 			<template slot-scope="props">
-				<b-table-column
-					field="project_manager"
-					label="Project Manager"
-					sortable
-				>
+				<b-table-column field="project_manager" label="Name" sortable>
 					<span>{{ props.row.pm_name }}</span>
 				</b-table-column>
 				<b-table-column
@@ -91,15 +87,38 @@
 					<span>{{ props.row.classification }}</span>
 				</b-table-column>
 				<b-table-column
-					width="90"
 					field="on_going"
-					label="On Going"
+					label="Projects"
+					centered
 					sortable
 				>
-					<span>{{ props.row.on_going }}</span>
-				</b-table-column>
-				<b-table-column field="past" label="Past" sortable>
-					<span>{{ props.row.past }}</span>
+					<p class="is-marginless">
+						<b-tooltip
+							label="Past"
+							type="is-dark"
+							position="is-bottom"
+							dashed
+						>
+							<span class="icon is-small">
+								<span class="mdi mdi-history"></span>
+							</span>
+							<span>{{ props.row.past }}</span>
+						</b-tooltip>
+
+						<span style="margin-right: 8px;"></span>
+
+						<b-tooltip
+							label="On Going"
+							type="is-dark"
+							position="is-bottom"
+							dashed
+						>
+							<span class="icon is-small">
+								<span class="mdi mdi-timer"></span>
+							</span>
+							<span>{{ props.row.on_going }}</span>
+						</b-tooltip>
+					</p>
 				</b-table-column>
 				<b-table-column
 					field="dominan_segment"
@@ -159,6 +178,9 @@ export default {
 	},
 	methods: {
 		isEmpty: isEmpty,
+		splitTitle(text) {
+			return text.replace(" ", "<br>");
+		},
 		sendPM(val) {
 			let self = this;
 			let action = "";
@@ -169,37 +191,48 @@ export default {
 			) {
 				action = this.actionUpdate;
 				msg =
-					"PM is already exists, would you like to change / replace it ?";
+					"Project Manager is already selected, would you like to change it to <b>" +
+					val.pm_name +
+					"</b> ?";
 			} else if (
 				this.name === "Co PM" &&
 				this.selectedProject.co_project_manager !== ""
 			) {
 				action = this.actionUpdate;
 				msg =
-					"Co PM is already exists, would you like to change / replace it ?";
+					"Co-Project Manager is already selected, would you like to change it to <b>" +
+					val.pm_name +
+					"</b> ?";
 			} else if (
 				this.name === "Project Adm" &&
 				this.selectedProject.project_adm !== ""
 			) {
 				action = this.actionUpdate;
 				msg =
-					"Project Adm is already exists, would you like to change / replace it ?";
+					"Project Admin is already selected, would you like to change it to <b>" +
+					val.pm_name +
+					"</b> ?";
 			} else {
+				let jobsetter = this.name;
 				action = this.actionAdd;
+
+				if (this.name === "PM") jobsetter = "Project Manager";
+				if (this.name === "CoPM") jobsetter = "Co-Project Manager";
+				if (this.name === "Adm") jobsetter = "Project Admin";
+
 				msg =
-					"Are you sure select <b>" +
+					"You want to select <b>" +
 					val.pm_name +
 					"</b> as " +
-					this.name +
-					" ?";
+					jobsetter +
+					", are you sure ?";
 			}
 
 			this.$dialog.confirm({
 				title: "Confirm Changes",
 				message: msg,
-				confirmText: "Oke",
-				type: "is-danger",
-				hasIcon: true,
+				confirmText: "Yes, Sure!",
+				type: "is-success",
 				onConfirm: () => {
 					let form = document.createElement("form");
 					form.setAttribute("action", action);

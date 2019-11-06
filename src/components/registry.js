@@ -1,7 +1,7 @@
 import mediaLog from "./mediaLog.vue";
 import notified from "./notified.vue";
 import linker from "./linker.vue";
-import easterEgg from "./easteregg.vue";
+import geegForm from "./easteregg.vue";
 import infoFooter from "./infoFooter.vue";
 import bookmarkButton from "./sidebar/bookmark.vue";
 
@@ -25,7 +25,7 @@ import ganttchart from "./ganttchart.vue"
 module.exports.linker = linker;
 module.exports.mediaLog = mediaLog;
 module.exports.notified = notified;
-module.exports.easterEgg = easterEgg;
+module.exports.geegForm = geegForm;
 module.exports.infoFooter = infoFooter;
 module.exports.bookmarkButton = bookmarkButton;
 
