@@ -138,7 +138,7 @@
 									<p>{{props.row.iwo}}</p>
 								</b-table-column>
 								<b-table-column width="300" field="project_name" label="Project Name" sortable>
-									<linker href="detail.html">{{ props.row.project_name }}</linker>
+									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}</linker>
 								</b-table-column>
 								<b-table-column width="100" field="amount" label="Amount (IDR)" sortable
 									class="align-middle">

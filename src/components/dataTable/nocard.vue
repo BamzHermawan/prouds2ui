@@ -55,6 +55,7 @@
 			:row-class="rowClass"
 			:loading="isLoading"
 			:striped="striped"
+			:hoverable="hoverable"
 			style="font-size:11pt"
 		>
 			<template slot-scope="props">
@@ -181,6 +182,10 @@ export default {
 			default: false
 		},
 		striped: {
+			type: Boolean,
+			default: false
+		},
+		hoverable: {
 			type: Boolean,
 			default: false
 		}

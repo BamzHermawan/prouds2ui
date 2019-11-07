@@ -93,6 +93,8 @@ new Vue({
 					this.showMilestone = true;
 
 					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
 				});
 			} else {
 				document.querySelector('#setMilestoneForm').classList.remove('fadeIn', 'faster');
@@ -133,6 +135,8 @@ new Vue({
 					this.showEdit = true;
 
 					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
 				});
 			} else {
 				document.querySelector('#editProjectForm').classList.remove('fadeIn', 'faster');

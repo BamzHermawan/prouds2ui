@@ -32,6 +32,11 @@ export default {
 			}
 		};
 	},
+	watch: {
+		href(changed) {
+			this.nextLink = changed;
+		}
+	},
 	methods: {
 		searchTitle() {
 			// last choice

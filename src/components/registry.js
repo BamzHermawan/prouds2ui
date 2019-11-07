@@ -1,11 +1,12 @@
 import mediaLog from "./mediaLog.vue";
 import notified from "./notified.vue";
 import linker from "./linker.vue";
+import geegForm from "./easteregg.vue";
 import infoFooter from "./infoFooter.vue";
 import bookmarkButton from "./sidebar/bookmark.vue";
 
 // DATATABLE
-import dataTable from "./dataTable.vue";
+import dataTable from "./dataTable/dataTable.vue";
 import dataTableNoCard from "./dataTable/nocard.vue";
 
 // CRUD COMPONENTS
@@ -24,6 +25,7 @@ import ganttchart from "./ganttchart.vue"
 module.exports.linker = linker;
 module.exports.mediaLog = mediaLog;
 module.exports.notified = notified;
+module.exports.geegForm = geegForm;
 module.exports.infoFooter = infoFooter;
 module.exports.bookmarkButton = bookmarkButton;
 

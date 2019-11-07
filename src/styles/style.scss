@@ -59,6 +59,8 @@ $section-padding-medium: 9rem 3rem;
 $section-padding-large: 18rem 3rem;
 
 $table-striped-row-even-background-color: lighten($light, 2%);
+$table-striped-row-even-hover-background-color: lighten($info, 35%);
+$table-row-hover-background-color: lighten($info, 35%);
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -119,6 +121,26 @@ body {
 		-webkit-box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
 		-moz-box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
 		box-shadow: inset -10px 0px 62px -51px rgba(0,0,0,0.75);
+
+		&.has-background {
+			background: none !important;
+
+			& .set-background {
+				content : "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: url('https://images.unsplash.com/photo-1571757767119-68b8dbed8c97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+
+				filter: grayscale(10%);
+				background-position-x: center !important;
+				background-size: cover !important;
+			}
+		}
 
 		.brand {
 			width: 100%;
@@ -392,6 +414,13 @@ body {
 			margin-top: 0px;
 			padding-top: 0px;
 		}
+	}
+}
+
+.sidebar.has-background .side-list {
+	.side-item:hover:not(.is-active) {
+		background: linear-gradient(135deg, rgba(248, 207, 144, 0.7),rgba(245, 126, 165, 0.7));
+		border-radius: 3px;
 	}
 }
 
@@ -1033,6 +1062,15 @@ p.add-divider-top {
 	}
 }
 
+.is-username {
+	margin: 0px !important;
+	font-size: 3.5rem;
+	line-height: 1.2em;
+	font-family: $staat;
+	color: $primary;
+	text-shadow: 3px 3px 0px darken($warning, 20%);
+}
+
 //! -----------------------------------------------------
 //* @PADDING - @MARGIN ----------------------------------
 
@@ -1058,6 +1096,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding-right: 0px !important;
 }
 
+.has-buff-padding {
+	padding: 2em;
+}
+
 //! -----------------------------------------------------
 //* @404 ------------------------------------------------
 
@@ -1079,6 +1121,38 @@ h1, h2, h3, h4, h5, h6 {
 		font-weight: bolder;
 		font-family: $crete;
 	}
+}
+
+//! -----------------------------------------------------
+//* @PROFILE --------------------------------------------
+
+.profile-picture {
+	cursor: pointer;
+	position: absolute;
+    right: 2em;
+	margin-top: -4em;
+	
+	.image {
+		height: 164px !important;
+		width: 164px !important;
+		
+		img {
+			border-radius: 12px;
+		}
+	}
+
+	&:hover {
+		img {
+			filter: blur(5px);
+			filter: grayscale(50%);
+		}
+
+		.middle {
+			opacity: 1;
+		}
+	}
+
+
 }
 
 @import "~bulma";

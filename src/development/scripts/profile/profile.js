@@ -1,16 +1,15 @@
 import Vue from 'vue';
 import Buefy from 'buefy'
-import { topNavBar } from "components";
 import Loader from 'helper-loader';
-import { crudInput } from 'components';
+import { crudInput, geegForm } from 'components';
 import api from 'helper-apis';
-import { notified } from "helper-tools";
+import { notified, geeg } from "helper-tools";
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		topNavBar, crudInput
+		geegForm, crudInput
 	},
 	data: {
 		userlog: {
@@ -34,7 +33,8 @@ new Vue({
 		},
 		currentPw: "",
 		newPw: "",
-		confirmPw: ""
+		confirmPw: "",
+		geeg: false,
 	},
 	watch: {
 		newPw: function (newQuery) {
@@ -68,6 +68,11 @@ new Vue({
 				this.validation.confirmPw.type = ""
 				this.validation.confirmPw.msg = ""
 				this.validation.confirmPw.valid = true
+			}
+		},
+		geeg(status) {
+			if (!status) {
+				this.profile = true;
 			}
 		}
 	},
@@ -180,5 +185,11 @@ new Vue({
 		document.getElementById("editProfile").addEventListener("click", this.toggleEditProfile);
 		Loader.hide();
 
+		let self = this;
+		geeg(() => {
+			self.password = false
+			self.profile = false
+			self.geeg = true;
+		});
 	}
 });
