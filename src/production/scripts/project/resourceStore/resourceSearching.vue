@@ -446,18 +446,16 @@ export default {
 				});
 		},
 		loadLocalStorage(showAnimation = false) {
-			let self = this;
-			return Tools.loadStorage("selectedResource").then(selected => {
-				self.selectedRes = selected.resource;
-				self.$parent.batchId = selected.batchId;
-				if (showAnimation) {
-					let savedNotif = document.querySelector("#savedLabel");
-					savedNotif.classList.add("tada");
-					savedNotif.addEventListener("animationend", function() {
-						savedNotif.classList.remove("tada");
-					});
-				}
-			});
+			let selected = Tools.loadStorage("selectedResource");
+			this.selectedRes = selected.resource;
+			this.$parent.batchId = selected.batchId;
+			if (showAnimation) {
+				let savedNotif = document.querySelector("#savedLabel");
+				savedNotif.classList.add("tada");
+				savedNotif.addEventListener("animationend", function() {
+					savedNotif.classList.remove("tada");
+				});
+			}
 		},
 		fetchDetail(resource) {
 			let self = this;

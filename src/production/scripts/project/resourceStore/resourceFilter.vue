@@ -574,16 +574,15 @@ export default {
 
 			if (findExist > -1) {
 				this.fetchedRes.splice(findExist, 1);
-				Tools.loadStorage("selectedResource").then(selected => {
-					let index = selected.resource.findIndex(
-						bit => bit.userId === resource.userId
-					);
+				let selected = Tools.loadStorage("selectedResource");
+				let index = selected.resource.findIndex(
+					bit => bit.userId === resource.userId
+				);
 
-					if (index > -1) {
-						selected.resource.splice(index, 1);
-						Tools.saveStorage("selectedResource", selected);
-					}
-				});
+				if (index > -1) {
+					selected.resource.splice(index, 1);
+					Tools.saveStorage("selectedResource", selected);
+				}
 			}
 		},
 		closeModal() {
@@ -717,10 +716,9 @@ export default {
 		this.loadingTable = true;
 		this.listProjectData = this.listProject;
 
-		Tools.loadStorage("selectedResource").then(selected => {
-			let saved = selected.resource.map(({ userId }) => userId);
-			self.postDate(saved, true);
-		});
+		let selected = Tools.loadStorage("selectedResource");
+		let saved = selected.resource.map(({ userId }) => userId);
+		this.postDate(saved, true);
 	}
 };
 </script>

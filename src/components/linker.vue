@@ -76,7 +76,6 @@ export default {
 			}
 		},
 		loadNavigation() {
-			let self = this;
 			let index = undefined;
 
 			if (this.href.charAt(0) !== "@") {
@@ -97,31 +96,26 @@ export default {
 				}
 			}
 
-			loadStorage("pageNavigation")
-				.then(nav => {
-					self.previous = nav;
-					if (index !== undefined) {
-						if (nav[index] !== undefined) {
-							self.title = nav[index].title;
-							self.nextLink = nav[index].href;
+			let nav = loadStorage("pageNavigation");
+			if (nav !== null) {
+				this.previous = nav;
+				if (index !== undefined) {
+					if (nav[index] !== undefined) {
+						this.title = nav[index].title;
+						this.nextLink = nav[index].href;
 
-							if (index === 0) {
-								self.checkSideItem(self.title);
-							}
-						} else {
-							self.nextLink = false;
-							self.title = "refresh";
+						if (index === 0) {
+							this.checkSideItem(this.title);
 						}
-					}
-				})
-				.catch(err => {
-					if (err !== null) {
-						console.log(err);
 					} else {
-						self.nextLink = false;
-						self.title = "refresh";
+						this.nextLink = false;
+						this.title = "refresh";
 					}
-				});
+				}
+			} else {
+				this.nextLink = false;
+				this.title = "refresh";
+			}
 		},
 		navigate() {
 			// save navigation to localstorage

@@ -18,33 +18,31 @@ new Vue({
 			this.loadingBtn = true;
 			let apiUrl = this.$refs.stepOne.apiPostSaved;
 
-			loadStorage("selectedResource")
-				.then(bundle => {
-					Axios.post(apiUrl, bundle, {
-						headers: {
-							"Content-type": "application/x-www-form-urlencoded"
-						}
-					})
-						.then(function (response) {
-							self.batchId = response.data.batchId;
+			let bundle = loadStorage("selectedResource");
+			if(bundle !== null){
+				Axios.post(apiUrl, bundle, {
+					headers: {
+						"Content-type": "application/x-www-form-urlencoded"
+					}
+				})
+					.then(function (response) {
+						self.batchId = response.data.batchId;
 
-							saveStorage("selectedResource", {
-								batchId: response.data.batchId,
-								resource: bundle.resource
-							});
-
-							self.filter.active = true;
-						})
-						.catch(function () {
-							notified(self.$notification).error("Mohon maaf, terjadi gangguan koneksi. Mohon ulangi dalam beberapa saat lagi. 🙏");
+						saveStorage("selectedResource", {
+							batchId: response.data.batchId,
+							resource: bundle.resource
 						});
-				})
-				.catch(function () {
-					notified(self.$snackbar,
-						"Kamu belum memilih resource satu pun 😂"
-					);
-				})
-				.finally(() => self.loadingBtn = false);
+
+						self.filter.active = true;
+					})
+					.catch(function () {
+						notified(self.$notification).error("Mohon maaf, terjadi gangguan koneksi. Mohon ulangi dalam beberapa saat lagi. 🙏");
+					}).finally(() => self.loadingBtn = false);
+			}else{
+				notified(self.$snackbar,
+					"Kamu belum memilih resource satu pun 😂"
+				);
+			}
 		},
 		reloadLocalStorage() {
 			this.$refs.stepOne.loadLocalStorage();
@@ -162,50 +160,53 @@ new Vue({
 		self.touring = Shepherd.Tour(this.tourStep, undefined, {
 			onExit: function (step) {
 				if (step.id === "tour-step-start") {
-					loadStorage("firstTimeTour")
-						.catch(() => saveStorage("firstTimeTour", {
+					if (firstTimeTour === null) {
+						saveStorage("firstTimeTour", {
 							status: false,
 							tourDate: null,
 							createdDate: new Date()
-						}));
+						})
+					}
 				}
 
 				return true;
 			},
 			onNext: function (step) {
 				if (step.id === "tour-step-start") {
-					loadStorage("firstTimeTour")
-						.then(firstTime => {
-							if (!firstTime.status) {
-								saveStorage("firstTimeTour", {
-									status: true,
-									tourDate: new Date,
-									createdDate: firstTime.createdDate
-								})
-							}
-						})
-						.catch(() => saveStorage("firstTimeTour", {
+					let firstTime = loadStorage("firstTimeTour");
+					if(firstTime !== null){
+						if (!firstTime.status) {
+							saveStorage("firstTimeTour", {
+								status: true,
+								tourDate: new Date,
+								createdDate: firstTime.createdDate
+							})
+						}
+					}else{
+						saveStorage("firstTimeTour", {
 							status: true,
 							tourDate: new Date(),
 							createdDate: new Date()
-						}));
+						})
+					}
 				}
 
 				return true;
 			}
 		});
 
-		firstTimeTour.then(firstTime => {
+		let firstTime = loadStorage("firstTimeTour");
+		if (firstTime !== null) {
 			if (!firstTime.status) {
 				self.touring.start();
 			}
-		}).catch(() => {
+		} else {
 			saveStorage("firstTimeTour", {
 				status: false,
 				tourDate: null,
 				createdDate: new Date()
 			});
-		});
+		}
 
 		Loader.hide();
 	}

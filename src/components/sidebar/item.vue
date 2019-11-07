@@ -48,7 +48,6 @@
 
 <script>
 import linker from "../linker";
-import { loadStorage } from "helper-tools";
 export default {
 	components: { linker },
 	props: {

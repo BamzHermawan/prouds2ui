@@ -25,7 +25,7 @@ global.$loader = Loader;
 global.$sidebar = {};
 
 Vue.use(Buefy);
-new Vue({
+const VueSidebar = new Vue({
 	name: 'Sidebar',
 	el: '#side-main',
 	components: { SideList, SideItem },
@@ -91,7 +91,7 @@ new Vue({
 	}
 });
 
-var bmPage = document.querySelector("#bookmarkPage");
+const bmPage = document.querySelector("#bookmarkPage");
 if (bmPage !== null) {
 	// Instance for Page Bookmark
 	new Vue({
@@ -101,7 +101,7 @@ if (bmPage !== null) {
 	});
 }
 
-var ifooter = document.querySelector("#infoFooter");
+const ifooter = document.querySelector("#infoFooter");
 if (ifooter !== null) {
 	// Instance for Page Bookmark
 	new Vue({
@@ -109,6 +109,22 @@ if (ifooter !== null) {
 		el: '#infoFooter',
 		components: { infoFooter }
 	})
+}
+
+const notifiedEl = document.querySelector("notified");
+if(notifiedEl !== null){
+	let message = 'Hello, welcome to PROUDS!';
+	let type = 'is-info';
+
+	if(notifiedEl.hasAttribute('message')) message = notifiedEl.getAttribute('message');
+	if (notifiedEl.hasAttribute('type')) type = notifiedEl.getAttribute('type');
+
+	VueSidebar.$notification.open({
+		duration: 5000,
+		message: message,
+		position: 'is-top-right',
+		type: type
+	});
 }
 
 function sidebarToggleAnimation() {

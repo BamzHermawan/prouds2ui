@@ -76,18 +76,14 @@ module.exports.notified = (actor, message = undefined) => {
  * @returns {Object}
  */
 module.exports.loadStorage = function(key) {
-	return new Promise(function (resolve, reject) {
-		let json = window.localStorage.getItem(key);
-		let data = JSON.parse(json);
+	let json = window.localStorage.getItem(key);
+	let data = JSON.parse(json);
 
-		if (data !== null) {
-			resolve(data);
-		}else{
-			reject(null);
-		}
+	if (data === null) {
+		console.log("Error with loadStorage Helper Tools");
+	}
 
-		reject("Error with loadStorage Helper Tools");
-	})
+	return data;
 }
 
 /**

@@ -46,11 +46,11 @@ const options = {
 	var status = true;
 
 	// Start by emptying Directory
-	// await job.emptyDir(srcDir)
-	// 	.catch(function (err){
-	// 		status = false;
-	// 		job.log.error(err);
-	// 	});
+	await job.emptyDir(srcDir)
+		.catch(function (err){
+			status = false;
+			job.log.error(err);
+		});
 
 	await job.emptyDir(outDir)
 		.catch(function (err) {

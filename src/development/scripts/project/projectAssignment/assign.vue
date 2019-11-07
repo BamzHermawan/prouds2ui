@@ -217,8 +217,10 @@ export default {
 				action = this.actionAdd;
 
 				if (this.name === "PM") jobsetter = "Project Manager";
-				if (this.name === "CoPM") jobsetter = "Co-Project Manager";
-				if (this.name === "Adm") jobsetter = "Project Admin";
+				if (this.name === "Co PM") jobsetter = "Co-PM";
+				if (this.name === "Project Adm") jobsetter = "Project Admin";
+
+				console.log(jobsetter);
 
 				msg =
 					"You want to select <b>" +
