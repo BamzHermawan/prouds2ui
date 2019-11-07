@@ -134,21 +134,38 @@
 							</div>
 							<template v-for="(timesheet, index) in myTimesheet">
 								<span :key="index"></span>
-								<div class="column is-4-widescreen is-6-tablet" v-if="tmp[idx] === myTimesheet[index].start">
+								<div class="column is-4-widescreen is-6-tablet"
+									v-if="tmp[idx] === myTimesheet[index].start">
 									<div class="card timesheet" style="min-height: 200px; cursor: pointer !important;"
 										@click="setTimesheet(timesheet)">
 										<div class="card-content">
 											<p class="has-text-weight-bold">{{ timesheet.task }}</p>
 										</div>
 										<div class="card-content content is-marginless">
-											<p class="has-text-weight-bold is-marginless" style="max-width:95%;">{{ timesheet.project_name }}</p>
-											<b-tag type="is-info">{{ timesheet.iwo }}</b-tag>
-											
+											<p class="has-text-weight-bold" style="max-width:95%;">
+												{{ timesheet.project_name }}</p>
+											<b-field grouped>
+												<div class="control">
+													<b-taglist attached size="are-medium">
+														<b-tag type="is-dark">IWO</b-tag>
+														<b-tag type="is-info">{{ timesheet.iwo }}</b-tag>
+													</b-taglist>
+												</div>
+												<div class="control">
+													<b-taglist attached>
+														<b-tag type="is-dark"><span class="mdi mdi-account-tie"></span>
+														</b-tag>
+														<b-tag type="is-info">{{timesheet.member}}</b-tag>
+													</b-taglist>
+												</div>
+											</b-field>
+
 											<p class="has-top-margin">
 												<span class="icon is-small">
 													<span class="mdi mdi-calendar-clock"></span>
 												</span>
-												<span>{{ timesheet.start | moment}} - {{ timesheet.end | moment }}</span>
+												<span>{{ timesheet.start | moment}} -
+													{{ timesheet.end | moment }}</span>
 											</p>
 										</div>
 
@@ -156,13 +173,15 @@
 											<div class="card-footer-item">
 												<div class="timesheet-progress">
 													<p>Timesheet [60%]</p>
-													<progress class="progress is-small is-success" :value="60" :max="100" show-value></progress>
+													<progress class="progress is-small is-success" :value="60"
+														:max="100" show-value></progress>
 												</div>
 											</div>
 											<div class="card-footer-item">
 												<div class="timesheet-progress">
 													<p>Task [60%]</p>
-													<progress class="progress is-small is-success" :value="60" :max="100"></progress>
+													<progress class="progress is-small is-success" :value="60"
+														:max="100"></progress>
 												</div>
 											</div>
 										</footer>
@@ -202,7 +221,8 @@
 						<!-- Add horizontal line -->
 						<hr>
 
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
+							enctype="multipart/form-data">
 							<div class="columns">
 								<div class="column is-8-desktop add-border-right">
 									<b-message type="is-info" size="is-small" title="Task" :closable="false">
@@ -211,25 +231,47 @@
 											<p class="has-text-weight-light">{{ dataForm.task }}</p>
 										</div>
 									</b-message>
-								
+
+									<label class="label">Evidence</label>
+									<div class="columns">
+										<div class="column">
+											<crud-input readonly name="documentName" :color="determineFieldStatus"
+												v-model="documentName" input-style="">
+												<template slot="helptext">
+													<p :class="'help ' + determineFieldStatus">
+														File yang dibolehkan: jpg, jpeg, png, doc, docx,
+														pdf, xls, xlsx, ppt, pptx ; File size maksimal
+														20MB
+													</p>
+												</template>
+											</crud-input>
+										</div>
+										<div class="column is-one-third">
+											<b-field>
+												<b-upload v-model="selectedDocument" name="evidDoc" native required
+													style="width:100%;">
+													<a class="button is-info is-fullwidth">
+														<b-icon icon="upload"></b-icon>
+														<span>Browse File</span>
+													</a>
+												</b-upload>
+											</b-field>
+										</div>
+									</div>
 									<b-field label="Activity">
-										<b-input maxlength="200" type="textarea" name="activity" placeholder="Describe your activity related to this task so that your pm could understand what you do." required></b-input>
+										<b-input maxlength="200" type="textarea" name="activity"
+											placeholder="Describe your activity related to this task so that your pm could understand what you do."
+											required></b-input>
 									</b-field>
 								</div>
 								<div class="column is-4-desktop">
-									<crud-input 
-										type="datepicker" 
-										name="date" 
-										:min-date="minDate"
-										:max-date="maxDate"
-										label="Timesheet Date" 
-										placeholder="Choose Date">
+									<crud-input type="datepicker" name="date" :min-date="minDate" :max-date="maxDate"
+										label="Timesheet Date" placeholder="Choose Date">
 									</crud-input>
-
-									<crud-input 
-										type="select" 
-										name="level" 
-										label="Select Area" 
+									<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour"
+										color="is-info" placeholder="0">
+									</crud-input>
+									<crud-input type="select" name="level" label="Select Area"
 										placeholder="Choose area location">
 										<option selected style="display: none;"></option>
 										<option value="1">Jabodetabek</option>
@@ -250,7 +292,9 @@
 		</section>
 
 		<section id="infoFooter">
-			<info-footer entry="100" utilization="100"></info-footer>
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			</info-footer>
 		</section>
 	</div>
 
@@ -264,7 +308,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 1",
 				task: "Melakukan review dokumen teknis SOP dan User Guide",
 				start: "10/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 3
 			},
 			{
 				id: "2",
@@ -274,7 +319,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 2",
 				start: "10/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 5
 			},
 			{
 				id: "3",
@@ -284,7 +330,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 4",
 				task: "Melakukan review dokumen teknis SIT 3",
 				start: "12/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 2
 			},
 			{
 				id: "4",
@@ -294,7 +341,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
 				task: "Melakukan review dokumen teknis SOP dan User Guide 3",
 				start: "11/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 7
 			},
 			{
 				id: "5",
@@ -304,7 +352,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 3",
 				task: "Melakukan review dokumen teknis SOP dan User Guide 4",
 				start: "11/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 6
 			},
 			{
 				id: "6",
@@ -314,7 +363,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 3",
 				start: "10/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 10
 			},
 			{
 				id: "7",
@@ -324,7 +374,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 2",
 				start: "10/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 4
 			},
 			{
 				id: "8",
@@ -334,7 +385,8 @@
 				project_name: "Pengadaan Sarana dan Prasarana IT Digital 2",
 				task: "Melakukan review dokumen teknis UAT 2",
 				start: "10/10/2019",
-				end: "30/12/2019"
+				end: "30/12/2019",
+				member: 8
 			}
 		]
 	</script>

@@ -38,6 +38,7 @@ module.exports.getUserByNIK = (nik) => {
 }
 
 module.exports.sendBookmark = bundle => {
+	// title, link, user_id
 	return request.post($api.sendBookmark, pack(bundle), {
 		headers: {
 			"Content-Type": 'application/x-www-form-urlencoded'
@@ -45,13 +46,15 @@ module.exports.sendBookmark = bundle => {
 	});
 }
 
-module.exports.setInitialBaseline = (project_id) => {
+module.exports.setInitialBaseline = (bundle) => {
+	// project_id
 	return request.get($api.setInitialBaseline, {
-		params: { project_id: project_id }
+		params: bundle
 	});
 }
 
 module.exports.sendInitialBaseline = bundle => {
+	// project_id
 	return request.post($api.sendInitialBaseline, pack({ bundle }), {
 		headers: {
 			"Content-Type": 'application/x-www-form-urlencoded'
@@ -60,16 +63,19 @@ module.exports.sendInitialBaseline = bundle => {
 }
 
 module.exports.getDuration = (bundle) => {
+	// start, finish, workdays
 	return request.get($api.getDuration, {
 		params: bundle
 	});
 }
 
 module.exports.uploadFoto = (file) => {
+	// file
 	return request.post($api.uploadFoto, file);
 }
 
 module.exports.getNotification = (bundle) => {
+	// user_id
 	return request.get($api.getNotification, {
 		params: bundle
 	});

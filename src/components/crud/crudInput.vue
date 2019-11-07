@@ -24,6 +24,7 @@
 					v-model="model"
 					:inline="inline"
 					@input="input"
+					@focus="focus"
 					:required="required"
 					:position="datePosition"
 					:disabled="disabled"
@@ -51,6 +52,7 @@
 				:icon="iconPicker()"
 				expanded
 				@input="input"
+				@focus="focus"
 				:required="required"
 				:disabled="disabled"
 				:loading="loading"
@@ -64,9 +66,12 @@
 				:type="color"
 				:name="name"
 				v-model="model"
+				:min="min"
+				:max="max"
 				:disabled="disabled"
 				:loading="loading"
 				:readonly="readonly"
+				maxlength="2"
 			></b-numberinput>
 			<b-input
 				expanded
@@ -78,6 +83,7 @@
 				v-model="model"
 				password-reveal
 				@input="input"
+				@focus="focus"
 				:required="required"
 				:disabled="disabled"
 				:loading="loading"
@@ -92,6 +98,7 @@
 				:icon="iconPicker()"
 				:name="name"
 				@input="input"
+				@focus="focus"
 				:placeholder="placeholder"
 				:required="required"
 				:disabled="disabled"
@@ -119,6 +126,14 @@ export default {
 		color: {
 			type: String,
 			default: ""
+		},
+		min: {
+			type: Number,
+			default: 0
+		},
+		max: {
+			type: Number,
+			default: undefined
 		},
 		inputStyle: {
 			type: String,
@@ -159,7 +174,7 @@ export default {
 			default: undefined
 		},
 		dateInputFormat: {
-			default: "DD/MM/YYYY"
+			default: undefined
 		},
 		dateOutputFormat: {
 			default: "DD/MM/YYYY"
@@ -199,10 +214,31 @@ export default {
 	watch: {
 		value(changed) {
 			if (this.type === "datepicker") {
-				this.dateModel = new Date(this.value);
+				if (this.value instanceof Date) {
+					this.dateModel = this.value;
+				} else {
+					this.dateModel = new Date(this.value);
+				}
 			}
 
 			this.model = changed;
+		},
+		model(changed) {
+			if (this.type === "number") {
+				if (changed > this.max) {
+					this.input(this.max);
+				}
+			}
+		},
+		minDate(changed) {
+			if (this.model === null) {
+				return false;
+			}
+			if (changed instanceof Date) {
+				if (changed > this.model) {
+					this.input(changed);
+				}
+			}
 		}
 	},
 	computed: {
@@ -263,6 +299,9 @@ export default {
 		}
 	},
 	methods: {
+		focus() {
+			this.$emit("focus");
+		},
 		input(value) {
 			this.model = value;
 			this.$emit("input", value);

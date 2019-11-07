@@ -19,7 +19,10 @@ export default {
 	data() {
 		return {
 			active: this.isBooked,
-			title: ""
+			title: "",
+			userlog: {
+				user_id: "1"
+			}
 		};
 	},
 	props: {
@@ -60,7 +63,8 @@ export default {
 					this.title = value;
 					let val = {
 						title: this.title,
-						link: this.link
+						link: this.link,
+						user_id: this.userlog.user_id
 					};
 
 					let self = this;

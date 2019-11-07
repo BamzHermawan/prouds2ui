@@ -39,9 +39,11 @@
 						type="datepicker"
 						label="New Start Date"
 						name="newStartDate"
+						v-model="start"
 						placeholder="Pick Start Date"
 						date-locale="en"
 						input-style="margin-bottom: 5px;"
+						@focus="gotoBottom"
 					>
 					</crud-input>
 				</div>
@@ -50,9 +52,11 @@
 						type="datepicker"
 						label="New End Date"
 						name="newEndDate"
+						:min-date="start"
 						placeholder="Pick Start Date"
 						date-locale="en"
 						input-style="margin-bottom: 5px;"
+						@focus="gotoBottom"
 					>
 					</crud-input>
 				</div>
@@ -98,6 +102,7 @@
 					Save
 				</button>
 			</div>
+			<div class="white-space is-xxl"></div>
 			<br />
 		</form>
 	</div>
@@ -140,10 +145,15 @@ export default {
 			reallocationDate: new Date(),
 			dataBaru: DATA.allTask,
 			name: "",
-			selected: null
+			selected: null,
+			start: undefined
 		};
 	},
 	methods: {
+		gotoBottom() {
+			var element = document.querySelector(".contentPage");
+			element.scrollTop = element.scrollHeight;
+		},
 		checkExtention(filename) {
 			let sliced = filename.split(".");
 			let lastEnd = sliced.pop();

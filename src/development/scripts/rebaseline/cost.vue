@@ -42,6 +42,7 @@
 				placeholder="Pick Reallocation Date"
 				date-locale="en"
 				input-style="margin-bottom: 0px;"
+				@focus="gotoBottom"
 			>
 			</crud-input>
 			<br />
@@ -50,6 +51,10 @@
 					Save
 				</button>
 			</div>
+			<div style="margin-bottom:280px">
+				<p></p>
+			</div>
+			<br />
 		</form>
 	</div>
 </template>
@@ -85,6 +90,10 @@ export default {
 		};
 	},
 	methods: {
+		gotoBottom() {
+			var element = document.querySelector(".contentPage");
+			element.scrollTop = element.scrollHeight;
+		},
 		actualCostUnformat(val) {
 			let medown = val.replace(/\D/g, "");
 			this.getCost = medown;

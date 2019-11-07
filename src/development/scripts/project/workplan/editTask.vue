@@ -97,52 +97,30 @@
 									:closable="false"
 								>
 									<!-- Datepicker Start Date -->
-									<label class="label">Start Date</label>
-									<b-datepicker
-										expanded
-										icon="calendar"
+									<crud-input
+										type="datepicker"
+										label="Start Date"
 										name="start"
 										v-model="start"
-										style="margin-bottom:1em;"
-										size="is-small"
-										:date-formatter="dateFormater"
+										placeholder="Pick Start Date"
+										date-locale="en"
+										input-style="margin-bottom: 5px;"
 									>
-										<b-button
-											@click="model = null"
-											type="is-grey"
-											class="is-fullwidth"
-										>
-											<span
-												class="mdi mdi-calendar-remove in-left"
-											></span>
-											Clear Selection
-										</b-button>
-									</b-datepicker>
+									</crud-input>
 									<!-- Datepicker Start Date -->
 
 									<!-- Datepicker Finish Date -->
-									<label class="label">Finish Date</label>
-									<b-datepicker
-										expanded
-										icon="calendar"
+									<crud-input
+										type="datepicker"
+										label="Finish Date"
 										name="finish"
-										:min-date="minDate"
+										:min-date="start"
 										v-model="finish"
-										style="margin-bottom:1em;"
-										size="is-small"
-										:date-formatter="dateFormater"
+										placeholder="Pick Finish Date"
+										date-locale="en"
+										input-style="margin-bottom: 5px;"
 									>
-										<b-button
-											@click="model = null"
-											type="is-grey"
-											class="is-fullwidth"
-										>
-											<span
-												class="mdi mdi-calendar-remove in-left"
-											></span>
-											Clear Selection
-										</b-button>
-									</b-datepicker>
+									</crud-input>
 									<!-- Datepicker Finish Date -->
 
 									<div class="columns">
@@ -256,7 +234,7 @@ export default {
 			this.getDuration(this.start, this.finish, this.workdays);
 		},
 		finish: function() {
-			// this.getDuration(this.start, this.finish, this.workdays);
+			this.getDuration(this.start, this.finish, this.workdays);
 		},
 		workdays: function() {
 			this.getDuration(this.start, this.finish, this.workdays);
@@ -277,14 +255,6 @@ export default {
 				return this.finishisoverflow
 					? "The date you choose must be approved by PMO"
 					: undefined;
-			}
-		},
-		dateFormater(date) {
-			if (date) {
-				Moment.locale("en");
-				return Moment(date).format("dddd, DD MMMM YYYY");
-			} else {
-				return "";
 			}
 		},
 		getDuration(start, finish, workdays) {
@@ -309,21 +279,6 @@ export default {
 					}
 				})
 				.finally(() => (self.isLoading = false));
-			// let self = this;
-			// return axios
-			// 	.get(this.apiGetDuration, {
-			// 		params: { start: start, finish: finish, workdays: workdays }
-			// 	})
-			// 	.then(function(response) {
-			// 		let dur = response.data;
-			// 		self.duration = dur.duration;
-			// 	})
-			// 	.catch(function(error) {
-			// 		notified(self.$toast).error(
-			// 			"Mohon maaf terjadi sebuah kesalahan. Kami tidak dapat terhubung dengan server. Silakan ulangi beberapa saat lagi. 🙏"
-			// 		);
-			// 	})
-			// 	.finally(() => (self.isLoading = false));
 		}
 	},
 	computed: {
@@ -356,13 +311,6 @@ export default {
 					return "";
 				}
 			}
-		},
-		minDate() {
-			return new Date(
-				this.start.getFullYear(),
-				this.start.getMonth(),
-				this.start.getDate()
-			);
 		},
 		finishisoverflow() {
 			return this.finish > this.oldfinish;
