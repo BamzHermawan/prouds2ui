@@ -37,7 +37,7 @@ new Vue({
 	methods: {
 		sendInitialBaseline(val) {
 			let self = this;
-			let bundle = { project_id: val.project }
+			let bundle = { project_id: val.project_id }
 			api.sendInitialBaseline(bundle)
 				.then((response) => {
 					notified(self.$notification)

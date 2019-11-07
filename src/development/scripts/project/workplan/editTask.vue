@@ -261,8 +261,8 @@ export default {
 			this.isLoading = true;
 			let self = this;
 			let bundle = {
-				start: start,
-				finish: finish,
+				start: Moment(start).format("DD/MM/YYYY"),
+				finish: Moment(finish).format("DD/MM/YYYY"),
 				workdays: workdays
 			};
 			api.getDuration(bundle)

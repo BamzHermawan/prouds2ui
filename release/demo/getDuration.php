@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 
-if(!empty($_GET["start"]) && !empty($_GET["finish"]) && !empty($_GET["workdays"])){
+if(!empty($_POST["start"]) && !empty($_POST["finish"]) && !empty($_POST["workdays"])){
 	$prep = [
 		"duration" => rand(10, 50)
 	];

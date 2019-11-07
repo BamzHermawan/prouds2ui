@@ -136,7 +136,8 @@
 									<p>{{props.row.iwo}}</p>
 								</b-table-column>
 								<b-table-column width="300" field="project_name" label="Project Name" sortable>
-									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}</linker>
+									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}
+									</linker>
 								</b-table-column>
 								<b-table-column width="100" field="amount" label="Amount (IDR)" sortable
 									class="align-middle">
@@ -192,14 +193,14 @@
 								<b-table-column field="action" label="Action" width="75" centered class="align-middle">
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PMO -->
-									<span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
+									<!-- <span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
 										style="cursor: pointer !important;" @click="editProject(props.row)">
-									</span>
+									</span> -->
 									<!-- Ini untuk action PMO -->
 
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PM -->
-									<!-- <b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
 										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
 										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item has-link>
@@ -233,7 +234,7 @@
 												Task
 											</a>
 										</b-dropdown-item>
-									</b-dropdown> -->
+									</b-dropdown>
 									<!-- Ini untuk action PM -->
 
 								</b-table-column>
