@@ -1,6 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-if(!empty($_GET["user_id"])){
+if(!empty($_POST["user_id"])){
 	$prep = [
 		[
 			"notif" => "1"
