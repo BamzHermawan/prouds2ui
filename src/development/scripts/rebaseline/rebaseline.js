@@ -33,7 +33,6 @@ new Vue({
 	methods: {
 		editMilestone() {
 			if (this.showTable) {
-				console.log("Ade")
 				animate('#tableRebaseline', 'fadeOut faster', (el) => {
 					this.showTable = !this.showTable
 					this.showMilestone = !this.showMilestone
@@ -52,7 +51,6 @@ new Vue({
 		},
 		editCost() {
 			if (this.showTable) {
-				console.log("Ade")
 				animate('#tableRebaseline', 'fadeOut faster', (el) => {
 					this.showTable = !this.showTable
 					this.showCost = !this.showCost

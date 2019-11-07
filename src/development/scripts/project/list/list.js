@@ -20,9 +20,14 @@ new Vue({
 		projectlistOri: PROJECTLIST,
 		showTable: true,
 		showMilestone: false,
+		showCost: false,
 		showEdit: false,
 		form: "",
-		selectedStatus: ""
+		selectedStatus: "",
+		selectedDocument: null,
+		fileValidation: true,
+		allowedFile: "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx",
+		start: undefined
 	},
 	watch: {
 		selectedStatus: function (newQuery, oldQuery) {
@@ -32,7 +37,7 @@ new Vue({
 	methods: {
 		sendInitialBaseline(val) {
 			let self = this;
-			let bundle = { project_id: val.project }
+			let bundle = { project_id: val.project_id }
 			api.sendInitialBaseline(bundle)
 				.then((response) => {
 					notified(self.$notification)
@@ -49,7 +54,8 @@ new Vue({
 		},
 		setInitialBaseline(val) {
 			let self = this;
-			api.setInitialBaseline(val.project_id)
+			let bundle = { project_id: val.project_id }
+			api.setInitialBaseline(bundle)
 				.then((response) => {
 					let message = response.data;
 					if (message != "") {
@@ -101,6 +107,26 @@ new Vue({
 				});
 			}
 		},
+		setCost(val) {
+			if (this.showTable) {
+				this.form = val
+				animate('#tableProject', 'fadeOut faster', (el) => {
+					this.showTable = false
+					this.showCost = true
+
+					el.classList.add('fadeIn');
+				});
+			} else {
+				document.querySelector('#setCost').classList.remove('fadeIn', 'faster');
+				animate('#setCost', 'fadeOut faster', (el) => {
+					this.showTable = true
+					this.showCost = false
+
+					document.querySelector('#tableProject').classList.add('fadeIn faster');
+					this.form = ""
+				});
+			}
+		},
 		editProject(val) {
 			if (this.showTable) {
 				this.form = val
@@ -132,6 +158,63 @@ new Vue({
 			} else {
 				this.projectlist = this.projectlistOri
 			}
+		},
+		checkExtention(filename) {
+			let sliced = filename.split(".");
+			let lastEnd = sliced.pop();
+			this.fileValidation = this.allowedArray.includes(
+				lastEnd.toLowerCase()
+			);
+		},
+		formatSizeString(size) {
+			let counter = 0;
+			while (size > 1000) {
+				size = size / 1000;
+				counter++;
+			}
+
+			if (counter == 0) {
+				size = size.toFixed(0) + " Byte";
+			} else if (counter == 1) {
+				size = size.toFixed(1) + " KB";
+			} else if (counter == 2) {
+				size = size.toFixed(1) + " MB";
+			} else if (counter == 3) {
+				size = size.toFixed(1) + " GB";
+			} else {
+				size = size.toFixed(2);
+			}
+
+			return size;
+		},
+		actualCostUnformat(val) {
+			let medown = val.replace(/\D/g, "");
+			this.form.cost = medown;
+		}
+	},
+	computed: {
+		documentName() {
+			if (this.selectedDocument !== null) {
+				let size = this.formatSizeString(this.selectedDocument.size);
+				this.checkExtention(this.selectedDocument.name);
+				return this.selectedDocument.name + " [ " + size + " ] ";
+			}
+
+			return "No Document Selected";
+		},
+		determineFieldStatus() {
+			if (!this.fileValidation) {
+				return "is-danger";
+			}
+
+			if (this.selectedDocument === null) {
+				return "";
+			}
+
+			return "is-success";
+		},
+		allowedArray() {
+			return this.allowedFile.split("|");
 		}
 	},
 	mounted() {

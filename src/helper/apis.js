@@ -22,7 +22,12 @@ request.defaults.baseURL = $config.baseAPI;
  * 
  * @returns user data. check documentation for more information
  */
-module.exports.getUserSession = request.get($api.userLogin);
+// module.exports.getUserSession = request.get($api.userLogin);
+module.exports.getUserSession = request.post($api.userLogin, {
+	headers: {
+		"Content-Type": 'application/x-www-form-urlencoded'
+	}
+});
 
 /**
  * getUserData
@@ -31,11 +36,6 @@ module.exports.getUserSession = request.get($api.userLogin);
  * @param {string} nik
  * @returns user data. check documentation for more information
  */
-module.exports.getUserByNIK = (nik) => {
-	return request.get($api.userLogin, {
-		params: { nik }
-	});
-}
 
 module.exports.sendBookmark = bundle => {
 	return request.post($api.sendBookmark, pack(bundle), {
@@ -45,23 +45,27 @@ module.exports.sendBookmark = bundle => {
 	});
 }
 
-module.exports.setInitialBaseline = (project_id) => {
-	return request.get($api.setInitialBaseline, {
-		params: { project_id: project_id }
-	});
-}
-
-module.exports.sendInitialBaseline = bundle => {
-	return request.post($api.sendInitialBaseline, pack({ bundle }), {
+module.exports.setInitialBaseline = bundle => {
+	return request.post($api.setInitialBaseline, pack(bundle), {
 		headers: {
 			"Content-Type": 'application/x-www-form-urlencoded'
 		}
 	});
 }
 
-module.exports.getDuration = (bundle) => {
-	return request.get($api.getDuration, {
-		params: bundle
+module.exports.sendInitialBaseline = bundle => {
+	return request.post($api.sendInitialBaseline, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}
+
+module.exports.getDuration = bundle => {
+	return request.post($api.getDuration, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
 	});
 }
 
@@ -69,8 +73,10 @@ module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }
 
-module.exports.getNotification = (bundle) => {
-	return request.get($api.getNotification, {
-		params: bundle
+module.exports.getNotification = bundle => {
+	return request.post($api.getNotification, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
 	});
 }

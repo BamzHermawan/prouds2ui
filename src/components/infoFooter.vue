@@ -23,52 +23,31 @@
 		</div>
 
 		<b-modal :active.sync="showEntry">
-			<!-- TODO: Ade -->
-
-			<!-- Dari sini dihapus ganti chart -->
-			<section class="is-404-content">
-				<div class="container has-text-centered">
-					<h1>ENTRY CHART</h1>
-					<p class="is-low-bottom has-text-dark">
-						Chartnya bikin yang kaya gini:
-						<a
-							href="https://www.highcharts.com/demo/line-time-series/grid-light"
-							>https://www.highcharts.com/demo/line-time-series/grid-light</a
-						>
-					</p>
-				</div>
-			</section>
-			<!-- sampe sini dihapus ganti chart -->
-
-			<!-- Chartnya kasih container tapi -->
-			<!-- <div class="container"></div> -->
+			<div class="container">
+				<v-chart
+					:data-bae="apiEntryChart"
+					namadata="entry"
+					id="entry"
+					title="Entry"
+				></v-chart>
+			</div>
 		</b-modal>
 
 		<b-modal :active.sync="showUtilization">
-			<!-- TODO: Ade -->
-
-			<!-- Dari sini dihapus ganti chart -->
-			<section class="is-404-content">
-				<div class="container has-text-centered">
-					<h1>UTILIZATION CHART</h1>
-					<p class="is-low-bottom has-text-dark">
-						Chartnya bikin yang kaya gini:
-						<a
-							href="https://www.highcharts.com/demo/line-time-series/grid-light"
-							>https://www.highcharts.com/demo/line-time-series/grid-light</a
-						>
-					</p>
-				</div>
-			</section>
-			<!-- sampe sini dihapus ganti chart -->
-
-			<!-- Chartnya kasih container tapi -->
-			<!-- <div class="container"></div> -->
+			<div class="container">
+				<v-chart
+					:data-bae="apiUtilizationChart"
+					namadata="utilization"
+					id="utilization"
+					title="Utilization"
+				></v-chart>
+			</div>
 		</b-modal>
 	</section>
 </template>
 
 <script>
+import vChart from "../components/highchart";
 export default {
 	props: {
 		entry: {
@@ -78,6 +57,12 @@ export default {
 		utilization: {
 			type: String,
 			default: 0
+		},
+		apiEntryChart: {
+			type: String
+		},
+		apiUtilizationChart: {
+			type: String
 		}
 	},
 	data() {
@@ -85,6 +70,9 @@ export default {
 			showEntry: false,
 			showUtilization: false
 		};
+	},
+	components: {
+		vChart
 	},
 	computed: {
 		haveSlot() {

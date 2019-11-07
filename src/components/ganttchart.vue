@@ -22,14 +22,6 @@ export default {
 	data() {
 		return {
 			dataBaru: GANTT
-			// modal: {
-			// 	display: false,
-			// 	title: "",
-			// 	StartDate: "",
-			// 	EndDate: "",
-			// 	duration: "",
-			// 	data: {}
-			// }
 		};
 	},
 	methods: {
@@ -107,9 +99,6 @@ export default {
 				return task.pID == eventID;
 			});
 		}
-		// closeModal() {
-		// 	this.modal.display = false;
-		// }
 	},
 	mounted() {
 		this.getChart();
