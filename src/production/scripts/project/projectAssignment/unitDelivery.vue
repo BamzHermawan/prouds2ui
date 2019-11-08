@@ -53,7 +53,7 @@
 			hoverable
 		>
 			<template slot-scope="props">
-				<b-table-column field="bu" label="Business Unit" sortable>
+				<b-table-column field="bu" label="Unit Delivery" sortable>
 					<span>{{ props.row.business_unit }}</span>
 				</b-table-column>
 				<b-table-column
@@ -78,7 +78,7 @@
 				</b-table-column>
 				<b-table-column
 					field="superior"
-					label="Vice President / Director"
+					label="Unit Delivery Head"
 					sortable
 				>
 					<span>{{ props.row.supervisor }}</span>
@@ -153,7 +153,7 @@ export default {
 			}
 
 			this.$dialog.confirm({
-				title: "Confirm Changes",
+				title: "Confirmation",
 				message: msg,
 				confirmText: "Yes, Sure!",
 				type: "is-success",
