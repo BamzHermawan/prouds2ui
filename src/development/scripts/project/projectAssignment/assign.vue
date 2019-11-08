@@ -121,8 +121,8 @@
 					</p>
 				</b-table-column>
 				<b-table-column
-					field="dominan_segment"
-					label="Dominan Segment"
+					field="dominant_segment"
+					label="Dominant Segment"
 					sortable
 				>
 					<span>{{ props.row.dominant_segment }}</span>
@@ -231,7 +231,7 @@ export default {
 			}
 
 			this.$dialog.confirm({
-				title: "Confirm Changes",
+				title: "Confirmation",
 				message: msg,
 				confirmText: "Yes, Sure!",
 				type: "is-success",

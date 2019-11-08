@@ -27,7 +27,8 @@ new Vue({
 		selectedDocument: null,
 		fileValidation: true,
 		allowedFile: "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx",
-		start: undefined
+		start: undefined,
+		newCost: ""
 	},
 	watch: {
 		selectedStatus: function (newQuery, oldQuery) {
@@ -189,7 +190,7 @@ new Vue({
 		},
 		actualCostUnformat(val) {
 			let medown = val.replace(/\D/g, "");
-			this.form.cost = medown;
+			this.newCost = medown;
 		}
 	},
 	computed: {

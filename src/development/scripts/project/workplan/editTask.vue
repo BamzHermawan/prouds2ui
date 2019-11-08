@@ -30,7 +30,7 @@
 								<p class="label">Parent Task</p>
 								<input
 									type="hidden"
-									name="subtask"
+									name="parentTask"
 									v-model="subtask"
 								/>
 								<b-autocomplete
