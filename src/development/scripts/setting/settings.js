@@ -22,8 +22,9 @@ new Vue({
 		data: [],
 		dataOri: [],
 		organization: [],
+		menu: [],
 		drag: false,
-		menuTree: false,
+		menuOrgTree: false,
 		buID: "",
 		buName: "",
 		buCode: "",
@@ -38,6 +39,8 @@ new Vue({
 		selectedDocument: null,
 		edit: false,
 		add: false,
+		menuTree: true,
+		addMenu: false,
 		privilage: false,
 		toggleEdit: {
 			internal: false,
@@ -70,7 +73,8 @@ new Vue({
 		},
 		currentPw: "",
 		newPw: "",
-		confirmPw: ""
+		confirmPw: "",
+		allmenu: ""
 	},
 	watch: {
 		selectedLevel: function (newQuery, oldQuery) {
@@ -112,8 +116,11 @@ new Vue({
 		}
 	},
 	methods: {
+		tes() {
+			console.log("ade")
+		},
 		itemClick(node) {
-			this.menuTree = true;
+			this.menuOrgTree = true;
 			this.buName = node.model.text;
 			this.buID = node.model.id;
 			this.buCode = node.model.BUCode;
@@ -121,7 +128,7 @@ new Vue({
 
 		},
 		toggleSideBar() {
-			this.menuTree = !this.menuTree;
+			this.menuOrgTree = !this.menuOrgTree;
 		},
 		draggable() {
 			this.drag = true;
@@ -219,6 +226,15 @@ new Vue({
 				this.checkboxGroup = []
 			}
 		},
+		menuForm() {
+			if (this.addMenu) {
+				this.addMenu = false
+				this.menuTree = true
+			} else {
+				this.addMenu = true
+				this.menuTree = false
+			}
+		},
 		privilageForm(val) {
 			if (this.privilage) {
 				this.showTable = true
@@ -309,6 +325,31 @@ new Vue({
 					}
 					else {
 						this.organization.push(mappedElem);
+					}
+				}
+			}
+		}
+
+		if (this.props.MENU != undefined) {
+			this.allmenu = this.props.MENU
+			var mappedArr = {},
+				arrElem,
+				mappedElem;
+
+			for (var i = 0; i < this.props.MENU.length; i++) {
+				arrElem = this.props.MENU[i];
+				mappedArr[arrElem.id] = arrElem;
+				mappedArr[arrElem.id]['children'] = [];
+			}
+
+			for (var id in mappedArr) {
+				if (mappedArr.hasOwnProperty(id)) {
+					mappedElem = mappedArr[id];
+					if (mappedElem.parent) {
+						mappedArr[mappedElem['parent']]['children'].push(mappedElem);
+					}
+					else {
+						this.menu.push(mappedElem);
 					}
 				}
 			}

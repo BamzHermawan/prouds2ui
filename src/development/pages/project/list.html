@@ -356,7 +356,7 @@
 											</template>
 										</crud-input>
 									</div>
-									<div class="column is-one-third has-no-left-padding">
+									<div class="column is-2 has-no-left-padding">
 										<b-field>
 											<b-upload v-model="selectedDocument" name="evidDoc" native required
 												style="width:100%;">
@@ -413,28 +413,14 @@
 							enctype="multipart/form-data">
 							<div class="container">
 								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
-								<div class="columns is-marginless is-paddingless">
-									<div class="column has-no-left-padding">
-										<b-message type="is-info" :closable="false">
-											<div class="field">
-												<label class="is-marginless has-text-weight-bold">Current Start
-													Date</label>
-												<p>{{form.start | moment}}</p>
-											</div>
-										</b-message>
+								<b-message type="is-info" :closable="false">
+									<div class="field">
+										<label class="is-marginless has-text-weight-bold">Current Cost</label>
+										<p>{{form.cost | currency}}</p>
 									</div>
-									<div class="column has-no-right-padding">
-										<b-message type="is-info" :closable="false">
-											<div class="field">
-												<label class="is-marginless has-text-weight-bold">Current End
-													Date</label>
-												<p>{{form.end | moment}}</p>
-											</div>
-										</b-message>
-									</div>
-								</div>
-								<crud-input type="text" name="cost" label="Budget Actual Cost" placeholder="10.000.000"
-									:value="form.cost | currency" @input="actualCostUnformat">
+								</b-message>
+								<crud-input type="text" name="cost" label="New Cost" :value="newCost | currency"
+									placeholder="10.000.000" @input="actualCostUnformat">
 								</crud-input>
 								<crud-input type="datepicker" label="Reallocation Date" name="reallocationDate"
 									placeholder="Pick Reallocation Date" date-locale="en"
