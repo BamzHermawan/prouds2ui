@@ -6,61 +6,8 @@
 @import "mixins/gradient";
 @import "mixins/text";
 
-// Font Import from google Font
-@import url('https://fonts.googleapis.com/css?family=Crete+Round|Roboto+Condensed|Raleway:400,800|Staatliches&display=swap');
-
-$roboto: 'Roboto Condensed', sans-serif !important;
-$crete: 'Crete Round', serif !important;
-$staat: 'Staatliches', cursive !important;
-
-$p_font: $roboto;
-$h1_font: $staat;
-$h2_font: $crete;
-
-// Set your colors
-$primary: #D36464;
-$primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
-$pink: rgb(250, 129, 150);
-
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
-$colors: (
-	"pink": (rgb(250, 129, 150), $white),
-	"grey": (grey, $white),
-    "white": ($white, $black),
-    "black": ($black, $white),
-    "light": ($light, $light-invert),
-    "dark": ($dark, $dark-invert),
-    "primary": ($primary, $primary-invert),
-    "info": ($info, $info-invert),
-    "success": ($success, $success-invert),
-    "warning": ($warning, $warning-invert),
-    "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
-);
-
-$heroBold: (
-	"pink": linear-gradient(90deg, rgb(183, 84, 203),rgb(232, 47, 180)),
-	"light": linear-gradient(90deg, $light,#cfcfdf),
-	"dark": linear-gradient(90deg, $dark,rgb(85, 85, 85)),
-	"danger": linear-gradient(45deg, rgb(221, 15, 86),rgb(198, 192, 66)),
-	"warning": linear-gradient(90deg, rgb(245, 220, 59),rgb(231, 184, 96)),
-	"info": linear-gradient(90deg, rgb(113, 136, 223),rgb(17, 213, 207)),
-	"success": linear-gradient(135deg, rgb(174, 243, 64),rgb(76, 165, 108))
-);
-
-// set sizes
-$size-1: 1.5rem;
-$tablet: 719px;
-$section-padding: 1.8rem ;
-$panel-heading-size: 1rem;
-$section-padding-medium: 9rem 3rem;
-$section-padding-large: 18rem 3rem;
-
-$table-striped-row-even-background-color: lighten($light, 2%);
-$table-striped-row-even-hover-background-color: lighten($info, 35%);
-$table-row-hover-background-color: lighten($info, 35%);
+@import "components/variables";
+@import "components/progress";
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -131,14 +78,12 @@ body {
 				position: absolute;
 				top: 0;
 				left: 0;
-				background: url('https://images.unsplash.com/photo-1571757767119-68b8dbed8c97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
 				width: 100%;
 				height: 100%;
 				z-index: -1;
 
 				filter: grayscale(10%);
-				background-position-x: center !important;
-				background-size: cover !important;
+				object-fit: cover;
 			}
 		}
 

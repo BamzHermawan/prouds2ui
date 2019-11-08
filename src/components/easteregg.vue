@@ -66,15 +66,20 @@ export default {
 				Axios.get(this.sidebar.bg)
 					.then(function(response) {
 						if (response.status === 200) {
-							let holder = document.createElement("span");
-
-							holder.classList.add(
-								"set-background",
-								"animated",
-								"fadeIn"
+							let holder = sidebar.querySelector(
+								".set-background"
 							);
-							holder.style.background =
-								"url('" + self.sidebar.bg + "')";
+							if (holder === null) {
+								holder = new Image();
+								holder.classList.add(
+									"set-background",
+									"animated",
+									"fadeIn"
+								);
+							}
+
+							holder.crossOrigin = "Anonymous";
+							holder.src = self.sidebar.bg;
 
 							sidebar.appendChild(holder);
 							sidebar.classList.add("has-background");
@@ -91,7 +96,7 @@ export default {
 					.catch(function(error) {
 						console.log(error);
 						notified(self.$notification).error(
-							"Hmmm .. somthing is wrong! 😫"
+							"Hmmm .. something is wrong!. Please provide public url so we can access the image .. 😫"
 						);
 					});
 			} else {

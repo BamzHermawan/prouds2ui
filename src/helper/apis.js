@@ -23,11 +23,7 @@ request.defaults.baseURL = $config.baseAPI;
  * @returns user data. check documentation for more information
  */
 // module.exports.getUserSession = request.get($api.userLogin);
-module.exports.getUserSession = request.post($api.userLogin, {
-	headers: {
-		"Content-Type": 'application/x-www-form-urlencoded'
-	}
-});
+module.exports.getUserSession = request.post($api.userLogin);
 
 /**
  * getUserData

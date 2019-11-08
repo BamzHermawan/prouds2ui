@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
-import { crudInput } from 'components';
+import { crudInput, progressBar } from 'components';
 import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
-	components: { crudInput },
+	components: { crudInput, progressBar },
 	data: {
 		minDate: new Date(),
 		maxDate: new Date(),

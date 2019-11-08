@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import { DialogProgrammatic as Dialog } from 'buefy';
 import Loader from 'helper-loader';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { notified, checkConnection } from 'helper-tools';
@@ -124,6 +125,36 @@ if(notifiedEl !== null){
 		message: message,
 		position: 'is-top-right',
 		type: type
+	});
+}
+
+const actingMenu = document.querySelector("#prouds-acting-menu");
+if(actingMenu !== null){
+	let action = actingMenu.dataset.action;
+	actingMenu.addEventListener('click', () => {
+		VueSidebar.$dialog.prompt({
+			message: `User ID`,
+			inputAttrs: {
+				placeholder: 'NIK',
+				maxlength: 10
+			},
+			type: 'is-success',
+			confirmText: 'OK',
+			trapFocus: true,
+			onConfirm: (value) => {
+				let form = document.createElement("form");
+				form.setAttribute("action", action);
+				form.setAttribute("method", "POST");
+
+				let input = document.createElement("input");
+				input.setAttribute("name", "nik");
+				input.value = value;
+
+				form.appendChild(input);
+				document.querySelector(".contentPage").appendChild(form);
+				form.submit();
+			}
+		});
 	});
 }
 

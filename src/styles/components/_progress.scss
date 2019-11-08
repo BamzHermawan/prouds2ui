@@ -1,0 +1,38 @@
+.progress-stacked {
+	display: flex;
+	overflow: hidden; // force rounded corners by cropping it
+	background-color: #e9ecef;
+	border-radius: .25rem;
+	margin-bottom: 1rem;
+
+	// normal size default
+	height: nth(map-get($progress-stacked-size, "normal"), 1);
+	font-size: nth(map-get($progress-stacked-size, "normal"), 2);
+
+	&.has-no-margin {
+		margin-bottom: 0px;
+	}
+
+	@each $name, $size in $progress-stacked-size {
+		&.is-#{$name} {
+			height: nth($size, 1);
+			font-size: nth($size, 2);
+		}
+	}
+
+	@each $color in $colors {
+		$curr: nth($color, 2);
+		$type: nth($curr, 1);
+
+		.progress-bar.is-#{nth($color, 1)} {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			overflow: hidden;
+			text-align: center;
+			white-space: nowrap;
+			background-color: $type;
+			color: nth($curr, 2);
+		}
+	}
+}

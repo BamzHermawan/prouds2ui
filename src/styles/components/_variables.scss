@@ -1,0 +1,62 @@
+// Font Import from google Font
+@import url('https://fonts.googleapis.com/css?family=Crete+Round|Roboto+Condensed|Raleway:400,800|Staatliches&display=swap');
+
+$roboto: 'Roboto Condensed', sans-serif !important;
+$crete: 'Crete Round', serif !important;
+$staat: 'Staatliches', cursive !important;
+
+$p_font: $roboto;
+$h1_font: $staat;
+$h2_font: $crete;
+
+// Set your colors
+$primary: #D36464;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+$pink: rgb(250, 129, 150);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+	"pink": (rgb(250, 129, 150), $white),
+	"grey": (grey, $white),
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "link": ($link, $link-invert, $link-light, $link-dark), 
+	"info": ($info, $info-invert, $info-light, $info-dark), 
+	"success": ($success, $success-invert, $success-light, $success-dark), 
+	"warning": ($warning, $warning-invert, $warning-light, $warning-dark), 
+	"danger": ($danger, $danger-invert, $danger-light, $danger-dark),
+);
+
+$heroBold: (
+	"pink": linear-gradient(90deg, rgb(183, 84, 203),rgb(232, 47, 180)),
+	"light": linear-gradient(90deg, $light,#cfcfdf),
+	"dark": linear-gradient(90deg, $dark,rgb(85, 85, 85)),
+	"danger": linear-gradient(45deg, rgb(221, 15, 86),rgb(198, 192, 66)),
+	"warning": linear-gradient(90deg, rgb(245, 220, 59),rgb(231, 184, 96)),
+	"info": linear-gradient(90deg, rgb(113, 136, 223),rgb(17, 213, 207)),
+	"success": linear-gradient(135deg, rgb(174, 243, 64),rgb(76, 165, 108))
+);
+
+$progress-stacked-size: (
+	"small": .75rem .5rem,
+	"normal":  1.25rem .75rem,
+	"medium": 1.5rem 1rem,
+	"large": 1.75rem 1.25rem
+);
+
+// set sizes
+$size-1: 1.5rem;
+$tablet: 719px;
+$section-padding: 1.8rem ;
+$panel-heading-size: 1rem;
+$section-padding-medium: 9rem 3rem;
+$section-padding-large: 18rem 3rem;
+
+$table-striped-row-even-background-color: lighten($light, 2%);
+$table-striped-row-even-hover-background-color: lighten($info, 35%);
+$table-row-hover-background-color: lighten($info, 35%);
