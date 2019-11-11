@@ -79,10 +79,6 @@ module.exports.loadStorage = function(key) {
 	let json = window.localStorage.getItem(key);
 	let data = JSON.parse(json);
 
-	if (data === null) {
-		console.log("Error with loadStorage Helper Tools");
-	}
-
 	return data;
 }
 

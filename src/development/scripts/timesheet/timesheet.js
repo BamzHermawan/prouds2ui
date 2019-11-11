@@ -2,13 +2,13 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
 import Moment from 'helper-moment';
-import { crudInput, progressBar } from 'components';
+import { crudInput, progressBar, taskGroup, taskCard } from 'components';
 import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
-	components: { crudInput, progressBar },
+	components: { crudInput, progressBar, taskGroup, taskCard },
 	data: {
 		minDate: new Date(),
 		maxDate: new Date(),
@@ -93,34 +93,16 @@ new Vue({
 				let bMom = Moment(b.start, "DD/MM/YYYY");
 
 				if (aMom.isBefore(bMom)) {
-					console.log(aMom);
-					console.log(bMom);
-					console.log();
 					return -1;
 				}
 				
 				if (bMom.isBefore(aMom)) {
-					console.log(bMom);
-					console.log(aMom);
-					console.log();
 					return 1;
 				}
 				
 				return 0;
 			});
-
-			this.groupTask();
 		},
-		groupTask(){
-			let today = this.task.filter((task) => {
-				let start = Moment(task.start, "DD/MM/YYYY");
-				let end = Moment(task.end, "DD/MM/YYYY");
-
-				return Moment().isBetween(start, end);
-			});
-
-			console.log(today);
-		}
 	},
 	computed: {
 		documentName() {

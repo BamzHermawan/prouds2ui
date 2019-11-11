@@ -1,0 +1,107 @@
+.task-grouped {
+	margin-bottom: 1rem;
+
+	.task-group-header {
+		background: linear-gradient(90deg, rgb(128, 226, 133), rgb(47, 255, 220));
+		color: $dark;
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		line-height: 1.25;
+		padding: .75em;
+		position: relative;
+		font-family: $staat;
+		font-size: 1.2em;
+		cursor: pointer;
+	}
+
+	.task-container {
+		background-color: $success-light;
+		padding: .75em;
+	}
+
+	&.is-always-show {
+		.task-group-header {
+			cursor: default;
+
+			.tag {
+				font-family: $roboto;
+			}
+		}
+	}
+
+	&.is-delayed {
+		.task-group-header {
+			background: linear-gradient(90deg, rgb(238, 198, 66), rgb(250, 237, 59));
+			color: $dark;
+		}
+
+		.task-container {
+			background-color: $warning-light;
+			.timesheet {
+				.card-content:first-child {
+					background-color: $warning;
+				}
+			}
+		}
+	}
+
+	&.is-scheduled {
+		.task-group-header {
+			background: linear-gradient(90deg, $dark, $grey);
+			color: $light;
+		}
+
+		.task-container {
+			background-color: $grey-lighter;
+			.timesheet {
+				.card-content:first-child {
+					background-color: $grey-light;
+				}
+			}
+		}
+	}
+}
+
+.timesheet {
+	box-shadow: none !important;
+	border: solid rgb(189, 189, 189) 1px;
+	border-radius: 5px;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 0.5em 1em -0.125em #0a0a0a1a !important;
+	}
+
+	.card-content:first-child {
+		background-color: rgb(163, 228, 217);
+		min-height: 96px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			text-align: center;
+		}
+	}
+
+	.timesheet-progress {
+		width: 100%;
+		progress {
+			border-radius: 0px;
+		}
+
+		p {
+			font-size: .9em;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+
+		.level-item {
+			margin-bottom: 5px !important;
+			&:first-child {
+				margin-right: 5px !important;
+			}
+		}
+	}
+}

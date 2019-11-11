@@ -1,5 +1,5 @@
 <template>
-	<section class="section">
+	<section class="section animated fadeIn">
 		<div class="container">
 			<div class="columns">
 				<div class="column is-10">
@@ -7,9 +7,18 @@
 					<p class="subtitle">
 						Congratulation, you found our hidden feature .. 🎉
 					</p>
+					<button
+						@click="resetDefault"
+						class="button is-warning is-small"
+					>
+						Reset to Default
+					</button>
 				</div>
-				<div class="column is-2">
-					<button @click="closeGift" class="button is-danger">
+				<div class="column is-2 is-clearfix">
+					<button
+						@click="closeGift"
+						class="button is-danger is-pulled-right"
+					>
 						Close Gift
 					</button>
 				</div>
@@ -27,7 +36,7 @@
 					</p>
 					<b-input
 						placeholder="Image URL. example: https://placekitten.com/320/720"
-						v-model="sidebar.bg"
+						v-model="setting.sidebar.bg"
 						@input="backgroundURL"
 						expanded
 					></b-input>
@@ -43,13 +52,16 @@
 
 <script>
 import Axios from "axios";
-import { animate, notified } from "helper-tools";
+import geeg from "myGeeg";
+import { animate, notified, loadStorage, saveStorage } from "helper-tools";
 export default {
 	name: "whiteSpace",
 	data() {
 		return {
-			sidebar: {
-				bg: ""
+			setting: {
+				sidebar: {
+					bg: ""
+				}
 			}
 		};
 	},
@@ -60,33 +72,12 @@ export default {
 			}
 		},
 		backgroundURL() {
-			const sidebar = document.querySelector("#side-main");
-			if (this.sidebar.bg !== "") {
+			if (this.setting.sidebar.bg !== "") {
 				let self = this;
-				Axios.get(this.sidebar.bg)
+				Axios.get(this.setting.sidebar.bg)
 					.then(function(response) {
 						if (response.status === 200) {
-							let holder = sidebar.querySelector(
-								".set-background"
-							);
-							if (holder === null) {
-								holder = new Image();
-								holder.classList.add(
-									"set-background",
-									"animated",
-									"fadeIn"
-								);
-							}
-
-							holder.crossOrigin = "Anonymous";
-							holder.src = self.sidebar.bg;
-
-							sidebar.appendChild(holder);
-							sidebar.classList.add("has-background");
-
-							notified(self.$notification).success(
-								"horray, you got a new wallpaper! 😍"
-							);
+							geeg.background.change(self.setting.sidebar.bg);
 						} else {
 							notified(self.$notification).alert(
 								"Sorry, we can't find your image. Please provide a valid image url! 😒"
@@ -98,16 +89,35 @@ export default {
 						notified(self.$notification).error(
 							"Hmmm .. something is wrong!. Please provide public url so we can access the image .. 😫"
 						);
-					});
+					})
+					.finally(() => self.savePreference());
 			} else {
-				let holder = sidebar.querySelector(".set-background");
-
-				if (holder !== null || holder !== undefined) {
-					sidebar.classList.remove("has-background");
-					sidebar.removeChild(holder);
-				}
+				geeg.background.remove();
 			}
+		},
+		loadPreference() {
+			let conf = loadStorage("preference");
+			if (conf !== null) {
+				this.setting = conf;
+
+				this.backgroundURL();
+			}
+		},
+		savePreference() {
+			saveStorage("preference", this.setting);
+		},
+		resetDefault() {
+			this.setting = {
+				sidebar: {
+					bg: ""
+				}
+			};
+
+			this.backgroundURL();
 		}
+	},
+	mounted() {
+		this.loadPreference();
 	}
 };
 </script>

@@ -58,6 +58,7 @@
 	"alias": {
 		"vue": "./node_modules/vue/dist/vue.common.js",
 		"bulma": "./node_modules/bulma/bulma.sass",
+		"myGeeg": "./src/helper/geeg.js",
 		"helper-moment": "./src/helper/moment-locale.js",
 		"helper-tools": "./src/helper/tools.js",
 		"helper-loader": "./src/helper/loader.js",

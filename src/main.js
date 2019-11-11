@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import myCore from 'myGeeg';
 import { DialogProgrammatic as Dialog } from 'buefy';
 import Loader from 'helper-loader';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -211,3 +212,5 @@ function trackMouse(e) {
 		}
 	}
 }
+
+myCore.background.load();
