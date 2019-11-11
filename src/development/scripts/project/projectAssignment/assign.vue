@@ -75,8 +75,8 @@
 			ref="widget"
 		>
 			<template slot-scope="props">
-				<b-table-column field="project_manager" label="Name" sortable>
-					<span>{{ props.row.pm_name }}</span>
+				<b-table-column field="pm_name" label="Name" sortable>
+					{{ props.row.pm_name }}
 				</b-table-column>
 				<b-table-column
 					field="classification"
@@ -84,57 +84,41 @@
 					sortable
 					v-if="name !== 'Project Adm'"
 				>
-					<span>{{ props.row.classification }}</span>
+					{{ props.row.classification }}
+				</b-table-column>
+				<b-table-column
+					field="past"
+					label="Project Past"
+					sortable
+					centered
+					width="90"
+				>
+					{{ props.row.past }}
 				</b-table-column>
 				<b-table-column
 					field="on_going"
-					label="Projects"
-					centered
+					label="Project OnGoing"
 					sortable
+					centered
+					width="90"
 				>
-					<p class="is-marginless">
-						<b-tooltip
-							label="Past"
-							type="is-dark"
-							position="is-bottom"
-							dashed
-						>
-							<span class="icon is-small">
-								<span class="mdi mdi-history"></span>
-							</span>
-							<span>{{ props.row.past }}</span>
-						</b-tooltip>
-
-						<span style="margin-right: 8px;"></span>
-
-						<b-tooltip
-							label="On Going"
-							type="is-dark"
-							position="is-bottom"
-							dashed
-						>
-							<span class="icon is-small">
-								<span class="mdi mdi-timer"></span>
-							</span>
-							<span>{{ props.row.on_going }}</span>
-						</b-tooltip>
-					</p>
+					{{ props.row.on_going }}
 				</b-table-column>
 				<b-table-column
 					field="dominant_segment"
 					label="Dominant Segment"
 					sortable
 				>
-					<span>{{ props.row.dominant_segment }}</span>
+					{{ props.row.dominant_segment }}
 				</b-table-column>
 				<b-table-column
 					field="last_project"
 					label="Last Project"
 					sortable
 				>
-					<span>{{ props.row.last_project }}</span>
+					{{ props.row.last_project }}
 				</b-table-column>
-				<b-table-column field="action" label="Action" sortable>
+				<b-table-column field="pm_id" label="Action">
 					<a
 						@click="sendPM(props.row)"
 						style="cursor: pointer !important; padding:1px; height:21px;"

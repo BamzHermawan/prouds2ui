@@ -173,14 +173,37 @@
 										<footer class="card-footer">
 											<div class="card-footer-item">
 												<div class="timesheet-progress">
-													<p>Timesheet</p>
-													<progress-bar :bars="ts.timesheet" no-margin></progress-bar>
+													<nav class="level is-marginless">
+														<p class="level-left">
+															<span>Timesheet</span>
+														</p>
+														<div class="level-right">
+															<div class="level-item">
+																<b-tooltip label="Approved Timesheet" type="is-success">
+																	<b-tag type="is-success">{{ts.timesheet[0].data}}%</b-tag>
+																</b-tooltip>
+															</div>
+															<div class="level-item">
+																<b-tooltip label="Submited Timesheet" type="is-info">
+																	<b-tag type="is-info">{{ts.timesheet[1].data}}%</b-tag>
+																</b-tooltip>
+															</div>
+														</div>
+													</nav>
+													<progress-bar :bars="ts.timesheet" no-margin clean-bar size="is-small"></progress-bar>
 												</div>
 											</div>
 											<div class="card-footer-item">
 												<div class="timesheet-progress">
-													<p>Task Progress</p>
-													<progress-bar :value="ts.taskProgress" no-margin></progress-bar>
+													<nav class="level is-marginless">
+														<p class="level-left">
+															<span>Task Progress</span>
+														</p>
+														<p class="level-right">
+															<b-tag type="is-success">{{ts.taskProgress}}%</b-tag>
+														</p>
+													</nav>
+													<progress-bar :value="ts.taskProgress" no-margin clean-bar size="is-small"></progress-bar>
 												</div>
 											</div>
 										</footer>
@@ -306,236 +329,232 @@
 
 		//! yang ngurutin jadinya frontend 😭
 		const MYTIMESHEET = [
-				{
-					"iwo": "P-1909SCC-TTES1001",
-					"project_id": 10001,
-					"task_id": 1,
-					"project_name": "ullamco sit et sint ut qui Lorem esse culpa laborum.",
-					"task": "Magna ullamco tempor et nostrud ut elit.",
-					"start": today + "/" + month + "/2019",
-					"end": today + "/" + month + "/2019",
-					"member": 1,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: 50, color: 'is-success'},
-						{ data: 55, color: 'is-info'}
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1002",
-					"project_id": 10002,
-					"task_id": 2,
-					"project_name": "ex proident tempor aute consequat velit ut tempor exercitation non reprehenderit consequat velit Lorem exercitation",
-					"task": "Laboris Lorem quis qui velit aliqua est incididunt Lorem.",
-					"start": "1/"+ month +"/2019",
-					"end": "29/"+ month +"/2019",
-					"member": 3,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: 60, color: 'is-success' },
-						{ data: 20, color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1003",
-					"project_id": 10003,
-					"task_id": 3,
-					"project_name": "fugiat aute tempor ad tempor fugiat qui eiusmod sunt aute et veniam do exercitation pariatur",
-					"task": "Esse labore sunt anim id incididunt nostrud ad ex nostrud incididunt proident ex.",
-					"start": "01/10/2019",
-					"end": "29/12/2019",
-					"member": 2,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				}
-			]
-		const DELAYED = [
-				{
-					"iwo": "P-1909SCC-TTES1011",
-					"project_id": 10011,
-					"task_id": 4,
-					"project_name": "veniam enim tempor dolor et ex fugiat excepteur est nostrud voluptate pariatur mollit pariatur reprehenderit",
-					"task": "Sint dolor cillum aliquip nostrud elit elit do incididunt amet occaecat dolor ipsum dolore irure.",
-					"start": "01/01/2018",
-					"end": "12/10/2019",
-					"member": 3,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1012",
-					"project_id": 10012,
-					"task_id": 5,
-					"project_name": "pariatur eiusmod anim elit quis laboris.",
-					"task": "Exercitation esse proident consequat ut aliquip reprehenderit mollit officia officia aute irure veniam.",
-					"start": "02/10/2019",
-					"end": "26/10/2019",
-					"member": 5,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				}
-			]
-		const PLANNED = [
-				{
-					"iwo": "P-1909SCC-TTES1021",
-					"project_id": 10021,
-					"task_id": 6,
-					"project_name": "non excepteur enim id tempor cupidatat nostrud fugiat est laborum ad magna quis occaecat dolor",
-					"task": "Eu non qui proident consectetur quis tempor.",
-					"start": "06/12/2019",
-					"end": "02/03/2020",
-					"member": 3,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1022",
-					"project_id": 10022,
-					"task_id": 7,
-					"project_name": "aliquip do et exercitation commodo commodo adipisicing ullamco commodo nulla qui consectetur officia sit tempor",
-					"task": "Exercitation irure consequat reprehenderit nulla aliqua id do qui incididunt in mollit adipisicing eiusmod sunt.",
-					"start": "13/12/2019",
-					"end": "03/01/2020",
-					"member": 2,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1023",
-					"project_id": 10023,
-					"task_id": 8,
-					"project_name": "culpa dolor excepteur dolore nulla tempor do quis quis nisi duis dolore commodo cillum consectetur",
-					"task": "Anim eu proident elit nisi officia magna sint sunt adipisicing consequat nostrud commodo eiusmod.",
-					"start": "01/12/2019",
-					"end": "17/05/2020",
-					"member": 1,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1024",
-					"project_id": 10024,
-					"task_id": 9,
-					"project_name": "occaecat irure in ut non aliqua dolor ipsum cillum dolor est proident consectetur aute sit",
-					"task": "Tempor Lorem laboris eu reprehenderit esse cupidatat est.",
-					"start": "03/12/2019",
-					"end": "29/02/2020",
-					"member": 2,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1025",
-					"project_id": 10025,
-					"task_id": 1,
-					"project_name": "mollit esse dolore anim sunt labore est sit ipsum nulla fugiat anim officia anim ullamco",
-					"task": "Lorem exercitation ipsum commodo elit esse excepteur.",
-					"start": "03/12/2019",
-					"end": "08/02/2020",
-					"member": 4,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1026",
-					"project_id": 10026,
-					"task_id": 2,
-					"project_name": "veniam ipsum aliquip incididunt tempor incididunt enim veniam magna in esse qui nulla elit anim",
-					"task": "Aliqua consequat reprehenderit cillum excepteur nisi labore est deserunt ea.",
-					"start": "10/12/2019",
-					"end": "23/02/2020",
-					"member": 5,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1027",
-					"project_id": 10027,
-					"task_id": 3,
-					"project_name": "cillum proident enim dolor nostrud nulla proident culpa nostrud eiusmod sint esse esse commodo sunt",
-					"task": "Dolor consequat aliquip magna sunt magna esse consequat ullamco.",
-					"start": "03/12/2019",
-					"end": "20/02/2020",
-					"member": 2,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1028",
-					"project_id": 10028,
-					"task_id": 4,
-					"project_name": "mollit minim proident in velit sunt consequat adipisicing aute incididunt in amet ullamco amet non",
-					"task": "Exercitation ex magna enim deserunt minim magna nostrud Lorem veniam anim laboris aliquip.",
-					"start": "04/12/2019",
-					"end": "18/03/2020",
-					"member": 1,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1029",
-					"project_id": 10029,
-					"task_id": 5,
-					"project_name": "aute ad veniam non esse ex sit cillum commodo id duis nisi deserunt incididunt elit",
-					"task": "Cillum consequat ad aute sunt dolore aute et minim culpa exercitation culpa officia eiusmod id.",
-					"start": "10/12/2019",
-					"end": "16/01/2020",
-					"member": 3,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				},
-				{
-					"iwo": "P-1909SCC-TTES1030",
-					"project_id": 10030,
-					"task_id": 6,
-					"project_name": "eiusmod officia anim est qui duis ullamco fugiat aliquip nulla anim in sunt Lorem amet",
-					"task": "In id anim magna quis veniam sit esse anim tempor adipisicing excepteur laboris duis exercitation.",
-					"start": "11/12/2019",
-					"end": "31/03/2020",
-					"member": 1,
-					"taskProgress": randomNumber(),
-					"timesheet": [
-						{ data: randomNumber(), color: 'is-success' },
-						{ data: randomNumber(), color: 'is-info' }
-					]
-				}
-			]
+			{
+				"iwo": "P-1909SCC-TTES1011",
+				"project_id": 10011,
+				"task_id": 4,
+				"project_name": "veniam enim tempor dolor et ex fugiat excepteur est nostrud voluptate pariatur mollit pariatur reprehenderit",
+				"task": "Sint dolor cillum aliquip nostrud elit elit do incididunt amet occaecat dolor ipsum dolore irure.",
+				"start": "01/01/2018",
+				"end": "12/10/2019",
+				"member": 3,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1012",
+				"project_id": 10012,
+				"task_id": 5,
+				"project_name": "pariatur eiusmod anim elit quis laboris.",
+				"task": "Exercitation esse proident consequat ut aliquip reprehenderit mollit officia officia aute irure veniam.",
+				"start": "02/10/2019",
+				"end": "26/10/2019",
+				"member": 5,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1001",
+				"project_id": 10001,
+				"task_id": 1,
+				"project_name": "ullamco sit et sint ut qui Lorem esse culpa laborum.",
+				"task": "Magna ullamco tempor et nostrud ut elit.",
+				"start": today + "/" + month + "/2019",
+				"end": today + "/" + month + "/2019",
+				"member": 1,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: 50, color: 'is-success'},
+					{ data: 55, color: 'is-info'}
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1002",
+				"project_id": 10002,
+				"task_id": 2,
+				"project_name": "ex proident tempor aute consequat velit ut tempor exercitation non reprehenderit consequat velit Lorem exercitation",
+				"task": "Laboris Lorem quis qui velit aliqua est incididunt Lorem.",
+				"start": "1/"+ month +"/2019",
+				"end": "29/"+ month +"/2019",
+				"member": 3,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: 60, color: 'is-success' },
+					{ data: 20, color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1003",
+				"project_id": 10003,
+				"task_id": 3,
+				"project_name": "fugiat aute tempor ad tempor fugiat qui eiusmod sunt aute et veniam do exercitation pariatur",
+				"task": "Esse labore sunt anim id incididunt nostrud ad ex nostrud incididunt proident ex.",
+				"start": "01/10/2019",
+				"end": "29/12/2019",
+				"member": 2,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1021",
+				"project_id": 10021,
+				"task_id": 6,
+				"project_name": "non excepteur enim id tempor cupidatat nostrud fugiat est laborum ad magna quis occaecat dolor",
+				"task": "Eu non qui proident consectetur quis tempor.",
+				"start": "06/12/2019",
+				"end": "02/03/2020",
+				"member": 3,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1022",
+				"project_id": 10022,
+				"task_id": 7,
+				"project_name": "aliquip do et exercitation commodo commodo adipisicing ullamco commodo nulla qui consectetur officia sit tempor",
+				"task": "Exercitation irure consequat reprehenderit nulla aliqua id do qui incididunt in mollit adipisicing eiusmod sunt.",
+				"start": "13/12/2019",
+				"end": "03/01/2020",
+				"member": 2,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1023",
+				"project_id": 10023,
+				"task_id": 8,
+				"project_name": "culpa dolor excepteur dolore nulla tempor do quis quis nisi duis dolore commodo cillum consectetur",
+				"task": "Anim eu proident elit nisi officia magna sint sunt adipisicing consequat nostrud commodo eiusmod.",
+				"start": "01/12/2019",
+				"end": "17/05/2020",
+				"member": 1,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1024",
+				"project_id": 10024,
+				"task_id": 9,
+				"project_name": "occaecat irure in ut non aliqua dolor ipsum cillum dolor est proident consectetur aute sit",
+				"task": "Tempor Lorem laboris eu reprehenderit esse cupidatat est.",
+				"start": "03/12/2019",
+				"end": "29/02/2020",
+				"member": 2,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1025",
+				"project_id": 10025,
+				"task_id": 1,
+				"project_name": "mollit esse dolore anim sunt labore est sit ipsum nulla fugiat anim officia anim ullamco",
+				"task": "Lorem exercitation ipsum commodo elit esse excepteur.",
+				"start": "03/12/2019",
+				"end": "08/02/2020",
+				"member": 4,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1026",
+				"project_id": 10026,
+				"task_id": 2,
+				"project_name": "veniam ipsum aliquip incididunt tempor incididunt enim veniam magna in esse qui nulla elit anim",
+				"task": "Aliqua consequat reprehenderit cillum excepteur nisi labore est deserunt ea.",
+				"start": "10/12/2019",
+				"end": "23/02/2020",
+				"member": 5,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1027",
+				"project_id": 10027,
+				"task_id": 3,
+				"project_name": "cillum proident enim dolor nostrud nulla proident culpa nostrud eiusmod sint esse esse commodo sunt",
+				"task": "Dolor consequat aliquip magna sunt magna esse consequat ullamco.",
+				"start": "03/12/2019",
+				"end": "20/02/2020",
+				"member": 2,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1028",
+				"project_id": 10028,
+				"task_id": 4,
+				"project_name": "mollit minim proident in velit sunt consequat adipisicing aute incididunt in amet ullamco amet non",
+				"task": "Exercitation ex magna enim deserunt minim magna nostrud Lorem veniam anim laboris aliquip.",
+				"start": "04/12/2019",
+				"end": "18/03/2020",
+				"member": 1,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1029",
+				"project_id": 10029,
+				"task_id": 5,
+				"project_name": "aute ad veniam non esse ex sit cillum commodo id duis nisi deserunt incididunt elit",
+				"task": "Cillum consequat ad aute sunt dolore aute et minim culpa exercitation culpa officia eiusmod id.",
+				"start": "10/12/2019",
+				"end": "16/01/2020",
+				"member": 3,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			},
+			{
+				"iwo": "P-1909SCC-TTES1030",
+				"project_id": 10030,
+				"task_id": 6,
+				"project_name": "eiusmod officia anim est qui duis ullamco fugiat aliquip nulla anim in sunt Lorem amet",
+				"task": "In id anim magna quis veniam sit esse anim tempor adipisicing excepteur laboris duis exercitation.",
+				"start": "11/12/2019",
+				"end": "31/03/2020",
+				"member": 1,
+				"taskProgress": randomNumber(),
+				"timesheet": [
+					{ data: randomNumber(), color: 'is-success' },
+					{ data: randomNumber(), color: 'is-info' }
+				]
+			}
+		]
 	</script>
 
 	<script src="../scripts/layout/controller.js"></script>

@@ -1,5 +1,9 @@
 <template>
-	<div :class="'progress-stacked' + (noMargin ? ' has-no-margin' : '')">
+	<div
+		:class="
+			'progress-stacked' + (noMargin ? ' has-no-margin' : '') + ' ' + size
+		"
+	>
 		<div
 			:key="idx"
 			v-for="(bar, idx) in cooked"
