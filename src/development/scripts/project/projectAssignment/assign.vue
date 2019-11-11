@@ -8,56 +8,52 @@
 				<h3
 					class="is-small has-text-weight-light is-reduced-margin is-uppercase"
 				>
-					{{ selectedProject.project_name }}
+					{{ project.project_name }}
 				</h3>
 				<b-field grouped>
 					<div class="control">
 						<b-taglist attached>
 							<b-tag type="is-dark">ID</b-tag>
 							<b-tag type="is-info">{{
-								selectedProject.project_id
+								project.project_id
 							}}</b-tag>
 						</b-taglist>
 					</div>
 					<div class="control">
 						<b-taglist attached size="are-medium">
 							<b-tag type="is-dark">IWO</b-tag>
-							<b-tag type="is-info">{{
-								selectedProject.iwo
-							}}</b-tag>
+							<b-tag type="is-info">{{ project.iwo }}</b-tag>
 						</b-taglist>
 					</div>
-					<div class="control" v-if="name === 'PM'">
+					<div class="control" v-if="checkType('PM')">
 						<b-taglist attached size="are-medium">
 							<b-tag type="is-dark">Project Manager</b-tag>
 							<b-tag
-								v-if="!isEmpty(selectedProject.project_manager)"
+								v-if="!isEmpty(project.project_manager)"
 								type="is-info"
-								>{{ selectedProject.project_manager }}</b-tag
+								>{{ project.project_manager }}</b-tag
 							>
 							<b-tag v-else type="is-danger">EMPTY</b-tag>
 						</b-taglist>
 					</div>
-					<div class="control" v-if="name === 'Co PM'">
+					<div class="control" v-if="checkType('Co-PM')">
 						<b-taglist attached size="are-medium">
 							<b-tag type="is-dark">Co PM</b-tag>
 							<b-tag
-								v-if="
-									!isEmpty(selectedProject.co_project_manager)
-								"
+								v-if="!isEmpty(project.co_project_manager)"
 								type="is-info"
-								>{{ selectedProject.co_project_manager }}</b-tag
+								>{{ project.co_project_manager }}</b-tag
 							>
 							<b-tag v-else type="is-danger">EMPTY</b-tag>
 						</b-taglist>
 					</div>
-					<div class="control" v-if="name === 'Project Adm'">
+					<div class="control" v-if="checkType('Admin')">
 						<b-taglist attached size="are-medium">
 							<b-tag type="is-dark">Project Admin</b-tag>
 							<b-tag
-								v-if="!isEmpty(selectedProject.project_adm)"
+								v-if="!isEmpty(project.project_adm)"
 								type="is-info"
-								>{{ selectedProject.project_adm }}</b-tag
+								>{{ project.project_adm }}</b-tag
 							>
 							<b-tag v-else type="is-danger">EMPTY</b-tag>
 						</b-taglist>
@@ -70,19 +66,19 @@
 		<data-table-no-card
 			striped
 			hoverable
-			:data="listpm"
+			:data="users"
 			:fields="[]"
 			ref="widget"
 		>
 			<template slot-scope="props">
 				<b-table-column field="pm_name" label="Name" sortable>
-					{{ props.row.pm_name }}
+					{{ props.row.name }}
 				</b-table-column>
 				<b-table-column
 					field="classification"
 					label="Classification"
 					sortable
-					v-if="name !== 'Project Adm'"
+					v-if="!checkType('Admin')"
 				>
 					{{ props.row.classification }}
 				</b-table-column>
@@ -120,7 +116,7 @@
 				</b-table-column>
 				<b-table-column field="pm_id" label="Action">
 					<a
-						@click="sendPM(props.row)"
+						@click="assignRole(props.row)"
 						style="cursor: pointer !important; padding:1px; height:21px;"
 						class="button is-success is-small"
 						><span class="mdi mdi-checkbox-marked-outline"></span
@@ -139,103 +135,113 @@ export default {
 		dataTableNoCard
 	},
 	props: {
-		listpm: {
+		users: {
 			type: Array,
 			required: true
 		},
-		selectedProject: {
+		project: {
 			type: Object,
 			required: true
 		},
-		actionAdd: {
+		action: {
 			type: String,
 			required: true
 		},
-		actionUpdate: {
-			type: String,
-			required: true
-		},
-		name: {
+		type: {
 			type: String,
 			required: true
 		}
 	},
 	methods: {
 		isEmpty: isEmpty,
-		splitTitle(text) {
-			return text.replace(" ", "<br>");
+		checkType(type) {
+			return this.type === type;
 		},
-		sendPM(val) {
-			let self = this;
-			let action = "";
-			let msg = "";
-			if (
-				this.name === "PM" &&
-				this.selectedProject.project_manager !== ""
-			) {
-				action = this.actionUpdate;
-				msg =
-					"Project Manager is already selected, would you like to change it to <b>" +
-					val.pm_name +
-					"</b> ?";
-			} else if (
-				this.name === "Co PM" &&
-				this.selectedProject.co_project_manager !== ""
-			) {
-				action = this.actionUpdate;
-				msg =
-					"Co-Project Manager is already selected, would you like to change it to <b>" +
-					val.pm_name +
-					"</b> ?";
-			} else if (
-				this.name === "Project Adm" &&
-				this.selectedProject.project_adm !== ""
-			) {
-				action = this.actionUpdate;
-				msg =
-					"Project Admin is already selected, would you like to change it to <b>" +
-					val.pm_name +
-					"</b> ?";
+		checkRoleEmpty() {
+			if (this.checkType("PM")) {
+				return isEmpty(this.project.project_manager);
+			} else if (this.checkType("Co-PM")) {
+				return isEmpty(this.project.co_project_manager);
+			} else if (this.checkType("Admin")) {
+				return isEmpty(this.project.project_adm);
 			} else {
-				let jobsetter = this.name;
-				action = this.actionAdd;
+				return true;
+			}
+		},
+		pickMessage(user) {
+			if (!this.checkRoleEmpty()) {
+				if (this.checkType("PM")) {
+					return (
+						"Project Manager is already selected, would you like to change it to <b>" +
+						user.name +
+						"</b> ?"
+					);
+				} else if (this.checkType("Co-PM")) {
+					return (
+						"Co-Project Manager is already selected, would you like to change it to <b>" +
+						user.name +
+						"</b> ?"
+					);
+				} else if (this.checkType("Admin")) {
+					return (
+						"Project Admin is already selected, would you like to change it to <b>" +
+						user.name +
+						"</b> ?"
+					);
+				}
+			} else {
+				let jobsetter = this.type;
 
-				if (this.name === "PM") jobsetter = "Project Manager";
-				if (this.name === "Co PM") jobsetter = "Co-PM";
-				if (this.name === "Project Adm") jobsetter = "Project Admin";
+				if (this.checkType("PM")) jobsetter = "Project Manager";
+				if (this.checkType("Co-PM")) jobsetter = "Co-PM";
+				if (this.checkType("Admin")) jobsetter = "Project Admin";
 
-				console.log(jobsetter);
-
-				msg =
+				return (
 					"You want to select <b>" +
-					val.pm_name +
+					user.name +
 					"</b> as " +
 					jobsetter +
-					", are you sure ?";
+					", are you sure ?"
+				);
 			}
+		},
+		assignRole(picked) {
+			let self = this;
+			let message = this.pickMessage(picked);
 
 			this.$dialog.confirm({
 				title: "Confirmation",
-				message: msg,
+				message: message,
 				confirmText: "Yes, Sure!",
 				type: "is-success",
 				onConfirm: () => {
-					let form = document.createElement("form");
-					form.setAttribute("action", action);
-					form.setAttribute("method", "POST");
-
-					let input = document.createElement("input");
-					input.value = this.selectedProject.project_id;
-					input.setAttribute("name", "project_id");
-					form.appendChild(input);
-					let input2 = document.createElement("input");
-					input2.value = val.pm_id;
-					input2.setAttribute("name", "pm_id");
-					form.appendChild(input2);
-					document.getElementById("vapp").appendChild(form);
-					form.submit();
+					self.sendPM(this.project.project_id, picked.id);
 				}
 			});
+		},
+		sendPM(pID, pmID) {
+			// Create Form Element
+			let form = document.createElement("form");
+			form.setAttribute("action", this.action);
+			form.setAttribute("method", "POST");
+
+			// Create Project ID Input Field
+			let pid = document.createElement("input");
+			pid.setAttribute("name", "project_id");
+			pid.setAttribute("type", "hidden");
+			pid.value = pID;
+
+			// Create PM ID Input Field
+			let pmid = document.createElement("input");
+			pmid.setAttribute("name", "pm_id");
+			pmid.setAttribute("type", "hidden");
+			pmid.value = pmID;
+
+			// Append Input to Form and form to Document, then submit
+			form.appendChild(pid);
+			form.appendChild(pmid);
+			document.getElementById("vapp").appendChild(form);
+			form.submit();
 		}
 	}
 };

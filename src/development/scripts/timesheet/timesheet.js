@@ -108,12 +108,19 @@ new Vue({
 				
 				return 0;
 			});
-		},
-		// groupTask(){
-		// 	let delayed = this.task.filter((task) => {
 
-		// 	});
-		// }
+			this.groupTask();
+		},
+		groupTask(){
+			let today = this.task.filter((task) => {
+				let start = Moment(task.start, "DD/MM/YYYY");
+				let end = Moment(task.end, "DD/MM/YYYY");
+
+				return Moment().isBetween(start, end);
+			});
+
+			console.log(today);
+		}
 	},
 	computed: {
 		documentName() {

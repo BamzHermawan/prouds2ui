@@ -106,13 +106,13 @@ module.exports.saveStorage = function (key, json) {
  */
 module.exports.animate = function(selector, classOption, callback = undefined){
 	const el = document.querySelector(selector);
+	const option = classOption.split(" ");
 	if (el !== null && el !== undefined) {
 		if (!el.classList.contains('animated')) {
 			el.classList.add('animated');
 		}
 
 		function handleAnimationEnd() {
-			let option = classOption.split(" ");
 			option.forEach(oneClass => {
 				el.classList.remove(oneClass);
 			});
@@ -121,7 +121,7 @@ module.exports.animate = function(selector, classOption, callback = undefined){
 			if (typeof callback === 'function') callback(el);
 		}
 
-		el.className += " " + classOption;
+		option.forEach(oneClass => el.classList.add(oneClass));
 		el.addEventListener('animationend', handleAnimationEnd);
 	}
 }
