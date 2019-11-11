@@ -135,8 +135,7 @@ if(actingMenu !== null){
 		VueSidebar.$dialog.prompt({
 			message: `User ID`,
 			inputAttrs: {
-				placeholder: 'NIK',
-				maxlength: 10
+				placeholder: 'NIK'
 			},
 			type: 'is-success',
 			confirmText: 'OK',
