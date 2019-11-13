@@ -162,7 +162,7 @@
 											{{_.model.text}}
 										</div>
 									</div>
-									<div class="column is-3">
+									<div class="column is-3 is-marginless is-paddingless">
 										<div style="display: inherit; width: 200px;">
 											<div v-if="_.model.parent===0" style="margin-left: 30px;">
 												{{_.model.desc}}
@@ -172,9 +172,9 @@
 											</div>
 										</div>
 									</div>
-									<div class="column is-3" style="margin-left: 30px;">
-										<div style="display: inherit; width: 200px; margin-left:50px">
-											<div v-if="_.model.parent===0" style="margin-left: 30px;">
+									<div class="column is-3 is-marginless is-paddingless" style="margin-left: 30px;">
+										<div style="display: inherit; width: 200px; margin-left:110px">
+											<div v-if="_.model.parent===0">
 												{{_.model.link}}
 											</div>
 											<div v-if="_.model.parent!==0">
@@ -182,29 +182,27 @@
 											</div>
 										</div>
 									</div>
-									<div class="column">
-										<div style="display: inherit; width: 200px; margin-left:50px">
+									<div class="column is-marginless is-paddingless">
+										<div style="display: inherit; width: 200px; margin-left:95px">
 											<div v-if="_.model.parent===0" style="margin-left: 30px;">
 												<button
 													style="border: 0px; background-color: transparent; color: green; cursor: pointer;"
-													@click="customItemClick(_.vm, _.model, $event)"><i
-														class="fa fa-edit"></i>
+													@click="editMenuTree(_.model)"><i class="fa fa-edit"></i>
 												</button>
 												<button
 													style="border: 0px; background-color: transparent; color: red; cursor: pointer;"
-													@click="customItemClick(_.vm, _.model, $event)"><i
+													@click="deleteMenuTree(_.model,'http://localhost:5501/demo/post_detect.php?')"><i
 														class="fa fa-remove"></i>
 												</button>
 											</div>
 											<div v-if="_.model.parent!==0">
 												<button
 													style="border: 0px; background-color: transparent; color: green; cursor: pointer;"
-													@click="customItemClick(_.vm, _.model, $event)"><i
-														class="fa fa-edit"></i>
+													@click="editMenuTree(_.model)"><i class="fa fa-edit"></i>
 												</button>
 												<button
 													style="border: 0px; background-color: transparent; color: red; cursor: pointer;"
-													@click="customItemClick(_.vm, _.model, $event)"><i
+													@click="deleteMenuTree(_.model,'http://localhost:5501/demo/post_detect.php?')"><i
 														class="fa fa-remove"></i>
 												</button>
 											</div>
@@ -223,64 +221,156 @@
 									<li class="is-active"><a href="#" aria-current="page">Add Menu</a></li>
 								</ul>
 							</nav>
-							<div class="columns is-marginless">
-								<div class="column is-2 is-marginless is-paddingless">
-									<p class="label" style="margin-top: 20px;">Name</p>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Name</p>
 								</div>
-								<div class="column is-marginless">
-									<b-input expanded name="menu_name" placeholder="Fill Menu Name" required></b-input>
+								<div class="column">
+									<crud-input type="text" name="menu_name" placeholder="Fill Menu Name"
+										input-style="margin-bottom: 0px;" required>
+									</crud-input>
 								</div>
 							</div>
-							<div class="columns is-marginless">
-								<div class="column is-2 is-marginless is-paddingless">
-									<p class="label" style="margin-top: 20px;">Parent</p>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Parent</p>
 								</div>
-								<div class="column is-marginless">
-									<b-select expanded name="parent" placeholder="Choose Parent" required>
+								<div class="column">
+									<crud-input type="select" name="parent" placeholder="Choose Parent"
+										input-style="margin-bottom: 0px;" required>
 										<option value="0">Has no parent</option>
 										<option v-for="(menu, index) in allmenu" :key="index" :value="menu.id">
 											{{menu.text}}</option>
-									</b-select>
+									</crud-input>
 								</div>
 							</div>
-							<div class="columns is-marginless">
-								<div class="column is-2 is-marginless is-paddingless">
-									<p class="label" style="margin-top: 20px;">Type</p>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Type</p>
 								</div>
-								<div class="column is-marginless">
-									<b-select expanded name="menu_type" placeholder="Choose Menu Type" required>
+								<div class="column">
+									<crud-input type="select" name="menu_type" placeholder="Choose Menu Type"
+										input-style="margin-bottom: 0px;" required>
 										<option value="1">Navigation</option>
 										<option value="2">Pop Up</option>
 										<option value="3">Global Menu</option>
-									</b-select>
+									</crud-input>
 								</div>
 							</div>
-							<div class="columns is-marginless">
-								<div class="column is-2 is-marginless is-paddingless">
-									<p class="label" style="margin-top: 20px;">Link</p>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Link</p>
 								</div>
-								<div class="column is-marginless">
-									<b-input expanded name="link" placeholder="Fill Menu Link" required></b-input>
-								</div>
-							</div>
-							<div class="columns is-marginless">
-								<div class="column is-2 is-marginless is-paddingless">
-									<p class="label" style="margin-top: 20px;">Icon</p>
-								</div>
-								<div class="column is-marginless">
-									<b-input expanded name="icon" placeholder="Fill Menu Icon" required></b-input>
+								<div class="column">
+									<crud-input type="text" name="link" placeholder="Fill Menu Link"
+										input-style="margin-bottom: 0px;" required>
+									</crud-input>
 								</div>
 							</div>
-							<div class="columns is-marginless">
-								<div class="column is-2 is-marginless is-paddingless">
-									<p class="label" style="margin-top: 20px;">Description</p>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Icon</p>
 								</div>
-								<div class="column is-marginless">
-									<b-input type="textarea" expanded name="description"
-										placeholder="Fill Menu Description" maxlength="55" required></b-input>
+								<div class="column">
+									<crud-input type="text" name="icon" placeholder="Fill Menu Icon"
+										input-style="margin-bottom: 0px;" required>
+									</crud-input>
 								</div>
 							</div>
-							<button style="min-width: 150px;" class="button is-success pull-right" type="submit">
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Description</p>
+								</div>
+								<div class="column">
+									<crud-input type="textarea" name="description" placeholder="Fill Menu Description"
+										input-style="margin-bottom: 0px;" :max-length="55" required>
+									</crud-input>
+								</div>
+							</div>
+							<button class="button is-success pull-right is-long" type="submit">
+								Save
+							</button>
+							<br>
+						</form>
+					</div>
+
+					<div class="animated fadeIn" v-if="editMenu">
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+								<ul class="is-marginless">
+									<li><a @click="editMenuTree">Menu</a></li>
+									<li class="is-active"><a href="#" aria-current="page">Edit Menu</a></li>
+								</ul>
+							</nav>
+							<b-input type="hidden" name="id" :value="tampung.id"></b-input>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Menu Name</p>
+								</div>
+								<div class="column">
+									<crud-input type="text" name="menu_name" :value="tampung.text"
+										placeholder="Fill Menu Name" input-style="margin-bottom: 0px;" required>
+									</crud-input>
+								</div>
+							</div>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Parent</p>
+								</div>
+								<div class="column">
+									<crud-input type="select" name="parent" :value="tampung.parent"
+										placeholder="Choose Parent" input-style="margin-bottom:0px;" required>
+										<option value="0">Has no parent</option>
+										<option v-for="(menu, index) in allmenu" :key="index" :value="menu.id">
+											{{menu.text}}</option>
+									</crud-input>
+								</div>
+							</div>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Type</p>
+								</div>
+								<div class="column">
+									<crud-input type="select" name="menu_type" :value="tampung.type"
+										placeholder="Choose Menu Type" input-style="margin-bottom:0px;" required>
+										<option value="1">Navigation</option>
+										<option value="2">Pop Up</option>
+										<option value="3">Global Menu</option>
+									</crud-input>
+								</div>
+							</div>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Link</p>
+								</div>
+								<div class="column">
+									<crud-input type="text" name="link" :value="tampung.link" placeholder="Fill Link"
+										input-style="margin-bottom: 0px;" required>
+									</crud-input>
+								</div>
+							</div>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Icon</p>
+								</div>
+								<div class="column">
+									<crud-input type="text" name="icon" :value="tampung.icon" placeholder="Fill Icon"
+										input-style="margin-bottom: 0px;" required>
+									</crud-input>
+								</div>
+							</div>
+							<div class="columns">
+								<div class="column is-2">
+									<p class="label">Description</p>
+								</div>
+								<div class="column">
+									<crud-input type="textarea" name="description" :value="tampung.desc"
+										placeholder="Fill Menu Description" input-style="margin-bottom: 0px;"
+										:max-length="55" required>
+									</crud-input>
+								</div>
+							</div>
+							<button class="button is-success pull-right is-long" type="submit">
 								Save
 							</button>
 							<br>

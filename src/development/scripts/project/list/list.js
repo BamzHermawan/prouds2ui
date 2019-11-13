@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import { notified, checkConnection, animate } from 'helper-tools'
 import { dataTableNoCard, crudInput, linker } from "components";
-import Axios from 'axios'
 import api from 'helper-apis';
 import 'helper-filter';
 
