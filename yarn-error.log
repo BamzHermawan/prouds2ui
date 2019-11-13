@@ -1,29 +1,29 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add helper-filters
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add myGeeg
 
 PATH: 
-  C:\Users\ARIOWI~1\AppData\Local\Temp\yarn--1572508566702-0.6233439958194866;D:\Projects\Telkomsigma\prouds2ui\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Ario Widiatmoko\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;D:\Oracle\product\11.2.0\client_1\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\wamp64\bin\php\php7.2.4;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AdoptOpenJDK\jdk8u192-b12\bin;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;C:\Android\android-sdk\tools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Ario Widiatmoko\AppData\Local\Microsoft\WindowsApps;C:\Users\Ario Widiatmoko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\Composer\vendor\bin;C:\Users\Ario Widiatmoko\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\cmder
+  C:\Users\User\AppData\Local\Temp\yarn--1573626758200-0.6581626852083471;C:\xampp\htdocs\github\prouds2ui\node_modules\.bin;C:\Users\User\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\cmder\bin;D:\cmder\vendor\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\xampp\php;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Local\GitHubDesktop\bin;C:\Users\User\AppData\Roaming\npm;C:\Users\User\AppData\Local\Yarn\bin;C:\xampp\mysql\bin;C:\xampp\php;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;D:\cmder
 
 Yarn version: 
   1.17.3
 
 Node version: 
-  10.16.0
+  10.16.3
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/helper-filters: Not found
-      at Request.params.callback [as _callback] (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66830:18)
-      at Request.self.callback (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140464:22)
+  Error: https://registry.yarnpkg.com/myGeeg: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65939:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140464:22)
       at Request.emit (events.js:198:13)
-      at Request.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141436:10)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141436:10)
       at Request.emit (events.js:198:13)
-      at IncomingMessage.<anonymous> (C:\Users\Ario Widiatmoko\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141358:12)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141358:12)
       at Object.onceWrapper (events.js:286:20)
       at IncomingMessage.emit (events.js:203:15)
-      at endReadableNT (_stream_readable.js:1129:12)
+      at endReadableNT (_stream_readable.js:1145:12)
       at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
@@ -48,6 +48,7 @@ npm manifest:
   		"@node-minify/cssnano": "^4.1.2",
   		"@node-minify/uglify-js": "^4.1.2",
   		"@vue/component-compiler-utils": "^3.0.0",
+  		"bulma": "^0.8.0",
   		"color-it": "^1.2.11",
   		"dree": "^2.1.10",
   		"http-server": "^0.11.1",
@@ -72,7 +73,6 @@ npm manifest:
   	"dependencies": {
   		"axios": "^0.19.0",
   		"buefy": "0.7.10",
-  		"dhtmlx-gantt": "^6.2.3",
   		"highcharts": "^7.1.2",
   		"jsgantt-improved": "^2.2.11",
   		"loader.js": "^4.7.0",
@@ -86,6 +86,8 @@ npm manifest:
   	},
   	"alias": {
   		"vue": "./node_modules/vue/dist/vue.common.js",
+  		"bulma": "./node_modules/bulma/bulma.sass",
+  		"myGeeg": "./src/helper/geeg.js",
   		"helper-moment": "./src/helper/moment-locale.js",
   		"helper-tools": "./src/helper/tools.js",
   		"helper-loader": "./src/helper/loader.js",
@@ -1531,6 +1533,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
     integrity sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
   
+  bulma@^0.8.0:
+    version "0.8.0"
+    resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.8.0.tgz#ac1606431703a4761b18a4a2d5cc1fa864a2aece"
+    integrity sha512-nhf3rGyiZh/VM7FrSJ/5KeLlfaFkXz0nYcXriynfPH4vVpnxnqyEwaNGdNCVzHyyCA3cHgkQAMpdF/SFbFGZfA==
+  
   cache-base@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/cache-base/-/cache-base-1.0.1.tgz#0a7f46416831c8b662ee36fe4e7c59d76f666ab2"
@@ -2354,11 +2361,6 @@ Lockfile:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
     integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
-  
-  dhtmlx-gantt@^6.2.3:
-    version "6.2.3"
-    resolved "https://registry.yarnpkg.com/dhtmlx-gantt/-/dhtmlx-gantt-6.2.3.tgz#f6a2f871897df45747e0473e176b7b57f23b8d2c"
-    integrity sha512-1aerQxQM/YQ6o7r0BDgc5n3zdOy0ZoYobcOXQ8CTODutptAsosrBL7wixf4ZPAhCFlHJ45yc/11WcOI1w+kjlw==
   
   diffie-hellman@^5.0.0:
     version "5.0.3"
