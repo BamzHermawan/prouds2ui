@@ -4,6 +4,7 @@ import { dataTableNoCard, crudInput, ganttchart } from 'components';
 import Loader from 'helper-loader';
 import { animate } from 'helper-tools';
 import EditTask from "./editTask.vue"
+import AddTask from "./addTask.vue"
 import AssignResource from "./assignResource.vue"
 import SetProgress from "./setProgress.vue"
 import MergeTask from "./mergeTask.vue"
@@ -14,19 +15,21 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		dataTableNoCard, 
-		crudInput, 
-		ganttchart, 
-		EditTask, 
-		AssignResource, 
+		dataTableNoCard,
+		crudInput,
+		ganttchart,
+		EditTask,
+		AddTask,
+		AssignResource,
 		SetProgress,
-		MergeTask, 
-		ChangeParentTask, 
+		MergeTask,
+		ChangeParentTask,
 		LinkPredecessor
 	},
 	data: {
 		modal: {
 			editTask: false,
+			addTask: false,
 			setProgress: false,
 			changeParentTask: false,
 			linkPredecessor: false,
@@ -70,12 +73,15 @@ new Vue({
 					el.classList.add('fadeInRight');
 					self.showSideBar = false;
 				});
-			}else{
+			} else {
 				self.showSideBar = true;
 			}
 		},
 		editTask() {
 			this.modal.editTask = true;
+		},
+		addTask() {
+			this.modal.addTask = true;
 		},
 		setProgress() {
 			this.modal.setProgress = true;

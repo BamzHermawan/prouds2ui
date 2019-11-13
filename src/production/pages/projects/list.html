@@ -138,7 +138,8 @@
 									<p>{{props.row.iwo}}</p>
 								</b-table-column>
 								<b-table-column width="300" field="project_name" label="Project Name" sortable>
-									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}</linker>
+									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}
+									</linker>
 								</b-table-column>
 								<b-table-column width="100" field="amount" label="Amount (IDR)" sortable
 									class="align-middle">
@@ -148,7 +149,7 @@
 									<span>{{ props.row.customer }}</span>
 								</b-table-column>
 								<b-table-column field="project_type" label="Project Type" sortable class="align-middle">
-									<span>{{ props.row.project_type }}</span>
+									<span>{{ props.row.project_type.label }}</span>
 								</b-table-column>
 								<b-table-column width="175" field="project_manager" label="Project Manager" sortable
 									class="align-middle">
@@ -194,9 +195,9 @@
 								<b-table-column field="action" label="Action" width="75" centered class="align-middle">
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PMO -->
-									<!-- <span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
+									<span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
 										style="cursor: pointer !important;" @click="editProject(props.row)">
-									</span> -->
+									</span>
 									<!-- Ini untuk action PMO -->
 
 									<!-- TODO: Faishol -->
@@ -380,16 +381,11 @@
 									<h3 class="is-small has-text-weight-light">Project Profile</h3>
 									<div class="columns is-multiline">
 										<div class="column is-3-fullhd is-6-desktop">
-											<b-field label="Project Type">
-												<p>{{form.project_type}}</p>
-											</b-field>
-										</div>
-										<div class="column is-3-fullhd is-6-desktop">
 											<b-field label="Amount">
 												<p>{{form.amount | currency}} IDR</p>
 											</b-field>
 										</div>
-										<div class="column is-6-fullhd is-12-desktop">
+										<div class="column is-3-fullhd is-6-desktop">
 											<b-field label="Contract Length">
 												<p class="is-marginless">
 													<span>{{form.contract_length}} Months</span>
@@ -424,6 +420,16 @@
 									<div style="padding: 0px 10px;">
 										<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 											<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
+											<crud-input type="select" style="width: 100%;" name="project_type"
+												label="Project Type" placeholder="Choose Project Type"
+												v-model="form.project_type.id">
+												<option selected="" style="display: none;"></option>
+												<option value="1">Managed Services</option>
+												<option value="2">Implementation</option>
+												<option value="3">Research and Development</option>
+												<option value="4">Type A</option>
+												<option value="5">Type B</option>
+											</crud-input>
 											<crud-input type="select" style="width: 100%;" name="classification"
 												label="Classification" placeholder="Choose Classification"
 												v-model="form.classification">
@@ -459,433 +465,534 @@
 	</div>
 
 	<script>
-		const PROJECTLIST = [
-			{
-				"project_id": 430170,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
-				"amount": 30000000000,
-				"customer": "PT. Pyramax",
-				"project_type": "Managed Services",
-				"project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
-				"co_project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
-				"status": "On Going Operation",
-				"start": "09-01-07",
-				"end": "01-12-02",
-				"contract_length": 21,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 535051,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
-				"amount": 10000000,
-				"customer": "PT. Quonk",
-				"project_type": "Implementation",
-				"project_manager": "Shelton Richmond",
-				"co_project_manager": "Loretta Garza",
-				"status": "Completed",
-				"start": "01-08-00",
-				"end": "05-08-00",
-				"contract_length": 86,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 766392,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "elit aliqua irure ut sint cillum tempor fugiat culpa nostrud adipisicing qui incididunt dolore",
-				"amount": 100000000,
-				"customer": "PT. Quantalia",
-				"project_type": "Research and Development",
-				"project_manager": "Chapman Patterson",
-				"co_project_manager": "Nellie Kerr",
-				"status": "Completed",
-				"start": "30-12-01",
-				"end": "12-03-02",
-				"contract_length": 71,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 610803,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"amount": 100000000,
-				"customer": "PT. Colaire",
-				"project_type": "Implementation",
-				"project_manager": "Jeanie Hudson",
-				"co_project_manager": "Sheree Steele",
-				"status": "New",
-				"start": "07-03-17",
-				"end": "27-11-17",
-				"contract_length": 76,
-				"unit_delivery": "PMO",
-				"classification": null,
-				"project_segment": null
-			},
-			{
-				"project_id": 453204,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "aliquip amet occaecat nostrud consectetur cillum nisi sit tempor qui",
-				"amount": 40000000,
-				"customer": "PT. Talkola",
-				"project_type": "Type B",
-				"project_manager": "Delia Vaughn",
-				"co_project_manager": "Lacey Alvarado",
-				"status": "In Progress",
-				"start": "03-07-13",
-				"end": "03-07-02",
-				"contract_length": 45,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 504165,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "aute tempor consectetur sunt est magna sint mollit ipsum ipsum cupidatat reprehenderit",
-				"amount": 70000000,
-				"customer": "PT. Plasmox",
-				"project_type": "Type B",
-				"project_manager": "Terrell Willis",
-				"co_project_manager": "Rutledge Yang",
-				"status": "In Progress",
-				"start": "17-07-15",
-				"end": "21-08-19",
-				"contract_length": 13,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 946076,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "ad non proident proident ad ipsum sint culpa adipisicing elit excepteur voluptate ea tempor sit voluptate",
-				"amount": 90000000,
-				"customer": "PT. Pearlessa",
-				"project_type": "Type B",
-				"project_manager": "Monroe Duffy",
-				"co_project_manager": "Brianna Owen",
-				"status": "Waiting to Initial Baseline",
-				"start": "09-02-13",
-				"end": "26-10-05",
-				"contract_length": 52,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 375847,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "sint proident fugiat et ipsum aute consectetur incididunt cillum pariatur",
-				"amount": 80000000,
-				"customer": "PT. Sportan",
-				"project_type": "Type A",
-				"project_manager": "Thompson Ortiz",
-				"co_project_manager": "Lynn Romero",
-				"status": "Closed",
-				"start": "17-10-06",
-				"end": "13-07-00",
-				"contract_length": 29,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 683788,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "officia officia irure nulla Lorem consequat ex qui duis occaecat",
-				"amount": 30000000,
-				"customer": "PT. Bezal",
-				"project_type": "Type B",
-				"project_manager": "Taylor Velazquez",
-				"co_project_manager": "Clarice Huffman",
-				"status": "In Progress",
-				"start": "29-08-12",
-				"end": "21-04-15",
-				"contract_length": 97,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 648409,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "sint sit do voluptate duis do adipisicing elit irure incididunt ex deserunt sit laboris anim in ex",
-				"amount": 50000000,
-				"customer": "PT. Fangold",
-				"project_type": "Type A",
-				"project_manager": "Denise Wolf",
-				"co_project_manager": "Lynne Hoover",
-				"status": "Closed",
-				"start": "13-02-14",
-				"end": "11-05-04",
-				"contract_length": 18,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 1429010,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "et voluptate eu ad consectetur cupidatat quis voluptate ex laboris sint nulla pariatur est amet et cupidatat exercitation velit excepteur",
-				"amount": 20000000,
-				"customer": "PT. Voipa",
-				"project_type": "Implementation",
-				"project_manager": "Luella Small",
-				"co_project_manager": "Warren Lang",
-				"status": "Dropped",
-				"start": "07-08-17",
-				"end": "01-10-16",
-				"contract_length": 39,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 1779211,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "reprehenderit deserunt culpa id amet ad ullamco aute exercitation officia",
-				"amount": 30000000,
-				"customer": "PT. Emoltra",
-				"project_type": "Type A",
-				"project_manager": "Marsh Marsh",
-				"co_project_manager": "Lesa Mays",
-				"status": "In Progress",
-				"start": "08-04-07",
-				"end": "29-11-03",
-				"contract_length": 12,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 7201712,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "commodo anim nulla nulla ipsum ut consectetur quis occaecat reprehenderit",
-				"amount": 80000000,
-				"customer": "PT. Ecratic",
-				"project_type": "Implementation",
-				"project_manager": "Carla Pena",
-				"co_project_manager": "Francine Robinson",
-				"status": "Closed",
-				"start": "28-01-08",
-				"end": "20-02-19",
-				"contract_length": 63,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 6549313,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "consequat ad adipisicing mollit laboris id cupidatat pariatur anim est occaecat dolor",
-				"amount": 60000000,
-				"customer": "PT. Zilla",
-				"project_type": "Type A",
-				"project_manager": "Tanner Casey",
-				"co_project_manager": "Emily Quinn",
-				"status": "Waiting to Rebaseline",
-				"start": "12-10-10",
-				"end": "06-02-17",
-				"contract_length": 93,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 8248214,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "sit nostrud sint ea esse aute officia sint quis cillum labore",
-				"amount": 50000000,
-				"customer": "PT. Vitricomp",
-				"project_type": "Type B",
-				"project_manager": "Rodriguez Kirk",
-				"co_project_manager": "Britney Mendez",
-				"status": "Waiting to Initial Baseline",
-				"start": "22-07-01",
-				"end": "28-11-12",
-				"contract_length": 54,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 4459615,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "consectetur non occaecat ad incididunt laboris magna officia excepteur ipsum pariatur labore et reprehenderit ipsum ullamco",
-				"amount": 70000000,
-				"customer": "PT. Assistix",
-				"project_type": "Type A",
-				"project_manager": "Lowery Rowland",
-				"co_project_manager": "Harrell Malone",
-				"status": "Waiting to Initial Baseline",
-				"start": "22-12-09",
-				"end": "06-10-16",
-				"contract_length": 40,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 3646516,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "Lorem fugiat do Lorem aliquip non nostrud deserunt nostrud officia ex sint dolor",
-				"amount": 90000000,
-				"customer": "PT. Elita",
-				"project_type": "Type A",
-				"project_manager": "Erica Melendez",
-				"co_project_manager": "Burks Lawrence",
-				"status": "On Hold",
-				"start": "05-11-11",
-				"end": "22-08-01",
-				"contract_length": 26,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 6297217,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "occaecat duis laborum sit irure ad sint cillum ad anim nostrud dolore culpa cillum deserunt eu id exercitation",
-				"amount": 20000000,
-				"customer": "PT. Bolax",
-				"project_type": "Type B",
-				"project_manager": "Lena Kelley",
-				"co_project_manager": "Olsen Becker",
-				"status": "In Progress",
-				"start": "18-07-17",
-				"end": "15-01-10",
-				"contract_length": 15,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 1628818,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "est pariatur adipisicing et sunt quis incididunt mollit anim aliqua et magna cillum veniam occaecat",
-				"amount": 30000000,
-				"customer": "PT. Zanymax",
-				"project_type": "Implementation",
-				"project_manager": "Graham Buckner",
-				"co_project_manager": "Jeannie Robles",
-				"status": "Waiting to Rebaseline",
-				"start": "28-01-07",
-				"end": "01-01-01",
-				"contract_length": 72,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 1147719,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "anim enim aliqua duis in id exercitation aliquip incididunt tempor consequat dolor consectetur elit ullamco aliquip cillum veniam",
-				"amount": 40000000,
-				"customer": "PT. Utarian",
-				"project_type": "Type B",
-				"project_manager": "Estelle Wilson",
-				"co_project_manager": "Lowe Combs",
-				"status": "In Progress",
-				"start": "03-03-19",
-				"end": "06-05-09",
-				"contract_length": 83,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 3514020,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "eu nulla commodo labore sit fugiat incididunt velit veniam ea ad incididunt sint tempor reprehenderit",
-				"amount": 70000000,
-				"customer": "PT. Poochies",
-				"project_type": "Implementation",
-				"project_manager": "Simon Trevino",
-				"co_project_manager": "Aimee Valenzuela",
-				"status": "Closed",
-				"start": "31-07-02",
-				"end": "22-03-14",
-				"contract_length": 68,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 9095921,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "occaecat elit sit est velit do nulla consequat excepteur sint nisi qui ad velit proident velit",
-				"amount": 30000000,
-				"customer": "PT. Enjola",
-				"project_type": "Implementation",
-				"project_manager": "Ophelia Elliott",
-				"co_project_manager": "Marcella Davidson",
-				"status": "Waiting to Rebaseline",
-				"start": "31-05-02",
-				"end": "31-08-09",
-				"contract_length": 22,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 5624422,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "est commodo pariatur amet aliquip occaecat ad ea ipsum aliqua sint occaecat sit eu",
-				"amount": 90000000,
-				"customer": "PT. Verton",
-				"project_type": "Type A",
-				"project_manager": "Farley Caldwell",
-				"co_project_manager": "Joann Savage",
-				"status": "Completed",
-				"start": "01-03-15",
-				"end": "12-04-16",
-				"contract_length": 89,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 4800923,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "reprehenderit laborum labore velit velit exercitation proident eiusmod magna deserunt nisi ea nostrud",
-				"amount": 60000000,
-				"customer": "PT. Eplosion",
-				"project_type": "Type A",
-				"project_manager": "Britt Mccormick",
-				"co_project_manager": "Dale Lewis",
-				"status": "Completed",
-				"start": "14-10-03",
-				"end": "25-07-01",
-				"contract_length": 10,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			},
-			{
-				"project_id": 8754924,
-				"iwo": "P-1909SCC-TTES0481",
-				"project_name": "cillum sunt eiusmod magna et incididunt nostrud id fugiat reprehenderit",
-				"amount": 90000000,
-				"customer": "PT. Cowtown",
-				"project_type": "Type A",
-				"project_manager": "Hernandez Bartlett",
-				"co_project_manager": "Pope Lancaster",
-				"status": "Dropped",
-				"start": "23-12-10",
-				"end": "23-04-01",
-				"contract_length": 96,
-				"unit_delivery": "PMO",
-				"classification": 1,
-				"project_segment": 2
-			}
-		];
+		const
+			PROJECTLIST = [
+				{
+					"project_id": 430170,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
+					"amount": 30000000000,
+					"customer": "PT. Pyramax",
+					"project_type": {
+						"id": "1",
+						"label": "Managed Services"
+					},
+					"project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
+					"co_project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
+					"status": "On Going Operation",
+					"start": "09/01/07",
+					"end": "01/12/02",
+					"contract_length": 21,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 535051,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
+					"amount": 10000000,
+					"customer": "PT. Quonk",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Shelton Richmond",
+					"co_project_manager": "Loretta Garza",
+					"status": "Completed",
+					"start": "01/08/00",
+					"end": "05/08/00",
+					"contract_length": 86,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 766392,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "elit aliqua irure ut sint cillum tempor fugiat culpa nostrud adipisicing qui incididunt dolore",
+					"amount": 100000000,
+					"customer": "PT. Quantalia",
+					"project_type": {
+						"id": "3",
+						"label": "Research and Development"
+					},
+					"project_manager": "Chapman Patterson",
+					"co_project_manager": "Nellie Kerr",
+					"status": "Completed",
+					"start": "30/12/01",
+					"end": "12/03/02",
+					"contract_length": 71,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 610803,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
+					"amount": 100000000,
+					"customer": "PT. Colaire",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Jeanie Hudson",
+					"co_project_manager": "Sheree Steele",
+					"status": "New",
+					"start": "07/03/17",
+					"end": "27/11/17",
+					"contract_length": 76,
+					"unit_delivery": "PMO",
+					"classification": null,
+					"cost": "10000000000000",
+					"project_segment": null
+				},
+				{
+					"project_id": 453204,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "aliquip amet occaecat nostrud consectetur cillum nisi sit tempor qui",
+					"amount": 40000000,
+					"customer": "PT. Talkola",
+					"project_type": {
+						"id": "5",
+						"label": "Type B"
+					},
+					"project_manager": "Delia Vaughn",
+					"co_project_manager": "Lacey Alvarado",
+					"status": "In Progress",
+					"start": "03/07/13",
+					"end": "03/07/02",
+					"contract_length": 45,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 504165,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "aute tempor consectetur sunt est magna sint mollit ipsum ipsum cupidatat reprehenderit",
+					"amount": 70000000,
+					"customer": "PT. Plasmox",
+					"project_type": {
+						"id": "5",
+						"label": "Type B"
+					},
+					"project_manager": "Terrell Willis",
+					"co_project_manager": "Rutledge Yang",
+					"status": "In Progress",
+					"start": "17/07/15",
+					"end": "21/08/19",
+					"contract_length": 13,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 946076,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "ad non proident proident ad ipsum sint culpa adipisicing elit excepteur voluptate ea tempor sit voluptate",
+					"amount": 90000000,
+					"customer": "PT. Pearlessa",
+					"project_type": {
+						"id": "5",
+						"label": "Type B"
+					},
+					"project_manager": "Monroe Duffy",
+					"co_project_manager": "Brianna Owen",
+					"status": "Waiting to Initial Baseline",
+					"start": "09/02/13",
+					"end": "26/10/05",
+					"contract_length": 52,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 375847,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "sint proident fugiat et ipsum aute consectetur incididunt cillum pariatur",
+					"amount": 80000000,
+					"customer": "PT. Sportan",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Thompson Ortiz",
+					"co_project_manager": "Lynn Romero",
+					"status": "Closed",
+					"start": "17/10/06",
+					"end": "13/07/00",
+					"contract_length": 29,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 683788,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "officia officia irure nulla Lorem consequat ex qui duis occaecat",
+					"amount": 30000000,
+					"customer": "PT. Bezal",
+					"project_type": {
+						"id": "5",
+						"label": "Type B"
+					},
+					"project_manager": "Taylor Velazquez",
+					"co_project_manager": "Clarice Huffman",
+					"status": "In Progress",
+					"start": "29/08/12",
+					"end": "21/04/15",
+					"contract_length": 97,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 648409,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "sint sit do voluptate duis do adipisicing elit irure incididunt ex deserunt sit laboris anim in ex",
+					"amount": 50000000,
+					"customer": "PT. Fangold",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Denise Wolf",
+					"co_project_manager": "Lynne Hoover",
+					"status": "Closed",
+					"start": "13/02/14",
+					"end": "11/05/04",
+					"contract_length": 18,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 1429010,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "et voluptate eu ad consectetur cupidatat quis voluptate ex laboris sint nulla pariatur est amet et cupidatat exercitation velit excepteur",
+					"amount": 20000000,
+					"customer": "PT. Voipa",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Luella Small",
+					"co_project_manager": "Warren Lang",
+					"status": "Dropped",
+					"start": "07/08/17",
+					"end": "01/10/16",
+					"contract_length": 39,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 1779211,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "reprehenderit deserunt culpa id amet ad ullamco aute exercitation officia",
+					"amount": 30000000,
+					"customer": "PT. Emoltra",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Marsh Marsh",
+					"co_project_manager": "Lesa Mays",
+					"status": "In Progress",
+					"start": "08/04/07",
+					"end": "29/11/03",
+					"contract_length": 12,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 7201712,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "commodo anim nulla nulla ipsum ut consectetur quis occaecat reprehenderit",
+					"amount": 80000000,
+					"customer": "PT. Ecratic",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Carla Pena",
+					"co_project_manager": "Francine Robinson",
+					"status": "Closed",
+					"start": "28/01/08",
+					"end": "20/02/19",
+					"contract_length": 63,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 6549313,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "consequat ad adipisicing mollit laboris id cupidatat pariatur anim est occaecat dolor",
+					"amount": 60000000,
+					"customer": "PT. Zilla",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Tanner Casey",
+					"co_project_manager": "Emily Quinn",
+					"status": "Waiting to Rebaseline",
+					"start": "12/10/10",
+					"end": "06/02/17",
+					"contract_length": 93,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 8248214,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "sit nostrud sint ea esse aute officia sint quis cillum labore",
+					"amount": 50000000,
+					"customer": "PT. Vitricomp",
+					"project_type": {
+						"id": "5",
+						"label": "Type B"
+					},
+					"project_manager": "Rodriguez Kirk",
+					"co_project_manager": "Britney Mendez",
+					"status": "Waiting to Initial Baseline",
+					"start": "22/07/01",
+					"end": "28/11/12",
+					"contract_length": 54,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 4459615,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "consectetur non occaecat ad incididunt laboris magna officia excepteur ipsum pariatur labore et reprehenderit ipsum ullamco",
+					"amount": 70000000,
+					"customer": "PT. Assistix",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Lowery Rowland",
+					"co_project_manager": "Harrell Malone",
+					"status": "Waiting to Initial Baseline",
+					"start": "22/12/09",
+					"end": "06/10/16",
+					"contract_length": 40,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 3646516,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "Lorem fugiat do Lorem aliquip non nostrud deserunt nostrud officia ex sint dolor",
+					"amount": 90000000,
+					"customer": "PT. Elita",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Erica Melendez",
+					"co_project_manager": "Burks Lawrence",
+					"status": "On Hold",
+					"start": "05/11/11",
+					"end": "22/08/01",
+					"contract_length": 26,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 6297217,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "occaecat duis laborum sit irure ad sint cillum ad anim nostrud dolore culpa cillum deserunt eu id exercitation",
+					"amount": 20000000,
+					"customer": "PT. Bolax",
+					"project_type": {
+						"id": "5",
+						"label": "Type B"
+					},
+					"project_manager": "Lena Kelley",
+					"co_project_manager": "Olsen Becker",
+					"status": "In Progress",
+					"start": "18/07/17",
+					"end": "15/01/10",
+					"contract_length": 15,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 1628818,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "est pariatur adipisicing et sunt quis incididunt mollit anim aliqua et magna cillum veniam occaecat",
+					"amount": 30000000,
+					"customer": "PT. Zanymax",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Graham Buckner",
+					"co_project_manager": "Jeannie Robles",
+					"status": "Waiting to Rebaseline",
+					"start": "28/01/07",
+					"end": "01/01/01",
+					"contract_length": 72,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 1147719,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "anim enim aliqua duis in id exercitation aliquip incididunt tempor consequat dolor consectetur elit ullamco aliquip cillum veniam",
+					"amount": 40000000,
+					"customer": "PT. Utarian",
+					"project_type": {
+						"id": "5",
+						"label": "Type B"
+					},
+					"project_manager": "Estelle Wilson",
+					"co_project_manager": "Lowe Combs",
+					"status": "In Progress",
+					"start": "03/03/19",
+					"end": "06/05/09",
+					"contract_length": 83,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 3514020,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "eu nulla commodo labore sit fugiat incididunt velit veniam ea ad incididunt sint tempor reprehenderit",
+					"amount": 70000000,
+					"customer": "PT. Poochies",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Simon Trevino",
+					"co_project_manager": "Aimee Valenzuela",
+					"status": "Closed",
+					"start": "31/07/02",
+					"end": "22/03/14",
+					"contract_length": 68,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 9095921,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "occaecat elit sit est velit do nulla consequat excepteur sint nisi qui ad velit proident velit",
+					"amount": 30000000,
+					"customer": "PT. Enjola",
+					"project_type": {
+						"id": "4",
+						"label": "Type A"
+					},
+					"project_manager": "Ophelia Elliott",
+					"co_project_manager": "Marcella Davidson",
+					"status": "Waiting to Rebaseline",
+					"start": "31/05/02",
+					"end": "31/08/09",
+					"contract_length": 22,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 5624422,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "est commodo pariatur amet aliquip occaecat ad ea ipsum aliqua sint occaecat sit eu",
+					"amount": 90000000,
+					"customer": "PT. Verton",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Farley Caldwell",
+					"co_project_manager": "Joann Savage",
+					"status": "Completed",
+					"start": "01/03/15",
+					"end": "12/04/16",
+					"contract_length": 89,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 4800923,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "reprehenderit laborum labore velit velit exercitation proident eiusmod magna deserunt nisi ea nostrud",
+					"amount": 60000000,
+					"customer": "PT. Eplosion",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Britt Mccormick",
+					"co_project_manager": "Dale Lewis",
+					"status": "Completed",
+					"start": "14/10/03",
+					"end": "25/07/01",
+					"contract_length": 10,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				},
+				{
+					"project_id": 8754924,
+					"iwo": "P-1909SCC-TTES0481",
+					"project_name": "cillum sunt eiusmod magna et incididunt nostrud id fugiat reprehenderit",
+					"amount": 90000000,
+					"customer": "PT. Cowtown",
+					"project_type": {
+						"id": "2",
+						"label": "Implementation"
+					},
+					"project_manager": "Hernandez Bartlett",
+					"co_project_manager": "Pope Lancaster",
+					"status": "Dropped",
+					"start": "23/12/10",
+					"end": "23/04/01",
+					"contract_length": 96,
+					"unit_delivery": "PMO",
+					"classification": 1,
+					"cost": "10000000000000",
+					"project_segment": 2
+				}
+			];
 	</script>
 
 	<script src="../../../main.js"></script>
