@@ -23,14 +23,18 @@ new Vue({
 		showTable: true,
 		newproject: NEWPROJECT,
 		newprojectOri: NEWPROJECT,
-		listpm: LISTPM,
+		users: {
+			pm: LISTPM,
+			copm: LISTCOPM,
+			admin: LISTADMIN
+		},
 		unitdelivery: UNITDELIVERY,
 		selectedProject: [],
 		selectedStatus: "",
 		toggleForm: {
 			PM: false,
-			CoPM: false,
-			AdmPM: false
+			Adm: false,
+			CoPM: false
 		}
 	},
 	watch: {
@@ -45,44 +49,40 @@ new Vue({
 			if (this.showTable) {
 				this.selectedProject = val
 				animate('#tableProject', 'fadeOut faster', (el) => {
+					el.classList.add('fadeIn', 'faster');
 					this.showTable = !this.showTable
 					this.showUnitDelivery = !this.showUnitDelivery
 
-					el.classList.add('fadeIn');
 					document.querySelector('.contentPage').scrollTop = 0;
 					global.psContent.update();
 				});
 			} else {
 				document.querySelector('#setUnitDelivery').classList.remove('fadeIn', 'faster');
 				animate('#setUnitDelivery', 'fadeOut faster', (el) => {
+					el.classList.add('fadeIn', 'faster');
 					this.showTable = !this.showTable
 					this.showUnitDelivery = !this.showUnitDelivery
-
-					document.querySelector('#setUnitDelivery').classList.add('fadeIn faster');
 					this.selectedProject = ""
 				});
 			}
-
-
 		},
 		assign(idd, val = undefined) {
 			if (this.showTable) {
 				this.selectedProject = val
 				animate('#tableProject', 'fadeOut faster', (el) => {
+					el.classList.add('fadeIn', 'faster');
 					this.showTable = !this.showTable
 					this.toggleForm[idd] = !this.toggleForm[idd]
 
-					el.classList.add('fadeIn');
 					document.querySelector('.contentPage').scrollTop = 0;
 					global.psContent.update();
 				});
 			} else {
 				document.querySelector('#' + idd).classList.remove('fadeIn', 'faster');
 				animate('#' + idd, 'fadeOut faster', (el) => {
+					el.classList.add('fadeIn', 'faster');
 					this.showTable = !this.showTable
 					this.toggleForm[idd] = !this.toggleForm[idd]
-
-					document.querySelector('#tableProject').classList.add('fadeIn faster');
 					this.selectedProject = ""
 				});
 			}
@@ -98,9 +98,7 @@ new Vue({
 			}
 		}
 	},
-	mounted() {
-		global.$loader.hide();
-		
+	mounted() {		
 		let routes = parseURLRoute();
 		if (routes !== false){
 			if(routes.args.length > 0){
@@ -126,5 +124,7 @@ new Vue({
 				}
 			}
 		}
+
+		global.$loader.hide();
 	}
 });

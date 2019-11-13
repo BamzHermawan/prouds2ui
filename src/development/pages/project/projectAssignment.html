@@ -224,9 +224,8 @@
 						</data-table-no-card>
 					</div>
 
-					<assign name="PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.PM" id="PM"
-						class="animated fadeIn faster" action-add="http://localhost:5501/demo/post_detect.php"
-						action-update="http://localhost:5501/demo/post_detect.php">
+					<assign type="PM" :users="users.pm" :project="selectedProject" v-if="toggleForm.PM" id="PM"
+						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
@@ -238,9 +237,8 @@
 						</template>
 					</assign>
 
-					<assign name="Co PM" :listpm="listpm" :selected-project="selectedProject" v-if="toggleForm.CoPM"
-						id="CoPM" class="animated fadeIn faster" action-add="http://localhost:5501/demo/post_detect.php"
-						action-update="http://localhost:5501/demo/post_detect.php">
+					<assign type="Co-PM" :users="users.copm" :project="selectedProject" v-if="toggleForm.CoPM"
+						id="CoPM" class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
@@ -252,10 +250,9 @@
 						</template>
 					</assign>
 
-					<assign name="Project Adm" :listpm="listpm" :selected-project="selectedProject"
+					<assign type="Admin" :users="users.admin" :project="selectedProject"
 						v-if="toggleForm.Adm" id="Adm" class="animated fadeIn faster"
-						action-add="http://localhost:5501/demo/post_detect.php"
-						action-update="http://localhost:5501/demo/post_detect.php">
+						action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
@@ -266,11 +263,10 @@
 						</template>
 					</assign>
 
-					<set-unit-delivery :unit-delivery="unitdelivery" :selected-project="selectedProject"
+					<set-unit-delivery :unit-delivery="unitdelivery" :project="selectedProject"
 						id="setUnitDelivery" class="animated fadeIn faster"
-						action-add="http://localhost:5501/demo/post_detect.php"
-						action-update="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
-						<template #ade>
+						action="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
+						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
 									<li><a href="#" @click="setUnitDelivery()">Project Assignment</a></li>
@@ -449,8 +445,8 @@
 		],
 			LISTPM = [
 				{
-					"pm_id": "1",
-					"pm_name": "Martina Dillard",
+					"id": "1",
+					"name": "Martina Dillard",
 					"nik": "M20005413",
 					"classification": "Junior Project Manager",
 					"on_going": "3",
@@ -459,8 +455,8 @@
 					"last_project": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
 				},
 				{
-					"pm_id": "2",
-					"pm_name": "Alissa Newton",
+					"id": "2",
+					"name": "Alissa Newton",
 					"nik": "S20186428",
 					"classification": "Senior Project Manager",
 					"on_going": "3",
@@ -469,8 +465,8 @@
 					"last_project": "SKN G 2 sharia kaltim",
 				},
 				{
-					"pm_id": "3",
-					"pm_name": "Maryanne Watson",
+					"id": "3",
+					"name": "Maryanne Watson",
 					"nik": "CRS20136833",
 					"classification": "Junior Project Manager",
 					"on_going": "3",
@@ -479,8 +475,8 @@
 					"last_project": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
 				},
 				{
-					"pm_id": "4",
-					"pm_name": "Bush Hunt",
+					"id": "4",
+					"name": "Bush Hunt",
 					"nik": "CRS20166397",
 					"classification": "Junior Project Manager",
 					"on_going": "3",
@@ -489,8 +485,8 @@
 					"last_project": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
 				},
 				{
-					"pm_id": "5",
-					"pm_name": "Cannon May",
+					"id": "5",
+					"name": "Cannon May",
 					"nik": "CRS20005337",
 					"classification": "Senior Project Manager",
 					"on_going": "3",
@@ -499,8 +495,8 @@
 					"last_project": "Zaid Mart Berkah Abadi Jaya seNusantara",
 				},
 				{
-					"pm_id": "6",
-					"pm_name": "Coleen Williamson",
+					"id": "6",
+					"name": "Coleen Williamson",
 					"nik": "L20171511",
 					"classification": "Junior Project Manager",
 					"on_going": "3",
@@ -509,8 +505,8 @@
 					"last_project": "SKN G 2 sharia kaltim",
 				},
 				{
-					"pm_id": "7",
-					"pm_name": "Christa Townsend",
+					"id": "7",
+					"name": "Christa Townsend",
 					"nik": "S20065729",
 					"classification": "Junior Project Manager",
 					"on_going": "3",
@@ -519,8 +515,8 @@
 					"last_project": "CR Agendaku",
 				},
 				{
-					"pm_id": "8",
-					"pm_name": "Alston Weeks",
+					"id": "8",
+					"name": "Alston Weeks",
 					"nik": "S20168519",
 					"classification": "Senior Project Manager",
 					"on_going": "3",
@@ -529,8 +525,183 @@
 					"last_project": "Bulk Mandays Mprospera",
 				},
 				{
-					"pm_id": "9",
-					"pm_name": "Joseph Pratt",
+					"id": "9",
+					"name": "Joseph Pratt",
+					"nik": "S20012872",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				}
+			],
+			LISTADMIN = [
+				{
+					"id": "1",
+					"name": "Martina Dillard",
+					"nik": "M20005413",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
+				},
+				{
+					"id": "2",
+					"name": "Alissa Newton",
+					"nik": "S20186428",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"id": "3",
+					"name": "Maryanne Watson",
+					"nik": "CRS20136833",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
+				},
+				{
+					"id": "4",
+					"name": "Bush Hunt",
+					"nik": "CRS20166397",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Cloud",
+					"last_project": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
+				},
+				{
+					"id": "5",
+					"name": "Cannon May",
+					"nik": "CRS20005337",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Zaid Mart Berkah Abadi Jaya seNusantara",
+				},
+				{
+					"id": "6",
+					"name": "Coleen Williamson",
+					"nik": "L20171511",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "PMO",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"id": "7",
+					"name": "Christa Townsend",
+					"nik": "S20065729",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Finance",
+					"last_project": "CR Agendaku",
+				},
+				{
+					"id": "8",
+					"name": "Alston Weeks",
+					"nik": "S20168519",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				},
+				{
+					"id": "9",
+					"name": "Joseph Pratt",
+					"nik": "S20012872",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				}
+			],
+			LISTCOPM = [
+				{
+					"id": "1",
+					"name": "Martina Dillard",
+					"nik": "M20005413",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Layanan TI Perbankan - Koperasi Graha Gemilang Indonesia",
+				},
+				{
+					"id": "2",
+					"name": "Alissa Newton",
+					"nik": "S20186428",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"id": "3",
+					"name": "Maryanne Watson",
+					"nik": "CRS20136833",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Infrastructure",
+					"last_project": "CR SATU 006 2019-Penambahan Biller Telkomsel, XL/Axis, Indosat",
+				},
+				{
+					"id": "4",
+					"name": "Bush Hunt",
+					"nik": "CRS20166397",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Cloud",
+					"last_project": "CR SATU 010 2019-Laporan Bulanan BPRS terbaru OJK / APOLO",
+				},
+				{
+					"id": "5",
+					"name": "Cannon May",
+					"nik": "CRS20005337",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Zaid Mart Berkah Abadi Jaya seNusantara",
+				},
+				{
+					"id": "6",
+					"name": "Coleen Williamson",
+					"nik": "L20171511",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "PMO",
+					"last_project": "SKN G 2 sharia kaltim",
+				},
+				{
+					"id": "7",
+					"name": "Christa Townsend",
+					"nik": "S20065729",
+					"classification": "Junior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Finance",
+					"last_project": "CR Agendaku",
+				},
+				{
+					"id": "8",
+					"name": "Alston Weeks",
+					"nik": "S20168519",
+					"classification": "Senior Project Manager",
+					"on_going": "3",
+					"past": "8",
+					"dominant_segment": "Bangking & Finance",
+					"last_project": "Bulk Mandays Mprospera",
+				},
+				{
+					"id": "9",
+					"name": "Joseph Pratt",
 					"nik": "S20012872",
 					"classification": "Junior Project Manager",
 					"on_going": "3",
@@ -544,7 +715,7 @@
 					"bu_id": "1",
 					"business_unit": "Balicamp 1",
 					"pm_resources": "3",
-					"on_going_project": "2",
+					"on_going_project": "1",
 					"supervisor": "Ade Wiranata Putra", //VP atau Director
 				},
 				{
@@ -565,14 +736,14 @@
 					"bu_id": "4",
 					"business_unit": "Balicamp 4",
 					"pm_resources": "3",
-					"on_going_project": "2",
+					"on_going_project": "3",
 					"supervisor": "Ade Wiranata Putra", //VP atau Director
 				},
 				{
 					"bu_id": "5",
 					"business_unit": "Balicamp 5",
 					"pm_resources": "3",
-					"on_going_project": "2",
+					"on_going_project": "1",
 					"supervisor": "Ade Wiranata Putra", //VP atau Director
 				}
 			]

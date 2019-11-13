@@ -1,19 +1,21 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Loader from 'helper-loader';
-import { crudInput, progressBar } from 'components';
+import Moment from 'helper-moment';
+import { crudInput, progressBar, taskGroup, taskCard } from 'components';
 import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
-	components: { crudInput, progressBar },
+	components: { crudInput, progressBar, taskGroup, taskCard },
 	data: {
 		minDate: new Date(),
 		maxDate: new Date(),
 		today: "",
 		myTimesheet: MYTIMESHEET.sort((a, b) => new Date(a.start) - new Date(b.start)),
 		tmp: [],
+		task: MYTIMESHEET,
 		showList: true,
 		showForm: false,
 		dataForm: [],
@@ -84,7 +86,23 @@ new Vue({
 			}
 
 			return size;
-		}
+		},
+		filterTask(){
+			this.task = this.task.sort((a, b) => {
+				let aMom = Moment(a.start, "DD/MM/YYYY");
+				let bMom = Moment(b.start, "DD/MM/YYYY");
+
+				if (aMom.isBefore(bMom)) {
+					return -1;
+				}
+				
+				if (bMom.isBefore(aMom)) {
+					return 1;
+				}
+				
+				return 0;
+			});
+		},
 	},
 	computed: {
 		documentName() {
@@ -114,6 +132,7 @@ new Vue({
 	mounted() {
 		this.sortDate()
 		this.getMonday()
+		this.filterTask();
 		Loader.hide();
 	}
 });

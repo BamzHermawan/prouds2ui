@@ -126,70 +126,102 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container">
-					<div v-for="(date,idx) in tmp" :key="idx" v-if="showList">
-						<div class="columns is-multiline" style="margin-bottom: 15px;">
-							<div class="column is-12">
-								<b-message type="is-timesheet" size="is-small">
-									<h4 class="is-marginless has-text-weight-bold">{{tmp[idx]}}</h4>
-								</b-message>
-							</div>
-							<template v-for="(ts, index) in myTimesheet">
-								<span :key="index"></span>
-								<div class="column is-4-widescreen is-6-tablet"
-									v-if="tmp[idx] === myTimesheet[index].start">
-									<div class="card timesheet" style="min-height: 200px; cursor: pointer !important;"
-										@click="setTimesheet(ts)">
-										<div class="card-content">
-											<p class="has-text-weight-bold">{{ ts.task }}</p>
+
+					<task-group title="Delayed Task" :value="false" type="is-delayed">
+						<div class="column is-4-widescreen is-6-tablet">
+							<div class="card timesheet">
+								<div class="card-content">
+									<p class="has-text-weight-bold">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit et,
+										voluptatem
+										similique quod obcaecati ipsum.</p>
+								</div>
+								<div class="card-content content is-marginless">
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nulla impedit incidunt quod,
+										laboriosam
+										accusamus fuga temporibus corporis veniam nobis?</p>
+									<b-field grouped>
+										<div class="control">
+											<b-taglist attached size="are-medium">
+												<b-tag type="is-dark">IWO</b-tag>
+												<b-tag type="is-info">P-1909SCC-TTES1003</b-tag>
+											</b-taglist>
 										</div>
-										<div class="card-content content is-marginless">
-											<p style="max-width:95%;">
-												{{ ts.project_name }}</p>
-											<b-field grouped>
-												<div class="control">
-													<b-taglist attached size="are-medium">
-														<b-tag type="is-dark">IWO</b-tag>
-														<b-tag type="is-info">{{ ts.iwo }}</b-tag>
-													</b-taglist>
-												</div>
-												<div class="control">
-													<div class="tags has-addons">
-														<span class="tag is-dark" style="padding:0px 6px;">
-															<span class="mdi mdi-account-tie is-marginless"></span>
-														</span>
-														<span class="tag is-info">{{ ts.member }}</span>
+										<div class="control">
+											<div class="tags has-addons">
+												<span class="tag is-dark" style="padding:0px 6px;">
+													<span class="mdi mdi-account-tie is-marginless"></span>
+												</span>
+												<span class="tag is-info">3</span>
+											</div>
+										</div>
+									</b-field>
+						
+									<p class="has-top-margin">
+										<span class="icon is-small">
+											<span class="mdi mdi-calendar-clock"></span>
+										</span>
+										<span>01 October 2019 - 29 December 2019</span>
+									</p>
+								</div>
+						
+								<footer class="card-footer">
+									<div class="card-footer-item">
+										<div class="timesheet-progress">
+											<nav class="level is-marginless">
+												<p class="level-left">
+													<span>Timesheet</span>
+												</p>
+												<div class="level-right">
+													<div class="level-item">
+														<b-tooltip label="Approved Timesheet" type="is-success">
+															<b-tag type="is-success">25%</b-tag>
+														</b-tooltip>
+													</div>
+													<div class="level-item">
+														<b-tooltip label="Submited Timesheet" type="is-info">
+															<b-tag type="is-info">35%</b-tag>
+														</b-tooltip>
 													</div>
 												</div>
-											</b-field>
-
-											<p class="has-top-margin">
-												<span class="icon is-small">
-													<span class="mdi mdi-calendar-clock"></span>
-												</span>
-												<span>{{ ts.start | moment}} -
-													{{ ts.end | moment }}</span>
-											</p>
+											</nav>
+											<progress-bar no-margin clean-bar size="is-small"></progress-bar>
 										</div>
-
-										<footer class="card-footer">
-											<div class="card-footer-item">
-												<div class="timesheet-progress">
-													<p>Timesheet</p>
-													<progress-bar :bars="ts.timesheet" no-margin></progress-bar>
-												</div>
-											</div>
-											<div class="card-footer-item">
-												<div class="timesheet-progress">
-													<p>Task Progress</p>
-													<progress-bar :value="ts.taskProgress" no-margin></progress-bar>
-												</div>
-											</div>
-										</footer>
 									</div>
-								</div>
-							</template>
+									<div class="card-footer-item">
+										<div class="timesheet-progress">
+											<nav class="level is-marginless">
+												<p class="level-left">
+													<span>Task Progress</span>
+												</p>
+												<p class="level-right">
+													<b-tag type="is-success">52%</b-tag>
+												</p>
+											</nav>
+											<progress-bar value="52" no-margin clean-bar size="is-small"></progress-bar>
+										</div>
+									</div>
+								</footer>
+							</div>
 						</div>
-					</div>
+					</task-group>
+
+					<task-group title="On Going Task" always-show>
+						<div class="columns is-multiline">
+							<div v-for="(ts, idx) in myTimesheet" :key="idx" class="column is-4-desktop is-6">
+								<task-card :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member"
+									:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
+							</div>
+						</div>
+					</task-group>
+
+					<task-group title="Scheduled Task" type="is-scheduled">
+						<div class="columns is-multiline">
+							<div v-for="(ts, idx) in myTimesheet" :key="idx" class="column is-4-desktop is-6">
+								<task-card :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member"
+									:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
+							</div>
+						</div>
+					</task-group>
 
 					<div v-if="showForm" class="animated fadeIn faster">
 						<div class="columns is-marginless">

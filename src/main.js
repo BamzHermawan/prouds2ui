@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import myCore from 'myGeeg';
 import { DialogProgrammatic as Dialog } from 'buefy';
 import Loader from 'helper-loader';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -135,8 +136,7 @@ if(actingMenu !== null){
 		VueSidebar.$dialog.prompt({
 			message: `User ID`,
 			inputAttrs: {
-				placeholder: 'NIK',
-				maxlength: 10
+				placeholder: 'NIK'
 			},
 			type: 'is-success',
 			confirmText: 'OK',
@@ -212,3 +212,5 @@ function trackMouse(e) {
 		}
 	}
 }
+
+myCore.background.load();

@@ -1,10 +1,14 @@
 <template>
-	<div :class="'progress-stacked' + (noMargin ? ' has-no-margin' : '')">
+	<div
+		:class="
+			'progress-stacked' + (noMargin ? ' has-no-margin' : '') + ' ' + size
+		"
+	>
 		<div
 			:key="idx"
 			v-for="(bar, idx) in cooked"
 			:class="parseClass(bar.color)"
-			:style="parseStyle(bar.data)"
+			:style="parseStyle(bar.width)"
 		>
 			<span v-if="!cleanBar">{{ parseText(bar) }}</span>
 		</div>
@@ -62,9 +66,9 @@ export default {
 		},
 		parseText(bar) {
 			if (bar.text === undefined) {
-				return bar.value + "%";
+				return bar.data + "%";
 			} else {
-				return bar.text.replace("{$value}", bar.value);
+				return bar.text.replace("{$value}", bar.data);
 			}
 		}
 	},
@@ -97,10 +101,10 @@ export default {
 			let current = bar.data - past;
 			if (current >= 0) {
 				past = past + current;
-				bar.value = bar.data;
-				bar.data = current;
+				bar.width = current;
 			} else {
-				bar.value = bar.data;
+				bar.width = 0;
+				bar.data = past;
 			}
 
 			this.cooked.push(bar);

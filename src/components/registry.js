@@ -10,6 +10,10 @@ import bookmarkButton from "./sidebar/bookmark.vue";
 import dataTable from "./dataTable/dataTable.vue";
 import dataTableNoCard from "./dataTable/nocard.vue";
 
+// TIMESHEET
+import taskGroup from "./timesheet/taskGroup.vue";
+import taskCard from "./timesheet/task.vue";
+
 // CRUD COMPONENTS
 import crud from "./crud/crud.vue";
 import crudForm from "./crud/crudForm.vue";
@@ -33,6 +37,9 @@ module.exports.bookmarkButton = bookmarkButton;
 
 module.exports.dataTable = dataTable;
 module.exports.dataTableNoCard = dataTableNoCard;
+
+module.exports.taskGroup = taskGroup;
+module.exports.taskCard = taskCard;
 
 module.exports.crud = crud;
 module.exports.crudForm = crudForm;
