@@ -514,7 +514,7 @@
 											<crud-input type="select" style="width: 100%;" name="project_type"
 												label="Project Type" placeholder="Choose Project Type"
 												v-model="form.project_type.id">
-												<option selected="" style="display: none;"></option>
+												<option value="" style="display: none;"></option>
 												<option value="1">Managed Services</option>
 												<option value="2">Implementation</option>
 												<option value="3">Research and Development</option>
@@ -524,7 +524,7 @@
 											<crud-input type="select" style="width: 100%;" name="classification"
 												label="Classification" placeholder="Choose Classification"
 												v-model="form.classification">
-												<option selected="" style="display: none;"></option>
+												<option value="" style="display: none;"></option>
 												<option value="1">Junior Project Manager</option>
 												<option value="2">Senior Projet Manager</option>
 											</crud-input>
@@ -566,8 +566,8 @@
 					"amount": 30000000000,
 					"customer": "PT. Pyramax",
 					"project_type": {
-						"id": "1",
-						"label": "Managed Services"
+						"id": "",
+						"label": ""
 					},
 					"project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
 					"co_project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
@@ -576,9 +576,9 @@
 					"end": "01/12/02",
 					"contract_length": 21,
 					"unit_delivery": "PMO",
-					"classification": 1,
+					"classification": "",
 					"cost": "10000000000000",
-					"project_segment": 2
+					"project_segment": ""
 				},
 				{
 					"project_id": 535051,

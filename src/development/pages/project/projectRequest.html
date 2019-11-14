@@ -174,7 +174,8 @@
 											</a>
 										</b-dropdown-item>
 										<b-dropdown-item has-link>
-											<a @click="edit(props.row)">
+											<a
+												@click="deleteRequest(props.row,'http://localhost:5501/demo/post_detect.php?')">
 												<span class="mdi mdi-delete-outline"></span>
 												Delete
 											</a>
@@ -238,9 +239,11 @@
 									<p class="label">Customer</p>
 								</div>
 								<div class="column">
-									<crud-input type="text" name="customer" placeholder="Fill Customer"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
+									<input type="hidden" name="customer_id" v-model="customer_id" />
+									<b-autocomplete v-model="customer_name" placeholder="Choose Customer"
+										:open-on-focus="true" :data="filterCustomer" field="customer_name"
+										@select="option => (selected = option)" required>
+									</b-autocomplete>
 								</div>
 							</div>
 							<div class="columns">
@@ -305,9 +308,6 @@
 								</div>
 								<div class="column">
 									<p class="label">Document Evidence</p>
-									<!-- <b-input type="hidden" name="documentName" :color="determineFieldStatus"
-										v-model="documentName">
-									</b-input> -->
 									<b-upload v-model="selectedDocument" name="evidDoc[]" multiple required
 										style="width:100%;">
 										<a class="button is-info is-fullwidth">
@@ -362,9 +362,11 @@
 									<p class="label">Customer</p>
 								</div>
 								<div class="column">
-									<crud-input type="text" name="customer" :value="tampung.customer"
-										placeholder="Fill Customer" input-style="margin-bottom: 0px;" required>
-									</crud-input>
+									<input type="hidden" name="customer_id" v-model="customer_id" />
+									<b-autocomplete v-model="customer_name" placeholder="Choose Customer"
+										:open-on-focus="true" :data="filterCustomer" field="customer_name"
+										@select="option => (selected = option)" required>
+									</b-autocomplete>
 								</div>
 							</div>
 							<div class="columns">
@@ -429,10 +431,7 @@
 								</div>
 								<div class="column">
 									<p class="label">Document Evidence</p>
-									<!-- <b-input type="hidden" name="documentName" :color="determineFieldStatus"
-															v-model="documentName">
-														</b-input> -->
-									<b-upload v-model="selectedDocument" name="evidDoc[]" multiple required
+									<b-upload v-model="tampungFile" name="evidDoc[]" multiple required
 										style="width:100%;">
 										<a class="button is-info is-fullwidth">
 											<b-icon icon="upload"></b-icon>
@@ -445,13 +444,14 @@
 										20MB
 									</p>
 									<div class="white-space"></div>
-									<article class="media" v-for="(doc, idx) in selectedDocument">
+									<article class="media" v-for="(doc, idx) in tampungFile">
 										<div class="media-content">
 											<div class="content">
 												<span class="tag is-info">
-													{{ doc.name }}
+													<a :href="doc.link" target="_blank"
+														style="color: white;">{{ doc.name }}</a>
 													<button class="delete is-small" type="button"
-														@click="deleteFile(idx)">
+														@click="deleteFile(doc,idx)">
 													</button>
 												</span>
 											</div>
@@ -481,7 +481,7 @@
 			{
 				"project_id": 430170,
 				"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
-				"customer": "PT. Pyramax",
+				"customer": "PT. Telkom",
 				"project_type": {
 					"id": "1",
 					"label": "Managed Services"
@@ -493,12 +493,34 @@
 				"end_date": "29/12/2019",
 				"status": "Proposed",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!"
+				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+				"document": [
+					{
+						"file_id": "1",
+						"link": "projectrequest.html",
+						"name": "Lorem ipsum dolor.xls"
+					},
+					{
+						"file_id": "2",
+						"link": "projectrequest.html",
+						"name": "menata kehidupan.jpg"
+					},
+					{
+						"file_id": "3",
+						"link": "projectrequest.html",
+						"name": "kuburanbasah.pdf"
+					},
+					{
+						"file_id": "4",
+						"link": "projectrequest.html",
+						"name": "menatap keindahan.doc"
+					}
+				]
 			},
 			{
 				"project_id": 535051,
 				"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
-				"customer": "PT. Pyramax",
+				"customer": "PT. Pertamina",
 				"project_type": {
 					"id": "2",
 					"label": "Implementation"
@@ -510,12 +532,34 @@
 				"end_date": "29/12/2019",
 				"status": "Proposed",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!"
+				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+				"document": [
+					{
+						"file_id": "1",
+						"link": "projectrequest.html",
+						"name": "Lorem ipsum dolor.xls"
+					},
+					{
+						"file_id": "2",
+						"link": "projectrequest.html",
+						"name": "menata kehidupan.jpg"
+					},
+					{
+						"file_id": "3",
+						"link": "projectrequest.html",
+						"name": "kuburanbasah.pdf"
+					},
+					{
+						"file_id": "4",
+						"link": "projectrequest.html",
+						"name": "menatap keindahan.doc"
+					}
+				]
 			},
 			{
 				"project_id": 766392,
 				"project_name": "elit aliqua irure ut sint cillum tempor fugiat culpa nostrud adipisicing qui incididunt dolore",
-				"customer": "PT. Pyramax",
+				"customer": "PT. PLN",
 				"project_type": {
 					"id": "3",
 					"label": "Research and Development"
@@ -527,12 +571,34 @@
 				"end_date": "29/12/2019",
 				"status": "Proposed",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!"
+				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+				"document": [
+					{
+						"file_id": "1",
+						"link": "projectrequest.html",
+						"name": "Lorem ipsum dolor.xls"
+					},
+					{
+						"file_id": "2",
+						"link": "projectrequest.html",
+						"name": "menata kehidupan.jpg"
+					},
+					{
+						"file_id": "3",
+						"link": "projectrequest.html",
+						"name": "kuburanbasah.pdf"
+					},
+					{
+						"file_id": "4",
+						"link": "projectrequest.html",
+						"name": "menatap keindahan.doc"
+					}
+				]
 			},
 			{
 				"project_id": 610803,
 				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": "PT. Pyramax",
+				"customer": "PT. Jiwasraya",
 				"project_type": {
 					"id": "4",
 					"label": "Type A"
@@ -544,7 +610,47 @@
 				"end_date": "29/12/2019",
 				"status": "New Without IWO",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!"
+				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+				"document": [
+					{
+						"file_id": "1",
+						"link": "projectrequest.html",
+						"name": "Lorem ipsum dolor.xls"
+					},
+					{
+						"file_id": "2",
+						"link": "projectrequest.html",
+						"name": "menata kehidupan.jpg"
+					},
+					{
+						"file_id": "3",
+						"link": "projectrequest.html",
+						"name": "kuburanbasah.pdf"
+					},
+					{
+						"file_id": "4",
+						"link": "projectrequest.html",
+						"name": "menatap keindahan.doc"
+					}
+				]
+			}
+		]
+		CUSTOMER = [
+			{
+				"customer_id": "1",
+				"customer_name": "PT. Telkom"
+			},
+			{
+				"customer_id": "2",
+				"customer_name": "PT. Pertamina"
+			},
+			{
+				"customer_id": "3",
+				"customer_name": "PT. PLN"
+			},
+			{
+				"customer_id": "4",
+				"customer_name": "PT. Jiwasraya"
 			}
 		]
 	</script>

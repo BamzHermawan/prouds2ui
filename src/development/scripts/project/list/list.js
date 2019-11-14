@@ -129,6 +129,15 @@ new Vue({
 		},
 		editProject(val) {
 			if (this.showTable) {
+				if (val.classification === "") {
+					val.classification = null
+				}
+				if (val.project_segment === "") {
+					val.project_segment = null
+				}
+				if (val.project_type.id === "") {
+					val.project_type.id = null
+				}
 				this.form = val
 				animate('#tableProject', 'fadeOut faster', (el) => {
 					this.showTable = false;

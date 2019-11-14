@@ -67,7 +67,16 @@ module.exports = {
 		 * Received Data: 
 		 *  - notification
 		 */
-		getNotification: 'getNotification.php'
+		getNotification: 'getNotification.php',
+
+		/**
+		 * Delete File [POST]
+		 * Send Data:
+		 * - file_id
+		 * Received Data:
+		 *  - success
+		 */
+		deleteFile: 'axios_check.php'
 	}
 
 }
