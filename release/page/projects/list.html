@@ -43,7 +43,8 @@
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
 				<side-item active>Project List</side-item>
-				<side-item href="../maintenance.html">Project Assignment</side-item>
+				<side-item href="projectassignment.html">Project Assignment</side-item>
+				<side-item href="projectrequest.html">Project Request</side-item>
 				<side-item href="../maintenance.html">Timesheet</side-item>
 				<side-item href="../maintenance.html">Rebaseline</side-item>
 				<side-item href="../maintenance.html">Closing</side-item>
@@ -162,7 +163,7 @@
 									class="align-middle">
 									<b-tooltip v-if="props.row.status==='New'" type="is-dark" :label="props.row.status"
 										position="is-left">
-										<span class="mdi mdi-24px mdi-file-plus-outline has-text-warning"></span>
+										<span class="mdi mdi-24px mdi-file-plus-outline has-text-info"></span>
 									</b-tooltip>
 									<b-tooltip
 										v-if="props.row.status==='Waiting to Initial Baseline' || props.row.status==='Waiting to Rebaseline'"
@@ -200,9 +201,9 @@
 									class="align-middle">
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PMO -->
-									<!-- <span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
+									<span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
 										style="cursor: pointer !important;" @click="editProject(props.row)">
-									</span> -->
+									</span>
 									<!-- Ini untuk action PMO -->
 
 									<!-- TODO: Faishol -->
@@ -220,6 +221,12 @@
 											<a @click="setMileStone(props.row)">
 												<span class="mdi mdi-calendar-edit"></span>
 												Set Milestone
+											</a>
+										</b-dropdown-item>
+										<b-dropdown-item has-link="">
+											<a @click="setCost(props.row)">
+												<span class="mdi mdi-cash-usd"></span>
+												Set Cost Reallocation
 											</a>
 										</b-dropdown-item>
 										<div class="dropdown-item dropdown-label">Project Page</div>
@@ -305,7 +312,8 @@
 						<div class="content is-marginless">
 							<h3 class="is-small has-text-weight-light is-reduced-margin">Set Milestone</h3>
 						</div>
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
+							enctype="multipart/form-data">
 							<div class="container">
 								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
 								<div class="columns is-marginless is-paddingless">
@@ -330,17 +338,102 @@
 								</div>
 								<div class="columns is-marginless is-paddingless">
 									<div class="column has-no-left-padding">
-										<crud-input type="datepicker" label="Start Date"
-											placeholder="Pick new start date" date-input-format="DD/MM/YYYY"
-											name="start" :value="form.start">
+										<crud-input type="datepicker" label="New Start Date" name="newStartDate"
+											v-model="start" placeholder="Pick Start Date" date-locale="en"
+											input-style="margin-bottom: 5px;">
 										</crud-input>
 									</div>
 									<div class="column has-no-right-padding">
-										<crud-input type="datepicker" label="End Date" placeholder="Pick new end date"
-											date-input-format="DD/MM/YYYY" name="end" :value="form.end">
+										<crud-input type="datepicker" label="New End Date" name="newEndDate"
+											:min-date="start" placeholder="Pick End Date" date-locale="en"
+											input-style="margin-bottom: 5px;">
 										</crud-input>
 									</div>
 								</div>
+								<label class="label">Document</label>
+								<div class="columns is-marginless is-paddingless">
+									<div class="column has-no-left-padding">
+										<crud-input readonly="" :color="determineFieldStatus" v-model="documentName">
+											<template slot="helptext">
+												<p :class="'help ' + determineFieldStatus">
+													File yang dibolehkan: jpg, jpeg, png, doc, docx,
+													pdf, xls, xlsx, ppt, pptx ; File size maksimal
+													20MB
+												</p>
+											</template>
+										</crud-input>
+									</div>
+									<div class="column is-2 has-no-left-padding">
+										<b-field>
+											<b-upload v-model="selectedDocument" name="evidDoc" native="" required=""
+												style="width:100%;">
+												<a class="button is-info is-fullwidth">
+													<b-icon icon="upload"></b-icon>
+													<span>Browse File</span>
+												</a>
+											</b-upload>
+										</b-field>
+									</div>
+								</div>
+								<div class="is-clearfix">
+									<button class="button is-success is-long is-pulled-right" type="submit">
+										<span>Save Milestone</span>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div v-if="showCost" id="setCost" class="animated fadeIn faster">
+						<div class="columns is-marginless">
+							<div class="column is-8-desktop content is-marginless is-paddingless">
+								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">
+									{{ form.project_name }}</h3>
+								<b-field grouped="">
+									<div class="control">
+										<b-taglist attached="">
+											<b-tag type="is-dark">ID</b-tag>
+											<b-tag type="is-info">{{form.project_id}}</b-tag>
+										</b-taglist>
+									</div>
+									<div class="control">
+										<b-taglist attached="" size="are-medium">
+											<b-tag type="is-dark">IWO</b-tag>
+											<b-tag type="is-info">{{ form.iwo }}</b-tag>
+										</b-taglist>
+									</div>
+								</b-field>
+							</div>
+							<div class="column is-clearfix is-paddingless">
+								<a class="button is-danger is-long is-pulled-right" @click="setCost(null)">
+									◀ Back
+								</a>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="content is-marginless">
+							<h3 class="is-small has-text-weight-light is-reduced-margin">Set Cost Reallocation</h3>
+						</div>
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
+							enctype="multipart/form-data">
+							<div class="container">
+								<b-input type="hidden" name="project_id" :value="form.project_id"></b-input>
+								<b-message type="is-info" :closable="false">
+									<div class="field">
+										<label class="is-marginless has-text-weight-bold">Current Cost</label>
+										<p>{{form.cost | currency}}</p>
+									</div>
+								</b-message>
+								<crud-input type="text" name="cost" label="New Cost" :value="newCost | currency"
+									placeholder="10.000.000" @input="actualCostUnformat">
+								</crud-input>
+								<crud-input type="datepicker" label="Reallocation Date" name="reallocationDate"
+									placeholder="Pick Reallocation Date" date-locale="en"
+									input-style="margin-bottom: 0px;">
+								</crud-input>
+								<br>
 								<div class="is-clearfix">
 									<button class="button is-success is-long is-pulled-right" type="submit">
 										<span>Save Milestone</span>
@@ -428,7 +521,7 @@
 											<crud-input type="select" style="width: 100%;" name="project_type"
 												label="Project Type" placeholder="Choose Project Type"
 												v-model="form.project_type.id">
-												<option selected="" style="display: none;"></option>
+												<option value="" style="display: none;"></option>
 												<option value="1">Managed Services</option>
 												<option value="2">Implementation</option>
 												<option value="3">Research and Development</option>
@@ -438,7 +531,7 @@
 											<crud-input type="select" style="width: 100%;" name="classification"
 												label="Classification" placeholder="Choose Classification"
 												v-model="form.classification">
-												<option selected="" style="display: none;"></option>
+												<option value="" style="display: none;"></option>
 												<option value="1">Junior Project Manager</option>
 												<option value="2">Senior Projet Manager</option>
 											</crud-input>
@@ -464,7 +557,8 @@
 		</section>
 
 		<section id="infoFooter">
-			<info-footer entry="100" utilization="100">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
 	</div>
@@ -476,8 +570,8 @@
 			"amount": 30000000000,
 			"customer": "PT. Pyramax",
 			"project_type": {
-				"id": "1",
-				"label": "Managed Services"
+				"id": "",
+				"label": ""
 			},
 			"project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
 			"co_project_manager": "Ade Wiranata Putra Punya Kembaran Serupa",
@@ -486,9 +580,9 @@
 			"end": "01/12/02",
 			"contract_length": 21,
 			"unit_delivery": "PMO",
-			"classification": 1,
+			"classification": "",
 			"cost": "10000000000000",
-			"project_segment": 2
+			"project_segment": ""
 		}, {
 			"project_id": 535051,
 			"iwo": "P-1909SCC-TTES0481",
