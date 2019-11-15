@@ -16,7 +16,12 @@ request.defaults.baseURL = $config.baseAPI;
 
 const dummy = bundle => {
 	return new Promise(function (resolve, reject) {
-		resolve()
+		let rand = Math.random()
+		if (rand) {
+			resolve()
+		} else {
+			reject()
+		}
 	});
 }
 
@@ -30,7 +35,8 @@ const dummy = bundle => {
  * @returns user data. check documentation for more information
  */
 // module.exports.getUserSession = request.get($api.userLogin);
-module.exports.getUserSession = request.post($api.userLogin);
+// module.exports.getUserSession = request.post($api.userLogin);
+module.exports.getUserSession = dummy;
 
 /**
  * getUserData

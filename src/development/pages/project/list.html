@@ -222,6 +222,12 @@
 												Set Cost Reallocation
 											</a>
 										</b-dropdown-item>
+										<b-dropdown-item has-link>
+											<a @click="sync(props.row,'http://localhost:5501/demo/post_detect.php?')">
+												<span class="mdi mdi-sync"></span>
+												Sync with MIS
+											</a>
+										</b-dropdown-item>
 										<div class="dropdown-item dropdown-label">Project Page</div>
 										<b-dropdown-item has-link>
 											<a href="http://localhost:5501/page/project/allocation.html">

@@ -199,6 +199,35 @@ new Vue({
 		actualCostUnformat(val) {
 			let medown = val.replace(/\D/g, "");
 			this.newCost = medown;
+		},
+		sync(val, link) {
+			this.$dialog.confirm({
+				title: 'Confirmation',
+				message: 'Are you sure you want to sync <b>' + val.project_name + '</b> ?',
+				confirmText: 'Save',
+				type: 'is-success',
+				onConfirm: value => {
+					let project_id = val.project_id
+					let iwo = val.iwo
+
+					let form = document.createElement("form");
+					form.setAttribute("action", link);
+					form.setAttribute("method", "POST");
+
+					let input = document.createElement("input");
+					input.value = project_id;
+					input.setAttribute("name", "project_id")
+					form.appendChild(input);
+
+					let input2 = document.createElement("input");
+					input2.value = iwo;
+					input2.setAttribute("name", "iwo")
+					form.appendChild(input2);
+
+					document.getElementById("vapp").appendChild(form);
+					form.submit();
+				}
+			})
 		}
 	},
 	computed: {
