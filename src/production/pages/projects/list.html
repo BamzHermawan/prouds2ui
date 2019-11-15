@@ -45,9 +45,9 @@
 				<side-item active>Project List</side-item>
 				<side-item href="projectassignment.html">Project Assignment</side-item>
 				<side-item href="projectrequest.html">Project Request</side-item>
-				<side-item href="../timesheet.html">Timesheet</side-item>
-				<side-item href="../rebaseline.html">Rebaseline</side-item>
-				<side-item href="#no-edit">Closing</side-item>
+				<side-item href="../maintenance.html">Timesheet</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Closing</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws">
@@ -84,7 +84,7 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="../maintenance.html" class="navbar-item hover-text">
+					<a href="http://" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
@@ -222,6 +222,12 @@
 											<a @click="setCost(props.row)">
 												<span class="mdi mdi-cash-usd"></span>
 												Set Cost Reallocation
+											</a>
+										</b-dropdown-item>
+										<b-dropdown-item has-link>
+											<a @click="sync(props.row,'http://localhost:5501/demo/post_detect.php?')">
+												<span class="mdi mdi-sync"></span>
+												Sync with MIS
 											</a>
 										</b-dropdown-item>
 										<div class="dropdown-item dropdown-label">Project Page</div>

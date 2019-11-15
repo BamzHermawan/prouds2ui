@@ -12,8 +12,8 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../src/style.min.css">
-	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+	<link rel="stylesheet" href="/src/main.min.css">
+	<link rel="stylesheet" href="/src/main.min.css">
 </head>
 
 <body>
@@ -84,12 +84,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="../maintenance.html" class="navbar-item hover-text">
+					<a href="/src/maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="../maintenance.html" class="navbar-item hover-text">
+					<a href="/src/maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -101,8 +101,6 @@
 						<div class="navbar-dropdown is-boxed is-right">
 							<a href="/src/maintenance.html" class="navbar-item">Account Profile</a>
 							<a href="/src/maintenance.html" class="navbar-item">Need Help ?</a>
-							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
-								class="navbar-item">Acting As</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -174,6 +172,16 @@
 										</div>
 									</b-field>
 								</div>
+
+								<!-- TODO: Faishol / Mas Papang -->
+								<!-- Request date hanya untuk detail pada project request -->
+								<div class="column content is-marginless is-6">
+									<b-field label="Request Date">
+										<p>{{ '10/11/2019' | moment }}</p>
+									</b-field>
+								</div>
+								<!-- End -->
+
 								<div class="column content is-marginless is-6">
 									<b-field label="Amount">
 										<b-message type="is-info" size="is-small">
@@ -196,6 +204,48 @@
 									</b-field>
 								</div>
 							</div>
+
+							<!-- TODO: Faishol / Mas Papang -->
+							<!-- Document Evidence hanya untuk detail pada project request -->
+							<hr>
+							<div class="content">
+								<h3 class="is-small has-text-weight-light">Document Evidence</h3>
+							</div>
+							<ul>
+								<li>
+									<a href="#revisi1" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Desain Frontend revisi kemarin.docx</span>
+									</a>
+								</li>
+								<li>
+									<a href="#revisi2" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Desain Frontend revisi terakhir bismilah.docx</span>
+									</a>
+								</li>
+								<li>
+									<a href="#lowongan" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>Lamaran Lowongan VP - Ade.pdf</span>
+									</a>
+								</li>
+								<li>
+									<a href="#proposal" target="_blank" class="button is-small is-info">
+										<span class="icon is-small">
+											<i class="mdi mdi-file-download-outline"></i>
+										</span>
+										<span>PROPOSAL NAIK GAJI.docx</span>
+									</a>
+								</li>
+							</ul>
+							<!-- End -->
 
 							<hr>
 
@@ -304,6 +354,15 @@
 								</div>
 							</div>
 
+							<!-- TODO: Faishol / Mas Papang -->
+							<!-- Description hanya untuk detail pada project request -->
+							<b-field label="Description">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora
+									placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis,
+									deleniti voluptatibus harum optio corrupti sapiente. Ut, explicabo?</p>
+							</b-field>
+							<!-- End -->
+
 							<b-field label="Background">
 								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora
 									placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis,
@@ -329,14 +388,13 @@
 		</section>
 
 		<section id="infoFooter">
-			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
-				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
 	</div>
 
-	<script src="../../src/main.min.js"></script>
-	<script src="../../src/projects/detail.min.js"></script>
+	<script src="/src/detail.min.js"></script>
+	<script src="/src/detail.min.js"></script>
 </body>
 
 </html>

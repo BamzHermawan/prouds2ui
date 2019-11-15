@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import { notified, checkConnection, animate } from 'helper-tools'
-import { dataTableNoCard, crudInput } from "components";
+import { dataTableNoCard, crudInput, linker } from "components";
 import api from 'helper-apis';
 import Moment from "helper-moment";
 
@@ -9,7 +9,7 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		dataTableNoCard, crudInput
+		dataTableNoCard, crudInput, linker
 	},
 	data: {
 		userlog: {
@@ -157,6 +157,60 @@ new Vue({
 					this.tampung = ""
 				});
 			}
+		},
+		setIWO(val, link) {
+			this.$dialog.prompt({
+				message: `Set IWO`,
+				confirmText: "Save",
+				type: "is-success",
+				inputAttrs: {
+					placeholder: "Fill IWO number"
+				},
+				trapFocus: true,
+				onConfirm: value => {
+					let project_id = val.project_id
+
+					let form = document.createElement("form");
+					form.setAttribute("action", link);
+					form.setAttribute("method", "POST");
+
+					let input = document.createElement("input");
+					input.value = project_id;
+					input.setAttribute("name", "project_id")
+					form.appendChild(input);
+
+					let input2 = document.createElement("input");
+					input2.value = value;
+					input2.setAttribute("name", "iwo")
+					form.appendChild(input2);
+
+					document.getElementById("vapp").appendChild(form);
+					form.submit();
+				}
+			});
+		},
+		approve(val, link) {
+			this.$dialog.confirm({
+				title: 'Confirmation',
+				message: 'Are you sure you want to approve <b>' + val.project_name + '</b> ?',
+				confirmText: 'Save',
+				type: 'is-success',
+				onConfirm: value => {
+					let project_id = val.project_id
+
+					let form = document.createElement("form");
+					form.setAttribute("action", link);
+					form.setAttribute("method", "POST");
+
+					let input = document.createElement("input");
+					input.value = project_id;
+					input.setAttribute("name", "project_id")
+					form.appendChild(input);
+
+					document.getElementById("vapp").appendChild(form);
+					form.submit();
+				}
+			})
 		},
 		deleteRequest(val, deleteLink) {
 			this.$dialog.confirm({
