@@ -14,6 +14,7 @@
 					:name="name"
 					v-model="dateModel"
 					:loading="loading"
+					:required="required"
 				/>
 				<b-datepicker
 					expanded
