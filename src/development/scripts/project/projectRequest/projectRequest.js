@@ -29,6 +29,7 @@ new Vue({
 		customer_name: "",
 		selectedDocument: [],
 		selected: null,
+		sort: "ASC",
 		docName: [],
 		fileValidation: true,
 		allowedFile: "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx",
@@ -193,7 +194,7 @@ new Vue({
 			this.$dialog.confirm({
 				title: 'Confirmation',
 				message: 'Are you sure to approve <b>' + val.project_name + '</b> ?',
-				confirmText: 'Save',
+				confirmText: 'Ok',
 				type: 'is-success',
 				onConfirm: value => {
 					let project_id = val.project_id
@@ -216,11 +217,41 @@ new Vue({
 			this.$dialog.confirm({
 				title: 'Delete',
 				message: 'Are you sure to delete <b>' + val.project_name + '</b> ?',
-				confirmText: 'Oke',
+				confirmText: 'Ok',
 				type: 'is-danger',
 				hasIcon: true,
 				onConfirm: () => window.location.href = deleteLink + "project_id=" + val.project_id
 			})
+		},
+		sortDate(a, b, isAsc) {
+			// Sort By Date
+			if (isAsc) {
+				let aMom = Moment(a.request_date, "DD/MM/YYYY");
+				let bMom = Moment(b.request_date, "DD/MM/YYYY");
+
+				if (aMom.isBefore(bMom)) {
+					return -1;
+				}
+
+				if (bMom.isBefore(aMom)) {
+					return 1;
+				}
+
+				return 0;
+			} else {
+				let aMom = Moment(a.request_date, "DD/MM/YYYY");
+				let bMom = Moment(b.request_date, "DD/MM/YYYY");
+
+				if (aMom.isAfter(bMom)) {
+					return -1;
+				}
+
+				if (bMom.isAfter(aMom)) {
+					return 1;
+				}
+
+				return 0;
+			}
 		}
 	},
 	computed: {
