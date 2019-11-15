@@ -192,7 +192,7 @@ new Vue({
 		approve(val, link) {
 			this.$dialog.confirm({
 				title: 'Confirmation',
-				message: 'Are you sure you want to approve <b>' + val.project_name + '</b> ?',
+				message: 'Are you sure to approve <b>' + val.project_name + '</b> ?',
 				confirmText: 'Save',
 				type: 'is-success',
 				onConfirm: value => {
@@ -215,7 +215,7 @@ new Vue({
 		deleteRequest(val, deleteLink) {
 			this.$dialog.confirm({
 				title: 'Delete',
-				message: 'Are you sure you want to delete <b>' + val.project_name + '</b> ?',
+				message: 'Are you sure to delete <b>' + val.project_name + '</b> ?',
 				confirmText: 'Oke',
 				type: 'is-danger',
 				hasIcon: true,
