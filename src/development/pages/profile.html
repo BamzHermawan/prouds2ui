@@ -22,7 +22,7 @@
 	</div>
 
 	<div id="main-layout" class="wrapper open-first">
-		<section id="side-main" class="sidebar">
+		<section id="side-main" class="sidebar is-skyblue">
 			<div class="brand animated slideInLeft fast">
 				<span>PROUDS</span>
 			</div>
@@ -44,12 +44,17 @@
 			<!-- TODO: Ario -->
 			<!-- Active side itemnya -->
 			<side-list label="Profile" name="profile">
-				<side-item id="editProfile" href="#profile">Profile</side-item>
-				<side-item id="editPassword" href="#editpassword">Change Password
+				<side-item id="editProfile" href="#profile" active>Profile</side-item>
+				<side-item id="editPassword" href="#editpassword" edit="2">Change Password
 				</side-item>
 			</side-list>
 
-			<side-list label="My Workspace" name="ws"></side-list>
+			<side-list label="My Workspace" name="ws">
+				<side-item id="editPassword" href="#editpassword" edit="2">Change Password
+				</side-item>
+				<side-item id="editPassword" href="#editpassword" edit="2">Change Password
+				</side-item>
+			</side-list>
 		</section>
 
 		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">

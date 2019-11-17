@@ -1,0 +1,79 @@
+.gmainright {
+	width: 50% !important;
+}
+
+.gmainleft {
+	width: 50% !important;
+
+	.gcontainercol {
+		min-width: 100%;
+
+		table {
+			min-width: 100%;
+		}
+	}
+}
+
+td.gmajorheading div{
+	padding: 5px !important;
+}
+
+.gantt td {
+	padding: 2px !important;
+}
+
+tr.gname {
+	cursor: pointer !important;
+}
+
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
+.gcharttableh {
+	margin-bottom: 0px !important;
+}
+
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
+.floating-taskbar {
+	width: 200px;
+    position: fixed;
+    right: 15px;
+    top: 200px;
+	z-index: 35;
+	
+	.menu-label {
+		background-color: #eaeaff;
+		text-align: center;
+		padding-top: .7rem;
+		padding-bottom: .7rem;
+		margin: 0px !important;
+	}
+
+	.menu-label + .menu-list {
+		background-color: #eaeaff;
+
+		li {
+			margin-top: 0px !important;
+		}
+	}
+}

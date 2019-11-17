@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import myCore from 'myGeeg';
-import { DialogProgrammatic as Dialog } from 'buefy';
 import Loader from 'helper-loader';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { notified, checkConnection } from 'helper-tools';
-import api from 'helper-apis'
+import api from 'helper-apis';
 import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
@@ -45,8 +44,7 @@ const VueSidebar = new Vue({
 	methods: {
 		checkNotification(showAlert = true) {
 			let self = this;
-			let bundle = { user_id: this.userlog.user_id }
-			api.getNotification(bundle)
+			api.getNotification()
 				.then((response) => {
 					let notif = response.data
 					if (notif.length > self.notifTotal) {
@@ -56,15 +54,12 @@ const VueSidebar = new Vue({
 						}
 					}
 				})
-				.catch(function (error) {
-					console.log('error asking for notification');
+				.catch(function () {
 					if (checkConnection(self.notification)) {
 						if (showAlert) {
-							if (showAlert) {
-								notified(self.$notification).error(
-									"Sorry we are encountering a problem, please try again later. 🙏"
-								);
-							}
+							notified(self.$notification).error(
+								"Sorry we are encountering a problem, please try again later. 🙏"
+							);
 						}
 					}
 				});
@@ -88,8 +83,8 @@ const VueSidebar = new Vue({
 			self.checkNotification();
 		}, 300000);
 
-		// check if loader still on after .3 second
-		setTimeout(this.checkLoader, 3000);
+		// check if loader still on after 3 second
+		setTimeout(this.checkLoader, Loader.timeoutCount);
 	}
 });
 
@@ -213,4 +208,4 @@ function trackMouse(e) {
 	}
 }
 
-myCore.background.load();
+myCore.loadPreference();

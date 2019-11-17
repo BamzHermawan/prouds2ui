@@ -10,8 +10,7 @@ $h1_font: $staat;
 $h2_font: $crete;
 
 // Set your colors
-$primary: #D36464;
-$primary-invert: findColorInvert($primary);
+$primary: rgb(221, 15, 86);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
 $pink: rgb(250, 129, 150);
@@ -60,3 +59,6 @@ $section-padding-large: 18rem 3rem;
 $table-striped-row-even-background-color: lighten($light, 2%);
 $table-striped-row-even-hover-background-color: lighten($info, 35%);
 $table-row-hover-background-color: lighten($info, 35%);
+
+$checkbox-active-background-color: $info;
+$checkbox-checkmark-color: $info-invert;

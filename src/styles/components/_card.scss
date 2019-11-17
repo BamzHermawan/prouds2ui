@@ -1,0 +1,154 @@
+.card {
+	.card-header {
+		@include heroGradient($light, darken($light, 20%));
+	}
+
+	&.collapse {
+		.card-header .icon {
+			color: $light !important;
+		}
+
+		.card-footer {
+			padding: 8px 12px;
+
+			.button {
+				min-width: 95px;
+			}
+
+			.button-right {
+				float: right !important;
+
+				& > .button:first-child {
+					margin-right: 5px;
+				}
+			}
+		}
+
+		td {
+			vertical-align: middle;
+			height: 42px !important;
+		}
+
+		td.is-days-has-input {
+			width: 150px;
+
+			input.input {
+				text-align: center !important;
+
+				&::-webkit-inner-spin-button, 
+				&::-webkit-outer-spin-button {  
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+@each $color in $colors {
+	$thisColor: nth($color, 2);
+	$primeColor: nth($thisColor, 1);
+
+	.card.is-#{nth($color, 1)} {
+		.card-header {
+			@include heroGradient($primeColor, darken($primeColor, 20%));
+		}
+	}
+
+	.has-gradient-#{nth($color, 1)} {
+		@include heroGradient($primeColor, darken($primeColor, 20%));
+	}
+
+	.has-underline-#{nth($color, 1)} {
+		border-bottom: 1.7px solid $primeColor;
+	}
+
+	.has-gradient-#{nth($color, 1)}-lighter {
+		@include heroGradient(lighten($primeColor, 20%), lighten($primeColor, 10%));
+	}
+
+	.message {
+		&.is-#{nth($color, 1)} {
+			@include heroGradient(lighten($primeColor, 35%), lighten($primeColor, 20%));
+
+			.message-header {
+				@include heroGradient(lighten($primeColor, 15%), lighten($primeColor, 5%));
+				color: nth($thisColor, 2) !important;
+				font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+
+			.message-header + .message-body {
+				background-color: lighten($primeColor, 75%);
+				border-width: 0px 2px 2px !important;
+				border-color: lighten($primeColor, 10%);
+			}
+
+			&.has-media-list {
+				.media + .media {
+					padding-top: 1rem !important;
+					border-top: 1px solid $primeColor !important;
+				}
+			}
+		}
+
+		&.is-on-field .message-body{
+			padding: 0.4em 1em !important;
+		}
+
+		&.has-paddingless-body .message-body{
+			padding: 0px !important;
+		}
+	}
+
+	.field.is-#{nth($color, 1)} {
+		.input, .select > select {
+			border-color: $primeColor !important;
+		}
+
+		.select:not(.is-multiple):not(.is-loading)::after {
+			border-color: darken($primeColor, 15%) !important;
+		}
+
+		.control > .icon {
+			color: $primeColor !important;
+		}
+	}
+}
+
+.message{
+	@include heroGradient(lighten(#dbdbdb, 35%), lighten(#dbdbdb, 20%));
+		
+	.message-header {
+		@include heroGradient(lighten(#4a4a4a, 15%), lighten(#4a4a4a, 5%));
+		font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+
+	.message-header + .message-body {
+		background-color: #dbdbdb;
+		border-width: 0px 2px 2px !important;
+		border-color: lighten(#4a4a4a, 5%);
+	}
+
+	&.has-media-list {
+		.media + .media {
+			padding-top: 1rem !important;
+			border-top: 1px solid $dark !important;
+		}
+	}
+	
+	&.is-timesheet {
+		background: linear-gradient(90deg, rgba(51, 138, 249, 0.5), rgba(47, 248, 255, 0.5)) !important;
+		.message-body {
+			border-color: blue;
+		}
+	}
+}
+
+.datepicker .datepicker-content {
+    height: auto !important;
+}
+
+.datepicker {
+	.dropdown-menu {
+		margin-bottom: 1rem;
+	}
+}

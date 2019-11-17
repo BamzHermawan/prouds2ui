@@ -1,6 +1,7 @@
+import { getApiTestByKey, isEmpty } from 'helper-tools';
 import $config from '../config.js';
-import request from 'axios';
 import qs from 'querystring';
+import request from 'axios';
 
 let $api = $config.listAPI;
 let pack = qs.stringify;
@@ -10,8 +11,19 @@ if (global.$config === undefined) {
 	global.$config = $config;
 }
 
-// set up baseAPI
-request.defaults.baseURL = $config.baseAPI;
+if (!$config.apiTesting){
+	// set up baseAPI
+	request.defaults.baseURL = $config.baseAPI;
+} else {
+	for (const key in $api) {
+		if ($api.hasOwnProperty(key)) {
+			let testApi = getApiTestByKey(key)
+			if(!isEmpty(testApi)){
+				$api[key] = testApi;
+			}
+		}
+	}
+}
 
 //? ----------------------------------------------------------------------------
 //? ----------------------------------------------------------------------------
@@ -69,10 +81,6 @@ module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }
 
-module.exports.getNotification = bundle => {
-	return request.post($api.getNotification, pack(bundle), {
-		headers: {
-			"Content-Type": 'application/x-www-form-urlencoded'
-		}
-	});
+module.exports.getNotification = () => {
+	return request.get($api.getNotification);
 }

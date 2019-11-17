@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import Buefy from 'buefy'
-import { topNavBar } from "components";
-import { mediaLog } from "components";
 import { dataTable } from "components";
 import { animate } from 'helper-tools'
 import Loader from 'helper-loader';
@@ -13,7 +11,7 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		topNavBar, mediaLog, dataTable, Cost, Milestone
+		dataTable, Cost, Milestone
 	},
 	data: {
 		userlog: {

@@ -1,0 +1,346 @@
+.side-list {
+	.side-list {
+		.parent-list {
+			padding-left: 1rem;
+			border-top-left-radius: 0px !important;
+			border-bottom-left-radius: 0px !important;
+
+			label {
+				padding-left: 8px;
+			}
+		}
+
+		ul {
+			margin-left: 1.5rem;
+			border-left-color: lighten($primary, 15%);
+			border-left-style: solid;
+			border-left-width: 0.5px;
+		}
+
+		.side-item:hover:not(.is-active) {
+			border-top-left-radius: 0px !important;
+			border-bottom-left-radius: 0px !important;
+		}
+	}
+
+	.parent-list {
+		width: 100%;
+		margin-top: 5px;
+		padding: 5px 8px;
+		display: block !important;
+		cursor: pointer;
+
+		&:hover {
+			background: linear-gradient(135deg, rgba(245, 177, 77, 0.7),rgba(237, 53, 115, 0.7));
+			border-radius: 3px;
+		}
+
+		&.is-active {
+			background: linear-gradient(90deg, rgba(51, 138, 249, 0.5),rgba(47, 248, 255, 0.5));
+			border-radius: 3px;
+			
+			label {
+				color: $light !important;
+			}
+
+			.action .tag {
+				background-color: $info !important;
+				color: $light !important;
+			}
+		}
+		
+		.list-title {
+			overflow: auto;
+		}
+
+		label {
+			float: left;
+			width: 80%;
+			font-size: 1rem;
+			cursor: pointer;
+			color: lighten($dark, 20%);
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+
+		.action {
+			margin: 0px;
+			float: right;
+			font-weight: bolder;
+			text-align: center;
+			color: $dark;
+		}
+	}
+
+	ul {
+		margin-top: .5rem;
+		margin-bottom: 1rem;
+		// padding-left: 1rem;
+
+		.parent-list {
+			&:hover {
+				background: linear-gradient(135deg, rgba(248, 207, 144, 0.5),rgba(245, 126, 165, 0.5));
+			}
+			
+			label {
+				font-weight: normal;
+				text-transform: none;
+			}
+		}
+	}
+
+	.side-item {
+		cursor: pointer;
+		padding-left: 1rem;
+		margin-top: 5px;
+		margin-bottom: 5px;
+
+		a {
+			padding: 5px 8px;
+			color: lighten($dark, 15%);
+			width: 100%;
+			display: block;
+		}
+
+		input {
+			padding: 5px 5px;
+			background-color: ghostwhite;
+			border: none;
+			width: calc(100% - 10px);
+			border-radius: 3px;
+			margin: 5px 5px;
+		}
+
+		&.is-active {
+			background: linear-gradient(90deg, rgba(51, 138, 249, 0.5),rgba(47, 248, 255, 0.5));
+			border-radius: 3px;
+			
+			a:not(.dropdown-item) {
+				color: $light !important;
+			}
+		}
+
+		&:hover:not(.is-active) {
+			background: linear-gradient(135deg, rgba(248, 207, 144, 0.5),rgba(245, 126, 165, 0.5));
+			border-radius: 3px;
+		}
+
+		&.media .media-right {
+			min-width: 26px;
+			margin-top: 5.5px;
+			margin-right: 6px;
+			margin-left: 2px;
+
+			.button {
+				padding-left: 2px;
+				padding-right: 2px;
+			}
+			
+			& > .action {
+				color: #fff;
+				display: none;
+			}
+
+			.dropdown {
+				&.is-bottom-left .dropdown-menu {
+					right: -5px;
+					top: 26px;
+				}
+
+				.dropdown-menu {
+					min-width: 75px;
+					.dropdown-content {
+						border-radius: 0px;
+						padding: 0px;
+					}
+				}
+			}
+		}
+
+		&.media:hover .media-right {
+			& > .action {
+				display: block;
+			}
+		}
+
+		&.media + .media {
+			border-top: none;
+			margin-top: 0px;
+			padding-top: 0px;
+		}
+	}
+}
+
+.sidebar.has-background {
+	background: rgba($light, .5) !important;
+
+	// .side-list {
+	// 	.side-item:hover:not(.is-active) {
+	// 		background: linear-gradient(135deg, rgba(248, 207, 144, 0.7),rgba(245, 126, 165, 0.7));
+	// 		border-radius: 3px;
+	// 	}
+	// }
+
+	.side-item {
+			a, .action {
+				color: $dark;
+			}
+
+			&.is-active {
+				background: rgba($dark, 0.5);					
+				a:not(.dropdown-item) {
+					color: $light !important;
+					font-weight: bolder;
+				}
+			}
+
+			&:hover:not(.is-active) {
+				background: linear-gradient(135deg, $dark, rgba(#796a16, .5));
+				a:not(.dropdown-item) {
+					color: #ee7849;
+				}
+
+				.action {
+					color: $light;
+					font-weight: bolder;
+				}
+			}
+		}
+		
+		.parent-list {
+			label, .action {
+				color: $dark;
+			}
+
+			&.is-active {
+				background: rgba($dark, 0.5);					
+				a:not(.dropdown-item) {
+					color: $light;
+					font-weight: bolder;
+				}
+			}
+
+			&:hover {
+				background: linear-gradient(135deg, $dark, rgba(#796a16, .5));
+				label, .action {
+					color: #ee7849;
+				}
+
+				.action {
+					color: $light;
+					font-weight: bolder;
+				}
+			}
+		}
+
+	&.has-text-light {
+		.side-item {
+			a, .action {
+				color: $light;
+			}
+
+			&.is-active {
+				background: rgba(255, 255, 255, .5);					
+				a:not(.dropdown-item) {
+					color: $dark !important;
+					font-weight: bolder;
+				}
+			}
+
+			&:hover:not(.is-active) {
+				background: linear-gradient(135deg, $light, $warning);
+				a:not(.dropdown-item), .action {
+					color: rgba($dark, .5);
+				}
+			}
+		}
+		
+		.parent-list {
+			label, .action {
+				color: $light;
+			}
+
+			&.is-active {
+				background: rgba(255, 255, 255, .5);					
+				a:not(.dropdown-item) {
+					color: $dark;
+					font-weight: bolder;
+				}
+			}
+
+			&:hover {
+				background: linear-gradient(135deg, $light, $warning);
+				label, .action {
+					color: rgba($dark, .5);
+				}
+			}
+		}
+	}
+}
+
+$sidebarTheme: (
+	"crimson": #cc1515 #920909 darken($light, 15%) rgba($warning, .5),
+	"skyblue": #8470ff #87cefa $dark $light,
+	"mossgreen": #47b284 #72b888 $dark rgba($warning, .5),
+	"pinkrose": #f69be9 #c98edd $dark rgba($light, .8),
+	"latte": #ddab7d #bf8a5a $dark #ffcfa3
+);
+
+.sidebar {
+	@include sidebarGradient($light, ghostwhite);
+
+	@each $name, $theme in $sidebarTheme {
+		&.is-#{$name} {
+			@include heroGradient(nth($theme, 1), nth($theme, 2));
+
+			.brand {
+				background: nth($theme, 4);
+				-webkit-text-fill-color: transparent;
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+			
+			.side-item {
+				a, .action {
+					color: nth($theme, 3);
+				}
+
+				&.is-active {
+					background: rgba(255, 255, 255, .5);					
+					a:not(.dropdown-item) {
+						color: nth($theme, 1) !important;
+						font-weight: bolder;
+					}
+				}
+
+				&:hover:not(.is-active) {
+					background: linear-gradient(135deg, $dark, $grey);
+					a:not(.dropdown-item), .action {
+						color: rgba($light, .5);
+					}
+				}
+			}
+			
+			.parent-list {
+				label, .action {
+					color: nth($theme, 3);
+				}
+
+				&.is-active {
+					background: rgba(255, 255, 255, .5);					
+					a:not(.dropdown-item) {
+						color: $dark;
+						font-weight: bolder;
+					}
+				}
+
+				&:hover {
+					background: linear-gradient(135deg, $dark, $grey);
+					label, .action {
+						color: rgba($light, .5);
+					}
+				}
+			}
+		}
+	}
+}

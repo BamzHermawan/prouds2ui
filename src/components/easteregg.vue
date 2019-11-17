@@ -24,27 +24,72 @@
 				</div>
 			</div>
 
-			<hr />
+			<hr style="margin-top: 1em;" />
 
-			<div class="field">
-				<label class="label">Sidebar Background</label>
-				<b-field>
-					<p class="control">
-						<a class="button is-static">
-							<span class="mdi mdi-file-image-outline"></span>
-						</a>
-					</p>
-					<b-input
-						placeholder="Image URL. example: https://placekitten.com/320/720"
-						v-model="setting.sidebar.bg"
-						@input="backgroundURL"
-						expanded
-					></b-input>
-				</b-field>
-				<p class="help">
-					Personalize sidebar with any wallpaper. Fill in Image URL
-					your desired wallpaper Voila~ 🤩
-				</p>
+			<div class="columns is-multiline">
+				<div class="column is-12">
+					<div class="field">
+						<label class="label">Sidebar Background</label>
+						<b-field>
+							<b-input
+								placeholder="Image URL. example: https://placekitten.com/320/720"
+								v-model="setting.sidebar.bg"
+								@input="backgroundURL"
+								expanded
+							></b-input>
+							<p class="control">
+								<a
+									class="button is-danger"
+									@click="backgroundURL('')"
+									>Remove Link</a
+								>
+							</p>
+						</b-field>
+						<p class="help">
+							Personalize sidebar with any wallpaper (only from
+							public provider only:
+							<a href="https://unsplash.com/">unsplash.com</a>).
+						</p>
+					</div>
+				</div>
+				<div class="column is-3">
+					<b-field
+						label="Sidebar Color"
+						message="you can't select sidebar color when using background 😢"
+					>
+						<b-select
+							placeholder="Select sidebar color"
+							v-model="setting.sidebar.theme"
+							@input="setSidebarTheme"
+							:disabled="bgExist"
+							expanded
+						>
+							<option value="none">No Theme</option>
+							<option value="is-crimson">Crimson</option>
+							<option value="is-skyblue">Skyblue</option>
+							<option value="is-mossgreen">Moss Green</option>
+							<option value="is-pinkrose">Pink Rose</option>
+							<option value="is-latte">Latte</option>
+						</b-select>
+					</b-field>
+				</div>
+				<div class="column is-3">
+					<b-field
+						label="Sidebar Text Color"
+						message="Select text color to match your background 🚀"
+					>
+						<b-select
+							placeholder="Select sidebar color"
+							v-model="setting.sidebar.color"
+							@input="setSidebarText"
+							:disabled="!bgExist"
+							expanded
+						>
+							<option value="has-text-light">Light Style</option>
+							<option value="has-text-dark">Dark Style</option>
+						</b-select>
+					</b-field>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -60,24 +105,33 @@ export default {
 		return {
 			setting: {
 				sidebar: {
-					bg: ""
+					bg: "",
+					theme: null,
+					color: "is-dark"
 				}
 			}
 		};
 	},
+	computed: {
+		bgExist() {
+			return this.setting.sidebar.bg !== "";
+		}
+	},
 	methods: {
-		closeGift() {
-			if (this.$parent.geeg != undefined) {
-				this.$parent.geeg = false;
+		// Preference Methods
+		backgroundURL(url = null) {
+			if (url !== null) {
+				this.setting.sidebar.bg = url;
 			}
-		},
-		backgroundURL() {
+
 			if (this.setting.sidebar.bg !== "") {
 				let self = this;
 				Axios.get(this.setting.sidebar.bg)
 					.then(function(response) {
 						if (response.status === 200) {
-							geeg.background.change(self.setting.sidebar.bg);
+							geeg.sidebar.background.change(
+								self.setting.sidebar.bg
+							);
 						} else {
 							notified(self.$notification).alert(
 								"Sorry, we can't find your image. Please provide a valid image url! 😒"
@@ -92,7 +146,28 @@ export default {
 					})
 					.finally(() => self.savePreference());
 			} else {
-				geeg.background.remove();
+				geeg.sidebar.background.remove();
+			}
+		},
+
+		setSidebarTheme() {
+			if (this.setting.sidebar.theme !== null) {
+				geeg.sidebar.theme(this.setting.sidebar.theme);
+				this.savePreference();
+			}
+		},
+
+		setSidebarText() {
+			if (this.setting.sidebar.color !== null) {
+				geeg.sidebar.textColor(this.setting.sidebar.color);
+				this.savePreference();
+			}
+		},
+
+		// Main Methods
+		closeGift() {
+			if (this.$parent.geeg != undefined) {
+				this.$parent.geeg = false;
 			}
 		},
 		loadPreference() {
@@ -109,11 +184,14 @@ export default {
 		resetDefault() {
 			this.setting = {
 				sidebar: {
-					bg: ""
+					bg: "",
+					theme: null,
+					color: "is-dark"
 				}
 			};
 
-			this.backgroundURL();
+			this.savePreference();
+			geeg.sidebar.load();
 		}
 	},
 	mounted() {
