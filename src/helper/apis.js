@@ -25,6 +25,17 @@ if (!$config.apiTesting){
 	}
 }
 
+const dummy = bundle => {
+	return new Promise(function (resolve, reject) {
+		let rand = Math.random()
+		if (rand) {
+			resolve()
+		} else {
+			reject()
+		}
+	});
+}
+
 //? ----------------------------------------------------------------------------
 //? ----------------------------------------------------------------------------
 
@@ -35,7 +46,8 @@ if (!$config.apiTesting){
  * @returns user data. check documentation for more information
  */
 // module.exports.getUserSession = request.get($api.userLogin);
-module.exports.getUserSession = request.post($api.userLogin);
+// module.exports.getUserSession = request.post($api.userLogin);
+module.exports.getUserSession = dummy;
 
 /**
  * getUserData
@@ -81,6 +93,18 @@ module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }
 
-module.exports.getNotification = () => {
-	return request.get($api.getNotification);
-}
+// module.exports.getNotification = () => {
+// 	return request.get($api.getNotification);
+// }
+
+module.exports.getNotification = dummy;
+
+// module.exports.deleteFile = bundle => {
+// 	return request.post($api.deleteFile, pack(bundle), {
+// 		headers: {
+// 			"Content-Type": 'application/x-www-form-urlencoded'
+// 		}
+// 	});
+// }
+
+module.exports.deleteFile = dummy;

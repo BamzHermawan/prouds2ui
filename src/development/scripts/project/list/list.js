@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import { notified, checkConnection, animate } from 'helper-tools'
 import { dataTableNoCard, crudInput, linker } from "components";
-import Axios from 'axios'
 import api from 'helper-apis';
 import 'helper-filter';
 
@@ -130,6 +129,15 @@ new Vue({
 		},
 		editProject(val) {
 			if (this.showTable) {
+				if (val.classification === "") {
+					val.classification = null
+				}
+				if (val.project_segment === "") {
+					val.project_segment = null
+				}
+				if (val.project_type.id === "") {
+					val.project_type.id = null
+				}
 				this.form = val
 				animate('#tableProject', 'fadeOut faster', (el) => {
 					this.showTable = false;
@@ -191,6 +199,35 @@ new Vue({
 		actualCostUnformat(val) {
 			let medown = val.replace(/\D/g, "");
 			this.newCost = medown;
+		},
+		sync(val, link) {
+			this.$dialog.confirm({
+				title: 'Confirmation',
+				message: 'Are you sure to sync <b>' + val.project_name + '</b> ?',
+				confirmText: 'Ok',
+				type: 'is-success',
+				onConfirm: value => {
+					let project_id = val.project_id
+					let iwo = val.iwo
+
+					let form = document.createElement("form");
+					form.setAttribute("action", link);
+					form.setAttribute("method", "POST");
+
+					let input = document.createElement("input");
+					input.value = project_id;
+					input.setAttribute("name", "project_id")
+					form.appendChild(input);
+
+					let input2 = document.createElement("input");
+					input2.value = iwo;
+					input2.setAttribute("name", "iwo")
+					form.appendChild(input2);
+
+					document.getElementById("vapp").appendChild(form);
+					form.submit();
+				}
+			})
 		}
 	},
 	computed: {

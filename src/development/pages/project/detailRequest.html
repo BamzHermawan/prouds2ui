@@ -44,15 +44,13 @@
 			<side-list label="Project" name="project">
 				<side-item href="list.html">Project List</side-item>
 				<side-item href="projectassignment.html">Project Assignment</side-item>
-				<side-item href="projectrequest.html">Project Request</side-item>
-				<side-item href="../maintenance.html">Timesheet</side-item>
-				<side-item href="../maintenance.html">Rebaseline</side-item>
-				<side-item href="../maintenance.html">Closing</side-item>
+				<side-item active>Project Request</side-item>
+				<side-item href="../timesheet.html">Timesheet</side-item>
+				<side-item href="../rebaseline.html">Rebaseline</side-item>
+				<side-item href="#no-edit">Closing</side-item>
 			</side-list>
 
-			<side-list label="My Workspace" name="ws">
-				<side-item href="../maintenance.html">Help [default]</side-item>
-			</side-list>
+			<side-list label="My Workspace" name="ws"></side-list>
 		</section>
 
 		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
@@ -84,12 +82,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="../maintenance.html" class="navbar-item hover-text">
+					<a href="http://" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="../maintenance.html" class="navbar-item hover-text">
+					<a href="../setting/authorization.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -99,8 +97,8 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
-							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<a href="../profile.html" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -117,7 +115,7 @@
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Detail Project</span>
+							<span>Project Request</span>
 						</h1>
 						<div id="bookmarkPage">
 							<bookmark-button title="Detail Project"></bookmark-button>
@@ -129,9 +127,7 @@
 				<div id="contentApp" class="container" data-title="Detail Project">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul class="is-marginless">
-							<li>
-								<linker href="@back"></linker>
-							</li>
+							<li><a href="projectrequest.html">Project Request</a></li>
 							<li class="is-active"><a href="#" aria-current="page">Project Information</a></li>
 						</ul>
 					</nav>
@@ -150,7 +146,7 @@
 								<div class="control">
 									<b-taglist attached size="are-medium">
 										<b-tag type="is-dark">IWO</b-tag>
-										<b-tag type="is-info">P-1909-TTES0481</b-tag>
+										<b-tag type="is-danger">EMPTY</b-tag>
 									</b-taglist>
 								</div>
 							</b-field>
@@ -172,42 +168,15 @@
 										</div>
 									</b-field>
 								</div>
-
-								<!-- TODO: Faishol / Mas Papang -->
-								<!-- Request date hanya untuk detail pada project request -->
 								<div class="column content is-marginless is-6">
 									<b-field label="Request Date">
 										<p>{{ '10/11/2019' | moment }}</p>
 									</b-field>
 								</div>
-								<!-- End -->
-
-								<div class="column content is-marginless is-6">
-									<b-field label="Amount">
-										<b-message type="is-info" size="is-small">
-											<h4 class="is-marginless has-text-weight-light">{{ '120000000' | currency }}
-												IDR</h4>
-										</b-message>
-									</b-field>
-								</div>
-								<div class="column is-6">
-									<b-field label="Account Manager">
-										<div>
-											<p class="add-divider-bellow">S2010000001</p>
-											<p>Pak Gembus Sedap Maknyus</p>
-										</div>
-									</b-field>
-								</div>
-								<div class="column is-6">
-									<b-field label="Won Date">
-										<p>{{ '10/01/2019' | moment }}</p>
-									</b-field>
-								</div>
 							</div>
 
-							<!-- TODO: Faishol / Mas Papang -->
-							<!-- Document Evidence hanya untuk detail pada project request -->
 							<hr>
+
 							<div class="content">
 								<h3 class="is-small has-text-weight-light">Document Evidence</h3>
 							</div>
@@ -245,79 +214,6 @@
 									</a>
 								</li>
 							</ul>
-							<!-- End -->
-
-							<hr>
-
-							<div class="content">
-								<h3 class="is-small has-text-weight-light">Agreement Document</h3>
-							</div>
-							<ul>
-								<li>
-									<a href="#revisi1" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi kemarin.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#revisi2" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi terakhir bismilah.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#lowongan" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Lamaran Lowongan VP - Ade.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#proposal" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>PROPOSAL NAIK GAJI.docx</span>
-									</a>
-								</li>
-							</ul>
-
-							<hr>
-
-							<div class="content">
-								<h3 class="is-small has-text-weight-light">Related Document</h3>
-							</div>
-							<ul>
-								<li>
-									<a href="#trik" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Trik-Trik cepat naik gaji.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#pedoman" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Pedoman menjadi ganteng sedunia bradd pitt pun kalah.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#lowongan" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Mau cepat kaya ? ayo lakukan ini.mp4</span>
-									</a>
-								</li>
-							</ul>
 						</div>
 						<div class="column is-7-desktop content">
 							<h3 class="is-small has-text-weight-light">Deliverable Information</h3>
@@ -341,12 +237,6 @@
 									</b-field>
 								</div>
 
-								<div class="column is-4-desktop">
-									<b-field label="Unit Delivery">
-										<p>Project Management Office</p>
-									</b-field>
-								</div>
-
 								<div class="column is-8-desktop">
 									<b-field label="Project Manager">
 										<p>Zaid Kencana Jaya</p>
@@ -354,21 +244,12 @@
 								</div>
 							</div>
 
-							<!-- TODO: Faishol / Mas Papang -->
-							<!-- Description hanya untuk detail pada project request -->
 							<b-field label="Description">
 								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora
 									placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis,
 									deleniti voluptatibus harum optio corrupti sapiente. Ut, explicabo?</p>
 							</b-field>
-							<!-- End -->
-
-							<b-field label="Background">
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora
-									placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis,
-									deleniti voluptatibus harum optio corrupti sapiente. Ut, explicabo?</p>
-							</b-field>
-							<b-field label="Scope of Work">
+							<b-field label="Project Background">
 								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 									Ipsum has been the industry's standard
 									dummy text ever since the 1500s, when an unknown printer took a galley of type and
@@ -394,8 +275,8 @@
 		</section>
 	</div>
 
-	<script src="../../../main.js"></script>
-	<script src="../../scripts/project/detail/detail.js"></script>
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/project/projectRequest/detailRequest.js"></script>
 </body>
 
 </html>

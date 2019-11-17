@@ -54,6 +54,7 @@ new Vue({
 			internal: true,
 			external: true
 		},
+		editMenu: false,
 		showTable: true,
 		paginated: 5,
 		checkboxGroup: [],
@@ -270,6 +271,21 @@ new Vue({
 			} else {
 				this.data = this.dataOri
 			}
+		},
+		editMenuTree(val) {
+			this.menuTree = !this.menuTree
+			this.editMenu = !this.editMenu
+			this.tampung = val
+		},
+		deleteMenuTree(val, deleteLink) {
+			this.$dialog.confirm({
+				title: 'Delete Menu',
+				message: 'Are you sure you want to delete <b>' + val.text + '</b> ?',
+				confirmText: 'Oke',
+				type: 'is-danger',
+				hasIcon: true,
+				onConfirm: () => window.location.href = deleteLink + "id=" + val.id
+			})
 		}
 	},
 	computed: {
