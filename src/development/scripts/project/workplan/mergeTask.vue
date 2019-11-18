@@ -25,7 +25,7 @@
 				<p class="label">Destination Task</p>
 				<input type="hidden" name="destination" v-model="destination" />
 				<b-autocomplete
-					style="margin-bottom:0px;"
+					style="margin-bottom:10px;"
 					v-model="name"
 					placeholder="Choose Destination Task"
 					:open-on-focus="true"
