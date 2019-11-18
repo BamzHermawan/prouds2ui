@@ -25,6 +25,14 @@ if (!$config.apiTesting){
 	}
 }
 
+const parseURL = (key, bundle) => {
+	let link = $api[key];
+	return link.replace(/\{\w*\}/g, function (prop) {
+		let val = prop.replace(/\{|\}/g, "");
+		return bundle[val];
+	});
+}
+
 const dummy = bundle => {
 	return new Promise(function (resolve, reject) {
 		let rand = Math.random()
@@ -93,11 +101,13 @@ module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }
 
-// module.exports.getNotification = () => {
-// 	return request.get($api.getNotification);
-// }
+module.exports.getNotification = () => {
+	return request.get($api.getNotification);
+}
 
-module.exports.getNotification = dummy;
+module.exports.openNotification = (bundle) => {
+	return request.get(parseURL('openNotification', bundle));
+}
 
 // module.exports.deleteFile = bundle => {
 // 	return request.post($api.deleteFile, pack(bundle), {

@@ -64,13 +64,20 @@ module.exports = {
 		uploadFoto: 'axios_check.php',
 
 		/**
-		 * Send Photo [POST]
-		 * Send Data:
-		 * - user_id
+		 * get Notification List [GET]
+		 * Send Data: -
 		 * Received Data: 
-		 *  - notification
+		 *  - list notification
 		 */
 		getNotification: 'getNotification.php',
+
+		/**
+		 * open Notification Log [GET]
+		 * Send Data: id
+		 * Received Data: 
+		 *  - list notification
+		 */
+		openNotification: 'axios_check.php',
 
 		/**
 		 * Delete File [POST]

@@ -32,6 +32,9 @@ export default {
 		index: {
 			required: true
 		},
+		logId: {
+			required: true
+		},
 		subject: {
 			type: String
 		},
@@ -100,6 +103,8 @@ export default {
 
 			this.$parent.activeId = this.index;
 			this.isOpen = !this.isOpen;
+
+			this.$emit("toggle", this);
 		},
 		toggleSelect(status) {
 			this.$emit("selected", status);

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Api from 'helper-apis';
-import { checkConnection, getApiTestByKey } from 'helper-tools';
+import { checkConnection, getApiTestByKey, notified } from 'helper-tools';
 import { notificationLog as nLog } from 'components';
 
 Vue.use(Buefy);
@@ -13,7 +13,8 @@ new Vue({
 			logs: [],
 			currentPage: 1,
 			perPage: 10,
-			activeId: null
+			activeId: null,
+			onRefresh: false
 		}
 	},
 	computed: {
@@ -38,27 +39,49 @@ new Vue({
 
 			return null;
 		},
-		fetchNotification(){
+		fetchNotification(shownotif = true){
 			let self = this;
+			this.onRefresh = true;
 			Api.getNotification()
 				.then(response => {
 					self.logs = response.data;
+					let total = global.updateNotifCount(self.logs);
+					this.onRefresh = false;
+					if (shownotif) notified(self.$notification).info("You have <b>" + total + "<b> unread notification");
 				})
 				.catch(() => {
 					if (checkConnection(self.notification)) {
-						if (showAlert) {
-							if (showAlert) {
-								notified(self.$notification).error(
-									"Sorry we are encountering a problem, please try again later. 🙏"
-								);
-							}
-						}
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
 					}
 				})
+		},
+		openNotification(log){
+			if(log.isOpen && !log.isRead){
+				for (let i = 0; i < this.logs.length; i++) {
+					if(this.logs[i].id == log.logId){
+						this.logs[i].read = true;
+					}
+				}
+
+				Api.openNotification({
+					id: log.logId,
+					subject: log.subject,
+					date: log.date,
+					time: log.time
+				})
+					.then(response => {
+						console.log('akuh di read, muach 💋');
+					})
+					.catch(() => {
+						console.log('err wadaaw');					
+					})
+			}
 		}
 	},
 	mounted(){
-		this.fetchNotification();
+		this.fetchNotification(false);
 		console.log(getApiTestByKey('userLogin'));
 		global.$loader.hide();
 	}

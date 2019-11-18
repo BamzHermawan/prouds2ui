@@ -118,12 +118,12 @@
 					<nav class="level">
 						<div class="level-left">
 							<div class="level-item">
-								<b-checkbox-button type="is-info is-light">
+								<b-checkbox-button type="is-light">
 									Select All
 								</b-checkbox-button>
 							</div>
 							<div class="level-item">
-								<b-button type="is-info is-light">
+								<b-button type="is-light" @click="fetchNotification" :loading="onRefresh">
 									<span class="mdi mdi-refresh in-left"></span>
 									<span>Refresh</span>
 								</b-button>
@@ -131,16 +131,18 @@
 						</div>
 						<div class="level-right">
 							<div class="level-item">
-								<b-button type="is-info is-light">Mark All as Read</b-button>
+								<b-button type="is-light">Mark All as Read</b-button>
 							</div>
 						</div>
 					</nav>
 
 					<n-log 
 						:key="idx" 
+						:log-id="log.id"
 						:ref="'logs-' + idx" 
 						:index="'logs-' + idx" 
 						v-for="(log, idx) in getListLog" 
+						@toggle="openNotification"
 						:subject="log.subject" 
 						:time="log.timeStamp" 
 						:date="log.dateStamp" 
@@ -168,7 +170,31 @@
 	</div>
 
 	<div class="api-testing">
-		<api-test url="http://localhost:5501/demo/axios_check.php" key="userLogin"></api-test>
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		 -->
+		<api-test url="http://localhost:5501/demo/getNotification.php" key="getNotification"></api-test>
+		
+		<!-- 
+			expected no return from getNotification!
+			but we can provide notification data from selected log that you can add to link:
+			{
+				"id": {String},
+				"subject": {String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+			},
+		-->
+		<api-test url="http://localhost:5501/demo/axios_check.php?id={id}&subject={subject}" key="openNotification"></api-test>
+
 	</div>
 
 	<script src="https://unpkg.com/vuebar"></script>

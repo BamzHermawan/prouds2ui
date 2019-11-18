@@ -38,29 +38,31 @@ const VueSidebar = new Vue({
 	},
 	computed: {
 		notifCount() {
-			return this.notifTotal + 1
+			return this.notifTotal;
 		}
 	},
 	methods: {
-		checkNotification(showAlert = true) {
+		setNotificationCount(logs) {
+			let notRead = logs.filter((log) => !log.read);
+			this.notifTotal = notRead.length;
+			return this.notifTotal;
+		},
+		checkNotification() {
 			let self = this;
 			api.getNotification()
 				.then((response) => {
 					let notif = response.data
-					if (notif.length > self.notifTotal) {
-						self.notifTotal = notif.length
-						if (showAlert) {
-							notified(self.$notification).info("You have <b>" + self.notifCount + "<b> new notification");
-						}
+					let totalNotRead = notif.filter((log) => !log.read);
+					if (totalNotRead.length > self.notifTotal) {
+						self.notifTotal = totalNotRead.length;
+						notified(self.$notification).info("You have <b>" + self.notifCount + "<b> unread notification");
 					}
 				})
 				.catch(function () {
 					if (checkConnection(self.notification)) {
-						if (showAlert) {
-							notified(self.$notification).error(
-								"Sorry we are encountering a problem, please try again later. 🙏"
-							);
-						}
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
 					}
 				});
 		},
@@ -75,9 +77,9 @@ const VueSidebar = new Vue({
 		let self = this;
 
 		// get initial notification
-		this.checkNotification(false);
+		this.checkNotification();
 
-		// check notification every 1 minute
+		// check notification every 5 minute
 		setInterval(() => {
 			// let count = self.notifTotal;
 			self.checkNotification();
@@ -87,6 +89,8 @@ const VueSidebar = new Vue({
 		setTimeout(this.checkLoader, Loader.timeoutCount);
 	}
 });
+
+global.updateNotifCount = VueSidebar.setNotificationCount;
 
 const bmPage = document.querySelector("#bookmarkPage");
 if (bmPage !== null) {
