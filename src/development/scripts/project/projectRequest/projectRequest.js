@@ -42,7 +42,7 @@ new Vue({
 			if (this.selected != undefined) {
 				this.customer_id = this.selected.customer_id;
 			} else {
-				this.customer_id = ""
+				this.customer_id = this.customer_id
 			}
 		}
 	},
