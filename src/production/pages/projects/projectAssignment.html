@@ -145,7 +145,8 @@
 									<span>{{ props.row.iwo }}</span>
 								</b-table-column>
 								<b-table-column width="300" field="project_name" label="Project Name" sortable>
-									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}</linker>
+									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}
+									</linker>
 								</b-table-column>
 								<b-table-column field="amount" label="Amount (IDR)" sortable class="align-middle">
 									<span>{{ props.row.amount | currency }}</span>
@@ -237,7 +238,7 @@
 							</nav>
 						</template>
 					</assign>
-					
+
 					<assign type="Co-PM" :users="users.copm" :project="selectedProject" v-if="toggleForm.CoPM" id="CoPM"
 						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb>
@@ -250,7 +251,7 @@
 							</nav>
 						</template>
 					</assign>
-					
+
 					<assign type="Admin" :users="users.admin" :project="selectedProject" v-if="toggleForm.Adm" id="Adm"
 						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb>
@@ -262,9 +263,10 @@
 							</nav>
 						</template>
 					</assign>
-					
+
 					<set-unit-delivery :unit-delivery="unitdelivery" :project="selectedProject" id="setUnitDelivery"
-						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
+						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php"
+						v-if="showUnitDelivery">
 						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
@@ -274,11 +276,11 @@
 							</nav>
 						</template>
 					</set-unit-delivery>
-					
+
 				</div>
 			</section>
 		</section>
-			
+
 		<section id="infoFooter">
 			<info-footer entry="100" utilization="100" api-entry-chart="http://localhost:5501/demo/chart.php?entry"
 				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization">
@@ -288,7 +290,7 @@
 			</info-footer>
 		</section>
 	</div>
-					
+
 	<script>
 		const NEWPROJECT = [
 			{
