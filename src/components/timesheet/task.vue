@@ -1,38 +1,67 @@
 <template>
-	<div class="card timesheet">
+	<div :class="'card timesheet ' + type" @click="onClicked">
 		<div class="card-content">
 			<p class="has-text-weight-bold">{{ task }}</p>
 		</div>
 		<div class="card-content content is-marginless">
 			<p>{{ project }}</p>
-			<b-field grouped>
-				<div class="control">
+			<nav class="level has-min-margin-bottom">
+				<div class="level-left">
 					<b-taglist attached size="are-medium">
 						<b-tag type="is-dark">IWO</b-tag>
 						<b-tag type="is-info">{{ iwo }}</b-tag>
 					</b-taglist>
 				</div>
-				<div class="control">
-					<div class="tags has-addons">
-						<span class="tag is-dark" style="padding:0px 6px;">
-							<span
-								class="mdi mdi-account-tie is-marginless"
-							></span>
-						</span>
-						<span class="tag is-info">{{ member }}</span>
+				<div class="level-right">
+					<div class="level-item">
+						<div class="tags has-addons">
+							<span class="tag is-dark" style="padding:0px 6px;">
+								<span
+									class="mdi mdi-account-tie is-marginless"
+								></span>
+							</span>
+							<span class="tag is-info">{{ member }}</span>
+						</div>
+					</div>
+					<div class="level-item">
+						<b-tooltip label="Your Workload" type="is-warning">
+							<div class="tags has-addons">
+								<span
+									class="tag is-dark"
+									style="padding:0px 6px;"
+								>
+									<span
+										class="mdi mdi-wrench is-marginless"
+									></span>
+								</span>
+								<span class="tag is-warning"
+									>{{ workload }}%</span
+								>
+							</div>
+						</b-tooltip>
 					</div>
 				</div>
-			</b-field>
+			</nav>
 
-			<p class="has-top-margin">
+			<b-message
+				v-if="type === 'is-delayed'"
+				type="is-danger"
+				size="is-small"
+			>
 				<span class="icon is-small">
 					<span class="mdi mdi-calendar-clock"></span>
 				</span>
 				<span>{{ start | moment }} - {{ end | moment }}</span>
-			</p>
+			</b-message>
+			<b-message v-else type="is-info" size="is-small">
+				<span class="icon is-small">
+					<span class="mdi mdi-calendar-clock"></span>
+				</span>
+				<span>{{ start | moment }} - {{ end | moment }}</span>
+			</b-message>
 		</div>
 
-		<footer class="card-footer">
+		<footer v-if="type !== 'is-scheduled'" class="card-footer">
 			<div class="card-footer-item">
 				<div class="timesheet-progress">
 					<nav class="level is-marginless">
@@ -112,6 +141,9 @@ export default {
 		member: {
 			required: true
 		},
+		workload: {
+			required: true
+		},
 		start: {
 			type: String,
 			required: true
@@ -122,10 +154,22 @@ export default {
 		},
 		timesheet: {
 			type: Array,
-			required: true
+			default: () => {
+				return [];
+			}
 		},
 		taskProgress: {
-			required: true
+			default: undefined
+		},
+		type: {
+			type: String,
+			default: "is-ongoing"
+		}
+	},
+	methods: {
+		onClicked() {
+			console.log("clicked");
+			this.$emit("clicked");
 		}
 	}
 };

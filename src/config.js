@@ -1,5 +1,8 @@
 module.exports = {
 
+	// Use API TESTING
+	apiTesting: true,
+
 	// Base URL to prouds API
 	baseAPI: 'http://localhost:5501/demo/',
 

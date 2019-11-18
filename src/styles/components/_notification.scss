@@ -1,0 +1,85 @@
+.notification-log {
+	padding: 1em;
+	display: grid;
+	grid-column-gap: 1em;
+	grid-template-rows: 1fr;
+	grid-template-columns: 28px 1fr 110px;
+	background-color: $white;
+
+	.log-content {
+		display: none;
+	}
+
+	.is-sinopsis {
+		margin-bottom: 0px !important;
+	}
+
+	&.is-open {
+		background-color: $info-light !important;
+		grid-template-rows: 48px 1fr;
+
+		.is-log-subject {
+			font-weight: bolder !important;
+		}
+
+		.is-sinopsis {
+			display: none;
+		}
+
+		.log-content {
+			display: block;
+			grid-column: 1/4;
+			padding-top: .75em;
+			margin-top: .75em;
+			border-top: $grey-lighter solid 1px;
+		}
+	}
+
+	&.is-read {
+		background-color: $grey-lightest;
+		.is-log-subject {
+			font-weight: normal;
+		}
+		
+		.log-stamp {
+			p {
+				color: $grey-light;
+			}
+		}
+	}
+
+	&:hover {
+		background-color: $info-light;
+	}
+
+	.log-left {
+		margin-top: 3px;
+	}
+
+	.log-header.content {
+		@include noSelect;
+		cursor: pointer;
+		margin: 0px;
+	}
+
+	.is-log-subject {
+		font-weight: bolder;
+		margin-bottom: 0px !important;
+	}
+
+	.log-stamp {
+		p {
+			color: $info;
+			text-align: right;
+			margin: 0px !important;
+		}
+	}
+
+	& + .notification-log {
+		border-top: $grey-lighter solid 1px;
+	}
+}
+
+.pagination-container {
+	margin-top: 1.5em;
+}

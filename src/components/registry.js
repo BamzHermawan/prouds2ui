@@ -1,9 +1,9 @@
 import linker from "./linker.vue";
-import mediaLog from "./mediaLog.vue";
 import notified from "./notified.vue";
 import geegForm from "./easteregg.vue";
 import infoFooter from "./infoFooter.vue";
 import progressBar from "./progressBar.vue";
+import notificationLog from "./notificationLog.vue";
 import bookmarkButton from "./sidebar/bookmark.vue";
 
 // DATATABLE
@@ -28,12 +28,12 @@ import topNavBar from "./topNavBar.vue";
 import ganttchart from "./ganttchart.vue"
 
 module.exports.linker = linker;
-module.exports.mediaLog = mediaLog;
 module.exports.notified = notified;
 module.exports.geegForm = geegForm;
 module.exports.infoFooter = infoFooter;
 module.exports.progressBar = progressBar;
 module.exports.bookmarkButton = bookmarkButton;
+module.exports.notificationLog = notificationLog;
 
 module.exports.dataTable = dataTable;
 module.exports.dataTableNoCard = dataTableNoCard;

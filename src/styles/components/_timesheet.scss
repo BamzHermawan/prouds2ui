@@ -18,6 +18,10 @@
 	.task-container {
 		background-color: $success-light;
 		padding: .75em;
+
+		.level-item:not(:last-child) {
+			margin-right: 5px;
+		}
 	}
 
 	&.is-always-show {
@@ -63,14 +67,31 @@
 	}
 }
 
+.task-divider {
+	padding: .75em 1em;
+	border-top: 1px solid $dark;
+	border-bottom: 1px solid $dark;
+	background-color: rgba(54, 54, 54, 0.1);
+	width: 100%;
+	margin: 1em 0px;
+
+	&.no-top-margin {
+		margin-top: 0px;
+	}
+}
+
 .timesheet {
 	box-shadow: none !important;
 	border: solid rgb(189, 189, 189) 1px;
 	border-radius: 5px;
 	cursor: pointer;
 
-	&:hover {
+	&:hover:not(.is-scheduled) {
 		box-shadow: 0 0.5em 1em -0.125em #0a0a0a1a !important;
+	}
+
+	&.is-scheduled {
+		cursor: default;
 	}
 
 	.card-content:first-child {
@@ -103,5 +124,11 @@
 				margin-right: 5px !important;
 			}
 		}
+	}
+
+	.message-body {
+		padding: .75em 1.5em;
+		color: $dark !important;
+		font-weight: bolder;
 	}
 }

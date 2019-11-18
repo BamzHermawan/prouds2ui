@@ -1,0 +1,23 @@
+.hero {
+	.hero-body {
+		padding: $section-padding;
+		padding-top: 1.8rem;
+		padding-bottom: 1.8rem;
+	}
+
+	&.is-medium > .hero-body {
+		padding: $section-padding-medium;
+	}
+
+	&.is-large > .hero-body {
+		padding: $section-padding-large;
+	}
+
+	&.is-bold {
+		@each $name, $gradient in $heroBold {
+			&.is-#{$name} {
+				background: $gradient !important;
+			}
+		}
+	}
+}

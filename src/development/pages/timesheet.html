@@ -128,105 +128,57 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 
-					<task-group title="Delayed Task" :value="false" type="is-delayed">
-						<div class="column is-4-widescreen is-6-tablet">
-							<div class="card timesheet">
-								<div class="card-content">
-									<p class="has-text-weight-bold">Lorem ipsum dolor, sit amet consectetur adipisicing
-										elit. Impedit et,
-										voluptatem
-										similique quod obcaecati ipsum.</p>
+					<div v-if="showList">
+						<nav class="level">
+							<div class="level-left">
+								<span class="button is-static">You had task until <span style="margin-right:5px;"></span> <b>{{ endWorkload }}</b></span>
+							</div>
+							<div class="level-right">
+								<b-button tag="a" href="#history-timesheet" type="is-info is-light">
+									<span class="icon">
+										<span class="mdi mdi-history"></span>
+									</span>
+									<span>History Timesheet</span>
+								</b-button>
+							</div>
+						</nav>
+
+						<task-group title="Delayed Task" :value="false" type="is-delayed">
+							<div class="columns is-multiline">
+								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
+									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member" :workload="ts.workload"
+										:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
 								</div>
-								<div class="card-content content is-marginless">
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nulla impedit
-										incidunt quod,
-										laboriosam
-										accusamus fuga temporibus corporis veniam nobis?</p>
-									<b-field grouped>
-										<div class="control">
-											<b-taglist attached size="are-medium">
-												<b-tag type="is-dark">IWO</b-tag>
-												<b-tag type="is-info">P-1909SCC-TTES1003</b-tag>
-											</b-taglist>
-										</div>
-										<div class="control">
-											<div class="tags has-addons">
-												<span class="tag is-dark" style="padding:0px 6px;">
-													<span class="mdi mdi-account-tie is-marginless"></span>
-												</span>
-												<span class="tag is-info">3</span>
-											</div>
-										</div>
-									</b-field>
-
-									<p class="has-top-margin">
-										<span class="icon is-small">
-											<span class="mdi mdi-calendar-clock"></span>
-										</span>
-										<span>01 October 2019 - 29 December 2019</span>
-									</p>
+							</div>
+						</task-group>
+	
+						<task-group title="On Going Task" always-show>
+							<div class="columns is-multiline">
+								<div v-for="(ts, idx) in task.ongoing" :key="idx" class="column is-4-desktop is-6">
+									<task-card @clicked="setTimesheet(ts)" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member" :workload="ts.workload"
+										:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
 								</div>
-
-								<footer class="card-footer">
-									<div class="card-footer-item">
-										<div class="timesheet-progress">
-											<nav class="level is-marginless">
-												<p class="level-left">
-													<span>Timesheet</span>
-												</p>
-												<div class="level-right">
-													<div class="level-item">
-														<b-tooltip label="Approved Timesheet" type="is-success">
-															<b-tag type="is-success">25%</b-tag>
-														</b-tooltip>
-													</div>
-													<div class="level-item">
-														<b-tooltip label="Submited Timesheet" type="is-info">
-															<b-tag type="is-info">35%</b-tag>
-														</b-tooltip>
-													</div>
-												</div>
-											</nav>
-											<progress-bar no-margin clean-bar size="is-small"></progress-bar>
-										</div>
+							</div>
+						</task-group>
+	
+						<task-group title="Scheduled Task" type="is-scheduled">
+							<div v-for="(group, i) in task.scheduled" :key="i">
+								<div :class="'task-divider' + (i==0?' no-top-margin':'')">
+									<p>Task Starting in <b>{{ group.month }}</b></p>
+								</div>
+								<div class="columns is-multiline">
+									<div v-for="(ts, idx) in group.list" :key="idx" class="column is-4-desktop is-6">
+										<task-card 
+											type="is-scheduled" 
+											:iwo="ts.iwo" :end="ts.end" 
+											:task="ts.task" :start="ts.start" 
+											:member="ts.member" :workload="ts.workload"
+											:project="ts.project_name"></task-card>
 									</div>
-									<div class="card-footer-item">
-										<div class="timesheet-progress">
-											<nav class="level is-marginless">
-												<p class="level-left">
-													<span>Task Progress</span>
-												</p>
-												<p class="level-right">
-													<b-tag type="is-success">52%</b-tag>
-												</p>
-											</nav>
-											<progress-bar value="52" no-margin clean-bar size="is-small"></progress-bar>
-										</div>
-									</div>
-								</footer>
+								</div>
 							</div>
-						</div>
-					</task-group>
-
-					<task-group title="On Going Task" always-show>
-						<div class="columns is-multiline">
-							<div v-for="(ts, idx) in myTimesheet" :key="idx" class="column is-4-desktop is-6">
-								<task-card :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start"
-									:member="ts.member" :timesheet="ts.timesheet" :project="ts.project_name"
-									:task-progress="ts.taskProgress"></task-card>
-							</div>
-						</div>
-					</task-group>
-
-					<task-group title="Scheduled Task" type="is-scheduled">
-						<div class="columns is-multiline">
-							<div v-for="(ts, idx) in myTimesheet" :key="idx" class="column is-4-desktop is-6">
-								<task-card :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start"
-									:member="ts.member" :timesheet="ts.timesheet" :project="ts.project_name"
-									:task-progress="ts.taskProgress"></task-card>
-							</div>
-						</div>
-					</task-group>
+						</task-group>
+					</div>
 
 					<div v-if="showForm" class="animated fadeIn faster">
 						<div class="columns is-marginless">
@@ -258,43 +210,15 @@
 						<!-- Add horizontal line -->
 						<hr>
 
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
+						<form @submit="submitForm" action="http://localhost:5501/demo/post_detect.php" method="POST"
 							enctype="multipart/form-data">
 							<div class="columns">
 								<div class="column is-8-desktop add-border-right">
-									<b-message type="is-info" size="is-small" title="Task" :closable="false">
-										<div class="content">
-											<b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
-											<p class="has-text-weight-light">{{ dataForm.task }}</p>
-										</div>
+									<b-message type="is-info" size="is-small" title="Task" :closable="false" class="is-normal-font">
+										<b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
+										<p class="has-text-weight-light">{{ dataForm.task }}</p>
 									</b-message>
 
-									<label class="label">Evidence</label>
-									<div class="columns">
-										<div class="column">
-											<crud-input readonly name="documentName" :color="determineFieldStatus"
-												v-model="documentName" input-style="">
-												<template slot="helptext">
-													<p :class="'help ' + determineFieldStatus">
-														File yang dibolehkan: jpg, jpeg, png, doc, docx,
-														pdf, xls, xlsx, ppt, pptx ; File size maksimal
-														20MB
-													</p>
-												</template>
-											</crud-input>
-										</div>
-										<div class="column is-one-third">
-											<b-field>
-												<b-upload v-model="selectedDocument" name="evidDoc" native required
-													style="width:100%;">
-													<a class="button is-info is-fullwidth">
-														<b-icon icon="upload"></b-icon>
-														<span>Browse File</span>
-													</a>
-												</b-upload>
-											</b-field>
-										</div>
-									</div>
 									<b-field label="Activity">
 										<b-input maxlength="200" type="textarea" name="activity"
 											placeholder="Describe your activity related to this task so that your pm could understand what you do."
@@ -302,13 +226,26 @@
 									</b-field>
 								</div>
 								<div class="column is-4-desktop">
-									<crud-input type="datepicker" name="date" :min-date="minDate" :max-date="maxDate"
-										label="Timesheet Date" placeholder="Choose Date">
-									</crud-input>
+									<input type="hidden" name="startDate" :value="startDate">
+									<input type="hidden" name="endDate" :value="endDate">
+									<input type="hidden" name="dateIsRange" :value="rangeToggle">
+									<b-field label="Timesheet Date">
+										<b-tooltip label="Please Select Timesheet Date" type="is-warning" :active="datepicker.alert" always style="width:100%;">
+											<b-button type="is-success" outlined icon-left="calendar" class="is-fullwidth" @click="openModalDate">
+												<span>{{ timesheetDate }}</span>
+											</b-button>
+										</b-tooltip>
+									</b-field>
+									<nav class="level">
+										<div class="level-left">
+											<b-switch size="is-small" type="is-info" v-model="rangeToggle">Pick date as range</b-switch>
+										</div>
+									</nav>
+
 									<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour"
 										color="is-info" placeholder="0">
 									</crud-input>
-									<crud-input type="select" name="level" label="Select Area"
+									<crud-input type="select" name="location" label="Select Area"
 										placeholder="Choose area location">
 										<option selected style="display: none;"></option>
 										<option value="1">Jabodetabek</option>
@@ -324,6 +261,94 @@
 							</div>
 						</form>
 					</div>
+
+					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px">
+						<b-message type="is-info">
+							Pick Timesheet Date
+						</b-message>
+						<div class="columns">
+							<div class="column">
+								<div class="card is-inline-datepicker">
+									<header class="card-header">
+										<p class="card-header-title">
+											Timesheet Start Date
+										</p>
+									</header>
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
+										:focused-date="datepicker.start.focused" :events="selectedDateList" indicators="bars">
+										<template slot="header">
+											<b-field>
+												<b-field>
+													<b-select placeholder="Select Month" v-model="datepicker.start.selected"
+														@input="selectMonth('start')" expanded>
+														<option :key="i" v-for="(item, i) in monthList">
+															{{ item.label }}
+														</option>
+													</b-select>
+												</b-field>
+											</b-field>
+										</template>
+									</b-datepicker>
+								</div>
+							</div>
+							<div class="column">
+								<div class="card is-inline-datepicker">
+									<header class="card-header">
+										<p class="card-header-title">
+											Timesheet End Date
+										</p>
+									</header>
+									<b-datepicker inline v-model="datepicker.end.val" :max-date="new Date()"
+										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList" indicators="bars">
+										<template slot="header">
+											<b-field>
+												<b-field>
+													<b-select placeholder="Select Month" v-model="datepicker.end.selected"
+														@input="selectMonth('end')" expanded>
+														<option :key="i" v-for="(item, i) in monthList">
+															{{ item.label }}
+														</option>
+													</b-select>
+												</b-field>
+											</b-field>
+										</template>
+									</b-datepicker>
+								</div>
+							</div>
+						</div>
+					</b-modal>
+					
+					<b-modal :active.sync="modal.singleDate" trap-focus width="302px">
+						<b-message type="is-info" v-if="rangeToggle">
+							Pick Timesheet Date
+						</b-message>
+						<div class="columns">
+							<div class="column">
+								<div class="card is-inline-datepicker">
+									<header class="card-header">
+										<p class="card-header-title">
+											Timesheet Date
+										</p>
+									</header>
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
+										:focused-date="datepicker.start.focused">
+										<template slot="header">
+											<b-field>
+												<b-field>
+													<b-select placeholder="Select Month" v-model="datepicker.start.selected"
+														@input="selectMonth('start')" expanded>
+														<option :key="i" v-for="(item, i) in monthList">
+															{{ item.label }}
+														</option>
+													</b-select>
+												</b-field>
+											</b-field>
+										</template>
+									</b-datepicker>
+								</div>
+							</div>
+						</div>
+					</b-modal>
 				</div>
 			</section>
 		</section>
@@ -343,7 +368,7 @@
 		// for testing only. boleh dihapus pas di CI nya
 
 		//! yang ngurutin jadinya frontend 😭
-		const MYTIMESHEET = [
+		const ONGOING = [
 			{
 				"iwo": "P-1909SCC-TTES1001",
 				"project_id": 10001,
@@ -353,6 +378,7 @@
 				"start": today + "/" + month + "/2019",
 				"end": today + "/" + month + "/2019",
 				"member": 1,
+				"workload": randomNumber(),
 				"taskProgress": randomNumber(),
 				"timesheet": [
 					{ data: 50, color: 'is-success' },
@@ -368,6 +394,7 @@
 				"start": "1/" + month + "/2019",
 				"end": "29/" + month + "/2019",
 				"member": 3,
+				"workload": randomNumber(),
 				"taskProgress": randomNumber(),
 				"timesheet": [
 					{ data: 60, color: 'is-success' },
@@ -380,9 +407,10 @@
 				"task_id": 3,
 				"project_name": "fugiat aute tempor ad tempor fugiat qui eiusmod sunt aute et veniam do exercitation pariatur",
 				"task": "Esse labore sunt anim id incididunt nostrud ad ex nostrud incididunt proident ex.",
-				"start": "01/10/2019",
+				"start": "12/09/2019",
 				"end": "29/12/2019",
 				"member": 2,
+				"workload": randomNumber(),
 				"taskProgress": randomNumber(),
 				"timesheet": [
 					{ data: randomNumber(), color: 'is-success' },
@@ -400,6 +428,7 @@
 				"start": "01/01/2018",
 				"end": "12/10/2019",
 				"member": 3,
+				"workload": randomNumber(),
 				"taskProgress": randomNumber(),
 				"timesheet": [
 					{ data: randomNumber(), color: 'is-success' },
@@ -415,6 +444,7 @@
 				"start": "02/10/2019",
 				"end": "26/10/2019",
 				"member": 5,
+				"workload": randomNumber(),
 				"taskProgress": randomNumber(),
 				"timesheet": [
 					{ data: randomNumber(), color: 'is-success' },
@@ -429,14 +459,10 @@
 				"task_id": 6,
 				"project_name": "non excepteur enim id tempor cupidatat nostrud fugiat est laborum ad magna quis occaecat dolor",
 				"task": "Eu non qui proident consectetur quis tempor.",
-				"start": "06/12/2019",
+				"start": "06/01/2020",
 				"end": "02/03/2020",
 				"member": 3,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1022",
@@ -447,11 +473,7 @@
 				"start": "13/12/2019",
 				"end": "03/01/2020",
 				"member": 2,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1023",
@@ -459,14 +481,10 @@
 				"task_id": 8,
 				"project_name": "culpa dolor excepteur dolore nulla tempor do quis quis nisi duis dolore commodo cillum consectetur",
 				"task": "Anim eu proident elit nisi officia magna sint sunt adipisicing consequat nostrud commodo eiusmod.",
-				"start": "01/12/2019",
+				"start": "01/02/2020",
 				"end": "17/05/2020",
 				"member": 1,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1024",
@@ -477,11 +495,7 @@
 				"start": "03/12/2019",
 				"end": "29/02/2020",
 				"member": 2,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1025",
@@ -492,11 +506,7 @@
 				"start": "03/12/2019",
 				"end": "08/02/2020",
 				"member": 4,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1026",
@@ -507,11 +517,7 @@
 				"start": "10/12/2019",
 				"end": "23/02/2020",
 				"member": 5,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1027",
@@ -522,11 +528,7 @@
 				"start": "03/12/2019",
 				"end": "20/02/2020",
 				"member": 2,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1028",
@@ -534,14 +536,10 @@
 				"task_id": 4,
 				"project_name": "mollit minim proident in velit sunt consequat adipisicing aute incididunt in amet ullamco amet non",
 				"task": "Exercitation ex magna enim deserunt minim magna nostrud Lorem veniam anim laboris aliquip.",
-				"start": "04/12/2019",
+				"start": "04/01/2020",
 				"end": "18/03/2020",
 				"member": 1,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1029",
@@ -552,11 +550,7 @@
 				"start": "10/12/2019",
 				"end": "16/01/2020",
 				"member": 3,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			},
 			{
 				"iwo": "P-1909SCC-TTES1030",
@@ -564,14 +558,10 @@
 				"task_id": 6,
 				"project_name": "eiusmod officia anim est qui duis ullamco fugiat aliquip nulla anim in sunt Lorem amet",
 				"task": "In id anim magna quis veniam sit esse anim tempor adipisicing excepteur laboris duis exercitation.",
-				"start": "11/12/2019",
+				"start": "11/02/2020",
 				"end": "31/03/2020",
 				"member": 1,
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"workload": randomNumber()
 			}
 		]
 	</script>

@@ -235,7 +235,7 @@ module.exports.momentFormatter = (Moment, stringDate, returnJSDate = false) => {
 }
 
 module.exports.isEmpty = (value) => {
-	return !(value !== "" && value !== undefined && value !== null);
+	return !(value !== "" && value !== undefined && value !== null && value !== []);
 }
 
 module.exports.parseURLRoute = () => {
@@ -260,4 +260,20 @@ module.exports.parseURLRoute = () => {
 			};
 		}
 	}
+}
+
+module.exports.cutShort = (text, length = 7) => {
+	let clean = text.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "");;
+	let words = clean.split(/\s/);
+
+	return words.slice(0, length).join(' ') + " ...";
+}
+
+module.exports.getApiTestByKey = (key) => {
+	let el = document.querySelector('api-test[key="'+key+'"]');
+	if(!this.isEmpty(el)){
+		return el.getAttribute('url');
+	}
+
+	return null;
 }

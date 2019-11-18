@@ -1,0 +1,56 @@
+.navbar.main {
+	z-index: 30 !important;
+	padding-right: 15px;
+	@include navbarGradient(rgb(243, 42, 76), rgb(223, 102, 72));
+}
+
+.main-navbar {
+	.navbar-item {
+		font-family: $roboto;
+		text-transform: uppercase;
+		
+		&.is-active:not(.hover-text) {
+			background: linear-gradient(90deg, rgb(206, 176, 77),rgb(229, 226, 55));
+			font-weight: bolder;
+			-webkit-text-fill-color: transparent;
+			-webkit-background-clip: text;
+			background-clip: text;
+		}
+
+		&.is-active.hover-text {
+			background-color: transparent !important;
+
+			.mdi {
+				color: $warning;
+			}
+
+			span[data-toggle="text"] {
+				display: block !important;
+
+				background: linear-gradient(90deg, rgb(206, 176, 77),rgb(229, 226, 55));
+				font-weight: bolder;
+				-webkit-text-fill-color: transparent;
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+		}
+	}
+}
+
+.navbar-burger {
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 480px) {
+	.navbar {
+		margin-bottom: 20px;
+	}
+
+	.navbar-end {
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top-color: $danger;
+		border-top-width: 2px;
+		border-top-style: solid;
+	}
+}

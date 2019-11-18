@@ -1,10 +1,16 @@
 // Prouds text logo branding
-@mixin brand($size, $spacing){
+@mixin brand($size, $spacing, $invert: false){
 	font-family: 'Raleway', 'Roboto Condensed', sans-serif;
 	font-weight: bolder;
 	font-size: $size;
 	letter-spacing: $spacing;
-	background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
+
+	@if $invert {
+		background: linear-gradient(0deg, $grey-light, ghostwhite);
+	} @else {
+		background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
+	}
+
 	-webkit-text-fill-color: transparent;
 	-webkit-background-clip: text;
 	background-clip: text;

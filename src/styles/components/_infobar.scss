@@ -1,0 +1,29 @@
+.info-bottom-bar {
+	background-color: $dark;
+	color: $light;
+	font-size: .8rem;
+	padding: 5px;
+
+	& > .columns, .column {
+		margin: 0px !important;
+		padding: 0px !important;
+	}
+
+	.is-copyright {
+		flex: none;
+		width: 175px !important;
+    	text-align: center;
+	}
+
+	.is-performance {
+		.item {
+			padding: 0px 8px;
+			cursor: pointer;
+			color: lighten($info, 25%);
+		}
+
+		.item:hover {
+			background-color: lighten($dark, 10%);
+		}
+	}
+}
