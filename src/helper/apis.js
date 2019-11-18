@@ -15,6 +15,11 @@ if (!$config.apiTesting){
 	// set up baseAPI
 	request.defaults.baseURL = $config.baseAPI;
 } else {
+	let base = document.querySelector('.api-testing[base]');
+	if(!isEmpty(base)){
+		request.defaults.baseURL = base.getAttribute('base');
+	}
+
 	for (const key in $api) {
 		if ($api.hasOwnProperty(key)) {
 			let testApi = getApiTestByKey(key)
