@@ -145,7 +145,7 @@
 									</linker>
 								</b-table-column>
 								<b-table-column field="customer" label="Customer" sortable class="align-middle">
-									<span>{{ props.row.customer }}</span>
+									<span>{{ props.row.customer.label }}</span>
 								</b-table-column>
 								<b-table-column field="project_type" label="Project Type" sortable class="align-middle">
 									<span>{{ props.row.project_type.label }}</span>
@@ -448,8 +448,7 @@
 								</div>
 								<div class="column">
 									<p class="label">Document Evidence</p>
-									<b-upload v-model="tampungFile" name="evidDoc[]" multiple required
-										style="width:100%;">
+									<b-upload v-model="tampungFile" name="evidDoc[]" multiple style="width:100%;">
 										<a class="button is-info is-fullwidth">
 											<b-icon icon="upload"></b-icon>
 											<span>Browse File</span>
@@ -498,7 +497,10 @@
 			{
 				"project_id": 430170,
 				"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
-				"customer": "PT. Telkom",
+				"customer": {
+					"id": "1",
+					"label": "PT. Telkom"
+				},
 				"project_type": {
 					"id": "1",
 					"label": "Managed Services"
@@ -537,7 +539,10 @@
 			{
 				"project_id": 535051,
 				"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
-				"customer": "PT. Pertamina",
+				"customer": {
+					"id": "2",
+					"label": "PT. Pertamina"
+				},
 				"project_type": {
 					"id": "2",
 					"label": "Implementation"
@@ -576,7 +581,10 @@
 			{
 				"project_id": 766392,
 				"project_name": "elit aliqua irure ut sint cillum tempor fugiat culpa nostrud adipisicing qui incididunt dolore",
-				"customer": "PT. PLN",
+				"customer": {
+					"id": "3",
+					"label": "PT. PLN"
+				},
 				"project_type": {
 					"id": "3",
 					"label": "Research and Development"
@@ -615,7 +623,10 @@
 			{
 				"project_id": 610803,
 				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": "PT. Jiwasraya",
+				"customer": {
+					"id": "4",
+					"label": "PT. Jiwasraya"
+				},
 				"project_type": {
 					"id": "4",
 					"label": "Type A"
@@ -654,7 +665,10 @@
 			{
 				"project_id": 610803,
 				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": "PT. Jiwasraya",
+				"customer": {
+					"id": "4",
+					"label": "PT. Jiwasraya"
+				},
 				"project_type": {
 					"id": "4",
 					"label": "Type A"
@@ -693,7 +707,10 @@
 			{
 				"project_id": 610803,
 				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": "PT. Jiwasraya",
+				"customer": {
+					"id": "4",
+					"label": "PT. Jiwasraya"
+				},
 				"project_type": {
 					"id": "4",
 					"label": "Type A"
@@ -732,7 +749,10 @@
 			{
 				"project_id": 610803,
 				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": "PT. Jiwasraya",
+				"customer": {
+					"id": "4",
+					"label": "PT. Jiwasraya"
+				},
 				"project_type": {
 					"id": "4",
 					"label": "Type A"

@@ -42,7 +42,7 @@ new Vue({
 			if (this.selected != undefined) {
 				this.customer_id = this.selected.customer_id;
 			} else {
-				this.customer_id = "";
+				this.customer_id = ""
 			}
 		}
 	},
@@ -134,7 +134,9 @@ new Vue({
 		},
 		edit(val) {
 			if (this.showTable) {
-				this.customer_name = val.customer
+				this.customer_name = val.customer.label
+				this.customer_id = val.customer.id
+				console.log(this.customer_name)
 				val.start_date = new Date(Moment(val.start_date, "DD/MM/YYYY"))
 				val.end_date = new Date(Moment(val.end_date, "DD/MM/YYYY"))
 				this.tampung = val
@@ -161,7 +163,7 @@ new Vue({
 		},
 		setIWO(val, link) {
 			this.$dialog.prompt({
-				message: `Set IWO`,
+				message: `Set IWO Number`,
 				confirmText: "Save",
 				type: "is-success",
 				inputAttrs: {
