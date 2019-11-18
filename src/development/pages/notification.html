@@ -169,7 +169,7 @@
 		</section>
 	</div>
 
-	<div class="api-testing">
+	<div class="api-testing" base="http://localhost:5501/demo/">
 		<!-- 
 			expected return from getNotification!
 			[{
@@ -181,7 +181,7 @@
 				"read": {Boolean}
 			}, ... ],
 		 -->
-		<api-test url="http://localhost:5501/demo/getNotification.php" key="getNotification"></api-test>
+		<api-test url="getNotification.php" key="getNotification"></api-test>
 		
 		<!-- 
 			expected no return from getNotification!
@@ -193,11 +193,10 @@
 				"timeStamp": {Time String with format H:i},
 			},
 		-->
-		<api-test url="http://localhost:5501/demo/axios_check.php?id={id}&subject={subject}" key="openNotification"></api-test>
+		<api-test url="axios_check.php?id={id}&subject={subject}" key="openNotification"></api-test>
 
 	</div>
 
-	<script src="https://unpkg.com/vuebar"></script>
 	<script src="../scripts/layout/controller.js"></script>
 	<script src="../scripts/notification/notification.js"></script>
 </body>
