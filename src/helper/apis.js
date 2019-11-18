@@ -110,8 +110,12 @@ module.exports.getNotification = () => {
 	return request.get($api.getNotification);
 }
 
-module.exports.openNotification = (bundle) => {
-	return request.get(parseURL('openNotification', bundle));
+module.exports.openNotification = (IDs) => {
+	return request.post($api.openNotification, pack(IDs), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
 }
 
 // module.exports.deleteFile = bundle => {

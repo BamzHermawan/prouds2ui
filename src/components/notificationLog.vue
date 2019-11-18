@@ -2,7 +2,10 @@
 	<div :class="'notification-log animated fadeIn' + mainClass">
 		<div class="log-left">
 			<div class="checkbox-container">
-				<b-checkbox @input="toggleSelect"></b-checkbox>
+				<b-checkbox
+					v-model="selected"
+					@input="toggleSelect"
+				></b-checkbox>
 			</div>
 		</div>
 		<div class="log-header content" @click="toggleOpen">
@@ -38,9 +41,6 @@ export default {
 		subject: {
 			type: String
 		},
-		value: {
-			default: false
-		},
 		date: {
 			type: String,
 			default: Moment().format("DD/MM/YYYY")
@@ -56,6 +56,7 @@ export default {
 	},
 	data() {
 		return {
+			selected: false,
 			isOpen: false,
 			readMore: false,
 			contentEmpty: false
@@ -77,7 +78,7 @@ export default {
 				let text = this.$slots.default[0].data.domProps.innerHTML;
 
 				if (!isEmpty(text)) {
-					return cutShort(text);
+					return cutShort(text, 15);
 				} else {
 					this.contentEmpty = true;
 					return "";
@@ -107,7 +108,10 @@ export default {
 			this.$emit("toggle", this);
 		},
 		toggleSelect(status) {
-			this.$emit("selected", status);
+			this.$emit("selected", {
+				vue: this,
+				status: status
+			});
 		}
 	}
 };

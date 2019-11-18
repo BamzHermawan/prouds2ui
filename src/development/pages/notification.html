@@ -118,9 +118,9 @@
 					<nav class="level">
 						<div class="level-left">
 							<div class="level-item">
-								<b-checkbox-button type="is-light">
+								<b-button @click="selectAll(null)" :type="allSelected ? 'is-info':'is-light'">
 									Select All
-								</b-checkbox-button>
+								</b-button>
 							</div>
 							<div class="level-item">
 								<b-button type="is-light" @click="fetchNotification" :loading="onRefresh">
@@ -131,18 +131,19 @@
 						</div>
 						<div class="level-right">
 							<div class="level-item">
-								<b-button type="is-light">Mark All as Read</b-button>
+								<b-button v-show="markButton" @click='markAsRead' :loading="onRefresh" type="is-success" class="animated bounceIn">Mark Selected as Read</b-button>
 							</div>
 						</div>
 					</nav>
 
 					<n-log 
-						:key="idx" 
+						:key="log.id" 
 						:log-id="log.id"
 						:ref="'logs-' + idx" 
-						:index="'logs-' + idx" 
+						:index="'logs-' + log.id" 
 						v-for="(log, idx) in getListLog" 
 						@toggle="openNotification"
+						@selected="onSelect"
 						:subject="log.subject" 
 						:time="log.timeStamp" 
 						:date="log.dateStamp" 
@@ -155,7 +156,7 @@
 							:total="logs.length" 
 							size="is-small" 
 							rounded 
-							@change="scrollToTop"
+							@change="resetLogs"
 							:per-page="perPage" 
 							:current.sync="currentPage">
 						</b-pagination>
@@ -185,16 +186,10 @@
 		
 		<!-- 
 			expected no return from getNotification!
-			but we can provide notification data from selected log that you can add to link:
-			{
-				"id": {String},
-				"subject": {String},
-				"dateStamp": {Date String with format DD/MM/YYYY},
-				"timeStamp": {Time String with format H:i},
-			},
+			we send post data as array of id:
+			[ 1001, 1002, 1003, ... ],
 		-->
-		<api-test url="axios_check.php?id={id}&subject={subject}" key="openNotification"></api-test>
-
+		<api-test url="axios_check.php" key="openNotification"></api-test>
 	</div>
 
 	<script src="../scripts/layout/controller.js"></script>
