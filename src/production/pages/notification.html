@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>NOTIFICATION | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../styles/perfect-scrollbar.css">
+	<link rel="stylesheet" href="../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<!-- <side-list label="List Title" name="main">
+				<side-item link="#standart">Standart Link Item</side-item>
+				<side-item link="#no-edit">No Edit Link Item</side-item>
+				<side-item :action="callNotif" edit="1">Show Notification</side-item>
+				<side-list label="sub-list" name="sub">
+					<side-item link="#help" no-edit>Sub Item 1</side-item>
+					<side-item link="#help" no-edit>Sub Item 2</side-item>
+					<side-item link="#help" no-edit>Sub Item 3</side-item>
+				</side-list>
+			</side-list> -->
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a href="./projects/list.html" class="navbar-item">
+						PROJECT
+					</a>
+
+					<a href="./maintenance.html" class="navbar-item">
+						Resource
+					</a>
+
+					<a href="./maintenance.html" class="navbar-item">
+						Monitoring
+					</a>
+
+					<a href="./maintenance.html" class="navbar-item">
+						Operations
+					</a>
+
+					<a href="./maintenance.html" class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="./maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="./maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="./maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="./maintenance.html" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage" v-bar>
+			<section class="section">
+				<div id="contentApp" class="container" data-title="Notification">
+					<nav class="level">
+						<div class="level-left">
+							<div class="level-item">
+								<b-button @click="selectAll(null)" :type="allSelected ? 'is-info':'is-light'">
+									Select All
+								</b-button>
+							</div>
+							<div class="level-item">
+								<b-button type="is-light" @click="fetchNotification" :loading="onRefresh">
+									<span class="mdi mdi-refresh in-left"></span>
+									<span>Refresh</span>
+								</b-button>
+							</div>
+						</div>
+						<div class="level-right">
+							<div class="level-item">
+								<b-button v-show="markButton" @click='markAsRead' :loading="onRefresh" type="is-success" class="animated bounceIn">Mark Selected as Read</b-button>
+							</div>
+						</div>
+					</nav>
+
+					<n-log 
+						:key="log.id" 
+						:log-id="log.id"
+						:ref="'logs-' + idx" 
+						:index="'logs-' + log.id" 
+						v-for="(log, idx) in getListLog" 
+						@toggle="openNotification"
+						@selected="onSelect"
+						:subject="log.subject" 
+						:time="log.timeStamp" 
+						:date="log.dateStamp" 
+						:is-read="log.read">
+						<div v-html="log.content" class="content"></div>
+					</n-log>
+					
+					<section class="pagination-container">
+						<b-pagination 
+							:total="logs.length" 
+							size="is-small" 
+							rounded 
+							@change="resetLogs"
+							:per-page="perPage" 
+							:current.sync="currentPage">
+						</b-pagination>
+					</section>
+				</div>
+			</section>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer entry="100" utilization="100"></info-footer>
+		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		 -->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+		
+		<!-- 
+			expected no return from getNotification!
+			we send post data as array of id:
+			[ 1001, 1002, 1003, ... ],
+		-->
+		<api-test url="axios_check.php" key="openNotification"></api-test>
+	</div>
+
+	<script src="../../main.js"></script>
+	<script src="../scripts/notification/notification.js"></script>
+</body>
+
+</html>
