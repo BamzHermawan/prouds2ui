@@ -10,6 +10,7 @@ import SetProgress from "./setProgress.vue"
 import MergeTask from "./mergeTask.vue"
 import ChangeParentTask from "./changeParentTask.vue"
 import LinkPredecessor from "./linkPredecessor.vue"
+import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({

@@ -136,28 +136,15 @@
 						</div>
 					</nav>
 
-					<n-log 
-						:key="idx" 
-						:log-id="log.id"
-						:ref="'logs-' + idx" 
-						:index="'logs-' + idx" 
-						v-for="(log, idx) in getListLog" 
-						@toggle="openNotification"
-						:subject="log.subject" 
-						:time="log.timeStamp" 
-						:date="log.dateStamp" 
-						:is-read="log.read">
+					<n-log :key="idx" :log-id="log.id" :ref="'logs-' + idx" :index="'logs-' + idx"
+						v-for="(log, idx) in getListLog" @toggle="openNotification" :subject="log.subject"
+						:time="log.timeStamp" :date="log.dateStamp" :is-read="log.read">
 						<div v-html="log.content" class="content"></div>
 					</n-log>
-					
+
 					<section class="pagination-container">
-						<b-pagination 
-							:total="logs.length" 
-							size="is-small" 
-							rounded 
-							@change="scrollToTop"
-							:per-page="perPage" 
-							:current.sync="currentPage">
+						<b-pagination :total="logs.length" size="is-small" rounded @change="scrollToTop"
+							:per-page="perPage" :current.sync="currentPage">
 						</b-pagination>
 					</section>
 				</div>
@@ -182,7 +169,7 @@
 			}, ... ],
 		 -->
 		<api-test url="getNotification.php" key="getNotification"></api-test>
-		
+
 		<!-- 
 			expected no return from getNotification!
 			but we can provide notification data from selected log that you can add to link:

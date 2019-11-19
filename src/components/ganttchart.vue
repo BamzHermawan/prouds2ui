@@ -44,12 +44,12 @@ export default {
 					duration: {
 						title: "Duration"
 					},
-					totalResource: {
-						title: "Resource"
+					team: {
+						title: "Team"
+					},
+					pComp: {
+						title: "Progress"
 					}
-					// pComp: {
-					// 	title: "% Progress"
-					// }
 				},
 				vUseSingleCell: 10000,
 				vFormatArr: ["Day", "Week", "Month", "Quarter"]
@@ -58,7 +58,7 @@ export default {
 			g.setShowComp(0);
 			g.setShowDur(0);
 			g.setUseToolTip(0);
-			g.setShowComp(1);
+			g.setShowComp(0);
 			// g.setEditable(1);
 			g.setEventClickRow(function(e) {
 				// console.log(e);

@@ -8,7 +8,6 @@
 				<p class="label">Parent Task</p>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
-				<input type="hidden" name="parent" v-model="selectedOptions" />
 				<b-field>
 					<b-input
 						placeholder="Search Parent..."
@@ -23,6 +22,8 @@
 					expanded
 					native-size="5"
 					v-model="selectedOptions"
+					name="parent"
+					required
 				>
 					<option :value="null" class="has-background-grey-lighter"
 						><span class="has-text-dark"
@@ -125,7 +126,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.filterTaskName();
+		this.filterTaskName;
 	}
 };
 </script>

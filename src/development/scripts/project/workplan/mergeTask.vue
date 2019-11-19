@@ -22,7 +22,7 @@
 						<p class="has-text-dark">{{ taskName }}</p>
 					</b-message>
 				</b-field>
-				<p class="label">Destination Task</p>
+				<!-- <p class="label">Destination Task</p>
 				<input type="hidden" name="destination" v-model="destination" />
 				<b-autocomplete
 					style="margin-bottom:10px;"
@@ -33,7 +33,31 @@
 					field="pName"
 					@select="option => (selected = option)"
 				>
-				</b-autocomplete>
+				</b-autocomplete> -->
+				<b-field>
+					<b-input
+						placeholder="Search Destination Task"
+						type="search"
+						icon="magnify"
+						v-model="searchQuery"
+					>
+					</b-input>
+				</b-field>
+				<b-select
+					multiple
+					expanded
+					native-size="5"
+					v-model="selectedOptions"
+					name="destination"
+					required
+				>
+					<option
+						v-for="(task, index) in listTask"
+						:key="index"
+						:value="task.pID"
+						>{{ task.pName }}
+					</option>
+				</b-select>
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
 			</section>
@@ -81,7 +105,10 @@ export default {
 			taskID: this.task.pID,
 			destination: null,
 			name: "",
-			selected: null
+			selected: null,
+			listTask: [],
+			searchTask: [],
+			searchQuery: ""
 		};
 	},
 	watch: {
@@ -91,11 +118,33 @@ export default {
 			} else {
 				this.destination = "";
 			}
+		},
+		searchQuery: function(newQuery, oldQuery) {
+			if (newQuery !== "") {
+				let self = this;
+				this.listTask = this.searchTask.filter(task =>
+					task.pName.toLowerCase().includes(newQuery.toLowerCase())
+				);
+			} else {
+				this.listTask = this.listTask;
+			}
 		}
 	},
 	computed: {
+		selectedOptions: {
+			get: function() {
+				return [this.taskNew];
+			},
+			set: function(newValue = []) {
+				if (newValue.length > 0) {
+					this.taskNew = newValue.shift();
+				} else {
+					this.taskNew = "";
+				}
+			}
+		},
 		filterTaskName() {
-			return this.dataBaru.filter(option => {
+			this.listTask = this.dataBaru.filter(option => {
 				let checkName =
 					option.pName
 						.toString()
@@ -104,7 +153,11 @@ export default {
 
 				return checkName && option.pID != this.taskID;
 			});
+			this.searchTask = this.listTask;
 		}
+	},
+	mounted() {
+		this.filterTaskName;
 	}
 };
 </script>

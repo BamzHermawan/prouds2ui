@@ -180,7 +180,7 @@
 
 import Moment from "helper-moment";
 import { crudInput } from "components";
-import { notified } from "helper-tools";
+import { notified, checkConnection } from "helper-tools";
 import api from "helper-apis";
 export default {
 	components: { crudInput },

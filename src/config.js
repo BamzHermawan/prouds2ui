@@ -86,7 +86,16 @@ module.exports = {
 		 * Received Data:
 		 *  - success
 		 */
-		deleteFile: 'axios_check.php'
+		deleteFile: 'axios_check.php',
+
+		/**
+		 * Set Complete Assign Resource [POST]
+		 * Send Data:
+		 * - user_id
+		 * Received Data:
+		 *  - success
+		 */
+		setComplete: 'axios_check.php'
 	}
 
 }

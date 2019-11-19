@@ -5,94 +5,205 @@
 		</header>
 		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
 			<section class="modal-card-body">
-				<b-field label="Task Name">
-					<b-message type="is-info" class="is-on-field">
-						<p class="has-text-dark">{{ taskName }}</p>
-					</b-message>
-				</b-field>
+				<div class="columns">
+					<div class="column is-2">
+						<p class="label">Task Name</p>
+					</div>
+					<div class="column">
+						<b-message type="is-info" class="is-on-field">
+							<p class="has-text-dark">{{ taskName }}</p>
+						</b-message>
+					</div>
+				</div>
 
 				<div class="columns">
 					<div class="column">
-						<b-field label="Start Date">
-							<b-message type="is-info" class="is-on-field">
-								<p class="has-text-dark">
-									{{ start | moment }}
-								</p>
-							</b-message>
-						</b-field>
+						<div class="columns">
+							<div class="column is-4">
+								<p class="label">Start Date</p>
+							</div>
+							<div class="column">
+								<b-message type="is-info" class="is-on-field">
+									<p class="has-text-dark">
+										{{ start | moment }}
+									</p>
+								</b-message>
+							</div>
+						</div>
 					</div>
 					<div class="column">
-						<b-field label="Finish Date">
-							<b-message type="is-info" class="is-on-field">
-								<p class="has-text-dark">
-									{{ finish | moment }}
-								</p>
-							</b-message>
-						</b-field>
+						<div class="columns">
+							<div class="column is-4">
+								<p class="label">End Date</p>
+							</div>
+							<div class="column">
+								<b-message type="is-info" class="is-on-field">
+									<p class="has-text-dark">
+										{{ finish | moment }}
+									</p>
+								</b-message>
+							</div>
+						</div>
 					</div>
 					<input type="hidden" name="users" v-model="checkId" />
 				</div>
 
-				<b-message
-					type="is-light"
-					class="has-paddingless-body"
-					:closable="false"
-					:title="'Currently assigned (' + task.resource.length + ')'"
-				>
-					<b-table :data="task.resource" :fields="[]" narrowed>
-						<template slot-scope="props">
-							<b-table-column field="name" label="Name">
-								<span>{{ props.row.name }}</span>
-							</b-table-column>
-							<b-table-column field="status" label="Status">
-								<span>{{ props.row.status }}</span>
-							</b-table-column>
-							<b-table-column field="action" label="Action">
-								<span v-if="props.row.actionComplete !== ''">
-									<b-button
-										tag="a"
-										size="is-small"
-										type="is-success"
-										style="min-width:95px"
-										:href="props.row.actionComplete"
-										>Set Complete</b-button
+				<div class="columns">
+					<div class="column is-6">
+						<b-message
+							type="is-light"
+							class="has-paddingless-body"
+							:closable="false"
+							:title="
+								'Currently assigned (' +
+									task.resource.length +
+									')'
+							"
+						>
+							<br />
+							<data-table-no-card
+								:data="task.resource"
+								:fields="[]"
+								ref="widget"
+								striped
+								:per-page="5"
+							>
+								<template slot-scope="props">
+									<b-table-column
+										field="name"
+										label="Name"
+										sortable
+										class="align-middle"
 									>
-								</span>
-								<span v-if="props.row.actionUnComplete !== ''">
-									<b-button
-										tag="a"
-										size="is-small"
-										type="is-warning"
-										style="min-width:95px"
-										:href="props.row.actionUnComplete"
-										>Reassign Task</b-button
+										<p>{{ props.row.name }}</p>
+									</b-table-column>
+									<b-table-column
+										field="assigned_role"
+										label="Assigned Role"
+										sortable
+										class="align-middle"
 									>
-								</span>
-							</b-table-column>
-						</template>
-					</b-table>
-				</b-message>
+										<p>{{ props.row.role }}</p>
+									</b-table-column>
+									<b-table-column
+										field="action"
+										label="Action"
+										width="75"
+										centered
+										class="align-middle"
+									>
+										<b-button
+											tag="a"
+											size="is-small"
+											type="is-success"
+											style="min-width:95px"
+											@click="setComplete(props.row)"
+											>Set Complete</b-button
+										>
+									</b-table-column>
+								</template>
+								<template slot="empty">
+									<span class="white-space"></span>
+									<b-message type="is-warning">
+										<p class="has-text-centered">
+											Sorry, we can't find any data
+											related
+										</p>
+									</b-message>
+								</template>
+								<template slot="top-right">
+									<span></span>
+								</template>
+							</data-table-no-card>
+						</b-message>
+					</div>
 
-				<b-message
-					type="is-light"
-					class="has-paddingless-body"
-					:closable="false"
-					:title="'Available (' + resourceAvailable.length + ')'"
-				>
-					<b-table
-						:data="resourceAvailable"
-						:fields="[]"
-						checkable
-						narrowed
-						:checked-rows.sync="checkedRows"
-					>
-						<template slot-scope="props">
-							<b-table-column field="name" label="Name">
-								<span>{{ props.row.name }}</span>
-							</b-table-column>
-						</template>
-					</b-table>
-				</b-message>
+					<div class="column is-6">
+						<b-message
+							type="is-light"
+							class="has-paddingless-body"
+							:closable="false"
+							:title="
+								'Available (' + resourceAvailable.length + ')'
+							"
+						>
+							<input
+								type="hidden"
+								name="memberRole"
+								v-model="selectedRole.value"
+							/>
+							<br />
+							<b-field label="Assigned as">
+								<b-select
+									expanded
+									v-model="selectedRole.value"
+									placeholder="Select Assigned Role"
+									required
+								>
+									<slot name="role-option"></slot>
+								</b-select>
+							</b-field>
+							<b-field label="Select Team Member">
+								<b-input
+									placeholder="Search by User or Role"
+									type="search"
+									icon="magnify"
+									v-model="searchQuery"
+									v-show="searchList"
+								>
+								</b-input>
+							</b-field>
+							<b-field>
+								<input
+									type="hidden"
+									name="userId"
+									v-model="checkboxGroup"
+								/>
+								<b-select
+									multiple
+									expanded
+									v-show="searchList"
+									native-size="5"
+									v-model="selectedOptions"
+								>
+									<option
+										v-for="(user, index) in userdata"
+										:key="index"
+										:value="user.nik"
+									>
+										<b-checkbox
+											v-model="checkboxGroup"
+											:native-value="user.nik"
+										>
+											{{ user.nama + " - " + user.role }}
+										</b-checkbox>
+									</option>
+								</b-select>
+							</b-field>
+							<b-field
+								v-show="selectedUser.nik !== ''"
+								class="animated fadeIn"
+							>
+								<div class="box">
+									<article class="media">
+										<div class="media-content">
+											<div class="content">
+												<h1 class="title is-size-4">
+													{{ selectedUser.nama }}
+												</h1>
+												<h2 class="subtitle is-size-6">
+													{{ selectedUser.role }}
+													|
+													{{ selectedUser.bu }}
+												</h2>
+											</div>
+										</div>
+									</article>
+								</div>
+							</b-field>
+						</b-message>
+					</div>
+				</div>
 
 				<input type="hidden" name="workplanId" v-model="workplanId" />
 				<input type="hidden" name="taskID" v-model="taskID" />
@@ -112,8 +223,10 @@
 </template>
 
 <script>
-import moment from "helper-moment";
-import dataTableNoCard from "components";
+import Moment from "helper-moment";
+import { dataTableNoCard } from "components";
+import { notified, checkConnection } from "helper-tools";
+import api from "helper-apis";
 export default {
 	components: {
 		dataTableNoCard
@@ -141,11 +254,83 @@ export default {
 			dataBaru: GANTT,
 			resourceAvailable: RESOURCE_AVAILABLE,
 			taskName: this.task.pName,
-			start: moment(this.task.pStart).format("DD/MM/YYYY"),
-			finish: moment(this.task.pEnd).format("DD/MM/YYYY"),
+			start: Moment(this.task.pStart).format("DD/MM/YYYY"),
+			finish: Moment(this.task.pEnd).format("DD/MM/YYYY"),
 			checkedRows: [],
-			taskID: this.task.pID
+			taskID: this.task.pID,
+			searchList: true,
+			selectedUser: {
+				nik: "",
+				nama: "",
+				bu: "",
+				avatar: "",
+				role: ""
+			},
+			selectedRole: {
+				value: null,
+				display: true
+			},
+			userdata: [],
+			formTarget: "",
+			searchQuery: "",
+			checkboxGroup: []
 		};
+	},
+	watch: {
+		searchQuery: function(newQuery, oldQuery) {
+			if (
+				newQuery !== "" &&
+				newQuery !== undefined &&
+				newQuery !== null
+			) {
+				let self = this;
+				this.userdata = this.resourceAvailable.filter(user => {
+					if (
+						user.nama !== undefined &&
+						user.nama !== null &&
+						user.nama !== ""
+					) {
+						if (typeof user.nama === "string") {
+							return (
+								user.nama
+									.toLowerCase()
+									.includes(newQuery.toLowerCase()) ||
+								user.role
+									.toLowerCase()
+									.includes(newQuery.toLowerCase())
+							);
+						}
+					}
+
+					return false;
+				});
+			} else {
+				this.userdata = this.resourceAvailable;
+			}
+		}
+	},
+	methods: {
+		setComplete(val) {
+			this.isLoading = true;
+			let self = this;
+			let bundle = { user_id: val.user_id };
+			api.setComplete(bundle)
+				.then(response => {
+					// let data = response.data;
+					// self.resourceAvailable = data.resource;
+					if (checkConnection(self.notification)) {
+						notified(self.$notification).info("Success");
+					}
+				})
+				.catch(function(error) {
+					console.log("error asking for set complete");
+					if (checkConnection(self.notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				});
+		}
 	},
 	computed: {
 		checkId() {
@@ -154,7 +339,44 @@ export default {
 				a.push(row.userid);
 			});
 			return a;
+		},
+		selectedOptions: {
+			get: function() {
+				if (this.selectedUser.nik !== "") {
+					if (this.checkboxGroup !== []) {
+						var index = this.checkboxGroup.indexOf(
+							this.selectedUser.nik
+						);
+
+						if (index > -1) {
+							this.checkboxGroup.splice(index, 1);
+						} else {
+							this.checkboxGroup.push(this.selectedUser.nik);
+						}
+					}
+				}
+				return [this.selectedUser.nik];
+			},
+			set: function(newValue = []) {
+				if (newValue.length > 0) {
+					let self = this;
+					let nik = newValue.shift();
+					let found = this.userdata.filter(user => user.nik == nik);
+
+					this.selectedUser = found.shift();
+				} else {
+					this.selectedUser = {
+						nik: "",
+						nama: "",
+						bu: "",
+						avatar: ""
+					};
+				}
+			}
 		}
+	},
+	mounted() {
+		this.userdata = this.resourceAvailable;
 	}
 };
 </script>
