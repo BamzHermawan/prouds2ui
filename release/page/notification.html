@@ -7,13 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
 	<title>NOTIFICATION | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../styles/perfect-scrollbar.css">
-	<link rel="stylesheet" href="../../styles/style.scss">
+	<link rel="stylesheet" href="../src/perfect-scrollbar.min.css">
+	<link rel="stylesheet" href="../src/style.min.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 				<span>PROUDS</span>
 			</div>
 			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
+				<a class="parent-list">
 					<div class="list-title">
 						<label>
 							<span class="mdi mdi-bell-outline in-left"></span>
@@ -40,18 +40,6 @@
 				</a>
 			</div>
 
-			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
-			<!-- <side-list label="List Title" name="main">
-				<side-item link="#standart">Standart Link Item</side-item>
-				<side-item link="#no-edit">No Edit Link Item</side-item>
-				<side-item :action="callNotif" edit="1">Show Notification</side-item>
-				<side-list label="sub-list" name="sub">
-					<side-item link="#help" no-edit>Sub Item 1</side-item>
-					<side-item link="#help" no-edit>Sub Item 2</side-item>
-					<side-item link="#help" no-edit>Sub Item 3</side-item>
-				</side-list>
-			</side-list> -->
-
 			<side-list label="My Workspace" name="ws"></side-list>
 		</section>
 
@@ -62,34 +50,34 @@
 						<span class="mdi mdi-chevron-left mdi-24px"></span>
 					</a>
 
-					<a href="./project/list.html" class="navbar-item">
+					<a href="./projects/list.html" class="navbar-item">
 						PROJECT
 					</a>
 
-					<a class="navbar-item">
+					<a href="./maintenance.html" class="navbar-item">
 						Resource
 					</a>
 
-					<a class="navbar-item">
+					<a href="./maintenance.html" class="navbar-item">
 						Monitoring
 					</a>
 
-					<a class="navbar-item">
+					<a href="./maintenance.html" class="navbar-item">
 						Operations
 					</a>
 
-					<a class="navbar-item">
+					<a href="./maintenance.html" class="navbar-item">
 						Reports
 					</a>
 				</div>
 
 				<div class="navbar-end">
-					<a href="#" class="navbar-item hover-text">
+					<a href="./maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="#" class="navbar-item hover-text">
+					<a href="./maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -99,8 +87,8 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="profile.html" class="navbar-item">Account Profile</a>
-							<a href="#help" class="navbar-item">Need Help ?</a>
+							<a href="./maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="./maintenance.html" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -112,7 +100,7 @@
 			</div>
 		</nav>
 
-		<section id="vapp" class="contentPage" v-bar>
+		<section id="vapp" class="contentPage" v-bar="">
 			<section class="section">
 				<div id="contentApp" class="container" data-title="Notification">
 					<nav class="level">
@@ -131,45 +119,17 @@
 						</div>
 						<div class="level-right">
 							<div class="level-item">
-								<b-button v-show="markButton" @click='markAsRead' :loading="onRefresh" type="is-success" class="animated bounceIn">Mark Selected as Read</b-button>
+								<b-button v-show="markButton" @click="markAsRead" :loading="onRefresh" type="is-success" class="animated bounceIn">Mark Selected as Read</b-button>
 							</div>
 						</div>
 					</nav>
 
-<<<<<<< HEAD
-					<n-log :key="idx" :log-id="log.id" :ref="'logs-' + idx" :index="'logs-' + idx"
-						v-for="(log, idx) in getListLog" @toggle="openNotification" :subject="log.subject"
-						:time="log.timeStamp" :date="log.dateStamp" :is-read="log.read">
-=======
-					<n-log 
-						:key="log.id" 
-						:log-id="log.id"
-						:ref="'logs-' + idx" 
-						:index="'logs-' + log.id" 
-						v-for="(log, idx) in getListLog" 
-						@toggle="openNotification"
-						@selected="onSelect"
-						:subject="log.subject" 
-						:time="log.timeStamp" 
-						:date="log.dateStamp" 
-						:is-read="log.read">
->>>>>>> baccecc3b44634a5b6cad262d472367f07c4fef3
+					<n-log :key="log.id" :log-id="log.id" :ref="'logs-' + idx" :index="'logs-' + log.id" v-for="(log, idx) in getListLog" @toggle="openNotification" @selected="onSelect" :subject="log.subject" :time="log.timeStamp" :date="log.dateStamp" :is-read="log.read">
 						<div v-html="log.content" class="content"></div>
 					</n-log>
-
+					
 					<section class="pagination-container">
-<<<<<<< HEAD
-						<b-pagination :total="logs.length" size="is-small" rounded @change="scrollToTop"
-							:per-page="perPage" :current.sync="currentPage">
-=======
-						<b-pagination 
-							:total="logs.length" 
-							size="is-small" 
-							rounded 
-							@change="resetLogs"
-							:per-page="perPage" 
-							:current.sync="currentPage">
->>>>>>> baccecc3b44634a5b6cad262d472367f07c4fef3
+						<b-pagination :total="logs.length" size="is-small" rounded="" @change="resetLogs" :per-page="perPage" :current.sync="currentPage">
 						</b-pagination>
 					</section>
 				</div>
@@ -194,7 +154,7 @@
 			}, ... ],
 		 -->
 		<api-test url="getNotification.php" key="getNotification"></api-test>
-
+		
 		<!-- 
 			expected no return from getNotification!
 			we send post data as array of id:
@@ -203,8 +163,8 @@
 		<api-test url="axios_check.php" key="openNotification"></api-test>
 	</div>
 
-	<script src="../scripts/layout/controller.js"></script>
-	<script src="../scripts/notification/notification.js"></script>
+	<script src="../src/main.min.js"></script>
+	<script src="../src/notification.min.js"></script>
 </body>
 
 </html>

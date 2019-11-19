@@ -108,23 +108,13 @@ module.exports.getDuration = bundle => {
 
 module.exports.uploadFoto = dummy
 
-// module.exports.getNotification = () => {
-// 	return request.get($api.getNotification);
-// }
-
-module.exports.getNotification = dummy
-
-// module.exports.openNotification = (bundle) => {
-// 	return request.get(parseURL('openNotification', bundle));
-// }
-
-module.exports.openNotification = dummy
-
-// module.exports.setComplete = (bundle) => {
-// 	return request.get(parseURL('setComplete', bundle));
-// }
-
-module.exports.setComplete = dummy
+module.exports.openNotification = (IDs) => {
+	return request.post($api.openNotification, pack(IDs), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}
 
 // module.exports.deleteFile = bundle => {
 // 	return request.post($api.deleteFile, pack(bundle), {
