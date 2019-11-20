@@ -145,19 +145,31 @@
 						<task-group title="Delayed Task" :value="false" type="is-delayed">
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
-									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member" :workload="ts.workload" :timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
+									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :iwo="ts.iwo" :end="ts.end" :task="ts.task"
+										:start="ts.start" :member="ts.member" :workload="ts.workload" :timesheet="ts.timesheet"
+										:project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
 								</div>
 							</div>
+						
+							<b-message v-if="task.delayed.length <= 0" type="is-success">
+								<p class="has-text-centered">Hooray, you have no delayed task 🎉</p>
+							</b-message>
 						</task-group>
-	
-						<task-group title="On Going Task" always-show="">
+						
+						<task-group title="On Going Task" always-show>
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.ongoing" :key="idx" class="column is-4-desktop is-6">
-									<task-card @clicked="setTimesheet(ts)" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member" :workload="ts.workload" :timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
+									<task-card @clicked="setTimesheet(ts)" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start"
+										:member="ts.member" :workload="ts.workload" :timesheet="ts.timesheet" :project="ts.project_name"
+										:task-progress="ts.taskProgress"></task-card>
 								</div>
 							</div>
+						
+							<b-message v-if="task.ongoing.length <= 0" type="is-info">
+								<p class="has-text-centered">Today you have no task, please stand by 🚀</p>
+							</b-message>
 						</task-group>
-	
+						
 						<task-group title="Scheduled Task" type="is-scheduled">
 							<div v-for="(group, i) in task.scheduled" :key="i">
 								<div :class="'task-divider' + (i==0?' no-top-margin':'')">
@@ -165,10 +177,15 @@
 								</div>
 								<div class="columns is-multiline">
 									<div v-for="(ts, idx) in group.list" :key="idx" class="column is-4-desktop is-6">
-										<task-card type="is-scheduled" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member" :workload="ts.workload" :project="ts.project_name"></task-card>
+										<task-card type="is-scheduled" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start"
+											:member="ts.member" :workload="ts.workload" :project="ts.project_name"></task-card>
 									</div>
 								</div>
 							</div>
+						
+							<b-message v-if="task.scheduled.length <= 0" type="is-light">
+								<p class="has-text-centered">There is currently no scheduled task</p>
+							</b-message>
 						</task-group>
 					</div>
 
@@ -188,6 +205,12 @@
 										<b-taglist attached="" size="are-medium">
 											<b-tag type="is-dark">IWO</b-tag>
 											<b-tag type="is-info">{{ dataForm.iwo }}</b-tag>
+										</b-taglist>
+									</div>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">Project Manager</b-tag>
+											<b-tag type="is-info">{{ dataForm.pm_name }}</b-tag>
 										</b-taglist>
 									</div>
 								</b-field>
@@ -231,8 +254,12 @@
 										</div>
 									</nav>
 
-									<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour" color="is-info" placeholder="0">
-									</crud-input>
+									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''" always style="width:100%;">
+										<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour" color="is-info" placeholder="0"
+											v-model="workhour.value">
+										</crud-input>
+									</b-tooltip>
+									
 									<crud-input type="select" name="location" label="Select Area" placeholder="Choose area location">
 										<option selected="" style="display: none;"></option>
 										<option value="1">Jabodetabek</option>
@@ -350,199 +377,392 @@ var randomNumber = function randomNumber() {
 //! yang ngurutin jadinya frontend 😭
 
 
-var ONGOING = [{
-  "iwo": "P-1909SCC-TTES1001",
-  "project_id": 10001,
-  "task_id": 1,
-  "project_name": "ullamco sit et sint ut qui Lorem esse culpa laborum.",
-  "task": "Magna ullamco tempor et nostrud ut elit.",
-  "start": today + "/" + month + "/2019",
-  "end": today + "/" + month + "/2019",
-  "member": 1,
-  "workload": randomNumber(),
-  "taskProgress": randomNumber(),
-  "timesheet": [{
-    data: 50,
-    color: 'is-success'
-  }, {
-    data: 55,
-    color: 'is-info'
-  }]
-}, {
-  "iwo": "P-1909SCC-TTES1002",
-  "project_id": 10002,
-  "task_id": 2,
-  "project_name": "ex proident tempor aute consequat velit ut tempor exercitation non reprehenderit consequat velit Lorem exercitation",
-  "task": "Laboris Lorem quis qui velit aliqua est incididunt Lorem.",
-  "start": "1/" + month + "/2019",
-  "end": "29/" + month + "/2019",
-  "member": 3,
-  "workload": randomNumber(),
-  "taskProgress": randomNumber(),
-  "timesheet": [{
-    data: 60,
-    color: 'is-success'
-  }, {
-    data: 20,
-    color: 'is-info'
-  }]
-}, {
-  "iwo": "P-1909SCC-TTES1003",
-  "project_id": 10003,
-  "task_id": 3,
-  "project_name": "fugiat aute tempor ad tempor fugiat qui eiusmod sunt aute et veniam do exercitation pariatur",
-  "task": "Esse labore sunt anim id incididunt nostrud ad ex nostrud incididunt proident ex.",
-  "start": "12/09/2019",
-  "end": "29/12/2019",
-  "member": 2,
-  "workload": randomNumber(),
-  "taskProgress": randomNumber(),
-  "timesheet": [{
-    data: randomNumber(),
-    color: 'is-success'
-  }, {
-    data: randomNumber(),
-    color: 'is-info'
-  }]
-}];
-var DELAYED = [{
-  "iwo": "P-1909SCC-TTES1011",
-  "project_id": 10011,
-  "task_id": 4,
-  "project_name": "veniam enim tempor dolor et ex fugiat excepteur est nostrud voluptate pariatur mollit pariatur reprehenderit",
-  "task": "Sint dolor cillum aliquip nostrud elit elit do incididunt amet occaecat dolor ipsum dolore irure.",
-  "start": "01/01/2018",
-  "end": "12/10/2019",
-  "member": 3,
-  "workload": randomNumber(),
-  "taskProgress": randomNumber(),
-  "timesheet": [{
-    data: randomNumber(),
-    color: 'is-success'
-  }, {
-    data: randomNumber(),
-    color: 'is-info'
-  }]
-}, {
-  "iwo": "P-1909SCC-TTES1012",
-  "project_id": 10012,
-  "task_id": 5,
-  "project_name": "pariatur eiusmod anim elit quis laboris.",
-  "task": "Exercitation esse proident consequat ut aliquip reprehenderit mollit officia officia aute irure veniam.",
-  "start": "02/10/2019",
-  "end": "26/10/2019",
-  "member": 5,
-  "workload": randomNumber(),
-  "taskProgress": randomNumber(),
-  "timesheet": [{
-    data: randomNumber(),
-    color: 'is-success'
-  }, {
-    data: randomNumber(),
-    color: 'is-info'
-  }]
-}];
-var PLANNED = [{
-  "iwo": "P-1909SCC-TTES1021",
-  "project_id": 10021,
-  "task_id": 6,
-  "project_name": "non excepteur enim id tempor cupidatat nostrud fugiat est laborum ad magna quis occaecat dolor",
-  "task": "Eu non qui proident consectetur quis tempor.",
-  "start": "06/01/2020",
-  "end": "02/03/2020",
-  "member": 3,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1022",
-  "project_id": 10022,
-  "task_id": 7,
-  "project_name": "aliquip do et exercitation commodo commodo adipisicing ullamco commodo nulla qui consectetur officia sit tempor",
-  "task": "Exercitation irure consequat reprehenderit nulla aliqua id do qui incididunt in mollit adipisicing eiusmod sunt.",
-  "start": "13/12/2019",
-  "end": "03/01/2020",
-  "member": 2,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1023",
-  "project_id": 10023,
-  "task_id": 8,
-  "project_name": "culpa dolor excepteur dolore nulla tempor do quis quis nisi duis dolore commodo cillum consectetur",
-  "task": "Anim eu proident elit nisi officia magna sint sunt adipisicing consequat nostrud commodo eiusmod.",
-  "start": "01/02/2020",
-  "end": "17/05/2020",
-  "member": 1,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1024",
-  "project_id": 10024,
-  "task_id": 9,
-  "project_name": "occaecat irure in ut non aliqua dolor ipsum cillum dolor est proident consectetur aute sit",
-  "task": "Tempor Lorem laboris eu reprehenderit esse cupidatat est.",
-  "start": "03/12/2019",
-  "end": "29/02/2020",
-  "member": 2,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1025",
-  "project_id": 10025,
-  "task_id": 1,
-  "project_name": "mollit esse dolore anim sunt labore est sit ipsum nulla fugiat anim officia anim ullamco",
-  "task": "Lorem exercitation ipsum commodo elit esse excepteur.",
-  "start": "03/12/2019",
-  "end": "08/02/2020",
-  "member": 4,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1026",
-  "project_id": 10026,
-  "task_id": 2,
-  "project_name": "veniam ipsum aliquip incididunt tempor incididunt enim veniam magna in esse qui nulla elit anim",
-  "task": "Aliqua consequat reprehenderit cillum excepteur nisi labore est deserunt ea.",
-  "start": "10/12/2019",
-  "end": "23/02/2020",
-  "member": 5,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1027",
-  "project_id": 10027,
-  "task_id": 3,
-  "project_name": "cillum proident enim dolor nostrud nulla proident culpa nostrud eiusmod sint esse esse commodo sunt",
-  "task": "Dolor consequat aliquip magna sunt magna esse consequat ullamco.",
-  "start": "03/12/2019",
-  "end": "20/02/2020",
-  "member": 2,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1028",
-  "project_id": 10028,
-  "task_id": 4,
-  "project_name": "mollit minim proident in velit sunt consequat adipisicing aute incididunt in amet ullamco amet non",
-  "task": "Exercitation ex magna enim deserunt minim magna nostrud Lorem veniam anim laboris aliquip.",
-  "start": "04/01/2020",
-  "end": "18/03/2020",
-  "member": 1,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1029",
-  "project_id": 10029,
-  "task_id": 5,
-  "project_name": "aute ad veniam non esse ex sit cillum commodo id duis nisi deserunt incididunt elit",
-  "task": "Cillum consequat ad aute sunt dolore aute et minim culpa exercitation culpa officia eiusmod id.",
-  "start": "10/12/2019",
-  "end": "16/01/2020",
-  "member": 3,
-  "workload": randomNumber()
-}, {
-  "iwo": "P-1909SCC-TTES1030",
-  "project_id": 10030,
-  "task_id": 6,
-  "project_name": "eiusmod officia anim est qui duis ullamco fugiat aliquip nulla anim in sunt Lorem amet",
-  "task": "In id anim magna quis veniam sit esse anim tempor adipisicing excepteur laboris duis exercitation.",
-  "start": "11/02/2020",
-  "end": "31/03/2020",
-  "member": 1,
-  "workload": randomNumber()
-}];</script>
+	var ONGOING = [
+		{
+			"iwo": "P-1909SCC-TTES1001",
+			"project_id": 10001,
+			"task_id": 1,
+			"pm_name": "Winifred Byers",
+			"project_name": "ullamco sit et sint ut qui Lorem esse culpa laborum.",
+			"task": "Magna ullamco tempor et nostrud ut elit.",
+			"start": today + "/" + month + "/2019",
+			"end": today + "/" + month + "/2019",
+			"member": 1,
+			"workload": 10,
+			"taskProgress": 10,
+			"timesheet": [
+				{ data: 50, color: 'is-success' },
+				{ data: 75, color: 'is-info' }
+			]
+		},
+		{
+			"iwo": "P-1909SCC-TTES1002",
+			"project_id": 10002,
+			"task_id": 2,
+			"pm_name": "Cleveland Hanson",
+			"project_name": "ex proident tempor aute consequat velit ut tempor exercitation non reprehenderit consequat velit Lorem exercitation",
+			"task": "Laboris Lorem quis qui velit aliqua est incididunt Lorem.",
+			"start": "1/" + month + "/2019",
+			"end": "29/" + month + "/2019",
+			"member": 3,
+			"workload": 20,
+			"taskProgress": 20,
+			"timesheet": [
+				{ data: 0, color: 'is-success' },
+				{ data: 0, color: 'is-info' }
+			]
+		},
+		{
+			"iwo": "P-1909SCC-TTES1003",
+			"project_id": 10003,
+			"task_id": 3,
+			"pm_name": "Cleveland Hanson",
+			"project_name": "fugiat aute tempor ad tempor fugiat qui eiusmod sunt aute et veniam do exercitation pariatur",
+			"task": "Esse labore sunt anim id incididunt nostrud ad ex nostrud incididunt proident ex.",
+			"start": "12/09/2019",
+			"end": "29/12/2019",
+			"member": 2,
+			"workload": 30,
+			"taskProgress": 30,
+			"timesheet": [
+				{ data: 25, color: 'is-success' },
+				{ data: 70, color: 'is-info' }
+			]
+		},
+
+		{
+			"iwo": "P-1904SSI-BCIM0425",
+			"project_id": 105310,
+			"task_id": 417972,
+			"pm_name": "Joseph Yang",
+			"project_name": "Technologi Refresh/Upgrade dan Migrasi On Prem To Cloud",
+			"task": "Phase 9 - Support Post Go Live",
+			"start": "18/11/2019",
+			"end": "13/12/2019",
+			"member": 9,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 50,
+					"color": "is-success"
+				},
+				{
+					"data": 75,
+					"color": "is-info"
+				}
+			]
+		},
+		{
+			"iwo": "P-1904SSI-EPGN0474",
+			"project_id": 105311,
+			"task_id": 306669,
+			"pm_name": "Joseph Yang",
+			"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+			"task": "ERP",
+			"start": "04/02/2019",
+			"end": "04/02/2020",
+			"member": 5,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 0,
+					"color": "is-success"
+				},
+				{
+					"data": 0,
+					"color": "is-info"
+				}
+			]
+		},
+		{
+			"iwo": "P-1904SSI-EPGN0474",
+			"project_id": 105311,
+			"task_id": 306670,
+			"pm_name": "Joseph Yang",
+			"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+			"task": "CRM",
+			"start": "04/02/2019",
+			"end": "04/07/2020",
+			"member": 5,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 50,
+					"color": "is-success"
+				},
+				{
+					"data": 75,
+					"color": "is-info"
+				}
+			]
+		},
+		{
+			"iwo": "P-1904SSI-EPGN0474",
+			"project_id": 105311,
+			"task_id": 306659,
+			"pm_name": "Joseph Yang",
+			"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+			"task": "Corrective Mantaince",
+			"start": "04/02/2019",
+			"end": "04/02/2020",
+			"member": 5,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 0,
+					"color": "is-success"
+				},
+				{
+					"data": 0,
+					"color": "is-info"
+				}
+			]
+		},
+		{
+			"iwo": "P-1904SSI-EPGN0474",
+			"project_id": 105311,
+			"task_id": 306673,
+			"pm_name": "Mccormick Paul",
+			"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+			"task": "Data Health Check",
+			"start": "04/02/2019",
+			"end": "04/02/2020",
+			"member": 5,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 0,
+					"color": "is-success"
+				},
+				{
+					"data": 0,
+					"color": "is-info"
+				}
+			]
+		},
+		{
+			"iwo": "P-1901SSI-KKRI0019",
+			"project_id": 105049,
+			"task_id": 412728,
+			"pm_name": "Mccormick Paul",
+			"project_name": "Pengadaan Annual Technical Support (ATS) Software Oracle Tahun 2019",
+			"task": "ATS Pusintek 2019",
+			"start": "01/01/2019",
+			"end": "31/12/2019",
+			"member": 9,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 0,
+					"color": "is-success"
+				},
+				{
+					"data": 0,
+					"color": "is-info"
+				}
+			]
+		},
+		{
+			"iwo": "P-1902SSI-ISCC0234",
+			"project_id": 105130,
+			"task_id": 413049,
+			"pm_name": "Mccormick Paul",
+			"project_name": "Maintenance & Renewal ATS Oracle Database&Weblogic untuk BWS",
+			"task": "Maintenance",
+			"start": "21/11/2018",
+			"end": "31/12/2019",
+			"member": 4,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 50,
+					"color": "is-success"
+				},
+				{
+					"data": 75,
+					"color": "is-info"
+				}
+			]
+		},
+		{
+			"iwo": "P-1812SSI-KPEI1356",
+			"project_id": 104942,
+			"task_id": 310759,
+			"pm_name": "Gould Berry",
+			"project_name": "Professional Services dan ATS 2019",
+			"task": "Professional Services dan ATS 2019",
+			"start": "13/11/2018",
+			"end": "30/11/2019",
+			"member": 1,
+			"workload": 100,
+			"taskProgress": 10,
+			"timesheet": [
+				{
+					"data": 50,
+					"color": "is-success"
+				},
+				{
+					"data": 75,
+					"color": "is-info"
+				}
+			]
+		}
+	];
+	var DELAYED = [
+		{
+			"iwo": "P-1909SCC-TTES1011",
+			"project_id": 10011,
+			"task_id": 4,
+			"pm_name": "Gould Berry",
+			"project_name": "veniam enim tempor dolor et ex fugiat excepteur est nostrud voluptate pariatur mollit pariatur reprehenderit",
+			"task": "Sint dolor cillum aliquip nostrud elit elit do incididunt amet occaecat dolor ipsum dolore irure.",
+			"start": "01/01/2018",
+			"end": "12/10/2019",
+			"member": 3,
+			"workload": randomNumber(),
+			"taskProgress": randomNumber(),
+			"timesheet": [
+				{ data: randomNumber(), color: 'is-success' },
+				{ data: randomNumber(), color: 'is-info' }
+			]
+		},
+		{
+			"iwo": "P-1909SCC-TTES1012",
+			"project_id": 10012,
+			"task_id": 5,
+			"pm_name": "Gould Berry",
+			"project_name": "pariatur eiusmod anim elit quis laboris.",
+			"task": "Exercitation esse proident consequat ut aliquip reprehenderit mollit officia officia aute irure veniam.",
+			"start": "02/10/2019",
+			"end": "26/10/2019",
+			"member": 5,
+			"workload": randomNumber(),
+			"taskProgress": randomNumber(),
+			"timesheet": [
+				{ data: randomNumber(), color: 'is-success' },
+				{ data: randomNumber(), color: 'is-info' }
+			]
+		}
+	];
+	var PLANNED = [
+		{
+			"iwo": "P-1909SCC-TTES1021",
+			"project_id": 10021,
+			"task_id": 6,
+			"project_name": "non excepteur enim id tempor cupidatat nostrud fugiat est laborum ad magna quis occaecat dolor",
+			"task": "Eu non qui proident consectetur quis tempor.",
+			"start": "06/01/2020",
+			"end": "02/03/2020",
+			"member": 3,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1022",
+			"project_id": 10022,
+			"task_id": 7,
+			"project_name": "aliquip do et exercitation commodo commodo adipisicing ullamco commodo nulla qui consectetur officia sit tempor",
+			"task": "Exercitation irure consequat reprehenderit nulla aliqua id do qui incididunt in mollit adipisicing eiusmod sunt.",
+			"start": "13/12/2019",
+			"end": "03/01/2020",
+			"member": 2,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1023",
+			"project_id": 10023,
+			"task_id": 8,
+			"project_name": "culpa dolor excepteur dolore nulla tempor do quis quis nisi duis dolore commodo cillum consectetur",
+			"task": "Anim eu proident elit nisi officia magna sint sunt adipisicing consequat nostrud commodo eiusmod.",
+			"start": "01/02/2020",
+			"end": "17/05/2020",
+			"member": 1,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1024",
+			"project_id": 10024,
+			"task_id": 9,
+			"project_name": "occaecat irure in ut non aliqua dolor ipsum cillum dolor est proident consectetur aute sit",
+			"task": "Tempor Lorem laboris eu reprehenderit esse cupidatat est.",
+			"start": "03/12/2019",
+			"end": "29/02/2020",
+			"member": 2,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1025",
+			"project_id": 10025,
+			"task_id": 1,
+			"project_name": "mollit esse dolore anim sunt labore est sit ipsum nulla fugiat anim officia anim ullamco",
+			"task": "Lorem exercitation ipsum commodo elit esse excepteur.",
+			"start": "03/12/2019",
+			"end": "08/02/2020",
+			"member": 4,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1026",
+			"project_id": 10026,
+			"task_id": 2,
+			"project_name": "veniam ipsum aliquip incididunt tempor incididunt enim veniam magna in esse qui nulla elit anim",
+			"task": "Aliqua consequat reprehenderit cillum excepteur nisi labore est deserunt ea.",
+			"start": "10/12/2019",
+			"end": "23/02/2020",
+			"member": 5,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1027",
+			"project_id": 10027,
+			"task_id": 3,
+			"project_name": "cillum proident enim dolor nostrud nulla proident culpa nostrud eiusmod sint esse esse commodo sunt",
+			"task": "Dolor consequat aliquip magna sunt magna esse consequat ullamco.",
+			"start": "03/12/2019",
+			"end": "20/02/2020",
+			"member": 2,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1028",
+			"project_id": 10028,
+			"task_id": 4,
+			"project_name": "mollit minim proident in velit sunt consequat adipisicing aute incididunt in amet ullamco amet non",
+			"task": "Exercitation ex magna enim deserunt minim magna nostrud Lorem veniam anim laboris aliquip.",
+			"start": "04/01/2020",
+			"end": "18/03/2020",
+			"member": 1,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1029",
+			"project_id": 10029,
+			"task_id": 5,
+			"project_name": "aute ad veniam non esse ex sit cillum commodo id duis nisi deserunt incididunt elit",
+			"task": "Cillum consequat ad aute sunt dolore aute et minim culpa exercitation culpa officia eiusmod id.",
+			"start": "10/12/2019",
+			"end": "16/01/2020",
+			"member": 3,
+			"workload": randomNumber()
+		},
+		{
+			"iwo": "P-1909SCC-TTES1030",
+			"project_id": 10030,
+			"task_id": 6,
+			"project_name": "eiusmod officia anim est qui duis ullamco fugiat aliquip nulla anim in sunt Lorem amet",
+			"task": "In id anim magna quis veniam sit esse anim tempor adipisicing excepteur laboris duis exercitation.",
+			"start": "11/02/2020",
+			"end": "31/05/2020",
+			"member": 1,
+			"workload": randomNumber()
+		}
+	];</script>
 
 	<script src="../../src/main.min.js"></script>
 	<script src="../../src/projects/timesheet.min.js"></script>
