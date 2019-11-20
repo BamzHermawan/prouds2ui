@@ -136,6 +136,11 @@
 						</div>
 					</nav>
 
+<<<<<<< HEAD
+					<n-log :key="idx" :log-id="log.id" :ref="'logs-' + idx" :index="'logs-' + idx"
+						v-for="(log, idx) in getListLog" @toggle="openNotification" :subject="log.subject"
+						:time="log.timeStamp" :date="log.dateStamp" :is-read="log.read">
+=======
 					<n-log 
 						:key="log.id" 
 						:log-id="log.id"
@@ -148,10 +153,15 @@
 						:time="log.timeStamp" 
 						:date="log.dateStamp" 
 						:is-read="log.read">
+>>>>>>> baccecc3b44634a5b6cad262d472367f07c4fef3
 						<div v-html="log.content" class="content"></div>
 					</n-log>
-					
+
 					<section class="pagination-container">
+<<<<<<< HEAD
+						<b-pagination :total="logs.length" size="is-small" rounded @change="scrollToTop"
+							:per-page="perPage" :current.sync="currentPage">
+=======
 						<b-pagination 
 							:total="logs.length" 
 							size="is-small" 
@@ -159,6 +169,7 @@
 							@change="resetLogs"
 							:per-page="perPage" 
 							:current.sync="currentPage">
+>>>>>>> baccecc3b44634a5b6cad262d472367f07c4fef3
 						</b-pagination>
 					</section>
 				</div>
@@ -183,7 +194,7 @@
 			}, ... ],
 		 -->
 		<api-test url="getNotification.php" key="getNotification"></api-test>
-		
+
 		<!-- 
 			expected no return from getNotification!
 			we send post data as array of id:

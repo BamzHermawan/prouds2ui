@@ -11,12 +11,12 @@ if (global.$config === undefined) {
 	global.$config = $config;
 }
 
-if (!$config.apiTesting){
+if (!$config.apiTesting) {
 	// set up baseAPI
 	request.defaults.baseURL = $config.baseAPI;
 } else {
 	let base = document.querySelector('.api-testing[base]');
-	if(!isEmpty(base)){
+	if (!isEmpty(base)) {
 		request.defaults.baseURL = base.getAttribute('base');
 	}
 
@@ -24,7 +24,7 @@ if (!$config.apiTesting){
 	for (const key in $api) {
 		if ($api.hasOwnProperty(key)) {
 			let testApi = getApiTestByKey(key)
-			if(!isEmpty(testApi)){
+			if (!isEmpty(testApi)) {
 				$api[key] = testApi;
 				checkAll = true;
 			}
@@ -108,13 +108,11 @@ module.exports.getDuration = bundle => {
 	});
 }
 
-module.exports.uploadFoto = (file) => {
-	return request.post($api.uploadFoto, file);
-}
+// module.exports.uploadFoto = (file) => {
+// 	return request.post($api.uploadFoto, file);
+// }
 
-module.exports.getNotification = () => {
-	return request.get($api.getNotification);
-}
+module.exports.uploadFoto = dummy
 
 module.exports.openNotification = (IDs) => {
 	return request.post($api.openNotification, pack(IDs), {

@@ -226,7 +226,7 @@
 									<b-menu-list>
 										<b-menu-item @click="editTask" label="Edit Task" :active="false">
 										</b-menu-item>
-										<b-menu-item @click="assignResource" label="Assign Resource" :active="false">
+										<b-menu-item @click="assignResource" label="Assign Team" :active="false">
 										</b-menu-item>
 										<b-menu-item @click="setProgress" label="Update Progress" :active="false">
 										</b-menu-item>
@@ -289,6 +289,17 @@
 					<b-modal class="had-max-width" :active.sync="modal.assignResource">
 						<assign-resource title="Assign Resource" :task="selectedTask" workplan-id="1"
 							action-event="http://localhost:5501/demo/post_detect.php">
+							<template slot="role-option">
+								<option selected style="display: none;"></option>
+								<option>Programmer Analyst Analyst</option>
+								<option>Programmer Analyst</option>
+								<option>Engineer</option>
+								<option>Senior Business Analyst</option>
+								<option>Junior Tester</option>
+								<option>Quality Assurance</option>
+								<option>Database Administrator</option>
+								<option>Technical Writer</option>
+							</template>
 						</assign-resource>
 					</b-modal>
 
@@ -339,26 +350,119 @@
 				duration: 100,
 				pClass: "gtaskred",
 				pMile: 0,
-				pComp: 40,
+				pComp: "40 %",
 				pGroup: 1,
 				pParent: 0,
 				pOpen: 1,
 				pDepend: 0,
-				totalResource: 6,
+				team: 6,
 				estProgress: 43,
 				phase: 2,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: false,
@@ -378,21 +482,114 @@
 				pParent: 1,
 				pOpen: 1,
 				pDepend: 1,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -407,26 +604,119 @@
 				pEnd: "2019-07-12",
 				duration: 100,
 				pClass: "gtaskpink",
-				pComp: 80,
+				pComp: "80 %",
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
 				pDepend: 3,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -441,26 +731,119 @@
 				pEnd: "2019-10-18",
 				duration: 100,
 				pClass: "gtaskred",
-				pComp: 27.33,
+				pComp: "27.33 %",
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
 				pDepend: 3,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -476,26 +859,119 @@
 				duration: 100,
 				pClass: "gtaskblue",
 				pMile: 1,
-				pComp: 80,
+				pComp: "80 %",
 				pGroup: 1,
 				pParent: 1,
 				pOpen: 1,
 				pDepend: 1,
-				totalResource: 15,
+				team: 15,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -510,26 +986,119 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: 57.81,
+				pComp: "57.81 %",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
 				pDepend: 2,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -544,26 +1113,119 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: 57.81,
+				pComp: "57.81 %",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
 				pDepend: 2,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -578,26 +1240,119 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: 57.81,
+				pComp: "57.81 %",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
 				pDepend: 2,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -611,26 +1366,119 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: 57.81,
+				pComp: "57.81 %",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
 				pDepend: 2,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -645,26 +1493,119 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: 57.81,
+				pComp: "57.81 %",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
 				pDepend: 2,
-				totalResource: 3,
+				team: 3,
 				estProgress: 43,
 				phase: 1,
 				resource: [
 					{
-						"name": "Zeid",
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
 						"status": "Assigned",
-						"actionComplete": "http://localhost:5500/project/workplan.html",
-						"actionUnComplete": ""
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					},
 					{
-						"name": "BilBIl",
+						"user_id": "2",
+						"name": "Boycasito Egamo",
 						"status": "Completed",
-						"actionComplete": "",
-						"actionUnComplete": "http://localhost:5500/project/workplan.html"
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "1",
+						"name": "Ade Wiranata Putra",
+						"status": "Assigned",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "2",
+						"name": "Boycasito Egamo",
+						"status": "Completed",
+						"role": "Programmer Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "3",
+						"name": "Ario Moklo",
+						"status": "Assigned",
+						"role": "Desaigner Web",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "4",
+						"name": "Ario semakin didepan",
+						"status": "Assigned",
+						"role": "Senior Programmer",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
+					},
+					{
+						"user_id": "5",
+						"name": "Zaid Billah",
+						"status": "Assigned",
+						"role": "Analyst",
+						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
 				changeableParent: true,
@@ -675,12 +1616,206 @@
 		],
 			RESOURCE_AVAILABLE = [
 				{
-					"userid": "1234",
-					"name": "Ario"
+					"nik": "M20005413",
+					"nama": "Martina Dillard",
+					"role": "Programmer Analyst",
+					"actionComplete": "http://localhost:5500/project/workplan.html"
 				},
 				{
-					"userid": "5678",
-					"name": "Moklo"
+					"nik": "S20186428",
+					"nama": "Alissa Newton",
+					"role": "Programmer Analyst Analyst",
+					"bu": "Gracker",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+				},
+				{
+					"nik": "CRS20136833",
+					"nama": "Maryanne Watson",
+					"role": "Engineer",
+					"bu": "Corepan",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
+				},
+				{
+					"nik": "CRS20166397",
+					"nama": "Bush Hunt",
+					"role": "Senior Business Analyst",
+					"bu": "Zytrex",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+				},
+				{
+					"nik": "CRS20005337",
+					"nama": "Cannon May",
+					"role": "Junior Programmer Analyst",
+					"bu": "Digifad",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=non"
+				},
+				{
+					"nik": "L20171511",
+					"nama": "Coleen Williamson",
+					"role": "Junior Programmer Analyst",
+					"bu": "Entogrok",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+				},
+				{
+					"nik": "S20065729",
+					"nama": "Christa Townsend",
+					"role": "Junior Programmer Analyst",
+					"bu": "Ovium",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+				},
+				{
+					"nik": "S20168519",
+					"nama": "Alston Weeks",
+					"role": "Junior Programmer Analyst",
+					"bu": "Zentix",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
+				},
+				{
+					"nik": "S20012872",
+					"nama": "Joseph Pratt",
+					"role": "Junior Programmer Analyst",
+					"bu": "Essensia",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+				},
+				{
+					"nik": "L20109899",
+					"nama": "Jennings Norman",
+					"role": "Junior Programmer Analyst",
+					"bu": "Eternis",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cillum"
+				},
+				{
+					"nik": "P20093418",
+					"nama": "Gertrude Sandoval",
+					"role": "Junior Programmer Analyst",
+					"bu": "Sloganaut",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
+				},
+				{
+					"nik": "S20005469",
+					"nama": "Rhoda Lloyd",
+					"role": "Junior Programmer Analyst",
+					"bu": "Renovize",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliqua"
+				},
+				{
+					"nik": "CRS20104806",
+					"nama": "Florine Blake",
+					"role": "Junior Programmer Analyst",
+					"bu": "Enervate",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+				},
+				{
+					"nik": "L20062709",
+					"nama": "Cook Pennington",
+					"role": "Junior Programmer Analyst",
+					"bu": "Terrago",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=anim"
+				},
+				{
+					"nik": "S20087299",
+					"nama": "Baxter Glass",
+					"role": "Junior Programmer Analyst",
+					"bu": "Zidant",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+				},
+				{
+					"nik": "L2018935",
+					"nama": "French Ferguson",
+					"role": "Junior Programmer Analyst",
+					"bu": "Quinex",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=amet"
+				},
+				{
+					"nik": "S20083508",
+					"nama": "Benjamin Saunders",
+					"role": "Junior Programmer Analyst",
+					"bu": "Bitendrex",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=duis"
+				},
+				{
+					"nik": "S20139777",
+					"nama": "Holloway Hardin",
+					"role": "Junior Programmer Analyst",
+					"bu": "Vetron",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
+				},
+				{
+					"nik": "S20028589",
+					"nama": "Gretchen Duran",
+					"role": "Junior Programmer Analyst",
+					"bu": "Gorganic",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
+				},
+				{
+					"nik": "CRS20175427",
+					"nama": "Fox Phelps",
+					"role": "Junior Programmer Analyst",
+					"bu": "Exposa",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=sit"
+				},
+				{
+					"nik": "CRS20182207",
+					"nama": "Maritza White",
+					"role": "Junior Programmer Analyst",
+					"bu": "Techtrix",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
+				},
+				{
+					"nik": "S20142407",
+					"nama": "Warren Ochoa",
+					"role": "Junior Programmer Analyst",
+					"bu": "Geostele",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
+				},
+				{
+					"nik": "M20011347",
+					"nama": "Mann Hudson",
+					"role": "Junior Programmer Analyst",
+					"bu": "Zipak",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
+				},
+				{
+					"nik": "CRS20056394",
+					"nama": "Jordan Robertson",
+					"role": "Junior Programmer Analyst",
+					"bu": "Soprano",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cupidatat"
+				},
+				{
+					"nik": "M20169784",
+					"nama": "West Morrow",
+					"role": "Junior Programmer Analyst",
+					"bu": "Omatom",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=id"
+				},
+				{
+					"nik": "M20186408",
+					"nama": "Marissa Morton",
+					"role": "Junior Programmer Analyst",
+					"bu": "Portalis",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
+				},
+				{
+					"nik": "P20105376",
+					"nama": "Vinson Joyce",
+					"role": "Junior Programmer Analyst",
+					"bu": "Exiand",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
+				},
+				{
+					"nik": "CRS20127204",
+					"nama": "Navarro Herring",
+					"role": "Junior Programmer Analyst",
+					"bu": "Marketoid",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
+				},
+				{
+					"nik": "L20113959",
+					"nama": "Sheila Williams",
+					"role": "Junior Programmer Analyst",
+					"bu": "Dognosis",
+					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
 				}
 			]
 	</script>
