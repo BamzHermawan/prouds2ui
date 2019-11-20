@@ -8,6 +8,7 @@ import bookmarkButton from "./sidebar/bookmark.vue";
 
 // DATATABLE
 import dataTable from "./dataTable/dataTable.vue";
+import treeTable from "./dataTable/treeTable.vue";
 import dataTableNoCard from "./dataTable/nocard.vue";
 
 // TIMESHEET
@@ -36,6 +37,7 @@ module.exports.bookmarkButton = bookmarkButton;
 module.exports.notificationLog = notificationLog;
 
 module.exports.dataTable = dataTable;
+module.exports.treeTable = treeTable;
 module.exports.dataTableNoCard = dataTableNoCard;
 
 module.exports.taskGroup = taskGroup;

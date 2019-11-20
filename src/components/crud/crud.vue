@@ -1,6 +1,6 @@
 <template>
 	<div class="container" :style="margin">
-		<div class="card">
+		<div class="card crud">
 			<slot name="header">
 				<header class="card-header">
 					<p class="card-header-title">Data-Table</p>
@@ -75,9 +75,7 @@
 					</b-table-column>
 				</template>
 				<template slot="top-left">
-					<div class="level-item">
-						<slot name="top-left-before"></slot>
-					</div>
+					<slot name="top-left-before"></slot>
 					<div class="level-item">
 						<b-button
 							tag="a"
@@ -87,9 +85,7 @@
 							>Add New</b-button
 						>
 					</div>
-					<div class="level-item">
-						<slot name="top-left-after"></slot>
-					</div>
+					<slot name="top-left-after"></slot>
 				</template>
 				<template slot="empty">
 					<b-message
@@ -153,6 +149,8 @@
 					@cancel="showForm = false"
 				></crud-form>
 			</slot>
+
+			<span v-if="showForm" class="white-space"></span>
 		</div>
 	</div>
 </template>
@@ -214,6 +212,12 @@ export default {
 				index: undefined
 			}
 		};
+	},
+	watch: {
+		showForm() {
+			document.querySelector(".contentPage").scrollTop = 0;
+			global.psContent.update();
+		}
 	},
 	methods: {
 		/**

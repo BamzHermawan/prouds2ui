@@ -150,6 +150,10 @@
 										:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
 								</div>
 							</div>
+
+							<b-message v-if="task.delayed.length <= 0" type="is-success">
+								<p class="has-text-centered">Hooray, you have no delayed task 🎉</p>
+							</b-message>
 						</task-group>
 	
 						<task-group title="On Going Task" always-show>
@@ -159,6 +163,10 @@
 										:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
 								</div>
 							</div>
+
+							<b-message v-if="task.ongoing.length <= 0" type="is-info">
+								<p class="has-text-centered">Today you have no task, please stand by 🚀</p>
+							</b-message>
 						</task-group>
 	
 						<task-group title="Scheduled Task" type="is-scheduled">
@@ -177,6 +185,10 @@
 									</div>
 								</div>
 							</div>
+
+							<b-message v-if="task.scheduled.length <= 0" type="is-light">
+								<p class="has-text-centered">There is currently no scheduled task</p>
+							</b-message>
 						</task-group>
 					</div>
 
@@ -242,9 +254,12 @@
 										</div>
 									</nav>
 
-									<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour"
-										color="is-info" placeholder="0">
-									</crud-input>
+									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''" always style="width:100%;">
+										<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour" color="is-info" placeholder="0"
+											v-model="workhour.value">
+										</crud-input>
+									</b-tooltip>
+
 									<crud-input type="select" name="location" label="Select Area"
 										placeholder="Choose area location">
 										<option selected style="display: none;"></option>
@@ -378,11 +393,11 @@
 				"start": today + "/" + month + "/2019",
 				"end": today + "/" + month + "/2019",
 				"member": 1,
-				"workload": randomNumber(),
-				"taskProgress": randomNumber(),
+				"workload": 10,
+				"taskProgress": 10,
 				"timesheet": [
 					{ data: 50, color: 'is-success' },
-					{ data: 55, color: 'is-info' }
+					{ data: 75, color: 'is-info' }
 				]
 			},
 			{
@@ -394,11 +409,11 @@
 				"start": "1/" + month + "/2019",
 				"end": "29/" + month + "/2019",
 				"member": 3,
-				"workload": randomNumber(),
-				"taskProgress": randomNumber(),
+				"workload": 20,
+				"taskProgress": 20,
 				"timesheet": [
-					{ data: 60, color: 'is-success' },
-					{ data: 20, color: 'is-info' }
+					{ data: 0, color: 'is-success' },
+					{ data: 0, color: 'is-info' }
 				]
 			},
 			{
@@ -410,11 +425,188 @@
 				"start": "12/09/2019",
 				"end": "29/12/2019",
 				"member": 2,
-				"workload": randomNumber(),
-				"taskProgress": randomNumber(),
+				"workload": 30,
+				"taskProgress": 30,
 				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
+					{ data: 25, color: 'is-success' },
+					{ data: 70, color: 'is-info' }
+				]
+			},
+			
+			{
+				"iwo": "P-1904SSI-BCIM0425",
+				"project_id": 105310,
+				"task_id": 417972,
+				"project_name": "Technologi Refresh/Upgrade dan Migrasi On Prem To Cloud",
+				"task": "Phase 9 - Support Post Go Live",
+				"start": "18/11/2019",
+				"end": "13/12/2019",
+				"member": 9,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 50,
+						"color": "is-success"
+					},
+					{
+						"data": 75,
+						"color": "is-info"
+					}
+				]
+			},
+			{
+				"iwo": "P-1904SSI-EPGN0474",
+				"project_id": 105311,
+				"task_id": 306669,
+				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+				"task": "ERP",
+				"start": "04/02/2019",
+				"end": "04/02/2020",
+				"member": 5,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 0,
+						"color": "is-success"
+					},
+					{
+						"data": 0,
+						"color": "is-info"
+					}
+				]
+			},
+			{
+				"iwo": "P-1904SSI-EPGN0474",
+				"project_id": 105311,
+				"task_id": 306670,
+				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+				"task": "CRM",
+				"start": "04/02/2019",
+				"end": "04/07/2020",
+				"member": 5,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 50,
+						"color": "is-success"
+					},
+					{
+						"data": 75,
+						"color": "is-info"
+					}
+				]
+			},
+			{
+				"iwo": "P-1904SSI-EPGN0474",
+				"project_id": 105311,
+				"task_id": 306659,
+				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+				"task": "Corrective Mantaince",
+				"start": "04/02/2019",
+				"end": "04/02/2020",
+				"member": 5,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 0,
+						"color": "is-success"
+					},
+					{
+						"data": 0,
+						"color": "is-info"
+					}
+				]
+			},
+			{
+				"iwo": "P-1904SSI-EPGN0474",
+				"project_id": 105311,
+				"task_id": 306673,
+				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
+				"task": "Data Health Check",
+				"start": "04/02/2019",
+				"end": "04/02/2020",
+				"member": 5,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 0,
+						"color": "is-success"
+					},
+					{
+						"data": 0,
+						"color": "is-info"
+					}
+				]
+			},
+			{
+				"iwo": "P-1901SSI-KKRI0019",
+				"project_id": 105049,
+				"task_id": 412728,
+				"project_name": "Pengadaan Annual Technical Support (ATS) Software Oracle Tahun 2019",
+				"task": "ATS Pusintek 2019",
+				"start": "01/01/2019",
+				"end": "31/12/2019",
+				"member": 9,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 0,
+						"color": "is-success"
+					},
+					{
+						"data": 0,
+						"color": "is-info"
+					}
+				]
+			},
+			{
+				"iwo": "P-1902SSI-ISCC0234",
+				"project_id": 105130,
+				"task_id": 413049,
+				"project_name": "Maintenance & Renewal ATS Oracle Database&Weblogic untuk BWS",
+				"task": "Maintenance",
+				"start": "21/11/2018",
+				"end": "31/12/2019",
+				"member": 4,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 50,
+						"color": "is-success"
+					},
+					{
+						"data": 75,
+						"color": "is-info"
+					}
+				]
+			},
+			{
+				"iwo": "P-1812SSI-KPEI1356",
+				"project_id": 104942,
+				"task_id": 310759,
+				"project_name": "Professional Services dan ATS 2019",
+				"task": "Professional Services dan ATS 2019",
+				"start": "13/11/2018",
+				"end": "30/11/2019",
+				"member": 1,
+				"workload": 100,
+				"taskProgress": 10,
+				"timesheet": [
+					{
+						"data": 50,
+						"color": "is-success"
+					},
+					{
+						"data": 75,
+						"color": "is-info"
+					}
 				]
 			}
 		]
@@ -559,7 +751,7 @@
 				"project_name": "eiusmod officia anim est qui duis ullamco fugiat aliquip nulla anim in sunt Lorem amet",
 				"task": "In id anim magna quis veniam sit esse anim tempor adipisicing excepteur laboris duis exercitation.",
 				"start": "11/02/2020",
-				"end": "31/03/2020",
+				"end": "31/05/2020",
 				"member": 1,
 				"workload": randomNumber()
 			}
