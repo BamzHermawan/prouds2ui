@@ -28,6 +28,7 @@ new Vue({
 			iwo: "-",
 			project_id: '-',
 			task_id: '-',
+			pm_name: '-',
 			project_name: "",
 			task: '',
 			start: Moment().format('DD/MM/YYYY'),
@@ -272,7 +273,7 @@ new Vue({
 					while (detector) {
 						list.push({
 							date: new Date(start),
-							type: 'is-info'
+							type: 'is-success'
 						});
 
 						if (start.isSame(end)) {
