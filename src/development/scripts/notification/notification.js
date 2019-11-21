@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Api from 'helper-apis';
-import { checkConnection, getApiTestByKey, notified, isEmpty } from 'helper-tools';
+import { checkConnection, notified, isEmpty } from 'helper-tools';
 import { notificationLog as nLog } from 'components';
 
 Vue.use(Buefy);
@@ -127,7 +127,6 @@ new Vue({
 			for (const key in this.$refs) {
 				if (this.$refs.hasOwnProperty(key) && key.includes('logs-')) {
 					const log = this.$refs[key];
-					console.log(log);
 					if(!isEmpty(log)){
 						if (!log[0].selected && this.allSelected) {
 							this.$refs[key][0].selected = true;
@@ -152,7 +151,6 @@ new Vue({
 	},
 	mounted(){
 		this.fetchNotification(false);
-		console.log(getApiTestByKey('userLogin'));
 		global.$loader.hide();
 	}
 });

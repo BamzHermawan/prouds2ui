@@ -209,7 +209,28 @@
 											<b-tag type="is-info">{{ dataForm.pm_name }}</b-tag>
 										</b-taglist>
 									</div>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">Member</b-tag>
+											<b-tag type="is-info">{{ dataForm.member }}</b-tag>
+										</b-taglist>
+									</div>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">Workload</b-tag>
+											<b-tag type="is-info">{{ dataForm.workload }}%</b-tag>
+										</b-taglist>
+									</div>
 								</b-field>
+								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
+									<span style="margin-right:.35em;">Assigned as</span><b>{{ dataForm.role }}</b>
+								</span>
+								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em;">
+									<span class="icon is-small">
+										<span class="mdi mdi-calendar-clock"></span>
+									</span>
+									<span>{{ dataForm.start | moment }} - {{ dataForm.end | moment }}</span>
+								</span>
 							</div>
 							<div class="column is-clearfix is-paddingless">
 								<a class="button is-danger is-long is-pulled-right" @click="setTimesheet">

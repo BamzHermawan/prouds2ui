@@ -64,9 +64,7 @@ const dummy = bundle => {
  * 
  * @returns user data. check documentation for more information
  */
-// module.exports.getUserSession = request.get($api.userLogin);
-// module.exports.getUserSession = request.post($api.userLogin);
-module.exports.getUserSession = dummy;
+module.exports.getUserSession = request.get($api.userLogin);
 
 /**
  * getUserData
@@ -108,11 +106,13 @@ module.exports.getDuration = bundle => {
 	});
 }
 
-// module.exports.uploadFoto = (file) => {
-// 	return request.post($api.uploadFoto, file);
-// }
+module.exports.uploadFoto = (file) => {
+	return request.post($api.uploadFoto, file);
+}
 
-module.exports.uploadFoto = dummy
+module.exports.getNotification = () => {
+	return request.get($api.getNotification);
+}
 
 module.exports.openNotification = (IDs) => {
 	return request.post($api.openNotification, pack(IDs), {
@@ -122,12 +122,14 @@ module.exports.openNotification = (IDs) => {
 	});
 }
 
-// module.exports.deleteFile = bundle => {
-// 	return request.post($api.deleteFile, pack(bundle), {
-// 		headers: {
-// 			"Content-Type": 'application/x-www-form-urlencoded'
-// 		}
-// 	});
-// }
+module.exports.setComplete = (bundle) => {
+	return request.get(parseURL('setComplete', bundle));
+}
 
-module.exports.deleteFile = dummy;
+module.exports.deleteFile = bundle => {
+	return request.post($api.deleteFile, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}
