@@ -31,7 +31,7 @@ if (!$config.apiTesting) {
 		}
 	}
 
-	if(!checkAll){
+	if (!checkAll) {
 		request.defaults.baseURL = $config.baseAPI;
 	}
 }
@@ -43,18 +43,6 @@ const parseURL = (key, bundle) => {
 		return bundle[val];
 	});
 }
-
-const dummy = bundle => {
-	return new Promise(function (resolve, reject) {
-		let rand = Math.random()
-		if (rand) {
-			resolve()
-		} else {
-			reject()
-		}
-	});
-}
-
 //? ----------------------------------------------------------------------------
 //? ----------------------------------------------------------------------------
 
@@ -64,9 +52,7 @@ const dummy = bundle => {
  * 
  * @returns user data. check documentation for more information
  */
-// module.exports.getUserSession = request.get($api.userLogin);
-// module.exports.getUserSession = request.post($api.userLogin);
-module.exports.getUserSession = dummy;
+module.exports.getUserSession = request.get($api.userLogin);
 
 /**
  * getUserData
@@ -108,13 +94,13 @@ module.exports.getDuration = bundle => {
 	});
 }
 
-module.exports.getNotification = dummy
+module.exports.getNotification = () => {
+	return request.get($api.getNotification);
+}
 
-// module.exports.uploadFoto = (file) => {
-// 	return request.post($api.uploadFoto, file);
-// }
-
-module.exports.uploadFoto = dummy
+module.exports.uploadFoto = (file) => {
+	return request.post($api.uploadFoto, file);
+}
 
 module.exports.openNotification = (IDs) => {
 	return request.post($api.openNotification, pack(IDs), {
@@ -124,12 +110,18 @@ module.exports.openNotification = (IDs) => {
 	});
 }
 
-// module.exports.deleteFile = bundle => {
-// 	return request.post($api.deleteFile, pack(bundle), {
-// 		headers: {
-// 			"Content-Type": 'application/x-www-form-urlencoded'
-// 		}
-// 	});
-// }
+module.exports.setComplete = bundle => {
+	return request.post($api.setComplete, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}
 
-module.exports.deleteFile = dummy;
+module.exports.deleteFile = bundle => {
+	return request.post($api.deleteFile, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}
