@@ -146,8 +146,7 @@
 						<task-group title="Delayed Task" :value="false" type="is-delayed">
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
-									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member" :workload="ts.workload"
-										:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
+									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :task="ts"></task-card>
 								</div>
 							</div>
 
@@ -159,8 +158,7 @@
 						<task-group title="On Going Task" always-show>
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.ongoing" :key="idx" class="column is-4-desktop is-6">
-									<task-card @clicked="setTimesheet(ts)" :iwo="ts.iwo" :end="ts.end" :task="ts.task" :start="ts.start" :member="ts.member" :workload="ts.workload"
-										:timesheet="ts.timesheet" :project="ts.project_name" :task-progress="ts.taskProgress"></task-card>
+									<task-card @clicked="setTimesheet(ts)" :task="ts"></task-card>
 								</div>
 							</div>
 
@@ -176,12 +174,7 @@
 								</div>
 								<div class="columns is-multiline">
 									<div v-for="(ts, idx) in group.list" :key="idx" class="column is-4-desktop is-6">
-										<task-card 
-											type="is-scheduled" 
-											:iwo="ts.iwo" :end="ts.end" 
-											:task="ts.task" :start="ts.start" 
-											:member="ts.member" :workload="ts.workload"
-											:project="ts.project_name"></task-card>
+										<task-card type="is-scheduled" :task="ts"></task-card>
 									</div>
 								</div>
 							</div>
@@ -390,248 +383,168 @@
 
 		//! yang ngurutin jadinya frontend 😭
 		const ONGOING = [
-			{
-				"iwo": "P-1909SCC-TTES1001",
-				"project_id": 10001,
-				"task_id": 1,
-				"pm_name": "Winifred Byers",
-				"project_name": "ullamco sit et sint ut qui Lorem esse culpa laborum.",
-				"task": "Magna ullamco tempor et nostrud ut elit.",
-				"start": today + "/" + month + "/2019",
-				"end": today + "/" + month + "/2019",
-				"member": 1,
-				"workload": 10,
-				"taskProgress": 10,
-				"timesheet": [
-					{ data: 50, color: 'is-success' },
-					{ data: 75, color: 'is-info' }
-				]
-			},
-			{
-				"iwo": "P-1909SCC-TTES1002",
-				"project_id": 10002,
-				"task_id": 2,
-				"pm_name": "Cleveland Hanson",
-				"project_name": "ex proident tempor aute consequat velit ut tempor exercitation non reprehenderit consequat velit Lorem exercitation",
-				"task": "Laboris Lorem quis qui velit aliqua est incididunt Lorem.",
-				"start": "1/" + month + "/2019",
-				"end": "29/" + month + "/2019",
-				"member": 3,
-				"workload": 20,
-				"taskProgress": 20,
-				"timesheet": [
-					{ data: 0, color: 'is-success' },
-					{ data: 0, color: 'is-info' }
-				]
-			},
-			{
-				"iwo": "P-1909SCC-TTES1003",
-				"project_id": 10003,
-				"task_id": 3,
-				"pm_name": "Cleveland Hanson",
-				"project_name": "fugiat aute tempor ad tempor fugiat qui eiusmod sunt aute et veniam do exercitation pariatur",
-				"task": "Esse labore sunt anim id incididunt nostrud ad ex nostrud incididunt proident ex.",
-				"start": "12/09/2019",
-				"end": "29/12/2019",
-				"member": 2,
-				"workload": 30,
-				"taskProgress": 30,
-				"timesheet": [
-					{ data: 25, color: 'is-success' },
-					{ data: 70, color: 'is-info' }
-				]
-			},
-			
-			{
-				"iwo": "P-1904SSI-BCIM0425",
-				"project_id": 105310,
-				"task_id": 417972,
-				"pm_name": "Joseph Yang",
-				"project_name": "Technologi Refresh/Upgrade dan Migrasi On Prem To Cloud",
-				"task": "Phase 9 - Support Post Go Live",
-				"start": "18/11/2019",
-				"end": "13/12/2019",
-				"member": 9,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 50,
-						"color": "is-success"
+				{
+					"iwo": "P-1909SCC-TTES1000",
+					"project_id": 1000,
+					"task_id": 1000,
+					"assignment_id": 1000,
+					"role": "Remotion irure dolor",
+					"pm_name": "Middleton Jordan",
+					"project_name": "Commodo aliqua sunt eu quis excepteur dolore non eu ut dolore.",
+					"task": "Ad nostrud non sit laboris Lorem aute fugiat ipsum amet officia excepteur aute aliquip id.",
+					"start": "26/08/2019",
+					"end": "20/03/2020",
+					"member": 2,
+					"workload": 45,
+					"taskProgress": {
+						"actual": 82,
+						"plan": 60
 					},
-					{
-						"data": 75,
-						"color": "is-info"
+					"timesheet": {
+						"approved": 35,
+						"submited": 69
 					}
-				]
-			},
-			{
-				"iwo": "P-1904SSI-EPGN0474",
-				"project_id": 105311,
-				"task_id": 306669,
-				"pm_name": "Joseph Yang",
-				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
-				"task": "ERP",
-				"start": "04/02/2019",
-				"end": "04/02/2020",
-				"member": 5,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 0,
-						"color": "is-success"
+				},
+				{
+					"iwo": "P-1909SCC-TTES1001",
+					"project_id": 1001,
+					"task_id": 1001,
+					"assignment_id": 1001,
+					"role": "Aquafire commodo id",
+					"pm_name": "Brewer Valentine",
+					"project_name": "Eiusmod mollit aliqua reprehenderit fugiat sit occaecat.",
+					"task": "Id ut consectetur laboris aliqua laboris ad laborum id ad consequat do.",
+					"start": "01/09/2019",
+					"end": "17/01/2020",
+					"member": 4,
+					"workload": 50,
+					"taskProgress": {
+						"actual": 91,
+						"plan": 20
 					},
-					{
-						"data": 0,
-						"color": "is-info"
+					"timesheet": {
+						"approved": 33,
+						"submited": 20
 					}
-				]
-			},
-			{
-				"iwo": "P-1904SSI-EPGN0474",
-				"project_id": 105311,
-				"task_id": 306670,
-				"pm_name": "Joseph Yang",
-				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
-				"task": "CRM",
-				"start": "04/02/2019",
-				"end": "04/07/2020",
-				"member": 5,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 50,
-						"color": "is-success"
+				},
+				{
+					"iwo": "P-1909SCC-TTES1002",
+					"project_id": 1002,
+					"task_id": 1002,
+					"assignment_id": 1002,
+					"role": "Ecstasia proident non",
+					"pm_name": "Riley Figueroa",
+					"project_name": "Id elit exercitation amet pariatur labore sunt est qui commodo.",
+					"task": "Proident irure sit qui et.",
+					"start": "03/08/2019",
+					"end": "17/12/2019",
+					"member": 5,
+					"workload": 57,
+					"taskProgress": {
+						"actual": 84,
+						"plan": 37
 					},
-					{
-						"data": 75,
-						"color": "is-info"
+					"timesheet": {
+						"approved": 76,
+						"submited": 59
 					}
-				]
-			},
-			{
-				"iwo": "P-1904SSI-EPGN0474",
-				"project_id": 105311,
-				"task_id": 306659,
-				"pm_name": "Joseph Yang",
-				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
-				"task": "Corrective Mantaince",
-				"start": "04/02/2019",
-				"end": "04/02/2020",
-				"member": 5,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 0,
-						"color": "is-success"
+				},
+				{
+					"iwo": "P-1909SCC-TTES1003",
+					"project_id": 1003,
+					"task_id": 1003,
+					"assignment_id": 1003,
+					"role": "Icology excepteur exercitation",
+					"pm_name": "Gwendolyn Giles",
+					"project_name": "Ad eu occaecat laboris duis officia qui id ea.",
+					"task": "In esse minim veniam adipisicing qui consectetur ut pariatur labore elit.",
+					"start": "01/09/2019",
+					"end": "24/01/2020",
+					"member": 5,
+					"workload": 90,
+					"taskProgress": {
+						"actual": 55,
+						"plan": 31
 					},
-					{
-						"data": 0,
-						"color": "is-info"
+					"timesheet": {
+						"approved": 87,
+						"submited": 56
 					}
-				]
-			},
-			{
-				"iwo": "P-1904SSI-EPGN0474",
-				"project_id": 105311,
-				"task_id": 306673,
-				"pm_name": "Mccormick Paul",
-				"project_name": "Pengadaan Perpanjangan Oracle Premier support",
-				"task": "Data Health Check",
-				"start": "04/02/2019",
-				"end": "04/02/2020",
-				"member": 5,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 0,
-						"color": "is-success"
+				},
+				{
+					"iwo": "P-1909SCC-TTES1004",
+					"project_id": 1004,
+					"task_id": 1004,
+					"assignment_id": 1004,
+					"role": "Polarium laboris nostrud",
+					"pm_name": "Kelli Boone",
+					"project_name": "Nulla ullamco commodo laborum laboris.",
+					"task": "Ipsum commodo qui adipisicing velit adipisicing ut Lorem in adipisicing magna voluptate qui ad.",
+					"start": "13/09/2019",
+					"end": "02/01/2020",
+					"member": 3,
+					"workload": 27,
+					"taskProgress": {
+						"actual": 82,
+						"plan": 74
 					},
-					{
-						"data": 0,
-						"color": "is-info"
+					"timesheet": {
+						"approved": 18,
+						"submited": 7
 					}
-				]
-			},
-			{
-				"iwo": "P-1901SSI-KKRI0019",
-				"project_id": 105049,
-				"task_id": 412728,
-				"pm_name": "Mccormick Paul",
-				"project_name": "Pengadaan Annual Technical Support (ATS) Software Oracle Tahun 2019",
-				"task": "ATS Pusintek 2019",
-				"start": "01/01/2019",
-				"end": "31/12/2019",
-				"member": 9,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 0,
-						"color": "is-success"
+				},
+				{
+					"iwo": "P-1909SCC-TTES1005",
+					"project_id": 1005,
+					"task_id": 1005,
+					"assignment_id": 1005,
+					"role": "Namebox aliqua sint",
+					"pm_name": "Hobbs Henry",
+					"project_name": "Ut ipsum incididunt ut pariatur ad do.",
+					"task": "Anim ea nostrud sint veniam do et ea.",
+					"start": "22/06/2019",
+					"end": "09/06/2020",
+					"member": 2,
+					"workload": 27,
+					"taskProgress": {
+						"actual": 30,
+						"plan": 51
 					},
-					{
-						"data": 0,
-						"color": "is-info"
+					"timesheet": {
+						"approved": 88,
+						"submited": 24
 					}
-				]
-			},
-			{
-				"iwo": "P-1902SSI-ISCC0234",
-				"project_id": 105130,
-				"task_id": 413049,
-				"pm_name": "Mccormick Paul",
-				"project_name": "Maintenance & Renewal ATS Oracle Database&Weblogic untuk BWS",
-				"task": "Maintenance",
-				"start": "21/11/2018",
-				"end": "31/12/2019",
-				"member": 4,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 50,
-						"color": "is-success"
+				},
+				{
+					"iwo": "P-1909SCC-TTES1006",
+					"project_id": 1006,
+					"task_id": 1006,
+					"assignment_id": 1006,
+					"role": "Katakana magna culpa",
+					"pm_name": "Wade Summers",
+					"project_name": "Amet deserunt non aliquip occaecat.",
+					"task": "Veniam cupidatat labore labore nisi amet laboris aliqua deserunt consectetur elit irure sunt do non.",
+					"start": "05/06/2019",
+					"end": "13/12/2019",
+					"member": 2,
+					"workload": 55,
+					"taskProgress": {
+						"actual": 58,
+						"plan": 21
 					},
-					{
-						"data": 75,
-						"color": "is-info"
+					"timesheet": {
+						"approved": 47,
+						"submited": 90
 					}
-				]
-			},
-			{
-				"iwo": "P-1812SSI-KPEI1356",
-				"project_id": 104942,
-				"task_id": 310759,
-				"pm_name": "Gould Berry",
-				"project_name": "Professional Services dan ATS 2019",
-				"task": "Professional Services dan ATS 2019",
-				"start": "13/11/2018",
-				"end": "30/11/2019",
-				"member": 1,
-				"workload": 100,
-				"taskProgress": 10,
-				"timesheet": [
-					{
-						"data": 50,
-						"color": "is-success"
-					},
-					{
-						"data": 75,
-						"color": "is-info"
-					}
-				]
-			}
-		]
+				}
+			]
 		const DELAYED = [
 			{
 				"iwo": "P-1909SCC-TTES1011",
 				"project_id": 10011,
 				"task_id": 4,
+				"assignment_id": 1000,
+				"role": "Zomboid aliquip proident",
 				"pm_name": "Gould Berry",
 				"project_name": "veniam enim tempor dolor et ex fugiat excepteur est nostrud voluptate pariatur mollit pariatur reprehenderit",
 				"task": "Sint dolor cillum aliquip nostrud elit elit do incididunt amet occaecat dolor ipsum dolore irure.",
@@ -639,16 +552,21 @@
 				"end": "12/10/2019",
 				"member": 3,
 				"workload": randomNumber(),
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"taskProgress": {
+					"actual": randomNumber(),
+					"plan": randomNumber()
+				},
+				"timesheet": {
+					"approved": randomNumber(),
+					"submited": randomNumber()
+				}
 			},
 			{
 				"iwo": "P-1909SCC-TTES1012",
 				"project_id": 10012,
 				"task_id": 5,
+				"assignment_id": 1000,
+				"role": "Zomboid aliquip proident",
 				"pm_name": "Gould Berry",
 				"project_name": "pariatur eiusmod anim elit quis laboris.",
 				"task": "Exercitation esse proident consequat ut aliquip reprehenderit mollit officia officia aute irure veniam.",
@@ -656,125 +574,102 @@
 				"end": "26/10/2019",
 				"member": 5,
 				"workload": randomNumber(),
-				"taskProgress": randomNumber(),
-				"timesheet": [
-					{ data: randomNumber(), color: 'is-success' },
-					{ data: randomNumber(), color: 'is-info' }
-				]
+				"taskProgress": {
+					"actual": randomNumber(),
+					"plan": randomNumber()
+				},
+				"timesheet": {
+					"approved": randomNumber(),
+					"submited": randomNumber()
+				}
 			}
 		]
 		const PLANNED = [
-			{
-				"iwo": "P-1909SCC-TTES1021",
-				"project_id": 10021,
-				"task_id": 6,
-				"project_name": "non excepteur enim id tempor cupidatat nostrud fugiat est laborum ad magna quis occaecat dolor",
-				"task": "Eu non qui proident consectetur quis tempor.",
-				"start": "06/01/2020",
-				"end": "02/03/2020",
-				"member": 3,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1022",
-				"project_id": 10022,
-				"task_id": 7,
-				"project_name": "aliquip do et exercitation commodo commodo adipisicing ullamco commodo nulla qui consectetur officia sit tempor",
-				"task": "Exercitation irure consequat reprehenderit nulla aliqua id do qui incididunt in mollit adipisicing eiusmod sunt.",
-				"start": "13/12/2019",
-				"end": "03/01/2020",
-				"member": 2,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1023",
-				"project_id": 10023,
-				"task_id": 8,
-				"project_name": "culpa dolor excepteur dolore nulla tempor do quis quis nisi duis dolore commodo cillum consectetur",
-				"task": "Anim eu proident elit nisi officia magna sint sunt adipisicing consequat nostrud commodo eiusmod.",
-				"start": "01/02/2020",
-				"end": "17/05/2020",
-				"member": 1,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1024",
-				"project_id": 10024,
-				"task_id": 9,
-				"project_name": "occaecat irure in ut non aliqua dolor ipsum cillum dolor est proident consectetur aute sit",
-				"task": "Tempor Lorem laboris eu reprehenderit esse cupidatat est.",
-				"start": "03/12/2019",
-				"end": "29/02/2020",
-				"member": 2,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1025",
-				"project_id": 10025,
-				"task_id": 1,
-				"project_name": "mollit esse dolore anim sunt labore est sit ipsum nulla fugiat anim officia anim ullamco",
-				"task": "Lorem exercitation ipsum commodo elit esse excepteur.",
-				"start": "03/12/2019",
-				"end": "08/02/2020",
-				"member": 4,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1026",
-				"project_id": 10026,
-				"task_id": 2,
-				"project_name": "veniam ipsum aliquip incididunt tempor incididunt enim veniam magna in esse qui nulla elit anim",
-				"task": "Aliqua consequat reprehenderit cillum excepteur nisi labore est deserunt ea.",
-				"start": "10/12/2019",
-				"end": "23/02/2020",
-				"member": 5,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1027",
-				"project_id": 10027,
-				"task_id": 3,
-				"project_name": "cillum proident enim dolor nostrud nulla proident culpa nostrud eiusmod sint esse esse commodo sunt",
-				"task": "Dolor consequat aliquip magna sunt magna esse consequat ullamco.",
-				"start": "03/12/2019",
-				"end": "20/02/2020",
-				"member": 2,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1028",
-				"project_id": 10028,
-				"task_id": 4,
-				"project_name": "mollit minim proident in velit sunt consequat adipisicing aute incididunt in amet ullamco amet non",
-				"task": "Exercitation ex magna enim deserunt minim magna nostrud Lorem veniam anim laboris aliquip.",
-				"start": "04/01/2020",
-				"end": "18/03/2020",
-				"member": 1,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1029",
-				"project_id": 10029,
-				"task_id": 5,
-				"project_name": "aute ad veniam non esse ex sit cillum commodo id duis nisi deserunt incididunt elit",
-				"task": "Cillum consequat ad aute sunt dolore aute et minim culpa exercitation culpa officia eiusmod id.",
-				"start": "10/12/2019",
-				"end": "16/01/2020",
-				"member": 3,
-				"workload": randomNumber()
-			},
-			{
-				"iwo": "P-1909SCC-TTES1030",
-				"project_id": 10030,
-				"task_id": 6,
-				"project_name": "eiusmod officia anim est qui duis ullamco fugiat aliquip nulla anim in sunt Lorem amet",
-				"task": "In id anim magna quis veniam sit esse anim tempor adipisicing excepteur laboris duis exercitation.",
-				"start": "11/02/2020",
-				"end": "31/05/2020",
-				"member": 1,
-				"workload": randomNumber()
-			}
-		]
+				{
+					"iwo": "P-1909SCC-TTES1000",
+					"project_id": 1000,
+					"task_id": 1000,
+					"assignment_id": 1000,
+					"role": "Zilodyne quis reprehenderit",
+					"pm_name": "Butler Shelton",
+					"project_name": "Officia exercitation ipsum minim ex eiusmod ex excepteur amet et aliquip dolor.",
+					"task": "Nisi cillum laborum aliqua consequat duis magna proident esse.",
+					"start": "16/12/2019",
+					"end": "02/02/2020",
+					"member": 3,
+					"workload": 81
+				},
+				{
+					"iwo": "P-1909SCC-TTES1001",
+					"project_id": 1001,
+					"task_id": 1001,
+					"assignment_id": 1001,
+					"role": "Proxsoft velit laboris",
+					"pm_name": "Dejesus Merrill",
+					"project_name": "Veniam aliquip exercitation esse culpa proident sunt pariatur irure laborum anim deserunt et consectetur amet.",
+					"task": "Consectetur dolor ex id velit duis.",
+					"start": "01/12/2019",
+					"end": "18/03/2020",
+					"member": 4,
+					"workload": 41
+				},
+				{
+					"iwo": "P-1909SCC-TTES1002",
+					"project_id": 1002,
+					"task_id": 1002,
+					"assignment_id": 1002,
+					"role": "Iplax est cillum",
+					"pm_name": "Douglas Luna",
+					"project_name": "Exercitation amet sunt dolore quis excepteur elit velit consequat aute.",
+					"task": "Ut laborum commodo tempor adipisicing Lorem aute sunt.",
+					"start": "27/12/2019",
+					"end": "12/03/2020",
+					"member": 4,
+					"workload": 100
+				},
+				{
+					"iwo": "P-1909SCC-TTES1003",
+					"project_id": 1003,
+					"task_id": 1003,
+					"assignment_id": 1003,
+					"role": "Earthmark dolore amet",
+					"pm_name": "Merritt Ayers",
+					"project_name": "Quis est enim duis sint.",
+					"task": "Mollit elit laborum nostrud do culpa esse anim eiusmod consectetur laborum nulla.",
+					"start": "01/12/2019",
+					"end": "03/02/2020",
+					"member": 5,
+					"workload": 78
+				},
+				{
+					"iwo": "P-1909SCC-TTES1004",
+					"project_id": 1004,
+					"task_id": 1004,
+					"assignment_id": 1004,
+					"role": "Inquala minim qui",
+					"pm_name": "Gamble Warren",
+					"project_name": "Eiusmod excepteur qui tempor mollit sit commodo sint in cillum id cupidatat.",
+					"task": "Aute minim laboris adipisicing id et quis.",
+					"start": "27/12/2019",
+					"end": "15/02/2020",
+					"member": 3,
+					"workload": 29
+				},
+				{
+					"iwo": "P-1909SCC-TTES1005",
+					"project_id": 1005,
+					"task_id": 1005,
+					"assignment_id": 1005,
+					"role": "Vixo veniam amet",
+					"pm_name": "Tami Buckley",
+					"project_name": "Do consectetur quis eiusmod anim enim.",
+					"task": "Et nisi consequat ullamco laborum velit consequat magna irure consequat id consectetur occaecat sit anim.",
+					"start": "25/12/2019",
+					"end": "29/02/2020",
+					"member": 3,
+					"workload": 78
+				}
+			]
 	</script>
 
 	<script src="../scripts/layout/controller.js"></script>
