@@ -102,6 +102,8 @@ module.exports.getDuration = bundle => {
 	});
 }
 
+module.exports.getNotification = dummy
+
 // module.exports.uploadFoto = (file) => {
 // 	return request.post($api.uploadFoto, file);
 // }

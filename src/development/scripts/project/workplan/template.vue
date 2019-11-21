@@ -1,31 +1,72 @@
 <template>
-	<div class="container">
-		<h1>
-			<div
-				style="position:relative"
-				class="gantt"
-				id="GanttChartDIV"
-			></div>
-		</h1>
-	</div>
+	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="workplanId" v-model="workplanId" />
+
+		<div class="columns">
+			<div class="column is-10">
+				<crud-input
+					type="select"
+					label="Select Template"
+					name="templateId"
+					placeholder="Choose Template"
+					v-model="template"
+					input-style="margin-bottom:0px;"
+					required
+				>
+					<slot name="template-option"></slot>
+				</crud-input>
+			</div>
+			<div class="column">
+				<button
+					class="button is-success is-long"
+					type="submit"
+					style="margin-top:30px"
+				>
+					Save
+				</button>
+			</div>
+		</div>
+
+		<p class="label" v-if="template !== null">Preview</p>
+		<br />
+
+		<div style="position:relative" class="gantt" id="GanttChartDIV"></div>
+	</form>
 </template>
 
 <script>
+import { crudInput } from "components";
 import * as JSGantt from "jsgantt-improved";
+
 export default {
+	components: { crudInput },
 	props: {
 		actionEvent: {
+			type: String,
+			required: true
+		},
+		workplanId: {
+			type: String,
+			required: true
+		},
+		apiGetDuration: {
 			type: String,
 			required: true
 		}
 	},
 	data() {
 		return {
-			dataBaru: GANTT
+			dataBaru: TEMPLATE,
+			template: null
 		};
 	},
+	watch: {
+		template: function(newQuery) {
+			this.getChart(newQuery);
+		}
+	},
 	methods: {
-		getChart() {
+		getChart(val) {
 			let self = this;
 			const g = new JSGantt.GanttChart(
 				document.getElementById("GanttChartDIV"),
@@ -40,7 +81,15 @@ export default {
 				vLang: "en",
 				vShowTaskInfoLink: 1,
 				vShowEndWeekDate: 0,
+				vUseSingleCell: 10000,
+				vFormatArr: ["Day", "Week", "Month", "Quarter"],
 				vAdditionalHeaders: {
+					start: {
+						title: "Start Date"
+					},
+					end: {
+						title: "End Date"
+					},
 					duration: {
 						title: "Duration"
 					},
@@ -50,36 +99,15 @@ export default {
 					pComp: {
 						title: "Progress %"
 					}
-				},
-				vUseSingleCell: 10000,
-				vFormatArr: ["Day", "Week", "Month", "Quarter"]
+				}
 			});
+			g.setShowStartDate(0);
+			g.setShowEndDate(0);
 			g.setShowRes(0);
 			g.setShowComp(0);
 			g.setShowDur(0);
 			g.setUseToolTip(0);
 			g.setShowComp(0);
-			// g.setEditable(1);
-			// g.AddTaskItem(
-			// 	new JSGantt.TaskItem(
-			// 		12,
-			// 		"Define Chart API",
-			// 		"2019-08-19",
-			// 		"2019-10-31",
-			// 		"gtaskgreen",
-			// 		"",
-			// 		0,
-			// 		"Brian",
-			// 		0,
-			// 		0,
-			// 		1,
-			// 		1,
-			// 		"",
-			// 		"",
-			// 		"",
-			// 		g
-			// 	)
-			// );
 			g.setEventClickRow(function(e) {
 				// console.log(e);
 				// self.modalEvent(e);
@@ -100,28 +128,12 @@ export default {
 
 				self.$parent.showSideBar = true;
 			});
-			this.dataBaru.forEach(d => {
+			this.dataBaru[val].forEach(d => {
 				d.pGantt = g;
 				g.AddTaskItemObject(d);
 			});
 			g.Draw();
-		},
-		modalEvent(e) {
-			this.modal.display = true;
-			this.modal.title = "Edit " + e.getName();
-			this.modal.StartDate = e.getStart();
-			this.modal.EndDate = e.getEnd();
-			this.modal.duration = e.getDuration();
-			let eventID = e.getOriginalID();
-
-			this.modal.data = this.dataBaru.find(task => {
-				console.log(task);
-				return task.pID == eventID;
-			});
 		}
-	},
-	mounted() {
-		this.getChart();
 	}
 };
 </script>

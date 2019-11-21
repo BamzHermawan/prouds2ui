@@ -45,7 +45,7 @@
 				<side-item href="authorization.html">Authorization</side-item>
 				<side-item href="baseline.html">Baseline</side-item>
 				<side-item href="customer.html">Customer</side-item>
-				<side-item active>Days Scheme</side-item>
+				<side-item href="dayscheme.html">Days Scheme</side-item>
 				<side-item href="importdata.html">Import Data</side-item>
 				<side-item href="issue.html">Issue</side-item>
 				<side-item href="menu.html">Menu</side-item>
@@ -55,7 +55,7 @@
 					<side-item href="typelevel.html">Type-Level</side-item>
 				</side-list>
 				<side-item href="users.html">Users</side-item>
-				<side-item href="workplan.html">Workplan</side-item>
+				<side-item active>Workplan</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -96,7 +96,7 @@
 					</a>
 
 					<a href="http://" class="navbar-item hover-text is-active">
-						<span class=" mdi mdi-settings-outline"></span>
+						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
 
@@ -123,7 +123,7 @@
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Days Scheme</span>
+							<span>Workplan</span>
 						</h1>
 						<div id="bookmarkPage">
 							<bookmark-button></bookmark-button>
@@ -134,48 +134,73 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 
-					<crud ref="holidayTable" :paginated="5" narrowed :data="props.HOLIDAY.data"
-						:columns="props.HOLIDAY.fields" del="http://localhost:5501/demo/post_detect.php?id={id}"
-						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
-						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
-
-						<template slot="header">
-							<header class="card-header has-gradient-light">
-								<p class="card-header-title">Holiday</p>
+					<div class="card">
+						<slot name="header">
+							<header class="card-header">
+								<p class="card-header-title">Template Workplan</p>
 							</header>
-						</template>
+						</slot>
+						<div class="card-content" style="padding-bottom:0.5em;">
+							<b-message type="is-info">
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
+								quae doloribus? Aperiam,
+								cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+								molestias eius magnam illum
+								debitis.
+							</b-message>
+						</div>
 
-						<template slot="message">
-							<div class="card-content" style="padding-bottom:0.5em;">
-								<b-message type="is-info">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
-									rerum
-									quae doloribus? Aperiam,
-									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
-									molestias eius magnam illum
-									debitis.
-								</b-message>
-							</div>
-						</template>
+						<b-table :data="props.DATA_TEMPLATE" ref="table" detailed hoverable custom-detail-row
+							:paginated="paginated !== 0" :per-page="paginated" pagination-position="top"
+							pagination-simple>
 
-						<template slot="forms" slot-scope="props">
-							<crud-form method="post" :action="props.action"
-								@cancel="$refs.holidayTable.showForm = false">
-								<crud-input type="text" label="Yaer" placeholder="Yaer" name="year"
-									:value="props.row.year">
-								</crud-input>
-								<crud-input type="datepicker" label="Start" placeholder="Start" name="start"
-									:value="props.row.start" date-input-format="DD/MM/YYYY">
-								</crud-input>
-								<crud-input type="datepicker" label="End" placeholder="End" name="end"
-									:value="props.row.end" date-input-format="DD/MM/YYYY">
-								</crud-input>
-								<crud-input type="text" label="Desc" placeholder="Desc" name="desc"
-									:value="props.row.desc">
-								</crud-input>
-							</crud-form>
-						</template>
-					</crud>
+							<template slot-scope="props">
+								<b-table-column field="name" label="Name" width="775" sortable>
+									{{ props.row.template_name }}
+								</b-table-column>
+
+								<!-- <b-table-column width="400" field="parent" label="Parent" sortable>
+								</b-table-column> -->
+
+								<b-table-column field="action" label="Action" centered>
+									<b-button type="is-success" size="is-small">Add Task
+									</b-button>
+									<b-button type="is-info" size="is-small">Edit
+									</b-button>
+									<b-button tag="a"
+										:href="'http://localhost:5501/demo/post_detect.php?id='+props.row.template_id"
+										type="is-danger" size="is-small">Delete
+									</b-button>
+								</b-table-column>
+							</template>
+
+							<template slot="top-left">
+								<div class="level">
+									<div class="level-left">
+										<b-button type="is-success">Add New</b-button>
+									</div>
+							</template>
+
+							<template slot="detail" slot-scope="props">
+								<tr v-for="(item, index) in props.row.task" :key="item.name">
+									<td></td>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;{{ item.name }}
+									</td>
+									<!-- <td>{{ item.parent_name }}</td> -->
+									<td class="has-text-right" style="margin-right: 1px;">
+										<b-button type="is-info" size="is-small">Edit
+										</b-button>
+										<b-button tag="a"
+											:href="'http://localhost:5501/demo/post_detect.php?id='+item.task_id"
+											type="is-danger" size="is-small">Delete
+										</b-button>
+									</td>
+								</tr>
+							</template>
+
+						</b-table>
+
+					</div>
 
 				</div>
 			</section>
@@ -190,60 +215,29 @@
 
 	<script>
 		const VAPPS = {
-			HOLIDAY: {
-				fields: [
-					{
-						key: 'year',
-						label: 'Year',
-						sortable: true,
-					},
-					{
-						key: 'start',
-						label: 'Start',
-						sortable: true,
-					},
-					{
-						key: 'end',
-						label: 'End',
-						sortable: true,
-					},
-					{
-						key: 'desc',
-						label: 'Desc',
-						sortable: true,
-					}
-				],
-				data: [
-					{
-						"id": 0,
-						"year": "2019",
-						"start": "01/01/2019",
-						"end": "01/01/2019",
-						"desc": "Tahun Baru Masehi"
-					},
-					{
-						"id": 1,
-						"year": "2019",
-						"start": "05/02/2019",
-						"end": "05/02/2019",
-						"desc": "Tahun Baru Imlek"
-					},
-					{
-						"id": 2,
-						"year": "2019",
-						"start": "07/03/2019",
-						"end": "07/03/2019",
-						"desc": "Nyepi"
-					},
-					{
-						"id": 3,
-						"year": "2019",
-						"start": "03/04/2019",
-						"end": "03/04/2019",
-						"desc": "Isra' Miraj"
-					}
-				]
-			}
+			DATA_TEMPLATE: [
+				{
+					"template_id": "1",
+					"template_name": "Software",
+					"task": [
+						{
+							"task_id": 1,
+							"name": "New Prouds UI 2",
+							"parent_name": ""
+						},
+						{
+							"task_id": 2,
+							"name": "Desaign",
+							"parent_name": "New Prouds UI 2"
+						},
+						{
+							"task_id": 3,
+							"name": "Development",
+							"parent_name": "New Prouds UI 2"
+						}
+					]
+				}
+			]
 		}
 	</script>
 

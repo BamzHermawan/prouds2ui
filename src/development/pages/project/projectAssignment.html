@@ -237,8 +237,8 @@
 						</template>
 					</assign>
 
-					<assign type="Co-PM" :users="users.copm" :project="selectedProject" v-if="toggleForm.CoPM"
-						id="CoPM" class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
+					<assign type="Co-PM" :users="users.copm" :project="selectedProject" v-if="toggleForm.CoPM" id="CoPM"
+						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
@@ -250,9 +250,8 @@
 						</template>
 					</assign>
 
-					<assign type="Admin" :users="users.admin" :project="selectedProject"
-						v-if="toggleForm.Adm" id="Adm" class="animated fadeIn faster"
-						action="http://localhost:5501/demo/post_detect.php">
+					<assign type="Admin" :users="users.admin" :project="selectedProject" v-if="toggleForm.Adm" id="Adm"
+						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
@@ -263,9 +262,9 @@
 						</template>
 					</assign>
 
-					<set-unit-delivery :unit-delivery="unitdelivery" :project="selectedProject"
-						id="setUnitDelivery" class="animated fadeIn faster"
-						action="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
+					<set-unit-delivery :unit-delivery="unitdelivery" :project="selectedProject" id="setUnitDelivery"
+						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php"
+						v-if="showUnitDelivery">
 						<template #breadcrumb>
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">

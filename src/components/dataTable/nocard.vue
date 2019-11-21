@@ -191,7 +191,7 @@ export default {
 		}
 	},
 	computed: {
-		filteredlist() {
+		filteredlistA() {
 			let self = this;
 			return self.data.filter(post => {
 				let found = Object.keys(post).find(key => {
@@ -200,11 +200,62 @@ export default {
 							.toLowerCase()
 							.includes(self.search.toLowerCase());
 					} else {
+						let val = post[key];
+						if (val instanceof Object) {
+							for (const x in val) {
+								if (val.hasOwnProperty(x)) {
+									const element = val[x];
+									console.log(element);
+									return element
+										.toString()
+										.toLowerCase()
+										.includes(self.search.toLowerCase());
+								}
+							}
+						}
+
 						return false;
 					}
 				});
 
 				return found;
+			});
+		},
+		filteredlist() {
+			let self = this;
+			return self.data.filter(post => {
+				const stack = [];
+				stack.push(post);
+
+				while (stack.length > 0) {
+					const currentObj = stack.shift();
+					if (
+						!(currentObj instanceof Object) &&
+						currentObj !== null
+					) {
+						let check = currentObj
+							.toString()
+							.toLowerCase()
+							.includes(self.search.toLowerCase());
+
+						if (check) {
+							return true;
+						}
+					}
+
+					const keys =
+						currentObj instanceof Object
+							? Object.keys(currentObj)
+							: [];
+
+					for (const key of keys) {
+						const objVal = currentObj[key];
+
+						stack.unshift(objVal);
+					}
+				}
+
+				return false;
 			});
 		},
 		dataField() {
