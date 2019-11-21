@@ -72,12 +72,22 @@ module.exports = {
 		getNotification: 'getNotification.php',
 
 		/**
-		 * open Notification Log [GET]
-		 * Send Data: id
-		 * Received Data: 
-		 *  - list notification
+		 * open Notification Log [POST]
+		 * Send Data:  List of id
+		 * Received Data: -
 		 */
 		openNotification: 'axios_check.php',
+
+		/**
+		 * Get List of Filled Timesheet Date [POST]
+		 * Send Data:
+		 * - Assignment ID
+		 * - Task Start Date
+		 * - Task End Date
+		 * Received Data: 
+		 * - List of Filled Timesheet Date
+		 */
+		filledTimesheet: 'getTimesheetDate.php',
 
 		/**
 		 * Delete File [POST]

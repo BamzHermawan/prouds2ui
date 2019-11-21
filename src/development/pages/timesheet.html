@@ -334,7 +334,7 @@
 										</p>
 									</header>
 									<b-datepicker inline v-model="datepicker.end.val" :max-date="new Date()"
-										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList" indicators="bars">
+										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
 												<b-field>
@@ -366,7 +366,7 @@
 										</p>
 									</header>
 									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
-										:focused-date="datepicker.start.focused">
+										:focused-date="datepicker.start.focused" :events="datepicker.filled">
 										<template slot="header">
 											<b-field>
 												<b-field>
@@ -393,6 +393,32 @@
 				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+				expected return from getNotification!
+				[{
+					"id": {String},
+					"subject": {String},
+					"content": {HTML String},
+					"dateStamp": {Date String with format DD/MM/YYYY},
+					"timeStamp": {Time String with format H:i},
+					"read": {Boolean}
+				}, ... ],
+			 -->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+	
+		<!-- 
+				Get List of Filled Timesheet Date
+				@param {*} id: Assignment ID
+				@param {*} start: Task Start Date (DD/MM/YYYY)
+				@param {*} end: Task End Date (DD/MM/YYYY)
+
+				expected return List of Filled Timesheet Date
+				[ 'DD/MM/YYYY', 'DD/MM/YYYY', 'DD/MM/YYYY', ... ]
+			-->
+		<api-test url="getTimesheetDate.php" key="filledTimesheet"></api-test>
 	</div>
 
 	<script>

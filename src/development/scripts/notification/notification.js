@@ -55,7 +55,7 @@ new Vue({
 					if (shownotif) notified(self.$notification).info("You have <b>" + total + "<b> unread notification");
 				})
 				.catch(() => {
-					if (checkConnection(self.notification)) {
+					if (checkConnection(self.$notification)) {
 						notified(self.$notification).error(
 							"Sorry we are encountering a problem, please try again later. 🙏"
 						);
