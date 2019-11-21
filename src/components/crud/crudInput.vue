@@ -228,8 +228,11 @@ export default {
 			if (this.type === "number") {
 				if (changed > this.max) {
 					this.input(this.max);
+					return 0;
 				}
 			}
+
+			this.input(changed);
 		},
 		minDate(changed) {
 			if (this.model === null) {

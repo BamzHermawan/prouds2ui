@@ -72,42 +72,43 @@ export default {
 			}
 		}
 	},
-	data() {
-		return {
-			cooked: []
-		};
-	},
-	mounted() {
-		let max = parseInt(this.maxValue);
-		let cook = this.bars;
-		if (this.value !== undefined) {
-			let justOne = {
-				data: this.value,
-				value: this.value,
-				color: this.type
-			};
+	computed: {
+		cooked() {
+			let cooked = [];
+			let max = parseInt(this.maxValue);
+			let cook = this.bars;
 
-			if (this.text !== undefined) justOne.text = this.text;
-			cook = [justOne];
-		}
+			if (this.value !== undefined) {
+				let justOne = {
+					data: this.value,
+					value: this.value,
+					color: this.type
+				};
 
-		let past = 0;
-		for (let i = 0; i < cook.length; i++) {
-			let bar = cook[i];
-			if (bar.data > 0 && max !== 100) {
-				bar.data = (bar.data / max) * 100;
+				if (this.text !== undefined) justOne.text = this.text;
+				cook = [justOne];
 			}
 
-			let current = bar.data - past;
-			if (current >= 0) {
-				past = past + current;
-				bar.width = current;
-			} else {
-				bar.width = 0;
-				bar.data = past;
+			let past = 0;
+			for (let i = 0; i < cook.length; i++) {
+				let bar = cook[i];
+				if (bar.data > 0 && max !== 100) {
+					bar.data = (bar.data / max) * 100;
+				}
+
+				let current = bar.data - past;
+				if (current >= 0) {
+					past = past + current;
+					bar.width = current;
+				} else {
+					bar.width = 0;
+					bar.data = past;
+				}
+
+				cooked.push(bar);
 			}
 
-			this.cooked.push(bar);
+			return cooked;
 		}
 	}
 };

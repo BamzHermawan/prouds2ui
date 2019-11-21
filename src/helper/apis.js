@@ -20,13 +20,19 @@ if (!$config.apiTesting) {
 		request.defaults.baseURL = base.getAttribute('base');
 	}
 
+	let checkAll = false;
 	for (const key in $api) {
 		if ($api.hasOwnProperty(key)) {
 			let testApi = getApiTestByKey(key)
 			if (!isEmpty(testApi)) {
 				$api[key] = testApi;
+				checkAll = true;
 			}
 		}
+	}
+
+	if(!checkAll){
+		request.defaults.baseURL = $config.baseAPI;
 	}
 }
 

@@ -12,7 +12,10 @@ new Vue({
 	data: {
 		minDate: new Date(),
 		maxDate: new Date(),
-		today: "",
+		workhour: {
+			value: null,
+			alert: ''
+		},
 		task: {
 			ongoing: ONGOING,
 			delayed: DELAYED,
@@ -25,6 +28,7 @@ new Vue({
 			iwo: "-",
 			project_id: '-',
 			task_id: '-',
+			pm_name: '-',
 			project_name: "",
 			task: '',
 			start: Moment().format('DD/MM/YYYY'),
@@ -62,7 +66,25 @@ new Vue({
 				let self = this;
 				setTimeout(() => {
 					self.datepicker.alert = false;
-				}, 2500);
+				}, 5000);
+			}
+
+			if(this.workhour.value === null){
+				e.preventDefault();
+				this.workhour.alert = 'Please insert how much hour you work on this task';
+
+				let self = this;
+				setTimeout(() => {
+					self.workhour.alert = '';
+				}, 5000);
+			} else if (this.workhour.value > 24 || this.workhour.value < 1) {
+				e.preventDefault();
+				this.workhour.alert = 'In a day there is only 24 hour, please insert the right amount';
+
+				let self = this;
+				setTimeout(() => {
+					self.workhour.alert = '';
+				}, 5000);
 			}
 		},
 		openModalDate(){
@@ -71,22 +93,6 @@ new Vue({
 			}else{
 				this.modal.singleDate = true;
 			}
-		},
-		getMonday() {
-			let d = new Date();
-			var day = d.getDay(),
-				diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
-			this.today = new Date(d.setDate(diff));
-			this.minDate = new Date(
-				this.today.getFullYear(),
-				this.today.getMonth(),
-				this.today.getDate() - 7
-			)
-			this.maxDate = new Date(
-				this.today.getFullYear(),
-				this.today.getMonth(),
-				this.today.getDate() + 6
-			)
 		},
 		setTimesheet(val) {
 			let maxDate = new Date();
@@ -180,7 +186,6 @@ new Vue({
 				});
 			}
 
-			this.endWorkload = month.format('MMMM YYYY');
 			return cooked;
 		},
 		selectMonth(key){
@@ -190,6 +195,27 @@ new Vue({
 			this.datepicker[key].val = tgl;
 			this.datepicker[key].focused = tgl;
 			this.datepicker[key].selected = Moment(tgl).format('MMMM - YYYY');
+		},
+		checkWorkloadEnd(scheduled) {
+			let morefar = Moment();
+
+			for (let x = 0; x < this.task.ongoing.length; x++) {
+				const task = this.task.ongoing[x];
+				let end = Moment(task.end, 'DD/MM/YYYY');
+				if (morefar.isBefore(end)) {
+					morefar = end;
+				}
+			}
+
+			for (let y = 0; y < scheduled.length; y++) {
+				const task = scheduled[y];
+				let end = Moment(task.end, 'DD/MM/YYYY');
+				if (morefar.isBefore(end)) {
+					morefar = end;
+				}
+			}
+
+			this.endWorkload = morefar.format('MMMM YYYY');
 		}
 	},
 	computed: {
@@ -247,7 +273,7 @@ new Vue({
 					while (detector) {
 						list.push({
 							date: new Date(start),
-							type: 'is-info'
+							type: 'is-success'
 						});
 
 						if (start.isSame(end)) {
@@ -304,12 +330,14 @@ new Vue({
 	mounted() {
 		let task = this.task;
 
-		this.getMonday();
 		this.task.ongoing = this.sortTask(task.ongoing);
 		this.task.delayed = this.sortTask(task.delayed);
 
 		let scheduled = this.sortTask(task.scheduled);
 		this.task.scheduled = this.groupByMonth(scheduled);
+		this.checkWorkloadEnd(scheduled);
+
+
 		Loader.hide();
 	}
 });

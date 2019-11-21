@@ -133,7 +133,6 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container">
-
 					<div class="card">
 						<slot name="header">
 							<header class="card-header">
@@ -177,25 +176,23 @@
 								</b-table-column>
 							</template>
 							<template slot="top-left">
-								<div class="level">
-									<div class="level-left">
+								<b-field grouped>
+									<b-field>
 										<b-button @click="addform" type="is-success">Add New</b-button>
-									</div>
-									<div class="level-right">
-										<div class="column">
-											<p>Privilage Level :</p>
-										</div>
-										<div class="column">
-											<b-select v-model="selectedLevel">
-												<option value="">All</option>
-												<option value="Project Manager">Project Manager</option>
-												<option value="Tes Ajah">Tes Ajah</option>
-												<option value="Project Admin">Project Admin</option>
-												<option value="Operation Manager">Operation Manager</option>
-											</b-select>
-										</div>
-									</div>
-								</div>
+									</b-field>
+									<b-field>
+										<p class="control">
+											<span class="button is-static">Privilage Level</span>
+										</p>
+										<b-select v-model="selectedLevel">
+											<option value="">All</option>
+											<option value="Project Manager">Project Manager</option>
+											<option value="Tes Ajah">Tes Ajah</option>
+											<option value="Project Admin">Project Admin</option>
+											<option value="Operation Manager">Operation Manager</option>
+										</b-select>
+									</b-field>
+								</b-field>
 							</template>
 						</b-table>
 						<section class="card-content animated fadeIn" v-if="add">
@@ -233,6 +230,7 @@
 									</button>
 								</div>
 							</form>
+							<span class="white-space"></span>
 						</section>
 						<section class="card-content animated fadeIn" v-if="edit">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
@@ -269,9 +267,9 @@
 									</button>
 								</div>
 							</form>
+							<span class="white-space"></span>
 						</section>
 					</div>
-
 				</div>
 			</section>
 		</section>

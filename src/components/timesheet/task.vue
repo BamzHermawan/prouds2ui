@@ -1,15 +1,15 @@
 <template>
 	<div :class="'card timesheet ' + type" @click="onClicked">
 		<div class="card-content">
-			<p class="has-text-weight-bold">{{ task }}</p>
+			<p class="has-text-weight-bold">{{ task.task }}</p>
 		</div>
 		<div class="card-content content is-marginless">
-			<p>{{ project }}</p>
+			<p>{{ task.project_name }}</p>
 			<nav class="level has-min-margin-bottom">
 				<div class="level-left">
 					<b-taglist attached size="are-medium">
 						<b-tag type="is-dark">IWO</b-tag>
-						<b-tag type="is-info">{{ iwo }}</b-tag>
+						<b-tag type="is-info">{{ task.iwo }}</b-tag>
 					</b-taglist>
 				</div>
 				<div class="level-right">
@@ -20,7 +20,7 @@
 									class="mdi mdi-account-tie is-marginless"
 								></span>
 							</span>
-							<span class="tag is-info">{{ member }}</span>
+							<span class="tag is-info">{{ task.member }}</span>
 						</div>
 					</div>
 					<div class="level-item">
@@ -35,13 +35,18 @@
 									></span>
 								</span>
 								<span class="tag is-warning"
-									>{{ workload }}%</span
+									>{{ task.workload }}%</span
 								>
 							</div>
 						</b-tooltip>
 					</div>
 				</div>
 			</nav>
+
+			<p class="button is-static is-small is-fullwidth">
+				<span style="margin-right:.35em;">Assigned as</span
+				><b>{{ task.role }}</b>
+			</p>
 
 			<b-message
 				v-if="type === 'is-delayed'"
@@ -51,13 +56,13 @@
 				<span class="icon is-small">
 					<span class="mdi mdi-calendar-clock"></span>
 				</span>
-				<span>{{ start | moment }} - {{ end | moment }}</span>
+				<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
 			</b-message>
 			<b-message v-else type="is-info" size="is-small">
 				<span class="icon is-small">
 					<span class="mdi mdi-calendar-clock"></span>
 				</span>
-				<span>{{ start | moment }} - {{ end | moment }}</span>
+				<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
 			</b-message>
 		</div>
 
@@ -75,7 +80,7 @@
 									type="is-success"
 								>
 									<b-tag type="is-success"
-										>{{ timesheet[0].data }}%</b-tag
+										>{{ task.timesheet.approved }}%</b-tag
 									>
 								</b-tooltip>
 							</div>
@@ -85,7 +90,7 @@
 									type="is-info"
 								>
 									<b-tag type="is-info"
-										>{{ timesheet[1].data }}%</b-tag
+										>{{ task.timesheet.submited }}%</b-tag
 									>
 								</b-tooltip>
 							</div>
@@ -103,14 +108,33 @@
 				<div class="timesheet-progress">
 					<nav class="level is-marginless">
 						<p class="level-left">
-							<span>Task Progress</span>
+							<span>Task</span>
 						</p>
-						<p class="level-right">
-							<b-tag type="is-success">{{ taskProgress }}%</b-tag>
-						</p>
+						<div class="level-right">
+							<div class="level-item">
+								<b-tooltip
+									label="Actual Progress"
+									type="is-success"
+								>
+									<b-tag type="is-success"
+										>{{ task.taskProgress.actual }}%</b-tag
+									>
+								</b-tooltip>
+							</div>
+							<div class="level-item">
+								<b-tooltip
+									label="Planned Progress"
+									type="is-info"
+								>
+									<b-tag type="is-info"
+										>{{ task.taskProgress.plan }}%</b-tag
+									>
+								</b-tooltip>
+							</div>
+						</div>
 					</nav>
 					<progress-bar
-						:value="taskProgress"
+						:bars="taskProgress"
 						no-margin
 						clean-bar
 						size="is-small"
@@ -123,47 +147,65 @@
 
 <script>
 import progressBar from "../progressBar";
+import Moment from "helper-moment";
 export default {
 	components: { progressBar },
 	props: {
 		task: {
-			type: String,
-			required: true
-		},
-		project: {
-			type: String,
-			required: true
-		},
-		iwo: {
-			type: String,
-			required: true
-		},
-		member: {
-			required: true
-		},
-		workload: {
-			required: true
-		},
-		start: {
-			type: String,
-			required: true
-		},
-		end: {
-			type: String,
-			required: true
-		},
-		timesheet: {
-			type: Array,
-			default: () => {
-				return [];
+			type: Object,
+			required: true,
+			default() {
+				return {
+					task: "",
+					project_name: "",
+					iwo: "",
+					role: "",
+					member: 0,
+					workload: 0,
+					start: Moment().format("DD/MM/YYYY"),
+					end: Moment().format("DD/MM/YYYY"),
+					taskProgress: [],
+					timesheet: []
+				};
 			}
-		},
-		taskProgress: {
-			default: undefined
 		},
 		type: {
 			type: String,
 			default: "is-ongoing"
+		}
+	},
+	computed: {
+		taskProgress() {
+			let actual = this.task.taskProgress.actual;
+			let plan = this.task.taskProgress.plan;
+
+			if (actual > plan) {
+				return [
+					{ data: plan, color: "is-info" },
+					{ data: actual, color: "is-success" }
+				];
+			} else {
+				return [
+					{ data: actual, color: "is-success" },
+					{ data: plan, color: "is-info" }
+				];
+			}
+		},
+		timesheet() {
+			let approved = this.task.timesheet.approved;
+			let submited = this.task.timesheet.submited;
+
+			if (approved > submited) {
+				return [
+					{ data: approved, color: "is-info" },
+					{ data: submited, color: "is-success" }
+				];
+			} else {
+				return [
+					{ data: submited, color: "is-success" },
+					{ data: approved, color: "is-info" }
+				];
+			}
 		}
 	},
 	methods: {

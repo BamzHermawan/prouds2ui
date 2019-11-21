@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy'
-import { topNavBar } from "components";
 import Loader from 'helper-loader';
-import { crud } from 'components';
+import { crud, treeTable } from 'components';
 import { crudForm } from 'components';
 import { crudInput } from 'components';
 import { dataTableNoCard } from 'components';
@@ -12,7 +11,7 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		topNavBar, crud, crudForm, crudInput, dataTableNoCard, VJstree
+		treeTable, crud, crudForm, crudInput, dataTableNoCard, VJstree
 	},
 	data: {
 		userlog: {

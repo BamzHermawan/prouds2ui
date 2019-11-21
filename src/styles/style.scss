@@ -29,6 +29,10 @@ html {
 @import "components/timesheet";
 @import "components/notification";
 
+tr.is-child > td:first-child {
+	padding-left: 1.5rem;
+}
+
 //! -----------------------------------------------------
 //* @CONTENT --------------------------------------------
 
@@ -152,6 +156,16 @@ td.align-middle {
 	.level:not(.top) {
         padding-bottom: 0px !important;
 	}	
+}
+
+.card.crud .card-content {
+	padding-bottom: 0.5em;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.crudInput {
+	width: 100%;
 }
 
 .message.is-modal {
