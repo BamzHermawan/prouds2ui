@@ -31,7 +31,7 @@ if (!$config.apiTesting) {
 		}
 	}
 
-	if(!checkAll){
+	if (!checkAll) {
 		request.defaults.baseURL = $config.baseAPI;
 	}
 }
@@ -43,18 +43,6 @@ const parseURL = (key, bundle) => {
 		return bundle[val];
 	});
 }
-
-const dummy = bundle => {
-	return new Promise(function (resolve, reject) {
-		let rand = Math.random()
-		if (rand) {
-			resolve()
-		} else {
-			reject()
-		}
-	});
-}
-
 //? ----------------------------------------------------------------------------
 //? ----------------------------------------------------------------------------
 
@@ -122,8 +110,12 @@ module.exports.openNotification = (IDs) => {
 	});
 }
 
-module.exports.setComplete = (bundle) => {
-	return request.get(parseURL('setComplete', bundle));
+module.exports.setComplete = bundle => {
+	return request.post($api.setComplete, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
 }
 
 module.exports.deleteFile = bundle => {

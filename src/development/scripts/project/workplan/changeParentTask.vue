@@ -1,55 +1,44 @@
 <template>
-	<div class="card-modal">
-		<form :action="actionEvent" method="POST">
-			<header class="modal-card-head">
-				<p class="modal-card-title">{{ title }}</p>
-			</header>
-			<section class="modal-card-body">
-				<p class="label">Parent Task</p>
-				<input type="hidden" name="workplanId" v-model="workplanId" />
-				<input type="hidden" name="taskID" v-model="taskID" />
-				<b-field>
-					<b-input
-						placeholder="Search Parent..."
-						type="search"
-						icon="magnify"
-						v-model="searchQuery"
-					>
-					</b-input>
-				</b-field>
-				<b-select
-					multiple
-					expanded
-					native-size="5"
-					v-model="selectedOptions"
-					name="parent"
-					required
-				>
-					<option :value="null" class="has-background-grey-lighter"
-						><span class="has-text-dark"
-							>Doesn't have parent</span
-						></option
-					>
-					<option
-						v-for="(taska, index) in listTask"
-						:key="index"
-						:value="taska.pID"
-						>{{ taska.pName }}
-					</option>
-				</b-select>
-			</section>
-			<section class="modal-card-foot is-clearfix is-block">
-				<div class="is-pulled-right">
-					<b-button type="is-danger" @click="$parent.close()"
-						>Cancel</b-button
-					>
-					<button class="button is-success" type="submit">
-						Update Parent
-					</button>
-				</div>
-			</section>
-		</form>
-	</div>
+	<form :action="actionEvent" method="POST">
+		<p class="label">Parent Task</p>
+		<input type="hidden" name="workplanId" v-model="workplanId" />
+		<input type="hidden" name="taskID" v-model="taskID" />
+		<b-field>
+			<b-input
+				placeholder="Search Parent..."
+				type="search"
+				icon="magnify"
+				v-model="searchQuery"
+			>
+			</b-input>
+		</b-field>
+		<b-select
+			multiple
+			expanded
+			native-size="7"
+			v-model="selectedOptions"
+			name="parent"
+			required
+		>
+			<option :value="null" class="has-background-grey-lighter"
+				><span class="has-text-dark">Doesn't have parent</span></option
+			>
+			<option
+				v-for="(taska, index) in listTask"
+				:key="index"
+				:value="taska.pID"
+				>{{ taska.pName }}
+			</option>
+		</b-select>
+
+		<hr />
+
+		<div class="is-pulled-right">
+			<button class="button is-success" type="submit">
+				Update Parent
+			</button>
+		</div>
+	</form>
 </template>
 
 <script>
@@ -63,10 +52,6 @@ export default {
 			required: true
 		},
 		workplanId: {
-			type: String,
-			required: true
-		},
-		title: {
 			type: String,
 			required: true
 		},
@@ -95,7 +80,7 @@ export default {
 					task.pName.toLowerCase().includes(newQuery.toLowerCase())
 				);
 			} else {
-				this.listTask = this.listTask;
+				this.filterTaskName;
 			}
 		}
 	},

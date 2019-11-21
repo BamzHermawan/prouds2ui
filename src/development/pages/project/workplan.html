@@ -128,15 +128,21 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 					<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-						<ul class="is-marginless">
+						<ul class="is-marginless" v-if="showWorkplan">
 							<li><a href="list.html">Project List</a></li>
 							<li class="is-active"><a href="#" aria-current="page">Workplan</a></li>
+						</ul>
+						<ul class="is-marginless" v-if="!showWorkplan">
+							<li><a href="list.html">Project List</a></li>
+							<li><a @click="actionTask(idd)">Workplan</a></li>
+							<li class="is-active"><a href="#" aria-current="page">{{titleActive}}</a></li>
 						</ul>
 					</nav>
 
 					<div class="columns is-marginless">
 						<div class="column is-8-desktop content is-marginless is-paddingless">
-							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery
+								Awesome
 								App Mantap Super Jaya
 								Semua Suka Sampai Mendunia</h3>
 							<b-field grouped>
@@ -152,180 +158,226 @@
 										<b-tag type="is-info">P-1909-TTES0481</b-tag>
 									</b-taglist>
 								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">PM</b-tag>
+										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
+									</b-taglist>
+								</div>
 							</b-field>
 						</div>
 					</div>
 
 					<span class="white-space"></span>
 
-					<div class="container">
-						<div class="card">
-							<header class="card-header">
-								<div class="card-header-title">
-									<form action="http://localhost:5501/demo/post_detect.php" method="post"
-										enctype="multipart/form-data">
-										<div class="level">
-											<div class="level-item">
-												<b-upload v-model="selectedDocument" name="evidDoc" native required
-													style="width:100%;" accept=".xml">
-													<div v-if="selectedDocument==null">
-														<a class="button is-small is-info is-light is-fullwidth">
-															<span class="mdi mdi-upload in-left"></span>
-															<span>Upload XML</span>
-														</a>
-													</div>
-													<div v-if="selectedDocument != null"
-														class="field has-addons is-marginless">
-														<div class="control">
-															<span v-if="selectedDocument"
-																class="button is-static is-small">
-																{{ selectedDocument.name }}
-															</span>
-														</div>
-														<div class="control">
-															<button class="button is-success is-fullwidth is-small"
-																type="submit">
-																📬 Send File
-															</button>
-														</div>
-													</div>
-												</b-upload>
-											</div>
-											<div class="level-item" style="margin-left: 10px;">
-												<b-button type="is-success is-light is-small is-fullwidth"
-													@click="addTask">
-													<b>Add Task</b>
-												</b-button>
-											</div>
-										</div>
-									</form>
-								</div>
-							</header>
-							<section class="card-content">
-								<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
-								<ganttchart action-event="http://localhost:5501/demo/post_detect.php">
-								</ganttchart>
-							</section>
-						</div>
-					</div>
+					<div v-if="showWorkplan" id="workplan" class="animated">
 
-					<div class="floating-taskbar animated fadeInRight" v-if="showSideBar">
-						<div class="card">
-							<header class="card-header">
-								<p class="card-header-title">
-									Task Menu
-								</p>
-								<a @click="toggleSideBar" class="card-header-icon">
-									<span class="icon">
-										<i class="mdi mdi-close-box" aria-hidden="true"></i>
-									</span>
-								</a>
-							</header>
-							<div class="card-content is-paddingless">
-								<b-menu class="is-workplan-task-menu">
-									<b-menu-list>
-										<b-menu-item @click="editTask" label="Edit Task" :active="false">
-										</b-menu-item>
-										<b-menu-item @click="assignResource" label="Assign Team" :active="false">
-										</b-menu-item>
-										<b-menu-item @click="setProgress" label="Update Progress" :active="false">
-										</b-menu-item>
-										<b-menu-item @click="mergeTask" label="Merge Task" :active="false">
-										</b-menu-item>
-									</b-menu-list>
-									<b-menu-list label="Quick Action">
-										<b-menu-item @click="changeParentTask" label="Change Parent Task"
-											:active="false">
-										</b-menu-item>
-										<b-menu-item @click="linkPredecessor" label="Link Predecessor" :active="false">
-										</b-menu-item>
-										<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor"
-											:active="false">
-										</b-menu-item>
-										<b-menu-item @click="shrinkTask" label="Shrink Task" :active="false">
-										</b-menu-item>
-										<b-menu-item @click="deleteTask" label="Delete Task" :active="false">
-										</b-menu-item>
-									</b-menu-list>
-								</b-menu>
+						<div class="container">
+							<div class="card">
+								<header class="card-header">
+									<div class="card-header-title">
+										<form action="http://localhost:5501/demo/post_detect.php" method="post"
+											enctype="multipart/form-data">
+											<div class="level">
+												<div class="level-item">
+													<b-upload v-model="selectedDocument" name="evidDoc" native required
+														style="width:100%;" accept=".xml">
+														<div v-if="selectedDocument==null">
+															<a class="button is-small is-info is-light is-fullwidth">
+																<span class="mdi mdi-upload in-left"></span>
+																<span>Upload XML</span>
+															</a>
+														</div>
+														<div v-if="selectedDocument != null"
+															class="field has-addons is-marginless">
+															<div class="control">
+																<span v-if="selectedDocument"
+																	class="button is-static is-small">
+																	{{ selectedDocument.name }}
+																</span>
+															</div>
+															<div class="control">
+																<button class="button is-success is-fullwidth is-small"
+																	type="submit">
+																	📬 Send File
+																</button>
+															</div>
+														</div>
+													</b-upload>
+												</div>
+												<div class="level-item" style="margin-left: 10px;">
+													<b-button type="is-primary is-light is-small is-fullwidth"
+														@click="template('template')">
+														<b>Use Template</b>
+													</b-button>
+												</div>
+												<div class="level-item" style="margin-left: 10px;">
+													<b-button type="is-success is-light is-small is-fullwidth"
+														@click="addTask('addTask')">
+														<b>Add Task</b>
+													</b-button>
+												</div>
+												<div class="level-item" style="margin-left:10px;">
+													<b-dropdown hoverable aria-role="list">
+														<b-button type="is-info is-light is-small is-fullwidth"
+															slot="trigger">
+															<b>Export</b>
+														</b-button>
+
+														<b-dropdown-item aria-role="listitem">
+															<a href="#">to .mpp</a>
+														</b-dropdown-item>
+														<b-dropdown-item aria-role="listitem">
+															<a href="#">to .xls</a>
+														</b-dropdown-item>
+													</b-dropdown>
+												</div>
+											</div>
+										</form>
+									</div>
+								</header>
+								<section class="card-content">
+									<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
+									<ganttchart action-event="http://localhost:5501/demo/post_detect.php">
+									</ganttchart>
+								</section>
+							</div>
+						</div>
+
+						<div class="floating-taskbar animated fadeInRight" v-if="showSideBar">
+							<div class="card">
+								<header class="card-header">
+									<p class="card-header-title">
+										Task Menu
+									</p>
+									<a @click="toggleSideBar" class="card-header-icon">
+										<span class="icon">
+											<i class="mdi mdi-close-box" aria-hidden="true"></i>
+										</span>
+									</a>
+								</header>
+								<div class="card-content is-paddingless">
+									<b-menu class="is-workplan-task-menu">
+										<b-menu-list>
+											<b-menu-item @click="editTask('editTask')" label="Edit Task"
+												:active="false">
+											</b-menu-item>
+											<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
+												:active="false">
+											</b-menu-item>
+											<b-menu-item @click="updateProgress('updateProgress')"
+												label="Update Progress" :active="false">
+											</b-menu-item>
+											<b-menu-item @click="mergeTask('mergeTask')" label="Merge Task"
+												:active="false">
+											</b-menu-item>
+										</b-menu-list>
+										<b-menu-list label="Quick Action">
+											<b-menu-item @click="changeParentTask('changeParent')"
+												label="Change Parent Task" :active="false">
+											</b-menu-item>
+											<b-menu-item @click="linkPredecessor('linkPredecessor')"
+												label="Link Predecessor" :active="false">
+											</b-menu-item>
+											<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor"
+												:active="false">
+											</b-menu-item>
+											<b-menu-item @click="shrinkTask" label="Shrink Task" :active="false">
+											</b-menu-item>
+											<b-menu-item @click="deleteTask" label="Delete Task" :active="false">
+											</b-menu-item>
+										</b-menu-list>
+									</b-menu>
+								</div>
 							</div>
 						</div>
 					</div>
 
-					<b-modal :active.sync="modal.addTask" width="70vw">
-						<add-task title="Add Task" workplan-id="1"
-							api-get-duration="http://localhost:5501/demo/getDuration.php"
-							action-event="http://localhost:5501/demo/post_detect.php">
-							<template slot="phase-option">
-								<option selected style="display: none;"></option>
-								<option value="1">Planning</option>
-								<option value="2">Development</option>
-							</template>
-							<template slot="workdays-option">
-								<option selected style="display: none;"></option>
-								<option value="1">Normal : 5 Business days</option>
-								<option value="2">Medium : 10 Business days</option>
-							</template>
-						</add-task>
-					</b-modal>
+					<add-task v-if="toggleForm.addTask" id="addTask" class="animated fadeIn faster" workplan-id="1"
+						api-get-duration="http://localhost:5501/demo/getDuration.php"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="phase-option">
+							<option selected style="display: none;"></option>
+							<option value="1">Planning</option>
+							<option value="2">Development</option>
+						</template>
+						<template slot="workdays-option">
+							<option selected style="display: none;"></option>
+							<option value="1">Normal : 5 Business days</option>
+							<option value="2">Medium : 10 Business days</option>
+						</template>
+					</add-task>
 
-					<b-modal :active.sync="modal.editTask" width="70vw">
-						<edit-task title="Edit Task" :task="selectedTask" workplan-id="1"
-							api-get-duration="http://localhost:5501/demo/getDuration.php"
-							action-event="http://localhost:5501/demo/post_detect.php">
-							<template slot="phase-option">
-								<option selected style="display: none;"></option>
-								<option value="1">Planning</option>
-								<option value="2">Development</option>
-							</template>
-							<template slot="workdays-option">
-								<option selected style="display: none;"></option>
-								<option value="1">Normal : 5 Business days</option>
-								<option value="2">Medium : 10 Business days</option>
-							</template>
-						</edit-task>
-					</b-modal>
+					<tmp v-if="toggleForm.template" id="template" class="animated fadeIn faster" workplan-id="1"
+						api-get-duration="http://localhost:5501/demo/getDuration.php"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="template-option">
+							<option selected style="display: none;"></option>
+							<option value="1">Software</option>
+							<option value="2">Development</option>
+						</template>
+					</tmp>
 
-					<b-modal class="had-max-width" :active.sync="modal.assignResource">
-						<assign-resource title="Assign Resource" :task="selectedTask" workplan-id="1"
-							action-event="http://localhost:5501/demo/post_detect.php">
-							<template slot="role-option">
-								<option selected style="display: none;"></option>
-								<option>Programmer Analyst Analyst</option>
-								<option>Programmer Analyst</option>
-								<option>Engineer</option>
-								<option>Senior Business Analyst</option>
-								<option>Junior Tester</option>
-								<option>Quality Assurance</option>
-								<option>Database Administrator</option>
-								<option>Technical Writer</option>
-							</template>
-						</assign-resource>
-					</b-modal>
+					<edit-task v-if="toggleForm.editTask" id="editTask" class="animated fadeIn faster" workplan-id="1"
+						:task="selectedTask" api-get-duration="http://localhost:5501/demo/getDuration.php"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="phase-option">
+							<option selected style="display: none;"></option>
+							<option value="1">Planning</option>
+							<option value="2">Development</option>
+						</template>
+						<template slot="workdays-option">
+							<option selected style="display: none;"></option>
+							<option value="1">Normal : 5 Business days</option>
+							<option value="2">Medium : 10 Business days</option>
+						</template>
+					</edit-task>
 
-					<b-modal class="had-max-width" :active.sync="modal.setProgress">
-						<set-progress title="Update Progress" :task="selectedTask" workplan-id="1"
-							action-event="http://localhost:5501/demo/post_detect.php">
-						</set-progress>
-					</b-modal>
+					<assign-resource v-if="toggleForm.assignTeam" id="assignTeam" class="animated fadeIn faster"
+						:task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="role-option">
+							<option selected style="display: none;"></option>
+							<option>Programmer Analyst Analyst</option>
+							<option>Programmer Analyst</option>
+							<option>Engineer</option>
+							<option>Senior Business Analyst</option>
+							<option>Junior Tester</option>
+							<option>Quality Assurance</option>
+							<option>Database Administrator</option>
+							<option>Technical Writer</option>
+						</template>
+					</assign-resource>
 
-					<b-modal class="had-max-width" :active.sync="modal.mergeTask">
-						<merge-task title="Merge Task" :task="selectedTask" workplan-id="1"
-							action-event="http://localhost:5501/demo/post_detect.php">
-						</merge-task>
-					</b-modal>
+					<set-progress v-if="toggleForm.updateProgress" id="updateProgress" class="animated fadeIn faster"
+						title="Update Progress" :task="selectedTask" workplan-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php">
+					</set-progress>
 
-					<b-modal class="had-max-width" :active.sync="modal.changeParentTask">
-						<change-parent-task title="Change Parent Task" :task="selectedTask" workplan-id="1"
-							action-event="http://localhost:5501/demo/post_detect.php">
-						</change-parent-task>
-					</b-modal>
+					<merge-task v-if="toggleForm.mergeTask" id="mergeTask" class="animated fadeIn faster"
+						title="Merge Task" :task="selectedTask" workplan-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template #msg>
+							<b-message type="is-warning">
+								<p class="has-text-dark has-text-justified">
+									<b>Merge Task</b> allows you to move your resource's task
+									assignment and their timesheets to other task, it also
+									delete the old task afterwards. By merging task, it merge
+									task date, assignment, task predecessor, and also a
+									possibility to change the start date of the destination task
+								</p>
+							</b-message>
+						</template>
+					</merge-task>
 
-					<b-modal class="had-max-width" :active.sync="modal.linkPredecessor">
-						<link-predecessor title="Link Predecessor" :task="selectedTask" workplan-id="1"
-							action-event="http://localhost:5501/demo/post_detect.php">
-						</link-predecessor>
-					</b-modal>
+					<change-parent-task v-if="toggleForm.changeParent" id="changeParent" class="animated fadeIn faster"
+						title="Change Parent Task" :task="selectedTask" workplan-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php">
+					</change-parent-task>
+
+					<link-predecessor v-if="toggleForm.linkPredecessor" id="linkPredecessor"
+						class="animated fadeIn faster" title="Link Predecessor" :task="selectedTask" workplan-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php">
+					</link-predecessor>
 
 				</div>
 			</section>
@@ -350,7 +402,7 @@
 				duration: 100,
 				pClass: "gtaskred",
 				pMile: 0,
-				pComp: "40 %",
+				pComp: "40",
 				pGroup: 1,
 				pParent: 0,
 				pOpen: 1,
@@ -604,7 +656,7 @@
 				pEnd: "2019-07-12",
 				duration: 100,
 				pClass: "gtaskpink",
-				pComp: "80 %",
+				pComp: "80",
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
@@ -731,7 +783,7 @@
 				pEnd: "2019-10-18",
 				duration: 100,
 				pClass: "gtaskred",
-				pComp: "27.33 %",
+				pComp: "27.33",
 				pGroup: 0,
 				pParent: 1,
 				pOpen: 1,
@@ -859,7 +911,7 @@
 				duration: 100,
 				pClass: "gtaskblue",
 				pMile: 1,
-				pComp: "80 %",
+				pComp: "80",
 				pGroup: 1,
 				pParent: 1,
 				pOpen: 1,
@@ -986,7 +1038,7 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: "57.81 %",
+				pComp: "57.81",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
@@ -1113,7 +1165,7 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: "57.81 %",
+				pComp: "57.81",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
@@ -1240,7 +1292,7 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: "57.81 %",
+				pComp: "57.81",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
@@ -1366,7 +1418,7 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: "57.81 %",
+				pComp: "57.81",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
@@ -1493,7 +1545,7 @@
 				pEnd: "2019-10-31",
 				duration: 100,
 				pClass: "gtaskgreen",
-				pComp: "57.81 %",
+				pComp: "57.81",
 				pGroup: 0,
 				pParent: 6,
 				pOpen: 0,
@@ -1818,6 +1870,60 @@
 					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
 				}
 			]
+		TEMPLATE = {
+			1: [
+				{
+					pID: 1,
+					pName: "New Prouds Development Phase I",
+					pGroup: 1,
+					pParent: 0,
+					pOpen: 1,
+					pDepend: 0
+				},
+				{
+					pID: 2,
+					pName: "Desaign",
+					pGroup: 0,
+					pParent: 1,
+					pOpen: 1,
+					pDepend: 0
+				}
+			],
+			2: [
+				{
+					pID: 1,
+					pName: "New Prouds Development Phase II",
+					pGroup: 1,
+					pParent: 0,
+					pOpen: 1,
+					pDepend: 0
+				},
+				{
+					pID: 2,
+					pName: "Design",
+					pGroup: 0,
+					pParent: 1,
+					pOpen: 1,
+					pDepend: 0
+				},
+				{
+					pID: 3,
+					pName: "Development",
+					pGroup: 0,
+					pParent: 1,
+					pOpen: 1,
+					pDepend: 0
+				},
+				{
+					pID: 4,
+					pName: "Testing",
+					pGroup: 0,
+					pParent: 1,
+					pOpen: 1,
+					pDepend: 0
+				}
+			]
+		}
 	</script>
 
 	<script src="../../scripts/layout/controller.js"></script>

@@ -55,6 +55,7 @@
 					<side-item href="typelevel.html">Type-Level</side-item>
 				</side-list>
 				<side-item href="users.html">Users</side-item>
+				<side-item href="workplan.html">Workplan</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -165,7 +166,7 @@
 								<b-table-column field="privilage_level" label="Privilage Level" sortable>
 									<span>{{ props.row.privilage_level }}</span>
 								</b-table-column>
-								<b-table-column width="200" field="action" label="Action" sortable>
+								<b-table-column width="200" field="action" label="Action">
 									<b-button @click="editForm(props.row)" type="is-info" size="is-small">Edit
 									</b-button>
 									<b-button tag="a"

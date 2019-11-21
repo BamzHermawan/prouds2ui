@@ -1,9 +1,9 @@
 .gmainright {
-	width: 50% !important;
+	width: 45% !important;
 }
 
 .gmainleft {
-	width: 50% !important;
+	width: 55% !important;
 
 	.gcontainercol {
 		min-width: 100%;
@@ -11,6 +11,26 @@
 		table {
 			min-width: 100%;
 		}
+	}
+
+	.gadditional {
+		text-align: right;
+	}
+
+	.gstartdate {
+		text-align: right;
+	}
+
+	.genddate {
+		text-align: right;
+	}
+}
+
+.gstartdate {
+	max-width: 110px !important;
+	div {
+		width: auto !important;
+		text-align: right !important;
 	}
 }
 
