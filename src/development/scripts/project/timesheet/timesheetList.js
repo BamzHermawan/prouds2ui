@@ -58,6 +58,9 @@ new Vue({
 		},
 	},
 	methods: {
+		checkForFloat(val){
+			this.workhour.value = val + 1;
+		},
 		getFilled(id, start, end){
 			let self = this;
 			Api.filledTimesheet(id, start, end)
@@ -67,7 +70,7 @@ new Vue({
 						let tsDate = filled[i];
 						self.datepicker.filled.push({
 							date: new Date(Moment(tsDate, 'DD/MM/YYYY')),
-							type: 'is-success'
+							type: 'is-warning'
 						});
 					}
 				}).catch(() => {
@@ -299,7 +302,7 @@ new Vue({
 					while (detector) {
 						list.push({
 							date: new Date(start),
-							type: 'is-info'
+							type: 'is-success'
 						});
 
 						if (start.isSame(end)) {

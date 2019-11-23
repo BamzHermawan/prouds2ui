@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>TIMESHEET | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="./list.html">Project</side-item>
+				<side-item href="./projectAssignment.html">Project Assignment</side-item>
+				<side-item href="./projectRequest.html">Project Request</side-item>
+				<side-item active>Timesheet</side-item>
+				<side-item href="../rebaseline.html">Rebaseline</side-item>
+				<side-item href="#no-edit">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="#" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="../setting/authorization.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../profile.html" class="navbar-item">Account Profile</a>
+							<a href="#help" class="navbar-item">Need Help ?</a>
+							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
+								class="navbar-item">Acting As</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Timesheet Approval</span>
+						</h1>
+						<div id="bookmarkPage">
+							<bookmark-button></bookmark-button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+					<b-table 
+						:data="timesheet" 
+						style="font-size:11pt" 
+						class="is-packed" 
+						paginated 
+						detailed
+						show-detail-icon
+						pagination-simple>
+						<template slot-scope="props">
+							<b-table-column field="role" label="Member">
+								<p class="has-text-weight-bold">{{ props.row.member_name }}</p>
+								<p>{{ props.row.role }}</p>
+							</b-table-column>
+					
+							<b-table-column width="160px" field="iwo" label="IWO / Project ID">
+								<p>{{ props.row.iwo }}</p>
+								<p>{{ props.row.project_id }}</p>
+							</b-table-column>
+					
+							<b-table-column width="300px" field="project_name" label="Project Name">
+								<p>{{ props.row.project_name }}</p>
+							</b-table-column>
+					
+							<b-table-column field="submit_at" label="Submit Date">
+								<p>{{ props.row.submit_at | moment }}</p>
+							</b-table-column>
+						</template>
+
+						<template slot="detail" slot-scope="props">
+							<article class="media">
+								<div class="media-content">
+									<div class="content">
+										<p>{{ props.row.task }}</p>
+									</div>
+								</div>
+							</article>
+						</template>
+					
+						<template slot="empty">
+							<section class="section">
+								<div class="content has-text-grey has-text-centered">
+									<p>
+										<b-icon icon="emoticon-sad" size="is-large">
+										</b-icon>
+									</p>
+									<p>Nothing here.</p>
+								</div>
+							</section>
+						</template>
+					</b-table>
+				</div>
+			</section>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			</info-footer>
+		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+				expected return from getNotification!
+				[{
+					"id": {String},
+					"subject": {String},
+					"content": {HTML String},
+					"dateStamp": {Date String with format DD/MM/YYYY},
+					"timeStamp": {Time String with format H:i},
+					"read": {Boolean}
+				}, ... ],
+			 -->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+
+		<!-- 
+				Get List of Filled Timesheet Date
+				@param {*} id: Assignment ID
+				@param {*} start: Task Start Date (DD/MM/YYYY)
+				@param {*} end: Task End Date (DD/MM/YYYY)
+
+				expected return List of Filled Timesheet Date
+				[ 'DD/MM/YYYY', 'DD/MM/YYYY', 'DD/MM/YYYY', ... ]
+			-->
+		<api-test url="getTimesheetDate.php" key="filledTimesheet"></api-test>
+	</div>
+
+	<script>
+		const TIMESHEET = [
+			{
+				"iwo": "P-1909SCC-TTES1000",
+				"project_id": 1000,
+				"task_id": 1000,
+				"assignment_id": 1000,
+				"role": "Magneato anim mollit",
+				"member_name": "Deanna Bowman",
+				"project_name": "Qui esse do et nostrud fugiat voluptate dolor tempor.",
+				"task": "Reprehenderit eu adipisicing labore anim culpa deserunt veniam deserunt occaecat.",
+				"start": "23/11/2019",
+				"end": "03/11/2020",
+				"submit_at": "05/09/2020",
+				"member": 5,
+				"workload": 82,
+				"taskProgress": {
+					"actual": 19,
+					"plan": 57
+				},
+				"timesheet": {
+					"approved": 85,
+					"submited": 24
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1001",
+				"project_id": 1001,
+				"task_id": 1001,
+				"assignment_id": 1001,
+				"role": "Quantalia esse fugiat",
+				"member_name": "Stephens Burns",
+				"project_name": "Amet est enim ut non irure proident magna.",
+				"task": "Nostrud dolor excepteur cupidatat do consectetur aliquip ut.",
+				"start": "23/11/2019",
+				"end": "29/09/2020",
+				"submit_at": "05/01/2020",
+				"member": 5,
+				"workload": 76,
+				"taskProgress": {
+					"actual": 90,
+					"plan": 96
+				},
+				"timesheet": {
+					"approved": 82,
+					"submited": 90
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1002",
+				"project_id": 1002,
+				"task_id": 1002,
+				"assignment_id": 1002,
+				"role": "Zaphire elit ad",
+				"member_name": "Calhoun Clark",
+				"project_name": "Sit labore quis consequat nostrud elit elit deserunt.",
+				"task": "Qui duis irure ullamco quis laboris consectetur voluptate ex esse adipisicing consectetur labore consectetur eiusmod.",
+				"start": "27/11/2019",
+				"end": "29/11/2020",
+				"submit_at": "04/09/2020",
+				"member": 3,
+				"workload": 80,
+				"taskProgress": {
+					"actual": 36,
+					"plan": 5
+				},
+				"timesheet": {
+					"approved": 70,
+					"submited": 7
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1003",
+				"project_id": 1003,
+				"task_id": 1003,
+				"assignment_id": 1003,
+				"role": "Naxdis consequat tempor",
+				"member_name": "Francesca Spears",
+				"project_name": "Tempor sint ea mollit aliquip aliqua amet.",
+				"task": "Fugiat et duis sit ullamco.",
+				"start": "28/11/2019",
+				"end": "27/10/2020",
+				"submit_at": "06/11/2020",
+				"member": 5,
+				"workload": 66,
+				"taskProgress": {
+					"actual": 46,
+					"plan": 48
+				},
+				"timesheet": {
+					"approved": 78,
+					"submited": 46
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1004",
+				"project_id": 1004,
+				"task_id": 1004,
+				"assignment_id": 1004,
+				"role": "Gology officia et",
+				"member_name": "Hancock Hunt",
+				"project_name": "Sunt anim in esse dolore amet duis quis reprehenderit dolor.",
+				"task": "Occaecat ut quis laboris consectetur tempor labore nostrud consectetur.",
+				"start": "30/11/2019",
+				"end": "17/08/2020",
+				"submit_at": "18/06/2020",
+				"member": 3,
+				"workload": 86,
+				"taskProgress": {
+					"actual": 29,
+					"plan": 4
+				},
+				"timesheet": {
+					"approved": 5,
+					"submited": 92
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1005",
+				"project_id": 1005,
+				"task_id": 1005,
+				"assignment_id": 1005,
+				"role": "Frenex eu proident",
+				"member_name": "Coffey Richmond",
+				"project_name": "Ad aliqua do Lorem amet ipsum esse est adipisicing id consectetur ipsum elit fugiat est.",
+				"task": "Cupidatat ut ut incididunt excepteur Lorem dolore eiusmod dolore non.",
+				"start": "23/11/2019",
+				"end": "04/08/2020",
+				"submit_at": "04/03/2020",
+				"member": 3,
+				"workload": 50,
+				"taskProgress": {
+					"actual": 90,
+					"plan": 36
+				},
+				"timesheet": {
+					"approved": 12,
+					"submited": 98
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1006",
+				"project_id": 1006,
+				"task_id": 1006,
+				"assignment_id": 1006,
+				"role": "Dadabase esse occaecat",
+				"member_name": "Gay Terrell",
+				"project_name": "Tempor dolore nisi anim ea minim elit quis.",
+				"task": "Est qui consectetur anim elit adipisicing consequat.",
+				"start": "25/11/2019",
+				"end": "26/11/2020",
+				"submit_at": "06/10/2020",
+				"member": 5,
+				"workload": 57,
+				"taskProgress": {
+					"actual": 74,
+					"plan": 69
+				},
+				"timesheet": {
+					"approved": 54,
+					"submited": 33
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1007",
+				"project_id": 1007,
+				"task_id": 1007,
+				"assignment_id": 1007,
+				"role": "Motovate consequat magna",
+				"member_name": "Hannah Summers",
+				"project_name": "Amet aliquip cillum consectetur est est aliquip elit.",
+				"task": "Proident ea labore qui irure aliqua do voluptate fugiat cillum do reprehenderit eiusmod esse.",
+				"start": "30/11/2019",
+				"end": "04/07/2020",
+				"submit_at": "05/10/2020",
+				"member": 1,
+				"workload": 26,
+				"taskProgress": {
+					"actual": 57,
+					"plan": 35
+				},
+				"timesheet": {
+					"approved": 70,
+					"submited": 61
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1008",
+				"project_id": 1008,
+				"task_id": 1008,
+				"assignment_id": 1008,
+				"role": "Andershun nulla non",
+				"member_name": "King Grant",
+				"project_name": "Sit quis excepteur consectetur et commodo enim eu elit incididunt esse officia consequat id.",
+				"task": "Enim pariatur culpa ut proident dolore mollit.",
+				"start": "27/11/2019",
+				"end": "12/07/2020",
+				"submit_at": "24/11/2020",
+				"member": 4,
+				"workload": 72,
+				"taskProgress": {
+					"actual": 46,
+					"plan": 21
+				},
+				"timesheet": {
+					"approved": 46,
+					"submited": 25
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1009",
+				"project_id": 1009,
+				"task_id": 1009,
+				"assignment_id": 1009,
+				"role": "Dognosis exercitation ex",
+				"member_name": "James Bullock",
+				"project_name": "Aliqua ut nisi officia eiusmod ea.",
+				"task": "Cupidatat incididunt tempor tempor veniam dolore laborum sint.",
+				"start": "29/11/2019",
+				"end": "27/07/2020",
+				"submit_at": "20/05/2020",
+				"member": 1,
+				"workload": 30,
+				"taskProgress": {
+					"actual": 54,
+					"plan": 77
+				},
+				"timesheet": {
+					"approved": 10,
+					"submited": 9
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1010",
+				"project_id": 1010,
+				"task_id": 1010,
+				"assignment_id": 1010,
+				"role": "Amril esse deserunt",
+				"member_name": "Jamie Gray",
+				"project_name": "Aute id velit velit fugiat esse aute.",
+				"task": "Ipsum enim dolor aliquip magna est duis ut quis elit laborum cupidatat exercitation aute.",
+				"start": "27/11/2019",
+				"end": "06/08/2020",
+				"submit_at": "18/05/2020",
+				"member": 4,
+				"workload": 57,
+				"taskProgress": {
+					"actual": 74,
+					"plan": 25
+				},
+				"timesheet": {
+					"approved": 39,
+					"submited": 72
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1011",
+				"project_id": 1011,
+				"task_id": 1011,
+				"assignment_id": 1011,
+				"role": "Quarmony magna nostrud",
+				"member_name": "Hollie Molina",
+				"project_name": "Ex sunt ipsum aliqua ullamco et nulla et in quis esse duis aute amet.",
+				"task": "Aliquip pariatur occaecat aliqua elit commodo proident Lorem magna ullamco et ut et incididunt minim.",
+				"start": "25/11/2019",
+				"end": "10/08/2020",
+				"submit_at": "11/03/2020",
+				"member": 2,
+				"workload": 66,
+				"taskProgress": {
+					"actual": 26,
+					"plan": 5
+				},
+				"timesheet": {
+					"approved": 88,
+					"submited": 31
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1012",
+				"project_id": 1012,
+				"task_id": 1012,
+				"assignment_id": 1012,
+				"role": "Papricut ut consequat",
+				"member_name": "Downs Weaver",
+				"project_name": "Duis et pariatur ullamco amet voluptate sint est enim nulla incididunt.",
+				"task": "Consectetur sit nisi proident dolor consectetur commodo aute eiusmod id.",
+				"start": "29/11/2019",
+				"end": "16/11/2020",
+				"submit_at": "29/04/2020",
+				"member": 4,
+				"workload": 56,
+				"taskProgress": {
+					"actual": 44,
+					"plan": 35
+				},
+				"timesheet": {
+					"approved": 66,
+					"submited": 62
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1013",
+				"project_id": 1013,
+				"task_id": 1013,
+				"assignment_id": 1013,
+				"role": "Oatfarm fugiat do",
+				"member_name": "Cecile Leon",
+				"project_name": "Exercitation cupidatat duis sunt officia.",
+				"task": "Nulla tempor aute esse reprehenderit eiusmod voluptate id commodo.",
+				"start": "24/11/2019",
+				"end": "13/07/2020",
+				"submit_at": "31/12/2019",
+				"member": 3,
+				"workload": 27,
+				"taskProgress": {
+					"actual": 17,
+					"plan": 15
+				},
+				"timesheet": {
+					"approved": 73,
+					"submited": 90
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1014",
+				"project_id": 1014,
+				"task_id": 1014,
+				"assignment_id": 1014,
+				"role": "Equitax aute adipisicing",
+				"member_name": "Pugh Ware",
+				"project_name": "Do occaecat cupidatat labore exercitation duis ullamco qui minim.",
+				"task": "Tempor veniam laborum culpa ex incididunt excepteur.",
+				"start": "26/11/2019",
+				"end": "13/08/2020",
+				"submit_at": "29/12/2019",
+				"member": 3,
+				"workload": 25,
+				"taskProgress": {
+					"actual": 6,
+					"plan": 46
+				},
+				"timesheet": {
+					"approved": 9,
+					"submited": 38
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1015",
+				"project_id": 1015,
+				"task_id": 1015,
+				"assignment_id": 1015,
+				"role": "Hometown dolor minim",
+				"member_name": "Myrna Garrett",
+				"project_name": "Laboris eu eiusmod sit amet eiusmod commodo culpa cupidatat.",
+				"task": "Ut exercitation laborum non reprehenderit ullamco enim exercitation id ad ipsum est culpa fugiat.",
+				"start": "25/11/2019",
+				"end": "23/08/2020",
+				"submit_at": "21/03/2020",
+				"member": 5,
+				"workload": 25,
+				"taskProgress": {
+					"actual": 92,
+					"plan": 68
+				},
+				"timesheet": {
+					"approved": 43,
+					"submited": 9
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1016",
+				"project_id": 1016,
+				"task_id": 1016,
+				"assignment_id": 1016,
+				"role": "Hydrocom incididunt fugiat",
+				"member_name": "Heath Mcpherson",
+				"project_name": "Enim et quis Lorem nisi anim elit velit sint nisi cupidatat sint.",
+				"task": "Eiusmod dolore enim et laboris.",
+				"start": "23/11/2019",
+				"end": "18/11/2020",
+				"submit_at": "25/07/2020",
+				"member": 3,
+				"workload": 100,
+				"taskProgress": {
+					"actual": 67,
+					"plan": 15
+				},
+				"timesheet": {
+					"approved": 36,
+					"submited": 49
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1017",
+				"project_id": 1017,
+				"task_id": 1017,
+				"assignment_id": 1017,
+				"role": "Parleynet labore aute",
+				"member_name": "Jane Sloan",
+				"project_name": "Ea dolore officia laboris aliqua ex pariatur veniam nulla pariatur exercitation.",
+				"task": "Occaecat proident velit mollit elit non in magna labore excepteur mollit.",
+				"start": "29/11/2019",
+				"end": "10/08/2020",
+				"submit_at": "12/07/2020",
+				"member": 2,
+				"workload": 38,
+				"taskProgress": {
+					"actual": 95,
+					"plan": 79
+				},
+				"timesheet": {
+					"approved": 76,
+					"submited": 34
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1018",
+				"project_id": 1018,
+				"task_id": 1018,
+				"assignment_id": 1018,
+				"role": "Ohmnet laboris velit",
+				"member_name": "Cantrell Maldonado",
+				"project_name": "Reprehenderit sit non cillum nostrud nostrud aliqua.",
+				"task": "Ipsum deserunt consequat mollit mollit dolore culpa tempor cillum consectetur nostrud consequat aliquip cupidatat.",
+				"start": "26/11/2019",
+				"end": "14/07/2020",
+				"submit_at": "29/11/2020",
+				"member": 3,
+				"workload": 30,
+				"taskProgress": {
+					"actual": 33,
+					"plan": 59
+				},
+				"timesheet": {
+					"approved": 14,
+					"submited": 89
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1019",
+				"project_id": 1019,
+				"task_id": 1019,
+				"assignment_id": 1019,
+				"role": "Filodyne quis pariatur",
+				"member_name": "Hogan Whitney",
+				"project_name": "Minim eiusmod aute proident elit nisi occaecat sunt in ea minim fugiat duis id.",
+				"task": "Occaecat nulla fugiat deserunt consectetur anim qui eu aliquip aute qui aliqua culpa.",
+				"start": "24/11/2019",
+				"end": "26/11/2020",
+				"submit_at": "05/03/2020",
+				"member": 5,
+				"workload": 97,
+				"taskProgress": {
+					"actual": 35,
+					"plan": 36
+				},
+				"timesheet": {
+					"approved": 31,
+					"submited": 60
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1020",
+				"project_id": 1020,
+				"task_id": 1020,
+				"assignment_id": 1020,
+				"role": "Exosis consequat duis",
+				"member_name": "Darlene Cash",
+				"project_name": "Enim est laborum dolor officia.",
+				"task": "Nulla in consequat anim Lorem tempor quis ex.",
+				"start": "30/11/2019",
+				"end": "17/07/2020",
+				"submit_at": "23/07/2020",
+				"member": 1,
+				"workload": 75,
+				"taskProgress": {
+					"actual": 24,
+					"plan": 83
+				},
+				"timesheet": {
+					"approved": 99,
+					"submited": 16
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1021",
+				"project_id": 1021,
+				"task_id": 1021,
+				"assignment_id": 1021,
+				"role": "Comtours occaecat veniam",
+				"member_name": "Benjamin Barry",
+				"project_name": "Ut voluptate proident dolor exercitation.",
+				"task": "Lorem id occaecat pariatur aliqua adipisicing quis officia nisi adipisicing sit in.",
+				"start": "29/11/2019",
+				"end": "17/10/2020",
+				"submit_at": "01/10/2020",
+				"member": 1,
+				"workload": 88,
+				"taskProgress": {
+					"actual": 57,
+					"plan": 62
+				},
+				"timesheet": {
+					"approved": 76,
+					"submited": 26
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1022",
+				"project_id": 1022,
+				"task_id": 1022,
+				"assignment_id": 1022,
+				"role": "Kongene incididunt laborum",
+				"member_name": "Kathryn Franklin",
+				"project_name": "Cupidatat deserunt est non in nisi velit labore proident Lorem ullamco exercitation.",
+				"task": "Laborum sint anim dolore consequat commodo irure non irure.",
+				"start": "28/11/2019",
+				"end": "28/10/2020",
+				"submit_at": "07/07/2020",
+				"member": 1,
+				"workload": 50,
+				"taskProgress": {
+					"actual": 90,
+					"plan": 65
+				},
+				"timesheet": {
+					"approved": 19,
+					"submited": 96
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1023",
+				"project_id": 1023,
+				"task_id": 1023,
+				"assignment_id": 1023,
+				"role": "Geologix proident sunt",
+				"member_name": "Bettie Best",
+				"project_name": "Non reprehenderit cupidatat ut culpa do excepteur laborum irure dolore qui ea culpa.",
+				"task": "Exercitation consequat culpa ex minim minim nisi culpa anim esse in enim adipisicing laboris do.",
+				"start": "23/11/2019",
+				"end": "17/08/2020",
+				"submit_at": "29/02/2020",
+				"member": 1,
+				"workload": 67,
+				"taskProgress": {
+					"actual": 61,
+					"plan": 1
+				},
+				"timesheet": {
+					"approved": 35,
+					"submited": 18
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1024",
+				"project_id": 1024,
+				"task_id": 1024,
+				"assignment_id": 1024,
+				"role": "Pathways velit cillum",
+				"member_name": "Murphy Cervantes",
+				"project_name": "Laboris dolore ut deserunt elit nostrud aliquip sunt laboris deserunt ipsum.",
+				"task": "Laboris cupidatat amet veniam est eu non dolore tempor ex dolore Lorem dolore cupidatat.",
+				"start": "29/11/2019",
+				"end": "15/08/2020",
+				"submit_at": "28/06/2020",
+				"member": 3,
+				"workload": 89,
+				"taskProgress": {
+					"actual": 82,
+					"plan": 19
+				},
+				"timesheet": {
+					"approved": 85,
+					"submited": 3
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1025",
+				"project_id": 1025,
+				"task_id": 1025,
+				"assignment_id": 1025,
+				"role": "Quantasis ex aliqua",
+				"member_name": "Clark Hammond",
+				"project_name": "Ipsum eu tempor consequat sit aute qui incididunt.",
+				"task": "Irure sint non mollit aliquip.",
+				"start": "25/11/2019",
+				"end": "19/10/2020",
+				"submit_at": "28/05/2020",
+				"member": 4,
+				"workload": 55,
+				"taskProgress": {
+					"actual": 15,
+					"plan": 99
+				},
+				"timesheet": {
+					"approved": 73,
+					"submited": 52
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1026",
+				"project_id": 1026,
+				"task_id": 1026,
+				"assignment_id": 1026,
+				"role": "Magnina cupidatat nisi",
+				"member_name": "Goff Cummings",
+				"project_name": "Quis excepteur irure voluptate veniam eu sit aliquip do qui amet consequat amet ut.",
+				"task": "Labore irure ullamco ullamco elit non nostrud in consectetur.",
+				"start": "28/11/2019",
+				"end": "25/08/2020",
+				"submit_at": "05/07/2020",
+				"member": 1,
+				"workload": 96,
+				"taskProgress": {
+					"actual": 26,
+					"plan": 45
+				},
+				"timesheet": {
+					"approved": 12,
+					"submited": 4
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1027",
+				"project_id": 1027,
+				"task_id": 1027,
+				"assignment_id": 1027,
+				"role": "Velity in duis",
+				"member_name": "Bullock Faulkner",
+				"project_name": "Voluptate do consequat reprehenderit enim pariatur adipisicing ut culpa aliqua quis irure exercitation duis quis.",
+				"task": "Enim nostrud eiusmod cillum non anim eu id officia pariatur dolore id.",
+				"start": "22/11/2019",
+				"end": "02/07/2020",
+				"submit_at": "10/02/2020",
+				"member": 5,
+				"workload": 66,
+				"taskProgress": {
+					"actual": 31,
+					"plan": 33
+				},
+				"timesheet": {
+					"approved": 9,
+					"submited": 3
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1028",
+				"project_id": 1028,
+				"task_id": 1028,
+				"assignment_id": 1028,
+				"role": "Updat magna enim",
+				"member_name": "Whitaker Wilson",
+				"project_name": "Cillum laboris in ut consequat et eu adipisicing duis anim.",
+				"task": "Et nulla dolore et veniam.",
+				"start": "28/11/2019",
+				"end": "14/10/2020",
+				"submit_at": "19/06/2020",
+				"member": 5,
+				"workload": 87,
+				"taskProgress": {
+					"actual": 27,
+					"plan": 3
+				},
+				"timesheet": {
+					"approved": 58,
+					"submited": 5
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1029",
+				"project_id": 1029,
+				"task_id": 1029,
+				"assignment_id": 1029,
+				"role": "Printspan id et",
+				"member_name": "David Everett",
+				"project_name": "Cillum occaecat aute aliqua consequat fugiat aliqua anim duis duis.",
+				"task": "Sint deserunt commodo quis dolor aute ad dolore do ad.",
+				"start": "27/11/2019",
+				"end": "11/10/2020",
+				"submit_at": "18/09/2020",
+				"member": 5,
+				"workload": 52,
+				"taskProgress": {
+					"actual": 36,
+					"plan": 0
+				},
+				"timesheet": {
+					"approved": 87,
+					"submited": 15
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1030",
+				"project_id": 1030,
+				"task_id": 1030,
+				"assignment_id": 1030,
+				"role": "Genmy non ut",
+				"member_name": "Velazquez Palmer",
+				"project_name": "Cupidatat excepteur voluptate voluptate pariatur.",
+				"task": "Magna et laborum eiusmod est proident minim commodo quis.",
+				"start": "25/11/2019",
+				"end": "04/07/2020",
+				"submit_at": "12/01/2020",
+				"member": 1,
+				"workload": 80,
+				"taskProgress": {
+					"actual": 85,
+					"plan": 38
+				},
+				"timesheet": {
+					"approved": 61,
+					"submited": 69
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1031",
+				"project_id": 1031,
+				"task_id": 1031,
+				"assignment_id": 1031,
+				"role": "Trollery tempor adipisicing",
+				"member_name": "Duke Houston",
+				"project_name": "Nulla labore consectetur id ad irure.",
+				"task": "Lorem ea sit exercitation magna do cillum officia pariatur ad nostrud minim.",
+				"start": "26/11/2019",
+				"end": "19/09/2020",
+				"submit_at": "17/01/2020",
+				"member": 5,
+				"workload": 43,
+				"taskProgress": {
+					"actual": 70,
+					"plan": 74
+				},
+				"timesheet": {
+					"approved": 84,
+					"submited": 46
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1032",
+				"project_id": 1032,
+				"task_id": 1032,
+				"assignment_id": 1032,
+				"role": "Xinware sit officia",
+				"member_name": "Vicki Mooney",
+				"project_name": "Excepteur dolore nulla dolor pariatur mollit exercitation ullamco anim.",
+				"task": "Occaecat nisi magna laborum voluptate qui do aute sit laborum elit dolore culpa esse.",
+				"start": "27/11/2019",
+				"end": "08/07/2020",
+				"submit_at": "02/01/2020",
+				"member": 1,
+				"workload": 65,
+				"taskProgress": {
+					"actual": 27,
+					"plan": 30
+				},
+				"timesheet": {
+					"approved": 38,
+					"submited": 31
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1033",
+				"project_id": 1033,
+				"task_id": 1033,
+				"assignment_id": 1033,
+				"role": "Biflex nisi deserunt",
+				"member_name": "Lauren Waters",
+				"project_name": "Non exercitation nisi reprehenderit eiusmod ullamco dolor.",
+				"task": "Nisi et deserunt quis aliquip nostrud amet anim pariatur irure do minim mollit Lorem non.",
+				"start": "25/11/2019",
+				"end": "07/11/2020",
+				"submit_at": "15/11/2020",
+				"member": 5,
+				"workload": 55,
+				"taskProgress": {
+					"actual": 97,
+					"plan": 14
+				},
+				"timesheet": {
+					"approved": 87,
+					"submited": 0
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1034",
+				"project_id": 1034,
+				"task_id": 1034,
+				"assignment_id": 1034,
+				"role": "Tingles elit officia",
+				"member_name": "Doreen Castro",
+				"project_name": "Duis do deserunt cillum dolor laborum.",
+				"task": "Irure consectetur exercitation deserunt amet.",
+				"start": "26/11/2019",
+				"end": "26/11/2020",
+				"submit_at": "16/06/2020",
+				"member": 5,
+				"workload": 87,
+				"taskProgress": {
+					"actual": 17,
+					"plan": 20
+				},
+				"timesheet": {
+					"approved": 79,
+					"submited": 99
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1035",
+				"project_id": 1035,
+				"task_id": 1035,
+				"assignment_id": 1035,
+				"role": "Medifax eu eiusmod",
+				"member_name": "Merrill Kramer",
+				"project_name": "Cupidatat occaecat est reprehenderit enim incididunt qui.",
+				"task": "Non veniam labore laborum sunt pariatur aliquip consectetur ipsum.",
+				"start": "24/11/2019",
+				"end": "22/08/2020",
+				"submit_at": "21/09/2020",
+				"member": 3,
+				"workload": 28,
+				"taskProgress": {
+					"actual": 96,
+					"plan": 54
+				},
+				"timesheet": {
+					"approved": 100,
+					"submited": 67
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1036",
+				"project_id": 1036,
+				"task_id": 1036,
+				"assignment_id": 1036,
+				"role": "Inrt ullamco amet",
+				"member_name": "Elnora Colon",
+				"project_name": "Et velit incididunt voluptate in amet sit adipisicing ea deserunt qui.",
+				"task": "Et mollit do sunt nulla sunt aliqua exercitation mollit pariatur.",
+				"start": "25/11/2019",
+				"end": "24/08/2020",
+				"submit_at": "06/09/2020",
+				"member": 1,
+				"workload": 28,
+				"taskProgress": {
+					"actual": 57,
+					"plan": 91
+				},
+				"timesheet": {
+					"approved": 84,
+					"submited": 60
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1037",
+				"project_id": 1037,
+				"task_id": 1037,
+				"assignment_id": 1037,
+				"role": "Zizzle tempor nostrud",
+				"member_name": "Williamson Battle",
+				"project_name": "Qui do aliqua occaecat sint proident minim.",
+				"task": "Incididunt sint voluptate nisi exercitation sunt aliquip labore tempor magna occaecat sunt culpa quis aliquip.",
+				"start": "26/11/2019",
+				"end": "05/07/2020",
+				"submit_at": "11/10/2020",
+				"member": 4,
+				"workload": 59,
+				"taskProgress": {
+					"actual": 14,
+					"plan": 1
+				},
+				"timesheet": {
+					"approved": 26,
+					"submited": 11
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1038",
+				"project_id": 1038,
+				"task_id": 1038,
+				"assignment_id": 1038,
+				"role": "Comvoy deserunt sit",
+				"member_name": "Ora Stanton",
+				"project_name": "Tempor reprehenderit do fugiat excepteur eiusmod laboris commodo fugiat voluptate deserunt dolor enim.",
+				"task": "Velit mollit eiusmod fugiat cupidatat veniam deserunt dolor esse occaecat magna ullamco cupidatat ea enim.",
+				"start": "23/11/2019",
+				"end": "28/08/2020",
+				"submit_at": "23/07/2020",
+				"member": 3,
+				"workload": 26,
+				"taskProgress": {
+					"actual": 54,
+					"plan": 3
+				},
+				"timesheet": {
+					"approved": 7,
+					"submited": 37
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1039",
+				"project_id": 1039,
+				"task_id": 1039,
+				"assignment_id": 1039,
+				"role": "Fuelton est esse",
+				"member_name": "Andrea Lewis",
+				"project_name": "Sit cupidatat anim dolore aute.",
+				"task": "Officia Lorem magna culpa laboris aliqua commodo voluptate amet dolor do.",
+				"start": "30/11/2019",
+				"end": "28/07/2020",
+				"submit_at": "09/01/2020",
+				"member": 4,
+				"workload": 63,
+				"taskProgress": {
+					"actual": 77,
+					"plan": 75
+				},
+				"timesheet": {
+					"approved": 6,
+					"submited": 75
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1040",
+				"project_id": 1040,
+				"task_id": 1040,
+				"assignment_id": 1040,
+				"role": "Brainquil esse anim",
+				"member_name": "Keller Carver",
+				"project_name": "Reprehenderit dolor Lorem ea cillum velit ullamco incididunt fugiat.",
+				"task": "Culpa veniam excepteur minim voluptate.",
+				"start": "30/11/2019",
+				"end": "08/07/2020",
+				"submit_at": "12/05/2020",
+				"member": 1,
+				"workload": 51,
+				"taskProgress": {
+					"actual": 21,
+					"plan": 12
+				},
+				"timesheet": {
+					"approved": 0,
+					"submited": 12
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1041",
+				"project_id": 1041,
+				"task_id": 1041,
+				"assignment_id": 1041,
+				"role": "Comveyor amet fugiat",
+				"member_name": "Opal Barrera",
+				"project_name": "Sunt elit deserunt sit in amet elit id quis dolor esse reprehenderit.",
+				"task": "Aute dolore reprehenderit nostrud tempor adipisicing sit adipisicing.",
+				"start": "29/11/2019",
+				"end": "10/10/2020",
+				"submit_at": "06/04/2020",
+				"member": 4,
+				"workload": 83,
+				"taskProgress": {
+					"actual": 20,
+					"plan": 10
+				},
+				"timesheet": {
+					"approved": 17,
+					"submited": 0
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1042",
+				"project_id": 1042,
+				"task_id": 1042,
+				"assignment_id": 1042,
+				"role": "Essensia irure minim",
+				"member_name": "Harmon Walton",
+				"project_name": "Non dolor duis aute incididunt sit.",
+				"task": "Ad est dolor officia nulla incididunt labore amet consectetur.",
+				"start": "28/11/2019",
+				"end": "06/08/2020",
+				"submit_at": "03/08/2020",
+				"member": 4,
+				"workload": 99,
+				"taskProgress": {
+					"actual": 47,
+					"plan": 35
+				},
+				"timesheet": {
+					"approved": 37,
+					"submited": 30
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1043",
+				"project_id": 1043,
+				"task_id": 1043,
+				"assignment_id": 1043,
+				"role": "Pivitol velit incididunt",
+				"member_name": "Barbara Good",
+				"project_name": "Excepteur commodo dolor laboris sit.",
+				"task": "Mollit eiusmod et minim do reprehenderit in non adipisicing sint.",
+				"start": "25/11/2019",
+				"end": "30/07/2020",
+				"submit_at": "15/02/2020",
+				"member": 3,
+				"workload": 84,
+				"taskProgress": {
+					"actual": 48,
+					"plan": 98
+				},
+				"timesheet": {
+					"approved": 96,
+					"submited": 66
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1044",
+				"project_id": 1044,
+				"task_id": 1044,
+				"assignment_id": 1044,
+				"role": "Quizmo esse mollit",
+				"member_name": "Conner Manning",
+				"project_name": "Aute cupidatat ut laborum eiusmod consequat qui id enim ullamco.",
+				"task": "Qui non sint ad sint laborum mollit anim consequat.",
+				"start": "23/11/2019",
+				"end": "03/08/2020",
+				"submit_at": "23/05/2020",
+				"member": 4,
+				"workload": 96,
+				"taskProgress": {
+					"actual": 79,
+					"plan": 0
+				},
+				"timesheet": {
+					"approved": 23,
+					"submited": 49
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1045",
+				"project_id": 1045,
+				"task_id": 1045,
+				"assignment_id": 1045,
+				"role": "Zilphur elit culpa",
+				"member_name": "Nichole Farrell",
+				"project_name": "Sunt eiusmod ut incididunt commodo culpa.",
+				"task": "Deserunt veniam labore quis in quis aliqua.",
+				"start": "23/11/2019",
+				"end": "30/11/2020",
+				"submit_at": "17/04/2020",
+				"member": 4,
+				"workload": 41,
+				"taskProgress": {
+					"actual": 88,
+					"plan": 86
+				},
+				"timesheet": {
+					"approved": 75,
+					"submited": 74
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1046",
+				"project_id": 1046,
+				"task_id": 1046,
+				"assignment_id": 1046,
+				"role": "Vixo id voluptate",
+				"member_name": "Lindsay Parks",
+				"project_name": "Aliquip enim ea aliquip ea ea.",
+				"task": "Anim do excepteur occaecat dolor cupidatat sunt mollit voluptate consequat eiusmod voluptate veniam sunt.",
+				"start": "30/11/2019",
+				"end": "09/08/2020",
+				"submit_at": "16/06/2020",
+				"member": 5,
+				"workload": 43,
+				"taskProgress": {
+					"actual": 76,
+					"plan": 0
+				},
+				"timesheet": {
+					"approved": 96,
+					"submited": 21
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1047",
+				"project_id": 1047,
+				"task_id": 1047,
+				"assignment_id": 1047,
+				"role": "Geeky esse fugiat",
+				"member_name": "Penelope House",
+				"project_name": "Do ad esse proident sit laboris eu.",
+				"task": "Commodo esse sint consequat ut culpa id ad elit elit reprehenderit in adipisicing.",
+				"start": "27/11/2019",
+				"end": "17/11/2020",
+				"submit_at": "29/06/2020",
+				"member": 5,
+				"workload": 87,
+				"taskProgress": {
+					"actual": 30,
+					"plan": 76
+				},
+				"timesheet": {
+					"approved": 65,
+					"submited": 43
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1048",
+				"project_id": 1048,
+				"task_id": 1048,
+				"assignment_id": 1048,
+				"role": "Viagrand laboris excepteur",
+				"member_name": "Johnson Buck",
+				"project_name": "Laboris elit veniam ad ullamco sit esse nulla ex nostrud.",
+				"task": "Velit sit duis reprehenderit fugiat cillum ut.",
+				"start": "27/11/2019",
+				"end": "22/07/2020",
+				"submit_at": "11/03/2020",
+				"member": 3,
+				"workload": 72,
+				"taskProgress": {
+					"actual": 87,
+					"plan": 87
+				},
+				"timesheet": {
+					"approved": 37,
+					"submited": 55
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1049",
+				"project_id": 1049,
+				"task_id": 1049,
+				"assignment_id": 1049,
+				"role": "Architax irure minim",
+				"member_name": "Perez Ewing",
+				"project_name": "Amet aliqua irure in et non.",
+				"task": "Cupidatat exercitation adipisicing ullamco labore aute non qui exercitation cupidatat et laborum do.",
+				"start": "30/11/2019",
+				"end": "30/11/2020",
+				"submit_at": "30/12/2019",
+				"member": 5,
+				"workload": 78,
+				"taskProgress": {
+					"actual": 17,
+					"plan": 75
+				},
+				"timesheet": {
+					"approved": 17,
+					"submited": 29
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1050",
+				"project_id": 1050,
+				"task_id": 1050,
+				"assignment_id": 1050,
+				"role": "Roughies veniam nostrud",
+				"member_name": "Marquita Mcleod",
+				"project_name": "Aute ea veniam aute eu nostrud id elit.",
+				"task": "Sit duis deserunt et do dolor.",
+				"start": "29/11/2019",
+				"end": "30/08/2020",
+				"submit_at": "27/02/2020",
+				"member": 2,
+				"workload": 32,
+				"taskProgress": {
+					"actual": 35,
+					"plan": 87
+				},
+				"timesheet": {
+					"approved": 53,
+					"submited": 55
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1051",
+				"project_id": 1051,
+				"task_id": 1051,
+				"assignment_id": 1051,
+				"role": "Ezentia ullamco minim",
+				"member_name": "Bowman Beasley",
+				"project_name": "Consequat ut laborum voluptate sunt deserunt mollit esse Lorem.",
+				"task": "Quis amet qui dolor veniam veniam.",
+				"start": "23/11/2019",
+				"end": "24/08/2020",
+				"submit_at": "09/10/2020",
+				"member": 3,
+				"workload": 28,
+				"taskProgress": {
+					"actual": 11,
+					"plan": 28
+				},
+				"timesheet": {
+					"approved": 86,
+					"submited": 28
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1052",
+				"project_id": 1052,
+				"task_id": 1052,
+				"assignment_id": 1052,
+				"role": "Eventage esse deserunt",
+				"member_name": "Tara Mills",
+				"project_name": "Dolor aute tempor Lorem sunt sint nostrud exercitation laboris nostrud anim mollit.",
+				"task": "Quis labore eiusmod sit eu deserunt ex tempor voluptate ea consequat.",
+				"start": "23/11/2019",
+				"end": "26/09/2020",
+				"submit_at": "05/01/2020",
+				"member": 5,
+				"workload": 25,
+				"taskProgress": {
+					"actual": 76,
+					"plan": 82
+				},
+				"timesheet": {
+					"approved": 96,
+					"submited": 9
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1053",
+				"project_id": 1053,
+				"task_id": 1053,
+				"assignment_id": 1053,
+				"role": "Vicon laboris consectetur",
+				"member_name": "Ray Jensen",
+				"project_name": "Tempor magna excepteur minim consequat eu Lorem cillum mollit labore ad in consequat.",
+				"task": "Aliquip amet nisi nisi laborum laboris consectetur amet ad.",
+				"start": "29/11/2019",
+				"end": "04/09/2020",
+				"submit_at": "06/08/2020",
+				"member": 1,
+				"workload": 67,
+				"taskProgress": {
+					"actual": 34,
+					"plan": 70
+				},
+				"timesheet": {
+					"approved": 81,
+					"submited": 62
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1054",
+				"project_id": 1054,
+				"task_id": 1054,
+				"assignment_id": 1054,
+				"role": "Manglo sint officia",
+				"member_name": "Magdalena Farmer",
+				"project_name": "Nostrud occaecat Lorem ipsum velit.",
+				"task": "Deserunt labore ut nulla enim duis.",
+				"start": "23/11/2019",
+				"end": "24/11/2020",
+				"submit_at": "27/01/2020",
+				"member": 5,
+				"workload": 43,
+				"taskProgress": {
+					"actual": 26,
+					"plan": 54
+				},
+				"timesheet": {
+					"approved": 12,
+					"submited": 52
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1055",
+				"project_id": 1055,
+				"task_id": 1055,
+				"assignment_id": 1055,
+				"role": "Oronoko ad nisi",
+				"member_name": "Abby Key",
+				"project_name": "Fugiat non officia veniam adipisicing minim anim minim aute dolore elit excepteur aliqua nulla labore.",
+				"task": "Aliqua laborum non enim ut excepteur nisi sunt veniam.",
+				"start": "25/11/2019",
+				"end": "10/09/2020",
+				"submit_at": "06/06/2020",
+				"member": 3,
+				"workload": 27,
+				"taskProgress": {
+					"actual": 9,
+					"plan": 98
+				},
+				"timesheet": {
+					"approved": 35,
+					"submited": 20
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1056",
+				"project_id": 1056,
+				"task_id": 1056,
+				"assignment_id": 1056,
+				"role": "Sloganaut cillum culpa",
+				"member_name": "Nicole Jackson",
+				"project_name": "Irure labore deserunt est laboris occaecat officia adipisicing aliqua laboris.",
+				"task": "Aliquip eiusmod reprehenderit ex nostrud duis irure aute.",
+				"start": "23/11/2019",
+				"end": "21/08/2020",
+				"submit_at": "08/05/2020",
+				"member": 2,
+				"workload": 83,
+				"taskProgress": {
+					"actual": 10,
+					"plan": 20
+				},
+				"timesheet": {
+					"approved": 43,
+					"submited": 91
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1057",
+				"project_id": 1057,
+				"task_id": 1057,
+				"assignment_id": 1057,
+				"role": "Geekko laborum elit",
+				"member_name": "Young Tanner",
+				"project_name": "Mollit Lorem mollit qui mollit sit commodo commodo laborum quis.",
+				"task": "Ullamco velit amet elit excepteur incididunt aliquip do consectetur excepteur.",
+				"start": "25/11/2019",
+				"end": "18/11/2020",
+				"submit_at": "16/02/2020",
+				"member": 4,
+				"workload": 81,
+				"taskProgress": {
+					"actual": 90,
+					"plan": 19
+				},
+				"timesheet": {
+					"approved": 72,
+					"submited": 80
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1058",
+				"project_id": 1058,
+				"task_id": 1058,
+				"assignment_id": 1058,
+				"role": "Sentia laboris sunt",
+				"member_name": "Odessa Arnold",
+				"project_name": "Velit deserunt pariatur labore quis amet eiusmod laborum Lorem.",
+				"task": "Dolore cillum occaecat ad officia occaecat adipisicing do sint qui commodo laboris.",
+				"start": "28/11/2019",
+				"end": "13/08/2020",
+				"submit_at": "18/06/2020",
+				"member": 1,
+				"workload": 33,
+				"taskProgress": {
+					"actual": 89,
+					"plan": 32
+				},
+				"timesheet": {
+					"approved": 55,
+					"submited": 67
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1059",
+				"project_id": 1059,
+				"task_id": 1059,
+				"assignment_id": 1059,
+				"role": "Translink labore culpa",
+				"member_name": "Amy Chang",
+				"project_name": "Labore dolore ut ea incididunt cillum aliquip ipsum duis labore dolor.",
+				"task": "Pariatur et excepteur irure enim duis exercitation nostrud dolor dolor cupidatat labore voluptate.",
+				"start": "25/11/2019",
+				"end": "30/09/2020",
+				"submit_at": "03/07/2020",
+				"member": 2,
+				"workload": 39,
+				"taskProgress": {
+					"actual": 90,
+					"plan": 73
+				},
+				"timesheet": {
+					"approved": 7,
+					"submited": 48
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1060",
+				"project_id": 1060,
+				"task_id": 1060,
+				"assignment_id": 1060,
+				"role": "Kyagoro consequat velit",
+				"member_name": "Dolly Alvarez",
+				"project_name": "Ut sint in cillum quis nulla reprehenderit ea do voluptate ad voluptate eu.",
+				"task": "Deserunt cupidatat non esse ipsum labore mollit exercitation non.",
+				"start": "29/11/2019",
+				"end": "01/10/2020",
+				"submit_at": "23/10/2020",
+				"member": 1,
+				"workload": 51,
+				"taskProgress": {
+					"actual": 85,
+					"plan": 45
+				},
+				"timesheet": {
+					"approved": 88,
+					"submited": 55
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1061",
+				"project_id": 1061,
+				"task_id": 1061,
+				"assignment_id": 1061,
+				"role": "Datacator sunt eu",
+				"member_name": "Mclaughlin Finley",
+				"project_name": "Pariatur mollit ullamco labore labore elit ad eu quis laboris cupidatat enim aute veniam.",
+				"task": "Dolor dolor eu eu et velit fugiat fugiat culpa eiusmod.",
+				"start": "28/11/2019",
+				"end": "12/09/2020",
+				"submit_at": "04/07/2020",
+				"member": 3,
+				"workload": 39,
+				"taskProgress": {
+					"actual": 38,
+					"plan": 40
+				},
+				"timesheet": {
+					"approved": 1,
+					"submited": 9
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1062",
+				"project_id": 1062,
+				"task_id": 1062,
+				"assignment_id": 1062,
+				"role": "Kyaguru ad aliqua",
+				"member_name": "Meyers Suarez",
+				"project_name": "Minim excepteur cillum magna anim proident pariatur adipisicing.",
+				"task": "Enim pariatur et in quis in qui elit cillum sit amet veniam.",
+				"start": "30/11/2019",
+				"end": "14/09/2020",
+				"submit_at": "02/04/2020",
+				"member": 3,
+				"workload": 100,
+				"taskProgress": {
+					"actual": 67,
+					"plan": 62
+				},
+				"timesheet": {
+					"approved": 97,
+					"submited": 30
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1063",
+				"project_id": 1063,
+				"task_id": 1063,
+				"assignment_id": 1063,
+				"role": "Flumbo fugiat nisi",
+				"member_name": "Ortiz Mcintosh",
+				"project_name": "Do quis fugiat est incididunt enim minim Lorem.",
+				"task": "In ad labore velit duis excepteur eiusmod voluptate nisi reprehenderit voluptate sit.",
+				"start": "24/11/2019",
+				"end": "04/07/2020",
+				"submit_at": "18/10/2020",
+				"member": 5,
+				"workload": 99,
+				"taskProgress": {
+					"actual": 42,
+					"plan": 25
+				},
+				"timesheet": {
+					"approved": 87,
+					"submited": 0
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1064",
+				"project_id": 1064,
+				"task_id": 1064,
+				"assignment_id": 1064,
+				"role": "Myopium aute id",
+				"member_name": "Kathrine Johnson",
+				"project_name": "Cillum id consectetur laboris nostrud.",
+				"task": "Esse quis ea culpa irure nisi consectetur culpa consectetur veniam.",
+				"start": "27/11/2019",
+				"end": "08/08/2020",
+				"submit_at": "24/03/2020",
+				"member": 5,
+				"workload": 70,
+				"taskProgress": {
+					"actual": 14,
+					"plan": 2
+				},
+				"timesheet": {
+					"approved": 56,
+					"submited": 6
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1065",
+				"project_id": 1065,
+				"task_id": 1065,
+				"assignment_id": 1065,
+				"role": "Jetsilk consequat pariatur",
+				"member_name": "Tiffany Watkins",
+				"project_name": "Laborum cillum reprehenderit eiusmod ipsum id id quis adipisicing nostrud.",
+				"task": "Magna eiusmod esse ad et sint.",
+				"start": "30/11/2019",
+				"end": "05/07/2020",
+				"submit_at": "16/02/2020",
+				"member": 3,
+				"workload": 74,
+				"taskProgress": {
+					"actual": 57,
+					"plan": 4
+				},
+				"timesheet": {
+					"approved": 69,
+					"submited": 49
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1066",
+				"project_id": 1066,
+				"task_id": 1066,
+				"assignment_id": 1066,
+				"role": "Talkola aute do",
+				"member_name": "Ramona Howell",
+				"project_name": "Deserunt id in ea fugiat Lorem dolor excepteur qui sunt sint ullamco anim eu.",
+				"task": "Sint et tempor aliquip consectetur amet velit et eiusmod cillum ipsum adipisicing qui.",
+				"start": "22/11/2019",
+				"end": "17/11/2020",
+				"submit_at": "10/09/2020",
+				"member": 3,
+				"workload": 65,
+				"taskProgress": {
+					"actual": 80,
+					"plan": 84
+				},
+				"timesheet": {
+					"approved": 65,
+					"submited": 43
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1067",
+				"project_id": 1067,
+				"task_id": 1067,
+				"assignment_id": 1067,
+				"role": "Digigene pariatur minim",
+				"member_name": "Knight Tyler",
+				"project_name": "Excepteur ea elit culpa dolore.",
+				"task": "Sint esse non ex irure occaecat do duis exercitation officia nisi non elit qui.",
+				"start": "25/11/2019",
+				"end": "08/08/2020",
+				"submit_at": "30/10/2020",
+				"member": 3,
+				"workload": 50,
+				"taskProgress": {
+					"actual": 36,
+					"plan": 2
+				},
+				"timesheet": {
+					"approved": 50,
+					"submited": 51
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1068",
+				"project_id": 1068,
+				"task_id": 1068,
+				"assignment_id": 1068,
+				"role": "Indexia ut fugiat",
+				"member_name": "Shelton Shannon",
+				"project_name": "Anim adipisicing laboris ut nulla veniam laboris aliqua ipsum voluptate do et nulla cillum.",
+				"task": "Adipisicing ad dolore laborum officia cillum dolor fugiat.",
+				"start": "23/11/2019",
+				"end": "02/11/2020",
+				"submit_at": "15/03/2020",
+				"member": 4,
+				"workload": 64,
+				"taskProgress": {
+					"actual": 85,
+					"plan": 29
+				},
+				"timesheet": {
+					"approved": 100,
+					"submited": 69
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1069",
+				"project_id": 1069,
+				"task_id": 1069,
+				"assignment_id": 1069,
+				"role": "Idego proident aute",
+				"member_name": "Terrell Fitzgerald",
+				"project_name": "Reprehenderit sint nulla in tempor aliqua aliqua anim.",
+				"task": "Magna nulla adipisicing commodo voluptate aute magna ex do adipisicing sint consectetur incididunt magna irure.",
+				"start": "30/11/2019",
+				"end": "01/08/2020",
+				"submit_at": "29/01/2020",
+				"member": 4,
+				"workload": 57,
+				"taskProgress": {
+					"actual": 34,
+					"plan": 2
+				},
+				"timesheet": {
+					"approved": 22,
+					"submited": 36
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1070",
+				"project_id": 1070,
+				"task_id": 1070,
+				"assignment_id": 1070,
+				"role": "Cujo velit tempor",
+				"member_name": "Sargent Gilmore",
+				"project_name": "Quis culpa eiusmod aute anim id ipsum consequat ea in laborum eiusmod.",
+				"task": "Aute officia laborum non cupidatat cupidatat magna.",
+				"start": "26/11/2019",
+				"end": "06/09/2020",
+				"submit_at": "08/05/2020",
+				"member": 3,
+				"workload": 90,
+				"taskProgress": {
+					"actual": 90,
+					"plan": 69
+				},
+				"timesheet": {
+					"approved": 71,
+					"submited": 14
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1071",
+				"project_id": 1071,
+				"task_id": 1071,
+				"assignment_id": 1071,
+				"role": "Apex aute nisi",
+				"member_name": "Kirkland Coffey",
+				"project_name": "Labore duis veniam cupidatat tempor aute nostrud.",
+				"task": "Deserunt anim ipsum consequat cupidatat eu aliqua.",
+				"start": "29/11/2019",
+				"end": "03/08/2020",
+				"submit_at": "07/09/2020",
+				"member": 3,
+				"workload": 26,
+				"taskProgress": {
+					"actual": 39,
+					"plan": 6
+				},
+				"timesheet": {
+					"approved": 43,
+					"submited": 27
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1072",
+				"project_id": 1072,
+				"task_id": 1072,
+				"assignment_id": 1072,
+				"role": "Enaut incididunt elit",
+				"member_name": "Monroe Hardy",
+				"project_name": "Reprehenderit ipsum sint duis enim dolore ea velit ad est.",
+				"task": "Do et tempor cillum ea sit consectetur reprehenderit sint anim laboris id labore.",
+				"start": "29/11/2019",
+				"end": "27/08/2020",
+				"submit_at": "02/04/2020",
+				"member": 1,
+				"workload": 89,
+				"taskProgress": {
+					"actual": 19,
+					"plan": 51
+				},
+				"timesheet": {
+					"approved": 82,
+					"submited": 80
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1073",
+				"project_id": 1073,
+				"task_id": 1073,
+				"assignment_id": 1073,
+				"role": "Globoil et veniam",
+				"member_name": "Maura Harrison",
+				"project_name": "Excepteur cupidatat incididunt mollit aliquip adipisicing commodo sint dolore ex.",
+				"task": "Culpa id est esse incididunt ea nulla elit incididunt consectetur est do in.",
+				"start": "23/11/2019",
+				"end": "08/10/2020",
+				"submit_at": "17/12/2019",
+				"member": 4,
+				"workload": 56,
+				"taskProgress": {
+					"actual": 19,
+					"plan": 24
+				},
+				"timesheet": {
+					"approved": 80,
+					"submited": 49
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1074",
+				"project_id": 1074,
+				"task_id": 1074,
+				"assignment_id": 1074,
+				"role": "Pearlesex laboris commodo",
+				"member_name": "Scott Cabrera",
+				"project_name": "Officia culpa consequat anim ea consequat Lorem reprehenderit qui deserunt ea sunt consectetur consequat.",
+				"task": "Enim cillum ea laboris incididunt pariatur fugiat incididunt tempor tempor.",
+				"start": "24/11/2019",
+				"end": "19/10/2020",
+				"submit_at": "29/10/2020",
+				"member": 5,
+				"workload": 97,
+				"taskProgress": {
+					"actual": 8,
+					"plan": 67
+				},
+				"timesheet": {
+					"approved": 97,
+					"submited": 75
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1075",
+				"project_id": 1075,
+				"task_id": 1075,
+				"assignment_id": 1075,
+				"role": "Cipromox consectetur eu",
+				"member_name": "Katie Lawrence",
+				"project_name": "Amet enim eiusmod in deserunt laborum.",
+				"task": "Sunt sunt id sit consectetur est sit labore et dolore officia.",
+				"start": "25/11/2019",
+				"end": "09/07/2020",
+				"submit_at": "25/05/2020",
+				"member": 2,
+				"workload": 97,
+				"taskProgress": {
+					"actual": 0,
+					"plan": 68
+				},
+				"timesheet": {
+					"approved": 87,
+					"submited": 79
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1076",
+				"project_id": 1076,
+				"task_id": 1076,
+				"assignment_id": 1076,
+				"role": "Reversus voluptate esse",
+				"member_name": "Dominguez Parrish",
+				"project_name": "Voluptate ut dolore non officia in amet nisi aliquip ad consequat.",
+				"task": "Enim ex deserunt occaecat proident veniam incididunt non ea mollit officia ad id sint in.",
+				"start": "22/11/2019",
+				"end": "06/09/2020",
+				"submit_at": "26/11/2019",
+				"member": 5,
+				"workload": 98,
+				"taskProgress": {
+					"actual": 8,
+					"plan": 39
+				},
+				"timesheet": {
+					"approved": 10,
+					"submited": 20
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1077",
+				"project_id": 1077,
+				"task_id": 1077,
+				"assignment_id": 1077,
+				"role": "Zolarity fugiat cupidatat",
+				"member_name": "Lindsey Vasquez",
+				"project_name": "Nostrud velit sint dolor veniam aliquip labore.",
+				"task": "Occaecat anim veniam Lorem pariatur.",
+				"start": "23/11/2019",
+				"end": "04/10/2020",
+				"submit_at": "28/07/2020",
+				"member": 1,
+				"workload": 74,
+				"taskProgress": {
+					"actual": 5,
+					"plan": 0
+				},
+				"timesheet": {
+					"approved": 82,
+					"submited": 50
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1078",
+				"project_id": 1078,
+				"task_id": 1078,
+				"assignment_id": 1078,
+				"role": "Ludak est magna",
+				"member_name": "Suzette Caldwell",
+				"project_name": "Officia anim magna ullamco do exercitation magna eu mollit esse esse cupidatat.",
+				"task": "Tempor exercitation nostrud deserunt laboris nisi ullamco ex reprehenderit voluptate aliqua duis.",
+				"start": "26/11/2019",
+				"end": "10/07/2020",
+				"submit_at": "12/10/2020",
+				"member": 3,
+				"workload": 44,
+				"taskProgress": {
+					"actual": 2,
+					"plan": 70
+				},
+				"timesheet": {
+					"approved": 77,
+					"submited": 85
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1079",
+				"project_id": 1079,
+				"task_id": 1079,
+				"assignment_id": 1079,
+				"role": "Grainspot culpa dolor",
+				"member_name": "Hinton Zamora",
+				"project_name": "Adipisicing esse sit eiusmod cillum veniam esse consequat et ipsum Lorem anim eiusmod.",
+				"task": "Ipsum do pariatur mollit cupidatat elit excepteur.",
+				"start": "27/11/2019",
+				"end": "29/08/2020",
+				"submit_at": "16/06/2020",
+				"member": 3,
+				"workload": 61,
+				"taskProgress": {
+					"actual": 11,
+					"plan": 26
+				},
+				"timesheet": {
+					"approved": 96,
+					"submited": 22
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1080",
+				"project_id": 1080,
+				"task_id": 1080,
+				"assignment_id": 1080,
+				"role": "Voratak nulla qui",
+				"member_name": "Merle Mcclain",
+				"project_name": "Cupidatat dolore sint ut quis deserunt occaecat.",
+				"task": "Aliquip aliqua cupidatat adipisicing ea eiusmod velit officia ipsum exercitation sit aute nostrud proident exercitation.",
+				"start": "29/11/2019",
+				"end": "07/11/2020",
+				"submit_at": "19/03/2020",
+				"member": 2,
+				"workload": 34,
+				"taskProgress": {
+					"actual": 61,
+					"plan": 43
+				},
+				"timesheet": {
+					"approved": 81,
+					"submited": 37
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1081",
+				"project_id": 1081,
+				"task_id": 1081,
+				"assignment_id": 1081,
+				"role": "Quadeebo do nisi",
+				"member_name": "Gross Mcclure",
+				"project_name": "Est reprehenderit dolore consequat consectetur veniam id deserunt mollit commodo pariatur.",
+				"task": "Velit nostrud anim duis qui velit proident non labore minim nulla consequat sunt.",
+				"start": "30/11/2019",
+				"end": "29/08/2020",
+				"submit_at": "26/06/2020",
+				"member": 5,
+				"workload": 72,
+				"taskProgress": {
+					"actual": 32,
+					"plan": 98
+				},
+				"timesheet": {
+					"approved": 90,
+					"submited": 96
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1082",
+				"project_id": 1082,
+				"task_id": 1082,
+				"assignment_id": 1082,
+				"role": "Flyboyz qui adipisicing",
+				"member_name": "Burton Vance",
+				"project_name": "Dolore enim consectetur eu culpa consequat eiusmod irure.",
+				"task": "Excepteur sint sit non labore consequat id ut.",
+				"start": "23/11/2019",
+				"end": "13/07/2020",
+				"submit_at": "15/10/2020",
+				"member": 1,
+				"workload": 27,
+				"taskProgress": {
+					"actual": 40,
+					"plan": 95
+				},
+				"timesheet": {
+					"approved": 76,
+					"submited": 81
+				}
+			},
+			{
+				"iwo": "P-1909SCC-TTES1083",
+				"project_id": 1083,
+				"task_id": 1083,
+				"assignment_id": 1083,
+				"role": "Telpod nisi veniam",
+				"member_name": "Jeannette Freeman",
+				"project_name": "Minim ex anim magna excepteur cillum anim dolore et eu mollit adipisicing sit.",
+				"task": "Aliqua fugiat commodo cupidatat pariatur labore non esse.",
+				"start": "28/11/2019",
+				"end": "22/08/2020",
+				"submit_at": "12/12/2019",
+				"member": 5,
+				"workload": 57,
+				"taskProgress": {
+					"actual": 89,
+					"plan": 43
+				},
+				"timesheet": {
+					"approved": 49,
+					"submited": 47
+				}
+			}
+		]
+	</script>
+	
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/project/timesheet/timesheetApproval.js"></script>
+</body>
+
+</html>

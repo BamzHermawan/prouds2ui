@@ -210,7 +210,6 @@ export default {
 	},
 	methods: {
 		onClicked() {
-			console.log("clicked");
 			this.$emit("clicked");
 		}
 	}

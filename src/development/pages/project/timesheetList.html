@@ -12,8 +12,8 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../styles/perfect-scrollbar.css">
-	<link rel="stylesheet" href="../../styles/style.scss">
+	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
 <body>
@@ -42,11 +42,11 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item href="project/list.html">Project</side-item>
-				<side-item href="project/projectAssignment.html">Project Assignment</side-item>
-				<side-item href="project/projectRequest.html">Project Request</side-item>
+				<side-item href="./list.html">Project</side-item>
+				<side-item href="./projectAssignment.html">Project Assignment</side-item>
+				<side-item href="./projectRequest.html">Project Request</side-item>
 				<side-item active>Timesheet</side-item>
-				<side-item href="rebaseline.html">Rebaseline</side-item>
+				<side-item href="../rebaseline.html">Rebaseline</side-item>
 				<side-item href="#no-edit">Closing</side-item>
 			</side-list>
 
@@ -82,12 +82,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="http://" class="navbar-item hover-text">
+					<a href="#" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="setting/authorization.html" class="navbar-item hover-text">
+					<a href="../setting/authorization.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -97,7 +97,7 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="profile.html" class="navbar-item">Account Profile</a>
+							<a href="../profile.html" class="navbar-item">Account Profile</a>
 							<a href="#help" class="navbar-item">Need Help ?</a>
 							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
 								class="navbar-item">Acting As</a>
@@ -275,12 +275,22 @@
 									</nav>
 
 									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''" always style="width:100%;">
-										<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour" color="is-info" placeholder="0"
-											v-model="workhour.value">
-										</crud-input>
+										<b-field label="Total Work Hour" style="margin-bottom: 23px;">
+											<b-numberinput 
+												controls-position="compact" 
+												name="hour" 
+												min="0" 
+												max="24" 
+												expanded 
+												placeholder="0"
+												:editable="false" 
+												v-model="workhour.value"
+												type="is-info">
+											</b-numberinput>
+										</b-field>
 									</b-tooltip>
 
-									<crud-input type="select" name="location" label="Select Area"
+									<crud-input type="select" name="location" label="Working Location"
 										placeholder="Choose area location">
 										<option selected style="display: none;"></option>
 										<option value="1">Jabodetabek</option>
@@ -310,7 +320,7 @@
 										</p>
 									</header>
 									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
-										:focused-date="datepicker.start.focused" :events="selectedDateList" indicators="bars">
+										:focused-date="datepicker.start.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
 												<b-field>
@@ -719,8 +729,8 @@
 			]
 	</script>
 
-	<script src="../scripts/layout/controller.js"></script>
-	<script src="../scripts/timesheet/timesheet.js"></script>
+	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../scripts/project/timesheet/timesheetList.js"></script>
 </body>
 
 </html>

@@ -161,6 +161,10 @@ export default {
 			if (this.setting.sidebar.color !== null) {
 				geeg.sidebar.textColor(this.setting.sidebar.color);
 				this.savePreference();
+			} else {
+				this.setting.sidebar.color = 'has-text-dark';
+				geeg.sidebar.textColor('has-text-dark');
+				this.savePreference();
 			}
 		},
 

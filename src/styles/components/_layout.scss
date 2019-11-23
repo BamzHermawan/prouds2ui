@@ -49,17 +49,20 @@ body {
 			background: none !important;
 
 			& .set-background {
-				content : "";
 				display: block;
-				position: absolute;
+				position: fixed;
 				top: 0;
 				left: 0;
-				width: 100%;
+				width: 275px;
 				height: 100%;
-				z-index: -1;
+				z-index: -5;
 
 				filter: grayscale(10%);
 				object-fit: cover;
+			}
+
+			.set-shader {
+				display: none;
 			}
 		}
 
@@ -148,6 +151,21 @@ body {
 
 			&.sidebar-show .sidebar, & .sidebar:hover {
 				display: block !important;
+
+				.set-shader {
+					display: block;
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 275px;
+					height: 100%;
+					z-index: -5;
+					background: rgba(245, 245, 245, 0.5) !important;
+				}
+
+				.set-background {
+					z-index: -10;
+				}
 			}
 		}
 	}
