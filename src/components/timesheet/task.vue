@@ -195,17 +195,10 @@ export default {
 			let approved = this.task.timesheet.approved;
 			let submited = this.task.timesheet.submited;
 
-			if (approved > submited) {
-				return [
-					{ data: approved, color: "is-info" },
-					{ data: submited, color: "is-success" }
-				];
-			} else {
-				return [
-					{ data: submited, color: "is-success" },
-					{ data: approved, color: "is-info" }
-				];
-			}
+			return [
+				{ data: approved, color: "is-success" },
+				{ data: submited, color: "is-info" }
+			];
 		}
 	},
 	methods: {

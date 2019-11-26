@@ -168,6 +168,12 @@ td.align-middle {
 	width: 100%;
 }
 
+.modal.has-hidden-scrollbar {
+	.modal-content {
+		overflow: visible !important;
+	}
+}
+
 .message.is-modal {
 	height: 100vh;
 

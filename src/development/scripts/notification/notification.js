@@ -85,6 +85,8 @@ new Vue({
 				}
 			}
 
+			global.updateNotifCount(this.logs);
+
 			let self = this;
 			if(sendAsRead.length > 0){
 				Api.openNotification(sendAsRead)

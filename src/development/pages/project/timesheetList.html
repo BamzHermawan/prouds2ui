@@ -45,7 +45,8 @@
 				<side-item href="./list.html">Project</side-item>
 				<side-item href="./projectAssignment.html">Project Assignment</side-item>
 				<side-item href="./projectRequest.html">Project Request</side-item>
-				<side-item active>Timesheet</side-item>
+				<side-item active>My Tasks</side-item>
+				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
 				<side-item href="../rebaseline.html">Rebaseline</side-item>
 				<side-item href="#no-edit">Closing</side-item>
 			</side-list>
@@ -117,7 +118,7 @@
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Timesheet</span>
+							<span>My Tasks</span>
 						</h1>
 						<div id="bookmarkPage">
 							<bookmark-button></bookmark-button>
@@ -143,7 +144,7 @@
 							</div>
 						</nav>
 
-						<task-group title="Delayed Task" :value="false" type="is-delayed">
+						<task-group title="Overdue Task" :value="false" type="is-delayed">
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
 									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :task="ts"></task-card>
@@ -307,7 +308,7 @@
 						</form>
 					</div>
 
-					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px">
+					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
 						<b-message type="is-info">
 							Pick Timesheet Date
 						</b-message>
@@ -363,7 +364,7 @@
 						</div>
 					</b-modal>
 					
-					<b-modal :active.sync="modal.singleDate" trap-focus width="302px">
+					<b-modal :active.sync="modal.singleDate" trap-focus width="302px" class="has-hidden-scrollbar">
 						<b-message type="is-info" v-if="rangeToggle">
 							Pick Timesheet Date
 						</b-message>
@@ -481,7 +482,7 @@
 					},
 					"timesheet": {
 						"approved": 33,
-						"submited": 20
+						"submited": 50
 					}
 				},
 				{
@@ -503,7 +504,7 @@
 					},
 					"timesheet": {
 						"approved": 76,
-						"submited": 59
+						"submited": 89
 					}
 				},
 				{
@@ -525,7 +526,7 @@
 					},
 					"timesheet": {
 						"approved": 87,
-						"submited": 56
+						"submited": 100
 					}
 				},
 				{
@@ -547,7 +548,7 @@
 					},
 					"timesheet": {
 						"approved": 18,
-						"submited": 7
+						"submited": 70
 					}
 				},
 				{
@@ -569,7 +570,7 @@
 					},
 					"timesheet": {
 						"approved": 88,
-						"submited": 24
+						"submited": 90
 					}
 				},
 				{
