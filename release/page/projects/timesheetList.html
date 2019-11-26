@@ -309,14 +309,16 @@
 									<b-datepicker inline="" v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
-												<b-field>
-													<b-select placeholder="Select Month" v-model="datepicker.start.selected" @input="selectMonth('start')" expanded="">
-														<option :key="i" v-for="(item, i) in monthList">
-															{{ item.label }}
-														</option>
-													</b-select>
-												</b-field>
+												<b-select placeholder="Select Month" v-model="datepicker.start.selected" @input="selectMonth('start')" expanded="">
+													<option :key="i" v-for="(item, i) in monthList">
+														{{ item.label }}
+													</option>
+												</b-select>
 											</b-field>
+											<small>
+												<span class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
+												<span>Timesheet has been submited</span>
+											</small>
 										</template>
 									</b-datepicker>
 								</div>
@@ -331,14 +333,16 @@
 									<b-datepicker inline="" v-model="datepicker.end.val" :max-date="new Date()" :min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
-												<b-field>
-													<b-select placeholder="Select Month" v-model="datepicker.end.selected" @input="selectMonth('end')" expanded="">
-														<option :key="i" v-for="(item, i) in monthList">
-															{{ item.label }}
-														</option>
-													</b-select>
-												</b-field>
+												<b-select placeholder="Select Month" v-model="datepicker.end.selected" @input="selectMonth('end')" expanded="">
+													<option :key="i" v-for="(item, i) in monthList">
+														{{ item.label }}
+													</option>
+												</b-select>
 											</b-field>
+											<small>
+												<span class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
+												<span>Timesheet has been submited</span>
+											</small>
 										</template>
 									</b-datepicker>
 								</div>
@@ -361,14 +365,16 @@
 									<b-datepicker inline="" v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="datepicker.filled">
 										<template slot="header">
 											<b-field>
-												<b-field>
-													<b-select placeholder="Select Month" v-model="datepicker.start.selected" @input="selectMonth('start')" expanded="">
-														<option :key="i" v-for="(item, i) in monthList">
-															{{ item.label }}
-														</option>
-													</b-select>
-												</b-field>
+												<b-select placeholder="Select Month" v-model="datepicker.start.selected" @input="selectMonth('start')" expanded="">
+													<option :key="i" v-for="(item, i) in monthList">
+														{{ item.label }}
+													</option>
+												</b-select>
 											</b-field>
+											<small>
+												<span class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
+												<span>Timesheet has been submited</span>
+											</small>
 										</template>
 									</b-datepicker>
 								</div>
