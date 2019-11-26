@@ -94,16 +94,53 @@ module.exports.getDuration = bundle => {
 	});
 }
 
-module.exports.getNotification = () => {
-	return request.get($api.getNotification);
-}
-
 module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }
 
+/**
+ * Get List of Notification
+ * with expected notification Object
+ * 
+ * "id"			 {String},
+ * "subject"	 {String},
+ * "content"	 {HTML String},
+ * "dateStamp"	 {Date String with format DD/MM/YYYY},
+ * "timeStamp"	 {Time String with format H:i},
+ * "read"		 {Boolean}
+ *
+ * @returns
+ */
+module.exports.getNotification = () => {
+	return request.get($api.getNotification);
+}
+
+/**
+ * send list of Notification that rendered read by user
+ *
+ * @param {*} IDs: Array of Notification ID
+ * @returns Axios Promise Instance
+ */
 module.exports.openNotification = (IDs) => {
 	return request.post($api.openNotification, pack(IDs), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}
+
+/**
+ * Get List of Filled Timesheet Date
+ *
+ * @param {*} id: Assignment ID
+ * @param {*} start: Task Start Date (DD/MM/YYYY)
+ * @param {*} end: Task End Date (DD/MM/YYYY)
+ * @returns Axios Promise Instance
+ */
+module.exports.filledTimesheet = (id, start, end) => {
+	return request.post($api.filledTimesheet, pack({
+		id, start, end
+	}), {
 		headers: {
 			"Content-Type": 'application/x-www-form-urlencoded'
 		}

@@ -36,7 +36,7 @@
 					size="is-small"
 				>
 					<b-button
-						@click="model = null"
+						@click="input(null)"
 						type="is-grey"
 						class="is-fullwidth"
 					>
@@ -117,7 +117,7 @@
  
 <script>
 import Moment from "helper-moment";
-import { momentFormatter } from "helper-tools";
+import { momentFormatter, isEmpty } from "helper-tools";
 export default {
 	props: {
 		label: {
@@ -217,7 +217,7 @@ export default {
 			if (this.type === "datepicker") {
 				if (this.value instanceof Date) {
 					this.dateModel = this.value;
-				} else {
+				} else if (!isEmpty(this.value)) {
 					this.dateModel = new Date(this.value);
 				}
 			}

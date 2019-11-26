@@ -124,7 +124,18 @@
 						</div>
 					</nav>
 
-					<n-log :key="log.id" :log-id="log.id" :ref="'logs-' + idx" :index="'logs-' + log.id" v-for="(log, idx) in getListLog" @toggle="openNotification" @selected="onSelect" :subject="log.subject" :time="log.timeStamp" :date="log.dateStamp" :is-read="log.read">
+					<n-log 
+						:key="log.id" 
+						:log-id="log.id" 
+						:ref="'logs-' + idx" 
+						:index="'logs-' + idx" 
+						v-for="(log, idx) in getListLog"
+						@toggle="openNotification" 
+						@selected="onSelect" 
+						:subject="log.subject" 
+						:time="log.timeStamp" 
+						:date="log.dateStamp"
+						:is-read="log.read">
 						<div v-html="log.content" class="content"></div>
 					</n-log>
 					

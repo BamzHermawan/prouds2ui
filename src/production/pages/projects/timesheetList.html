@@ -12,8 +12,8 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../styles/perfect-scrollbar.css">
-	<link rel="stylesheet" href="../../styles/style.scss">
+	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
 <body>
@@ -42,12 +42,13 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item href="project/list.html">Project</side-item>
-				<side-item href="project/projectAssignment.html">Project Assignment</side-item>
-				<side-item href="project/projectRequest.html">Project Request</side-item>
-				<side-item active>Timesheet</side-item>
-				<side-item href="rebaseline.html">Rebaseline</side-item>
-				<side-item href="#no-edit">Closing</side-item>
+				<side-item href="list.html">Project List</side-item>
+				<side-item href="projectassignment.html">Project Assignment</side-item>
+				<side-item href="projectrequest.html">Project Request</side-item>
+				<side-item active>My Tasks</side-item>
+				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Closing</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -82,12 +83,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="http://" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="setting/authorization.html" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -97,7 +98,7 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="profile.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
 							<a href="#help" class="navbar-item">Need Help ?</a>
 							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
 								class="navbar-item">Acting As</a>
@@ -117,7 +118,7 @@
 				<div class="hero-body">
 					<div class="container">
 						<h1 class="title is-marginless">
-							<span>Timesheet</span>
+							<span>My Tasks</span>
 						</h1>
 						<div id="bookmarkPage">
 							<bookmark-button></bookmark-button>
@@ -143,7 +144,7 @@
 							</div>
 						</nav>
 
-						<task-group title="Delayed Task" :value="false" type="is-delayed">
+						<task-group title="Overdue Task" :value="false" type="is-delayed">
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
 									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :task="ts"></task-card>
@@ -209,7 +210,28 @@
 											<b-tag type="is-info">{{ dataForm.pm_name }}</b-tag>
 										</b-taglist>
 									</div>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">Member</b-tag>
+											<b-tag type="is-info">{{ dataForm.member }}</b-tag>
+										</b-taglist>
+									</div>
+									<div class="control">
+										<b-taglist attached size="are-medium">
+											<b-tag type="is-dark">Workload</b-tag>
+											<b-tag type="is-info">{{ dataForm.workload }}%</b-tag>
+										</b-taglist>
+									</div>
 								</b-field>
+								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
+									<span style="margin-right:.35em;">Assigned as</span><b>{{ dataForm.role }}</b>
+								</span>
+								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em;">
+									<span class="icon is-small">
+										<span class="mdi mdi-calendar-clock"></span>
+									</span>
+									<span>{{ dataForm.start | moment }} - {{ dataForm.end | moment }}</span>
+								</span>
 							</div>
 							<div class="column is-clearfix is-paddingless">
 								<a class="button is-danger is-long is-pulled-right" @click="setTimesheet">
@@ -254,12 +276,22 @@
 									</nav>
 
 									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''" always style="width:100%;">
-										<crud-input type="number" name="hour" :min="0" :max="24" label="Total Work Hour" color="is-info" placeholder="0"
-											v-model="workhour.value">
-										</crud-input>
+										<b-field label="Total Work Hour" style="margin-bottom: 23px;">
+											<b-numberinput 
+												controls-position="compact" 
+												name="hour" 
+												min="0" 
+												max="24" 
+												expanded 
+												placeholder="0"
+												:editable="false" 
+												v-model="workhour.value"
+												type="is-info">
+											</b-numberinput>
+										</b-field>
 									</b-tooltip>
 
-									<crud-input type="select" name="location" label="Select Area"
+									<crud-input type="select" name="location" label="Working Location"
 										placeholder="Choose area location">
 										<option selected style="display: none;"></option>
 										<option value="1">Jabodetabek</option>
@@ -276,7 +308,7 @@
 						</form>
 					</div>
 
-					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px">
+					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
 						<b-message type="is-info">
 							Pick Timesheet Date
 						</b-message>
@@ -289,7 +321,7 @@
 										</p>
 									</header>
 									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
-										:focused-date="datepicker.start.focused" :events="selectedDateList" indicators="bars">
+										:focused-date="datepicker.start.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
 												<b-field>
@@ -313,7 +345,7 @@
 										</p>
 									</header>
 									<b-datepicker inline v-model="datepicker.end.val" :max-date="new Date()"
-										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList" indicators="bars">
+										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
 												<b-field>
@@ -332,7 +364,7 @@
 						</div>
 					</b-modal>
 					
-					<b-modal :active.sync="modal.singleDate" trap-focus width="302px">
+					<b-modal :active.sync="modal.singleDate" trap-focus width="302px" class="has-hidden-scrollbar">
 						<b-message type="is-info" v-if="rangeToggle">
 							Pick Timesheet Date
 						</b-message>
@@ -345,7 +377,7 @@
 										</p>
 									</header>
 									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
-										:focused-date="datepicker.start.focused">
+										:focused-date="datepicker.start.focused" :events="datepicker.filled">
 										<template slot="header">
 											<b-field>
 												<b-field>
@@ -372,6 +404,32 @@
 				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+				expected return from getNotification!
+				[{
+					"id": {String},
+					"subject": {String},
+					"content": {HTML String},
+					"dateStamp": {Date String with format DD/MM/YYYY},
+					"timeStamp": {Time String with format H:i},
+					"read": {Boolean}
+				}, ... ],
+			 -->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+	
+		<!-- 
+				Get List of Filled Timesheet Date
+				@param {*} id: Assignment ID
+				@param {*} start: Task Start Date (DD/MM/YYYY)
+				@param {*} end: Task End Date (DD/MM/YYYY)
+
+				expected return List of Filled Timesheet Date
+				[ 'DD/MM/YYYY', 'DD/MM/YYYY', 'DD/MM/YYYY', ... ]
+			-->
+		<api-test url="getTimesheetDate.php" key="filledTimesheet"></api-test>
 	</div>
 
 	<script>
@@ -424,7 +482,7 @@
 					},
 					"timesheet": {
 						"approved": 33,
-						"submited": 20
+						"submited": 50
 					}
 				},
 				{
@@ -446,7 +504,7 @@
 					},
 					"timesheet": {
 						"approved": 76,
-						"submited": 59
+						"submited": 89
 					}
 				},
 				{
@@ -468,7 +526,7 @@
 					},
 					"timesheet": {
 						"approved": 87,
-						"submited": 56
+						"submited": 100
 					}
 				},
 				{
@@ -490,7 +548,7 @@
 					},
 					"timesheet": {
 						"approved": 18,
-						"submited": 7
+						"submited": 70
 					}
 				},
 				{
@@ -512,7 +570,7 @@
 					},
 					"timesheet": {
 						"approved": 88,
-						"submited": 24
+						"submited": 90
 					}
 				},
 				{
@@ -672,8 +730,8 @@
 			]
 	</script>
 
-	<script src="../scripts/layout/controller.js"></script>
-	<script src="../scripts/timesheet/timesheet.js"></script>
+	<script src="../../../main.js"></script>
+	<script src="../../scripts/project/timesheet/timesheetList.js"></script>
 </body>
 
 </html>

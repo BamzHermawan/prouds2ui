@@ -168,6 +168,12 @@ td.align-middle {
 	width: 100%;
 }
 
+.modal.has-hidden-scrollbar {
+	.modal-content {
+		overflow: visible !important;
+	}
+}
+
 .message.is-modal {
 	height: 100vh;
 
@@ -276,6 +282,23 @@ p.add-divider-top {
 
 .api-testing {
 	display: none !important;
+}
+
+.button.is-static {
+
+	@each $name, $color in $colors {
+		&.is-#{$name} {
+			background-color: nth($color, 1) !important;
+			border-color: transparent;
+			color: nth($color, 2) !important;
+		}
+
+		&.is-#{$name}-blend {
+			@include gradientMagic(nth($color, 1));
+			border-color: transparent;
+			color: nth($color, 2) !important;
+		}
+	}
 }
 
 //! -----------------------------------------------------

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import Api from 'helper-apis';
-import { checkConnection, getApiTestByKey, notified, isEmpty } from 'helper-tools';
+import { checkConnection, notified, isEmpty } from 'helper-tools';
 import { notificationLog as nLog } from 'components';
 
 Vue.use(Buefy);
@@ -55,7 +55,7 @@ new Vue({
 					if (shownotif) notified(self.$notification).info("You have <b>" + total + "<b> unread notification");
 				})
 				.catch(() => {
-					if (checkConnection(self.notification)) {
+					if (checkConnection(self.$notification)) {
 						notified(self.$notification).error(
 							"Sorry we are encountering a problem, please try again later. 🙏"
 						);
@@ -84,6 +84,8 @@ new Vue({
 					sendAsRead.push(logs.logId);
 				}
 			}
+
+			global.updateNotifCount(this.logs);
 
 			let self = this;
 			if(sendAsRead.length > 0){
@@ -127,7 +129,6 @@ new Vue({
 			for (const key in this.$refs) {
 				if (this.$refs.hasOwnProperty(key) && key.includes('logs-')) {
 					const log = this.$refs[key];
-					console.log(log);
 					if(!isEmpty(log)){
 						if (!log[0].selected && this.allSelected) {
 							this.$refs[key][0].selected = true;
@@ -152,7 +153,6 @@ new Vue({
 	},
 	mounted(){
 		this.fetchNotification(false);
-		console.log(getApiTestByKey('userLogin'));
 		global.$loader.hide();
 	}
 });

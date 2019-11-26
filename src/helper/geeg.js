@@ -44,9 +44,15 @@ const sidebar = {
 			let sidebar = mySidebar();
 			return sidebar.querySelector(".set-background");
 		},
+		shader() {
+			let sidebar = mySidebar();
+			return sidebar.querySelector(".set-shader");
+		},
 		change(imageLink) {
 			let sidebar = mySidebar();
 			let holder = this.holder();
+			let shader = this.shader();
+			
 			if (holder === null) {
 				holder = new Image();
 				holder.classList.add(
@@ -56,18 +62,28 @@ const sidebar = {
 				);
 			}
 
+			if (shader === null) {
+				shader = document.createElement('div');
+				shader.classList.add("set-shader");
+			}
+
 			holder.crossOrigin = "Anonymous";
 			holder.src = imageLink;
 
+			sidebar.appendChild(shader);
 			sidebar.appendChild(holder);
 			sidebar.classList.add("has-background");
 		},
 		remove() {
 			let sidebar = mySidebar();
 			let holder = this.holder();
+			let shader = this.shader();
+
 			if (!isEmpty(holder)) {
-				console.log(holder);
-				console.log(sidebar);
+				sidebar.removeChild(shader);
+			}
+			
+			if (!isEmpty(holder)) {
 				sidebar.classList.remove("has-background");
 				sidebar.removeChild(holder);
 			}

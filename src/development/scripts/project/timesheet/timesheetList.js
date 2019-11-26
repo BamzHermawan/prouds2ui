@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
+import Api from 'helper-apis';
 import Loader from 'helper-loader';
 import Moment from 'helper-moment';
+import { checkConnection, notified } from 'helper-tools';
 import { crudInput, progressBar, taskGroup, taskCard } from 'components';
 import 'helper-filter';
 
@@ -47,7 +49,8 @@ new Vue({
 				val: null,
 				focused: new Date(),
 				selected: Moment().format('MMMM - YYYY')
-			}
+			},
+			filled: []
 		},
 		modal: {
 			singleDate: false,
@@ -55,6 +58,29 @@ new Vue({
 		},
 	},
 	methods: {
+		checkForFloat(val){
+			this.workhour.value = val + 1;
+		},
+		getFilled(id, start, end){
+			let self = this;
+			Api.filledTimesheet(id, start, end)
+				.then(response => {
+					let filled = response.data;
+					for (let i = 0; i < filled.length; i++) {
+						let tsDate = filled[i];
+						self.datepicker.filled.push({
+							date: new Date(Moment(tsDate, 'DD/MM/YYYY')),
+							type: 'is-warning'
+						});
+					}
+				}).catch(() => {
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				})
+		},
 		getMinDate(){
 			return new Date(Moment(this.dataForm.start, 'DD/MM/YYYY'));
 		},
@@ -100,6 +126,8 @@ new Vue({
 				maxDate = new Date(Moment(val.end, 'DD/MM/YYYY'));
 			}
 
+			this.getFilled(val.assignment_id, val.start, val.end);
+
 			this.showList = !this.showList
 			this.showForm = !this.showForm
 			this.dataForm = val
@@ -114,7 +142,8 @@ new Vue({
 					val: null,
 					focused: maxDate,
 					selected: Moment(maxDate).format('MMMM - YYYY')
-				}
+				},
+				filled: []
 			}
 
 			document.querySelector('.contentPage').scrollTop = 0;
@@ -285,7 +314,7 @@ new Vue({
 				}
 			}
 
-			return list;
+			return this.datepicker.filled.concat(list);
 		},
 		timesheetDate(){
 			let start = this.datepicker.start.val;
