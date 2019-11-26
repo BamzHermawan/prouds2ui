@@ -282,20 +282,22 @@ export default {
 				finish: Moment(finish).format("DD/MM/YYYY"),
 				workdays: workdays
 			};
-			api.getDuration(bundle)
-				.then(response => {
-					let dur = response.data;
-					self.duration = dur.duration;
-				})
-				.catch(function(error) {
-					console.log("error asking for baseline");
-					if (checkConnection(self.notification)) {
-						notified(self.$notification).error(
-							"Sorry we are encountering a problem, please try again later. 🙏"
-						);
-					}
-				})
-				.finally(() => (self.isLoading = false));
+			if (start != undefined && finish != undefined && workdays != null) {
+				api.getDuration(bundle)
+					.then(response => {
+						let dur = response.data;
+						self.duration = dur.duration;
+					})
+					.catch(function(error) {
+						console.log("error asking for get duration");
+						if (checkConnection(self.notification)) {
+							notified(self.$notification).error(
+								"Sorry we are encountering a problem, please try again later. 🙏"
+							);
+						}
+					})
+					.finally(() => (self.isLoading = false));
+			}
 		},
 		getProcessGroup() {
 			if (this.processGroupID != 0) {
