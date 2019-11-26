@@ -1,68 +1,141 @@
 <template>
-	<div class="card-modal">
-		<header class="modal-card-head">
-			<p class="modal-card-title">{{ title }}</p>
-		</header>
-		<form :action="actionEvent" method="POST" enctype="multipart/form-data">
-			<section class="modal-card-body">
-				<b-field label="Task Name">
-					<b-message type="is-info" class="is-on-field">
-						<p class="has-text-dark">{{ taskName }}</p>
-					</b-message>
-				</b-field>
+	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="projectId" v-model="projectId" />
+		<input type="hidden" name="taskID" v-model="taskID" />
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Progress Group</p>
+			</div>
+			<div class="column">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ processGroupName }}</span
+				>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Parent Task</p>
+			</div>
+			<div class="column">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ task.pName }}</span
+				>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Task</p>
+			</div>
+			<div class="column">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ taskName }}</span
+				>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-6">
+				<div class="columns">
+					<div class="column is-4">
+						<p class="label">Start Date</p>
+					</div>
+					<div class="column">
+						<span
+							class="button is-static is-fullwidth is-light-blend"
+							style="justify-content: start;"
+							>{{ start }}</span
+						>
+					</div>
+				</div>
+			</div>
+			<div class="column is-6">
+				<div class="columns">
+					<div class="column is-4">
+						<p class="label">End Date</p>
+					</div>
+					<div class="column">
+						<span
+							class="button is-static is-fullwidth is-light-blend"
+							style="justify-content: start;"
+							>{{ finish }}</span
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Duration</p>
+			</div>
+			<div class="column is-1">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ task.duration }}</span
+				>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Predecessor</p>
+			</div>
+			<div class="column">
 				<input
 					type="hidden"
 					name="predecessor"
-					v-model="selectedOptions"
+					v-model="predecessor"
+					v-if="predecessor === null || predecessor === ''"
 				/>
-				<b-field>
-					<b-input
-						placeholder="Search Predecessor..."
-						type="search"
-						icon="magnify"
-						v-model="searchQuery"
-					>
-					</b-input>
-				</b-field>
-				<b-select
-					multiple
-					expanded
-					native-size="5"
-					v-model="selectedOptions"
+				<crud-input
+					type="select"
+					name="predecessor"
+					placeholder="This Task Doesn't Have Predecessor"
+					v-model="predecessor"
+					input-style="margin-bottom:15px;"
 				>
-					<option :value="null" class="has-background-grey-lighter"
-						><span class="has-text-dark"
-							>Doesn't have predecessor</span
-						></option
-					>
 					<option
-						v-for="(taska, index) in listTask"
-						:key="index"
-						:value="taska.pID"
-						>{{ taska.pName }}
-					</option>
-				</b-select>
-
-				<input type="hidden" name="workplanId" v-model="workplanId" />
-				<input type="hidden" name="taskID" v-model="taskID" />
-			</section>
-			<section class="modal-card-foot is-clearfix is-block">
-				<div class="is-pulled-right">
-					<b-button type="is-danger" @click="$parent.close()"
-						>Cancel</b-button
+						v-for="(opt, name, idx) in filterPredecessor"
+						:key="idx"
+						:value="opt.pID"
+						>{{ opt.pName }}</option
 					>
-					<button class="button is-success" type="submit">
-						Update Link
-					</button>
-				</div>
-			</section>
-		</form>
-	</div>
+
+					<template slot="addons">
+						<a
+							class="button is-warning"
+							@click="predecessor = null"
+							:disabled="predecessor == null"
+						>
+							Remove Link
+						</a>
+					</template>
+				</crud-input>
+			</div>
+		</div>
+
+		<div class="is-pulled-left">
+			<button class="button is-success" type="submit" :disabled="btn">
+				Update
+			</button>
+		</div>
+		<br />
+	</form>
 </template>
 
 <script>
 import moment from "helper-moment";
-import crudInput from "components";
+import { crudInput } from "components";
 export default {
 	components: { crudInput },
 	props: {
@@ -70,11 +143,7 @@ export default {
 			type: String,
 			required: true
 		},
-		workplanId: {
-			type: String,
-			required: true
-		},
-		title: {
+		projectId: {
 			type: String,
 			required: true
 		},
@@ -87,13 +156,19 @@ export default {
 		return {
 			dataBaru: GANTT,
 			taskName: this.task.pName,
-			predecessor: this.task.pDepend,
 			taskID: this.task.pID,
 			taskNew: "",
 			listTask: [],
 			searchTask: [],
 			searchQuery: "",
-			name: ""
+			name: "",
+			start: moment(this.task.pStart).format("dddd, DD MMMM YYYY"),
+			finish: moment(this.task.pEnd).format("dddd, DD MMMM YYYY"),
+			processGroupName: "",
+			processGroupID: this.task.processGroupID,
+			predecessor: this.task.pDepend ? this.task.pDepend : null,
+			predecessorOri: this.task.pDepend ? this.task.pDepend : null,
+			btn: true
 		};
 	},
 	watch: {
@@ -106,6 +181,27 @@ export default {
 				console.log(this.searchQuery);
 			} else {
 				this.listTask = this.listTask;
+			}
+		},
+		predecessor: function(newQuery, oldQuery) {
+			if (this.predecessor === this.predecessorOri.toString()) {
+				this.btn = true;
+			} else {
+				this.btn = false;
+			}
+		}
+	},
+	methods: {
+		getProcessGroup() {
+			if (this.processGroupID != 0 || this.processGroupID !== "") {
+				let found = this.dataBaru.find(
+					task => task.pID === this.processGroupID
+				);
+				if (found != undefined && found.hasOwnProperty("pName")) {
+					this.processGroupName = found.pName;
+				} else {
+					return "";
+				}
 			}
 		}
 	},
@@ -133,10 +229,17 @@ export default {
 				return checkName && option.pID != this.taskID;
 			});
 			this.searchTask = this.listTask;
+		},
+		filterPredecessor() {
+			return this.dataBaru.filter(pre => {
+				let preFilter = pre;
+				return preFilter && pre.pID != this.taskID;
+			});
 		}
 	},
 	mounted() {
 		this.filterTaskName;
+		this.getProcessGroup();
 	}
 };
 </script>
