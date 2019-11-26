@@ -24,7 +24,24 @@
 	.genddate {
 		text-align: right;
 	}
+
+	.gadditional-role {
+		max-width: 600px !important;
+		text-align: left;
+	}
+
+	.gtaskname {
+		min-width: 320px !important;
+		max-width: 500px !important;
+		width: 320px !important;
+
+		div {
+			min-width: 100% !important;
+			width: 100% !important;
+		}
+	}
 }
+
 
 .gstartdate {
 	max-width: 110px !important;

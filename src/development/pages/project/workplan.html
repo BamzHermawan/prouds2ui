@@ -168,6 +168,7 @@
 						</div>
 					</div>
 
+					<hr v-if="!showWorkplan">
 					<span class="white-space"></span>
 
 					<div v-if="showWorkplan" id="workplan" class="animated">
@@ -211,16 +212,10 @@
 														<b>Use Template</b>
 													</b-button>
 												</div>
-												<div class="level-item" style="margin-left: 10px;">
-													<b-button type="is-success is-light is-small is-fullwidth"
-														@click="addTask('addTask')">
-														<b>Add Task</b>
-													</b-button>
-												</div>
 												<div class="level-item" style="margin-left:10px;">
 													<b-dropdown hoverable aria-role="list">
 														<b-button type="is-info is-light is-small is-fullwidth"
-															slot="trigger">
+															icon-right="menu-down" slot="trigger">
 															<b>Export</b>
 														</b-button>
 
@@ -258,43 +253,72 @@
 								</header>
 								<div class="card-content is-paddingless">
 									<b-menu class="is-workplan-task-menu">
-										<b-menu-list>
-											<b-menu-item @click="editTask('editTask')" label="Edit Task"
-												:active="false">
-											</b-menu-item>
-											<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
-												:active="false">
-											</b-menu-item>
-											<b-menu-item @click="updateProgress('updateProgress')"
-												label="Update Progress" :active="false">
-											</b-menu-item>
-											<b-menu-item @click="mergeTask('mergeTask')" label="Merge Task"
-												:active="false">
-											</b-menu-item>
-										</b-menu-list>
-										<b-menu-list label="Quick Action">
-											<b-menu-item @click="changeParentTask('changeParent')"
-												label="Change Parent Task" :active="false">
-											</b-menu-item>
-											<b-menu-item @click="linkPredecessor('linkPredecessor')"
-												label="Link Predecessor" :active="false">
-											</b-menu-item>
-											<b-menu-item @click="unlinkPredecessor" label="Unlink Predecessor"
-												:active="false">
-											</b-menu-item>
-											<b-menu-item @click="shrinkTask" label="Shrink Task" :active="false">
-											</b-menu-item>
-											<b-menu-item @click="deleteTask" label="Delete Task" :active="false">
-											</b-menu-item>
-										</b-menu-list>
+										<template v-if="selectedTask.pParent === '0'">
+											<b-menu-list>
+												<b-menu-item @click="addTask('addTask')" label="Add Task"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item label="Edit Task" disabled>
+												</b-menu-item>
+												<b-menu-item label="Assign Team" disabled>
+												</b-menu-item>
+												<b-menu-item label="Update Progress" disabled>
+												</b-menu-item>
+											</b-menu-list>
+											<b-menu-list label="Quick Action">
+												<b-menu-item label="Change Parent Task" disabled>
+												</b-menu-item>
+												<b-menu-item label="Set Predecessor" disabled>
+												</b-menu-item>
+												<b-menu-item label="Delete Task" disabled>
+												</b-menu-item>
+											</b-menu-list>
+										</template>
+
+										<template v-else>
+											<b-menu-list>
+												<b-menu-item @click="addTask('addTask')" label="Add Task"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item @click="editTask('editTask')" label="Edit Task"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item @click="updateProgress('updateProgress')"
+													label="Update Progress" :active="false">
+												</b-menu-item>
+											</b-menu-list>
+											<b-menu-list label="Quick Action">
+												<b-menu-item @click="changeParentTask('changeParent')"
+													label="Change Parent Task" :active="false">
+												</b-menu-item>
+												<b-menu-item @click="linkPredecessor('linkPredecessor')"
+													label="Set Predecessor" :active="false">
+												</b-menu-item>
+												<b-menu-item @click="deleteTask" label="Delete Task" :active="false">
+												</b-menu-item>
+											</b-menu-list>
+										</template>
 									</b-menu>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<add-task v-if="toggleForm.addTask" id="addTask" class="animated fadeIn faster" workplan-id="1"
+					<tmp v-if="toggleForm.template" id="template" class="animated fadeIn faster" project-id="1"
 						api-get-duration="http://localhost:5501/demo/getDuration.php"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="template-option">
+							<option selected style="display: none;"></option>
+							<option value="1">New Prouds Development Phase I</option>
+							<option value="2">Development</option>
+						</template>
+					</tmp>
+
+					<add-task v-if="toggleForm.addTask" id="addTask" :task="selectedTask" class="animated fadeIn faster"
+						project-id="1" api-get-duration="http://localhost:5501/demo/getDuration.php"
 						action-event="http://localhost:5501/demo/post_detect.php">
 						<template slot="phase-option">
 							<option selected style="display: none;"></option>
@@ -308,19 +332,20 @@
 						</template>
 					</add-task>
 
-					<tmp v-if="toggleForm.template" id="template" class="animated fadeIn faster" workplan-id="1"
+					<edit-task v-if="toggleForm.editTask" id="editTask" class="animated fadeIn faster" project-id="1"
+						show-integration="true" :task="selectedTask"
 						api-get-duration="http://localhost:5501/demo/getDuration.php"
 						action-event="http://localhost:5501/demo/post_detect.php">
-						<template slot="template-option">
+						<template slot="wbs-option">
 							<option selected style="display: none;"></option>
-							<option value="1">Software</option>
-							<option value="2">Development</option>
+							<option value="1">WBS 1</option>
+							<option value="2">WBS 2</option>
 						</template>
-					</tmp>
-
-					<edit-task v-if="toggleForm.editTask" id="editTask" class="animated fadeIn faster" workplan-id="1"
-						:task="selectedTask" api-get-duration="http://localhost:5501/demo/getDuration.php"
-						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="integration-option">
+							<option selected style="display: none;"></option>
+							<option value="1">Integration 1</option>
+							<option value="2">Integration 2</option>
+						</template>
 						<template slot="phase-option">
 							<option selected style="display: none;"></option>
 							<option value="1">Planning</option>
@@ -334,7 +359,7 @@
 					</edit-task>
 
 					<assign-resource v-if="toggleForm.assignTeam" id="assignTeam" class="animated fadeIn faster"
-						:task="selectedTask" workplan-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 						<template slot="role-option">
 							<option selected style="display: none;"></option>
 							<option>Programmer Analyst Analyst</option>
@@ -349,12 +374,12 @@
 					</assign-resource>
 
 					<set-progress v-if="toggleForm.updateProgress" id="updateProgress" class="animated fadeIn faster"
-						title="Update Progress" :task="selectedTask" workplan-id="1"
+						title="Update Progress" :task="selectedTask" project-id="1"
 						action-event="http://localhost:5501/demo/post_detect.php">
 					</set-progress>
 
 					<merge-task v-if="toggleForm.mergeTask" id="mergeTask" class="animated fadeIn faster"
-						title="Merge Task" :task="selectedTask" workplan-id="1"
+						title="Merge Task" :task="selectedTask" project-id="1"
 						action-event="http://localhost:5501/demo/post_detect.php">
 						<template #msg>
 							<b-message type="is-warning">
@@ -370,12 +395,12 @@
 					</merge-task>
 
 					<change-parent-task v-if="toggleForm.changeParent" id="changeParent" class="animated fadeIn faster"
-						title="Change Parent Task" :task="selectedTask" workplan-id="1"
+						title="Change Parent Task" :task="selectedTask" project-id="1"
 						action-event="http://localhost:5501/demo/post_detect.php">
 					</change-parent-task>
 
 					<link-predecessor v-if="toggleForm.linkPredecessor" id="linkPredecessor"
-						class="animated fadeIn faster" title="Link Predecessor" :task="selectedTask" workplan-id="1"
+						class="animated fadeIn faster" title="Link Predecessor" :task="selectedTask" project-id="1"
 						action-event="http://localhost:5501/demo/post_detect.php">
 					</link-predecessor>
 
@@ -395,7 +420,7 @@
 	<script>
 		const GANTT = [
 			{
-				pID: 1,
+				pID: "1",
 				pName: "New Prouds Development Phase I",
 				pStart: "2019-06-10",
 				pEnd: "2019-12-31",
@@ -404,12 +429,18 @@
 				pMile: 0,
 				pComp: "40",
 				pGroup: 1,
-				pParent: 0,
+				pParent: "0",
 				pOpen: 1,
 				pDepend: 0,
-				team: 6,
+				role: "",
 				estProgress: 43,
-				phase: 2,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -517,13 +548,14 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
+				editAble: false,
 				changeableParent: false,
 				deleteTask: null,
 				shrinkTask: null,
 				unlinkPredecessor: null,
 			},
 			{
-				pID: 2,
+				pID: "2",
 				pName: "Requirement Gathering",
 				pStart: "",
 				pEnd: "",
@@ -531,12 +563,18 @@
 				pClass: "gtaskyellow",
 				pComp: 0,
 				pGroup: 0,
-				pParent: 1,
+				pParent: "1",
 				pOpen: 1,
 				pDepend: 1,
-				team: 3,
+				role: "Programmer",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -650,7 +688,7 @@
 				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
-				pID: 3,
+				pID: "3",
 				pName: "Analysis and Design",
 				pStart: "2019-06-17",
 				pEnd: "2019-07-12",
@@ -658,12 +696,18 @@
 				pClass: "gtaskpink",
 				pComp: "80",
 				pGroup: 0,
-				pParent: 1,
+				pParent: "1",
 				pOpen: 1,
-				pDepend: 3,
-				team: 3,
+				pDepend: 0,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -777,7 +821,7 @@
 				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
-				pID: 4,
+				pID: "4",
 				pName: "Mockup UI Development",
 				pStart: "2019-06-06",
 				pEnd: "2019-10-18",
@@ -785,12 +829,18 @@
 				pClass: "gtaskred",
 				pComp: "27.33",
 				pGroup: 0,
-				pParent: 1,
+				pParent: "1",
 				pOpen: 1,
 				pDepend: 3,
-				team: 3,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -904,7 +954,7 @@
 				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
-				pID: 6,
+				pID: "6",
 				pName: "Construction",
 				pStart: "",
 				pEnd: "",
@@ -913,12 +963,18 @@
 				pMile: 1,
 				pComp: "80",
 				pGroup: 1,
-				pParent: 1,
+				pParent: "1",
 				pOpen: 1,
 				pDepend: 1,
-				team: 15,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -1032,7 +1088,7 @@
 				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
 			},
 			{
-				pID: 7,
+				pID: "7",
 				pName: "Develop Front-End",
 				pStart: "2019-08-19",
 				pEnd: "2019-10-31",
@@ -1040,12 +1096,18 @@
 				pClass: "gtaskgreen",
 				pComp: "57.81",
 				pGroup: 0,
-				pParent: 6,
+				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				team: 3,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -1159,7 +1221,7 @@
 				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
-				pID: 8,
+				pID: "8",
 				pName: "Develop Front-End",
 				pStart: "2019-08-19",
 				pEnd: "2019-10-31",
@@ -1167,12 +1229,18 @@
 				pClass: "gtaskgreen",
 				pComp: "57.81",
 				pGroup: 0,
-				pParent: 6,
+				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				team: 3,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -1286,7 +1354,7 @@
 				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
-				pID: 9,
+				pID: "9",
 				pName: "Develop Front-End",
 				pStart: "2019-08-19",
 				pEnd: "2019-10-31",
@@ -1294,12 +1362,18 @@
 				pClass: "gtaskgreen",
 				pComp: "57.81",
 				pGroup: 0,
-				pParent: 6,
+				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				team: 3,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -1412,7 +1486,7 @@
 				deleteTask: "http://localhost:5500/project/workplan.html",
 				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			}, {
-				pID: 10,
+				pID: "10",
 				pName: "Develop Front-End",
 				pStart: "2019-08-19",
 				pEnd: "2019-10-31",
@@ -1420,12 +1494,18 @@
 				pClass: "gtaskgreen",
 				pComp: "57.81",
 				pGroup: 0,
-				pParent: 6,
+				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				team: 3,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",
@@ -1539,7 +1619,7 @@
 				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
 			},
 			{
-				pID: 11,
+				pID: "11",
 				pName: "Develop Front-End",
 				pStart: "2019-08-19",
 				pEnd: "2019-10-31",
@@ -1547,12 +1627,18 @@
 				pClass: "gtaskgreen",
 				pComp: "57.81",
 				pGroup: 0,
-				pParent: 6,
+				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				team: 3,
+				role: "Business Analyst",
 				estProgress: 43,
-				phase: 1,
+				processGroupID: "1",
+				progressCalculation: true,
+				workdays: "1",
+				autoCalculationProgress: "30",
+				wbsNo: "1",
+				integration: "1",
+				mandays: "30",
 				resource: [
 					{
 						"user_id": "1",

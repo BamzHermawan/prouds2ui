@@ -1,6 +1,6 @@
 <template>
 	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
-		<input type="hidden" name="workplanId" v-model="workplanId" />
+		<input type="hidden" name="projectId" v-model="projectId" />
 		<input type="hidden" name="taskID" v-model="taskID" />
 
 		<div style="margin-bottom:20px">
@@ -56,7 +56,7 @@ export default {
 			type: String,
 			required: true
 		},
-		workplanId: {
+		projectId: {
 			type: String,
 			required: true
 		},

@@ -44,7 +44,7 @@ new Vue({
 			unlinkPredecessor: null,
 			deleteTask: null,
 			resource: null,
-			phase: null
+			phase: null,
 		},
 		toggleForm: {
 			addTask: false,
@@ -96,20 +96,7 @@ new Vue({
 				document.querySelector('.contentPage').scrollTop = 0;
 			});
 		},
-		addTask(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Add Task"
 
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-			}
-		},
 		template(idd) {
 			if (this.showWorkplan) {
 				animate('#workplan', 'fadeOut faster', (el) => {
@@ -117,6 +104,20 @@ new Vue({
 					this.showWorkplan = !this.showWorkplan;
 					this.toggleForm[idd] = !this.toggleForm[idd]
 					this.titleActive = "Template"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
+				});
+			}
+		},
+		addTask(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Add Task"
 
 					el.classList.add('fadeIn');
 					document.querySelector('.contentPage').scrollTop = 0;
@@ -213,7 +214,7 @@ new Vue({
 					this.idd = idd
 					this.showWorkplan = !this.showWorkplan;
 					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Link Predecessor"
+					this.titleActive = "Set Predecessor"
 
 					el.classList.add('fadeIn');
 					document.querySelector('.contentPage').scrollTop = 0;
@@ -234,7 +235,7 @@ new Vue({
 				this.$dialog.confirm({
 					title: 'Unlink Predecessor',
 					message: 'Are you sure you want to remove predecessor from link <b>' + this.selectedTask.pName + '</b> ?',
-					confirmText: 'Oke',
+					confirmText: 'Ok',
 					type: 'is-danger',
 					hasIcon: true,
 					onConfirm: () => window.location.href = this.selectedTask.unlinkPredecessor
@@ -254,7 +255,7 @@ new Vue({
 				this.$dialog.confirm({
 					title: 'Shrink Task',
 					message: 'Are you sure you want to Shrink this task from link <b>' + this.selectedTask.pName + '</b> ?',
-					confirmText: 'Oke',
+					confirmText: 'Ok',
 					type: 'is-danger',
 					hasIcon: true,
 					onConfirm: () => window.location.href = this.selectedTask.unlinkShrink
@@ -274,7 +275,7 @@ new Vue({
 				this.$dialog.confirm({
 					title: 'Delete task',
 					message: 'Are you sure you want to <b>delete</b> ' + this.selectedTask.pName + ' ?',
-					confirmText: 'Oke',
+					confirmText: 'Ok',
 					type: 'is-danger',
 					hasIcon: true,
 					onConfirm: () => window.location.href = this.selectedTask.deleteTask

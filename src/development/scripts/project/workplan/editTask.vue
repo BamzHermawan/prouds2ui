@@ -1,76 +1,108 @@
 <template>
 	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
-		<input type="hidden" name="workplanId" v-model="workplanId" />
+		<input type="hidden" name="projectId" v-model="projectId" />
 		<input type="hidden" name="taskID" v-model="taskID" />
 		<div class="tile is-ancestor">
 			<div class="tile is-vertical is-parent">
 				<div class="tile is-child">
+					<b-field label="Process Group" style="margin-bottom:23px;">
+						<div>
+							<input
+								type="hidden"
+								name="processGroup"
+								v-model="processGroupID"
+							/>
+							<span
+								class="button is-static is-fullwidth is-light-blend"
+								style="justify-content: start;"
+								>{{ processGroupName }}</span
+							>
+						</div>
+					</b-field>
+
+					<!-- Select Parent Task -->
+					<p class="label">Parent Task</p>
+					<input
+						type="hidden"
+						name="parentTaskPrev"
+						v-model="curSubTask"
+					/>
+					<input type="hidden" name="parentTask" v-model="subtask" />
+					<b-autocomplete
+						style="margin-bottom:23px;"
+						v-model="name"
+						placeholder="Choose Parent Task"
+						:open-on-focus="true"
+						:data="filterTaskName"
+						field="pName"
+						required
+						@select="option => (selected = option)"
+					>
+					</b-autocomplete>
+					<!-- Select Parent Task -->
+
 					<!-- Input Task Name -->
+					<input
+						type="hidden"
+						name="taskNamePrev"
+						v-model="taskNamePrev"
+					/>
 					<crud-input
 						type="text"
 						label="Task Name"
 						placeholder="a name for the task"
 						name="taskName"
 						v-model="taskName"
-						input-style="margin-bottom:15px;"
+						input-style="margin-bottom:23px;"
 					>
 					</crud-input>
 
-					<!-- Select Parent Task -->
-					<p class="label">Parent Task</p>
-					<input type="hidden" name="parentTask" v-model="subtask" />
-					<b-autocomplete
-						style="margin-bottom:15px;"
-						v-model="name"
-						placeholder="Choose Parent Task"
-						:open-on-focus="true"
-						:data="filterTaskName"
-						field="pName"
-						@select="option => (selected = option)"
-					>
-					</b-autocomplete>
-					<!-- Select Parent Task -->
-
-					<!-- Select Task Phase -->
+					<input
+						type="hidden"
+						name="progressCalculationPrev"
+						v-model="progressCalculationPrev"
+					/>
+					<input
+						type="hidden"
+						name="progressCalculation"
+						v-model="progressCalculation"
+					/>
 					<crud-input
 						type="select"
-						label="Group Phase"
-						name="phase"
-						placeholder="Choose Task Phase"
-						v-model="phase"
-						input-style="margin-bottom:15px;"
+						label="WBS No."
+						name="wbsNo"
+						placeholder="Choose WBS Number"
+						v-model="wbsNo"
+						input-style="margin-bottom:23px;"
 					>
-						<slot name="phase-option"></slot>
+						<slot name="wbs-option"></slot>
 					</crud-input>
-					<!-- Select Task Phase -->
 
-					<!-- Select Predecessor -->
 					<crud-input
 						type="select"
-						label="Predecessor"
-						name="predecessor"
-						placeholder="This Task Doesn't Have Predecessor"
-						v-model="predecessor"
-						input-style="margin-bottom:15px;"
+						label="Integration Method"
+						name="integration"
+						placeholder="Choose Integration Method"
+						v-model="integration"
+						input-style="margin-bottom:23px;"
+						v-if="showIntegration === 'true'"
 					>
-						<option
-							v-for="(opt, name, idx) in filterPredecessor"
-							:key="idx"
-							:value="opt.pID"
-							>{{ opt.pName }}</option
-						>
-
-						<template slot="addons">
-							<a
-								class="button is-warning"
-								@click="predecessor = null"
-								:disabled="predecessor == null"
-							>
-								Remove Link
-							</a>
-						</template>
+						<slot name="integration-option"></slot>
 					</crud-input>
-					<!-- Select Predecessor -->
+
+					<b-field label="Progress Calculation">
+						<div class="block">
+							<b-checkbox v-model="progressCalculation">
+								Auto by Timesheet
+							</b-checkbox>
+						</div>
+					</b-field>
+
+					<div class="is-pulled-left">
+						<button class="button is-success" type="submit">
+							Save Task
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="tile is-vertical is-parent is-7">
@@ -81,6 +113,11 @@
 						:closable="false"
 					>
 						<!-- Datepicker Start Date -->
+						<input
+							type="hidden"
+							name="startPrev"
+							v-model="startPrev"
+						/>
 						<crud-input
 							type="datepicker"
 							label="Start Date"
@@ -88,12 +125,17 @@
 							v-model="start"
 							placeholder="Pick Start Date"
 							date-locale="en"
-							input-style="margin-bottom: 5px;"
+							input-style="margin-bottom: 23px;"
 						>
 						</crud-input>
 						<!-- Datepicker Start Date -->
 
 						<!-- Datepicker Finish Date -->
+						<input
+							type="hidden"
+							name="finishPrev"
+							v-model="finishPrev"
+						/>
 						<crud-input
 							type="datepicker"
 							label="Finish Date"
@@ -102,46 +144,38 @@
 							v-model="finish"
 							placeholder="Pick Finish Date"
 							date-locale="en"
-							input-style="margin-bottom: 5px;"
+							input-style="margin-bottom: 23px;"
 						>
 						</crud-input>
 						<!-- Datepicker Finish Date -->
 
-						<div class="columns">
-							<div class="column">
-								<!-- Select Workdays -->
-								<crud-input
-									type="select"
-									label="Workdays Schema"
-									name="workdays"
-									placeholder="Choose Workdays Schema"
-									v-model="workdays"
-									input-style="margin-bottom:0px;"
-								>
-									<slot name="workdays-option"></slot>
-								</crud-input>
-								<!-- Select Workdays -->
-							</div>
-							<div class="column is-4">
-								<label class="label">Duration of Days</label>
-								<b-message type="is-danger" class="is-on-field">
-									<p class="has-text-dark">
-										{{ duration }}
-									</p>
-								</b-message>
-							</div>
-						</div>
+						<!-- Select Workdays -->
+						<input
+							type="hidden"
+							name="workdaysPrev"
+							v-model="workdaysPrev"
+						/>
+						<crud-input
+							type="select"
+							label="Workdays Schema"
+							name="workdays"
+							placeholder="Choose Workdays Schema"
+							v-model="workdays"
+							input-style="margin-bottom:23px;"
+						>
+							<slot name="workdays-option"></slot>
+						</crud-input>
+						<!-- Select Workdays -->
+
+						<label class="label">Duration of Days</label>
+						<b-message type="is-danger" class="is-on-field">
+							<p class="has-text-dark">
+								{{ duration }}
+							</p>
+						</b-message>
 					</b-message>
 				</div>
 			</div>
-		</div>
-
-		<hr />
-
-		<div class="is-pulled-right">
-			<button class="button is-success" type="submit">
-				Save Task
-			</button>
 		</div>
 	</form>
 </template>
@@ -160,7 +194,7 @@ export default {
 			type: String,
 			required: true
 		},
-		workplanId: {
+		projectId: {
 			type: String,
 			required: true
 		},
@@ -171,14 +205,17 @@ export default {
 		apiGetDuration: {
 			type: String,
 			required: true
+		},
+		showIntegration: {
+			type: String,
+			required: true
 		}
 	},
 	data() {
 		return {
 			dataBaru: GANTT,
 			taskName: this.task.pName,
-			phase: this.task.phase,
-			workdays: 1,
+			workdays: this.task.workdays,
 			duration: 20,
 			checkboxPredecessor: "true",
 			predecessor: null,
@@ -190,7 +227,17 @@ export default {
 			taskID: this.task.pID,
 			isLoading: false,
 			name: "",
-			selected: null
+			selected: null,
+			processGroupName: "",
+			processGroupID: this.task.processGroupID,
+			progressCalculation: this.task.progressCalculation,
+			taskNamePrev: this.task.pName,
+			progressCalculationPrev: this.task.progressCalculation,
+			startPrev: Moment(this.task.pStart).format("DD/MM/YYYY"),
+			finishPrev: Moment(this.task.pEnd).format("DD/MM/YYYY"),
+			workdaysPrev: this.task.workdays,
+			wbsNo: this.task.wbsNo,
+			integration: this.task.integration
 		};
 	},
 	watch: {
@@ -246,6 +293,18 @@ export default {
 					}
 				})
 				.finally(() => (self.isLoading = false));
+		},
+		getProcessGroup() {
+			if (this.processGroupID != 0) {
+				let found = this.dataBaru.find(
+					task => task.pID === this.processGroupID
+				);
+				if (found != undefined && found.hasOwnProperty("pName")) {
+					this.processGroupName = found.pName;
+				} else {
+					return "";
+				}
+			}
 		}
 	},
 	computed: {
@@ -286,6 +345,7 @@ export default {
 	mounted() {
 		this.predecessor = this.task.pDepend ? this.task.pDepend : null;
 		this.getParent;
+		this.getProcessGroup();
 	}
 };
 </script>
