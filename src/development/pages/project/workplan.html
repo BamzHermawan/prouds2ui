@@ -417,6 +417,31 @@
 		</section>
 	</div>
 
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+				expected return from getNotification!
+				[{
+					"id": {String},
+					"subject": {String},
+					"content": {HTML String},
+					"dateStamp": {Date String with format DD/MM/YYYY},
+					"timeStamp": {Time String with format H:i},
+					"read": {Boolean}
+				}, ... ],
+			 -->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+
+		<!-- 
+			expected return from getNotification!
+			{
+				"duration": {Number} 
+			},
+			post : {start, finish, workdays}
+			-->
+		<api-test url="getDuration.php" key="getDuration"></api-test>
+
+	</div>
+
 	<script>
 		const GANTT = [
 			{

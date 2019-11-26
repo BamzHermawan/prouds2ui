@@ -89,7 +89,7 @@
 		</div>
 
 		<div class="is-pulled-left">
-			<button class="button is-success" type="submit">
+			<button class="button is-success" type="submit" :disabled="btn">
 				Update
 			</button>
 		</div>
@@ -130,8 +130,18 @@ export default {
 			start: moment(this.task.pStart).format("dddd, DD MMMM YYYY"),
 			finish: moment(this.task.pEnd).format("dddd, DD MMMM YYYY"),
 			processGroupName: "",
-			processGroupID: this.task.processGroupID
+			processGroupID: this.task.processGroupID,
+			btn: true
 		};
+	},
+	watch: {
+		parent: function(newQuery) {
+			if (this.parent === this.task.pParent.toString()) {
+				this.btn = true;
+			} else {
+				this.btn = false;
+			}
+		}
 	},
 	methods: {
 		getProcessGroup() {

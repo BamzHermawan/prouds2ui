@@ -90,7 +90,10 @@
 						<slot name="integration-option"></slot>
 					</crud-input>
 
-					<b-field label="Progress Calculation">
+					<b-field
+						label="Progress Calculation"
+						style="margin-bottom:23px"
+					>
 						<div class="block">
 							<b-checkbox v-model="progressCalculation">
 								Auto by Timesheet
