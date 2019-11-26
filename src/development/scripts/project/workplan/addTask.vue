@@ -4,68 +4,63 @@
 		<div class="tile is-ancestor">
 			<div class="tile is-vertical is-parent">
 				<div class="tile is-child">
+					<b-field label="Process Group" style="margin-bottom:23px;">
+						<div>
+							<input
+								type="hidden"
+								name="processGroup"
+								v-model="processGroupID"
+							/>
+							<span
+								class="button is-static is-fullwidth is-light-blend"
+								style="justify-content: start;"
+								>{{ processGroupName }}</span
+							>
+						</div>
+					</b-field>
+
+					<b-field label="Parent Task" style="margin-bottom:23px;">
+						<div>
+							<input
+								type="hidden"
+								name="parentTask"
+								v-model="task.pID"
+							/>
+							<span
+								class="button is-static is-fullwidth is-light-blend"
+								style="justify-content: start;"
+								>{{ task.pName }}</span
+							>
+						</div>
+					</b-field>
+
 					<!-- Input Task Name -->
 					<crud-input
 						type="text"
 						label="Task Name"
 						placeholder="a name for the task"
 						name="taskName"
-						input-style="margin-bottom:15px;"
+						input-style="margin-bottom:23px;"
+						required
 					>
 					</crud-input>
 
-					<!-- Select Parent Task -->
-					<p class="label">Parent Task</p>
-					<input type="hidden" name="parentTask" v-model="subtask" />
-					<b-autocomplete
-						style="margin-bottom:15px;"
-						placeholder="Choose Parent Task"
-						:open-on-focus="true"
-						:data="filterTaskName"
-						field="pName"
-						@select="option => (selected = option)"
-					>
-					</b-autocomplete>
-					<!-- Select Parent Task -->
+					<input
+						type="hidden"
+						name="progressCalculation"
+						v-model="progressCalculation"
+					/>
+					<b-field label="Progress Calculation">
+						<div class="block">
+							<b-checkbox v-model="progressCalculation">
+								Auto by Timesheet
+							</b-checkbox>
+						</div>
+					</b-field>
 
-					<!-- Select Task Phase -->
-					<crud-input
-						type="select"
-						label="Group Phase"
-						name="phase"
-						placeholder="Choose Task Phase"
-						input-style="margin-bottom:15px;"
-					>
-						<slot name="phase-option"></slot>
-					</crud-input>
-					<!-- Select Task Phase -->
-
-					<!-- Select Predecessor -->
-					<crud-input
-						type="select"
-						label="Predecessor"
-						name="predecessor"
-						placeholder="This Task Doesn't Have Predecessor"
-						input-style="margin-bottom:15px;"
-					>
-						<option
-							v-for="(opt, name, idx) in filterPredecessor"
-							:key="idx"
-							:value="opt.pID"
-							>{{ opt.pName }}</option
-						>
-
-						<template slot="addons">
-							<a
-								class="button is-warning"
-								@click="predecessor = null"
-								:disabled="predecessor == null"
-							>
-								Remove Link
-							</a>
-						</template>
-					</crud-input>
-					<!-- Select Predecessor -->
+					<button class="button is-success" type="submit">
+						Save Task
+					</button>
 				</div>
 			</div>
 			<div class="tile is-vertical is-parent is-7">
@@ -83,7 +78,7 @@
 							v-model="start"
 							placeholder="Pick Start Date"
 							date-locale="en"
-							input-style="margin-bottom: 5px;"
+							input-style="margin-bottom: 23px;"
 						>
 						</crud-input>
 						<!-- Datepicker Start Date -->
@@ -97,7 +92,7 @@
 							v-model="finish"
 							placeholder="Pick Finish Date"
 							date-locale="en"
-							input-style="margin-bottom: 5px;"
+							input-style="margin-bottom: 23px;"
 						>
 						</crud-input>
 						<!-- Datepicker Finish Date -->
@@ -111,7 +106,8 @@
 									name="workdays"
 									placeholder="Choose Workdays Schema"
 									v-model="workdays"
-									input-style="margin-bottom:0px;"
+									input-style="margin-bottom:23px;"
+									required
 								>
 									<slot name="workdays-option"></slot>
 								</crud-input>
@@ -136,14 +132,6 @@
 				</div>
 			</div>
 		</div>
-
-		<hr />
-
-		<div class="is-pulled-right">
-			<button class="button is-success" type="submit">
-				Save Task
-			</button>
-		</div>
 	</form>
 </template>
 
@@ -165,6 +153,10 @@ export default {
 			type: String,
 			required: true
 		},
+		task: {
+			type: Object,
+			required: true
+		},
 		apiGetDuration: {
 			type: String,
 			required: true
@@ -179,10 +171,13 @@ export default {
 			duration: "",
 			checkboxPredecessor: "true",
 			predecessor: null,
+			processGroupName: "",
+			processGroupID: this.task.processGroupID,
 			subtask: null,
 			isLoading: false,
 			name: "",
-			selected: null
+			selected: null,
+			progressCalculation: true
 		};
 	},
 	watch: {
@@ -223,6 +218,18 @@ export default {
 					}
 				})
 				.finally(() => (self.isLoading = false));
+		},
+		getProcessGroup() {
+			if (this.processGroupID != 0 || this.processGroupID !== "") {
+				let found = this.dataBaru.find(
+					task => task.pID === this.processGroupID
+				);
+				if (found != undefined && found.hasOwnProperty("pName")) {
+					this.processGroupName = found.pName;
+				} else {
+					return "";
+				}
+			}
 		}
 	},
 	computed: {
@@ -244,6 +251,9 @@ export default {
 				return preFilter && pre.pID != this.taskID;
 			});
 		}
+	},
+	mounted() {
+		this.getProcessGroup();
 	}
 };
 </script>

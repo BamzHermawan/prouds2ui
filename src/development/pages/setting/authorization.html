@@ -177,7 +177,7 @@
 						<section class="card-content animated fadeIn" v-if="add">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 								<b-field label="Profile Name">
-									<b-input expanded name="profile_name"></b-input>
+									<b-input expanded name="profile_name" placeholder="Fill Profile Name"></b-input>
 								</b-field>
 								<input type="hidden" name="accessMenu" v-model="checkboxGroup">
 								<b-field label="Menu Access">
@@ -215,8 +215,9 @@
 						<section class="card-content animated fadeIn" v-if="edit">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 								<b-input expanded name="profil_id" :value="tampung.profile_id" type="hidden"></b-input>
-								<b-field label="Privilage">
-									<b-input expanded name="profile_name" :value="tampung.profile_name"></b-input>
+								<b-field label="Profile Name">
+									<b-input expanded name="profile_name" :value="tampung.profile_name"
+										placeholder="Fill Profile Name"></b-input>
 								</b-field>
 								<div style="margin-top: 28px;">
 									<b-button type="is-danger" @click="editForm" style="min-width: 150px;">

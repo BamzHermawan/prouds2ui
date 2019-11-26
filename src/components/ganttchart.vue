@@ -44,11 +44,14 @@ export default {
 					duration: {
 						title: "Duration"
 					},
-					team: {
-						title: "Team"
+					mandays: {
+						title: "Mandays"
 					},
 					pComp: {
 						title: "Progress %"
+					},
+					role: {
+						title: "Role"
 					}
 				},
 				vUseSingleCell: 10000,

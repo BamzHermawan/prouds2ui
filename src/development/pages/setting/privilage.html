@@ -198,23 +198,24 @@
 						<section class="card-content animated fadeIn" v-if="add">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 								<b-field label="Project Manager">
-									<b-input expanded name="project_manager"></b-input>
+									<b-input expanded name="project_manager" placeholder="Fill Project Manager">
+									</b-input>
 								</b-field>
 								<b-field label="Dominant Segment">
-									<b-select expanded name="dominant_segment">
+									<b-select expanded name="dominant_segment" placeholder="Choose Dominant Segment">
 										<option value="Bangking & Finance">Banking & Finance</option>
 										<option value="Insfrastruktur">Insfrastruktur</option>
 										<option value="Cloud">Cloud</option>
 									</b-select>
 								</b-field>
 								<b-field label="Koordinator">
-									<b-select expanded name="koordinator">
+									<b-select expanded name="koordinator" placeholder="Choose Koordinator">
 										<option value="Ade Wiranata Putra">Ade Wiranata Putra</option>
 										<option value="Boy">Boy</option>
 									</b-select>
 								</b-field>
 								<b-field label="Privilage Level">
-									<b-select expanded name="privilage_level">
+									<b-select expanded name="privilage_level" placeholder="Choose Privilage Level">
 										<option value="Project Manager">Project Manager</option>
 										<option value="Tes Ajah">Tes Ajah</option>
 										<option value="Project Admin">Project Admin</option>
@@ -235,23 +236,27 @@
 						<section class="card-content animated fadeIn" v-if="edit">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
 								<b-field label="Project Manager">
-									<b-input expanded name="Project Manager" :value="tampung.project_manager"></b-input>
+									<b-input expanded name="Project Manager" :value="tampung.project_manager"
+										placeholder="Fill Project Manager"></b-input>
 								</b-field>
 								<b-field label="Dominant Segment">
-									<b-select expanded name="dominant_segment" :value="tampung.dominant_segment">
+									<b-select expanded name="dominant_segment" :value="tampung.dominant_segment"
+										placeholder=" Choose Dominant Segment">
 										<option value="Bangking & Finance">Banking & Finance</option>
 										<option value="Insfrastruktur">Insfrastruktur</option>
 										<option value="Cloud">Cloud</option>
 									</b-select>
 								</b-field>
 								<b-field label="Koordinator">
-									<b-select expanded name="koordinator" :value="tampung.koordinator">
+									<b-select expanded name="koordinator" :value="tampung.koordinator"
+										placeholder="Choose Koordinator">
 										<option value="Ade Wiranata Putra">Ade Wiranata Putra</option>
 										<option value="Boy">Boy</option>
 									</b-select>
 								</b-field>
 								<b-field label="Privilage Level">
-									<b-select expanded name="privilage_level" :value="tampung.privilage_level">
+									<b-select expanded name="privilage_level" :value="tampung.privilage_level"
+										placeholder="Choose Privilage Level">
 										<option value="Project Manager">Project Manager</option>
 										<option value="Tes Ajah">Tes Ajah</option>
 										<option value="Project Admin">Project Admin</option>
