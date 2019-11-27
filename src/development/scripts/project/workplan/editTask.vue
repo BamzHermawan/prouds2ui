@@ -5,7 +5,7 @@
 		<div class="tile is-ancestor">
 			<div class="tile is-vertical is-parent">
 				<div class="tile is-child">
-					<b-field label="Process Group" style="margin-bottom:23px;">
+					<b-field label="Process Group" style="margin-bottom:1em;">
 						<div>
 							<input
 								type="hidden"
@@ -29,7 +29,7 @@
 					/>
 					<input type="hidden" name="parentTask" v-model="subtask" />
 					<b-autocomplete
-						style="margin-bottom:23px;"
+						style="margin-bottom:1em;"
 						v-model="name"
 						placeholder="Choose Parent Task"
 						:open-on-focus="true"
@@ -53,7 +53,7 @@
 						placeholder="a name for the task"
 						name="taskName"
 						v-model="taskName"
-						input-style="margin-bottom:23px;"
+						input-style="margin-bottom:1em;"
 					>
 					</crud-input>
 
@@ -73,7 +73,7 @@
 						name="wbsNo"
 						placeholder="Choose WBS Number"
 						v-model="wbsNo"
-						input-style="margin-bottom:23px;"
+						input-style="margin-bottom:1em;"
 					>
 						<slot name="wbs-option"></slot>
 					</crud-input>
@@ -84,7 +84,7 @@
 						name="integration"
 						placeholder="Choose Integration Method"
 						v-model="integration"
-						input-style="margin-bottom:23px;"
+						input-style="margin-bottom:1em;"
 						v-if="showIntegration === 'true'"
 					>
 						<slot name="integration-option"></slot>
@@ -92,7 +92,7 @@
 
 					<b-field
 						label="Progress Calculation"
-						style="margin-bottom:23px"
+						style="margin-bottom:1em"
 					>
 						<div class="block">
 							<b-checkbox v-model="progressCalculation">
@@ -108,7 +108,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="tile is-vertical is-parent is-7">
+			<div class="tile is-vertical is-parent is-5">
 				<div class="tile is-child">
 					<b-message
 						title="Task Schedule"
@@ -128,7 +128,7 @@
 							v-model="start"
 							placeholder="Pick Start Date"
 							date-locale="en"
-							input-style="margin-bottom: 23px;"
+							input-style="margin-bottom: 1em;"
 						>
 						</crud-input>
 						<!-- Datepicker Start Date -->
@@ -147,35 +147,40 @@
 							v-model="finish"
 							placeholder="Pick Finish Date"
 							date-locale="en"
-							input-style="margin-bottom: 23px;"
+							input-style="margin-bottom: 1em;"
 						>
 						</crud-input>
 						<!-- Datepicker Finish Date -->
 
 						<!-- Select Workdays -->
-						<input
-							type="hidden"
-							name="workdaysPrev"
-							v-model="workdaysPrev"
-						/>
-						<crud-input
-							type="select"
-							label="Workdays Schema"
-							name="workdays"
-							placeholder="Choose Workdays Schema"
-							v-model="workdays"
-							input-style="margin-bottom:23px;"
-						>
-							<slot name="workdays-option"></slot>
-						</crud-input>
+						<div class="columns">
+							<div class="column">
+								<input
+									type="hidden"
+									name="workdaysPrev"
+									v-model="workdaysPrev"
+								/>
+								<crud-input
+									type="select"
+									label="Workdays Schema"
+									name="workdays"
+									placeholder="Choose Workdays Schema"
+									v-model="workdays"
+									input-style="margin-bottom:1em;"
+								>
+									<slot name="workdays-option"></slot>
+								</crud-input>
+							</div>
+							<div class="column is-4">
+								<label class="label">Duration (days)</label>
+								<b-message type="is-danger" class="is-on-field">
+									<p class="has-text-dark">
+										{{ duration }}
+									</p>
+								</b-message>
+							</div>
+						</div>
 						<!-- Select Workdays -->
-
-						<label class="label">Duration of Days</label>
-						<b-message type="is-danger" class="is-on-field">
-							<p class="has-text-dark">
-								{{ duration }}
-							</p>
-						</b-message>
 					</b-message>
 				</div>
 			</div>

@@ -164,6 +164,14 @@
 										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
 									</b-taglist>
 								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">
+											<span class="mdi mdi-account-tie is-marginless"></span>
+										</b-tag>
+										<b-tag type="is-info">2</b-tag>
+									</b-taglist>
+								</div>
 							</b-field>
 						</div>
 					</div>
@@ -369,22 +377,6 @@
 						title="Update Progress" :task="selectedTask" project-id="1"
 						action-event="http://localhost:5501/demo/post_detect.php">
 					</set-progress>
-
-					<merge-task v-if="toggleForm.mergeTask" id="mergeTask" class="animated fadeIn faster"
-						title="Merge Task" :task="selectedTask" project-id="1"
-						action-event="http://localhost:5501/demo/post_detect.php">
-						<template #msg>
-							<b-message type="is-warning">
-								<p class="has-text-dark has-text-justified">
-									<b>Merge Task</b> allows you to move your resource's task
-									assignment and their timesheets to other task, it also
-									delete the old task afterwards. By merging task, it merge
-									task date, assignment, task predecessor, and also a
-									possibility to change the start date of the destination task
-								</p>
-							</b-message>
-						</template>
-					</merge-task>
 
 					<change-parent-task v-if="toggleForm.changeParent" id="changeParent" class="animated fadeIn faster"
 						title="Change Parent Task" :task="selectedTask" project-id="1"
