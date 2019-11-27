@@ -116,14 +116,18 @@
 		<section id="vapp" class="contentPage">
 			<section class="hero is-light is-bold">
 				<div class="hero-body">
-					<div class="container">
-						<h1 class="title is-marginless">
-							<span>My Tasks</span>
-						</h1>
-						<div id="bookmarkPage">
-							<bookmark-button></bookmark-button>
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless has-text-right">
+								<span>My Task</span>
+							</h1>
 						</div>
-					</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
 				</div>
 			</section>
 			<section class="section">
@@ -135,7 +139,7 @@
 								<span class="button is-static">You had task until <span style="margin-right:5px;"></span> <b>{{ endWorkload }}</b></span>
 							</div>
 							<div class="level-right">
-								<b-button tag="a" href="#history-timesheet" type="is-info is-light">
+								<b-button tag="a" href="./historyTimesheet.html" type="is-info is-light">
 									<span class="icon">
 										<span class="mdi mdi-history"></span>
 									</span>

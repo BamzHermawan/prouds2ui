@@ -66,42 +66,57 @@ tr.is-child > td:first-child {
 	margin-top: 0.25em !important;
 }
 
-.breadcrumb li {
-	&.brand {
-		@include brand(1rem, -.5px);
-		background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
-		-webkit-text-fill-color: transparent;
-		-webkit-background-clip: text;
-		background-clip: text;
+@each $name, $size in $brand-sizes {
+  .brand-is-#{$name} {
+    @include brand(nth($size, 1), nth($size, 2), false, $crete);
+  }
+}
 
-		&:hover {
+.breadcrumb { 
+	background-color: $info-light;
+    padding: .5em 1em;
+    border-style: dotted;
+    border-color: lighten($info, 25%);
+	border-radius: .5em;
+	
+	li {
+		margin-top: 0px !important;
+
+		&.brand {
+			@include brand(1rem, -.5px);
+			background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
+			-webkit-text-fill-color: transparent;
+			-webkit-background-clip: text;
+			background-clip: text;
+
+			&:hover {
+				background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
+				-webkit-text-fill-color: transparent;
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+		}
+
+		a:hover {
 			background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
 			-webkit-text-fill-color: transparent;
 			-webkit-background-clip: text;
 			background-clip: text;
 		}
-	}
 
-	a:hover {
-		background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
-		-webkit-text-fill-color: transparent;
-		-webkit-background-clip: text;
-		background-clip: text;
+		&.is-active a {
+			color: $dark;
+		}
 	}
-
-	&.is-active a {
-		color: $dark;
-	}
-		
 }
 
 .breadcrumb {
 	li + li::before {
-		content: ">" !important;
+		content: "/" !important;
 	}
 
 	&.has-succeeds-separator li + li::before {
-		content: ">" !important;
+		content: "/" !important;
 	}
 }
 

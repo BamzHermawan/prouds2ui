@@ -23,30 +23,75 @@
 		</div>
 
 		<b-modal :active.sync="showEntry">
-			<div class="container">
-				<v-chart
-					:data-bae="apiEntryChart"
-					namadata="entry"
-					id="entry"
-					title="Entry"
-				></v-chart>
+			<div class="card has-chart">
+				<div class="card-content">
+					<v-chart
+						ref="entrychart"
+						:data-bae="apiEntryChart"
+						namadata="entry"
+						id="entry"
+						title="Entry"
+					></v-chart>
+				</div>
+				<div class="card-content">
+					<nav class="level">
+						<div class="level-left">
+							<div class="content">
+								<p class="title is-4">Entry Score</p>
+								<p class="subtitle is-6">
+									<span
+										class="mdi mdi-calendar in-left"
+									></span>
+									<span>{{ currentMonth }}</span>
+								</p>
+							</div>
+						</div>
+						<div class="level">
+							<span class="brand-is-large">{{ entry }}%</span>
+						</div>
+					</nav>
+				</div>
 			</div>
 		</b-modal>
 
-		<b-modal :active.sync="showUtilization">
-			<div class="container">
-				<v-chart
-					:data-bae="apiUtilizationChart"
-					namadata="utilization"
-					id="utilization"
-					title="Utilization"
-				></v-chart>
+		<b-modal :active.sync="showUtilization" :width="640" scroll="keep">
+			<div class="card has-chart">
+				<div class="card-content">
+					<v-chart
+						ref="utilchart"
+						:data-bae="apiUtilizationChart"
+						namadata="utilization"
+						id="utilization"
+						title="Utilization"
+					></v-chart>
+				</div>
+				<div class="card-content">
+					<nav class="level">
+						<div class="level-left">
+							<div class="content">
+								<p class="title is-4">Utilization Score</p>
+								<p class="subtitle is-6">
+									<span
+										class="mdi mdi-calendar in-left"
+									></span>
+									<span>{{ currentMonth }}</span>
+								</p>
+							</div>
+						</div>
+						<div class="level">
+							<span class="brand-is-large"
+								>{{ utilization }}%</span
+							>
+						</div>
+					</nav>
+				</div>
 			</div>
 		</b-modal>
 	</section>
 </template>
 
 <script>
+import Moment from "helper-moment";
 import vChart from "../components/highchart";
 export default {
 	props: {
@@ -68,8 +113,21 @@ export default {
 	data() {
 		return {
 			showEntry: false,
-			showUtilization: false
+			showUtilization: false,
+			currentMonth: Moment().format("MMMM YYYY")
 		};
+	},
+	watch: {
+		showUtilization(changed) {
+			if (!changed) {
+				this.currentMonth = null;
+			}
+		},
+		showEntry(changed) {
+			if (!changed) {
+				this.currentMonth = null;
+			}
+		}
 	},
 	components: {
 		vChart

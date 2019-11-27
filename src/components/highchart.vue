@@ -45,7 +45,7 @@ export default {
 					zoomType: "x"
 				},
 				title: {
-					text: this.title
+					text: ""
 				},
 				subtitle: {
 					text:
@@ -152,12 +152,12 @@ export default {
 					let dataChart = response.data[self.namadata];
 					for (let index = 0; index < dataChart.length; index++) {
 						const element = dataChart[index];
-						console.log(element[0]);
 						dataChart[index][0] = moment(
 							element[0],
 							"DD/MM/YYYY"
 						).valueOf();
 					}
+
 					self.dataChart = dataChart;
 				})
 				.catch(function(error) {
@@ -172,7 +172,6 @@ export default {
 		}
 	},
 	mounted() {
-		console.log(typeof this.dataBae);
 		if (typeof this.dataBae == "string") {
 			let self = this;
 			this.fetchdataChart().then(function() {
