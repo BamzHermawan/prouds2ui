@@ -60,6 +60,7 @@ new Vue({
 		idd: "",
 		showWorkplan: true,
 		dataBaru: GANTT,
+		dataWorkdays: WORKDAYS,
 		dataTemplate: TEMPLATE,
 		selectedDocument: null,
 		showSideBar: false
@@ -170,42 +171,18 @@ new Vue({
 
 			}
 		},
-		mergeTask(idd) {
+		changeParentTask(idd) {
 			if (this.showWorkplan) {
 				animate('#workplan', 'fadeOut faster', (el) => {
 					this.idd = idd
 					this.showWorkplan = !this.showWorkplan;
 					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Merge Task"
+					this.titleActive = "Change Parent"
 
 					el.classList.add('fadeIn');
 					document.querySelector('.contentPage').scrollTop = 0;
 					global.psContent.update();
 				});
-			}
-		},
-		changeParentTask(idd) {
-			if (
-				!this.selectedTask.hasOwnProperty('changeableParent') ||
-				!this.selectedTask.changeableParent
-			) {
-				this.$dialog.alert({
-					message: 'Sorry, but you cannot Change the parent of <b>' + this.selectedTask.pName + "</b>.",
-					type: 'is-info'
-				});
-			} else {
-				if (this.showWorkplan) {
-					animate('#workplan', 'fadeOut faster', (el) => {
-						this.idd = idd
-						this.showWorkplan = !this.showWorkplan;
-						this.toggleForm[idd] = !this.toggleForm[idd]
-						this.titleActive = "Change Parent"
-
-						el.classList.add('fadeIn');
-						document.querySelector('.contentPage').scrollTop = 0;
-						global.psContent.update();
-					});
-				}
 			}
 		},
 		linkPredecessor(idd) {
@@ -220,46 +197,6 @@ new Vue({
 					document.querySelector('.contentPage').scrollTop = 0;
 					global.psContent.update();
 				});
-			}
-		},
-		unlinkPredecessor() {
-			if (
-				this.selectedTask.hasOwnProperty('unlinkPredecessor') == null ||
-				!this.selectedTask.unlinkPredecessor
-			) {
-				this.$dialog.alert({
-					message: 'Sorry, <b>(' + this.selectedTask.pName + ")</b> doesn\'t have predecessor.",
-					type: 'is-info'
-				});
-			} else {
-				this.$dialog.confirm({
-					title: 'Unlink Predecessor',
-					message: 'Are you sure you want to remove predecessor from link <b>' + this.selectedTask.pName + '</b> ?',
-					confirmText: 'Ok',
-					type: 'is-danger',
-					hasIcon: true,
-					onConfirm: () => window.location.href = this.selectedTask.unlinkPredecessor
-				})
-			}
-		},
-		shrinkTask() {
-			if (
-				this.selectedTask.hasOwnProperty('shrinkTask') == null ||
-				!this.selectedTask.shrinkTask
-			) {
-				this.$dialog.alert({
-					message: 'Sorry, but you cannot shrink <b>' + this.selectedTask.pName + "</b>.",
-					type: 'is-info'
-				});
-			} else {
-				this.$dialog.confirm({
-					title: 'Shrink Task',
-					message: 'Are you sure you want to Shrink this task from link <b>' + this.selectedTask.pName + '</b> ?',
-					confirmText: 'Ok',
-					type: 'is-danger',
-					hasIcon: true,
-					onConfirm: () => window.location.href = this.selectedTask.unlinkShrink
-				})
 			}
 		},
 		deleteTask() {

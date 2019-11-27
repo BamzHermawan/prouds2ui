@@ -1,6 +1,6 @@
 <template>
 	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
-		<input type="hidden" name="workplanId" v-model="workplanId" />
+		<input type="hidden" name="projectId" v-model="projectId" />
 		<div class="tile is-ancestor">
 			<div class="tile is-vertical is-parent">
 				<div class="tile is-child">
@@ -149,7 +149,7 @@ export default {
 			type: String,
 			required: true
 		},
-		workplanId: {
+		projectId: {
 			type: String,
 			required: true
 		},

@@ -320,15 +320,11 @@
 					<add-task v-if="toggleForm.addTask" id="addTask" :task="selectedTask" class="animated fadeIn faster"
 						project-id="1" api-get-duration="http://localhost:5501/demo/getDuration.php"
 						action-event="http://localhost:5501/demo/post_detect.php">
-						<template slot="phase-option">
-							<option selected style="display: none;"></option>
-							<option value="1">Planning</option>
-							<option value="2">Development</option>
-						</template>
 						<template slot="workdays-option">
 							<option selected style="display: none;"></option>
-							<option value="1">Normal : 5 Business days</option>
-							<option value="2">Medium : 10 Business days</option>
+							<template v-for="(val, idx) in dataWorkdays">
+								<option :value="val.workdaysID">{{ val.workdaysName }}</option>
+							</template>
 						</template>
 					</add-task>
 
@@ -346,15 +342,11 @@
 							<option value="1">Integration 1</option>
 							<option value="2">Integration 2</option>
 						</template>
-						<template slot="phase-option">
-							<option selected style="display: none;"></option>
-							<option value="1">Planning</option>
-							<option value="2">Development</option>
-						</template>
 						<template slot="workdays-option">
 							<option selected style="display: none;"></option>
-							<option value="1">Normal : 5 Business days</option>
-							<option value="2">Medium : 10 Business days</option>
+							<template v-for="(val, idx) in dataWorkdays">
+								<option :value="val.workdaysID">{{ val.workdaysName }}</option>
+							</template>
 						</template>
 					</edit-task>
 
@@ -573,11 +565,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				editAble: false,
-				changeableParent: false,
 				deleteTask: null,
-				shrinkTask: null,
-				unlinkPredecessor: null,
 			},
 			{
 				pID: "2",
@@ -707,10 +695,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			},
 			{
 				pID: "3",
@@ -840,10 +825,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			},
 			{
 				pID: "4",
@@ -973,10 +955,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			},
 			{
 				pID: "6",
@@ -1107,10 +1086,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				shrinkTask: null,
-				deleteTask: null,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			},
 			{
 				pID: "7",
@@ -1240,10 +1216,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			},
 			{
 				pID: "8",
@@ -1373,10 +1346,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			},
 			{
 				pID: "9",
@@ -1506,10 +1476,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			}, {
 				pID: "10",
 				pName: "Develop Front-End",
@@ -1638,10 +1605,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			},
 			{
 				pID: "11",
@@ -1771,10 +1735,7 @@
 						"actionComplete": "http://localhost:5500/project/workplan.html"
 					}
 				],
-				changeableParent: true,
-				unlinkPredecessor: "http://localhost:5500/project/workplan.html",
-				deleteTask: "http://localhost:5500/project/workplan.html",
-				shrinkTask: "http://localhost:5501/demo/post_detect.php?id=Mantaff",
+				deleteTask: "http://localhost:5500/project/workplan.html"
 			}
 		],
 			RESOURCE_AVAILABLE = [
@@ -2035,6 +1996,16 @@
 				}
 			]
 		}
+		WORKDAYS = [
+			{
+				"workdaysID": "1",
+				"workdaysName": "Normal : 5 Business days"
+			},
+			{
+				"workdaysID": "2",
+				"workdaysName": "Medium : 10 Business days"
+			}
+		]
 	</script>
 
 	<script src="../../scripts/layout/controller.js"></script>
