@@ -3,7 +3,7 @@
 		<input type="hidden" name="projectId" v-model="projectId" />
 		<input type="hidden" name="taskID" v-model="taskID" />
 
-		<div class="columns" style="margin-bottom:23px;">
+		<div class="columns" style="margin-bottom:0.5em;">
 			<div class="column is-2">
 				<p class="label">Progress Group</p>
 			</div>
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 
-		<div class="columns" style="margin-bottom:23px;">
+		<div class="columns" style="margin-bottom:0.5em;">
 			<div class="column is-2">
 				<p class="label">Parent Task</p>
 			</div>
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 
-		<div class="columns" style="margin-bottom:23px;">
+		<div class="columns" style="margin-bottom:0.5em;">
 			<div class="column is-2">
 				<p class="label">Task</p>
 			</div>
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 
-		<div class="columns" style="margin-bottom:23px;">
+		<div class="columns" style="margin-bottom:0.5em;">
 			<div class="column is-6">
 				<div class="columns">
 					<div class="column is-4">
@@ -73,7 +73,7 @@
 			</div>
 		</div>
 
-		<div class="columns" style="margin-bottom:23px;">
+		<div class="columns" style="margin-bottom:0.5em;">
 			<div class="column is-2">
 				<p class="label">Duration</p>
 			</div>
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 
-		<div class="columns" style="margin-bottom:23px;">
+		<div class="columns" style="margin-bottom:0.5em;">
 			<div class="column is-6">
 				<div class="columns">
 					<div class="column is-4">
@@ -125,6 +125,7 @@
 				Update
 			</button>
 		</div>
+		<br />
 	</form>
 </template>
 

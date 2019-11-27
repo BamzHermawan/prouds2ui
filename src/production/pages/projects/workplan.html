@@ -117,14 +117,18 @@
 		<section id="vapp" class="contentPage">
 			<section class="hero is-light is-bold">
 				<div class="hero-body">
-					<div class="container">
-						<h1 class="title is-marginless">
-							<span>Workplan</span>
-						</h1>
-						<div id="bookmarkPage">
-							<bookmark-button></bookmark-button>
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless has-text-right">
+								<span>Workplan</span>
+							</h1>
 						</div>
-					</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
 				</div>
 			</section>
 			<section class="section">
@@ -132,8 +136,7 @@
 					<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 						<ul class="is-marginless" v-if="showWorkplan">
 							<li><a href="list.html">Project List</a></li>
-							<li class="is-active"><a hr '
-								ef="#" aria-current="page">Workplan</a></li>
+							<li class="is-active"><a href="#" aria-current="page">Workplan</a></li>
 						</ul>
 						<ul class="is-marginless" v-if="!showWorkplan">
 							<li><a href="list.html">Project List</a></li>
@@ -165,6 +168,14 @@
 									<b-taglist attached size="are-medium">
 										<b-tag type="is-dark">PM</b-tag>
 										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">
+											<span class="mdi mdi-account-tie is-marginless"></span>
+										</b-tag>
+										<b-tag type="is-info">2</b-tag>
 									</b-taglist>
 								</div>
 							</b-field>
@@ -211,206 +222,189 @@
 												</div>
 												<div class="level-item" style="margin-left: 10px;">
 													<b-button type="is-primary is-light is-small is-fullwidth"
-														@click="template(' template')">
-									<b>Use Template</b>
-									</b-button>
+														@click="template('template')">
+														<b>Use Template</b>
+													</b-button>
+												</div>
+												<div class="level-item" style="margin-left:10px;">
+													<b-dropdown hoverable aria-role="list">
+														<b-button type="is-info is-light is-small is-fullwidth"
+															icon-right="menu-down" slot="trigger">
+															<b>Export</b>
+														</b-button>
+
+														<b-dropdown-item aria-role="listitem">
+															<a href="#">to .mpp</a>
+														</b-dropdown-item>
+														<b-dropdown-item aria-role="listitem">
+															<a href="#">to .xls</a>
+														</b-dropdown-item>
+													</b-dropdown>
+												</div>
+											</div>
+										</form>
+									</div>
+								</header>
+								<section class="card-content">
+									<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
+									<ganttchart action-event="http://localhost:5501/demo/post_detect.php">
+									</ganttchart>
+								</section>
+							</div>
+						</div>
+
+						<div class="floating-taskbar animated fadeInRight" v-if="showSideBar">
+							<div class="card">
+								<header class="card-header">
+									<p class="card-header-title">
+										Task Menu
+									</p>
+									<a @click="toggleSideBar" class="card-header-icon">
+										<span class="icon">
+											<i class="mdi mdi-close-box" aria-hidden="true"></i>
+										</span>
+									</a>
+								</header>
+								<div class="card-content is-paddingless">
+									<b-menu class="is-workplan-task-menu">
+										<template v-if="selectedTask.pParent === '0'">
+											<b-menu-list>
+												<b-menu-item @click="addTask('addTask')" label="Add Task"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item label="Edit Task" disabled>
+												</b-menu-item>
+												<b-menu-item label="Assign Team" disabled>
+												</b-menu-item>
+												<b-menu-item label="Update Progress" disabled>
+												</b-menu-item>
+											</b-menu-list>
+											<b-menu-list label="Quick Action">
+												<b-menu-item label="Change Parent Task" disabled>
+												</b-menu-item>
+												<b-menu-item label="Set Predecessor" disabled>
+												</b-menu-item>
+												<b-menu-item label="Delete Task" disabled>
+												</b-menu-item>
+											</b-menu-list>
+										</template>
+
+										<template v-else>
+											<b-menu-list>
+												<b-menu-item @click="addTask('addTask')" label="Add Task"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item @click="editTask('editTask')" label="Edit Task"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
+													:active="false">
+												</b-menu-item>
+												<b-menu-item @click="updateProgress('updateProgress')"
+													label="Update Progress" :active="false">
+												</b-menu-item>
+											</b-menu-list>
+											<b-menu-list label="Quick Action">
+												<b-menu-item @click="changeParentTask('changeParent')"
+													label="Change Parent Task" :active="false">
+												</b-menu-item>
+												<b-menu-item @click="linkPredecessor('linkPredecessor')"
+													label="Set Predecessor" :active="false">
+												</b-menu-item>
+												<b-menu-item @click="deleteTask" label="Delete Task" :active="false">
+												</b-menu-item>
+											</b-menu-list>
+										</template>
+									</b-menu>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<tmp v-if="toggleForm.template" id="template" class="animated fadeIn faster" project-id="1"
+						api-get-duration="http://localhost:5501/demo/getDuration.php"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="template-option">
+							<option selected style="display: none;"></option>
+							<option value="1">New Prouds Development Phase I</option>
+							<option value="2">Development</option>
+						</template>
+					</tmp>
+
+					<add-task v-if="toggleForm.addTask" id="addTask" :task="selectedTask" class="animated fadeIn faster"
+						project-id="1" api-get-duration="http://localhost:5501/demo/getDuration.php"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="workdays-option">
+							<option selected style="display: none;"></option>
+							<template v-for="(val, idx) in dataWorkdays">
+								<option :value="val.workdaysID">{{ val.workdaysName }}</option>
+							</template>
+						</template>
+					</add-task>
+
+					<edit-task v-if="toggleForm.editTask" id="editTask" class="animated fadeIn faster" project-id="1"
+						show-integration="true" :task="selectedTask"
+						api-get-duration="http://localhost:5501/demo/getDuration.php"
+						action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="wbs-option">
+							<option selected style="display: none;"></option>
+							<option value="1">WBS 1</option>
+							<option value="2">WBS 2</option>
+						</template>
+						<template slot="integration-option">
+							<option selected style="display: none;"></option>
+							<option value="1">Integration 1</option>
+							<option value="2">Integration 2</option>
+						</template>
+						<template slot="workdays-option">
+							<option selected style="display: none;"></option>
+							<template v-for="(val, idx) in dataWorkdays">
+								<option :value="val.workdaysID">{{ val.workdaysName }}</option>
+							</template>
+						</template>
+					</edit-task>
+
+					<assign-resource v-if="toggleForm.assignTeam" id="assignTeam" class="animated fadeIn faster"
+						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						<template slot="role-option">
+							<option selected style="display: none;"></option>
+							<option>Programmer Analyst Analyst</option>
+							<option>Programmer Analyst</option>
+							<option>Engineer</option>
+							<option>Senior Business Analyst</option>
+							<option>Junior Tester</option>
+							<option>Quality Assurance</option>
+							<option>Database Administrator</option>
+							<option>Technical Writer</option>
+						</template>
+					</assign-resource>
+
+					<set-progress v-if="toggleForm.updateProgress" id="updateProgress" class="animated fadeIn faster"
+						title="Update Progress" :task="selectedTask" project-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php">
+					</set-progress>
+
+					<change-parent-task v-if="toggleForm.changeParent" id="changeParent" class="animated fadeIn faster"
+						title="Change Parent Task" :task="selectedTask" project-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php">
+					</change-parent-task>
+
+					<link-predecessor v-if="toggleForm.linkPredecessor" id="linkPredecessor"
+						class="animated fadeIn faster" title="Link Predecessor" :task="selectedTask" project-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php">
+					</link-predecessor>
+
 				</div>
-				<div class="level-item" style="margin-left:10px;">
-					<b-dropdown hoverable aria-role="list">
-						<b-button type="is-info is-light is-small is-fullwidth" icon-right="menu-down" slot="trigger">
-							<b>Export</b>
-						</b-button>
+			</section>
 
-						<b-dropdown-item aria-role="listitem">
-							<a href="#">to .mpp</a>
-						</b-dropdown-item>
-						<b-dropdown-item aria-role="listitem">
-							<a href="#">to .xls</a>
-						</b-dropdown-item>
-					</b-dropdown>
-				</div>
-	</div>
-	</form>
-	</div>
-	</header>
-	<section class="card-content">
-		<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
-		<ganttchart action-event="http://localhost:5501/demo/post_detect.php">
-		</ganttchart>
-	</section>
-	</div>
-	</div>
+			<span class="white-space"></span>
+		</section>
 
-	<div class="floating-taskbar animated fadeInRight" v-if="showSideBar">
-		<div class="card">
-			<header class="card-header">
-				<p class="card-header-title">
-					Task Menu
-				</p>
-				<a @click="toggleSideBar" class="card-header-icon">
-					<span class="icon">
-						<i class="mdi mdi-close-box" aria-hidden="true"></i>
-					</span>
-				</a>
-			</header>
-			<div class="card-content is-paddingless">
-				<b-menu class="is-workplan-task-menu">
-					<template v-if="selectedTask.pParent === '0'">
-						<b-menu-list>
-							<b-menu-item @click="addTask('addTask')" label="Add Task" :active="false">
-							</b-menu-item>
-							<b-menu-item label="Edit Task" disabled>
-							</b-menu-item>
-							<b-menu-item label="Assign Team" disabled>
-							</b-menu-item>
-							<b-menu-item label="Update Progress" disabled>
-							</b-menu-item>
-						</b-menu-list>
-						<b-menu-list label="Quick Action">
-							<b-menu-item label="Change Parent Task" disabled>
-							</b-menu-item>
-							<b-menu-item label="Set Predecessor" disabled>
-							</b-menu-item>
-							<b-menu-item label="Delete Task" disabled>
-							</b-menu-item>
-						</b-menu-list>
-					</template>
-
-					<template v-else>
-						<b-menu-list>
-							<b-menu-item @click="addTask('addTask')" label="Add Task" :active="false">
-							</b-menu-item>
-							<b-menu-item @click="editTask('editTask')" label="Edit Task" :active="false">
-							</b-menu-item>
-							<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team" :active="false">
-							</b-menu-item>
-							<b-menu-item @click="updateProgress('updateProgress')" label="Update Progress"
-								:active="false">
-							</b-menu-item>
-						</b-menu-list>
-						<b-menu-list label="Quick Action">
-							<b-menu-item @click="changeParentTask('changeParent')" label="Change Parent Task"
-								:active="false">
-							</b-menu-item>
-							<b-menu-item @click="linkPredecessor('linkPredecessor')" label="Set Predecessor"
-								:active="false">
-							</b-menu-item>
-							<b-menu-item @click="deleteTask" label="Delete Task" :active="false">
-							</b-menu-item>
-						</b-menu-list>
-					</template>
-				</b-menu>
-			</div>
-		</div>
-	</div>
-	</div>
-
-	<tmp v-if="toggleForm.template" id="template" class="animated fadeIn faster" project-id="1"
-		api-get-duration="http://localhost:5501/demo/getDuration.php"
-		action-event="http://localhost:5501/demo/post_detect.php">
-		<template slot="template-option">
-			<option selected style="display: none;"></option>
-			<option value="1">New Prouds Development Phase I</option>
-			<option value="2">Development</option>
-		</template>
-	</tmp>
-
-	<add-task v-if="toggleForm.addTask" id="addTask" :task="selectedTask" class="animated fadeIn faster" project-id="1"
-		api-get-duration="http://localhost:5501/demo/getDuration.php"
-		action-event="http://localhost:5501/demo/post_detect.php">
-		<template slot="phase-option">
-			<option selected style="display: none;"></option>
-			<option value="1">Planning</option>
-			<option value="2">Development</option>
-		</template>
-		<template slot="workdays-option">
-			<option selected style="display: none;"></option>
-			<option value="1">Normal : 5 Business days</option>
-			<option value="2">Medium : 10 Business days</option>
-		</template>
-	</add-task>
-
-	<edit-task v-if="toggleForm.editTask" id="editTask" class="animated fadeIn faster" project-id="1"
-		show-integration="true" :task="selectedTask" api-get-duration="http://localhost:5501/demo/getDuration.php"
-		action-event="http://localhost:5501/demo/post_detect.php">
-		<template slot="wbs-option">
-			<option selected style="display: none;"></option>
-			<option value="1">WBS 1</option>
-			<option value="2">WBS 2</option>
-		</template>
-		<template slot="integration-option">
-			<option selected style="display: none;"></option>
-			<option value="1">Integration 1</option>
-			<option value="2">Integration 2</option>
-		</template>
-		<template slot="phase-option">
-			<option selected style="display: none;"></option>
-			<option value="1">Planning</option>
-			<option value="2">Development</option>
-		</template>
-		<template slot="workdays-option">
-			<option selected style="display: none;"></option>
-			<option value="1">Normal : 5 Business days</option>
-			<option value="2">Medium : 10 Business days</option>
-		</template>
-	</edit-task>
-
-	<assign-resource v-if="toggleForm.assignTeam" id="assignTeam" class="animated fadeIn faster" :task="selectedTask"
-		project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
-		<template slot="role-option">
-			<option selected style="display: none;"></option>
-			<option>Programmer Analyst Analyst</option>
-			<option>Programmer Analyst</option>
-			<option>Engineer</option>
-			<option>Senior Business Analyst</option>
-			<option>Junior Tester</option>
-			<option>Quality Assurance</option>
-			<option>Database Administrator</option>
-			<option>Technical Writer</option>
-		</template>
-	</assign-resource>
-
-	<set-progress v-if="toggleForm.updateProgress" id="updateProgress" class="animated fadeIn faster"
-		title="Update Progress" :task="selectedTask" project-id="1"
-		action-event="http://localhost:5501/demo/post_detect.php">
-	</set-progress>
-
-	<merge-task v-if="toggleForm.mergeTask" id="mergeTask" class="animated fadeIn faster" title="Merge Task"
-		:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
-		<template #msg>
-			<b-message type="is-warning">
-				<p class="has-text-dark has-text-justified">
-					<b>Merge Task</b> allows you to move your resource's task
-					assignment and their timesheets to other task, it also
-					delete the old task afterwards. By merging task, it merge
-					task date, assignment, task predecessor, and also a
-					possibility to change the start date of the destination task
-				</p>
-			</b-message>
-		</template>
-	</merge-task>
-
-	<change-parent-task v-if="toggleForm.changeParent" id="changeParent" class="animated fadeIn faster"
-		title="Change Parent Task" :task="selectedTask" project-id="1"
-		action-event="http://localhost:5501/demo/post_detect.php">
-	</change-parent-task>
-
-	<link-predecessor v-if="toggleForm.linkPredecessor" id="linkPredecessor" class="animated fadeIn faster"
-		title="Link Predecessor" :task="selectedTask" project-id="1"
-		action-event="http://localhost:5501/demo/post_detect.php">
-	</link-predecessor>
-
-	</div>
-	</section>
-
-	<span class="white-space"></span>
-	</section>
-
-	<section id="infoFooter">
-		<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
-			api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
-		</info-footer>
-	</section>
+		<section id="infoFooter">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			</info-footer>
+		</section>
 	</div>
 
 	<div class="api-testing" base="http://localhost:5501/demo/">
@@ -453,7 +447,6 @@
 				pParent: "0",
 				pOpen: 1,
 				pDepend: 0,
-				role: "",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -583,7 +576,6 @@
 				pParent: "1",
 				pOpen: 1,
 				pDepend: 1,
-				role: "Programmer",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -713,7 +705,6 @@
 				pParent: "1",
 				pOpen: 1,
 				pDepend: 0,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -843,7 +834,6 @@
 				pParent: "1",
 				pOpen: 1,
 				pDepend: 3,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -974,7 +964,6 @@
 				pParent: "1",
 				pOpen: 1,
 				pDepend: 1,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -1104,7 +1093,6 @@
 				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -1234,7 +1222,6 @@
 				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -1364,7 +1351,6 @@
 				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -1493,7 +1479,6 @@
 				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
@@ -1623,7 +1608,6 @@
 				pParent: "6",
 				pOpen: 0,
 				pDepend: 2,
-				role: "Business Analyst",
 				estProgress: 43,
 				processGroupID: "1",
 				progressCalculation: true,
