@@ -1,54 +1,100 @@
 <template>
-	<div class="card-modal">
-		<form :action="actionEvent" method="POST">
-			<header class="modal-card-head">
-				<p class="modal-card-title">{{ title }}</p>
-			</header>
-			<section class="modal-card-body">
-				<p class="label">Parent Task</p>
-				<input type="hidden" name="workplanId" v-model="workplanId" />
-				<input type="hidden" name="taskID" v-model="taskID" />
-				<input type="hidden" name="parent" v-model="selectedOptions" />
-				<b-field>
-					<b-input
-						placeholder="Search Parent..."
-						type="search"
-						icon="magnify"
-						v-model="searchQuery"
-					>
-					</b-input>
-				</b-field>
-				<b-select
-					multiple
-					expanded
-					native-size="5"
-					v-model="selectedOptions"
+	<form :action="actionEvent" method="POST">
+		<input type="hidden" name="projectId" v-model="projectId" />
+		<input type="hidden" name="taskID" v-model="taskID" />
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Progress Group</p>
+			</div>
+			<div class="column">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ processGroupName }}</span
 				>
-					<option :value="null" class="has-background-grey-lighter"
-						><span class="has-text-dark"
-							>Doesn't have parent</span
-						></option
-					>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Parent</p>
+			</div>
+			<div class="column">
+				<b-select expanded v-model="parent" name="parent" required>
 					<option
-						v-for="(taska, index) in listTask"
+						v-for="(taska, index) in dataBaru"
 						:key="index"
 						:value="taska.pID"
 						>{{ taska.pName }}
 					</option>
 				</b-select>
-			</section>
-			<section class="modal-card-foot is-clearfix is-block">
-				<div class="is-pulled-right">
-					<b-button type="is-danger" @click="$parent.close()"
-						>Cancel</b-button
-					>
-					<button class="button is-success" type="submit">
-						Update Parent
-					</button>
+			</div>
+		</div>
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Task</p>
+			</div>
+			<div class="column">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ taskName }}</span
+				>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-6">
+				<div class="columns">
+					<div class="column is-4">
+						<p class="label">Start Date</p>
+					</div>
+					<div class="column">
+						<span
+							class="button is-static is-fullwidth is-light-blend"
+							style="justify-content: start;"
+							>{{ start }}</span
+						>
+					</div>
 				</div>
-			</section>
-		</form>
-	</div>
+			</div>
+			<div class="column is-6">
+				<div class="columns">
+					<div class="column is-4">
+						<p class="label">End Date</p>
+					</div>
+					<div class="column">
+						<span
+							class="button is-static is-fullwidth is-light-blend"
+							style="justify-content: start;"
+							>{{ finish }}</span
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns" style="margin-bottom:23px;">
+			<div class="column is-2">
+				<p class="label">Duration</p>
+			</div>
+			<div class="column is-1">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ task.duration }}</span
+				>
+			</div>
+		</div>
+
+		<div class="is-pulled-left">
+			<button class="button is-success" type="submit" :disabled="btn">
+				Update
+			</button>
+		</div>
+		<br />
+	</form>
 </template>
 
 <script>
@@ -61,11 +107,7 @@ export default {
 			type: String,
 			required: true
 		},
-		workplanId: {
-			type: String,
-			required: true
-		},
-		title: {
+		projectId: {
 			type: String,
 			required: true
 		},
@@ -79,53 +121,44 @@ export default {
 			dataBaru: GANTT,
 			taskName: this.task.pName,
 			taskID: this.task.pID,
+			parent: this.task.pParent,
 			taskNew: "",
 			listTask: [],
 			searchTask: [],
 			searchQuery: "",
-			name: ""
+			name: "",
+			start: moment(this.task.pStart).format("dddd, DD MMMM YYYY"),
+			finish: moment(this.task.pEnd).format("dddd, DD MMMM YYYY"),
+			processGroupName: "",
+			processGroupID: this.task.processGroupID,
+			btn: true
 		};
 	},
 	watch: {
-		searchQuery: function(newQuery, oldQuery) {
-			if (newQuery !== "") {
-				let self = this;
-				this.listTask = this.searchTask.filter(task =>
-					task.pName.toLowerCase().includes(newQuery.toLowerCase())
-				);
+		parent: function(newQuery) {
+			if (this.parent === this.task.pParent.toString()) {
+				this.btn = true;
 			} else {
-				this.listTask = this.listTask;
+				this.btn = false;
 			}
 		}
 	},
-	computed: {
-		selectedOptions: {
-			get: function() {
-				return [this.taskNew];
-			},
-			set: function(newValue = []) {
-				if (newValue.length > 0) {
-					this.taskNew = newValue.shift();
+	methods: {
+		getProcessGroup() {
+			if (this.processGroupID != 0 || this.processGroupID !== "") {
+				let found = this.dataBaru.find(
+					task => task.pID === this.processGroupID
+				);
+				if (found != undefined && found.hasOwnProperty("pName")) {
+					this.processGroupName = found.pName;
 				} else {
-					this.taskNew = "";
+					return "";
 				}
 			}
-		},
-		filterTaskName() {
-			this.listTask = this.dataBaru.filter(option => {
-				let checkName =
-					option.pName
-						.toString()
-						.toLowerCase()
-						.indexOf(this.name.toLowerCase()) >= 0;
-
-				return checkName && option.pID != this.taskID;
-			});
-			this.searchTask = this.listTask;
 		}
 	},
 	mounted() {
-		this.filterTaskName();
+		this.getProcessGroup();
 	}
 };
 </script>

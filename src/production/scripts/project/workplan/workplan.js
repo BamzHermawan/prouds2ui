@@ -5,11 +5,13 @@ import Loader from 'helper-loader';
 import { animate } from 'helper-tools';
 import EditTask from "./editTask.vue"
 import AddTask from "./addTask.vue"
+import Tmp from "./template.vue"
 import AssignResource from "./assignResource.vue"
 import SetProgress from "./setProgress.vue"
 import MergeTask from "./mergeTask.vue"
 import ChangeParentTask from "./changeParentTask.vue"
 import LinkPredecessor from "./linkPredecessor.vue"
+import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
@@ -20,6 +22,7 @@ new Vue({
 		ganttchart,
 		EditTask,
 		AddTask,
+		Tmp,
 		AssignResource,
 		SetProgress,
 		MergeTask,
@@ -27,15 +30,6 @@ new Vue({
 		LinkPredecessor
 	},
 	data: {
-		modal: {
-			editTask: false,
-			addTask: false,
-			setProgress: false,
-			changeParentTask: false,
-			linkPredecessor: false,
-			mergeTask: false,
-			assignResource: false
-		},
 		selectedTask: {
 			pID: null,
 			pName: null,
@@ -50,9 +44,24 @@ new Vue({
 			unlinkPredecessor: null,
 			deleteTask: null,
 			resource: null,
-			phase: null
+			phase: null,
 		},
+		toggleForm: {
+			addTask: false,
+			template: false,
+			editTask: false,
+			assignTeam: false,
+			updateProgress: false,
+			mergeTask: false,
+			changeParent: false,
+			linkPredecessor: false,
+		},
+		titleActive: "",
+		idd: "",
+		showWorkplan: true,
 		dataBaru: GANTT,
+		dataWorkdays: WORKDAYS,
+		dataTemplate: TEMPLATE,
 		selectedDocument: null,
 		showSideBar: false
 	},
@@ -77,69 +86,117 @@ new Vue({
 				self.showSideBar = true;
 			}
 		},
-		editTask() {
-			this.modal.editTask = true;
+		actionTask(idd) {
+			document.querySelector('#' + idd).classList.remove('fadeIn', 'faster');
+			animate('#' + idd, 'fadeOut faster', (el) => {
+				this.showWorkplan = !this.showWorkplan;
+				this.toggleForm[idd] = !this.toggleForm[idd]
+				this.idd = ""
+				this.titleActive = ""
+
+				document.querySelector('.contentPage').scrollTop = 0;
+			});
 		},
-		addTask() {
-			this.modal.addTask = true;
-		},
-		setProgress() {
-			this.modal.setProgress = true;
-		},
-		changeParentTask() {
-			if (
-				!this.selectedTask.hasOwnProperty('changeableParent') ||
-				!this.selectedTask.changeableParent
-			) {
-				this.$dialog.alert({
-					message: 'Sorry, but you cannot Change the parent of <b>' + this.selectedTask.pName + "</b>.",
-					type: 'is-info'
+
+		template(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Template"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
 				});
-			} else {
-				this.modal.changeParentTask = true;
 			}
 		},
-		linkPredecessor() {
-			this.modal.linkPredecessor = true;
-		},
-		unlinkPredecessor() {
-			if (
-				this.selectedTask.hasOwnProperty('unlinkPredecessor') == null ||
-				!this.selectedTask.unlinkPredecessor
-			) {
-				this.$dialog.alert({
-					message: 'Sorry, <b>(' + this.selectedTask.pName + ")</b> doesn\'t have predecessor.",
-					type: 'is-info'
+		addTask(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Add Task"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
 				});
-			} else {
-				this.$dialog.confirm({
-					title: 'Unlink Predecessor',
-					message: 'Are you sure you want to remove predecessor from link <b>' + this.selectedTask.pName + '</b> ?',
-					confirmText: 'Oke',
-					type: 'is-danger',
-					hasIcon: true,
-					onConfirm: () => window.location.href = this.selectedTask.unlinkPredecessor
-				})
 			}
 		},
-		shrinkTask() {
-			if (
-				this.selectedTask.hasOwnProperty('shrinkTask') == null ||
-				!this.selectedTask.shrinkTask
-			) {
-				this.$dialog.alert({
-					message: 'Sorry, but you cannot shrink <b>' + this.selectedTask.pName + "</b>.",
-					type: 'is-info'
+		editTask(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Edit Task"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
 				});
-			} else {
-				this.$dialog.confirm({
-					title: 'Shrink Task',
-					message: 'Are you sure you want to Shrink this task from link <b>' + this.selectedTask.pName + '</b> ?',
-					confirmText: 'Oke',
-					type: 'is-danger',
-					hasIcon: true,
-					onConfirm: () => window.location.href = this.selectedTask.unlinkShrink
-				})
+
+			}
+		},
+		assignTeam(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Assign Team"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
+				});
+
+			}
+		},
+		updateProgress(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Update Progress"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
+				});
+
+			}
+		},
+		changeParentTask(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Change Parent"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
+				});
+			}
+		},
+		linkPredecessor(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Set Predecessor"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
+				});
 			}
 		},
 		deleteTask() {
@@ -155,18 +212,12 @@ new Vue({
 				this.$dialog.confirm({
 					title: 'Delete task',
 					message: 'Are you sure you want to <b>delete</b> ' + this.selectedTask.pName + ' ?',
-					confirmText: 'Oke',
+					confirmText: 'Ok',
 					type: 'is-danger',
 					hasIcon: true,
 					onConfirm: () => window.location.href = this.selectedTask.deleteTask
 				})
 			}
-		},
-		mergeTask() {
-			this.modal.mergeTask = true;
-		},
-		assignResource() {
-			this.modal.assignResource = true;
 		},
 		checkExtention(filename) {
 			let sliced = filename.split(".");

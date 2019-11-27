@@ -131,34 +131,21 @@
 						</div>
 						<div class="level-right">
 							<div class="level-item">
-								<b-button v-show="markButton" @click='markAsRead' :loading="onRefresh" type="is-success" class="animated bounceIn">Mark Selected as Read</b-button>
+								<b-button v-show="markButton" @click='markAsRead' :loading="onRefresh" type="is-success"
+									class="animated bounceIn">Mark Selected as Read</b-button>
 							</div>
 						</div>
 					</nav>
 
-					<n-log 
-						:key="log.id" 
-						:log-id="log.id"
-						:ref="'logs-' + idx" 
-						:index="'logs-' + idx" 
-						v-for="(log, idx) in getListLog" 
-						@toggle="openNotification"
-						@selected="onSelect"
-						:subject="log.subject" 
-						:time="log.timeStamp" 
-						:date="log.dateStamp" 
-						:is-read="log.read">
+					<n-log :key="log.id" :log-id="log.id" :ref="'logs-' + idx" :index="'logs-' + idx"
+						v-for="(log, idx) in getListLog" @toggle="openNotification" @selected="onSelect"
+						:subject="log.subject" :time="log.timeStamp" :date="log.dateStamp" :is-read="log.read">
 						<div v-html="log.content" class="content"></div>
 					</n-log>
 
 					<section class="pagination-container">
-						<b-pagination 
-							:total="logs.length" 
-							size="is-small" 
-							rounded 
-							@change="resetLogs"
-							:per-page="perPage" 
-							:current.sync="currentPage">
+						<b-pagination :total="logs.length" size="is-small" rounded @change="resetLogs"
+							:per-page="perPage" :current.sync="currentPage">
 						</b-pagination>
 					</section>
 				</div>
