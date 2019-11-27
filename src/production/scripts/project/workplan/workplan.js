@@ -8,7 +8,6 @@ import AddTask from "./addTask.vue"
 import Tmp from "./template.vue"
 import AssignResource from "./assignResource.vue"
 import SetProgress from "./setProgress.vue"
-import MergeTask from "./mergeTask.vue"
 import ChangeParentTask from "./changeParentTask.vue"
 import LinkPredecessor from "./linkPredecessor.vue"
 import 'helper-filter';
@@ -25,7 +24,6 @@ new Vue({
 		Tmp,
 		AssignResource,
 		SetProgress,
-		MergeTask,
 		ChangeParentTask,
 		LinkPredecessor
 	},
@@ -52,7 +50,6 @@ new Vue({
 			editTask: false,
 			assignTeam: false,
 			updateProgress: false,
-			mergeTask: false,
 			changeParent: false,
 			linkPredecessor: false,
 		},

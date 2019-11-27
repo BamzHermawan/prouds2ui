@@ -4,7 +4,7 @@
 		<div class="tile is-ancestor">
 			<div class="tile is-vertical is-parent">
 				<div class="tile is-child">
-					<b-field label="Process Group" style="margin-bottom:23px;">
+					<b-field label="Process Group" style="margin-bottom:1em;">
 						<div>
 							<input
 								type="hidden"
@@ -19,7 +19,7 @@
 						</div>
 					</b-field>
 
-					<b-field label="Parent Task" style="margin-bottom:23px;">
+					<b-field label="Parent Task" style="margin-bottom:1em;">
 						<div>
 							<input
 								type="hidden"
@@ -40,7 +40,7 @@
 						label="Task Name"
 						placeholder="a name for the task"
 						name="taskName"
-						input-style="margin-bottom:23px;"
+						input-style="margin-bottom:1em;"
 						required
 					>
 					</crud-input>
@@ -63,7 +63,7 @@
 					</button>
 				</div>
 			</div>
-			<div class="tile is-vertical is-parent is-7">
+			<div class="tile is-vertical is-parent is-5">
 				<div class="tile is-child">
 					<b-message
 						title="Task Schedule"
@@ -78,7 +78,7 @@
 							v-model="start"
 							placeholder="Pick Start Date"
 							date-locale="en"
-							input-style="margin-bottom: 23px;"
+							input-style="margin-bottom: 1em;"
 						>
 						</crud-input>
 						<!-- Datepicker Start Date -->
@@ -92,7 +92,7 @@
 							v-model="finish"
 							placeholder="Pick Finish Date"
 							date-locale="en"
-							input-style="margin-bottom: 23px;"
+							input-style="margin-bottom: 1em;"
 						>
 						</crud-input>
 						<!-- Datepicker Finish Date -->
@@ -106,7 +106,7 @@
 									name="workdays"
 									placeholder="Choose Workdays Schema"
 									v-model="workdays"
-									input-style="margin-bottom:23px;"
+									input-style="margin-bottom:1em;"
 									required
 								>
 									<slot name="workdays-option"></slot>
@@ -114,7 +114,7 @@
 								<!-- Select Workdays -->
 							</div>
 							<div class="column is-4">
-								<label class="label">Duration of Days</label>
+								<label class="label">Duration (days)</label>
 								<b-message type="is-danger" class="is-on-field">
 									<p
 										class="has-text-dark"

@@ -49,9 +49,6 @@ export default {
 					},
 					pComp: {
 						title: "Progress %"
-					},
-					role: {
-						title: "Role"
 					}
 				},
 				vUseSingleCell: 10000,

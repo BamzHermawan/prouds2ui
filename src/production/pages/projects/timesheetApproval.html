@@ -116,57 +116,71 @@
 		<section id="vapp" class="contentPage">
 			<section class="hero is-light is-bold">
 				<div class="hero-body">
-					<div class="container">
-						<h1 class="title is-marginless">
-							<span>Timesheet Approval</span>
-						</h1>
-						<div id="bookmarkPage">
-							<bookmark-button></bookmark-button>
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless has-text-right">
+								<span>Timesheet Approval</span>
+							</h1>
 						</div>
-					</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
 				</div>
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container">
-					
+
 					<b-message title="Filter Submission" type="is-info" :closable="false">
 						<div class="columns">
 							<div class="column is-4">
 								<b-field>
 									<p class="control">
-										<span class="button is-static is-info-blend" style="min-width:140px;">Member Name</span>
+										<span class="button is-static is-info-blend" style="min-width:140px;">Member
+											Name</span>
 									</p>
-									<b-autocomplete expanded v-model="filter.member" placeholder="Budi, Dina, etc." open-on-focus :data="memberList">
+									<b-autocomplete expanded v-model="filter.member" placeholder="Budi, Dina, etc."
+										open-on-focus :data="memberList">
 									</b-autocomplete>
 								</b-field>
 								<b-field>
 									<p class="control">
-										<span class="button is-static is-info-blend" style="min-width:140px;">Member Role</span>
+										<span class="button is-static is-info-blend" style="min-width:140px;">Member
+											Role</span>
 									</p>
-									<b-autocomplete expanded v-model="filter.role" placeholder="Programmer, Analyst, etc." open-on-focus :data="roleList">
+									<b-autocomplete expanded v-model="filter.role"
+										placeholder="Programmer, Analyst, etc." open-on-focus :data="roleList">
 									</b-autocomplete>
 								</b-field>
 							</div>
 							<div class="column is-8">
 								<b-field>
 									<p class="control">
-										<span class="button is-static is-info-blend" style="min-width:140px;">Project Name</span>
+										<span class="button is-static is-info-blend" style="min-width:140px;">Project
+											Name</span>
 									</p>
-									<b-autocomplete expanded v-model="filter.project" placeholder="Delivery App, etc." open-on-focus :data="projectList">
+									<b-autocomplete expanded v-model="filter.project" placeholder="Delivery App, etc."
+										open-on-focus :data="projectList">
 									</b-autocomplete>
 								</b-field>
 								<b-field grouped>
 									<b-field expanded style="margin-bottom:0px;">
 										<p class="control">
-											<span class="button is-static is-info-blend" style="min-width:140px;">Timesheet Date</span>
+											<span class="button is-static is-info-blend"
+												style="min-width:140px;">Timesheet Date</span>
 										</p>
-										<crud-input type="datepicker" input-style="margin-bottom:0px;" name="start" placeholder="Filter Date After" v-model="filter.date.start"></crud-input>
+										<crud-input type="datepicker" input-style="margin-bottom:0px;" name="start"
+											placeholder="Filter Date After" v-model="filter.date.start"></crud-input>
 									</b-field>
 									<p class="control" style="padding-top: .5em;">
 										<span class="mdi mdi-arrow-right-bold"></span>
 									</p>
 									<b-field expanded>
-										<crud-input type="datepicker" input-style="margin-bottom:0px;" name="end" placeholder="Filter Date Before" :min-date="filter.date.start" v-model="filter.date.end"></crud-input>
+										<crud-input type="datepicker" input-style="margin-bottom:0px;" name="end"
+											placeholder="Filter Date Before" :min-date="filter.date.start"
+											v-model="filter.date.end"></crud-input>
 									</b-field>
 								</b-field>
 							</div>
@@ -190,39 +204,32 @@
 								</div>
 							</div>
 							<div class="level-right">
-								<form action="http://localhost:5501/demo/post_detect.php" method="post" @submit="approveSelected">
-									<b-button native-type="submit" type="is-success" inverted :disabled="disableApprove">Approve Selected</b-button>
+								<form action="http://localhost:5501/demo/post_detect.php" method="post"
+									@submit="approveSelected">
+									<b-button native-type="submit" type="is-success" inverted
+										:disabled="disableApprove">Approve Selected</b-button>
 								</form>
 							</div>
 						</nav>
 					</b-message>
 
-					<b-table 
-						:data="submission" 
-						style="font-size:11pt" 
-						class="is-packed" 
-						paginated 
-						detailed
-						checkable
-						checkbox-position="right"
-						:checked-rows.sync="selectedRows"
-						show-detail-icon
-						pagination-simple>
+					<b-table :data="submission" style="font-size:11pt" class="is-packed" paginated detailed checkable
+						checkbox-position="right" :checked-rows.sync="selectedRows" show-detail-icon pagination-simple>
 						<template slot-scope="props">
 							<b-table-column width="150" field="role" label="Member">
 								<p class="has-text-weight-bold">{{ props.row.member_name }}</p>
 								<p>{{ props.row.role }}</p>
 							</b-table-column>
-					
+
 							<b-table-column width="160" field="iwo" label="IWO / Project ID">
 								<p>{{ props.row.iwo }}</p>
 								<p>{{ props.row.project_id }}</p>
 							</b-table-column>
-					
+
 							<b-table-column field="project_name" label="Project Name">
 								<p>{{ props.row.project_name }}</p>
 							</b-table-column>
-					
+
 							<b-table-column width="90" field="hour" label="Workhours" centered>
 								<p>{{ props.row.hour }}</p>
 							</b-table-column>
@@ -238,19 +245,24 @@
 
 						<template slot="detail" slot-scope="props">
 							<div class="container">
-								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
+								<span class="button is-warning-blend is-static is-small"
+									style="padding: 0px 2.5em; margin-right: 1em;">
 									<b>{{ props.row.member }} People</b><span style="margin-left:.35em;">Assigned</span>
 								</span>
-								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
-									<b>{{ props.row.workload }}%</b><span style="margin-left:.35em;">Workload Given</span>
+								<span class="button is-warning-blend is-static is-small"
+									style="padding: 0px 2.5em; margin-right: 1em;">
+									<b>{{ props.row.workload }}%</b><span style="margin-left:.35em;">Workload
+										Given</span>
 								</span>
-								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
+								<span class="button is-warning-blend is-static is-small"
+									style="padding: 0px 2.5em; margin-right: 1em;">
 									<span class="icon is-small">
 										<span class="mdi mdi-calendar-clock"></span>
 									</span>
 									<span>{{ props.row.start | moment }} - {{ props.row.end | moment }}</span>
 								</span>
-								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
+								<span class="button is-warning-blend is-static is-small"
+									style="padding: 0px 2.5em; margin-right: 1em;">
 									<b>{{ props.row.location }}</b>
 								</span>
 								<span class="white-space"></span>
@@ -263,7 +275,7 @@
 								</b-field>
 							</div>
 						</template>
-					
+
 						<template slot="empty">
 							<span class="white-space"></span>
 							<b-message type="is-warning">
@@ -1775,7 +1787,7 @@
 			}
 		]
 	</script>
-	
+
 	<script src="../../../main.js"></script>
 	<script src="../../scripts/project/timesheet/timesheetApproval.js"></script>
 </body>
