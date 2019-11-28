@@ -101,32 +101,32 @@ const options = {
 		})
 		.catch(err => job.log.error(err))
 
-	job.log.title("Rewriting HTML Files");
-	var files = [];
-	await dree.scan(outDir, {
-		normalize: true,
-		size: true,
-		sizeInBytes: false,
-		extensions: ['html']
-	}, function(bit){
-		var name = bit.name.split(".");
-		files.push({
-			name: name[0],
-			path: bit.path
-		});
-	});
+	// job.log.title("Rewriting HTML Files");
+	// var files = [];
+	// await dree.scan(outDir, {
+	// 	normalize: true,
+	// 	size: true,
+	// 	sizeInBytes: false,
+	// 	extensions: ['html']
+	// }, function(bit){
+	// 	var name = bit.name.split(".");
+	// 	files.push({
+	// 		name: name[0],
+	// 		path: bit.path
+	// 	});
+	// });
 
-	for (let i = 0; i < files.length; i++) {
+	// for (let i = 0; i < files.length; i++) {
 
-		var cssName = files[i].name === "login" ? "login":"main";
-		await job.replaceInFile(files[i].path, "\/src\/.*\.css", "/src/" + cssName + ".min.css")
-			.catch((err) => job.log.error(err))
+	// 	var cssName = files[i].name === "login" ? "login":"main";
+	// 	await job.replaceInFile(files[i].path, "\/src\/.*\.css", "/src/" + cssName + ".min.css")
+	// 		.catch((err) => job.log.error(err))
 
-		var counting = i > 8 ? (i + 1) : "0" + (i + 1);
-		await job.replaceInFile(files[i].path, "\/src\/.*\.js", "/src/" + files[i].name + ".min.js")
-			.then(() => job.log.process("[" + counting + "/" + files.length + "] Rewriting CSS|JS on  ->  " + colorit(files[i].path).green().toString()))
-			.catch((err) => job.log.error(err))
-	}
+	// 	var counting = i > 8 ? (i + 1) : "0" + (i + 1);
+	// 	await job.replaceInFile(files[i].path, "\/src\/.*\.js", "/src/" + files[i].name + ".min.js")
+	// 		.then(() => job.log.process("[" + counting + "/" + files.length + "] Rewriting CSS|JS on  ->  " + colorit(files[i].path).green().toString()))
+	// 		.catch((err) => job.log.error(err))
+	// }
 
 	job.log.success("Finished Every Job Perfectly!");
 })();

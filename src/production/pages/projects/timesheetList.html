@@ -131,16 +131,15 @@
 				</div>
 			</section>
 			<section class="section">
-				<div id="contentApp" class="container">
-
+				<div id="contentApp" class="container" data-title="My Tasks">
 					<div v-if="showList">
 						<nav class="level">
 							<div class="level-left">
-								<span class="button is-static">You had task until <span
-										style="margin-right:5px;"></span> <b>{{ endWorkload }}</b></span>
+								<span class="button is-static">You had task until <span style="margin-right:5px;"></span>
+									<b>{{ endWorkload }}</b></span>
 							</div>
 							<div class="level-right">
-								<b-button tag="a" href="#history-timesheet" type="is-info is-light">
+								<b-button tag="a" href="./historyTimesheet.html" type="is-info is-light">
 									<span class="icon">
 										<span class="mdi mdi-history"></span>
 									</span>
@@ -148,31 +147,31 @@
 								</b-button>
 							</div>
 						</nav>
-
+				
 						<task-group title="Overdue Task" :value="false" type="is-delayed">
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
 									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :task="ts"></task-card>
 								</div>
 							</div>
-
+				
 							<b-message v-if="task.delayed.length <= 0" type="is-success">
 								<p class="has-text-centered">Hooray, you have no delayed task 🎉</p>
 							</b-message>
 						</task-group>
-
+				
 						<task-group title="On Going Task" always-show>
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.ongoing" :key="idx" class="column is-4-desktop is-6">
 									<task-card @clicked="setTimesheet(ts)" :task="ts"></task-card>
 								</div>
 							</div>
-
+				
 							<b-message v-if="task.ongoing.length <= 0" type="is-info">
 								<p class="has-text-centered">Today you have no task, please stand by 🚀</p>
 							</b-message>
 						</task-group>
-
+				
 						<task-group title="Scheduled Task" type="is-scheduled">
 							<div v-for="(group, i) in task.scheduled" :key="i">
 								<div :class="'task-divider' + (i==0?' no-top-margin':'')">
@@ -184,13 +183,13 @@
 									</div>
 								</div>
 							</div>
-
+				
 							<b-message v-if="task.scheduled.length <= 0" type="is-light">
 								<p class="has-text-centered">There is currently no scheduled task</p>
 							</b-message>
 						</task-group>
 					</div>
-
+				
 					<div v-if="showForm" class="animated fadeIn faster">
 						<div class="columns is-marginless">
 							<div class="column is-8-desktop content is-marginless is-paddingless">
@@ -228,8 +227,7 @@
 										</b-taglist>
 									</div>
 								</b-field>
-								<span class="button is-warning-blend is-static is-small"
-									style="padding: 0px 2.5em; margin-right: 1em;">
+								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
 									<span style="margin-right:.35em;">Assigned as</span><b>{{ dataForm.role }}</b>
 								</span>
 								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em;">
@@ -245,20 +243,19 @@
 								</a>
 							</div>
 						</div>
-
+				
 						<!-- Add horizontal line -->
 						<hr>
-
+				
 						<form @submit="submitForm" action="http://localhost:5501/demo/post_detect.php" method="POST"
 							enctype="multipart/form-data">
 							<div class="columns">
 								<div class="column is-8-desktop add-border-right">
-									<b-message type="is-info" size="is-small" title="Task" :closable="false"
-										class="is-normal-font">
+									<b-message type="is-info" size="is-small" title="Task" :closable="false" class="is-normal-font">
 										<b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
 										<p class="has-text-weight-light">{{ dataForm.task }}</p>
 									</b-message>
-
+				
 									<b-field label="Activity">
 										<b-input maxlength="200" type="textarea" name="activity"
 											placeholder="Describe your activity related to this task so that your pm could understand what you do."
@@ -270,10 +267,10 @@
 									<input type="hidden" name="endDate" :value="endDate">
 									<input type="hidden" name="dateIsRange" :value="rangeToggle">
 									<b-field label="Timesheet Date">
-										<b-tooltip label="Please Select Timesheet Date" type="is-warning"
-											:active="datepicker.alert" always style="width:100%;">
-											<b-button type="is-success" outlined icon-left="calendar"
-												class="is-fullwidth" @click="openModalDate">
+										<b-tooltip label="Please Select Timesheet Date" type="is-warning" :active="datepicker.alert"
+											always style="width:100%;">
+											<b-button type="is-success" outlined icon-left="calendar" class="is-fullwidth"
+												@click="openModalDate">
 												<span>{{ timesheetDate }}</span>
 											</b-button>
 										</b-tooltip>
@@ -284,17 +281,16 @@
 												range</b-switch>
 										</div>
 									</nav>
-
-									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''"
-										always style="width:100%;">
+				
+									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''" always
+										style="width:100%;">
 										<b-field label="Total Work Hour" style="margin-bottom: 23px;">
-											<b-numberinput controls-position="compact" name="hour" min="0" max="24"
-												expanded placeholder="0" :editable="false" v-model="workhour.value"
-												type="is-info">
+											<b-numberinput controls-position="compact" name="hour" min="0" max="24" expanded
+												placeholder="0" :editable="false" v-model="workhour.value" type="is-info">
 											</b-numberinput>
 										</b-field>
 									</b-tooltip>
-
+				
 									<crud-input type="select" name="location" label="Working Location"
 										placeholder="Choose area location">
 										<option selected style="display: none;"></option>
@@ -303,7 +299,7 @@
 										<option value="3">Luar Jawa Dalam Negeri</option>
 										<option value="4">Luar Negeri</option>
 									</crud-input>
-
+				
 									<button class="button is-success is-long" type="submit">
 										Submit
 									</button>
@@ -311,7 +307,7 @@
 							</div>
 						</form>
 					</div>
-
+				
 					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
 						<b-message type="is-info">
 							Pick Timesheet Date
@@ -324,9 +320,8 @@
 											Timesheet Start Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()"
-										:min-date="getMinDate()" :focused-date="datepicker.start.focused"
-										:events="selectedDateList">
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
+										:focused-date="datepicker.start.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.start.selected"
@@ -337,8 +332,7 @@
 												</b-select>
 											</b-field>
 											<small>
-												<span
-													class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
+												<span class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
 												<span>Timesheet has been submited</span>
 											</small>
 										</template>
@@ -365,8 +359,7 @@
 												</b-select>
 											</b-field>
 											<small>
-												<span
-													class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
+												<span class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
 												<span>Timesheet has been submited</span>
 											</small>
 										</template>
@@ -375,12 +368,9 @@
 							</div>
 						</div>
 					</b-modal>
-
+				
 					<b-modal :active.sync="modal.singleDate" trap-focus width="302px" class="has-hidden-scrollbar">
-						<b-message type="is-info" v-if="rangeToggle">
-							Pick Timesheet Date
-						</b-message>
-						<div class="columns">
+						<div class="columns is-multiline">
 							<div class="column">
 								<div class="card is-inline-datepicker">
 									<header class="card-header">
@@ -388,9 +378,8 @@
 											Timesheet Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()"
-										:min-date="getMinDate()" :focused-date="datepicker.start.focused"
-										:events="datepicker.filled">
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
+										:focused-date="datepicker.start.focused" :events="datepicker.filled">
 										<template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.start.selected"
@@ -401,8 +390,7 @@
 												</b-select>
 											</b-field>
 											<small>
-												<span
-													class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
+												<span class="mdi mdi-checkbox-blank-circle has-text-warning in-left"></span>
 												<span>Timesheet has been submited</span>
 											</small>
 										</template>

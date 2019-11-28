@@ -22,6 +22,18 @@
 		.level-item:not(:last-child) {
 			margin-right: 5px;
 		}
+
+		.columns {
+			padding: 0px .375em .75em .375em;
+
+			.column {
+				padding: .7em .375rem 0px .375rem;
+			}
+
+			.column:nth-child(3n+2) {
+				padding: .7em 0.35em 0px .35rem;
+			}
+		}
 	}
 
 	&.is-always-show {
@@ -62,6 +74,22 @@
 				.card-content:first-child {
 					background-color: $grey-light;
 				}
+			}
+		}
+	}
+}
+
+@supports (display: grid) {
+	.task-container {
+		.columns {
+			padding: .75em !important;
+			display: grid !important;
+			grid-gap: .75em;
+  			grid-template-columns: repeat(3, 1fr);
+
+			.column {
+				padding: 0px !important;
+				width: 100%;
 			}
 		}
 	}
