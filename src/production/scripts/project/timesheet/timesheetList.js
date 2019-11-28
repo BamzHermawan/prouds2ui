@@ -187,6 +187,10 @@ new Vue({
 			});
 		},
 		groupByMonth(task){
+			if (task.length <= 0) {
+				return [];
+			}
+
 			let cooked = [];
 			let current = Moment(task[0].start, 'DD/MM/YYYY');
 
