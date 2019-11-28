@@ -208,7 +208,7 @@ new Vue({
 			} else {
 				this.$dialog.confirm({
 					title: 'Delete task',
-					message: 'Are you sure you want to <b>delete</b> ' + this.selectedTask.pName + ' ?',
+					message: 'Are you sure to <b>delete</b> ' + this.selectedTask.pName + ' ?',
 					confirmText: 'Ok',
 					type: 'is-danger',
 					hasIcon: true,
