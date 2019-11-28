@@ -134,7 +134,7 @@
 								<span class="button is-static">You had task until <span style="margin-right:5px;"></span> <b>{{ endWorkload }}</b></span>
 							</div>
 							<div class="level-right">
-								<b-button tag="a" href="#history-timesheet" type="is-info is-light">
+								<b-button tag="a" href="./historyTimesheet.html" type="is-info is-light">
 									<span class="icon">
 										<span class="mdi mdi-history"></span>
 									</span>
@@ -351,9 +351,6 @@
 					</b-modal>
 					
 					<b-modal :active.sync="modal.singleDate" trap-focus="" width="302px" class="has-hidden-scrollbar">
-						<b-message type="is-info" v-if="rangeToggle">
-							Pick Timesheet Date
-						</b-message>
 						<div class="columns">
 							<div class="column">
 								<div class="card is-inline-datepicker">
