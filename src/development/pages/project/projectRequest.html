@@ -245,115 +245,113 @@
 									<li class="is-active"><a href="#" aria-current="page">New Request</a></li>
 								</ul>
 							</nav>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Project Name</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="project_name" placeholder="Fill Project Name"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Customer</p>
-								</div>
-								<div class="column">
-									<input type="hidden" name="customer_id" v-model="customer_id" />
-									<b-autocomplete v-model="customer_name" placeholder="Choose Customer"
-										:open-on-focus="true" :data="filterCustomer" field="customer_name"
-										@select="option => (selected = option)" required>
-									</b-autocomplete>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Project Type</p>
-								</div>
-								<div class="column">
-									<crud-input type="select" name="project_type" placeholder="Choose Project Type"
-										input-style="margin-bottom: 0px;" required>
-										<option value="1">Managed Service</option>
-										<option value="2">Research and Development</option>
-										<option value="3">Implementation</option>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-6">
-									<div class="columns">
-										<div class="column is-4">
-											<p class="label">Start Date</p>
-										</div>
-										<div class="column">
-											<crud-input type="datepicker" name="start_date"
-												placeholder="Pick Start Date" date-locale="en" v-model="start_date"
-												input-style="margin-bottom: 0px;">
-											</crud-input>
-										</div>
+							<b-field horizontal label="Project Name">
+								<crud-input type="text" name="project_name" placeholder="Fill Project Name" input-style="margin-bottom: 0px;" required>
+								</crud-input>
+							</b-field>
+
+							<input type="hidden" name="customer_id" v-model="customer_id" />
+							<b-field horizontal label="Customer">
+								<b-autocomplete v-model="customer_name" placeholder="Choose Customer" :open-on-focus="true" :data="filterCustomer"
+									field="customer_name" @select="option => (selected = option)" required>
+								</b-autocomplete>
+							</b-field>
+
+							<b-field horizontal label="Project Type">
+								<crud-input type="select" name="project_type" placeholder="Choose Project Type" input-style="margin-bottom: 0px;"
+									required>
+									<option value="1">Managed Service</option>
+									<option value="2">Research and Development</option>
+									<option value="3">Implementation</option>
+								</crud-input>
+							</b-field>
+
+							<b-field horizontal label="Project Date">
+								<b-field>
+									<div class="control">
+										<span class="button is-static is-info-blend">Start Date</span>
 									</div>
-								</div>
-								<div class="column is-6">
-									<div class="columns">
-										<div class="column is-4">
-											<p class="label">End Date</p>
-										</div>
-										<div class="column">
-											<crud-input type="datepicker" :min-date="start_date" name="end_date"
-												placeholder="Pick End Date" date-locale="en"
-												input-style="margin-bottom: 0px;">
-											</crud-input>
-										</div>
+									<crud-input type="datepicker" name="start_date" placeholder="Pick Start Date" date-locale="en" v-model="start_date"
+										input-style="margin-bottom: 0px;">
+									</crud-input>
+								</b-field>
+								<b-field>
+									<div class="control">
+										<span class="button is-static is-info-blend">End Date</span>
 									</div>
-								</div>
-							</div>
+									<crud-input type="datepicker" :min-date="start_date" name="end_date" placeholder="Pick End Date" date-locale="en"
+										input-style="margin-bottom: 0px;">
+									</crud-input>
+								</b-field>
+							</b-field>
+							
+							<hr>
+
 							<div class="columns">
-								<div class="column is-6">
+								<div class="column">
 									<b-field label="Describe about this Project">
-										<crud-input type="textarea" name="description"
-											placeholder="Fill Project Description" input-style="margin-bottom: 0px;"
-											required>
+										<crud-input type="textarea" name="description" placeholder="Fill Project Description"
+											input-style="margin-bottom: 0px;" required>
 										</crud-input>
 									</b-field>
 									<b-field label="Project Background">
-										<crud-input type="textarea" name="project_background"
-											placeholder="Fill Project Background" input-style="margin-bottom: 0px;"
-											required>
+										<crud-input type="textarea" name="project_background" placeholder="Fill Project Background"
+											input-style="margin-bottom: 0px;" required>
 										</crud-input>
 									</b-field>
-									<br>
-									<button class="button is-success pull-right is-long" type="submit">
-										Save
-									</button>
+									<span class="white-space is-small"></span>
+									<div class="buttons">
+										<b-button @click="newRequest" tag="a" type="is-danger is-long">Cancel</b-button>
+										<button class="button is-success is-long" type="submit">
+											Save
+										</button>
+									</div>
 								</div>
 								<div class="column">
-									<p class="label">Document Evidence</p>
-									<b-upload v-model="selectedDocument" name="evidDoc[]" multiple required
-										style="width:100%;">
-										<a class="button is-info is-fullwidth">
-											<b-icon icon="upload"></b-icon>
-											<span>Browse File</span>
-										</a>
-									</b-upload>
-									<p :class="'help ' + determineFieldStatus">
-										File yang dibolehkan: jpg, jpeg, png, doc, docx,
-										pdf, xls, xlsx, ppt, pptx ; File size maksimal
-										20MB
-									</p>
-									<div class="white-space"></div>
-									<article class="media" v-for="(doc, idx) in selectedDocument">
-										<div class="media-content">
-											<div class="content">
-												<span class="tag is-info">
-													{{ doc.name }}
-													<button class="delete is-small" type="button"
-														@click="deleteFile(idx)">
-													</button>
-												</span>
-											</div>
+									<div class="field">
+										<label class="label">Document Evidence</label>
+										<div class="control">
+											<b-upload v-model="selectedDocument" name="evidDoc[]" multiple required style="width:100%;">
+												<a class="button is-info is-fullwidth">
+													<b-icon icon="upload"></b-icon>
+													<span>Browse File</span>
+												</a>
+											</b-upload>
 										</div>
-									</article>
+										<p :class="'help ' + determineFieldStatus">
+											File yang dibolehkan: jpg, jpeg, png, doc, docx,
+											pdf, xls, xlsx, ppt, pptx ; File size maksimal
+											20MB
+										</p>
+
+										<div class="white-space"></div>
+
+										<file-media
+											href="#downloadFilePenting"
+											closable editable
+										>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non odit veniam distinctio provident dolores!</file-media>
+
+										<file-media ext="ppt" href="#downloadFilePenting" closable>
+											ini file paling penting sedunia.docx
+										</file-media>
+
+										<file-media ext="xlsx" href="#downloadFilePenting">
+											ini file paling penting sedunia.docx
+										</file-media>
+
+										<span class="white-space"></span>
+										<article class="media" v-for="(doc, idx) in selectedDocument">
+											<div class="media-content">
+												<div class="content">
+													<span class="tag is-info">
+														{{ doc.name }}
+														<button class="delete is-small" type="button" @click="deleteFile(idx)">
+														</button>
+													</span>
+												</div>
+											</div>
+										</article>
+									</div>
 								</div>
 							</div>
 						</form>
