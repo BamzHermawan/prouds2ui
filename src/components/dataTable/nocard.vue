@@ -3,16 +3,19 @@
 		<slot name="top-body"></slot>
 		<nav class="level">
 			<div class="level-left">
-				<b-field>
-					<b-input
-						placeholder="Search..."
-						type="search"
-						icon="magnify"
-						v-model="search"
-						style="margin-right: 10px;"
-					>
-					</b-input>
-				</b-field>
+				<div class="level-item">
+					<b-field>
+						<b-input
+							placeholder="Search..."
+							type="search"
+							icon="magnify"
+							v-model="search"
+							style="margin-right: 10px;"
+						>
+						</b-input>
+					</b-field>
+				</div>
+				<slot name="top-left-after"></slot>
 			</div>
 			<div class="level-right">
 				<slot name="top-right" :search="search" :page="currentPage">
@@ -50,6 +53,7 @@
 			:checkable="checkable"
 			:is-row-checkable="isRowCheckable"
 			:checked-rows.sync="checked"
+			:checkbox-position="checkboxPosition"
 			ref="table"
 			:class="addedClass()"
 			:row-class="rowClass"
@@ -155,6 +159,9 @@ export default {
 			default: false
 		},
 		title: {
+			type: String
+		},
+		checkboxPosition: {
 			type: String
 		},
 		detailed: {
