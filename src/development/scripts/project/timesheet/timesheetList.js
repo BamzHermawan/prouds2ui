@@ -3,7 +3,7 @@ import Buefy from 'buefy';
 import Api from 'helper-apis';
 import Loader from 'helper-loader';
 import Moment from 'helper-moment';
-import { checkConnection, notified } from 'helper-tools';
+import { checkConnection, notified, isEmpty } from 'helper-tools';
 import { crudInput, progressBar, taskGroup, taskCard } from 'components';
 import 'helper-filter';
 
@@ -187,6 +187,10 @@ new Vue({
 			});
 		},
 		groupByMonth(task){
+			if(task.length <= 0){
+				return [];
+			}
+
 			let cooked = [];
 			let current = Moment(task[0].start, 'DD/MM/YYYY');
 

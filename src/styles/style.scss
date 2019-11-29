@@ -28,6 +28,7 @@ html {
 @import "components/progress";
 @import "components/timesheet";
 @import "components/notification";
+@import "components/filemedia";
 
 tr.is-child > td:first-child {
 	padding-left: 1.5rem;
@@ -313,6 +314,12 @@ p.add-divider-top {
 			border-color: transparent;
 			color: nth($color, 2) !important;
 		}
+	}
+}
+
+.field.is-horizontal {
+	label.label {
+		text-align: left;
 	}
 }
 

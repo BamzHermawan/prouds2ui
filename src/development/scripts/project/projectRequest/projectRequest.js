@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import { notified, checkConnection, animate } from 'helper-tools'
-import { dataTableNoCard, crudInput, linker } from "components";
+import { dataTableNoCard, crudInput, linker, fileMedia } from "components";
 import api from 'helper-apis';
 import Moment from "helper-moment";
 
@@ -9,7 +9,7 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		dataTableNoCard, crudInput, linker
+		dataTableNoCard, crudInput, linker, fileMedia
 	},
 	data: {
 		userlog: {

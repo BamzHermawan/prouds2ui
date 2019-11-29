@@ -1,0 +1,41 @@
+.file-item {
+	display: grid;
+	padding: 8px 0px;
+	grid-template-columns: 28px 1fr 78px;
+
+	&.has-no-checkbox {
+		grid-template-columns: 1fr 78px;
+	}
+
+	&.has-single-button {
+		grid-template-columns: 1fr 34px;
+	}
+
+	&.has-no-buttons {
+		grid-template-columns: 1fr;
+	}
+
+	.checkbox-container {
+		padding-top: 6px;
+	}
+
+	.filename {
+		margin: 0px 8px;
+
+		p {
+			width: 100%;
+			max-width: 500px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		&:hover {
+			background-color: $info-light;
+		}
+	}
+
+	& + .file-item {
+		border-top: solid 1px $grey-lighter;
+	}
+}
