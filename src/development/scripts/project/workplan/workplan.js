@@ -7,6 +7,7 @@ import EditTask from "./editTask.vue"
 import AddTask from "./addTask.vue"
 import Tmp from "./template.vue"
 import AssignResource from "./assignResource.vue"
+import StopAssignment from "./stopAssignment.vue"
 import SetProgress from "./setProgress.vue"
 import ChangeParentTask from "./changeParentTask.vue"
 import LinkPredecessor from "./linkPredecessor.vue"
@@ -23,6 +24,7 @@ new Vue({
 		AddTask,
 		Tmp,
 		AssignResource,
+		StopAssignment,
 		SetProgress,
 		ChangeParentTask,
 		LinkPredecessor
@@ -49,6 +51,7 @@ new Vue({
 			template: false,
 			editTask: false,
 			assignTeam: false,
+			stopAssign: false,
 			updateProgress: false,
 			changeParent: false,
 			linkPredecessor: false,
@@ -151,6 +154,20 @@ new Vue({
 					global.psContent.update();
 				});
 
+			}
+		},
+		stopAssign(idd) {
+			if (this.showWorkplan) {
+				animate('#workplan', 'fadeOut faster', (el) => {
+					this.idd = idd
+					this.showWorkplan = !this.showWorkplan;
+					this.toggleForm[idd] = !this.toggleForm[idd]
+					this.titleActive = "Stop Assignment"
+
+					el.classList.add('fadeIn');
+					document.querySelector('.contentPage').scrollTop = 0;
+					global.psContent.update();
+				});
 			}
 		},
 		updateProgress(idd) {

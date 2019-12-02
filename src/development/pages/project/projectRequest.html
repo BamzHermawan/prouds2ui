@@ -177,21 +177,14 @@
 										<b-dropdown-item has-link>
 											<a
 												@click="approve(props.row, 'http://localhost:5501/demo/post_detect.php?')">
-												<span class="mdi mdi-checkbox-marked-circle-outline"></span>
+												<span class="mdi mdi-checkbox-marked-outline"></span>
 												Approve
 											</a>
 										</b-dropdown-item>
 										<b-dropdown-item has-link>
 											<a @click="edit(props.row)">
-												<span class="mdi mdi-checkbox-marked-outline"></span>
+												<span class="mdi mdi-square-edit-outline"></span>
 												Edit
-											</a>
-										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a
-												@click="deleteRequest(props.row,'http://localhost:5501/demo/post_detect.php?')">
-												<span class="mdi mdi-delete-outline"></span>
-												Delete
 											</a>
 										</b-dropdown-item>
 										<b-dropdown-item has-link>
@@ -201,30 +194,38 @@
 												Set IWO
 											</a>
 										</b-dropdown-item>
+										<b-dropdown-item has-link>
+											<a
+												@click="deleteRequest(props.row,'http://localhost:5501/demo/post_detect.php?')">
+												<span class="mdi mdi-delete-outline"></span>
+												Delete
+											</a>
+										</b-dropdown-item>
 									</b-dropdown>
 								</b-table-column>
 
 							</template>
+							<template slot="top-left-after">
+								<div class="level-item">
+									<b-field>
+										<div class="control">
+											<span class="button is-static is-light-blend">
+												Status
+											</span>
+										</div>
+										<b-select v-model="selectedStatus">
+											<option value="">All</option>
+											<option value="Proposed">Proposed</option>
+											<option value="New Without IWO">New Without IWO</option>
+										</b-select>
+									</b-field>
+								</div>
+							</template>
 							<template slot="top-right">
 								<div class="navbar-menu">
-									<div class="columns" style="margin-right: 10px; margin-top: 7px;">
-										<div class="column">
-											<b-button type="is-info is-small is-rounded" @click="newRequest">New Request
-											</b-button>
-										</div>
-									</div>
-									<div class="columns" style="margin-top:2px">
-										<div class="column" style="margin-top: 5px;">
-											<p>Status :</p>
-										</div>
-										<div class="column">
-											<b-select v-model="selectedStatus">
-												<option value="">All</option>
-												<option value="Proposed">Proposed</option>
-												<option value="New Without IWO">New Without IWO</option>
-											</b-select>
-										</div>
-									</div>
+									<b-button type="is-success" @click="newRequest">New
+										Request
+									</b-button>
 								</div>
 							</template>
 							<template slot="empty">
