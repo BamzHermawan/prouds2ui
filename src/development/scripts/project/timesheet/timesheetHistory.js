@@ -52,8 +52,7 @@ new Vue({
 				}
 
 				let status = self.filter.status;
-				if (status != '') {
-					status = status === 'approved';
+				if (!isEmpty(status)) {
 					checker = checker && ts.status === status;
 				}
 

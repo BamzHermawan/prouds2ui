@@ -53,16 +53,30 @@
 				type="is-danger"
 				size="is-small"
 			>
-				<span class="icon is-small">
-					<span class="mdi mdi-calendar-clock"></span>
-				</span>
-				<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
+				<nav class="level">
+					<div class="level-left">
+						<span class="icon is-small">
+							<span class="mdi mdi-calendar-clock"></span>
+						</span>
+						<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
+					</div>
+					<div class="level-right">
+						<p>{{ task.mandays }} Mandays</p>
+					</div>
+				</nav>
 			</b-message>
 			<b-message v-else type="is-info" size="is-small">
-				<span class="icon is-small">
-					<span class="mdi mdi-calendar-clock"></span>
-				</span>
-				<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
+				<nav class="level">
+					<div class="level-left">
+						<span class="icon is-small">
+							<span class="mdi mdi-calendar-clock"></span>
+						</span>
+						<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
+					</div>
+					<div class="level-right">
+						<p>{{ task.mandays }} Mandays</p>
+					</div>
+				</nav>
 			</b-message>
 		</div>
 
