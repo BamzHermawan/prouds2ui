@@ -68,12 +68,12 @@ new Vue({
 						if(start.isSame(end)){
 							checker = checker && tsDate.isSame(start);
 						} else {
-							checker = checker && tsDate.isBetween(start, end);
+							checker = checker && tsDate.isBetween(start, end, null, '[]');
 						}
 					} else if(validateStart) {
-						checker = checker && tsDate.isAfter(start);
+						checker = checker && tsDate.isSameOrAfter(start);
 					} else if(validateEnd) {
-						checker = checker && tsDate.isBefore(end);
+						checker = checker && tsDate.isSameOrBefore(end);
 					}
 				}
 
