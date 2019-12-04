@@ -186,7 +186,7 @@
 												<span class="mdi mdi-square-edit-outline"></span>
 												Edit
 											</a>
-										</b-dropdown-item>
+										</b-dropdown-item>w
 										<b-dropdown-item has-link>
 											<a
 												@click="setIWO(props.row, 'http://localhost:5501/demo/post_detect.php?')">
@@ -197,7 +197,7 @@
 										<b-dropdown-item has-link>
 											<a
 												@click="deleteRequest(props.row,'http://localhost:5501/demo/post_detect.php?')">
-												<span class="mdi mdi-delete-outline"></span>
+												<span class="mdi mdi-delete"></span>
 												Delete
 											</a>
 										</b-dropdown-item>
@@ -247,20 +247,22 @@
 								</ul>
 							</nav>
 							<b-field horizontal label="Project Name">
-								<crud-input type="text" name="project_name" placeholder="Fill Project Name" input-style="margin-bottom: 0px;" required>
+								<crud-input type="text" name="project_name" placeholder="Fill Project Name"
+									input-style="margin-bottom: 0px;" required>
 								</crud-input>
 							</b-field>
 
 							<input type="hidden" name="customer_id" v-model="customer_id" />
 							<b-field horizontal label="Customer">
-								<b-autocomplete v-model="customer_name" placeholder="Choose Customer" :open-on-focus="true" :data="filterCustomer"
-									field="customer_name" @select="option => (selected = option)" required>
+								<b-autocomplete v-model="customer_name" placeholder="Choose Customer"
+									:open-on-focus="true" :data="filterCustomer" field="customer_name"
+									@select="option => (selected = option)" required>
 								</b-autocomplete>
 							</b-field>
 
 							<b-field horizontal label="Project Type">
-								<crud-input type="select" name="project_type" placeholder="Choose Project Type" input-style="margin-bottom: 0px;"
-									required>
+								<crud-input type="select" name="project_type" placeholder="Choose Project Type"
+									input-style="margin-bottom: 0px;" required>
 									<option value="1">Managed Service</option>
 									<option value="2">Research and Development</option>
 									<option value="3">Implementation</option>
@@ -272,32 +274,34 @@
 									<div class="control">
 										<span class="button is-static is-info-blend">Start Date</span>
 									</div>
-									<crud-input type="datepicker" name="start_date" placeholder="Pick Start Date" date-locale="en" v-model="start_date"
-										input-style="margin-bottom: 0px;">
+									<crud-input type="datepicker" name="start_date" placeholder="Pick Start Date"
+										date-locale="en" v-model="start_date" input-style="margin-bottom: 0px;">
 									</crud-input>
 								</b-field>
 								<b-field>
 									<div class="control">
 										<span class="button is-static is-info-blend">End Date</span>
 									</div>
-									<crud-input type="datepicker" :min-date="start_date" name="end_date" placeholder="Pick End Date" date-locale="en"
-										input-style="margin-bottom: 0px;">
+									<crud-input type="datepicker" :min-date="start_date" name="end_date"
+										placeholder="Pick End Date" date-locale="en" input-style="margin-bottom: 0px;">
 									</crud-input>
 								</b-field>
 							</b-field>
-							
+
 							<hr>
 
 							<div class="columns">
 								<div class="column">
 									<b-field label="Describe about this Project">
-										<crud-input type="textarea" name="description" placeholder="Fill Project Description"
-											input-style="margin-bottom: 0px;" required>
+										<crud-input type="textarea" name="description"
+											placeholder="Fill Project Description" input-style="margin-bottom: 0px;"
+											required>
 										</crud-input>
 									</b-field>
 									<b-field label="Project Background">
-										<crud-input type="textarea" name="project_background" placeholder="Fill Project Background"
-											input-style="margin-bottom: 0px;" required>
+										<crud-input type="textarea" name="project_background"
+											placeholder="Fill Project Background" input-style="margin-bottom: 0px;"
+											required>
 										</crud-input>
 									</b-field>
 									<span class="white-space is-small"></span>
@@ -312,7 +316,8 @@
 									<div class="field">
 										<label class="label">Document Evidence</label>
 										<div class="control">
-											<b-upload v-model="selectedDocument" name="evidDoc[]" multiple required style="width:100%;">
+											<b-upload v-model="selectedDocument" name="evidDoc[]" multiple required
+												style="width:100%;">
 												<a class="button is-info is-fullwidth">
 													<b-icon icon="upload"></b-icon>
 													<span>Browse File</span>
@@ -327,10 +332,9 @@
 
 										<div class="white-space"></div>
 
-										<file-media
-											href="#downloadFilePenting"
-											closable editable
-										>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non odit veniam distinctio provident dolores!</file-media>
+										<file-media href="#downloadFilePenting" closable editable>Lorem ipsum dolor sit
+											amet consectetur adipisicing elit. Repellat non odit veniam distinctio
+											provident dolores!</file-media>
 
 										<file-media ext="ppt" href="#downloadFilePenting" closable>
 											ini file paling penting sedunia.docx
@@ -346,7 +350,8 @@
 												<div class="content">
 													<span class="tag is-info">
 														{{ doc.name }}
-														<button class="delete is-small" type="button" @click="deleteFile(idx)">
+														<button class="delete is-small" type="button"
+															@click="deleteFile(idx)">
 														</button>
 													</span>
 												</div>

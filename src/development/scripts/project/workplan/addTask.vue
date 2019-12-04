@@ -45,11 +45,18 @@
 					>
 					</crud-input>
 
-					<input
-						type="hidden"
-						name="progressCalculation"
-						v-model="progressCalculation"
-					/>
+					<div class="columns">
+						<div class="column is-6">
+							<b-field label="Weight">
+								<b-numberinput
+									name="weight"
+									v-model="weight"
+									type="is-info"
+								></b-numberinput>
+							</b-field>
+						</div>
+					</div>
+
 					<b-field label="Progress Calculation">
 						<div class="block">
 							<b-checkbox v-model="progressCalculation">
@@ -177,7 +184,8 @@ export default {
 			isLoading: false,
 			name: "",
 			selected: null,
-			progressCalculation: true
+			progressCalculation: true,
+			weight: 0
 		};
 	},
 	watch: {

@@ -75,7 +75,7 @@ module.exports.notified = (actor, message = undefined) => {
  * @param {*} key
  * @returns {Object}
  */
-module.exports.loadStorage = function(key) {
+module.exports.loadStorage = function (key) {
 	let json = window.localStorage.getItem(key);
 	let data = JSON.parse(json);
 
@@ -100,7 +100,7 @@ module.exports.saveStorage = function (key, json) {
  * @param {String} classOption
  * @param {Function} [callback=undefined]
  */
-module.exports.animate = function(selector, classOption, callback = undefined){
+module.exports.animate = function (selector, classOption, callback = undefined) {
 	const el = document.querySelector(selector);
 	const option = classOption.split(" ");
 	if (el !== null && el !== undefined) {
@@ -128,8 +128,8 @@ module.exports.animate = function(selector, classOption, callback = undefined){
  * @param {Number} [request=undefined]
  * @returns Smiley Face!
  */
-module.exports.randomSmile = function(request = undefined){
-	let smiles = ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "🙊", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "🙈", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙉" ];
+module.exports.randomSmile = function (request = undefined) {
+	let smiles = ["😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "🙊", "😎", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "🙄", "😏", "🙈", "😣", "😥", "🤐", "😪", "😫", "🥱", "😴", "😤", "😖", "🤑", "😭", "😨", "😵", "🤢", "🙉"];
 	let random = Math.random() * smiles.length;
 	let index = Math.floor(Math.random() * random);
 
@@ -146,10 +146,10 @@ module.exports.geeg = (callback) => {
 	const receiver = document.querySelector('#geeg-receiver');
 	const giftEvent = new Event(key);
 
-	if(giftKey === null) return false;
-	if(receiver === null) return false;
-	
-	giftKey.addEventListener('dblclick', function(){
+	if (giftKey === null) return false;
+	if (receiver === null) return false;
+
+	giftKey.addEventListener('dblclick', function () {
 		giftKey.setAttribute('draggable', true);
 	});
 
@@ -166,7 +166,7 @@ module.exports.geeg = (callback) => {
 	receiver.addEventListener('drop', (e) => {
 		e.preventDefault();
 		let received = e.dataTransfer.getData("giftkey");
-		if (received === key){
+		if (received === key) {
 			giftKey.dispatchEvent(giftEvent);
 		}
 	});
@@ -198,13 +198,13 @@ module.exports.checkConnection = (actor) => {
 	} else {
 		this.notified(actor)
 			.alert("Sorry we can't connect to server, you sure have internet connection ? 🤔");
-		
+
 		return false;
 	}
 }
 
 module.exports.momentFormatter = (Moment, stringDate, returnJSDate = false) => {
-	if(stringDate === undefined){
+	if (stringDate === undefined) {
 		return undefined;
 	}
 
@@ -242,13 +242,13 @@ module.exports.parseURLRoute = () => {
 	let url = window.location.href;
 	let route = url.split('#');
 
-	if (route.length <= 1){
+	if (route.length <= 1) {
 		return false;
 	} else {
 		let localRoute = route[route.length - 1];
 		let parsedRoute = localRoute.split('/');
 
-		if (parsedRoute <= 1){
+		if (parsedRoute <= 1) {
 			return {
 				route: localRoute,
 				args: []
@@ -270,10 +270,40 @@ module.exports.cutShort = (text, length = 7) => {
 }
 
 module.exports.getApiTestByKey = (key) => {
-	let el = document.querySelector('api-test[key="'+key+'"]');
-	if(!this.isEmpty(el)){
+	let el = document.querySelector('api-test[key="' + key + '"]');
+	if (!this.isEmpty(el)) {
 		return el.getAttribute('url');
 	}
 
 	return null;
+}
+
+module.exports.searchFilter = (data, query) => {
+	return data.filter(row => {
+		let found = Object.keys(row).find(key => {
+			if (typeof row[key] === "string") {
+				return row[key]
+					.toLowerCase()
+					.includes(query.toLowerCase());
+			} else {
+				let val = row[key];
+				if (val instanceof Object) {
+					for (const x in val) {
+						if (val.hasOwnProperty(x)) {
+							const element = val[x];
+							console.log(element);
+							return element
+								.toString()
+								.toLowerCase()
+								.includes(query.toLowerCase());
+						}
+					}
+				}
+
+				return false;
+			}
+		});
+
+		return found;
+	});
 }
