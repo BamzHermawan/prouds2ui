@@ -52,8 +52,7 @@ new Vue({
 				}
 
 				let status = self.filter.status;
-				if (status != '') {
-					status = status === 'approved';
+				if (!isEmpty(status)) {
 					checker = checker && ts.status === status;
 				}
 
@@ -63,12 +62,12 @@ new Vue({
 					if (start.isSame(end)) {
 						checker = checker && tsDate.isSame(start);
 					} else {
-						checker = checker && tsDate.isBetween(start, end);
+						checker = checker && tsDate.isBetween(start, end, null, '[]');
 					}
 				} else if (validateStart) {
-					checker = checker && tsDate.isAfter(start);
+					checker = checker && tsDate.isSameOrAfter(start);
 				} else if (validateEnd) {
-					checker = checker && tsDate.isBefore(end);
+					checker = checker && tsDate.isSameOrBefore(end);
 				}
 
 				return checker;
@@ -143,12 +142,10 @@ new Vue({
 		checkAllEmpty(obj){
 			let status = true;
 			for (const key in obj) {
-				if (obj.hasOwnProperty(key)) {
-					if(obj[key] instanceof Object) {
-						status = status && this.checkAllEmpty(obj[key]);
-					} else {
-						status = status && isEmpty(obj[key]);
-					}
+				if(obj[key] instanceof Object && !(obj[key] instanceof Date)) {
+					status = status && this.checkAllEmpty(obj[key]);
+				} else {
+					status = status && isEmpty(obj[key]);
 				}
 			}
 

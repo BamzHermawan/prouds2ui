@@ -149,7 +149,7 @@
 							</div>
 						</nav>
 
-						<task-group title="Overdue Task" :value="false" type="is-delayed">
+						<task-group title="Overdue Task" type="is-delayed">
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
 									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :task="ts"></task-card>
@@ -259,10 +259,21 @@
 										<p class="has-text-weight-light">{{ dataForm.task }}</p>
 									</b-message>
 
-									<b-field label="Activity">
+									<nav class="level is-field-label">
+										<div class="level-left">
+											<label class="label">Activity</label>
+										</div>
+										<div class="level-right">
+											<b-select placeholder="Activity Type" name="activity_name" size="is-small">
+												<option value="flint">Flint</option>
+												<option value="silver">Silver</option>
+											</b-select>
+										</div>
+									</nav>
+									<b-field>
 										<b-input maxlength="200" type="textarea" name="activity"
-											placeholder="Describe your activity related to this task so that your pm could understand what you do."
-											required></b-input>
+											placeholder="Describe your activity related to this task so that your pm could understand what you do." required>
+										</b-input>
 									</b-field>
 								</div>
 								<div class="column is-4-desktop">
@@ -467,6 +478,7 @@
 				"end": "30/06/2019",
 				"member": 1,
 				"workload": 100,
+				"mandays": 100,
 				"taskProgress": {
 					"actual": 0,
 					"plan": 0
@@ -489,6 +501,7 @@
 				"end": "01/09/2019",
 				"member": 2,
 				"workload": 100,
+				"mandays": 120,
 				"taskProgress": {
 					"actual": 0,
 					"plan": 0
@@ -511,6 +524,7 @@
 				"end": "01/09/2019",
 				"member": 8,
 				"workload": 100,
+				"mandays": 320,
 				"taskProgress": {
 					"actual": 0,
 					"plan": 0
@@ -535,6 +549,7 @@
 					"end": "30/06/2020",
 					"member": 1,
 					"workload": 100,
+					"mandays": 250,
 					"taskProgress": {
 						"actual": 0,
 						"plan": 0
@@ -557,6 +572,7 @@
 					"end": "30/06/2020",
 					"member": 1,
 					"workload": 100,
+					"mandays": 59,
 					"taskProgress": {
 						"actual": 0,
 						"plan": 0
