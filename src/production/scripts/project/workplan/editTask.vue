@@ -97,7 +97,7 @@
 					/>
 					<div class="columns">
 						<div class="column is-6">
-							<b-field label="Weight">
+							<b-field label="Weight Index">
 								<b-numberinput
 									name="weight"
 									v-model="weight"
