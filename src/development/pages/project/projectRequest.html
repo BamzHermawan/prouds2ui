@@ -137,7 +137,7 @@
 				<div id="contentApp" class="container" data-title="Project Request">
 					<!-- <h2 class="subtitle">Project List</h2> -->
 
-					<div v-if="showTable" id="tableProject" class="animated">
+					<div v-if="showTable" id="tableProject" class="animated" v-cloak>
 						<data-table-no-card :data="newproject" :fields="[]" ref="widget" striped>
 							<template slot-scope="props">
 								<b-table-column width="85" field="project_id" label="Project ID" sortable
@@ -237,7 +237,7 @@
 						</data-table-no-card>
 					</div>
 
-					<div v-if="showAdd" class="animated fadeIn" id="add">
+					<div v-if="showAdd" class="animated fadeIn" id="add" v-cloak>
 						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
 							enctype="multipart/form-data">
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
@@ -327,38 +327,28 @@
 
 										<div class="white-space"></div>
 
-										<file-media
-											href="#downloadFilePenting"
-											closable editable
-										>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non odit veniam distinctio provident dolores!</file-media>
-
-										<file-media ext="ppt" href="#downloadFilePenting" closable>
-											ini file paling penting sedunia.docx
-										</file-media>
-
-										<file-media ext="xlsx" href="#downloadFilePenting">
-											ini file paling penting sedunia.docx
-										</file-media>
-
 										<span class="white-space"></span>
-										<article class="media" v-for="(doc, idx) in selectedDocument">
-											<div class="media-content">
-												<div class="content">
-													<span class="tag is-info">
-														{{ doc.name }}
-														<button class="delete is-small" type="button" @click="deleteFile(idx)">
-														</button>
-													</span>
-												</div>
-											</div>
+										<!-- ^ UPDATE ####################################################################### -->
+										<article class="panel is-info">
+											<p class="panel-heading is-small has-text-centered">
+												Uploaded Document
+											</p>
+											<file-media :key="'filemedia-' + idx" v-for="(doc, idx) in selectedDocument" :ext="extractExt(doc.name)" :href="doc.link"
+												@closed="deleteFile(doc,idx)" closable>
+												{{ doc.name }}
+											</file-media>
+											<b-message v-if="selectedDocument.length <= 0" size="is-small" type="is-light">
+												<p class="has-text-centered">- There is currently no document uploaded -</p>
+											</b-message>
 										</article>
+										<!-- ^ UPDATE ####################################################################### -->
 									</div>
 								</div>
 							</div>
 						</form>
 					</div>
 
-					<div v-if="showEdit" id="edit" class="animated fadeIn">
+					<div v-if="showEdit" id="edit" class="animated fadeIn" v-cloak>
 						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
 							enctype="multipart/form-data">
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
@@ -445,9 +435,15 @@
 										</crud-input>
 									</b-field>
 									<br>
-									<button class="button is-success pull-right is-long" type="submit">
-										Save
-									</button>
+									
+									<!-- ^ UPDATE ####################################################################### -->
+									<div class="buttons">
+										<b-button type="is-danger is-long" @click="edit">Cancel</b-button>
+										<button class="button is-success pull-right is-long" type="submit">
+											Save
+										</button>
+									</div>
+									<!-- ^ UPDATE ####################################################################### -->
 								</div>
 								<div class="column">
 									<p class="label">Document Evidence</p>
@@ -463,19 +459,26 @@
 										20MB
 									</p>
 									<div class="white-space"></div>
-									<article class="media" v-for="(doc, idx) in tampungFile">
-										<div class="media-content">
-											<div class="content">
-												<span class="tag is-info">
-													<a :href="doc.link" target="_blank"
-														style="color: white;">{{ doc.name }}</a>
-													<button class="delete is-small" type="button"
-														@click="deleteFile(doc,idx)">
-													</button>
-												</span>
-											</div>
-										</div>
+
+									<!-- ^ UPDATE ####################################################################### -->
+									<article class="panel is-info">
+										<p class="panel-heading is-small has-text-centered">
+											Uploaded Document
+										</p>
+										<file-media 
+											:key="'filemedia-' + idx"
+											v-for="(doc, idx) in tampungFile"
+											:ext="extractExt(doc.name)"
+											:href="doc.link" 
+											@closed="deleteFile(doc,idx)"
+											closable>
+											{{ doc.name }}
+										</file-media>
+										<b-message v-if="tampungFile.length <= 0" size="is-small" type="is-light">
+											<p class="has-text-centered">- There is currently no document uploaded -</p>
+										</b-message>
 									</article>
+									<!-- ^ UPDATE ####################################################################### -->
 								</div>
 							</div>
 						</form>

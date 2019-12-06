@@ -264,10 +264,15 @@
 											<label class="label">Activity</label>
 										</div>
 										<div class="level-right">
-											<b-select placeholder="Activity Type" name="activity_name" size="is-small">
-												<option value="flint">Flint</option>
-												<option value="silver">Silver</option>
-											</b-select>
+											<!-- ^ UPDATE ####################################################################### -->
+											<div class="select is-small">
+												<select name="activity_name" required>
+													<option selected>Development</option>
+													<option>Operation</option>
+													<option>Maintenance</option>
+												</select>
+											</div>
+											<!-- ^ UPDATE ####################################################################### -->
 										</div>
 									</nav>
 									<b-field>
@@ -306,14 +311,18 @@
 										</b-field>
 									</b-tooltip>
 
-									<crud-input type="select" name="location" label="Working Location"
-										placeholder="Choose area location">
-										<option selected style="display: none;"></option>
-										<option value="1">Jabodetabek</option>
-										<option value="2">Non Lokal Jawa</option>
-										<option value="3">Luar Jawa Dalam Negeri</option>
-										<option value="4">Luar Negeri</option>
-									</crud-input>
+									<!-- ^ UPDATE ####################################################################### -->
+									<b-field label="Working Location">
+										<div class="select is-fullwidth">
+											<select name="location" required>
+												<option selected value="1">Jabodetabek</option>
+												<option value="2">Non Lokal Jawa</option>
+												<option value="3">Luar Jawa Dalam Negeri</option>
+												<option value="4">Luar Negeri</option>
+											</select>
+										</div>
+									</b-field>
+									<!-- ^ UPDATE ####################################################################### -->
 
 									<button class="button is-success is-long" type="submit">
 										Submit

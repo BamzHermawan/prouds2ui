@@ -29,9 +29,14 @@ html {
 @import "components/timesheet";
 @import "components/notification";
 @import "components/filemedia";
+@import "components/panel";
 
 tr.is-child > td:first-child {
 	padding-left: 1.5rem;
+}
+
+[v-cloak] {
+  display: none;
 }
 
 //! -----------------------------------------------------

@@ -42,9 +42,9 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item href="list.html">Project List</side-item>
-				<side-item href="projectAssignment.html">Project Assignment</side-item>
-				<side-item active>Project Request</side-item>
+				<side-item active>Project List</side-item>
+				<side-item href="./projectAssignment.html">Project Assignment</side-item>
+				<side-item href="./projectRequest.html">Project Request</side-item>
 				<side-item href="./timesheetList.html">My Task</side-item>
 				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
 				<side-item href="../rebaseline.html">Rebaseline</side-item>
@@ -116,8 +116,8 @@
 				<div class="hero-body">
 					<nav class="level">
 						<div class="level-left">
-							<h1 class="title is-marginless has-text-right">
-								<span>Project Request</span>
+							<h1 class="title is-marginless">
+								<span>Performance Index</span>
 							</h1>
 						</div>
 						<div class="level-right">
@@ -129,18 +129,23 @@
 				</div>
 			</section>
 			<section class="section">
-				<div id="contentApp" class="container" data-title="Detail Project">
-					<nav class="breadcrumb" aria-label="breadcrumbs">
+				<div id="contentApp" class="container" data-title="Performance Index">
+
+					<!-- * Breadcrumb page -->
+					<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 						<ul class="is-marginless">
-							<li><a href="./projectRequest.html">Project Request</a></li>
-							<li class="is-active"><a href="#" aria-current="page">Project Information</a></li>
+							<li><a href="list.html">Project List</a></li>
+							<li class="is-active"><a href="#" aria-current="page">Performance Index</a></li>
 						</ul>
 					</nav>
-
+					
+					<!-- * Project Detail Title Format -->
 					<div class="columns is-marginless">
 						<div class="column is-8-desktop content is-marginless is-paddingless">
-							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
-								App Mantap Super Jaya Semua Suka Sampai Mendunia</h3>
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery
+								Awesome
+								App Mantap Super Jaya
+								Semua Suka Sampai Mendunia</h3>
 							<b-field grouped>
 								<div class="control">
 									<b-taglist attached>
@@ -151,124 +156,28 @@
 								<div class="control">
 									<b-taglist attached size="are-medium">
 										<b-tag type="is-dark">IWO</b-tag>
-										<b-tag type="is-danger">EMPTY</b-tag>
+										<b-tag type="is-info">P-1909-TTES0481</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">PM</b-tag>
+										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">
+											<span class="mdi mdi-account-tie is-marginless"></span>
+										</b-tag>
+										<b-tag type="is-info">2</b-tag>
 									</b-taglist>
 								</div>
 							</b-field>
 						</div>
 					</div>
 
-					<hr>
-
-					<div class="columns">
-						<div class="column is-5-desktop add-border-right">
-							<div class="content">
-								<h3 class="is-small has-text-weight-light">Commercial Information</h3>
-							</div>
-							<div class="columns is-multiline">
-								<div class="column is-6">
-									<b-field label="Customer">
-										<div>
-											<p>PT. Maju Bersama Tidak Mundur Walau Sengsara</p>
-										</div>
-									</b-field>
-								</div>
-								<div class="column content is-marginless is-6">
-									<b-field label="Request Date">
-										<p>{{ '10/11/2019' | moment }}</p>
-									</b-field>
-								</div>
-							</div>
-
-							<hr>
-
-							<div class="content">
-								<h3 class="is-small has-text-weight-light">Document Evidence</h3>
-							</div>
-							<ul>
-								<li>
-									<a href="#revisi1" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi kemarin.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#revisi2" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi terakhir bismilah.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#lowongan" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Lamaran Lowongan VP - Ade.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#proposal" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>PROPOSAL NAIK GAJI.docx</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="column is-7-desktop content">
-							<h3 class="is-small has-text-weight-light">Deliverable Information</h3>
-							<div class="columns is-multiline">
-								<div class="column is-4-desktop">
-									<b-field label="Project Type">
-										<p>Implementation</p>
-									</b-field>
-								</div>
-								<div class="column is-8-desktop">
-									<b-field label="Contract Length">
-										<p class="is-marginless">
-											<span>27 Months</span>
-											<span style="margin-right: 25px;"></span>
-											<br class="is-hidden-widescreen">
-											<span class="icon is-small">
-												<span class="mdi mdi-calendar-clock"></span>
-											</span>
-											<span>{{ '20/10/2019' | moment}} - {{ '31/12/2019' | moment}}</span>
-										</p>
-									</b-field>
-								</div>
-
-								<div class="column is-8-desktop">
-									<b-field label="Project Manager">
-										<p>Zaid Kencana Jaya</p>
-									</b-field>
-								</div>
-							</div>
-
-							<b-field label="Description">
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nam. Quod tempora
-									placeat ea exercitationem in veniam repellendus deserunt incidunt expedita corporis,
-									deleniti voluptatibus harum optio corrupti sapiente. Ut, explicabo?</p>
-							</b-field>
-							<b-field label="Project Background">
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-									Ipsum has been the industry's standard
-									dummy text ever since the 1500s, when an unknown printer took a galley of type and
-									scrambled it to make a type specimen
-									book. It has survived not only five centuries, but also the leap into electronic
-									typesetting, remaining essentially
-									unchanged. It was popularised in the 1960s with the release of Letraset sheets
-									containing Lorem Ipsum passages, and more
-									recently with desktop publishing software like Aldus PageMaker including versions of
-									Lorem Ipsum.</p>
-							</b-field>
-						</div>
-					</div>
-
+					<h3>Nice load up page!</h3>
 				</div>
 			</section>
 		</section>
@@ -281,7 +190,7 @@
 	</div>
 
 	<script src="../../scripts/layout/controller.js"></script>
-	<script src="../../scripts/project/projectRequest/detailRequest.js"></script>
+	<script src="../../scripts/project/performanceIndex/performanceIndex.js"></script>
 </body>
 
 </html>
