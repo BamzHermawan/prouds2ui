@@ -49,6 +49,9 @@ export default {
 					},
 					pComp: {
 						title: "Progress %"
+					},
+					weightPercent: {
+						title: "Weight Percent"
 					}
 				},
 				vUseSingleCell: 10000,

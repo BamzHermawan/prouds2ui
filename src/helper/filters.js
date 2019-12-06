@@ -14,6 +14,13 @@ Vue.filter("datetime", function (value, showTime = false) {
 	return moment(value, "YYYY-MM-DD H:m:s").format(format);
 });
 
+Vue.filter("fulldate", function (value) {
+	moment.locale("en");
+	let format = "dddd, DD MMMM YYYY";
+
+	return moment(value, "YYYY-MM-DD H:m:s").format(format);
+});
+
 Vue.filter("pagebreak", function (value, wordCount = 7) {
 	let larik = value.split(" ");
 	larik.splice(wordCount, 0, "<br>");

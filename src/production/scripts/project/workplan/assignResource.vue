@@ -1,204 +1,333 @@
 <template>
-	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
-		<input type="hidden" name="projectId" v-model="projectId" />
-		<input type="hidden" name="taskID" v-model="taskID" />
-
-		<b-field label="Task Name">
-			<b-message type="is-info" class="is-on-field">
-				<p class="has-text-dark">{{ taskName }}</p>
-			</b-message>
+	<div>
+		<b-field horizontal label="Parent">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ name }}</span
+			>
+		</b-field>
+		<b-field horizontal label="Task">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ task.pName }}</span
+			>
+		</b-field>
+		<b-field horizontal label="Task Schedule">
+			<b-field expanded>
+				<div class="control">
+					<span class="button is-static is-info-blend"
+						>Start Date</span
+					>
+				</div>
+				<div class="control is-expanded">
+					<p
+						class="button is-static is-fullwidth is-light-blend"
+						style="justify-content: start;"
+					>
+						{{ start | fulldate }}
+					</p>
+				</div>
+			</b-field>
+			<b-field expanded>
+				<div class="control">
+					<span class="button is-static is-info-blend">End Date</span>
+				</div>
+				<div class="control is-expanded">
+					<p
+						class="button is-static is-fullwidth is-light-blend"
+						style="justify-content: start;"
+					>
+						{{ finish | fulldate }}
+					</p>
+				</div>
+			</b-field>
 		</b-field>
 
-		<div class="columns">
-			<div class="column is-6">
-				<b-field label="Start Date">
-					<b-message type="is-info" class="is-on-field">
-						<p class="has-text-dark">
-							{{ start | moment }}
-						</p>
-					</b-message>
-				</b-field>
-			</div>
-			<div class="column is-6">
-				<b-field label="End Date">
-					<b-message type="is-info" class="is-on-field">
-						<p class="has-text-dark">
-							{{ finish | moment }}
-						</p>
-					</b-message>
-				</b-field>
-			</div>
-		</div>
-
-		<div class="columns">
-			<div class="column is-6">
-				<b-message
-					type="is-light"
-					class="has-paddingless-body"
-					:closable="false"
-					:title="'Currently assigned (' + task.resource.length + ')'"
-				>
-					<br />
-					<data-table-no-card
-						:data="task.resource"
-						:fields="[]"
-						ref="widget"
-						striped
-						:per-page="5"
-					>
-						<template slot-scope="props">
-							<b-table-column
-								field="name"
-								label="Name"
-								sortable
-								class="align-middle"
-							>
-								<p>{{ props.row.name }}</p>
-							</b-table-column>
-							<b-table-column
-								field="assigned_role"
-								label="Assigned Role"
-								sortable
-								class="align-middle"
-							>
-								<p>{{ props.row.role }}</p>
-							</b-table-column>
-							<b-table-column
-								field="action"
-								label="Action"
-								width="75"
-								centered
-								class="align-middle"
-							>
-								<b-button
-									tag="a"
-									size="is-small"
-									type="is-success"
-									style="min-width:95px"
-									@click="setComplete(props.row)"
-									>Set Complete</b-button
-								>
-							</b-table-column>
-						</template>
-						<template slot="empty">
-							<span class="white-space"></span>
-							<b-message type="is-warning">
-								<p class="has-text-centered">
-									Sorry, we can't find any data related
-								</p>
-							</b-message>
-						</template>
-						<template slot="top-right">
-							<span></span>
-						</template>
-					</data-table-no-card>
-				</b-message>
-			</div>
-
-			<div class="column is-6">
-				<b-message
-					type="is-light"
-					class="has-paddingless-body"
-					:closable="false"
-					:title="'Available (' + resourceAvailable.length + ')'"
-				>
-					<input
-						type="hidden"
-						name="memberRole"
-						v-model="selectedRole.value"
-					/>
-					<br />
-					<b-field label="Assigned as">
-						<b-select
-							expanded
-							v-model="selectedRole.value"
-							placeholder="Select Assigned Role"
-							required
-						>
-							<slot name="role-option"></slot>
-						</b-select>
-					</b-field>
-					<b-field label="Select Team Member">
-						<b-input
-							placeholder="Search by User or Role"
-							type="search"
-							icon="magnify"
-							v-model="searchQuery"
-							v-show="searchList"
-						>
-						</b-input>
-					</b-field>
-					<b-field>
-						<input
-							type="hidden"
-							name="userId"
-							v-model="checkboxGroup"
-						/>
-						<b-select
-							multiple
-							expanded
-							v-show="searchList"
-							native-size="5"
-							v-model="selectedOptions"
-						>
-							<option
-								v-for="(user, index) in userdata"
-								:key="index"
-								:value="user.nik"
-							>
-								<b-checkbox
-									v-model="checkboxGroup"
-									:native-value="user.nik"
-								>
-									{{ user.nama + " - " + user.role }}
-								</b-checkbox>
-							</option>
-						</b-select>
-					</b-field>
-					<b-field
-						v-show="selectedUser.nik !== ''"
-						class="animated fadeIn"
-					>
-						<div class="box">
-							<article class="media">
-								<div class="media-content">
-									<div class="content">
-										<h1 class="title is-size-4">
-											{{ selectedUser.nama }}
-										</h1>
-										<h2 class="subtitle is-size-6">
-											{{ selectedUser.role }}
-											|
-											{{ selectedUser.bu }}
-										</h2>
-									</div>
-								</div>
-							</article>
-						</div>
-					</b-field>
-				</b-message>
-			</div>
-		</div>
-
 		<hr />
+		<nav class="level is-marginless">
+			<div class="level-left">
+				<b-field>
+					<b-input
+						placeholder="Search..."
+						type="search"
+						icon="magnify"
+						v-model="search"
+						style="margin-right: 10px;"
+					>
+					</b-input>
+				</b-field>
+			</div>
+			<div class="level-right">
+				<div class="level-item">
+					<b-button
+						class="is-success"
+						@click="assign"
+						:disabled="disableBtn"
+						>Assign</b-button
+					>
+				</div>
+			</div>
+		</nav>
 
-		<div class="is-pulled-right">
-			<button class="button is-success" type="submit">
-				Update Task Resource
-			</button>
-		</div>
-	</form>
+		<b-table
+			:data="dataFiltered"
+			style="font-size:11pt"
+			class="is-packed"
+			paginated
+			:per-page="10"
+			pagination-simple
+		>
+			<template slot-scope="props">
+				<b-table-column
+					field="user"
+					label="User"
+					sortable
+					class="align-middle"
+					width="250"
+				>
+					<p>{{ props.row.name }}</p>
+				</b-table-column>
+				<b-table-column
+					field="bu"
+					label="Business Unit"
+					sortable
+					class="align-middle"
+					width="250"
+				>
+					<p>{{ props.row.bu }}</p>
+				</b-table-column>
+				<b-table-column
+					field="job_role"
+					label="Job Role"
+					sortable
+					class="align-middle"
+				>
+					<p>{{ props.row.role }}</p>
+				</b-table-column>
+				<b-table-column
+					field="mandaysRate"
+					label="Mandays Rate (IDR)"
+					sortable
+					width="150"
+					centered
+				>
+					<p class="has-text-right">
+						{{ props.row.mandaysRate | currency }}
+					</p>
+				</b-table-column>
+				<b-table-column
+					field="onGoing"
+					label="On Going Project"
+					sortable
+					class="align-middle"
+					width="100"
+					centered
+				>
+					<p>{{ props.row.onGoing }}</p>
+				</b-table-column>
+				<b-table-column
+					field="select"
+					label="Select"
+					class="align-middle"
+					centered
+				>
+					<b-checkbox
+						v-model="selectedRows"
+						:native-value="props.row.user_id"
+						@input="editForm(props.row)"
+					>
+					</b-checkbox>
+				</b-table-column>
+			</template>
+			<template slot="empty">
+				<span class="white-space"></span>
+				<b-message type="is-warning">
+					<p class="has-text-centered">
+						Sorry, we can't find any data related
+					</p>
+				</b-message>
+			</template>
+			<template slot="top-right"> </template>
+		</b-table>
+
+		<b-modal :active.sync="showForm" width="850px" :can-cancel="false">
+			<div class="card-modal">
+				<header class="modal-card-head">
+					<p class="modal-card-title">Task Assignment</p>
+				</header>
+				<section class="modal-card-body">
+					<div class="container">
+						<div class="columns">
+							<div class="column is-6">
+								<b-field label="Assigned Role">
+									<crud-input
+										type="select"
+										placeholder="Choose Role"
+										v-model="assignment.assignRole"
+										name="assignRole"
+										input-style="margin-bottom:0px;"
+										required
+									>
+										<option
+											v-for="(val, idx) in dataRole"
+											:key="idx"
+											:value="val.roleID"
+											>{{ val.roleName }}</option
+										>
+									</crud-input>
+								</b-field>
+								<input
+									type="hidden"
+									name="mandaysRate"
+									v-model="assignment.mandaysRate"
+								/>
+								<div class="field">
+									<label class="label"
+										>Mandays Rate (IDR)</label
+									>
+									<!-- <crud-input
+										type="text"
+										placeholder="Fill Mandays Rate"
+										:value="
+											assignment.mandaysRate | currency
+										"
+										@input="rupiahFormat"
+										input-style="margin-bottom:0px;"
+										name=""
+										required
+									>
+									</crud-input> -->
+									<input
+										type="text"
+										class="input"
+										placeholder="Fill Mandays Rate"
+										v-model="currencyRate"
+										@keypress="isNumber($event)"
+									/>
+									<!-- <input
+										type="text"
+										class="input"
+										v-model="assignment.mandaysRate"
+										@blur="parseMandays"
+									/>
+									<p
+										class="help is-danger"
+										v-if="alertMandays"
+									>
+										This username is available
+									</p> -->
+								</div>
+
+								<b-field>
+									<div class="control">
+										<span
+											class="button is-static is-info-blend"
+											style="width: 98px;"
+											>Workload</span
+										>
+									</div>
+									<crud-input
+										type="select"
+										v-model="assignment.workloadEffort"
+										name="workloadEffort"
+										input-style="margin-bottom:0px; width:40%"
+										required
+									>
+										<option
+											v-for="(val, idx) in dataWorkload"
+											:key="idx"
+											:value="val.workloadID"
+											>{{ val.workloadName }}</option
+										>
+									</crud-input>
+								</b-field>
+							</div>
+							<div class="column">
+								<b-field label="Assignment Date">
+									<b-field>
+										<div class="control">
+											<span
+												class="button is-static is-info-blend"
+												>Start Date</span
+											>
+										</div>
+										<crud-input
+											type="datepicker"
+											placeholder="Pick Start Date"
+											date-locale="en"
+											v-model="assignment.start_date"
+											name="start_date"
+											input-style="margin-bottom: 0px;"
+										>
+										</crud-input>
+									</b-field>
+								</b-field>
+								<b-field>
+									<div class="control">
+										<span
+											class="button is-static is-info-blend"
+											style="width: 98px;"
+											>End Date</span
+										>
+									</div>
+									<crud-input
+										type="datepicker"
+										:min-date="assignment.start_date"
+										v-model="assignment.end_date"
+										name="end_date"
+										placeholder="Pick End Date"
+										date-locale="en"
+										input-style="margin-bottom: 0px;"
+									>
+									</crud-input>
+								</b-field>
+								<div class="block">
+									<b-checkbox
+										v-model="assignment.progressCalculation"
+									>
+										Auto complete when timesheet progress
+										has been 100%
+									</b-checkbox>
+								</div>
+							</div>
+						</div>
+
+						<hr />
+						<div class="is-pulled-right">
+							<div class="buttons">
+								<button
+									class="button is-danger is-long"
+									@click="closeForm"
+								>
+									Cancel
+								</button>
+								<button
+									class="button is-success is-long"
+									:disabled="disableSave"
+									@click="saveForm"
+								>
+									Save
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</b-modal>
+	</div>
 </template>
 
 <script>
-import Moment from "helper-moment";
-import { dataTableNoCard } from "components";
-import { notified, checkConnection } from "helper-tools";
-import api from "helper-apis";
+// TODO: Selesaikan Halaman Modal!
+
+import "helper-filter";
+import moment from "helper-moment";
+import { searchFilter, animate, notified, isEmpty } from "helper-tools";
+import { crudInput, dataTableNoCard } from "components";
 export default {
-	components: {
-		dataTableNoCard
-	},
+	components: { crudInput, dataTableNoCard },
 	props: {
 		actionEvent: {
 			type: String,
@@ -215,132 +344,158 @@ export default {
 	},
 	data() {
 		return {
+			selectedRows: [],
 			dataBaru: GANTT,
-			resourceAvailable: RESOURCE_AVAILABLE,
-			taskName: this.task.pName,
-			start: Moment(this.task.pStart).format("DD/MM/YYYY"),
-			finish: Moment(this.task.pEnd).format("DD/MM/YYYY"),
-			checkedRows: [],
-			taskID: this.task.pID,
-			searchList: true,
-			selectedUser: {
-				nik: "",
-				nama: "",
-				bu: "",
-				avatar: "",
-				role: ""
+			dataRole: ROLE,
+			dataWorkload: WORKLOAD_EFFORT,
+			start: this.task.pStart,
+			finish: this.task.pEnd,
+			name: "",
+			curSubTask: this.task.pParent,
+			search: "",
+			tampung: "",
+			showTable: true,
+			showForm: false,
+			selectedRows: [],
+			alertMandays: false,
+			assignment: {
+				user_id: undefined,
+				assignRole: undefined,
+				start_date: undefined,
+				end_date: undefined,
+				workloadEffort: 1,
+				mandaysRate: "",
+				progressCalculation: true
 			},
-			selectedRole: {
-				value: null,
-				display: true
-			},
-			userdata: [],
-			formTarget: "",
-			searchQuery: "",
-			checkboxGroup: []
+			tampungUserID: undefined,
+			arrayForm: []
 		};
 	},
-	watch: {
-		searchQuery: function(newQuery, oldQuery) {
-			if (
-				newQuery !== "" &&
-				newQuery !== undefined &&
-				newQuery !== null
-			) {
-				let self = this;
-				this.userdata = this.resourceAvailable.filter(user => {
-					if (
-						user.nama !== undefined &&
-						user.nama !== null &&
-						user.nama !== ""
-					) {
-						if (typeof user.nama === "string") {
-							return (
-								user.nama
-									.toLowerCase()
-									.includes(newQuery.toLowerCase()) ||
-								user.role
-									.toLowerCase()
-									.includes(newQuery.toLowerCase())
-							);
-						}
-					}
+	methods: {
+		isEmpty: isEmpty,
+		assign() {
+			let form = document.createElement("form");
+			form.setAttribute("action", this.actionEvent);
+			form.setAttribute("method", "POST");
+			let input = document.createElement("input");
+			input.value = this.task.pID;
+			input.name = "task_id";
+			form.appendChild(input);
 
-					return false;
-				});
+			for (let i = 0; i < this.arrayForm.length; i++) {
+				const element = this.arrayForm[i];
+				let input2 = document.createElement("input");
+				input2.value = JSON.stringify(element);
+				input2.name = "user[]";
+				form.appendChild(input2);
+			}
+			document.getElementById("vapp").appendChild(form);
+			form.submit();
+		},
+		editForm(row) {
+			let found = undefined;
+			for (let i = 0; i < this.arrayForm.length; i++) {
+				const assign = this.arrayForm[i];
+				if (assign.user_id === row.user_id) {
+					found = i;
+				}
+			}
+
+			if (found !== undefined) {
+				this.arrayForm.splice(found, 1);
+				var index = this.selectedRows.indexOf(row.user_id);
+
+				if (index > -1) {
+					this.selectedRows.splice(index, 1);
+				}
+				this.clearForm();
 			} else {
-				this.userdata = this.resourceAvailable;
+				this.assignment.user_id = row.user_id;
+				this.showForm = true;
+			}
+		},
+		closeForm() {
+			var index = this.selectedRows.indexOf(this.assignment.user_id);
+
+			if (index > -1) {
+				this.selectedRows.splice(index, 1);
+			}
+			this.clearForm();
+			this.showForm = false;
+		},
+		saveForm() {
+			this.arrayForm.push(this.assignment);
+
+			this.clearForm();
+
+			this.showForm = false;
+		},
+		clearForm() {
+			this.assignment = {
+				user_id: undefined,
+				assignRole: undefined,
+				start_date: undefined,
+				end_date: undefined,
+				workloadEffort: 1,
+				mandaysRate: "",
+				progressCalculation: true
+			};
+		},
+		isNumber(evt) {
+			evt = evt ? evt : window.event;
+			var charCode = evt.which ? evt.which : evt.keyCode;
+			if (
+				charCode > 31 &&
+				(charCode < 48 || charCode > 57) &&
+				charCode !== 46
+			) {
+				evt.preventDefault();
+			} else {
+				return true;
 			}
 		}
 	},
-	methods: {
-		setComplete(val) {
-			this.isLoading = true;
-			let self = this;
-			let bundle = { user_id: val.user_id };
-			api.setComplete(bundle)
-				.then(response => {
-					// let data = response.data;
-					// self.resourceAvailable = data.resource;
-					if (checkConnection(self.notification)) {
-						notified(self.$notification).info("Success");
-					}
-				})
-				.catch(function(error) {
-					console.log("error asking for set complete");
-					if (checkConnection(self.notification)) {
-						notified(self.$notification).error(
-							"Sorry we are encountering a problem, please try again later. 🙏"
-						);
-					}
-				});
-		}
-	},
 	computed: {
-		checkId() {
-			let a = [];
-			this.checkedRows.forEach(row => {
-				a.push(row.userid);
-			});
-			return a;
+		disableBtn() {
+			return !(this.selectedRows.length > 0);
 		},
-		selectedOptions: {
-			get: function() {
-				if (this.selectedUser.nik !== "") {
-					if (this.checkboxGroup !== []) {
-						var index = this.checkboxGroup.indexOf(
-							this.selectedUser.nik
-						);
-
-						if (index > -1) {
-							this.checkboxGroup.splice(index, 1);
-						} else {
-							this.checkboxGroup.push(this.selectedUser.nik);
-						}
-					}
+		disableSave() {
+			for (const index in this.assignment) {
+				if (isEmpty(this.assignment[index])) {
+					return true;
 				}
-				return [this.selectedUser.nik];
-			},
-			set: function(newValue = []) {
-				if (newValue.length > 0) {
-					let self = this;
-					let nik = newValue.shift();
-					let found = this.userdata.filter(user => user.nik == nik);
-
-					this.selectedUser = found.shift();
+			}
+			return false;
+		},
+		getParent() {
+			if (this.curSubTask != 0) {
+				let found = this.dataBaru.find(
+					task => task.pID === this.curSubTask
+				);
+				if (found != undefined && found.hasOwnProperty("pName")) {
+					this.name = found.pName;
 				} else {
-					this.selectedUser = {
-						nik: "",
-						nama: "",
-						bu: "",
-						avatar: ""
-					};
+					return "";
 				}
+			}
+		},
+		dataFiltered() {
+			return searchFilter(this.task.resource, this.search);
+		},
+		currencyRate: {
+			get: function() {
+				return this.$options.filters.currency(
+					this.assignment.mandaysRate
+				);
+			},
+			set: function(val) {
+				let medown = val.replace(/\D/g, "");
+				this.assignment.mandaysRate = medown;
 			}
 		}
 	},
 	mounted() {
-		this.userdata = this.resourceAvailable;
+		this.getParent;
 	}
 };
 </script>

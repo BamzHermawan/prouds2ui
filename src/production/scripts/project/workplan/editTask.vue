@@ -90,6 +90,42 @@
 						<slot name="integration-option"></slot>
 					</crud-input>
 
+					<input
+						type="hidden"
+						name="weightPrev"
+						v-model="weightPrev"
+					/>
+					<div class="columns">
+						<div class="column is-6">
+							<b-field label="Weight Index">
+								<b-numberinput
+									name="weight"
+									v-model="weight"
+									type="is-info"
+								></b-numberinput>
+							</b-field>
+						</div>
+						<div class="column">
+							<b-field
+								label="Weight Percent"
+								style="margin-bottom:1em;"
+							>
+								<div>
+									<input
+										type="hidden"
+										name="weightPercent"
+										v-model="weightPercent"
+									/>
+									<span
+										class="button is-static is-light-blend"
+										style="justify-content: start;"
+										>{{ weightPercent }}</span
+									>
+								</div>
+							</b-field>
+						</div>
+					</div>
+
 					<b-field
 						label="Progress Calculation"
 						style="margin-bottom:1em"
@@ -244,8 +280,11 @@ export default {
 			startPrev: Moment(this.task.pStart).format("DD/MM/YYYY"),
 			finishPrev: Moment(this.task.pEnd).format("DD/MM/YYYY"),
 			workdaysPrev: this.task.workdays,
+			weightPrev: this.task.weight,
 			wbsNo: this.task.wbsNo,
-			integration: this.task.integration
+			integration: this.task.integration,
+			weight: this.task.weight,
+			weightPercent: this.task.weightPercent
 		};
 	},
 	watch: {
