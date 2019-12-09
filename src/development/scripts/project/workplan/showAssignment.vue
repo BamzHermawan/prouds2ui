@@ -289,8 +289,15 @@
 // TODO: Selesaikan Halaman Modal!
 
 import moment from "helper-moment";
-import { searchFilter, animate } from "helper-tools";
+import {
+	searchFilter,
+	animate,
+	checkConnection,
+	notified,
+	isEmpty
+} from "helper-tools";
 import { crudInput, dataTableNoCard } from "components";
+import api from "helper-apis";
 export default {
 	components: { crudInput, dataTableNoCard },
 	props: {
@@ -319,10 +326,12 @@ export default {
 			tampung: "",
 			showTable: true,
 			showForm: false,
-			progress: "auto"
+			progress: "auto",
+			listTeam: []
 		};
 	},
 	methods: {
+		isEmpty: isEmpty,
 		stopAssign(val) {
 			if (this.showTable) {
 				animate("#tableID", "fadeOut faster", el => {
@@ -345,6 +354,27 @@ export default {
 					document.querySelector(".contentPage").scrollTop = 0;
 				});
 			}
+		},
+		getTeam() {
+			this.isLoading = true;
+			let task_id = this.task.pID;
+			let self = this;
+			api.getTeam(task_id)
+				.then(response => {
+					if (!isEmpty(response.data)) {
+						self.listTeam = response.data;
+					} else {
+						self.listTeam = [];
+					}
+				})
+				.catch(() => {
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				})
+				.finally(() => (self.isLoading = false));
 		}
 	},
 	computed: {
@@ -364,11 +394,12 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.task.resource, this.search);
+			return searchFilter(this.listTeam, this.search);
 		}
 	},
 	mounted() {
 		this.getParent;
+		this.getTeam();
 	}
 };
 </script>

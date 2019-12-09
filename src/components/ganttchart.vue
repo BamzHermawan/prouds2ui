@@ -47,11 +47,11 @@ export default {
 					mandays: {
 						title: "Mandays"
 					},
-					pComp: {
-						title: "Progress %"
-					},
 					weightPercent: {
-						title: "Weight Percent"
+						title: "Weight (%)"
+					},
+					pComp: {
+						title: "Progress (%)"
 					}
 				},
 				vUseSingleCell: 10000,

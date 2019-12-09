@@ -94,6 +94,10 @@ module.exports.getDuration = bundle => {
 	});
 }
 
+module.exports.getTeam = task_id => {
+	return request.get(parseURL("getTeam", { task_id }));
+}
+
 module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }
