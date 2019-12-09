@@ -355,11 +355,11 @@ export default {
 				});
 			}
 		},
-		getTeam() {
+		getTeamWorkplan() {
 			this.isLoading = true;
 			let task_id = this.task.pID;
 			let self = this;
-			api.getTeam(task_id)
+			api.getTeamWorkplan(task_id)
 				.then(response => {
 					if (!isEmpty(response.data)) {
 						self.listTeam = response.data;
@@ -399,7 +399,7 @@ export default {
 	},
 	mounted() {
 		this.getParent;
-		this.getTeam();
+		this.getTeamWorkplan();
 	}
 };
 </script>

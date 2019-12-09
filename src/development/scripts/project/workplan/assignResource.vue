@@ -393,7 +393,6 @@ export default {
 			dataBaru: GANTT,
 			dataRole: ROLE,
 			dataWorkload: WORKLOAD_EFFORT,
-			dataResource: RESOURCE,
 			start: this.task.pStart,
 			finish: this.task.pEnd,
 			name: "",
@@ -418,7 +417,8 @@ export default {
 			tampungUserID: undefined,
 			arrayForm: [],
 			isLoading: false,
-			openDetail: []
+			openDetail: [],
+			listResource: []
 		};
 	},
 	methods: {
@@ -481,10 +481,10 @@ export default {
 		},
 		saveForm() {
 			this.arrayForm.push(this.assignment);
-			let found = this.dataResource.findIndex(
+			let found = this.listResource.findIndex(
 				team => team.user_id === this.assignment.user_id
 			);
-			this.dataResource[found].assignment = this.assignment;
+			this.listResource[found].assignment = this.assignment;
 			this.openDetail.push(this.assignment.user_id);
 			this.clearForm();
 			this.showForm = false;
@@ -514,6 +514,27 @@ export default {
 			} else {
 				return true;
 			}
+		},
+		getResourceWorkplan() {
+			this.isLoading = true;
+			let task_id = this.task.pID;
+			let self = this;
+			api.getResourceWorkplan(task_id)
+				.then(response => {
+					if (!isEmpty(response.data)) {
+						self.listResource = response.data;
+					} else {
+						self.listResource = [];
+					}
+				})
+				.catch(() => {
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				})
+				.finally(() => (self.isLoading = false));
 		}
 	},
 	computed: {
@@ -557,7 +578,7 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.dataResource, this.search);
+			return searchFilter(this.listResource, this.search);
 		},
 		currencyRate: {
 			get: function() {
@@ -573,6 +594,7 @@ export default {
 	},
 	mounted() {
 		this.getParent;
+		this.getResourceWorkplan();
 	}
 };
 </script>

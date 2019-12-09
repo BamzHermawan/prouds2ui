@@ -279,8 +279,6 @@
 												</b-menu-item>
 												<b-menu-item label="Update Progress" disabled>
 												</b-menu-item>
-												<b-menu-item label="Performance Index" disabled>
-												</b-menu-item>
 											</b-menu-list>
 											<b-menu-list label="Quick Action">
 												<b-menu-item label="Change Parent Task" disabled>
@@ -308,8 +306,6 @@
 												</b-menu-item>
 												<b-menu-item @click="updateProgress('updateProgress')"
 													label="Update Progress" :active="false">
-												</b-menu-item>
-												<b-menu-item label="Performance Index" :active="false">
 												</b-menu-item>
 											</b-menu-list>
 											<b-menu-list label="Quick Action">
@@ -457,7 +453,24 @@
 				}, ... ],
 					post : {task_id}
 					-->
-		<api-test url="getTeam.php?task_id={task_id}" key="getTeam"></api-test>
+		<api-test url="getTeamWorkplan.php?task_id={task_id}" key="getTeamWorkplan"></api-test>
+
+		<!-- 
+			[{
+				"user_id": {String},
+				"name": {String},
+				"status": {String},
+				"role": {String},
+				"bu": {String},
+				"mandaysRate": {String},
+				"onGoing": {String},
+				"start": {Date String with format DD/MM/YYYY},
+				"finish": {Date String with format DD/MM/YYYY},
+				"actionComplete": "{String url}"
+			}, ... ],
+				post : {task_id}
+				-->
+		<api-test url="getResourceWorkplan.php?task_id={task_id}" key="getResourceWorkplan"></api-test>
 
 	</div>
 
@@ -799,68 +812,6 @@
 			{
 				"workloadID": 3,
 				"workloadName": "30 %"
-			}
-		]
-		RESOURCE = [
-			{
-				"user_id": 1,
-				"name": "Dunca Prince",
-				"status": "Assigned",
-				"role": "Programmer Analyst",
-				"bu": "Banking & Finance ",
-				"mandaysRate": "300000",
-				"onGoing": "8",
-				"start": "01/11/2019",
-				"finish": "01/12/2019",
-				"actionComplete": "http://localhost:5500/project/workplan.html"
-			},
-			{
-				"user_id": 2,
-				"name": "Stephenson Bowen",
-				"status": "Completed",
-				"role": "Programmer Analyst",
-				"bu": "Banking & Finance",
-				"mandaysRate": "300000",
-				"onGoing": "8",
-				"start": "01/11/2019",
-				"finish": "01/12/2019",
-				"actionComplete": "http://localhost:5500/project/workplan.html"
-			},
-			{
-				"user_id": 3,
-				"name": "Boyd Ramsey",
-				"status": "Assigned",
-				"role": "Desaigner Web",
-				"bu": "Banking & Finance",
-				"mandaysRate": "300000",
-				"onGoing": "8",
-				"start": "01/11/2019",
-				"finish": "01/12/2019",
-				"actionComplete": "http://localhost:5500/project/workplan.html"
-			},
-			{
-				"user_id": 4,
-				"name": "Tami Duke",
-				"status": "Assigned",
-				"role": "Senior Programmer",
-				"bu": "Banking & Finance",
-				"mandaysRate": "300000",
-				"onGoing": "8",
-				"start": "01/11/2019",
-				"finish": "01/12/2019",
-				"actionComplete": "http://localhost:5500/project/workplan.html"
-			},
-			{
-				"user_id": 5,
-				"name": "Ava Klein",
-				"status": "Assigned",
-				"role": "Analyst",
-				"bu": "Banking & Finance",
-				"mandaysRate": "300000",
-				"onGoing": "8",
-				"start": "01/11/2019",
-				"finish": "01/12/2019",
-				"actionComplete": "http://localhost:5500/project/workplan.html"
 			}
 		]
 
