@@ -210,117 +210,61 @@
 
 							<!-- TODO: Faishol / Mas Papang -->
 							<!-- Document Evidence hanya untuk detail pada project request -->
-							<hr>
-							<div class="content">
-								<h3 class="is-small has-text-weight-light">Document Evidence</h3>
-							</div>
-							<ul>
-								<li>
-									<a href="#revisi1" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi kemarin.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#revisi2" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi terakhir bismilah.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#lowongan" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Lamaran Lowongan VP - Ade.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#proposal" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>PROPOSAL NAIK GAJI.docx</span>
-									</a>
-								</li>
-							</ul>
-							<!-- End -->
+							
+							<!-- ^ UPDATE ####################################################################### -->
+							<article class="panel is-info">
+								<p class="panel-heading is-small has-text-centered">
+									Document Evidence
+								</p>
 
-							<hr>
+								<!-- pass extention file ke attribute ext untuk parsing tipe file iconnya -->
+								<file-media ext="docx" href="#openDocumentLink">
+									Desain Frontend revisi kemarin.docx
+								</file-media>
 
-							<div class="content">
-								<h3 class="is-small has-text-weight-light">Agreement Document</h3>
-							</div>
-							<ul>
-								<li>
-									<a href="#revisi1" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi kemarin.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#revisi2" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Desain Frontend revisi terakhir bismilah.docx</span>
-									</a>
-								</li>
-								<li>
-									<a href="#lowongan" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Lamaran Lowongan VP - Ade.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#proposal" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>PROPOSAL NAIK GAJI.docx</span>
-									</a>
-								</li>
-							</ul>
+								<!-- kalau ribet buat dapeting extentionnya, bisa kasih nama file di attribute filename -->
+								<file-media filename="Lamaran Lowongan VP - Ade.pdf" href="#openDocumentLink">
+									Lamaran Lowongan VP - Ade.pdf
+								</file-media>
 
-							<hr>
+								<!-- kalau masih tetep males kasih link aja, nanti vue motong dari link itu -->
+								<file-media href="#Desain Frontend revisi kemarin.jpg">
+									Desain Frontend revisi kemarin.jpg
+								</file-media>
 
-							<div class="content">
-								<h3 class="is-small has-text-weight-light">Related Document</h3>
-							</div>
-							<ul>
-								<li>
-									<a href="#trik" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Trik-Trik cepat naik gaji.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#pedoman" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Pedoman menjadi ganteng sedunia bradd pitt pun kalah.pdf</span>
-									</a>
-								</li>
-								<li>
-									<a href="#lowongan" target="_blank" class="button is-small is-info">
-										<span class="icon is-small">
-											<i class="mdi mdi-file-download-outline"></i>
-										</span>
-										<span>Mau cepat kaya ? ayo lakukan ini.mp4</span>
-									</a>
-								</li>
-							</ul>
+								<!-- attribute open-new-tab mirip target="_blank" buat navigasi buka link ke tab baru -->
+								<file-media href="#Desain Frontend revisi terakhir bismilah.png" open-new-tab>
+									Desain Frontend revisi terakhir bismilah.png
+								</file-media>
+
+								<!-- if there is no document available, add this -->
+								<!-- <b-message size="is-small" type="is-light">
+									<p class="has-text-centered">- There is currently no document uploaded -</p>
+								</b-message> -->
+							</article>
+
+							<article class="panel is-info">
+								<p class="panel-heading is-small has-text-centered">
+									Agreement Document
+								</p>
+							
+								<!-- if there is no document available, add this -->
+								<b-message size="is-small" type="is-light">
+									<p class="has-text-centered">- There is currently no document uploaded -</p>
+								</b-message>
+							</article>
+
+							<article class="panel is-info">
+								<p class="panel-heading is-small has-text-centered">
+									Related Document
+								</p>
+							
+								<!-- if there is no document available, add this -->
+								<b-message size="is-small" type="is-light">
+									<p class="has-text-centered">- There is currently no document uploaded -</p>
+								</b-message>
+							</article>
+							<!-- ^ UPDATE ####################################################################### -->
 						</div>
 						<div class="column is-7-desktop content">
 							<h3 class="is-small has-text-weight-light">Deliverable Information</h3>

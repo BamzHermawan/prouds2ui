@@ -3,16 +3,25 @@
 	padding: 8px 0px;
 	grid-template-columns: 28px 1fr 78px;
 
-	&.has-no-checkbox {
-		grid-template-columns: 1fr 78px;
-	}
-
 	&.has-single-button {
-		grid-template-columns: 1fr 34px;
+		grid-template-columns: 28px 1fr 34px;
 	}
 
 	&.has-no-buttons {
-		grid-template-columns: 1fr;
+		margin-right: 0px;
+		grid-template-columns: 28px 1fr;
+
+		&.has-no-checkbox {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&.has-no-checkbox {
+		grid-template-columns: 1fr 78px;
+
+		&.has-single-button {
+			grid-template-columns: 1fr 34px;
+		}
 	}
 
 	.checkbox-container {
@@ -37,5 +46,15 @@
 
 	& + .file-item {
 		border-top: solid 1px $grey-lighter;
+	}
+}
+
+.panel {
+	.file-item {
+		padding: 5px;
+	}
+
+	.panel-heading + .file-item {
+		margin-top: 3px;
 	}
 }

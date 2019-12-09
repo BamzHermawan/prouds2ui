@@ -1,10 +1,13 @@
 <template>
 	<div :class="'file-item' + addOnClass">
-		<div v-if="checkable" class="checkbox-container">
-			<b-checkbox></b-checkbox>
+		<div v-if="checkable" class="checkbox-container has-text-right">
+			<label class="b-checkbox checkbox">
+				<input type="checkbox" :true-value="true" v-model="checked" />
+				<span class="check is-success"></span>
+			</label>
 		</div>
 		<div class="filename">
-			<a :href="href">
+			<a :href="href" :target="target">
 				<p>
 					<span class="icon is-medium">
 						<span
@@ -15,26 +18,27 @@
 				</p>
 			</a>
 		</div>
-		<div class="buttons is-right">
-			<b-button
+		<p class="has-text-right">
+			<a
 				v-if="editable"
-				type="is-info"
-				size="is-small"
-				icon-right="pencil"
-				@click="emit('edit')"
-			></b-button>
-			<b-button
+				@click="emitButton('edited')"
+				class="has-text-info"
+			>
+				<span class="mdi mdi-pencil mdi-24px"></span>
+			</a>
+			<a
 				v-if="closable"
-				type="is-danger"
-				size="is-small"
-				icon-right="close"
-				@click="emit('close')"
-			></b-button>
-		</div>
+				@click="emitButton('closed')"
+				class="has-text-danger"
+			>
+				<span class="mdi mdi-close mdi-24px"></span>
+			</a>
+		</p>
 	</div>
 </template>
 
 <script>
+import { isEmpty } from "helper-tools";
 const FILETYPE = [
 	{ ext: "xlsx", icon: "mdi-file-excel" },
 	{ ext: "xls", icon: "mdi-file-excel" },
@@ -54,8 +58,13 @@ export default {
 			type: String,
 			default: ""
 		},
+		filename: {
+			type: String,
+			default: ""
+		},
 		href: {
-			type: String
+			type: String,
+			default: new URL("#", window.location.href).href
 		},
 		editable: {
 			type: Boolean,
@@ -68,11 +77,55 @@ export default {
 		checkable: {
 			type: Boolean,
 			default: false
+		},
+		openNewTab: {
+			type: Boolean,
+			default: true
+		}
+	},
+	data() {
+		return {
+			selected: false
+		};
+	},
+	methods: {
+		emitButton(eventName) {
+			this.$emit(eventName, this);
+		},
+		extractExt(str, fromURL = false) {
+			if (fromURL) {
+				let parsed = new URL(str).pathname.split("/");
+				str = parsed[parsed.length - 1];
+			}
+
+			let splited = str.split(".");
+			return splited[splited.length - 1];
 		}
 	},
 	computed: {
+		checked: {
+			get() {
+				return this.selected;
+			},
+			set(val) {
+				this.$emit("checked", val);
+				this.selected = val;
+			}
+		},
 		extention() {
-			let found = FILETYPE.find(type => this.ext == type.ext);
+			let ext = this.ext;
+
+			// check if ext not passed extract extention from filename props
+			if (isEmpty(ext)) {
+				ext = this.extractExt(this.filename);
+			}
+
+			// check if ext still empty extract extention from href props
+			if (isEmpty(ext)) {
+				ext = this.extractExt(this.href);
+			}
+
+			let found = FILETYPE.find(type => ext == type.ext);
 			if (found === undefined) {
 				return {
 					ext: this.ext,
@@ -95,6 +148,13 @@ export default {
 			}
 
 			return addon;
+		},
+		target() {
+			if (this.openNewTab) {
+				return "_blank";
+			} else {
+				return "_self";
+			}
 		}
 	}
 };
