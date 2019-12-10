@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import 'helper-filter';
 import Buefy from 'buefy';
-import { hChart, pindexTable } from "components";
+import { hChart } from "components";
+import pindexTable from './pIndex.vue';
 import { animate, checkConnection } from "helper-tools";
 import { getPIndexChart } from 'helper-apis';
 

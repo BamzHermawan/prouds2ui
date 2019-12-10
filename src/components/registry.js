@@ -8,7 +8,6 @@ import notificationLog from "./notificationLog.vue";
 import bookmarkButton from "./sidebar/bookmark.vue";
 
 // DATATABLE
-import pindexTable from "./dataTable/pIndex.vue";
 import dataTable from "./dataTable/dataTable.vue";
 import treeTable from "./dataTable/treeTable.vue";
 import dataTableNoCard from "./dataTable/nocard.vue";
@@ -42,7 +41,6 @@ module.exports.notificationLog = notificationLog;
 
 module.exports.dataTable = dataTable;
 module.exports.treeTable = treeTable;
-module.exports.pindexTable = pindexTable;
 module.exports.dataTableNoCard = dataTableNoCard;
 
 module.exports.taskGroup = taskGroup;
