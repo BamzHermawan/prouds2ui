@@ -99,7 +99,6 @@ new Vue({
 	},
 	mounted() {
 		let routes = parseURLRoute();
-		console.log(routes)
 		if (routes !== false) {
 			if (routes.args.length > 0) {
 				let project = this.newprojectOri.find((row) => row.project_id == routes.args[0]);

@@ -301,7 +301,7 @@
 												<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
 													:active="false">
 												</b-menu-item>
-												<b-menu-item :href="'#showAssign/'" @click="showAssign('showAssign')"
+												<b-menu-item :href="'#showAssign/'+selectedTask.pID" @click="showAssign('showAssign')"
 													:active="false" label="Show
 														Assignment">
 												</b-menu-item>
