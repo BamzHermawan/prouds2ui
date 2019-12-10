@@ -54,6 +54,7 @@
 						name="taskName"
 						v-model="taskName"
 						input-style="margin-bottom:1em;"
+						required
 					>
 					</crud-input>
 
@@ -102,6 +103,7 @@
 									name="weight"
 									v-model="weight"
 									type="is-info"
+									min="1"
 								></b-numberinput>
 							</b-field>
 						</div>

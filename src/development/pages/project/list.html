@@ -436,9 +436,11 @@
 										<p>{{form.cost | currency}}</p>
 									</div>
 								</b-message>
-								<crud-input type="text" name="cost" label="New Cost" :value="newCost | currency"
-									placeholder="10.000.000" @input="actualCostUnformat">
-								</crud-input>
+								<div class="field">
+									<label class="label">New Cost</label>
+									<input type="text" class="input" name="cost" placeholder="10.000.000"
+										v-model="currencyRate" @keypress="isNumber($event)" required />
+								</div>
 								<crud-input type="datepicker" label="Reallocation Date" name="reallocationDate"
 									placeholder="Pick Reallocation Date" date-locale="en"
 									input-style="margin-bottom: 0px;">

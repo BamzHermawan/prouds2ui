@@ -27,7 +27,7 @@ new Vue({
 		fileValidation: true,
 		allowedFile: "jpg|jpeg|png|doc|docx|pdf|xls|xlsx|ppt|pptx",
 		start: undefined,
-		newCost: ""
+		newCost: "",
 	},
 	watch: {
 		selectedStatus: function (newQuery, oldQuery) {
@@ -196,10 +196,6 @@ new Vue({
 
 			return size;
 		},
-		actualCostUnformat(val) {
-			let medown = val.replace(/\D/g, "");
-			this.newCost = medown;
-		},
 		sync(val, link) {
 			this.$dialog.confirm({
 				title: 'Confirmation',
@@ -228,6 +224,19 @@ new Vue({
 					form.submit();
 				}
 			})
+		},
+		isNumber(evt) {
+			evt = evt ? evt : window.event;
+			var charCode = evt.which ? evt.which : evt.keyCode;
+			if (
+				charCode > 31 &&
+				(charCode < 48 || charCode > 57) &&
+				charCode !== 46
+			) {
+				evt.preventDefault();
+			} else {
+				return true;
+			}
 		}
 	},
 	computed: {
@@ -253,6 +262,17 @@ new Vue({
 		},
 		allowedArray() {
 			return this.allowedFile.split("|");
+		},
+		currencyRate: {
+			get: function () {
+				return this.$options.filters.currency(
+					this.newCost
+				);
+			},
+			set: function (val) {
+				let medown = val.replace(/\D/g, "");
+				this.newCost = medown;
+			}
 		}
 	},
 	mounted() {

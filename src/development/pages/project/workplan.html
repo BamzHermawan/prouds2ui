@@ -139,7 +139,7 @@
 						</ul>
 						<ul class="is-marginless" v-if="!showWorkplan">
 							<li><a href="list.html">Project List</a></li>
-							<li><a @click="actionTask(idd)">Workplan</a></li>
+							<li><a href="#" @click="actionTask(idd)">Workplan</a></li>
 							<li class="is-active"><a href="#" aria-current="page">{{titleActive}}</a></li>
 						</ul>
 					</nav>
@@ -279,8 +279,6 @@
 												</b-menu-item>
 												<b-menu-item label="Update Progress" disabled>
 												</b-menu-item>
-												<b-menu-item label="Performance Index" disabled>
-												</b-menu-item>
 											</b-menu-list>
 											<b-menu-list label="Quick Action">
 												<b-menu-item label="Change Parent Task" disabled>
@@ -303,13 +301,12 @@
 												<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
 													:active="false">
 												</b-menu-item>
-												<b-menu-item @click="showAssign('showAssign')" label="Show Assignment"
-													:active="false">
+												<b-menu-item :href="'#showAssign/'+selectedTask.pID"
+													@click="showAssign('showAssign')" :active="false" label="Show
+														Assignment">
 												</b-menu-item>
 												<b-menu-item @click="updateProgress('updateProgress')"
 													label="Update Progress" :active="false">
-												</b-menu-item>
-												<b-menu-item label="Performance Index" :active="false">
 												</b-menu-item>
 											</b-menu-list>
 											<b-menu-list label="Quick Action">
@@ -387,22 +384,22 @@
 						</template>
 					</assign-resource>
 
-					<show-assignment v-if="toggleForm.showAssign" id="showAssign" class="animated fadeIn faster"
-						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+					<show-assignment v-if="toggleForm.showAssign" :show-rate="false" id="showAssign"
+						class="animated fadeIn faster" :task="selectedTask" project-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php"
+						action-delete="http://localhost:5501/demo/post_detect.php?">
 					</show-assignment>
 
 					<set-progress v-if="toggleForm.updateProgress" id="updateProgress" class="animated fadeIn faster"
-						title="Update Progress" :task="selectedTask" project-id="1"
-						action-event="http://localhost:5501/demo/post_detect.php">
+						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 					</set-progress>
 
 					<change-parent-task v-if="toggleForm.changeParent" id="changeParent" class="animated fadeIn faster"
-						title="Change Parent Task" :task="selectedTask" project-id="1"
-						action-event="http://localhost:5501/demo/post_detect.php">
+						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
 					</change-parent-task>
 
 					<link-predecessor v-if="toggleForm.linkPredecessor" id="linkPredecessor"
-						class="animated fadeIn faster" title="Link Predecessor" :task="selectedTask" project-id="1"
+						class="animated fadeIn faster" :task="selectedTask" project-id="1"
 						action-event="http://localhost:5501/demo/post_detect.php">
 					</link-predecessor>
 
@@ -436,2287 +433,326 @@
 		<!-- 
 			expected return from getNotification!
 			{
+				
 				"duration": {Number} 
 			},
 			post : {start, finish, workdays}
 			-->
 		<api-test url="getDuration.php" key="getDuration"></api-test>
 
+		<!-- 
+				[{
+					"user_id": {String},
+					"name": {String},
+					"status": {String},
+					"role": {String},
+					"bu": {String},
+					"mandaysRate": {String},
+					"onGoing": {String},
+					"start": {Date String with format DD/MM/YYYY},
+					"finish": {Date String with format DD/MM/YYYY},
+					"actionComplete": "{String url}"
+				}, ... ],
+					post : {task_id}
+					-->
+		<api-test url="getTeamWorkplan.php?task_id={task_id}" key="getTeamWorkplan"></api-test>
+
+		<!-- 
+			[{
+				"user_id": {String},
+				"name": {String},
+				"status": {String},
+				"role": {String},
+				"bu": {String},
+				"mandaysRate": {String},
+				"onGoing": {String},
+				"start": {Date String with format DD/MM/YYYY},
+				"finish": {Date String with format DD/MM/YYYY},
+				"actionComplete": "{String url}"
+			}, ... ],
+				post : {task_id}
+				-->
+		<api-test url="getResourceWorkplan.php?task_id={task_id}" key="getResourceWorkplan"></api-test>
+
 	</div>
 
 	<script>
 		const GANTT = [
 			{
-				pID: "1",
-				pName: "New Prouds Development Phase I",
-				pStart: "2019-06-10",
-				pEnd: "2019-12-31",
-				duration: 100,
-				pClass: "gtaskred",
-				pMile: 0,
-				pComp: "40",
-				pGroup: 1,
-				pParent: "0",
-				pOpen: 1,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: null,
-			},
-			{
-				pID: "2",
-				pName: "Requirement Gathering",
-				pStart: "",
-				pEnd: "",
-				duration: 100,
-				pClass: "gtaskyellow",
-				pComp: 0,
-				pGroup: 0,
-				pParent: "1",
-				pOpen: 1,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			},
-			{
-				pID: "3",
-				pName: "Analysis and Design",
-				pStart: "2019-06-17",
-				pEnd: "2019-07-12",
-				duration: 100,
-				pClass: "gtaskpink",
-				pComp: "80",
-				pGroup: 0,
-				pParent: "1",
-				pOpen: 1,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			},
-			{
-				pID: "4",
-				pName: "Mockup UI Development",
-				pStart: "2019-06-06",
-				pEnd: "2019-10-18",
-				duration: 100,
-				pClass: "gtaskred",
-				pComp: "27.33",
-				pGroup: 0,
-				pParent: "1",
-				pOpen: 1,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 100,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			},
-			{
-				pID: "6",
-				pName: "Construction",
-				pStart: "",
-				pEnd: "",
-				duration: 100,
-				pClass: "gtaskblue",
-				pMile: 1,
-				pComp: "80",
-				pGroup: 1,
-				pParent: "1",
-				pOpen: 1,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			},
-			{
-				pID: "7",
-				pName: "Develop Front-End",
-				pStart: "2019-08-19",
-				pEnd: "2019-10-31",
-				duration: 100,
-				pClass: "gtaskgreen",
-				pComp: "57.81",
-				pGroup: 0,
-				pParent: "6",
-				pOpen: 0,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			},
-			{
-				pID: "8",
-				pName: "Develop Front-End",
-				pStart: "2019-08-19",
-				pEnd: "2019-10-31",
-				duration: 100,
-				pClass: "gtaskgreen",
-				pComp: "57.81",
-				pGroup: 0,
-				pParent: "6",
-				pOpen: 0,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			},
-			{
-				pID: "9",
-				pName: "Develop Front-End",
-				pStart: "2019-08-19",
-				pEnd: "2019-10-31",
-				duration: 100,
-				pClass: "gtaskgreen",
-				pComp: "57.81",
-				pGroup: 0,
-				pParent: "6",
-				pOpen: 0,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			}, {
-				pID: "10",
-				pName: "Develop Front-End",
-				pStart: "2019-08-19",
-				pEnd: "2019-10-31",
-				duration: 100,
-				pClass: "gtaskgreen",
-				pComp: "57.81",
-				pGroup: 0,
-				pParent: "6",
-				pOpen: 0,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
-			},
-			{
-				pID: "11",
-				pName: "Develop Front-End",
-				pStart: "2019-08-19",
-				pEnd: "2019-10-31",
-				duration: 100,
-				pClass: "gtaskgreen",
-				pComp: "57.81",
-				pGroup: 0,
-				pParent: "6",
-				pOpen: 0,
-				pDepend: 0,
-				estProgress: 43,
-				processGroupID: "1",
-				progressCalculation: true,
-				workdays: "1",
-				autoCalculationProgress: "30",
-				wbsNo: "1",
-				weight: 3,
-				weightPercent: 10,
-				integration: "1",
-				mandays: "30",
-				resource: [
-					{
-						"user_id": "1",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance ",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "2",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "3",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "4",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "5",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "6",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "7",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "8",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "9",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "10",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "11",
-						"name": "Ade Wiranata Putra",
-						"status": "Assigned",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "12",
-						"name": "Boycasito Egamo",
-						"status": "Completed",
-						"role": "Programmer Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "13",
-						"name": "Ario Moklo",
-						"status": "Assigned",
-						"role": "Desaigner Web",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "14",
-						"name": "Ario semakin didepan",
-						"status": "Assigned",
-						"role": "Senior Programmer",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					},
-					{
-						"user_id": "15",
-						"name": "Zaid Billah",
-						"status": "Assigned",
-						"role": "Analyst",
-						"bu": "Banking & Finance",
-						"mandaysRate": "300000",
-						"onGoing": "8",
-						"start": "01/11/2019",
-						"finish": "01/12/2019",
-						"actionComplete": "http://localhost:5500/project/workplan.html"
-					}
-				],
-				deleteTask: "http://localhost:5500/project/workplan.html"
+				"pID": "P1",
+				"pName": "Initiating",
+				"pStart": "",
+				"pEnd": "",
+				"duration": 0,
+				"pClass": "gtaskred",
+				"pMile": 1,
+				"pComp": "0",
+				"pGroup": 1,
+				"pParent": "0",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P1",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
 			}
-		],
-			RESOURCE_AVAILABLE = [
-				{
-					"nik": "M20005413",
-					"nama": "Martina Dillard",
-					"role": "Programmer Analyst",
-					"bu": "Banking & Finance",
-					"mandaysRate": "300000",
-					"onGoing": "8",
-					"start": "01/11/2019",
-					"finish": "01/12/2019",
-					"actionComplete": "http://localhost:5500/project/workplan.html"
-				},
-				{
-					"nik": "S20186428",
-					"nama": "Alissa Newton",
-					"role": "Programmer Analyst Analyst",
-					"bu": "Gracker",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
-				},
-				{
-					"nik": "CRS20136833",
-					"nama": "Maryanne Watson",
-					"role": "Engineer",
-					"bu": "Corepan",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=adipisicing"
-				},
-				{
-					"nik": "CRS20166397",
-					"nama": "Bush Hunt",
-					"role": "Senior Business Analyst",
-					"bu": "Zytrex",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
-				},
-				{
-					"nik": "CRS20005337",
-					"nama": "Cannon May",
-					"role": "Junior Programmer Analyst",
-					"bu": "Digifad",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=non"
-				},
-				{
-					"nik": "L20171511",
-					"nama": "Coleen Williamson",
-					"role": "Junior Programmer Analyst",
-					"bu": "Entogrok",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
-				},
-				{
-					"nik": "S20065729",
-					"nama": "Christa Townsend",
-					"role": "Junior Programmer Analyst",
-					"bu": "Ovium",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
-				},
-				{
-					"nik": "S20168519",
-					"nama": "Alston Weeks",
-					"role": "Junior Programmer Analyst",
-					"bu": "Zentix",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aute"
-				},
-				{
-					"nik": "S20012872",
-					"nama": "Joseph Pratt",
-					"role": "Junior Programmer Analyst",
-					"bu": "Essensia",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
-				},
-				{
-					"nik": "L20109899",
-					"nama": "Jennings Norman",
-					"role": "Junior Programmer Analyst",
-					"bu": "Eternis",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cillum"
-				},
-				{
-					"nik": "P20093418",
-					"nama": "Gertrude Sandoval",
-					"role": "Junior Programmer Analyst",
-					"bu": "Sloganaut",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=occaecat"
-				},
-				{
-					"nik": "S20005469",
-					"nama": "Rhoda Lloyd",
-					"role": "Junior Programmer Analyst",
-					"bu": "Renovize",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliqua"
-				},
-				{
-					"nik": "CRS20104806",
-					"nama": "Florine Blake",
-					"role": "Junior Programmer Analyst",
-					"bu": "Enervate",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
-				},
-				{
-					"nik": "L20062709",
-					"nama": "Cook Pennington",
-					"role": "Junior Programmer Analyst",
-					"bu": "Terrago",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=anim"
-				},
-				{
-					"nik": "S20087299",
-					"nama": "Baxter Glass",
-					"role": "Junior Programmer Analyst",
-					"bu": "Zidant",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
-				},
-				{
-					"nik": "L2018935",
-					"nama": "French Ferguson",
-					"role": "Junior Programmer Analyst",
-					"bu": "Quinex",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=amet"
-				},
-				{
-					"nik": "S20083508",
-					"nama": "Benjamin Saunders",
-					"role": "Junior Programmer Analyst",
-					"bu": "Bitendrex",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=duis"
-				},
-				{
-					"nik": "S20139777",
-					"nama": "Holloway Hardin",
-					"role": "Junior Programmer Analyst",
-					"bu": "Vetron",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ad"
-				},
-				{
-					"nik": "S20028589",
-					"nama": "Gretchen Duran",
-					"role": "Junior Programmer Analyst",
-					"bu": "Gorganic",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=ipsum"
-				},
-				{
-					"nik": "CRS20175427",
-					"nama": "Fox Phelps",
-					"role": "Junior Programmer Analyst",
-					"bu": "Exposa",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=sit"
-				},
-				{
-					"nik": "CRS20182207",
-					"nama": "Maritza White",
-					"role": "Junior Programmer Analyst",
-					"bu": "Techtrix",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=laboris"
-				},
-				{
-					"nik": "S20142407",
-					"nama": "Warren Ochoa",
-					"role": "Junior Programmer Analyst",
-					"bu": "Geostele",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=est"
-				},
-				{
-					"nik": "M20011347",
-					"nama": "Mann Hudson",
-					"role": "Junior Programmer Analyst",
-					"bu": "Zipak",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=incididunt"
-				},
-				{
-					"nik": "CRS20056394",
-					"nama": "Jordan Robertson",
-					"role": "Junior Programmer Analyst",
-					"bu": "Soprano",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=cupidatat"
-				},
-				{
-					"nik": "M20169784",
-					"nama": "West Morrow",
-					"role": "Junior Programmer Analyst",
-					"bu": "Omatom",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=id"
-				},
-				{
-					"nik": "M20186408",
-					"nama": "Marissa Morton",
-					"role": "Junior Programmer Analyst",
-					"bu": "Portalis",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=minim"
-				},
-				{
-					"nik": "P20105376",
-					"nama": "Vinson Joyce",
-					"role": "Junior Programmer Analyst",
-					"bu": "Exiand",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=aliquip"
-				},
-				{
-					"nik": "CRS20127204",
-					"nama": "Navarro Herring",
-					"role": "Junior Programmer Analyst",
-					"bu": "Marketoid",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=eu"
-				},
-				{
-					"nik": "L20113959",
-					"nama": "Sheila Williams",
-					"role": "Junior Programmer Analyst",
-					"bu": "Dognosis",
-					"avatar": "http://localhost:5501/demo/user_avatar.php?nik=nisi"
-				}
-			]
+			,
+			{
+				"pID": "P2",
+				"pName": "Planning",
+				"pStart": "",
+				"pEnd": "",
+				"duration": 0,
+				"pClass": "gtaskred",
+				"pMile": 1,
+				"pComp": "0",
+				"pGroup": 1,
+				"pParent": "0",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P2",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "P3",
+				"pName": "Executing",
+				"pStart": "",
+				"pEnd": "",
+				"duration": 0,
+				"pClass": "gtaskred",
+				"pMile": 1,
+				"pComp": "0",
+				"pGroup": 1,
+				"pParent": "0",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P3",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "418871",
+				"pName": "Manage Operation Vmware HP Server",
+				"pClass": "gtaskred",
+				"pMile": 0,
+				"pStart": "",
+				"pEnd": "",
+				"duration": 0,
+				"pComp": "0",
+				"pGroup": 1,
+				"pParent": "P3",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P3",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "419002",
+				"pName": "Day to day VMWare Engineer Leader",
+				"pClass": "gtaskred",
+				"pMile": 0,
+				"pStart": "2019-09-08",
+				"pEnd": "2020-06-30",
+				"duration": 0,
+				"pComp": "0",
+				"pGroup": 0,
+				"pParent": "418871",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P3",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "418873",
+				"pName": "Day to day MO VM TC-CRM Storage Leader",
+				"pClass": "gtaskred",
+				"pMile": 0,
+				"pStart": "2019-08-01",
+				"pEnd": "2020-04-13",
+				"duration": 0,
+				"pComp": "0",
+				"pGroup": 0,
+				"pParent": "418871",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P3",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "418872",
+				"pName": "Day to day VMWare Senior Leader",
+				"pClass": "gtaskred",
+				"pMile": 0,
+				"pStart": "2019-08-01",
+				"pEnd": "2020-04-13",
+				"duration": 0,
+				"pComp": "0",
+				"pGroup": 0,
+				"pParent": "418871",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P3",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "426175",
+				"pName": "Day to day Admin",
+				"pClass": "gtaskred",
+				"pMile": 0,
+				"pStart": "2019-07-01",
+				"pEnd": "2019-07-29",
+				"duration": 0,
+				"pComp": "0",
+				"pGroup": 0,
+				"pParent": "418871",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P3",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "419003",
+				"pName": "Project Management",
+				"pClass": "gtaskred",
+				"pMile": 0,
+				"pStart": "2019-07-01",
+				"pEnd": "2020-06-30",
+				"duration": 0,
+				"pComp": "0",
+				"pGroup": 0,
+				"pParent": "418871",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P3",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "P4",
+				"pName": "Monitoring and Controlling",
+				"pStart": "",
+				"pEnd": "",
+				"duration": 0,
+				"pClass": "gtaskred",
+				"pMile": 1,
+				"pComp": "0",
+				"pGroup": 1,
+				"pParent": "0",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P4",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+			,
+			{
+				"pID": "P5",
+				"pName": "Closing",
+				"pStart": "",
+				"pEnd": "",
+				"duration": 0,
+				"pClass": "gtaskred",
+				"pMile": 1,
+				"pComp": "0",
+				"pGroup": 1,
+				"pParent": "0",
+				"pOpen": 1,
+				"pDepend": 0,
+				"estProgress": 0,
+				"processGroupID": "P5",
+				"progressCalculation": false,
+				"workdays": "1",
+				"autoCalculationProgress": "0",
+				"wbsNo": "",
+				"weight": 1,
+				"weightPercent": 0,
+				"integration": "",
+				"mandays": "0"
+			}
+		]
 		TEMPLATE = {
 			1: [
 				{
@@ -2773,46 +809,47 @@
 		}
 		WORKDAYS = [
 			{
-				"workdaysID": "1",
+				"workdaysID": 1,
 				"workdaysName": "Normal : 5 Business days"
 			},
 			{
-				"workdaysID": "2",
+				"workdaysID": 2,
 				"workdaysName": "Medium : 10 Business days"
 			}
 		]
 		ROLE = [
 			{
-				"roleID": "1",
+				"roleID": 1,
 				"roleName": "Programmer Analyst"
 			},
 			{
-				"roleID": "2",
+				"roleID": 2,
 				"roleName": "Desaigner Web"
 			},
 			{
-				"roleID": "3",
+				"roleID": 3,
 				"roleName": "Senior Programmer"
 			},
 			{
-				"roleID": "4",
+				"roleID": 4,
 				"roleName": "Analyst"
 			}
 		]
 		WORKLOAD_EFFORT = [
 			{
-				"workloadID": "1",
+				"workloadID": 1,
 				"workloadName": "100 %"
 			},
 			{
-				"workloadID": "2",
+				"workloadID": 2,
 				"workloadName": "50 %"
 			},
 			{
-				"workloadID": "3",
+				"workloadID": 3,
 				"workloadName": "30 %"
 			}
 		]
+
 	</script>
 
 	<script src="../../scripts/layout/controller.js"></script>

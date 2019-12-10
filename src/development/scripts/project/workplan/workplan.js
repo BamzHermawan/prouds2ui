@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Buefy from 'buefy'
 import { dataTableNoCard, crudInput, ganttchart } from 'components';
 import Loader from 'helper-loader';
-import { animate } from 'helper-tools';
+import { animate, parseURLRoute, isEmpty } from 'helper-tools';
 import EditTask from "./editTask.vue"
 import AddTask from "./addTask.vue"
 import Tmp from "./template.vue"
@@ -46,6 +46,7 @@ new Vue({
 			resource: null,
 			phase: null,
 		},
+		tampungSelectedTask: {},
 		toggleForm: {
 			addTask: false,
 			template: false,
@@ -67,6 +68,7 @@ new Vue({
 		showSideBar: false
 	},
 	methods: {
+		isEmpty: isEmpty,
 		addFavorite(title, link) {
 			global.$sidebar.ws.addList(title, link);
 		},
@@ -164,11 +166,16 @@ new Vue({
 					this.showWorkplan = !this.showWorkplan;
 					this.toggleForm[idd] = !this.toggleForm[idd]
 					this.titleActive = "Show Assignment"
-
+					// if (!isEmpty(this.selectedTask)) {
+					// 	this.tampungSelectedTask = this.selectedTask
+					// }
+					// console.log(this.tampungSelectedTask)
 					el.classList.add('fadeIn');
 					document.querySelector('.contentPage').scrollTop = 0;
 					global.psContent.update();
 				});
+			} else {
+				console.log("Ga masuk")
 			}
 		},
 		updateProgress(idd) {
@@ -296,6 +303,21 @@ new Vue({
 		}
 	},
 	mounted() {
+		let routes = parseURLRoute();
+		if (routes !== false) {
+			if (routes.args.length > 0) {
+				let selected = this.dataBaru.find((row) => row.pID == routes.args[0])
+				if (selected != undefined) {
+					this.selectedTask = selected
+					switch (routes.route) {
+						case 'showAssign':
+							this.showAssign('showAssign');
+							break;
+					}
+				}
+
+			}
+		}
 		Loader.hide();
 	}
 });

@@ -94,6 +94,14 @@ module.exports.getDuration = bundle => {
 	});
 }
 
+module.exports.getTeamWorkplan = task_id => {
+	return request.get(parseURL("getTeamWorkplan", { task_id }));
+}
+
+module.exports.getResourceWorkplan = task_id => {
+	return request.get(parseURL("getResourceWorkplan", { task_id }));
+}
+
 module.exports.uploadFoto = (file) => {
 	return request.post($api.uploadFoto, file);
 }

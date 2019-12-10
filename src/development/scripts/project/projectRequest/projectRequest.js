@@ -47,10 +47,10 @@ new Vue({
 		}
 	},
 	methods: {
-		console(e){
+		console(e) {
 			console.log(e);
 		},
-		extractExt(str){
+		extractExt(str) {
 			let splited = str.split('.');
 			return splited[splited.length - 1];
 		},

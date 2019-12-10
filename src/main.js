@@ -113,11 +113,11 @@ if (ifooter !== null) {
 }
 
 const notifiedEl = document.querySelector("notified");
-if(notifiedEl !== null){
+if (notifiedEl !== null) {
 	let message = 'Hello, welcome to PROUDS!';
 	let type = 'is-info';
 
-	if(notifiedEl.hasAttribute('message')) message = notifiedEl.getAttribute('message');
+	if (notifiedEl.hasAttribute('message')) message = notifiedEl.getAttribute('message');
 	if (notifiedEl.hasAttribute('type')) type = notifiedEl.getAttribute('type');
 
 	VueSidebar.$notification.open({
@@ -129,7 +129,7 @@ if(notifiedEl !== null){
 }
 
 const actingMenu = document.querySelector("#prouds-acting-menu");
-if(actingMenu !== null){
+if (actingMenu !== null) {
 	let action = actingMenu.dataset.action;
 	actingMenu.addEventListener('click', () => {
 		VueSidebar.$dialog.prompt({

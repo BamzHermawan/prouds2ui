@@ -47,11 +47,11 @@ export default {
 					mandays: {
 						title: "Mandays"
 					},
-					pComp: {
-						title: "Progress %"
-					},
 					weightPercent: {
-						title: "Weight Percent"
+						title: "Weight (%)"
+					},
+					pComp: {
+						title: "Progress (%)"
 					}
 				},
 				vUseSingleCell: 10000,
@@ -62,6 +62,7 @@ export default {
 			g.setShowDur(0);
 			g.setUseToolTip(0);
 			g.setShowComp(0);
+			// g.setUseSort(0);
 			// g.setEditable(1);
 			// g.AddTaskItem(
 			// 	new JSGantt.TaskItem(

@@ -72,6 +72,22 @@ module.exports = {
 		getNotification: 'getNotification.php',
 
 		/**
+		 * get Team Workplan List [GET]
+		 * Send Data: task_id
+		 * Received Data: 
+		 *  - list team
+		 */
+		getTeamWorkplan: 'getTeamWorkplan.php?task_id={task_id}',
+
+		/**
+		 * get Resource Workplan List [GET]
+		 * Send Data: task_id
+		 * Received Data: 
+		 *  - list team
+		 */
+		getResourceWorkplan: 'getResourceWorkplan.php?task_id={task_id}',
+
+		/**
 		 * open Notification Log [POST]
 		 * Send Data:  List of id
 		 * Received Data: -
