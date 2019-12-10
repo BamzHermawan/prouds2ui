@@ -75,6 +75,10 @@
 			:data="dataFiltered"
 			style="font-size:11pt"
 			class="is-packed"
+			:opened-detailed="openDetail"
+			detailed
+			detail-key="user_id"
+			:show-detail-icon="false"
 			paginated
 			:per-page="10"
 			pagination-simple
@@ -150,6 +154,64 @@
 				</b-message>
 			</template>
 			<template slot="top-right"> </template>
+			<template slot="detail" slot-scope="props">
+				<div class="columns">
+					<div class="column">
+						<p class="label">
+							Assigned Role
+						</p>
+						<p>
+							{{ props.row.assignment.roleName }}
+						</p>
+					</div>
+					<div class="column">
+						<p class="label">
+							Start Date
+						</p>
+						<p>
+							{{ props.row.assignment.start_date | fulldate }}
+						</p>
+					</div>
+					<div class="column">
+						<p class="label">
+							End Date
+						</p>
+						<p>
+							{{ props.row.assignment.end_date | fulldate }}
+						</p>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column">
+						<p class="label">
+							Mandays Rate
+						</p>
+						<p>
+							Rp.
+							{{ props.row.assignment.mandaysRate | currency }}
+						</p>
+					</div>
+					<div class="column">
+						<p class="label">
+							Workload
+						</p>
+						<p>
+							{{ props.row.assignment.workloadName }}
+						</p>
+					</div>
+					<div class="column">
+						<p class="label">
+							Auto complete
+						</p>
+						<p v-if="props.row.assignment.progressCalculation">
+							{{ props.row.assignment.progressCalculation }} ✅
+						</p>
+						<p v-if="!props.row.assignment.progressCalculation">
+							{{ props.row.assignment.progressCalculation }} ❌
+						</p>
+					</div>
+				</div>
+			</template>
 		</b-table>
 
 		<b-modal :active.sync="showForm" width="850px" :can-cancel="false">
@@ -165,8 +227,8 @@
 									<crud-input
 										type="select"
 										placeholder="Choose Role"
-										v-model="assignment.assignRole"
-										name="assignRole"
+										v-model="assignment.roleID"
+										name="roleID"
 										input-style="margin-bottom:0px;"
 										required
 									>
@@ -187,18 +249,6 @@
 									<label class="label"
 										>Mandays Rate (IDR)</label
 									>
-									<!-- <crud-input
-										type="text"
-										placeholder="Fill Mandays Rate"
-										:value="
-											assignment.mandaysRate | currency
-										"
-										@input="rupiahFormat"
-										input-style="margin-bottom:0px;"
-										name=""
-										required
-									>
-									</crud-input> -->
 									<input
 										type="text"
 										class="input"
@@ -206,18 +256,6 @@
 										v-model="currencyRate"
 										@keypress="isNumber($event)"
 									/>
-									<!-- <input
-										type="text"
-										class="input"
-										v-model="assignment.mandaysRate"
-										@blur="parseMandays"
-									/>
-									<p
-										class="help is-danger"
-										v-if="alertMandays"
-									>
-										This username is available
-									</p> -->
 								</div>
 
 								<b-field>
@@ -230,8 +268,8 @@
 									</div>
 									<crud-input
 										type="select"
-										v-model="assignment.workloadEffort"
-										name="workloadEffort"
+										v-model="assignment.workloadID"
+										name="workloadID"
 										input-style="margin-bottom:0px; width:40%"
 										required
 									>
@@ -324,8 +362,15 @@
 
 import "helper-filter";
 import moment from "helper-moment";
-import { searchFilter, animate, notified, isEmpty } from "helper-tools";
+import {
+	searchFilter,
+	animate,
+	notified,
+	isEmpty,
+	checkConnection
+} from "helper-tools";
 import { crudInput, dataTableNoCard } from "components";
+import api from "helper-apis";
 export default {
 	components: { crudInput, dataTableNoCard },
 	props: {
@@ -360,15 +405,20 @@ export default {
 			alertMandays: false,
 			assignment: {
 				user_id: undefined,
-				assignRole: undefined,
+				roleID: undefined,
+				roleName: undefined,
 				start_date: undefined,
 				end_date: undefined,
-				workloadEffort: 1,
+				workloadID: 1,
+				workloadName: undefined,
 				mandaysRate: "",
 				progressCalculation: true
 			},
 			tampungUserID: undefined,
-			arrayForm: []
+			arrayForm: [],
+			isLoading: false,
+			openDetail: [],
+			listResource: []
 		};
 	},
 	methods: {
@@ -408,6 +458,12 @@ export default {
 				if (index > -1) {
 					this.selectedRows.splice(index, 1);
 				}
+
+				var idxDetail = this.openDetail.indexOf(row.user_id);
+
+				if (idxDetail > -1) {
+					this.openDetail.splice(idxDetail, 1);
+				}
 				this.clearForm();
 			} else {
 				this.assignment.user_id = row.user_id;
@@ -425,18 +481,23 @@ export default {
 		},
 		saveForm() {
 			this.arrayForm.push(this.assignment);
-
+			let found = this.listResource.findIndex(
+				team => team.user_id === this.assignment.user_id
+			);
+			this.listResource[found].assignment = this.assignment;
+			this.openDetail.push(this.assignment.user_id);
 			this.clearForm();
-
 			this.showForm = false;
 		},
 		clearForm() {
 			this.assignment = {
 				user_id: undefined,
-				assignRole: undefined,
+				roleID: undefined,
+				roleName: undefined,
 				start_date: undefined,
 				end_date: undefined,
-				workloadEffort: 1,
+				workloadID: 1,
+				workloadName: undefined,
 				mandaysRate: "",
 				progressCalculation: true
 			};
@@ -453,6 +514,27 @@ export default {
 			} else {
 				return true;
 			}
+		},
+		getResourceWorkplan() {
+			this.isLoading = true;
+			let task_id = this.task.pID;
+			let self = this;
+			api.getResourceWorkplan(task_id)
+				.then(response => {
+					if (!isEmpty(response.data)) {
+						self.listResource = response.data;
+					} else {
+						self.listResource = [];
+					}
+				})
+				.catch(() => {
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				})
+				.finally(() => (self.isLoading = false));
 		}
 	},
 	computed: {
@@ -460,6 +542,22 @@ export default {
 			return !(this.selectedRows.length > 0);
 		},
 		disableSave() {
+			if (!isEmpty(this.assignment.roleID)) {
+				let found = this.dataRole.find(
+					role => role.roleID === this.assignment.roleID
+				);
+				this.assignment.roleName = found.roleName;
+			}
+
+			if (!isEmpty(this.assignment.workloadID) && this.showForm) {
+				let cari = this.dataWorkload.find(
+					workload =>
+						parseInt(workload.workloadID) ===
+						this.assignment.workloadID
+				);
+				this.assignment.workloadName = cari.workloadName;
+			}
+
 			for (const index in this.assignment) {
 				if (isEmpty(this.assignment[index])) {
 					return true;
@@ -480,7 +578,7 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.task.resource, this.search);
+			return searchFilter(this.listResource, this.search);
 		},
 		currencyRate: {
 			get: function() {
@@ -496,6 +594,7 @@ export default {
 	},
 	mounted() {
 		this.getParent;
+		this.getResourceWorkplan();
 	}
 };
 </script>

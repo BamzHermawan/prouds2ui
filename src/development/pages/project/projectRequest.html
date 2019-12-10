@@ -338,12 +338,15 @@
 											<p class="panel-heading is-small has-text-centered">
 												Uploaded Document
 											</p>
-											<file-media :key="'filemedia-' + idx" v-for="(doc, idx) in selectedDocument" :ext="extractExt(doc.name)" :href="doc.link"
+											<file-media :key="'filemedia-' + idx" v-for="(doc, idx) in selectedDocument"
+												:ext="extractExt(doc.name)" :href="doc.link"
 												@closed="deleteFile(doc,idx)" closable>
 												{{ doc.name }}
 											</file-media>
-											<b-message v-if="selectedDocument.length <= 0" size="is-small" type="is-light">
-												<p class="has-text-centered">- There is currently no document uploaded -</p>
+											<b-message v-if="selectedDocument.length <= 0" size="is-small"
+												type="is-light">
+												<p class="has-text-centered">- There is currently no document uploaded -
+												</p>
 											</b-message>
 										</article>
 										<!-- ^ UPDATE ####################################################################### -->
@@ -440,7 +443,7 @@
 										</crud-input>
 									</b-field>
 									<br>
-									
+
 									<!-- ^ UPDATE ####################################################################### -->
 									<div class="buttons">
 										<b-button type="is-danger is-long" @click="edit">Cancel</b-button>
@@ -470,12 +473,8 @@
 										<p class="panel-heading is-small has-text-centered">
 											Uploaded Document
 										</p>
-										<file-media 
-											:key="'filemedia-' + idx"
-											v-for="(doc, idx) in tampungFile"
-											:ext="extractExt(doc.name)"
-											:href="doc.link" 
-											@closed="deleteFile(doc,idx)"
+										<file-media :key="'filemedia-' + idx" v-for="(doc, idx) in tampungFile"
+											:ext="extractExt(doc.name)" :href="doc.link" @closed="deleteFile(doc,idx)"
 											closable>
 											{{ doc.name }}
 										</file-media>

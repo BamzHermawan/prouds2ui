@@ -136,7 +136,10 @@
 								></span>
 							</button>
 						</b-tooltip>
-						<button class="button is-danger is-small">
+						<button
+							class="button is-danger is-small"
+							@click="deleteUser(props.row)"
+						>
 							<span class="mdi mdi-delete is-marginless"></span>
 						</button>
 					</b-table-column>
@@ -309,6 +312,10 @@ export default {
 			type: String,
 			required: true
 		},
+		actionDelete: {
+			type: String,
+			required: true
+		},
 		projectId: {
 			type: String,
 			required: true
@@ -381,6 +388,18 @@ export default {
 					}
 				})
 				.finally(() => (self.isLoading = false));
+		},
+		deleteUser(val) {
+			this.$dialog.confirm({
+				title: "Delete",
+				message: "Are you sure to delete <b>" + val.name + "</b> ?",
+				confirmText: "Ok",
+				type: "is-danger",
+				hasIcon: true,
+				onConfirm: () =>
+					(window.location.href =
+						this.actionDelete + "user_id=" + val.user_id)
+			});
 		}
 	},
 	computed: {

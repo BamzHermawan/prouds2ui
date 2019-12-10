@@ -139,7 +139,7 @@
 						</ul>
 						<ul class="is-marginless" v-if="!showWorkplan">
 							<li><a href="list.html">Project List</a></li>
-							<li><a @click="actionTask(idd)">Workplan</a></li>
+							<li><a href="#" @click="actionTask(idd)">Workplan</a></li>
 							<li class="is-active"><a href="#" aria-current="page">{{titleActive}}</a></li>
 						</ul>
 					</nav>
@@ -301,8 +301,9 @@
 												<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
 													:active="false">
 												</b-menu-item>
-												<b-menu-item @click="showAssign('showAssign')" label="Show Assignment"
-													:active="false">
+												<b-menu-item :href="'#showAssign/'" @click="showAssign('showAssign')"
+													:active="false" label="Show
+														Assignment">
 												</b-menu-item>
 												<b-menu-item @click="updateProgress('updateProgress')"
 													label="Update Progress" :active="false">
@@ -384,7 +385,8 @@
 					</assign-resource>
 
 					<show-assignment v-if="toggleForm.showAssign" id="showAssign" class="animated fadeIn faster"
-						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php"
+						action-delete="http://localhost:5501/demo/post_detect.php?">
 					</show-assignment>
 
 					<set-progress v-if="toggleForm.updateProgress" id="updateProgress" class="animated fadeIn faster"

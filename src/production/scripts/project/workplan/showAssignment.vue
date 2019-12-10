@@ -136,7 +136,10 @@
 								></span>
 							</button>
 						</b-tooltip>
-						<button class="button is-danger is-small">
+						<button
+							class="button is-danger is-small"
+							@click="deleteUser(props.row)"
+						>
 							<span class="mdi mdi-delete is-marginless"></span>
 						</button>
 					</b-table-column>
@@ -241,6 +244,7 @@
 					<crud-input
 						type="datepicker"
 						name="assignmentUntil"
+						v-model="assignmentUntil"
 						placeholder="Pick Start Date"
 						date-locale="en"
 						input-style="margin-bottom: 1em; width:35%"
@@ -274,12 +278,15 @@
 						<b-button class="is-danger is-long" @click="stopAssign">
 							Cancel
 						</b-button>
-						<b-button class="is-success is-long" type="submit">
+						<button
+							class="button is-success is-long"
+							type="submit"
+							:disabled="disableSave"
+						>
 							Submit
-						</b-button>
+						</button>
 					</div>
 				</div>
-				<br />
 			</form>
 		</div>
 	</div>
@@ -289,12 +296,23 @@
 // TODO: Selesaikan Halaman Modal!
 
 import moment from "helper-moment";
-import { searchFilter, animate } from "helper-tools";
+import {
+	searchFilter,
+	animate,
+	checkConnection,
+	notified,
+	isEmpty
+} from "helper-tools";
 import { crudInput, dataTableNoCard } from "components";
+import api from "helper-apis";
 export default {
 	components: { crudInput, dataTableNoCard },
 	props: {
 		actionEvent: {
+			type: String,
+			required: true
+		},
+		actionDelete: {
 			type: String,
 			required: true
 		},
@@ -319,10 +337,13 @@ export default {
 			tampung: "",
 			showTable: true,
 			showForm: false,
-			progress: "auto"
+			progress: "auto",
+			listTeam: [],
+			assignmentUntil: undefined
 		};
 	},
 	methods: {
+		isEmpty: isEmpty,
 		stopAssign(val) {
 			if (this.showTable) {
 				animate("#tableID", "fadeOut faster", el => {
@@ -342,14 +363,51 @@ export default {
 					this.showTable = true;
 					this.showForm = false;
 					this.tampung = "";
+					this.assignmentUntil = undefined;
 					document.querySelector(".contentPage").scrollTop = 0;
 				});
 			}
+		},
+		getTeamWorkplan() {
+			this.isLoading = true;
+			let task_id = this.task.pID;
+			let self = this;
+			api.getTeamWorkplan(task_id)
+				.then(response => {
+					if (!isEmpty(response.data)) {
+						self.listTeam = response.data;
+					} else {
+						self.listTeam = [];
+					}
+				})
+				.catch(() => {
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				})
+				.finally(() => (self.isLoading = false));
+		},
+		deleteUser(val) {
+			this.$dialog.confirm({
+				title: "Delete",
+				message: "Are you sure to delete <b>" + val.name + "</b> ?",
+				confirmText: "Ok",
+				type: "is-danger",
+				hasIcon: true,
+				onConfirm: () =>
+					(window.location.href =
+						this.actionDelete + "user_id=" + val.user_id)
+			});
 		}
 	},
 	computed: {
-		disableBtn() {
-			return !(this.selectedRows.length > 0);
+		disableSave() {
+			if (isEmpty(this.assignmentUntil)) {
+				return true;
+			}
+			return false;
 		},
 		getParent() {
 			if (this.curSubTask != 0) {
@@ -364,11 +422,12 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.task.resource, this.search);
+			return searchFilter(this.listTeam, this.search);
 		}
 	},
 	mounted() {
 		this.getParent;
+		this.getTeamWorkplan();
 	}
 };
 </script>

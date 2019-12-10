@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Buefy from 'buefy'
 import { dataTableNoCard, crudInput, ganttchart } from 'components';
 import Loader from 'helper-loader';
-import { animate } from 'helper-tools';
+import { animate, parseURLRoute } from 'helper-tools';
 import EditTask from "./editTask.vue"
 import AddTask from "./addTask.vue"
 import Tmp from "./template.vue"
@@ -296,6 +296,16 @@ new Vue({
 		}
 	},
 	mounted() {
+		let routes = parseURLRoute();
+		if (routes !== false) {
+			if (routes.args.length > 0) {
+				switch (routes.route) {
+					case 'showAssign':
+						this.showAssign('showAssign');
+						break;
+				}
+			}
+		}
 		Loader.hide();
 	}
 });
