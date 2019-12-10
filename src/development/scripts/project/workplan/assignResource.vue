@@ -429,7 +429,7 @@ export default {
 			form.setAttribute("method", "POST");
 			let input = document.createElement("input");
 			input.value = this.task.pID;
-			input.name = "task_id";
+			input.name = "taskId";
 			form.appendChild(input);
 
 			for (let i = 0; i < this.arrayForm.length; i++) {
@@ -517,9 +517,9 @@ export default {
 		},
 		getResourceWorkplan() {
 			this.isLoading = true;
-			let task_id = this.task.pID;
+			let taskId = this.task.pID;
 			let self = this;
-			api.getResourceWorkplan(task_id)
+			api.getResourceWorkplan(taskId)
 				.then(response => {
 					if (!isEmpty(response.data)) {
 						self.listResource = response.data;
