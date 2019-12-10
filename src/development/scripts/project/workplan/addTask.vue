@@ -40,6 +40,7 @@
 						label="Task Name"
 						placeholder="a name for the task"
 						name="taskName"
+						v-model="taskName"
 						input-style="margin-bottom:1em;"
 						required
 					>
@@ -52,6 +53,8 @@
 									name="weight"
 									v-model="weight"
 									type="is-info"
+									min="1"
+									required
 								></b-numberinput>
 							</b-field>
 						</div>
@@ -65,7 +68,11 @@
 						</div>
 					</b-field>
 
-					<button class="button is-success" type="submit">
+					<button
+						class="button is-success"
+						type="submit"
+						:disabled="disableSave"
+					>
 						Save Task
 					</button>
 				</div>
@@ -185,7 +192,8 @@ export default {
 			name: "",
 			selected: null,
 			progressCalculation: true,
-			weight: 0
+			weight: 1,
+			taskName: ""
 		};
 	},
 	watch: {
@@ -260,6 +268,21 @@ export default {
 
 				return preFilter && pre.pID != this.taskID;
 			});
+		},
+		disableSave() {
+			if (isEmpty(this.start)) {
+				return true;
+			}
+			if (isEmpty(this.finish)) {
+				return true;
+			}
+			if (isEmpty(this.taskName)) {
+				return true;
+			}
+			if (isEmpty(this.workdays)) {
+				return true;
+			}
+			return false;
 		}
 	},
 	mounted() {

@@ -241,6 +241,7 @@
 					<crud-input
 						type="datepicker"
 						name="assignmentUntil"
+						v-model="assignmentUntil"
 						placeholder="Pick Start Date"
 						date-locale="en"
 						input-style="margin-bottom: 1em; width:35%"
@@ -274,12 +275,15 @@
 						<b-button class="is-danger is-long" @click="stopAssign">
 							Cancel
 						</b-button>
-						<b-button class="is-success is-long" type="submit">
+						<button
+							class="button is-success is-long"
+							type="submit"
+							:disabled="disableSave"
+						>
 							Submit
-						</b-button>
+						</button>
 					</div>
 				</div>
-				<br />
 			</form>
 		</div>
 	</div>
@@ -327,7 +331,8 @@ export default {
 			showTable: true,
 			showForm: false,
 			progress: "auto",
-			listTeam: []
+			listTeam: [],
+			assignmentUntil: undefined
 		};
 	},
 	methods: {
@@ -351,6 +356,7 @@ export default {
 					this.showTable = true;
 					this.showForm = false;
 					this.tampung = "";
+					this.assignmentUntil = undefined;
 					document.querySelector(".contentPage").scrollTop = 0;
 				});
 			}
@@ -378,8 +384,11 @@ export default {
 		}
 	},
 	computed: {
-		disableBtn() {
-			return !(this.selectedRows.length > 0);
+		disableSave() {
+			if (isEmpty(this.assignmentUntil)) {
+				return true;
+			}
+			return false;
 		},
 		getParent() {
 			if (this.curSubTask != 0) {
