@@ -198,8 +198,8 @@
 											enctype="multipart/form-data">
 											<div class="level">
 												<div class="level-item">
-													<b-upload v-model="selectedDocument" name="evidDoc" native required
-														style="width:100%;" accept=".xml">
+													<b-upload v-model="selectedDocument" name="evidDoc" native=""
+														required="" style="width:100%;" accept=".xml">
 														<div v-if="selectedDocument==null">
 															<a class="button is-small is-info is-light is-fullwidth">
 																<span class="mdi mdi-upload in-left"></span>
@@ -305,9 +305,9 @@
 												<b-menu-item @click="assignTeam('assignTeam')" label="Assign Team"
 													:active="false">
 												</b-menu-item>
-												<b-menu-item :href="'#showAssign/'" @click="showAssign('showAssign')"
-													:active="false" label="Show
-														Assignment">
+												<b-menu-item :href="'#showAssign/'+selectedTask.pID"
+													@click="showAssign('showAssign')" :active="false" label="Show
+																Assignment">
 												</b-menu-item>
 												<b-menu-item @click="updateProgress('updateProgress')"
 													label="Update Progress" :active="false">
@@ -388,8 +388,9 @@
 						</template>
 					</assign-resource>
 
-					<show-assignment v-if="toggleForm.showAssign" id="showAssign" class="animated fadeIn faster"
-						:task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php"
+					<show-assignment v-if="toggleForm.showAssign" :show-rate="false" id="showAssign"
+						class="animated fadeIn faster" :task="selectedTask" project-id="1"
+						action-event="http://localhost:5501/demo/post_detect.php"
 						action-delete="http://localhost:5501/demo/post_detect.php?">
 					</show-assignment>
 

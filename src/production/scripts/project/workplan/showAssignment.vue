@@ -105,6 +105,7 @@
 						sortable
 						width="150"
 						centered
+						v-if="showRate"
 					>
 						<p class="has-text-right">
 							{{ props.row.mandaysRate | currency }}
@@ -239,7 +240,12 @@
 						</div>
 					</b-field>
 				</b-field>
-
+				<b-input
+					type="hidden"
+					v-model="projectId"
+					name="projectId"
+				></b-input>
+				<b-input type="hidden" v-model="taskId" name="taskId"></b-input>
 				<b-field horizontal label="Assignment Until">
 					<crud-input
 						type="datepicker"
@@ -323,6 +329,10 @@ export default {
 		task: {
 			type: Object,
 			required: true
+		},
+		showRate: {
+			type: Boolean,
+			required: true
 		}
 	},
 	data() {
@@ -333,6 +343,7 @@ export default {
 			curSubTask: this.task.pParent,
 			start: this.task.pStart,
 			finish: this.task.pEnd,
+			taskId: this.task.pID,
 			search: "",
 			tampung: "",
 			showTable: true,
@@ -398,7 +409,13 @@ export default {
 				hasIcon: true,
 				onConfirm: () =>
 					(window.location.href =
-						this.actionDelete + "user_id=" + val.user_id)
+						this.actionDelete +
+						"projectId=" +
+						this.projectId +
+						"&taskId=" +
+						this.taskId +
+						"&user_id=" +
+						val.user_id)
 			});
 		}
 	},

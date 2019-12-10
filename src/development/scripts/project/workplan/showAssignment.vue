@@ -409,7 +409,13 @@ export default {
 				hasIcon: true,
 				onConfirm: () =>
 					(window.location.href =
-						this.actionDelete + "user_id=" + val.user_id)
+						this.actionDelete +
+						"projectId=" +
+						this.projectId +
+						"&taskId=" +
+						this.taskId +
+						"&user_id=" +
+						val.user_id)
 			});
 		}
 	},
