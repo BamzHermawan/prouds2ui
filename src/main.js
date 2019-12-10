@@ -59,7 +59,7 @@ const VueSidebar = new Vue({
 					}
 				})
 				.catch(function () {
-					if (checkConnection(self.notification)) {
+					if (checkConnection(self.$notification)) {
 						notified(self.$notification).error(
 							"Sorry we are encountering a problem, please try again later. 🙏"
 						);

@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 
-$content  = file_get_contents("./resource.json");
+$content  = file_get_contents("./dummy/resource.json");
 $resource = json_decode($content);
 
 $post = json_decode(file_get_contents("php://input"));

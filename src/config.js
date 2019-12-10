@@ -105,7 +105,22 @@ module.exports = {
 		 * Received Data:
 		 *  - success
 		 */
-		setComplete: 'axios_check.php'
+		setComplete: 'axios_check.php',
+
+		/**
+		 * get data performance Index by project id
+		 * Send Data:
+		 * - project_id
+		 */
+		getPIndexTable: 'performanceIndex.php?get=table&project_id={project_id}',
+
+		/**
+		 * get data performance Index chart by project id & task id
+		 * Send Data:
+		 * - project_id
+		 * - task_id
+		 */
+		getPIndexChart: 'performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}'
 	}
 
 }

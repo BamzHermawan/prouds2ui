@@ -162,3 +162,55 @@ module.exports.deleteFile = bundle => {
 		}
 	});
 }
+
+/**
+ * Get Performance Index Table Data
+ *
+ * @param {*} project_id: Project ID
+ * @returns Axios Promise Instance
+ */
+module.exports.getPIndexTable = project_id => {
+	return request.get(parseURL("getPIndexTable", { project_id }))
+		.then(response => {
+			let prep = {
+				project_id: project_id,
+				total_weekly_progress: [],
+				sigma_progress: [],
+				delta_progress: [],
+				week_count: 5,
+				task: []
+			};
+
+			if(!isEmpty(response.data)){
+				prep = response.data
+			}
+
+			return prep;
+		})
+}
+
+/**
+ * Get Performance Index Chart Data
+ *
+ * @param {*} project_id: Project ID
+ * @param {*} task_id: task ID
+ * @returns Axios Promise Instance
+ */
+module.exports.getPIndexChart = (project_id, task_id) => {
+	const bundle = { project_id, task_id };
+
+	return request.get(parseURL("getPIndexChart", bundle))
+		.then(response => {
+			if (isEmpty(response.data)) {
+				return {
+					"plan": [],
+					"actual": [],
+					"sigma_plan": [],
+					"sigma_actual": [],
+					"gap": []
+				};
+			}
+
+			return response.data;
+		})
+}

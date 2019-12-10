@@ -8,6 +8,7 @@ import notificationLog from "./notificationLog.vue";
 import bookmarkButton from "./sidebar/bookmark.vue";
 
 // DATATABLE
+import pindexTable from "./dataTable/pIndex.vue";
 import dataTable from "./dataTable/dataTable.vue";
 import treeTable from "./dataTable/treeTable.vue";
 import dataTableNoCard from "./dataTable/nocard.vue";
@@ -26,8 +27,9 @@ import sideItem from "./sidebar/item.vue";
 import sideList from "./sidebar/list.vue";
 import topNavBar from "./topNavBar.vue";
 
-// GANTTCHART
-import ganttchart from "./ganttchart.vue"
+// CHART
+import hChart from "./chart/hchart.vue";
+import ganttchart from "./ganttchart.vue";
 
 module.exports.linker = linker;
 module.exports.notified = notified;
@@ -40,6 +42,7 @@ module.exports.notificationLog = notificationLog;
 
 module.exports.dataTable = dataTable;
 module.exports.treeTable = treeTable;
+module.exports.pindexTable = pindexTable;
 module.exports.dataTableNoCard = dataTableNoCard;
 
 module.exports.taskGroup = taskGroup;
@@ -53,4 +56,5 @@ module.exports.sideItem = sideItem;
 module.exports.sideList = sideList;
 module.exports.topNavBar = topNavBar;
 
+module.exports.hChart = hChart;
 module.exports.ganttchart = ganttchart;

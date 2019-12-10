@@ -1,0 +1,58 @@
+.pindex-table-container {
+	display: grid;
+	grid-template-columns: 70% 30%;
+
+	.pindex-table-right {
+		width: 100%;
+		overflow-x: scroll;
+	}
+
+	th {
+		height: 27px !important;
+		text-align: center;
+		font-size: .8em;
+	}
+
+	td {
+		height: 25px !important;
+		font-size: .75em !important;
+	}
+
+	tr.is-hover {
+		background-color: #cbe5f6 !important;
+	}
+
+	.is-double-decker {
+		height: 54px !important;
+		vertical-align: middle;
+	}
+
+	&.add-max-height {
+		max-height: calc(100vh - 175px);
+		overflow-y: scroll;
+	}
+
+	.is-child {
+		padding-left: 1.5em !important;
+	}
+
+	.is-parent {
+		background-color: darken($light, 5%);
+	}
+
+	.is-task-name {
+		width: 500px;
+		max-width: 500px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-decoration: none !important;
+		cursor: pointer;
+	}
+}
+
+@media screen and (min-width: 1216px) {
+	.pindex-table-container {
+		grid-template-columns: 60% 40%;
+	}
+}

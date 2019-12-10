@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$content  = file_get_contents("./userBooking.json");
+$content  = file_get_contents("./dummy/userBooking.json");
 $resource = json_decode($content);
 
 $prep = json_decode('{}');

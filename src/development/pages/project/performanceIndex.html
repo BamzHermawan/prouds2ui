@@ -42,7 +42,7 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item active>Project List</side-item>
+				<side-item href="./list.html" active>Project List</side-item>
 				<side-item href="./projectAssignment.html">Project Assignment</side-item>
 				<side-item href="./projectRequest.html">Project Request</side-item>
 				<side-item href="./timesheetList.html">My Task</side-item>
@@ -147,25 +147,25 @@
 								App Mantap Super Jaya
 								Semua Suka Sampai Mendunia</h3>
 							<b-field grouped>
-								<div class="control">
-									<b-taglist attached>
-										<b-tag type="is-dark">ID</b-tag>
-										<b-tag type="is-info">1900123</b-tag>
-									</b-taglist>
+								<div v-cloak class="control">
+									<div class="tags has-addons">
+										<span class="tag is-dark">ID</span>
+										<span ref="project_id" class="tag is-info">1900123</span>
+									</div>
 								</div>
-								<div class="control">
+								<div v-cloak class="control">
 									<b-taglist attached size="are-medium">
 										<b-tag type="is-dark">IWO</b-tag>
 										<b-tag type="is-info">P-1909-TTES0481</b-tag>
 									</b-taglist>
 								</div>
-								<div class="control">
+								<div v-cloak class="control">
 									<b-taglist attached size="are-medium">
 										<b-tag type="is-dark">PM</b-tag>
 										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
 									</b-taglist>
 								</div>
-								<div class="control">
+								<div v-cloak class="control">
 									<b-taglist attached size="are-medium">
 										<b-tag type="is-dark">
 											<span class="mdi mdi-account-tie is-marginless"></span>
@@ -175,9 +175,60 @@
 								</div>
 							</b-field>
 						</div>
+						<div class="column is-4 is-paddingless">
+							<div class="buttons is-right">
+								<b-button 
+									v-cloak
+									@click="openChart('total')" 
+									:loading="toggleIsLoading"
+									:type="chartIsOpen ? 'is-danger':'is-success'" 
+									icon-left="chart-bell-curve">
+									{{ chartIsOpen ? 'Close chart':'Open Chart'}}
+								</b-button>
+							</div>
+						</div>
 					</div>
 
-					<h3>Nice load up page!</h3>
+					<span class="white-space is-medium"></span>
+
+					<div v-cloak v-show="!chartIsOpen" class="animated fadeIn faster">
+						<b-message type="is-info" size="is-small">
+							<b class="has-text-dark">*click task name to open chart per task specifically. to check total progress chart click green button "open chart"</b>
+						</b-message>
+						<pindex-table :project-id="project_id" @rowclicked="openChart"></pindex-table>
+					</div>
+
+					<div v-cloak v-show="chartIsOpen" class="pindex-chart-container animated fadeIn faster">
+						<b-message v-if="task !== 'total'" size="is-small" type="is-dark">
+							<p class="has-text-white">{{ task.name }}</p>
+						</b-message>
+
+						<h-chart 
+							ref="spiChart" 
+							id="spiChart" 
+							width="100%" 
+							height="300px" 
+							title="Schedule Performance Index"
+							:x-axis="spiChart.xAxis" 
+							:y-axis="spiChart.yAxis" 
+							:series="spiChart.series">
+						</h-chart>
+
+						<span class="white-space"></span>
+
+						<h-chart 
+							ref="pvrChart" 
+							id="pvrChart" 
+							width="100%" 
+							height="300px" 
+							title="Plan VS Realization"
+							:x-axis="pvrChart.xAxis" 
+							:y-axis="pvrChart.yAxis" 
+							:series="pvrChart.series">
+						</h-chart>
+					</div>
+
+					<b-loading :active.sync="toggleIsLoading"></b-loading>
 				</div>
 			</section>
 		</section>
@@ -187,6 +238,37 @@
 				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+	
+		<!-- 
+			Get Performance Index Table Data [GET]
+			@param {*} project_id: Project ID
+
+			expected return look json file release/dummy/pIndexTable.json
+		-->
+		<api-test url="performanceIndex.php?get=table&project_id={project_id}" key="getPIndexTable"></api-test>
+
+		<!-- 
+			Get Performance Index Table Data [GET]
+			@param {*} project_id: Project ID
+
+			expected return look json file release/dummy/pIndexTable.json
+		-->
+		<api-test url="performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}" key="getPIndexChart"></api-test>
 	</div>
 
 	<script src="../../scripts/layout/controller.js"></script>

@@ -31,6 +31,16 @@ $colors: (
 	"danger": ($danger, $danger-invert),
 );
 
+$lightBG: (
+	"pink": rgb(250, 129, 150) 15% 40%,
+    "primary": $primary 20% 40%,
+    "link": $link 20% 40%,
+	"info": $info 20% 40%,
+	"success": $success 20% 40%,
+	"warning": $warning 20% 40%,
+	"danger": $danger 20% 30%,
+);
+
 $heroBold: (
 	"pink": linear-gradient(90deg, rgb(183, 84, 203),rgb(232, 47, 180)),
 	"light": linear-gradient(90deg, $light,#cfcfdf),

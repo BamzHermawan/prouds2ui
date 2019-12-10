@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 
-$content  = file_get_contents("./resource.json");
+$content  = file_get_contents("./dummy/resource.json");
 $resource = json_decode($content);
 
 if(!empty($_GET["userId"])){

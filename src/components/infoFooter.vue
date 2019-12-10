@@ -92,7 +92,7 @@
 
 <script>
 import Moment from "helper-moment";
-import vChart from "../components/highchart";
+import vChart from "../components/chart/highchart";
 export default {
 	props: {
 		entry: {

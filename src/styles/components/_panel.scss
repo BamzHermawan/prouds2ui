@@ -1,13 +1,25 @@
 .panel {
 	border-width: 1.25px;
-    border-style: solid;
+	border-style: solid;
+	border-color: $light;
+
+	.panel-heading {
+		@include heroGradient($light, $light);
+	}
 
 	@each $name, $color in $colors {
 		&.is-#{$name} {
-			border-color: nth($color, 1);
+			@if $name == 'white' { 
+				border-color: none;
+			} @else if $name == 'light' { 
+				border-color: $light;
+			} @else { 
+				border-color: nth($color, 1);
+			}
 
 			.panel-heading {
 				@include heroGradient(nth($color, 1), nth($color, 1));
+				color: nth($color, 2);
 			}
 		}
 	}

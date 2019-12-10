@@ -30,6 +30,8 @@ html {
 @import "components/notification";
 @import "components/filemedia";
 @import "components/panel";
+@import "components/pindex";
+@import "components/chart";
 
 tr.is-child > td:first-child {
 	padding-left: 1.5rem;
@@ -41,6 +43,17 @@ tr.is-child > td:first-child {
 
 //! -----------------------------------------------------
 //* @CONTENT --------------------------------------------
+
+// Light Background
+@each $name, $color in $lightBG {
+	.has-bg-#{$name}-light {
+		background-color: lighten(nth($color, 1), nth($color, 2)) !important;
+	}
+
+	.has-bg-#{$name}-lighter {
+		background-color: lighten(nth($color, 1), nth($color, 3)) !important;
+	}
+}
 
 .is-fullheight-container {
 	min-height: 100%;
