@@ -306,3 +306,40 @@ module.exports.searchFilter = (data, query) => {
 		return found;
 	});
 }
+
+module.exports.searchTree = (data, query) => {
+	return data.filter(post => {
+		const stack = [];
+		stack.push(post);
+
+		while (stack.length > 0) {
+			const currentObj = stack.shift();
+			if (
+				!(currentObj instanceof Object) &&
+				currentObj !== null
+			) {
+				let check = currentObj
+					.toString()
+					.toLowerCase()
+					.includes(query.toLowerCase());
+
+				if (check) {
+					return true;
+				}
+			}
+
+			const keys =
+				currentObj instanceof Object
+					? Object.keys(currentObj)
+					: [];
+
+			for (const key of keys) {
+				const objVal = currentObj[key];
+
+				stack.unshift(objVal);
+			}
+		}
+
+		return false;
+	});
+}

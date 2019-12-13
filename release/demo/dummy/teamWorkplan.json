@@ -17,8 +17,8 @@
 				"skillLevel": "Intermediate"
 			},
 			{
-				"skillName": "Vue Js",
-				"skillLevel": "Advance"
+				"skillName": "Svelte",
+				"skillLevel": "Noob"
 			},
 			{
 				"skillName": "Android",
@@ -30,7 +30,7 @@
 				"certificateName": "Pentaho"
 			},
 			{
-				"certificateName": "Cisco"
+				"certificateName": "Ade Ganteng"
 			}
 		],
 		"actionComplete": "http://localhost:5500/project/workplan.html"
