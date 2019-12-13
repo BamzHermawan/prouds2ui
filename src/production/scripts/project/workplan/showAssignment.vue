@@ -370,7 +370,7 @@
 
 import moment from "helper-moment";
 import {
-	searchFilter,
+	searchTree,
 	animate,
 	checkConnection,
 	notified,
@@ -508,7 +508,7 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.listTeam, this.search);
+			return searchTree(this.listTeam, this.search);
 		}
 	},
 	mounted() {

@@ -326,7 +326,7 @@
 import "helper-filter";
 import moment from "helper-moment";
 import {
-	searchFilter,
+	searchTree,
 	animate,
 	notified,
 	isEmpty,
@@ -478,7 +478,7 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.listResource, this.search);
+			return searchTree(this.listResource, this.search);
 		}
 	},
 	mounted() {
