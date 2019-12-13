@@ -60,6 +60,29 @@
 
 					<input
 						type="hidden"
+						name="roleIdPrev"
+						v-model="roleIdPrev"
+					/>
+
+					<crud-input
+						type="select"
+						label="Assigned Role"
+						placeholder="Choose Role"
+						name="roleId"
+						v-model="roleId"
+						input-style="margin-bottom:1em;"
+						required
+					>
+						<option
+							v-for="(val, idx) in dataRole"
+							:key="idx"
+							:value="val.roleId"
+							>{{ val.roleName }}</option
+						>
+					</crud-input>
+
+					<input
+						type="hidden"
 						name="progressCalculationPrev"
 						v-model="progressCalculationPrev"
 					/>
@@ -260,6 +283,7 @@ export default {
 	data() {
 		return {
 			dataBaru: GANTT,
+			dataRole: ROLE,
 			taskName: this.task.pName,
 			workdays: this.task.workdays,
 			duration: 20,
@@ -286,7 +310,9 @@ export default {
 			wbsNo: this.task.wbsNo,
 			integration: this.task.integration,
 			weight: this.task.weight,
-			weightPercent: this.task.weightPercent
+			weightPercent: this.task.weightPercent,
+			roleId: this.task.roleId,
+			roleIdPrev: this.task.roleId
 		};
 	},
 	watch: {

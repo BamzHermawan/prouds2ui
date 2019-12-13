@@ -291,7 +291,6 @@ module.exports.searchFilter = (data, query) => {
 					for (const x in val) {
 						if (val.hasOwnProperty(x)) {
 							const element = val[x];
-							console.log(element);
 							return element
 								.toString()
 								.toLowerCase()
