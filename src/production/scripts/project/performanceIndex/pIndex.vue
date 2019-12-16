@@ -255,6 +255,10 @@ export default {
 					roofGap = plan - task.gap_treshold;
 				}
 
+				if (actual === null) {
+					return false;
+				}
+
 				if (useGap) {
 					return roofGap > actual;
 				} else {
