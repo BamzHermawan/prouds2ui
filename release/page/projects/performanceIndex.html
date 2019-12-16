@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+	<title>PROJECT | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+	<link rel="stylesheet" href="../../src/style.min.css">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="../notification.html" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="./list.html" active="">Project List</side-item>
+				<side-item href="./projectAssignment.html">Project Assignment</side-item>
+				<side-item href="./projectRequest.html">Project Request</side-item>
+				<side-item href="./timesheetList.html">My Task</side-item>
+				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="#no-edit">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless">
+								<span>Performance Index</span>
+							</h1>
+						</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container" data-title="Performance Index">
+
+					<!-- * Breadcrumb page -->
+					<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+						<ul class="is-marginless">
+							<li><a href="./list.html">Project List</a></li>
+							<li class="is-active"><a href="#" aria-current="page">Performance Index</a></li>
+						</ul>
+					</nav>
+					
+					<!-- * Project Detail Title Format -->
+					<div class="columns is-marginless">
+						<div class="column is-8-desktop content is-marginless is-paddingless">
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery
+								Awesome
+								App Mantap Super Jaya
+								Semua Suka Sampai Mendunia</h3>
+							<b-field grouped="">
+								<div v-cloak="" class="control">
+									<div class="tags has-addons">
+										<span class="tag is-dark">ID</span>
+										<span ref="project_id" class="tag is-info">1900123</span>
+									</div>
+								</div>
+								<div v-cloak="" class="control">
+									<b-taglist v-once="" attached="" size="are-medium">
+										<b-tag type="is-dark">IWO</b-tag>
+										<b-tag type="is-info">P-1909-TTES0481</b-tag>
+									</b-taglist>
+								</div>
+								<div v-cloak="" class="control">
+									<b-taglist v-once="" attached="" size="are-medium">
+										<b-tag type="is-dark">PM</b-tag>
+										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
+									</b-taglist>
+								</div>
+								<div v-cloak="" class="control">
+									<b-taglist v-once="" attached="" size="are-medium">
+										<b-tag type="is-dark">
+											<span class="mdi mdi-account-tie is-marginless"></span>
+										</b-tag>
+										<b-tag type="is-info">2</b-tag>
+									</b-taglist>
+								</div>
+							</b-field>
+						</div>
+						<div class="column is-4 is-paddingless">
+							<div class="buttons is-right">
+								<b-button v-cloak="" @click="openChart('total')" :loading="toggleIsLoading" :type="chartIsOpen ? 'is-danger':'is-success'" icon-left="chart-bell-curve">
+									{{ chartIsOpen ? 'Close chart':'Open Chart'}}
+								</b-button>
+							</div>
+						</div>
+					</div>
+
+					<span class="white-space is-medium"></span>
+
+					<div v-cloak="" v-show="!chartIsOpen" class="animated fadeIn faster">
+						<b-message v-once="" type="is-info" size="is-small">
+							<b class="has-text-dark">*click task name to open chart per task specifically. to check total progress chart click green button "open chart"</b>
+						</b-message>
+						<pindex-table :project-id="project_id" @rowclicked="openChart" @redclicked="openFallBehind"></pindex-table>
+					</div>
+
+					<div v-cloak="" v-show="chartIsOpen" class="pindex-chart-container animated fadeIn faster">
+						<b-message v-if="task !== 'total'" type="is-dark">
+							<label class="has-text-white has-text-weight-bold">Task Name</label>
+							<p v-once="" class="has-text-white has-text-weight-light">{{ task.name }}</p>
+						</b-message>
+
+						<h-chart ref="spiChart" id="spiChart" width="100%" height="300px" title="S-Curve" :point-start="1" :tooltip-format="function (){
+								return this.series.name + ' [Week #' + this.x + ']<br><b>' + this.y + '%</b>';
+							}" :x-axis="spiChart.xAxis" :y-axis="spiChart.yAxis" :series="spiChart.series">
+						</h-chart>
+
+						<span class="white-space"></span>
+
+						<h-chart ref="pvrChart" id="pvrChart" width="100%" height="300px" title="Plan VS Realization" :tooltip-format="function (){
+								return this.series.name + ' [Week #' + this.x + ']<br><b>' + this.y + '%</b>';
+							}" :point-start="1" :x-axis="pvrChart.xAxis" :y-axis="pvrChart.yAxis" :series="pvrChart.series">
+						</h-chart>
+					</div>
+
+					<b-loading :active.sync="toggleIsLoading"></b-loading>
+					
+					<b-modal :active.sync="modal.active" :width="640">
+						<div class="card modal-card-pIndex">
+							<header class="card-header">	
+								<p class="card-header-title">{{ modal.task.name }}</p>
+							</header>
+							<div class="card-content info-card-pIndex">
+								<b-field grouped="">
+									<div v-cloak="" class="control">
+										<b-taglist attached="" size="are-medium">
+											<b-tag type="is-dark">Weight</b-tag>
+											<b-tag type="is-info">{{ modal.task.weight }}</b-tag>
+										</b-taglist>
+									</div>
+									<div v-cloak="" class="control">
+										<b-taglist attached="" size="are-medium">
+											<b-tag type="is-dark">Progress</b-tag>
+											<b-tag type="is-danger">{{ modal.task.progress }}</b-tag>
+										</b-taglist>
+									</div>
+								</b-field>
+							</div>
+							<div class="card-content member-list">
+								<template v-if="!modal.fetchLoading">
+									<div v-for="(member, i) in modal.members" :key="i" class="media">
+										<div class="media-content">
+											<div class="columns is-multiline is-marginless">
+												<div class="column is-8 content is-marginless">
+													<h4 v-if="member.isDanger" class="is-small is-marginless has-text-danger">
+														<span class="mdi mdi-alert"></span>
+														<span>{{ member.name }}</span>
+													</h4>
+													<h4 v-else="" class="is-small is-marginless">{{ member.name }}</h4>
+													<p class="is-marginless">{{ member.nik }} | {{ member.role.name }}</p>
+												</div>
+												<div class="column is-4">
+													<label class="label is-marginless">Timesheet Progress</label>
+													<div class="tags">
+														<b-tooltip label="Submited Timesheet" position="is-bottom" type="is-info" style="margin-right:5px;">
+															<b-tag type="is-info">{{member.timesheet.submited}}%</b-tag>
+														</b-tooltip>
+														<b-tooltip label="approved Timesheet" position="is-bottom" type="is-success">
+															<b-tag type="is-success">{{member.timesheet.approved}}%</b-tag>
+														</b-tooltip>
+													</div>
+												</div>
+											</div>
+											<div :data-member="i" class="last-activity">
+												<p @click="toggleActivityMember(i)" class="activity-toggle">
+													<span class="mdi toggle-chevron"></span>
+													<span>Last Activity: {{member.last_activity.date | moment}}</span>
+												</p>
+												<p class="activity-detail">{{member.last_activity.activity}}</p>
+											</div>
+										</div>
+									</div>
+								</template>
+
+								<b-loading :is-full-page="false" :active.sync="modal.fetchLoading"></b-loading>
+							</div>
+						</div>
+					</b-modal>
+				</div>
+			</section>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			</info-footer>
+		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+	
+		<!-- 
+			Get Performance Index Table Data [GET]
+			@param {*} project_id: Project ID
+
+			expected return look json file release/dummy/pIndexTable.json
+		-->
+		<api-test url="performanceIndex.php?get=table&project_id={project_id}" key="getPIndexTable"></api-test>
+
+		<!-- 
+			Get Performance Index Table Data [GET]
+			@param {*} project_id: Project ID
+			@param {*} task_id: Task ID
+
+			expected return look json file release/dummy/pIndexTable.json
+		-->
+		<api-test url="performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}" key="getPIndexChart">
+		</api-test>
+
+		<!-- 
+			Get Performance Index Task Falling Detail [GET]
+			@param {*} project_id: Project ID
+			@param {*} task_id: Task ID
+			@param {*} week: Week Number
+
+			expected return look json file release/dummy/pIndexFalling.json
+		-->
+		<api-test url="performanceIndex.php?get=falling&project_id={project_id}&task_id={task_id}&week={week}" key="getPIndexFalling">
+		</api-test>
+	</div>
+
+	<script src="../../src/main.min.js"></script>
+	<script src="../../src/projects/performanceIndex.min.js"></script>
+</body>
+
+</html>
