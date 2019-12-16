@@ -46,6 +46,22 @@
 					>
 					</crud-input>
 
+					<crud-input
+						type="select"
+						label="Assigned Role"
+						placeholder="Choose Role"
+						name="roleID"
+						input-style="margin-bottom:1em;"
+						required
+					>
+						<option
+							v-for="(val, idx) in dataRole"
+							:key="idx"
+							:value="val.roleID"
+							>{{ val.roleName }}</option
+						>
+					</crud-input>
+
 					<div class="columns">
 						<div class="column is-6">
 							<b-field label="Weight Index">
@@ -179,6 +195,7 @@ export default {
 	data() {
 		return {
 			dataBaru: GANTT,
+			dataRole: ROLE,
 			start: undefined,
 			finish: undefined,
 			workdays: null,

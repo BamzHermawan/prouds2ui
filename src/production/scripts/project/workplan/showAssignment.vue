@@ -47,6 +47,13 @@
 					</div>
 				</b-field>
 			</b-field>
+			<b-field horizontal label="Assigned Role">
+				<span
+					class="button is-static is-fullwidth is-light-blend"
+					style="justify-content: start;"
+					>{{ roleName }}</span
+				>
+			</b-field>
 
 			<hr />
 			<nav class="level is-marginless">
@@ -68,38 +75,44 @@
 				:data="dataFiltered"
 				style="font-size:11pt"
 				class="is-packed"
+				:opened-detailed="openDetail"
+				detailed
+				detail-key="user_id"
+				show-detail-icon
 				paginated
 				:per-page="10"
 				pagination-simple
 			>
 				<template slot-scope="props">
+					<b-table-column field="nik" label="NIK" sortable>
+						{{ props.row.nik }}
+					</b-table-column>
 					<b-table-column
 						field="user"
 						label="User"
 						sortable
-						class="align-middle"
-						width="250"
+						width="200"
 					>
-						<p>{{ props.row.name }}</p>
+						{{ props.row.name }}
+					</b-table-column>
+					<b-table-column field="bu" label="Business Unit" sortable>
+						{{ props.row.bu }}
 					</b-table-column>
 					<b-table-column
-						field="bu"
-						label="Business Unit"
+						field="assign_from"
+						label="Assign from"
 						sortable
-						class="align-middle"
-						width="250"
 					>
-						<p>{{ props.row.bu }}</p>
+						{{ props.row.start | moment }}
 					</b-table-column>
 					<b-table-column
-						field="assigned_role"
-						label="Assigned Role"
+						field="assign_to"
+						label="Assign to"
 						sortable
-						class="align-middle"
 					>
-						<p>{{ props.row.role }}</p>
+						{{ props.row.finish | moment }}
 					</b-table-column>
-					<b-table-column
+					<!-- <b-table-column
 						field="mandaysRate"
 						label="Mandays Rate (IDR)"
 						sortable
@@ -110,7 +123,7 @@
 						<p class="has-text-right">
 							{{ props.row.mandaysRate | currency }}
 						</p>
-					</b-table-column>
+					</b-table-column> -->
 					<b-table-column
 						field="onGoing"
 						label="On Going Project"
@@ -154,6 +167,60 @@
 					</b-message>
 				</template>
 				<template slot="top-right"> </template>
+				<template slot="detail" slot-scope="props">
+					<div class="columns is-multiline">
+						<div class="column is-12">
+							<div class="content">
+								<p class="title is-size-6">
+									🏆 Kemampuan (Skill)
+								</p>
+								<div style="padding:8px;">
+									<div
+										class="columns is-multiline"
+										v-if="props.row.skill.length > 0"
+									>
+										<div
+											v-for="(skill, index) in props.row
+												.skill"
+											:key="index"
+											class="column is-one-quarter"
+											style="padding: 5px;"
+										>
+											{{ index + 1 }}.
+											<b>{{ skill.skillName }}</b
+											>:
+											{{ skill.skillLevel }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="column is-12">
+							<div class="content">
+								<p class="title is-size-6">
+									📜 Certificate
+								</p>
+								<div style="padding:8px;">
+									<div
+										class="columns is-multiline"
+										v-if="props.row.certificate.length > 0"
+									>
+										<div
+											v-for="(certificate, index) in props
+												.row.certificate"
+											:key="index"
+											class="column is-one-quarter"
+											style="padding: 5px;"
+										>
+											{{ index + 1 }}.
+											{{ certificate.certificateName }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</template>
 			</b-table>
 		</div>
 
@@ -303,7 +370,7 @@
 
 import moment from "helper-moment";
 import {
-	searchFilter,
+	searchTree,
 	animate,
 	checkConnection,
 	notified,
@@ -344,13 +411,15 @@ export default {
 			start: this.task.pStart,
 			finish: this.task.pEnd,
 			taskId: this.task.pID,
+			roleName: this.task.roleName,
 			search: "",
 			tampung: "",
 			showTable: true,
 			showForm: false,
 			progress: "auto",
 			listTeam: [],
-			assignmentUntil: undefined
+			assignmentUntil: undefined,
+			openDetail: []
 		};
 	},
 	methods: {
@@ -439,7 +508,7 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.listTeam, this.search);
+			return searchTree(this.listTeam, this.search);
 		}
 	},
 	mounted() {

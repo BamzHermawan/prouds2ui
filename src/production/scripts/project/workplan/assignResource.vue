@@ -44,6 +44,13 @@
 				</div>
 			</b-field>
 		</b-field>
+		<b-field horizontal label="Assigned Role">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ roleName }}</span
+			>
+		</b-field>
 
 		<hr />
 		<nav class="level is-marginless">
@@ -63,7 +70,7 @@
 				<div class="level-item">
 					<b-button
 						class="is-success"
-						@click="assign"
+						@click="editForm"
 						:disabled="disableBtn"
 						>Assign</b-button
 					>
@@ -78,18 +85,26 @@
 			:opened-detailed="openDetail"
 			detailed
 			detail-key="user_id"
-			:show-detail-icon="false"
+			show-detail-icon
 			paginated
 			:per-page="10"
 			pagination-simple
 		>
 			<template slot-scope="props">
 				<b-table-column
+					field="nik"
+					label="NIK"
+					sortable
+					class="align-middle"
+				>
+					<p>{{ props.row.nik }}</p>
+				</b-table-column>
+				<b-table-column
 					field="user"
 					label="User"
 					sortable
 					class="align-middle"
-					width="250"
+					width="200"
 				>
 					<p>{{ props.row.name }}</p>
 				</b-table-column>
@@ -98,7 +113,6 @@
 					label="Business Unit"
 					sortable
 					class="align-middle"
-					width="250"
 				>
 					<p>{{ props.row.bu }}</p>
 				</b-table-column>
@@ -111,15 +125,12 @@
 					<p>{{ props.row.role }}</p>
 				</b-table-column>
 				<b-table-column
-					field="mandaysRate"
-					label="Mandays Rate (IDR)"
+					field="latest_assign"
+					label="Latest Assign Date"
 					sortable
-					width="150"
-					centered
+					class="align-middle"
 				>
-					<p class="has-text-right">
-						{{ props.row.mandaysRate | currency }}
-					</p>
+					<p>{{ props.row.latest_assign | moment }}</p>
 				</b-table-column>
 				<b-table-column
 					field="onGoing"
@@ -140,7 +151,6 @@
 					<b-checkbox
 						v-model="selectedRows"
 						:native-value="props.row.user_id"
-						@input="editForm(props.row)"
 					>
 					</b-checkbox>
 				</b-table-column>
@@ -155,60 +165,56 @@
 			</template>
 			<template slot="top-right"> </template>
 			<template slot="detail" slot-scope="props">
-				<div class="columns">
-					<div class="column">
-						<p class="label">
-							Assigned Role
-						</p>
-						<p>
-							{{ props.row.assignment.roleName }}
-						</p>
+				<div class="columns is-multiline">
+					<div class="column is-12">
+						<div class="content">
+							<p class="title is-size-6">
+								🏆 Kemampuan (Skill)
+							</p>
+							<div style="padding:8px;">
+								<div
+									class="columns is-multiline"
+									v-if="props.row.skill.length > 0"
+								>
+									<div
+										v-for="(skill, index) in props.row
+											.skill"
+										:key="index"
+										class="column is-one-quarter"
+										style="padding: 5px;"
+									>
+										{{ index + 1 }}.
+										<b>{{ skill.skillName }}</b
+										>:
+										{{ skill.skillLevel }}
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="column">
-						<p class="label">
-							Start Date
-						</p>
-						<p>
-							{{ props.row.assignment.start_date | fulldate }}
-						</p>
-					</div>
-					<div class="column">
-						<p class="label">
-							End Date
-						</p>
-						<p>
-							{{ props.row.assignment.end_date | fulldate }}
-						</p>
-					</div>
-				</div>
-				<div class="columns">
-					<div class="column">
-						<p class="label">
-							Mandays Rate
-						</p>
-						<p>
-							Rp.
-							{{ props.row.assignment.mandaysRate | currency }}
-						</p>
-					</div>
-					<div class="column">
-						<p class="label">
-							Workload
-						</p>
-						<p>
-							{{ props.row.assignment.workloadName }}
-						</p>
-					</div>
-					<div class="column">
-						<p class="label">
-							Auto complete
-						</p>
-						<p v-if="props.row.assignment.progressCalculation">
-							{{ props.row.assignment.progressCalculation }} ✅
-						</p>
-						<p v-if="!props.row.assignment.progressCalculation">
-							{{ props.row.assignment.progressCalculation }} ❌
-						</p>
+					<div class="column is-12">
+						<div class="content">
+							<p class="title is-size-6">
+								📜 Certificate
+							</p>
+							<div style="padding:8px;">
+								<div
+									class="columns is-multiline"
+									v-if="props.row.certificate.length > 0"
+								>
+									<div
+										v-for="(certificate, index) in props.row
+											.certificate"
+										:key="index"
+										class="column is-one-quarter"
+										style="padding: 5px;"
+									>
+										{{ index + 1 }}.
+										{{ certificate.certificateName }}
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</template>
@@ -223,63 +229,19 @@
 					<div class="container">
 						<div class="columns">
 							<div class="column is-6">
-								<b-field label="Assigned Role">
-									<crud-input
-										type="select"
-										placeholder="Choose Role"
-										v-model="assignment.roleID"
-										name="roleID"
-										input-style="margin-bottom:0px;"
-										required
+								<b-field label="Task Name">
+									<span
+										class="button is-static is-fullwidth is-light-blend"
+										style="justify-content: start;"
+										>{{ taskName }}</span
 									>
-										<option
-											v-for="(val, idx) in dataRole"
-											:key="idx"
-											:value="val.roleID"
-											>{{ val.roleName }}</option
-										>
-									</crud-input>
 								</b-field>
-								<input
-									type="hidden"
-									name="mandaysRate"
-									v-model="assignment.mandaysRate"
-								/>
-								<div class="field">
-									<label class="label"
-										>Mandays Rate (IDR)</label
+								<b-field label="Assigned Role">
+									<span
+										class="button is-static is-fullwidth is-light-blend"
+										style="justify-content: start;"
+										>{{ roleName }}</span
 									>
-									<input
-										type="text"
-										class="input"
-										placeholder="Fill Mandays Rate"
-										v-model="currencyRate"
-										@keypress="isNumber($event)"
-									/>
-								</div>
-
-								<b-field>
-									<div class="control">
-										<span
-											class="button is-static is-info-blend"
-											style="width: 98px;"
-											>Workload</span
-										>
-									</div>
-									<crud-input
-										type="select"
-										v-model="assignment.workloadID"
-										name="workloadID"
-										input-style="margin-bottom:0px; width:40%"
-										required
-									>
-										<option
-											v-for="(val, idx) in dataWorkload"
-											:key="idx"
-											:value="val.workloadID"
-											>{{ val.workloadName }}</option
-										>
-									</crud-input>
 								</b-field>
 							</div>
 							<div class="column">
@@ -295,7 +257,9 @@
 											type="datepicker"
 											placeholder="Pick Start Date"
 											date-locale="en"
-											v-model="assignment.start_date"
+											:min-date="start"
+											:max-date="finish"
+											v-model="start_date"
 											name="start_date"
 											input-style="margin-bottom: 0px;"
 										>
@@ -312,8 +276,9 @@
 									</div>
 									<crud-input
 										type="datepicker"
-										:min-date="assignment.start_date"
-										v-model="assignment.end_date"
+										:min-date="start_date"
+										:max-date="finish"
+										v-model="end_date"
 										name="end_date"
 										placeholder="Pick End Date"
 										date-locale="en"
@@ -322,9 +287,7 @@
 									</crud-input>
 								</b-field>
 								<div class="block">
-									<b-checkbox
-										v-model="assignment.progressCalculation"
-									>
+									<b-checkbox v-model="progressCalculation">
 										Auto complete when timesheet progress
 										has been 100%
 									</b-checkbox>
@@ -363,7 +326,7 @@
 import "helper-filter";
 import moment from "helper-moment";
 import {
-	searchFilter,
+	searchTree,
 	animate,
 	notified,
 	isEmpty,
@@ -397,23 +360,17 @@ export default {
 			finish: this.task.pEnd,
 			name: "",
 			curSubTask: this.task.pParent,
+			taskName: this.task.pName,
+			roleName: this.task.roleName,
 			search: "",
 			tampung: "",
 			showTable: true,
 			showForm: false,
 			selectedRows: [],
 			alertMandays: false,
-			assignment: {
-				user_id: undefined,
-				roleID: undefined,
-				roleName: undefined,
-				start_date: undefined,
-				end_date: undefined,
-				workloadID: 1,
-				workloadName: undefined,
-				mandaysRate: "",
-				progressCalculation: true
-			},
+			start_date: new Date(this.task.pStart),
+			end_date: new Date(this.task.pEnd),
+			progressCalculation: true,
 			tampungUserID: undefined,
 			arrayForm: [],
 			isLoading: false,
@@ -423,7 +380,13 @@ export default {
 	},
 	methods: {
 		isEmpty: isEmpty,
-		assign() {
+		editForm() {
+			this.showForm = true;
+		},
+		closeForm() {
+			this.showForm = false;
+		},
+		saveForm() {
 			let form = document.createElement("form");
 			form.setAttribute("action", this.actionEvent);
 			form.setAttribute("method", "POST");
@@ -432,75 +395,27 @@ export default {
 			input.name = "taskId";
 			form.appendChild(input);
 
-			for (let i = 0; i < this.arrayForm.length; i++) {
-				const element = this.arrayForm[i];
-				let input2 = document.createElement("input");
-				input2.value = JSON.stringify(element);
-				input2.name = "user[]";
-				form.appendChild(input2);
-			}
+			let input2 = document.createElement("input");
+			input2.value = this.selectedRows;
+			input2.name = "user_id";
+			form.appendChild(input2);
+
+			let input3 = document.createElement("input");
+			input3.value = moment(this.start_date).format("DD/MM/YYYY");
+			input3.name = "start_date";
+			form.appendChild(input3);
+
+			let input4 = document.createElement("input");
+			input4.value = moment(this.end_date).format("DD/MM/YYYY");
+			input4.name = "end_date";
+			form.appendChild(input4);
+
+			let input5 = document.createElement("input");
+			input5.value = this.progressCalculation;
+			input5.name = "progressCalculation";
+			form.appendChild(input5);
 			document.getElementById("vapp").appendChild(form);
 			form.submit();
-		},
-		editForm(row) {
-			let found = undefined;
-			for (let i = 0; i < this.arrayForm.length; i++) {
-				const assign = this.arrayForm[i];
-				if (assign.user_id === row.user_id) {
-					found = i;
-				}
-			}
-
-			if (found !== undefined) {
-				this.arrayForm.splice(found, 1);
-				var index = this.selectedRows.indexOf(row.user_id);
-
-				if (index > -1) {
-					this.selectedRows.splice(index, 1);
-				}
-
-				var idxDetail = this.openDetail.indexOf(row.user_id);
-
-				if (idxDetail > -1) {
-					this.openDetail.splice(idxDetail, 1);
-				}
-				this.clearForm();
-			} else {
-				this.assignment.user_id = row.user_id;
-				this.showForm = true;
-			}
-		},
-		closeForm() {
-			var index = this.selectedRows.indexOf(this.assignment.user_id);
-
-			if (index > -1) {
-				this.selectedRows.splice(index, 1);
-			}
-			this.clearForm();
-			this.showForm = false;
-		},
-		saveForm() {
-			this.arrayForm.push(this.assignment);
-			let found = this.listResource.findIndex(
-				team => team.user_id === this.assignment.user_id
-			);
-			this.listResource[found].assignment = this.assignment;
-			this.openDetail.push(this.assignment.user_id);
-			this.clearForm();
-			this.showForm = false;
-		},
-		clearForm() {
-			this.assignment = {
-				user_id: undefined,
-				roleID: undefined,
-				roleName: undefined,
-				start_date: undefined,
-				end_date: undefined,
-				workloadID: 1,
-				workloadName: undefined,
-				mandaysRate: "",
-				progressCalculation: true
-			};
 		},
 		isNumber(evt) {
 			evt = evt ? evt : window.event;
@@ -523,6 +438,9 @@ export default {
 				.then(response => {
 					if (!isEmpty(response.data)) {
 						self.listResource = response.data;
+						this.listResource.forEach(row => {
+							this.openDetail.push(row.user_id);
+						});
 					} else {
 						self.listResource = [];
 					}
@@ -542,26 +460,8 @@ export default {
 			return !(this.selectedRows.length > 0);
 		},
 		disableSave() {
-			if (!isEmpty(this.assignment.roleID)) {
-				let found = this.dataRole.find(
-					role => role.roleID === this.assignment.roleID
-				);
-				this.assignment.roleName = found.roleName;
-			}
-
-			if (!isEmpty(this.assignment.workloadID) && this.showForm) {
-				let cari = this.dataWorkload.find(
-					workload =>
-						parseInt(workload.workloadID) ===
-						this.assignment.workloadID
-				);
-				this.assignment.workloadName = cari.workloadName;
-			}
-
-			for (const index in this.assignment) {
-				if (isEmpty(this.assignment[index])) {
-					return true;
-				}
+			if (isEmpty(this.start_date) || isEmpty(this.end_date)) {
+				return true;
 			}
 			return false;
 		},
@@ -578,18 +478,7 @@ export default {
 			}
 		},
 		dataFiltered() {
-			return searchFilter(this.listResource, this.search);
-		},
-		currencyRate: {
-			get: function() {
-				return this.$options.filters.currency(
-					this.assignment.mandaysRate
-				);
-			},
-			set: function(val) {
-				let medown = val.replace(/\D/g, "");
-				this.assignment.mandaysRate = medown;
-			}
+			return searchTree(this.listResource, this.search);
 		}
 	},
 	mounted() {

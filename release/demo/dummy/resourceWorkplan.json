@@ -1,0 +1,172 @@
+[
+	{
+		"user_id": 1,
+		"name": "Ade Wiranata Putra",
+		"nik": "CRS2019016",
+		"status": "Assigned",
+		"role": "Programmer Analyst",
+		"bu": "Banking & Finance ",
+		"mandaysRate": "300000",
+		"onGoing": "8",
+		"latest_assign": "01/10/2019",
+		"skill": [
+			{
+				"skillName": "Html",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "Svelte",
+				"skillLevel": "Noob"
+			},
+			{
+				"skillName": "Android",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "Pentaho"
+			},
+			{
+				"certificateName": "Ade Ganteng"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 2,
+		"name": "Stephenson Bowen",
+		"nik": "CRS2019013",
+		"status": "Completed",
+		"role": "Programmer Analyst",
+		"bu": "Banking & Finance",
+		"mandaysRate": "300000",
+		"onGoing": "8",
+		"latest_assign": "01/10/2019",
+		"skill": [
+			{
+				"skillName": "Html",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "Vue Js",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "Android",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "Pentaho"
+			},
+			{
+				"certificateName": "Cisco"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 3,
+		"name": "Boyd Ramsey",
+		"nik": "CRS20190104",
+		"status": "Assigned",
+		"role": "Desaigner Web",
+		"bu": "Banking & Finance",
+		"mandaysRate": "300000",
+		"onGoing": "8",
+		"latest_assign": "01/10/2019",
+		"skill": [
+			{
+				"skillName": "Html",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "Vue Js",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "Android",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "Pentaho"
+			},
+			{
+				"certificateName": "Cisco"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 4,
+		"name": "Tami Duke",
+		"nik": "CRS20190105",
+		"status": "Assigned",
+		"role": "Senior Programmer",
+		"bu": "Banking & Finance",
+		"mandaysRate": "300000",
+		"onGoing": "8",
+		"latest_assign": "01/10/2019",
+		"skill": [
+			{
+				"skillName": "Html",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "Vue Js",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "Android",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "Pentaho"
+			},
+			{
+				"certificateName": "Cisco"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 5,
+		"name": "Ava Klein",
+		"nik": "CRS201901011",
+		"status": "Assigned",
+		"role": "Analyst",
+		"bu": "Banking & Finance",
+		"mandaysRate": "300000",
+		"onGoing": "8",
+		"latest_assign": "01/10/2019",
+		"skill": [
+			{
+				"skillName": "Html",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "Vue Js",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "Android",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "Pentaho"
+			},
+			{
+				"certificateName": "Cisco"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	}
+]

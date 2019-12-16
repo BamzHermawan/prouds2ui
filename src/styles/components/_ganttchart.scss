@@ -5,14 +5,6 @@
 .gmainleft {
 	width: 55% !important;
 
-	.gcontainercol {
-		min-width: 100%;
-
-		table {
-			min-width: 100%;
-		}
-	}
-
 	.gadditional {
 		text-align: right;
 	}
@@ -25,17 +17,20 @@
 		text-align: right;
 	}
 
-	.gadditional-role {
-		max-width: 600px !important;
-		text-align: left;
-	}
-
 	.gadditional-weightPercent {
 		max-width: 150px !important;
 	}
 
 	.gadditional-pComp {
 		max-width: 150px !important;
+	}
+
+	.gadditional-roleName {
+		max-width: 150px !important;
+
+		&.gtaskheading {
+			text-align: center;
+		}
 	}
 
 	.gtaskname {
@@ -59,14 +54,6 @@
 	}
 }
 
-td.gmajorheading div{
-	padding: 5px !important;
-}
-
-.gantt td {
-	padding: 2px !important;
-}
-
 tr.gname {
 	cursor: pointer !important;
 }
@@ -83,9 +70,9 @@ tr.gname {
 	}
 }
 
-.gcharttableh {
-	margin-bottom: 0px !important;
-}
+// .gcharttableh {
+// 	margin-bottom: 0px !important;
+// }
 
 tr.gname {
 	td {
