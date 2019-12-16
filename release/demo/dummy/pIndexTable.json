@@ -2,1861 +2,7377 @@
 	"project_id": "1900123",
 	"total_weekly_progress": [
 		{
-			"plan": 62.7,
-			"actual": 23.13
+			"plan": 0.21,
+			"actual": 69.52
 		},
 		{
-			"plan": 10.83,
-			"actual": 71.6
+			"plan": 98.86,
+			"actual": 97.27
 		},
 		{
-			"plan": 15.76,
-			"actual": 81.91
+			"plan": 40.81,
+			"actual": 64.18
 		},
 		{
-			"plan": 42.18,
-			"actual": 14.9
+			"plan": 14.29,
+			"actual": 82.71
 		},
 		{
-			"plan": 1.86,
-			"actual": 8.63
+			"plan": 43.14,
+			"actual": 45.76
 		},
 		{
-			"plan": 6.2,
-			"actual": 19.58
+			"plan": 47.7,
+			"actual": 5.03
 		},
 		{
-			"plan": 79.05,
-			"actual": 99.22
+			"plan": 75.27,
+			"actual": 43.41
 		},
 		{
-			"plan": 90.68,
-			"actual": 46.9
+			"plan": 49.93,
+			"actual": 5.23
 		},
 		{
-			"plan": 31.57,
-			"actual": 56.97
+			"plan": 35.65,
+			"actual": 69.12
 		},
 		{
-			"plan": 66.44,
-			"actual": 57.76
+			"plan": 20.27,
+			"actual": 27.81
 		},
 		{
-			"plan": 55.13,
-			"actual": null
+			"plan": 26.73,
+			"actual": 7.26
 		},
 		{
-			"plan": 9.24,
-			"actual": null
+			"plan": 13.73,
+			"actual": 19.75
+		},
+		{
+			"plan": 2.97,
+			"actual": 70.49
+		},
+		{
+			"plan": 21.45,
+			"actual": 10.32
+		},
+		{
+			"plan": 98.94,
+			"actual": 77.66
+		},
+		{
+			"plan": 58.56,
+			"actual": 43.57
+		},
+		{
+			"plan": 38.96,
+			"actual": 84.46
+		},
+		{
+			"plan": 72.87,
+			"actual": 82.91
+		},
+		{
+			"plan": 1.88,
+			"actual": 64.71
+		},
+		{
+			"plan": 74.24,
+			"actual": 13.4
+		},
+		{
+			"plan": 24.8,
+			"actual": 17.42
+		},
+		{
+			"plan": 81.72,
+			"actual": 67.33
+		},
+		{
+			"plan": 1.04,
+			"actual": 28.65
+		},
+		{
+			"plan": 38.87,
+			"actual": 72.84
+		},
+		{
+			"plan": 22.72,
+			"actual": 15.18
+		},
+		{
+			"plan": 98.74,
+			"actual": 71.84
+		},
+		{
+			"plan": 52.02,
+			"actual": 88.65
+		},
+		{
+			"plan": 37.51,
+			"actual": 89.99
+		},
+		{
+			"plan": 7.9,
+			"actual": 57.23
+		},
+		{
+			"plan": 10.56,
+			"actual": 22.26
+		},
+		{
+			"plan": 14.17,
+			"actual": 90.39
+		},
+		{
+			"plan": 69.52,
+			"actual": 15.36
+		},
+		{
+			"plan": 5.25,
+			"actual": 76.41
+		},
+		{
+			"plan": 42.54,
+			"actual": 17.27
+		},
+		{
+			"plan": 44.73,
+			"actual": 31.76
+		},
+		{
+			"plan": 67.12,
+			"actual": 39.72
+		},
+		{
+			"plan": 52.95,
+			"actual": 19.66
+		},
+		{
+			"plan": 70.03,
+			"actual": 45.64
+		},
+		{
+			"plan": 49.08,
+			"actual": 53.74
+		},
+		{
+			"plan": 99.51,
+			"actual": 56.71
+		},
+		{
+			"plan": 70.11,
+			"actual": 72.99
+		},
+		{
+			"plan": 42.63,
+			"actual": 51.68
+		},
+		{
+			"plan": 41.49,
+			"actual": 76.5
+		},
+		{
+			"plan": 9.02,
+			"actual": 5.38
+		},
+		{
+			"plan": 30.04,
+			"actual": 11.34
+		},
+		{
+			"plan": 41.56,
+			"actual": 22.11
+		},
+		{
+			"plan": 92.07,
+			"actual": 42.68
+		},
+		{
+			"plan": 89.27,
+			"actual": 88.3
 		}
 	],
 	"sigma_progress": [
 		{
-			"plan": 40.44,
-			"actual": 77.06
+			"plan": 62.85,
+			"actual": 40.47
 		},
 		{
-			"plan": 86.9,
-			"actual": 9.81
+			"plan": 78.39,
+			"actual": 92.03
 		},
 		{
-			"plan": 98.88,
-			"actual": 42.81
+			"plan": 87.57,
+			"actual": 22.74
 		},
 		{
-			"plan": 39.21,
-			"actual": 79.02
+			"plan": 96,
+			"actual": 0.93
 		},
 		{
-			"plan": 43.46,
-			"actual": 17.04
+			"plan": 77.3,
+			"actual": 71.22
 		},
 		{
-			"plan": 36.67,
-			"actual": 92.63
+			"plan": 6.76,
+			"actual": 5.8
 		},
 		{
-			"plan": 88.26,
-			"actual": 56.94
+			"plan": 15.99,
+			"actual": 50.17
 		},
 		{
-			"plan": 62.29,
-			"actual": 60.54
+			"plan": 34.83,
+			"actual": 55.73
 		},
 		{
-			"plan": 93.49,
-			"actual": 70.91
+			"plan": 39.67,
+			"actual": 94.33
 		},
 		{
-			"plan": 29.03,
-			"actual": 41.62
+			"plan": 79.77,
+			"actual": 28.49
 		},
 		{
-			"plan": 30.91,
-			"actual": null
+			"plan": 30.51,
+			"actual": 97.91
 		},
 		{
-			"plan": 87.16,
-			"actual": null
+			"plan": 52.11,
+			"actual": 99.94
+		},
+		{
+			"plan": 97.83,
+			"actual": 89.85
+		},
+		{
+			"plan": 63.98,
+			"actual": 87.26
+		},
+		{
+			"plan": 4.86,
+			"actual": 71.26
+		},
+		{
+			"plan": 94.67,
+			"actual": 9.18
+		},
+		{
+			"plan": 84.07,
+			"actual": 70.73
+		},
+		{
+			"plan": 13.39,
+			"actual": 73.73
+		},
+		{
+			"plan": 90.8,
+			"actual": 52.8
+		},
+		{
+			"plan": 92.98,
+			"actual": 49.68
+		},
+		{
+			"plan": 65.68,
+			"actual": 10.32
+		},
+		{
+			"plan": 76.29,
+			"actual": 36.51
+		},
+		{
+			"plan": 12.45,
+			"actual": 92.34
+		},
+		{
+			"plan": 92.94,
+			"actual": 85.47
+		},
+		{
+			"plan": 42.81,
+			"actual": 64.31
+		},
+		{
+			"plan": 38.98,
+			"actual": 81.23
+		},
+		{
+			"plan": 38.93,
+			"actual": 11.92
+		},
+		{
+			"plan": 75.16,
+			"actual": 14.03
+		},
+		{
+			"plan": 80.03,
+			"actual": 33.2
+		},
+		{
+			"plan": 54.09,
+			"actual": 65.13
+		},
+		{
+			"plan": 50.24,
+			"actual": 74.09
+		},
+		{
+			"plan": 20.89,
+			"actual": 54
+		},
+		{
+			"plan": 71.4,
+			"actual": 29.87
+		},
+		{
+			"plan": 56.8,
+			"actual": 57.13
+		},
+		{
+			"plan": 1.14,
+			"actual": 51.91
+		},
+		{
+			"plan": 95.3,
+			"actual": 24.38
+		},
+		{
+			"plan": 17.93,
+			"actual": 80.75
+		},
+		{
+			"plan": 1.8,
+			"actual": 33.17
+		},
+		{
+			"plan": 33.2,
+			"actual": 80.47
+		},
+		{
+			"plan": 32.72,
+			"actual": 99.74
+		},
+		{
+			"plan": 44.35,
+			"actual": 99.47
+		},
+		{
+			"plan": 30.11,
+			"actual": 97.41
+		},
+		{
+			"plan": 2.84,
+			"actual": 19.45
+		},
+		{
+			"plan": 54.29,
+			"actual": 57.46
+		},
+		{
+			"plan": 88.8,
+			"actual": 36.64
+		},
+		{
+			"plan": 96.08,
+			"actual": 13.34
+		},
+		{
+			"plan": 18.43,
+			"actual": 11.55
+		},
+		{
+			"plan": 31.58,
+			"actual": 72.25
 		}
 	],
 	"delta_progress": [
-		48.1, 38.51, 66.1, 49.51, 45.31, 51.96, 79.45, 79.45, 52.92, 52.92, null, null
+		20.52,
+		63.03,
+		29.89,
+		74.26,
+		93.55,
+		76.42,
+		41.66,
+		19.77,
+		10.11,
+		80.65,
+		28.42,
+		7.19,
+		75.85,
+		32.3,
+		99.08,
+		67.01,
+		5.46,
+		30,
+		89.11,
+		15.47,
+		84.14,
+		90.29,
+		57.98,
+		49.19,
+		33.4,
+		25.6,
+		81.6,
+		12.67,
+		23.62,
+		38.59,
+		40.44,
+		70.21,
+		31.44,
+		15.72,
+		85.84,
+		58.74,
+		66.58,
+		7.45,
+		87.64,
+		23.18,
+		90.9,
+		0.3,
+		64.91,
+		85.23,
+		82.68,
+		47.57,
+		36.9,
+		62.16
 	],
-	"week_count": 12,
+	"week_count": 48,
 	"task": [
 		{
 			"id": "1900123-00",
 			"name": "Analysis",
-			"isParent": true
-		},
-		{
-			"id": "1900123-01",
-			"name": "Do fugiat magna deserunt minim dolor deserunt officia reprehenderit.",
-			"weight": 44.23,
-			"start": "2/11/2020",
-			"end": "25/1/2020",
-			"progress": 51.85,
+			"weight": 26.04,
+			"gap_treshold": 5.00,
+			"start": "10/3/2020",
+			"end": "21/5/2020",
+			"progress": 87.38,
+			"level": 0,
 			"weekly_progress": [
 				{
-					"plan": 7.71,
-					"actual": 44.87
+					"plan": 64.64,
+					"actual": 31.85
 				},
 				{
-					"plan": 41.32,
-					"actual": 59.01
+					"plan": 57.34,
+					"actual": 71.75
 				},
 				{
-					"plan": 89.43,
-					"actual": 98.74
+					"plan": 20.91,
+					"actual": 50.95
 				},
 				{
-					"plan": 8.52,
-					"actual": 84.44
+					"plan": 41,
+					"actual": 51.27
 				},
 				{
-					"plan": 44.86,
-					"actual": 84.01
+					"plan": 48.64,
+					"actual": 22.67
 				},
 				{
-					"plan": 58.1,
-					"actual": 73
-				},
-				{
-					"plan": 8.56,
-					"actual": 34.45
-				},
-				{
-					"plan": 3.4,
-					"actual": 74.34
-				},
-				{
-					"plan": 55.55,
-					"actual": 83.56
-				},
-				{
-					"plan": 63.57,
-					"actual": 43.59
-				},
-				{
-					"plan": 74.65,
-					"actual": null
-				},
-				{
-					"plan": 42.7,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-02",
-			"name": "Eu ipsum esse reprehenderit incididunt nostrud aliquip minim proident sint labore officia exercitation.",
-			"weight": 93.44,
-			"start": "4/1/2020",
-			"end": "29/12/2020",
-			"progress": 72.44,
-			"weekly_progress": [
-				{
-					"plan": 6.24,
-					"actual": 91.81
-				},
-				{
-					"plan": 78.63,
-					"actual": 30.13
-				},
-				{
-					"plan": 12.05,
-					"actual": 60.33
-				},
-				{
-					"plan": 96.91,
-					"actual": 50.97
-				},
-				{
-					"plan": 89.96,
-					"actual": 47.35
-				},
-				{
-					"plan": 17.49,
-					"actual": 83.28
+					"plan": 7.95,
+					"actual": 69.13
 				},
 				{
 					"plan": 80.85,
-					"actual": 27.5
+					"actual": 95.11
 				},
 				{
-					"plan": 81.29,
-					"actual": 31.69
+					"plan": 87.33,
+					"actual": 0.81
 				},
 				{
-					"plan": 19.23,
-					"actual": 68.35
+					"plan": 22.14,
+					"actual": 40.19
 				},
 				{
-					"plan": 82.54,
-					"actual": 12.08
+					"plan": 49.23,
+					"actual": 64.88
 				},
 				{
-					"plan": 42.22,
-					"actual": null
+					"plan": 34.42,
+					"actual": 69.98
 				},
 				{
-					"plan": 58.75,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-03",
-			"name": "Fugiat duis enim eiusmod est dolore pariatur eu.",
-			"weight": 81.67,
-			"start": "3/12/2020",
-			"end": "24/6/2020",
-			"progress": 66.51,
-			"weekly_progress": [
-				{
-					"plan": 74.76,
-					"actual": 90.28
+					"plan": 86.44,
+					"actual": 43.49
 				},
 				{
-					"plan": 62.99,
-					"actual": 51.76
+					"plan": 67.85,
+					"actual": 83.13
 				},
 				{
-					"plan": 37.54,
-					"actual": 39.85
+					"plan": 70.55,
+					"actual": 25.77
 				},
 				{
-					"plan": 50.46,
-					"actual": 85.25
+					"plan": 53.2,
+					"actual": 81.19
 				},
 				{
-					"plan": 24.19,
-					"actual": 6.72
+					"plan": 80.6,
+					"actual": 60.89
 				},
 				{
-					"plan": 65.82,
-					"actual": 58.53
-				},
-				{
-					"plan": 17.72,
-					"actual": 82.51
-				},
-				{
-					"plan": 69.33,
-					"actual": 98.31
-				},
-				{
-					"plan": 7.87,
-					"actual": 13.09
-				},
-				{
-					"plan": 92.16,
-					"actual": 44.07
-				},
-				{
-					"plan": 92.3,
-					"actual": null
-				},
-				{
-					"plan": 51.01,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-04",
-			"name": "In culpa est cillum ad amet eiusmod eiusmod aute sit sunt.",
-			"weight": 8.49,
-			"start": "1/6/2020",
-			"end": "17/8/2020",
-			"progress": 29.33,
-			"weekly_progress": [
-				{
-					"plan": 11.97,
-					"actual": 54.77
-				},
-				{
-					"plan": 17.93,
-					"actual": 31.02
-				},
-				{
-					"plan": 99.16,
-					"actual": 78.6
-				},
-				{
-					"plan": 37.05,
-					"actual": 20.34
-				},
-				{
-					"plan": 94.5,
-					"actual": 94.96
-				},
-				{
-					"plan": 77.72,
-					"actual": 24.28
+					"plan": 83.94,
+					"actual": 0.37
 				},
 				{
 					"plan": 5.58,
-					"actual": 72.2
+					"actual": 75.14
 				},
 				{
-					"plan": 45.33,
-					"actual": 15.65
+					"plan": 97.47,
+					"actual": 67.21
 				},
 				{
-					"plan": 80.53,
-					"actual": 8.98
+					"plan": 40.52,
+					"actual": 87.64
 				},
 				{
-					"plan": 53.09,
-					"actual": 19.95
+					"plan": 41.52,
+					"actual": 6.08
 				},
 				{
-					"plan": 56.51,
-					"actual": null
+					"plan": 1.16,
+					"actual": 84.89
 				},
 				{
-					"plan": 64.7,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-05",
-			"name": "Aliqua aliquip eu aliqua enim excepteur sint labore mollit adipisicing ipsum.",
-			"weight": 6.59,
-			"start": "14/10/2020",
-			"end": "23/9/2020",
-			"progress": 7.75,
-			"weekly_progress": [
-				{
-					"plan": 91.98,
-					"actual": 5.92
-				},
-				{
-					"plan": 29.07,
-					"actual": 80.47
-				},
-				{
-					"plan": 40.47,
-					"actual": 5.16
-				},
-				{
-					"plan": 10.9,
-					"actual": 42.79
-				},
-				{
-					"plan": 8.88,
-					"actual": 53.76
-				},
-				{
-					"plan": 95.74,
-					"actual": 98.12
-				},
-				{
-					"plan": 4,
-					"actual": 20.2
-				},
-				{
-					"plan": 67.31,
-					"actual": 29.33
-				},
-				{
-					"plan": 75.47,
-					"actual": 46.96
-				},
-				{
-					"plan": 91.36,
-					"actual": 64.65
-				},
-				{
-					"plan": 32.6,
-					"actual": null
-				},
-				{
-					"plan": 39.72,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-06",
-			"name": "Elit do ad eu ad esse culpa exercitation.",
-			"weight": 46.75,
-			"start": "11/4/2020",
-			"end": "24/5/2020",
-			"progress": 18.46,
-			"weekly_progress": [
-				{
-					"plan": 0.83,
-					"actual": 42.86
-				},
-				{
-					"plan": 42.74,
-					"actual": 13.66
-				},
-				{
-					"plan": 72.49,
-					"actual": 56.29
-				},
-				{
-					"plan": 55.17,
-					"actual": 94.44
-				},
-				{
-					"plan": 25.98,
-					"actual": 94.01
-				},
-				{
-					"plan": 39.75,
-					"actual": 11.9
-				},
-				{
-					"plan": 55.19,
-					"actual": 47.82
-				},
-				{
-					"plan": 48.63,
-					"actual": 0.55
-				},
-				{
-					"plan": 84.07,
-					"actual": 81
-				},
-				{
-					"plan": 80.43,
-					"actual": 61.17
-				},
-				{
-					"plan": 67.62,
-					"actual": null
-				},
-				{
-					"plan": 24.08,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-07",
-			"name": "Ad elit velit sint laborum non fugiat in non ullamco culpa exercitation.",
-			"weight": 50.25,
-			"start": "9/12/2020",
-			"end": "28/6/2020",
-			"progress": 29.7,
-			"weekly_progress": [
-				{
-					"plan": 28.37,
-					"actual": 95.82
-				},
-				{
-					"plan": 55.94,
-					"actual": 8.29
-				},
-				{
-					"plan": 15.29,
-					"actual": 60.85
-				},
-				{
-					"plan": 1.03,
-					"actual": 95.68
-				},
-				{
-					"plan": 0.3,
-					"actual": 92.62
-				},
-				{
-					"plan": 7.05,
-					"actual": 63.33
-				},
-				{
-					"plan": 2.56,
-					"actual": 70.4
-				},
-				{
-					"plan": 84.93,
-					"actual": 52.99
-				},
-				{
-					"plan": 68.59,
-					"actual": 22.23
-				},
-				{
-					"plan": 40.7,
-					"actual": 90.26
-				},
-				{
-					"plan": 68.11,
-					"actual": null
-				},
-				{
-					"plan": 52.73,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-08",
-			"name": "Magna Lorem Lorem irure amet consectetur tempor aliquip eiusmod anim fugiat consectetur eiusmod.",
-			"weight": 24.19,
-			"start": "11/1/2020",
-			"end": "19/10/2020",
-			"progress": 78.15,
-			"weekly_progress": [
-				{
-					"plan": 75.95,
-					"actual": 19.34
-				},
-				{
-					"plan": 15.58,
-					"actual": 10.08
-				},
-				{
-					"plan": 56.08,
-					"actual": 64.58
-				},
-				{
-					"plan": 98.85,
-					"actual": 41.26
-				},
-				{
-					"plan": 56.42,
-					"actual": 90.8
-				},
-				{
-					"plan": 77.26,
-					"actual": 59.59
-				},
-				{
-					"plan": 65.37,
-					"actual": 3.39
-				},
-				{
-					"plan": 18.13,
-					"actual": 80.99
-				},
-				{
-					"plan": 87.96,
-					"actual": 33.47
-				},
-				{
-					"plan": 62.61,
-					"actual": 39.45
-				},
-				{
-					"plan": 10.46,
-					"actual": null
-				},
-				{
-					"plan": 98.26,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-09",
-			"name": "Esse sunt esse proident sint esse ad cillum fugiat est.",
-			"weight": 14.84,
-			"start": "1/12/2020",
-			"end": "27/10/2020",
-			"progress": 42.7,
-			"weekly_progress": [
-				{
-					"plan": 5.45,
-					"actual": 58.75
-				},
-				{
-					"plan": 14.61,
-					"actual": 83.81
+					"plan": 98.58,
+					"actual": 2.41
 				},
 				{
-					"plan": 35.14,
-					"actual": 83.11
+					"plan": 49.05,
+					"actual": 4.31
 				},
 				{
-					"plan": 4.88,
-					"actual": 12.78
+					"plan": 53.11,
+					"actual": 47.75
 				},
 				{
-					"plan": 29.38,
-					"actual": 94.46
+					"plan": 50.4,
+					"actual": 53.88
 				},
 				{
-					"plan": 86.96,
-					"actual": 65.49
+					"plan": 74.58,
+					"actual": 41.04
 				},
 				{
-					"plan": 39.71,
-					"actual": 21.51
+					"plan": 0.63,
+					"actual": 41.22
 				},
 				{
-					"plan": 64.02,
-					"actual": 88.31
+					"plan": 90.1,
+					"actual": 91.99
 				},
 				{
-					"plan": 63.65,
-					"actual": 60.91
+					"plan": 26.48,
+					"actual": 58.91
 				},
 				{
-					"plan": 22.64,
-					"actual": 7.15
+					"plan": 96.89,
+					"actual": 57.86
 				},
-				{
-					"plan": 4.51,
-					"actual": null
-				},
-				{
-					"plan": 3.09,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-010",
-			"name": "Et esse tempor eiusmod veniam dolor proident ea eu est.",
-			"weight": 76.48,
-			"start": "3/2/2020",
-			"end": "24/12/2020",
-			"progress": 56.67,
-			"weekly_progress": [
-				{
-					"plan": 87.55,
-					"actual": 96.5
-				},
-				{
-					"plan": 39.53,
-					"actual": 74.64
-				},
-				{
-					"plan": 59.32,
-					"actual": 25.52
-				},
-				{
-					"plan": 33.85,
-					"actual": 33.86
-				},
-				{
-					"plan": 12.05,
-					"actual": 22.95
-				},
-				{
-					"plan": 73.89,
-					"actual": 64.64
-				},
-				{
-					"plan": 21.32,
-					"actual": 13.39
-				},
-				{
-					"plan": 36.94,
-					"actual": 13.61
-				},
-				{
-					"plan": 10.84,
-					"actual": 8.38
-				},
-				{
-					"plan": 92.44,
-					"actual": 9.75
-				},
-				{
-					"plan": 92,
-					"actual": null
-				},
-				{
-					"plan": 24.8,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-011",
-			"name": "Nulla mollit eu voluptate occaecat consequat id irure qui velit consectetur.",
-			"weight": 63.17,
-			"start": "2/10/2020",
-			"end": "24/4/2020",
-			"progress": 40.48,
-			"weekly_progress": [
-				{
-					"plan": 68.03,
-					"actual": 98.55
-				},
-				{
-					"plan": 52.79,
-					"actual": 72.64
-				},
-				{
-					"plan": 20.48,
-					"actual": 94.48
-				},
-				{
-					"plan": 23.62,
-					"actual": 22.89
-				},
-				{
-					"plan": 90.3,
-					"actual": 84.82
-				},
-				{
-					"plan": 60.85,
-					"actual": 12.83
-				},
-				{
-					"plan": 49.45,
-					"actual": 31.37
-				},
-				{
-					"plan": 68.05,
-					"actual": 42.49
-				},
-				{
-					"plan": 69.22,
-					"actual": 46.81
-				},
-				{
-					"plan": 60.41,
-					"actual": 9.25
-				},
-				{
-					"plan": 17.83,
-					"actual": null
-				},
-				{
-					"plan": 81.68,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-012",
-			"name": "Ullamco deserunt culpa Lorem et est adipisicing ut magna eiusmod.",
-			"weight": 95.35,
-			"start": "15/2/2020",
-			"end": "25/12/2020",
-			"progress": 42.6,
-			"weekly_progress": [
-				{
-					"plan": 61.74,
-					"actual": 12.12
-				},
-				{
-					"plan": 66.73,
-					"actual": 20.81
-				},
-				{
-					"plan": 84.64,
-					"actual": 40.42
-				},
-				{
-					"plan": 33.15,
-					"actual": 33.54
-				},
-				{
-					"plan": 7.24,
-					"actual": 9.75
-				},
-				{
-					"plan": 3.77,
-					"actual": 30.85
-				},
-				{
-					"plan": 0.09,
-					"actual": 27.95
-				},
-				{
-					"plan": 34.83,
-					"actual": 54.24
-				},
-				{
-					"plan": 23.27,
-					"actual": 30.8
-				},
-				{
-					"plan": 28.88,
-					"actual": 40.88
-				},
-				{
-					"plan": 40.15,
-					"actual": null
-				},
-				{
-					"plan": 22.38,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-013",
-			"name": "Culpa in excepteur proident excepteur.",
-			"weight": 8.63,
-			"start": "11/12/2020",
-			"end": "22/5/2020",
-			"progress": 28.26,
-			"weekly_progress": [
-				{
-					"plan": 49.42,
-					"actual": 34.88
-				},
-				{
-					"plan": 95.64,
-					"actual": 63.51
-				},
-				{
-					"plan": 87.41,
-					"actual": 82.51
-				},
-				{
-					"plan": 10.84,
-					"actual": 26.3
-				},
-				{
-					"plan": 96.26,
-					"actual": 6.58
-				},
-				{
-					"plan": 32.72,
-					"actual": 70.08
-				},
-				{
-					"plan": 84.94,
-					"actual": 90.5
-				},
-				{
-					"plan": 5.72,
-					"actual": 74.04
-				},
-				{
-					"plan": 0.53,
-					"actual": 66.48
-				},
-				{
-					"plan": 31.61,
-					"actual": 87.53
-				},
-				{
-					"plan": 70.15,
-					"actual": null
-				},
-				{
-					"plan": 56.97,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-014",
-			"name": "Et duis incididunt eu culpa exercitation duis ea consequat commodo consectetur.",
-			"weight": 18.51,
-			"start": "15/5/2020",
-			"end": "26/4/2020",
-			"progress": 80.33,
-			"weekly_progress": [
 				{
-					"plan": 88.79,
-					"actual": 24.71
+					"plan": 39.45,
+					"actual": 30.87
 				},
 				{
-					"plan": 56.78,
-					"actual": 76.38
+					"plan": 62.17,
+					"actual": 11.36
 				},
 				{
-					"plan": 25.55,
-					"actual": 57.93
+					"plan": 44.81,
+					"actual": 38.94
 				},
 				{
-					"plan": 65.39,
-					"actual": 86.84
+					"plan": 50.84,
+					"actual": 44.33
 				},
 				{
-					"plan": 66.64,
-					"actual": 17.21
+					"plan": 76.53,
+					"actual": 41.25
 				},
 				{
-					"plan": 77.08,
-					"actual": 91.3
+					"plan": 96.08,
+					"actual": 64.83
 				},
 				{
-					"plan": 6.8,
-					"actual": 93.41
+					"plan": 29.46,
+					"actual": 46.82
 				},
 				{
-					"plan": 8.44,
-					"actual": 44.19
+					"plan": 88.56,
+					"actual": 75.98
 				},
 				{
-					"plan": 28.41,
-					"actual": 18.37
+					"plan": 87.15,
+					"actual": 42.83
 				},
 				{
 					"plan": 10.26,
-					"actual": 35.49
+					"actual": 17.01
 				},
 				{
-					"plan": 53.35,
-					"actual": null
+					"plan": 83.93,
+					"actual": 67.67
 				},
 				{
-					"plan": 41.9,
-					"actual": null
+					"plan": 91.64,
+					"actual": 60.11
+				},
+				{
+					"plan": 30.27,
+					"actual": 59.08
+				},
+				{
+					"plan": 72.1,
+					"actual": 91.01
+				},
+				{
+					"plan": 69.56,
+					"actual": 37.35
+				},
+				{
+					"plan": 3.32,
+					"actual": 33.62
+				},
+				{
+					"plan": 21.5,
+					"actual": 59.55
 				}
 			]
 		},
 		{
-			"id": "1900123-015",
-			"name": "Sint voluptate aute mollit ex in ullamco mollit ea elit qui id.",
-			"weight": 74.29,
-			"start": "7/1/2020",
-			"end": "25/2/2020",
-			"progress": 42.84,
+			"id": "1001-01",
+			"name": "Anim labore proident culpa exercitation excepteur et nisi voluptate occaecat.",
+			"weight": 33.58,
+			"gap_treshold": 5.00,
+			"start": "11/7/2020",
+			"end": "28/10/2020",
+			"progress": 32.05,
+			"level": 1,
 			"weekly_progress": [
 				{
-					"plan": 81.64,
-					"actual": 20.14
+					"plan": 32.31,
+					"actual": 22.73
 				},
 				{
-					"plan": 97.61,
-					"actual": 44.9
+					"plan": 12.97,
+					"actual": 96.12
 				},
 				{
-					"plan": 70.34,
-					"actual": 56.43
+					"plan": 24.73,
+					"actual": 13.68
 				},
 				{
-					"plan": 72.44,
-					"actual": 56.53
+					"plan": 59.87,
+					"actual": 14.07
 				},
 				{
-					"plan": 83.82,
-					"actual": 41.73
+					"plan": 81.61,
+					"actual": 7.76
 				},
 				{
-					"plan": 20.16,
-					"actual": 45.96
+					"plan": 13.93,
+					"actual": 88.15
 				},
 				{
-					"plan": 25.19,
-					"actual": 28.15
+					"plan": 22.65,
+					"actual": 32.63
 				},
 				{
-					"plan": 77.41,
-					"actual": 75.72
+					"plan": 38.1,
+					"actual": 81.33
 				},
 				{
-					"plan": 1.12,
-					"actual": 71.87
+					"plan": 78.87,
+					"actual": 95.35
 				},
 				{
-					"plan": 5.94,
-					"actual": 32.05
+					"plan": 0.49,
+					"actual": 83.13
 				},
 				{
-					"plan": 80.69,
-					"actual": null
+					"plan": 29.1,
+					"actual": 82.74
 				},
 				{
-					"plan": 6.87,
-					"actual": null
+					"plan": 3.51,
+					"actual": 86.99
+				},
+				{
+					"plan": 57.56,
+					"actual": 86.38
+				},
+				{
+					"plan": 95.58,
+					"actual": 38.19
+				},
+				{
+					"plan": 95.47,
+					"actual": 56.63
+				},
+				{
+					"plan": 25.73,
+					"actual": 84.21
+				},
+				{
+					"plan": 24.32,
+					"actual": 63.35
+				},
+				{
+					"plan": 29.18,
+					"actual": 20.16
+				},
+				{
+					"plan": 30.83,
+					"actual": 70.86
+				},
+				{
+					"plan": 68.21,
+					"actual": 83.7
+				},
+				{
+					"plan": 42.58,
+					"actual": 93.41
+				},
+				{
+					"plan": 8,
+					"actual": 27.85
+				},
+				{
+					"plan": 62.03,
+					"actual": 11.97
+				},
+				{
+					"plan": 61.04,
+					"actual": 65.74
+				},
+				{
+					"plan": 99.02,
+					"actual": 37.16
+				},
+				{
+					"plan": 3.6,
+					"actual": 93.25
+				},
+				{
+					"plan": 55.05,
+					"actual": 55.34
+				},
+				{
+					"plan": 25.42,
+					"actual": 12.86
+				},
+				{
+					"plan": 46.16,
+					"actual": 97.25
+				},
+				{
+					"plan": 64.1,
+					"actual": 90.13
+				},
+				{
+					"plan": 23.9,
+					"actual": 55.52
+				},
+				{
+					"plan": 4.3,
+					"actual": 84.69
+				},
+				{
+					"plan": 49.32,
+					"actual": 29.04
+				},
+				{
+					"plan": 92.7,
+					"actual": 6.97
+				},
+				{
+					"plan": 45,
+					"actual": 1.36
+				},
+				{
+					"plan": 82.78,
+					"actual": 52.78
+				},
+				{
+					"plan": 26.47,
+					"actual": 94.63
+				},
+				{
+					"plan": 18.17,
+					"actual": 70.27
+				},
+				{
+					"plan": 2.32,
+					"actual": 43.69
+				},
+				{
+					"plan": 90.56,
+					"actual": 70.33
+				},
+				{
+					"plan": 27.43,
+					"actual": 68.78
+				},
+				{
+					"plan": 11.71,
+					"actual": 44.84
+				},
+				{
+					"plan": 39.44,
+					"actual": 2.95
+				},
+				{
+					"plan": 51.4,
+					"actual": 84.13
+				},
+				{
+					"plan": 8.9,
+					"actual": 91.6
+				},
+				{
+					"plan": 89.53,
+					"actual": 80.31
+				},
+				{
+					"plan": 81.75,
+					"actual": 20
+				},
+				{
+					"plan": 44.2,
+					"actual": 33.99
 				}
 			]
 		},
 		{
-			"id": "1900123-016",
-			"name": "Pariatur adipisicing dolore ea fugiat minim laborum minim eiusmod eiusmod dolore.",
-			"weight": 28.88,
-			"start": "6/6/2020",
-			"end": "21/4/2020",
-			"progress": 17.72,
+			"id": "1001-02",
+			"name": "Ex eiusmod proident pariatur magna excepteur ut excepteur ex incididunt.",
+			"weight": 48.76,
+			"gap_treshold": 5.00,
+			"start": "12/11/2020",
+			"end": "25/6/2020",
+			"progress": 46.22,
+			"level": 1,
 			"weekly_progress": [
 				{
-					"plan": 63.58,
-					"actual": 46.99
+					"plan": 48.76,
+					"actual": 46.22
 				},
 				{
-					"plan": 14.14,
-					"actual": 32.95
+					"plan": 26.71,
+					"actual": 53.82
 				},
 				{
-					"plan": 77.94,
-					"actual": 81.31
+					"plan": 20.38,
+					"actual": 29.61
 				},
 				{
-					"plan": 98.17,
+					"plan": 77.28,
+					"actual": 92.26
+				},
+				{
+					"plan": 98.42,
+					"actual": 62.37
+				},
+				{
+					"plan": 22.71,
+					"actual": 6.23
+				},
+				{
+					"plan": 73.45,
+					"actual": 94.45
+				},
+				{
+					"plan": 78.47,
+					"actual": 70.41
+				},
+				{
+					"plan": 38.59,
+					"actual": 54.44
+				},
+				{
+					"plan": 11.68,
+					"actual": 81.92
+				},
+				{
+					"plan": 21.33,
+					"actual": 78.93
+				},
+				{
+					"plan": 51.05,
+					"actual": 50.79
+				},
+				{
+					"plan": 69.79,
+					"actual": 4.78
+				},
+				{
+					"plan": 44.86,
+					"actual": 48.93
+				},
+				{
+					"plan": 24.12,
+					"actual": 46.31
+				},
+				{
+					"plan": 98.32,
+					"actual": 73.55
+				},
+				{
+					"plan": 25.07,
+					"actual": 14.44
+				},
+				{
+					"plan": 57.22,
+					"actual": 47.19
+				},
+				{
+					"plan": 11.27,
+					"actual": 54.61
+				},
+				{
+					"plan": 15.96,
+					"actual": 95.21
+				},
+				{
+					"plan": 1.82,
+					"actual": 72.23
+				},
+				{
+					"plan": 56.31,
+					"actual": 33.33
+				},
+				{
+					"plan": 67.53,
+					"actual": 29.15
+				},
+				{
+					"plan": 28.44,
+					"actual": 20.86
+				},
+				{
+					"plan": 64.87,
+					"actual": 70.43
+				},
+				{
+					"plan": 23.21,
+					"actual": 94.26
+				},
+				{
+					"plan": 58.7,
+					"actual": 38.82
+				},
+				{
+					"plan": 35.7,
+					"actual": 31.93
+				},
+				{
+					"plan": 56.56,
+					"actual": 89.23
+				},
+				{
+					"plan": 9.12,
+					"actual": 10.37
+				},
+				{
+					"plan": 56.91,
+					"actual": 98.85
+				},
+				{
+					"plan": 2.15,
+					"actual": 73.22
+				},
+				{
+					"plan": 63.8,
+					"actual": 35.02
+				},
+				{
+					"plan": 51.21,
+					"actual": 97.99
+				},
+				{
+					"plan": 41.7,
+					"actual": 68.79
+				},
+				{
+					"plan": 77.34,
+					"actual": 7.9
+				},
+				{
+					"plan": 48.91,
+					"actual": 8.66
+				},
+				{
+					"plan": 82.91,
+					"actual": 92.73
+				},
+				{
+					"plan": 87.42,
+					"actual": 9.83
+				},
+				{
+					"plan": 27.42,
+					"actual": 73.39
+				},
+				{
+					"plan": 32.52,
+					"actual": 25.4
+				},
+				{
+					"plan": 79.49,
+					"actual": 38.11
+				},
+				{
+					"plan": 51.82,
+					"actual": 89.06
+				},
+				{
+					"plan": 29.79,
+					"actual": 79.27
+				},
+				{
+					"plan": 89.07,
+					"actual": 55.4
+				},
+				{
+					"plan": 56.81,
+					"actual": 35.19
+				},
+				{
+					"plan": 95.41,
+					"actual": 19
+				},
+				{
+					"plan": 36.96,
+					"actual": 41.84
+				}
+			]
+		},
+		{
+			"id": "1001-03",
+			"name": "Officia cillum laboris irure sit ut et esse.",
+			"weight": 14.55,
+			"gap_treshold": 5.00,
+			"start": "13/9/2020",
+			"end": "19/11/2020",
+			"progress": 51.59,
+			"level": 2,
+			"weekly_progress": [
+				{
+					"plan": 63.45,
+					"actual": 37.86
+				},
+				{
+					"plan": 89.3,
+					"actual": 82.86
+				},
+				{
+					"plan": 29.49,
+					"actual": 18.63
+				},
+				{
+					"plan": 91.14,
+					"actual": 78.56
+				},
+				{
+					"plan": 79.68,
+					"actual": 5.09
+				},
+				{
+					"plan": 4.73,
+					"actual": 42.71
+				},
+				{
+					"plan": 74.05,
+					"actual": 90.85
+				},
+				{
+					"plan": 47.89,
+					"actual": 60.87
+				},
+				{
+					"plan": 59.01,
+					"actual": 0.32
+				},
+				{
+					"plan": 87.71,
+					"actual": 39.56
+				},
+				{
+					"plan": 61.47,
+					"actual": 99.99
+				},
+				{
+					"plan": 49.45,
+					"actual": 48.34
+				},
+				{
+					"plan": 83.79,
+					"actual": 68.76
+				},
+				{
+					"plan": 8.69,
+					"actual": 25.27
+				},
+				{
+					"plan": 49.92,
+					"actual": 99.14
+				},
+				{
+					"plan": 96.39,
+					"actual": 21.85
+				},
+				{
+					"plan": 94.04,
+					"actual": 87.43
+				},
+				{
+					"plan": 4.32,
+					"actual": 98.94
+				},
+				{
+					"plan": 57.86,
+					"actual": 67.13
+				},
+				{
+					"plan": 72.99,
+					"actual": 80.22
+				},
+				{
+					"plan": 97.8,
+					"actual": 74.5
+				},
+				{
+					"plan": 55.28,
+					"actual": 68.41
+				},
+				{
+					"plan": 51.82,
+					"actual": 93.07
+				},
+				{
+					"plan": 58.15,
+					"actual": 8.09
+				},
+				{
+					"plan": 16.36,
+					"actual": 67.9
+				},
+				{
+					"plan": 11.45,
+					"actual": 81.53
+				},
+				{
+					"plan": 74.16,
+					"actual": 35.2
+				},
+				{
+					"plan": 72.98,
+					"actual": 98.44
+				},
+				{
+					"plan": 69.05,
+					"actual": 51.56
+				},
+				{
+					"plan": 92.3,
+					"actual": 72.84
+				},
+				{
+					"plan": 21.51,
+					"actual": 68.95
+				},
+				{
+					"plan": 28.44,
+					"actual": 17.19
+				},
+				{
+					"plan": 32.13,
+					"actual": 2.96
+				},
+				{
+					"plan": 58.44,
+					"actual": 67.23
+				},
+				{
+					"plan": 83.9,
+					"actual": 13.22
+				},
+				{
+					"plan": 48.86,
+					"actual": 68.55
+				},
+				{
+					"plan": 2.58,
+					"actual": 47.1
+				},
+				{
+					"plan": 31.87,
+					"actual": 42.98
+				},
+				{
+					"plan": 65.86,
+					"actual": 75.46
+				},
+				{
+					"plan": 92.21,
+					"actual": 82.6
+				},
+				{
+					"plan": 57.77,
+					"actual": 31.5
+				},
+				{
+					"plan": 27.79,
+					"actual": 36.7
+				},
+				{
+					"plan": 16.19,
+					"actual": 76.45
+				},
+				{
+					"plan": 72.68,
+					"actual": 89.29
+				},
+				{
+					"plan": 86.24,
+					"actual": 9.79
+				},
+				{
+					"plan": 20.7,
+					"actual": 99.88
+				},
+				{
+					"plan": 12,
+					"actual": 5.15
+				},
+				{
+					"plan": 35.02,
+					"actual": 7.24
+				}
+			]
+		},
+		{
+			"id": "1001-04",
+			"name": "Tempor commodo voluptate do aute anim id.",
+			"weight": 13.38,
+			"gap_treshold": 5.00,
+			"start": "11/4/2020",
+			"end": "23/1/2020",
+			"progress": 54.77,
+			"level": 2,
+			"weekly_progress": [
+				{
+					"plan": 11.58,
+					"actual": 72.26
+				},
+				{
+					"plan": 84.31,
+					"actual": 60.09
+				},
+				{
+					"plan": 48.96,
+					"actual": 0.12
+				},
+				{
+					"plan": 13.15,
+					"actual": 39.58
+				},
+				{
+					"plan": 90.49,
+					"actual": 43.6
+				},
+				{
+					"plan": 19.42,
+					"actual": 50.3
+				},
+				{
+					"plan": 0.65,
+					"actual": 25.23
+				},
+				{
+					"plan": 49.36,
+					"actual": 13.74
+				},
+				{
+					"plan": 47.53,
 					"actual": 41.74
 				},
 				{
-					"plan": 89,
-					"actual": 65.7
+					"plan": 83.25,
+					"actual": 1.55
 				},
 				{
-					"plan": 35.93,
-					"actual": 82.78
+					"plan": 34.46,
+					"actual": 18.71
 				},
 				{
-					"plan": 59.56,
-					"actual": 9.56
+					"plan": 25.08,
+					"actual": 62.06
 				},
 				{
-					"plan": 0.79,
-					"actual": 33.52
+					"plan": 75.8,
+					"actual": 99.93
 				},
 				{
-					"plan": 28.23,
-					"actual": 99.98
+					"plan": 70.73,
+					"actual": 42.19
 				},
 				{
-					"plan": 84.24,
-					"actual": 30.36
+					"plan": 24.62,
+					"actual": 99.84
 				},
 				{
-					"plan": 46.67,
-					"actual": null
+					"plan": 60.38,
+					"actual": 20.19
 				},
 				{
-					"plan": 6.47,
-					"actual": null
+					"plan": 28.62,
+					"actual": 24.21
+				},
+				{
+					"plan": 84.84,
+					"actual": 13.96
+				},
+				{
+					"plan": 86.53,
+					"actual": 68.8
+				},
+				{
+					"plan": 99.65,
+					"actual": 80.51
+				},
+				{
+					"plan": 28.02,
+					"actual": 13.31
+				},
+				{
+					"plan": 86.47,
+					"actual": 82.38
+				},
+				{
+					"plan": 96.43,
+					"actual": 55.71
+				},
+				{
+					"plan": 15.6,
+					"actual": 29.3
+				},
+				{
+					"plan": 6.05,
+					"actual": 33.58
+				},
+				{
+					"plan": 13.23,
+					"actual": 65.8
+				},
+				{
+					"plan": 14.03,
+					"actual": 68.72
+				},
+				{
+					"plan": 62.5,
+					"actual": 79.4
+				},
+				{
+					"plan": 82.32,
+					"actual": 82.01
+				},
+				{
+					"plan": 39.82,
+					"actual": 96.96
+				},
+				{
+					"plan": 92.04,
+					"actual": 6.76
+				},
+				{
+					"plan": 98.16,
+					"actual": 6.03
+				},
+				{
+					"plan": 70.25,
+					"actual": 30.19
+				},
+				{
+					"plan": 83.31,
+					"actual": 25.51
+				},
+				{
+					"plan": 7.5,
+					"actual": 62.32
+				},
+				{
+					"plan": 43.3,
+					"actual": 80.63
+				},
+				{
+					"plan": 97.15,
+					"actual": 23.01
+				},
+				{
+					"plan": 65.43,
+					"actual": 44.36
+				},
+				{
+					"plan": 9.35,
+					"actual": 59.69
+				},
+				{
+					"plan": 85.97,
+					"actual": 19.68
+				},
+				{
+					"plan": 51.7,
+					"actual": 74.06
+				},
+				{
+					"plan": 6.3,
+					"actual": 68.26
+				},
+				{
+					"plan": 81.23,
+					"actual": 86.7
+				},
+				{
+					"plan": 67.55,
+					"actual": 28.11
+				},
+				{
+					"plan": 70.58,
+					"actual": 21.79
+				},
+				{
+					"plan": 59.65,
+					"actual": 3.36
+				},
+				{
+					"plan": 96.25,
+					"actual": 41.55
+				},
+				{
+					"plan": 17.35,
+					"actual": 21.89
 				}
 			]
 		},
 		{
-			"id": "1900123-017",
-			"name": "Minim enim veniam commodo voluptate non culpa excepteur cillum tempor fugiat est nostrud eiusmod.",
-			"weight": 65.6,
-			"start": "10/4/2020",
-			"end": "28/6/2020",
-			"progress": 11.19,
+			"id": "1001-05",
+			"name": "Deserunt occaecat amet officia enim.",
+			"weight": 6.46,
+			"gap_treshold": 5.00,
+			"start": "7/7/2020",
+			"end": "16/2/2020",
+			"progress": 20.75,
+			"level": 2,
 			"weekly_progress": [
 				{
-					"plan": 35.34,
-					"actual": 48.09
+					"plan": 40.79,
+					"actual": 97.54
 				},
 				{
-					"plan": 38.15,
-					"actual": 70.83
+					"plan": 20.71,
+					"actual": 68.04
 				},
 				{
-					"plan": 22.59,
-					"actual": 67.89
+					"plan": 18.35,
+					"actual": 68.91
 				},
 				{
-					"plan": 63.9,
-					"actual": 2.11
+					"plan": 50.86,
+					"actual": 9.48
 				},
 				{
-					"plan": 20.98,
-					"actual": 20.43
+					"plan": 15,
+					"actual": 10.99
 				},
 				{
-					"plan": 56.35,
-					"actual": 98.31
+					"plan": 16.42,
+					"actual": 85.62
 				},
 				{
-					"plan": 79.08,
-					"actual": 38.25
+					"plan": 2.47,
+					"actual": 5.82
 				},
 				{
-					"plan": 47.24,
-					"actual": 99.61
+					"plan": 58.01,
+					"actual": 14.64
 				},
 				{
-					"plan": 73.47,
-					"actual": 80.56
+					"plan": 17.78,
+					"actual": 16.67
 				},
 				{
-					"plan": 16.69,
-					"actual": 73.75
+					"plan": 1.67,
+					"actual": 25.42
 				},
 				{
-					"plan": 30.13,
-					"actual": null
+					"plan": 26.04,
+					"actual": 70.72
 				},
 				{
-					"plan": 48.19,
-					"actual": null
+					"plan": 22.05,
+					"actual": 36.14
+				},
+				{
+					"plan": 23.98,
+					"actual": 43.04
+				},
+				{
+					"plan": 71.43,
+					"actual": 68.78
+				},
+				{
+					"plan": 88.84,
+					"actual": 62.73
+				},
+				{
+					"plan": 94.66,
+					"actual": 89.6
+				},
+				{
+					"plan": 58.79,
+					"actual": 28.95
+				},
+				{
+					"plan": 35.41,
+					"actual": 42.49
+				},
+				{
+					"plan": 33.48,
+					"actual": 21.74
+				},
+				{
+					"plan": 38.26,
+					"actual": 39.43
+				},
+				{
+					"plan": 98.77,
+					"actual": 52.33
+				},
+				{
+					"plan": 51.33,
+					"actual": 49.96
+				},
+				{
+					"plan": 32.48,
+					"actual": 6.58
+				},
+				{
+					"plan": 52.72,
+					"actual": 70.89
+				},
+				{
+					"plan": 11.85,
+					"actual": 51.95
+				},
+				{
+					"plan": 31.72,
+					"actual": 7.71
+				},
+				{
+					"plan": 76.81,
+					"actual": 16.79
+				},
+				{
+					"plan": 9.97,
+					"actual": 59.44
+				},
+				{
+					"plan": 56.91,
+					"actual": 38.02
+				},
+				{
+					"plan": 81.35,
+					"actual": 82.58
+				},
+				{
+					"plan": 82.66,
+					"actual": 18.08
+				},
+				{
+					"plan": 23.77,
+					"actual": 93.77
+				},
+				{
+					"plan": 68.85,
+					"actual": 98
+				},
+				{
+					"plan": 90.12,
+					"actual": 35.89
+				},
+				{
+					"plan": 63.09,
+					"actual": 37.84
+				},
+				{
+					"plan": 51.63,
+					"actual": 81.82
+				},
+				{
+					"plan": 28.75,
+					"actual": 85.81
+				},
+				{
+					"plan": 19.35,
+					"actual": 79.7
+				},
+				{
+					"plan": 52.06,
+					"actual": 28.3
+				},
+				{
+					"plan": 89.08,
+					"actual": 41.81
+				},
+				{
+					"plan": 59.22,
+					"actual": 50.03
+				},
+				{
+					"plan": 94.99,
+					"actual": 79.02
+				},
+				{
+					"plan": 53.33,
+					"actual": 57.76
+				},
+				{
+					"plan": 50.83,
+					"actual": 16.43
+				},
+				{
+					"plan": 9.56,
+					"actual": 14.58
+				},
+				{
+					"plan": 30.98,
+					"actual": 18.72
+				},
+				{
+					"plan": 52.75,
+					"actual": 58.65
+				},
+				{
+					"plan": 46.25,
+					"actual": 17.67
 				}
 			]
 		},
 		{
-			"id": "1900123-018",
-			"name": "Eiusmod sit consequat cillum ea duis adipisicing ut tempor eiusmod tempor duis.",
-			"weight": 23.34,
-			"start": "9/11/2020",
-			"end": "25/12/2020",
-			"progress": 43.68,
+			"id": "1001-06",
+			"name": "Ipsum nisi sint eu ut do proident ipsum.",
+			"weight": 7.34,
+			"gap_treshold": 5.00,
+			"start": "13/3/2020",
+			"end": "21/5/2020",
+			"progress": 82.78,
+			"level": 3,
 			"weekly_progress": [
 				{
-					"plan": 65.55,
-					"actual": 12.75
+					"plan": 4.34,
+					"actual": 31.59
 				},
 				{
-					"plan": 57.68,
-					"actual": 69.85
+					"plan": 69.69,
+					"actual": 57.27
 				},
 				{
-					"plan": 10.65,
-					"actual": 96.48
+					"plan": 1.02,
+					"actual": 20.37
 				},
 				{
-					"plan": 84.09,
-					"actual": 65.19
+					"plan": 34.75,
+					"actual": 49.28
 				},
 				{
-					"plan": 29.77,
-					"actual": 67.82
+					"plan": 22.3,
+					"actual": 7.11
 				},
 				{
-					"plan": 69.26,
-					"actual": 20.56
+					"plan": 56.13,
+					"actual": 91.18
 				},
 				{
-					"plan": 99.48,
-					"actual": 9.84
+					"plan": 39.11,
+					"actual": 21.04
 				},
 				{
-					"plan": 66.83,
-					"actual": 85.64
+					"plan": 77.6,
+					"actual": 13.88
 				},
 				{
-					"plan": 17.59,
-					"actual": 0.59
+					"plan": 93.38,
+					"actual": 35.74
 				},
 				{
-					"plan": 42.88,
-					"actual": 89.17
+					"plan": 60.81,
+					"actual": 22.2
 				},
 				{
-					"plan": 18.77,
-					"actual": null
+					"plan": 29.81,
+					"actual": 75.57
 				},
 				{
-					"plan": 24.43,
-					"actual": null
+					"plan": 4.37,
+					"actual": 89.5
+				},
+				{
+					"plan": 86.36,
+					"actual": 88.99
+				},
+				{
+					"plan": 27.06,
+					"actual": 5.99
+				},
+				{
+					"plan": 25.16,
+					"actual": 26.63
+				},
+				{
+					"plan": 3.95,
+					"actual": 23.68
+				},
+				{
+					"plan": 72.78,
+					"actual": 86.82
+				},
+				{
+					"plan": 77.97,
+					"actual": 28.43
+				},
+				{
+					"plan": 8.27,
+					"actual": 57.84
+				},
+				{
+					"plan": 43.74,
+					"actual": 67.45
+				},
+				{
+					"plan": 68.53,
+					"actual": 29.89
+				},
+				{
+					"plan": 85.54,
+					"actual": 12.37
+				},
+				{
+					"plan": 23.35,
+					"actual": 45.89
+				},
+				{
+					"plan": 28.12,
+					"actual": 32.42
+				},
+				{
+					"plan": 8.06,
+					"actual": 2.64
+				},
+				{
+					"plan": 97.49,
+					"actual": 17.43
+				},
+				{
+					"plan": 70.24,
+					"actual": 64.33
+				},
+				{
+					"plan": 99.76,
+					"actual": 39.35
+				},
+				{
+					"plan": 76.03,
+					"actual": 50.63
+				},
+				{
+					"plan": 73.25,
+					"actual": 34.48
+				},
+				{
+					"plan": 20.32,
+					"actual": 69.71
+				},
+				{
+					"plan": 99.45,
+					"actual": 95.88
+				},
+				{
+					"plan": 81.01,
+					"actual": 94.94
+				},
+				{
+					"plan": 90.9,
+					"actual": 32.12
+				},
+				{
+					"plan": 62.31,
+					"actual": 15.73
+				},
+				{
+					"plan": 28.5,
+					"actual": 58.72
+				},
+				{
+					"plan": 69.36,
+					"actual": 87.64
+				},
+				{
+					"plan": 7.96,
+					"actual": 99.85
+				},
+				{
+					"plan": 27.37,
+					"actual": 50.96
+				},
+				{
+					"plan": 22.83,
+					"actual": 76.04
+				},
+				{
+					"plan": 54.9,
+					"actual": 31.86
+				},
+				{
+					"plan": 64.08,
+					"actual": 5.8
+				},
+				{
+					"plan": 37.01,
+					"actual": 88.22
+				},
+				{
+					"plan": 99.81,
+					"actual": 44.35
+				},
+				{
+					"plan": 21.82,
+					"actual": 4.52
+				},
+				{
+					"plan": 27.67,
+					"actual": 27.68
+				},
+				{
+					"plan": 50.96,
+					"actual": 22.35
+				},
+				{
+					"plan": 23.11,
+					"actual": 29.5
 				}
 			]
 		},
 		{
-			"id": "1900123-019",
-			"name": "Fugiat id ad proident amet consectetur aliqua.",
-			"weight": 34.96,
-			"start": "5/10/2020",
-			"end": "20/10/2020",
-			"progress": 9.57,
+			"id": "1001-07",
+			"name": "Pariatur nisi duis dolore consectetur labore magna anim.",
+			"weight": 78.31,
+			"gap_treshold": 5.00,
+			"start": "2/12/2020",
+			"end": "21/8/2020",
+			"progress": 67.54,
+			"level": 3,
 			"weekly_progress": [
 				{
-					"plan": 47.88,
-					"actual": 22.13
+					"plan": 53.02,
+					"actual": 83.92
 				},
 				{
-					"plan": 69.64,
-					"actual": 10.71
+					"plan": 7.95,
+					"actual": 57.28
 				},
 				{
-					"plan": 2.36,
-					"actual": 75.93
+					"plan": 55.83,
+					"actual": 25.78
 				},
 				{
-					"plan": 61.67,
-					"actual": 19.1
+					"plan": 27.35,
+					"actual": 60.4
 				},
 				{
-					"plan": 90.96,
-					"actual": 56.87
+					"plan": 63.71,
+					"actual": 93.75
 				},
 				{
-					"plan": 16.2,
-					"actual": 58.96
+					"plan": 16.06,
+					"actual": 62.03
 				},
 				{
-					"plan": 22.58,
-					"actual": 50.86
+					"plan": 41.81,
+					"actual": 46.77
 				},
 				{
-					"plan": 54.1,
-					"actual": 51.6
+					"plan": 8.56,
+					"actual": 97.21
 				},
 				{
-					"plan": 60.74,
+					"plan": 53.68,
+					"actual": 46.41
+				},
+				{
+					"plan": 11.71,
+					"actual": 68.26
+				},
+				{
+					"plan": 57.9,
+					"actual": 14.65
+				},
+				{
+					"plan": 18.28,
+					"actual": 15
+				},
+				{
+					"plan": 12.81,
+					"actual": 42.58
+				},
+				{
+					"plan": 17.86,
+					"actual": 95.91
+				},
+				{
+					"plan": 44.34,
+					"actual": 45.16
+				},
+				{
+					"plan": 91.18,
+					"actual": 98.82
+				},
+				{
+					"plan": 55.03,
+					"actual": 34.48
+				},
+				{
+					"plan": 34.78,
+					"actual": 44.26
+				},
+				{
+					"plan": 33.39,
+					"actual": 29.53
+				},
+				{
+					"plan": 61.31,
+					"actual": 71.32
+				},
+				{
+					"plan": 3.5,
+					"actual": 18.53
+				},
+				{
+					"plan": 78.29,
 					"actual": 97.09
 				},
 				{
-					"plan": 76.69,
-					"actual": 86.17
+					"plan": 92.67,
+					"actual": 67.65
 				},
 				{
-					"plan": 59.09,
-					"actual": null
+					"plan": 1.93,
+					"actual": 37.72
 				},
 				{
-					"plan": 56.73,
-					"actual": null
+					"plan": 86.01,
+					"actual": 92.95
+				},
+				{
+					"plan": 28.79,
+					"actual": 24.91
+				},
+				{
+					"plan": 27.03,
+					"actual": 23.72
+				},
+				{
+					"plan": 99.13,
+					"actual": 54.26
+				},
+				{
+					"plan": 53.8,
+					"actual": 47.14
+				},
+				{
+					"plan": 74.51,
+					"actual": 77.55
+				},
+				{
+					"plan": 82.28,
+					"actual": 2.98
+				},
+				{
+					"plan": 76.49,
+					"actual": 13.64
+				},
+				{
+					"plan": 97.95,
+					"actual": 43.13
+				},
+				{
+					"plan": 64.66,
+					"actual": 73.59
+				},
+				{
+					"plan": 26.41,
+					"actual": 61.76
+				},
+				{
+					"plan": 38.87,
+					"actual": 14.89
+				},
+				{
+					"plan": 58.05,
+					"actual": 65.71
+				},
+				{
+					"plan": 68.79,
+					"actual": 1.08
+				},
+				{
+					"plan": 49.71,
+					"actual": 5.07
+				},
+				{
+					"plan": 16.29,
+					"actual": 55.24
+				},
+				{
+					"plan": 56.75,
+					"actual": 71.08
+				},
+				{
+					"plan": 34.51,
+					"actual": 69.59
+				},
+				{
+					"plan": 67.66,
+					"actual": 19.34
+				},
+				{
+					"plan": 71.41,
+					"actual": 74.44
+				},
+				{
+					"plan": 34.67,
+					"actual": 6.27
+				},
+				{
+					"plan": 0.07,
+					"actual": 60.83
+				},
+				{
+					"plan": 82.56,
+					"actual": 52.52
+				},
+				{
+					"plan": 7.52,
+					"actual": 72.53
+				}
+			]
+		},
+		{
+			"id": "1001-08",
+			"name": "Ex fugiat ex nulla in id veniam proident anim nisi in adipisicing aliquip sit.",
+			"weight": 80.35,
+			"gap_treshold": 5.00,
+			"start": "9/2/2020",
+			"end": "16/11/2020",
+			"progress": 59.27,
+			"level": 4,
+			"weekly_progress": [
+				{
+					"plan": 15.68,
+					"actual": 37.56
+				},
+				{
+					"plan": 54.27,
+					"actual": 16.42
+				},
+				{
+					"plan": 51.57,
+					"actual": 84.05
+				},
+				{
+					"plan": 52.51,
+					"actual": 0.32
+				},
+				{
+					"plan": 60.17,
+					"actual": 1.97
+				},
+				{
+					"plan": 84.95,
+					"actual": 58.73
+				},
+				{
+					"plan": 80.69,
+					"actual": 29.23
+				},
+				{
+					"plan": 51.66,
+					"actual": 30.49
+				},
+				{
+					"plan": 49.21,
+					"actual": 0.02
+				},
+				{
+					"plan": 18.18,
+					"actual": 70.38
+				},
+				{
+					"plan": 11.6,
+					"actual": 13.99
+				},
+				{
+					"plan": 93.52,
+					"actual": 35.51
+				},
+				{
+					"plan": 94.97,
+					"actual": 52.71
+				},
+				{
+					"plan": 49.63,
+					"actual": 35.61
+				},
+				{
+					"plan": 81.16,
+					"actual": 22.44
+				},
+				{
+					"plan": 49.86,
+					"actual": 0.25
+				},
+				{
+					"plan": 79.3,
+					"actual": 37.92
+				},
+				{
+					"plan": 85.63,
+					"actual": 52.94
+				},
+				{
+					"plan": 5.87,
+					"actual": 18.68
+				},
+				{
+					"plan": 71.72,
+					"actual": 40.62
+				},
+				{
+					"plan": 44.36,
+					"actual": 30.73
+				},
+				{
+					"plan": 19.5,
+					"actual": 88.12
+				},
+				{
+					"plan": 57.3,
+					"actual": 87.98
+				},
+				{
+					"plan": 9.43,
+					"actual": 12.66
+				},
+				{
+					"plan": 44.63,
+					"actual": 30.52
+				},
+				{
+					"plan": 6.69,
+					"actual": 60.23
+				},
+				{
+					"plan": 99.82,
+					"actual": 42.16
+				},
+				{
+					"plan": 70.55,
+					"actual": 4.23
+				},
+				{
+					"plan": 97.05,
+					"actual": 65.53
+				},
+				{
+					"plan": 9.85,
+					"actual": 0.66
+				},
+				{
+					"plan": 5.92,
+					"actual": 55.89
+				},
+				{
+					"plan": 71.38,
+					"actual": 28.35
+				},
+				{
+					"plan": 44.32,
+					"actual": 87.69
+				},
+				{
+					"plan": 83.64,
+					"actual": 91.19
+				},
+				{
+					"plan": 68.42,
+					"actual": 3.94
+				},
+				{
+					"plan": 37.73,
+					"actual": 98.42
+				},
+				{
+					"plan": 51.51,
+					"actual": 26.58
+				},
+				{
+					"plan": 8.04,
+					"actual": 49.1
+				},
+				{
+					"plan": 82.92,
+					"actual": 3.21
+				},
+				{
+					"plan": 91.76,
+					"actual": 71.88
+				},
+				{
+					"plan": 83.05,
+					"actual": 32.09
+				},
+				{
+					"plan": 47.16,
+					"actual": 26.75
+				},
+				{
+					"plan": 54.56,
+					"actual": 68.73
+				},
+				{
+					"plan": 30.95,
+					"actual": 73.03
+				},
+				{
+					"plan": 23.05,
+					"actual": 15.54
+				},
+				{
+					"plan": 20.75,
+					"actual": 39.27
+				},
+				{
+					"plan": 28.31,
+					"actual": 92.9
+				},
+				{
+					"plan": 6.32,
+					"actual": 63.63
+				}
+			]
+		},
+		{
+			"id": "1001-09",
+			"name": "Quis esse deserunt id magna voluptate reprehenderit qui anim est ut quis ex consectetur.",
+			"weight": 55.17,
+			"gap_treshold": 5.00,
+			"start": "3/9/2020",
+			"end": "24/2/2020",
+			"progress": 16.09,
+			"level": 4,
+			"weekly_progress": [
+				{
+					"plan": 87.24,
+					"actual": 46.97
+				},
+				{
+					"plan": 16.37,
+					"actual": 18.84
+				},
+				{
+					"plan": 88.2,
+					"actual": 27.4
+				},
+				{
+					"plan": 15.76,
+					"actual": 8.25
+				},
+				{
+					"plan": 78.77,
+					"actual": 97.49
+				},
+				{
+					"plan": 85.31,
+					"actual": 73.3
+				},
+				{
+					"plan": 89.87,
+					"actual": 4.7
+				},
+				{
+					"plan": 73.64,
+					"actual": 30.64
+				},
+				{
+					"plan": 20.12,
+					"actual": 85.1
+				},
+				{
+					"plan": 25.34,
+					"actual": 38.75
+				},
+				{
+					"plan": 83.77,
+					"actual": 74.69
+				},
+				{
+					"plan": 82.54,
+					"actual": 27.82
+				},
+				{
+					"plan": 10.12,
+					"actual": 60.04
+				},
+				{
+					"plan": 44.8,
+					"actual": 9.73
+				},
+				{
+					"plan": 69.24,
+					"actual": 35.4
+				},
+				{
+					"plan": 43.23,
+					"actual": 21.33
+				},
+				{
+					"plan": 51.51,
+					"actual": 34.23
+				},
+				{
+					"plan": 95.04,
+					"actual": 40.44
+				},
+				{
+					"plan": 9.08,
+					"actual": 63.68
+				},
+				{
+					"plan": 14.58,
+					"actual": 61.18
+				},
+				{
+					"plan": 80.1,
+					"actual": 45.97
+				},
+				{
+					"plan": 2.65,
+					"actual": 43.65
+				},
+				{
+					"plan": 14.06,
+					"actual": 75.8
+				},
+				{
+					"plan": 16.71,
+					"actual": 83.03
+				},
+				{
+					"plan": 93.41,
+					"actual": 47.66
+				},
+				{
+					"plan": 6.83,
+					"actual": 35
+				},
+				{
+					"plan": 82.1,
+					"actual": 62.36
+				},
+				{
+					"plan": 38.52,
+					"actual": 55.98
+				},
+				{
+					"plan": 76.18,
+					"actual": 0.16
+				},
+				{
+					"plan": 10.38,
+					"actual": 94.67
+				},
+				{
+					"plan": 57.42,
+					"actual": 72.64
+				},
+				{
+					"plan": 93.01,
+					"actual": 89.82
+				},
+				{
+					"plan": 70.55,
+					"actual": 61.35
+				},
+				{
+					"plan": 12.53,
+					"actual": 22.01
+				},
+				{
+					"plan": 21.76,
+					"actual": 38.15
+				},
+				{
+					"plan": 96.36,
+					"actual": 51.37
+				},
+				{
+					"plan": 19.02,
+					"actual": 38.9
+				},
+				{
+					"plan": 35.04,
+					"actual": 73.47
+				},
+				{
+					"plan": 61.81,
+					"actual": 41.31
+				},
+				{
+					"plan": 37.28,
+					"actual": 48.06
+				},
+				{
+					"plan": 6.63,
+					"actual": 78.24
+				},
+				{
+					"plan": 72.47,
+					"actual": 54.21
+				},
+				{
+					"plan": 68.69,
+					"actual": 68.37
+				},
+				{
+					"plan": 21.59,
+					"actual": 49.07
+				},
+				{
+					"plan": 96.53,
+					"actual": 70.63
+				},
+				{
+					"plan": 42.97,
+					"actual": 44.72
+				},
+				{
+					"plan": 80.76,
+					"actual": 55.33
+				},
+				{
+					"plan": 88.33,
+					"actual": 46.28
+				}
+			]
+		},
+		{
+			"id": "1001-010",
+			"name": "Dolor adipisicing aliquip adipisicing labore dolore elit veniam exercitation cupidatat tempor nostrud Lorem aliqua elit.",
+			"weight": 26.04,
+			"gap_treshold": 5.00,
+			"start": "10/3/2020",
+			"end": "21/5/2020",
+			"progress": 87.38,
+			"level": 5,
+			"weekly_progress": [
+				{
+					"plan": 64.64,
+					"actual": 31.85
+				},
+				{
+					"plan": 57.34,
+					"actual": 71.75
+				},
+				{
+					"plan": 20.91,
+					"actual": 50.95
+				},
+				{
+					"plan": 41,
+					"actual": 51.27
+				},
+				{
+					"plan": 48.64,
+					"actual": 22.67
+				},
+				{
+					"plan": 7.95,
+					"actual": 69.13
+				},
+				{
+					"plan": 80.85,
+					"actual": 95.11
+				},
+				{
+					"plan": 87.33,
+					"actual": 0.81
+				},
+				{
+					"plan": 22.14,
+					"actual": 40.19
+				},
+				{
+					"plan": 49.23,
+					"actual": 64.88
+				},
+				{
+					"plan": 34.42,
+					"actual": 69.98
+				},
+				{
+					"plan": 86.44,
+					"actual": 43.49
+				},
+				{
+					"plan": 67.85,
+					"actual": 83.13
+				},
+				{
+					"plan": 70.55,
+					"actual": 25.77
+				},
+				{
+					"plan": 53.2,
+					"actual": 81.19
+				},
+				{
+					"plan": 80.6,
+					"actual": 60.89
+				},
+				{
+					"plan": 83.94,
+					"actual": 0.37
+				},
+				{
+					"plan": 5.58,
+					"actual": 75.14
+				},
+				{
+					"plan": 97.47,
+					"actual": 67.21
+				},
+				{
+					"plan": 40.52,
+					"actual": 87.64
+				},
+				{
+					"plan": 41.52,
+					"actual": 6.08
+				},
+				{
+					"plan": 1.16,
+					"actual": 84.89
+				},
+				{
+					"plan": 98.58,
+					"actual": 2.41
+				},
+				{
+					"plan": 49.05,
+					"actual": 4.31
+				},
+				{
+					"plan": 53.11,
+					"actual": 47.75
+				},
+				{
+					"plan": 50.4,
+					"actual": 53.88
+				},
+				{
+					"plan": 74.58,
+					"actual": 41.04
+				},
+				{
+					"plan": 0.63,
+					"actual": 41.22
+				},
+				{
+					"plan": 90.1,
+					"actual": 91.99
+				},
+				{
+					"plan": 26.48,
+					"actual": 58.91
+				},
+				{
+					"plan": 96.89,
+					"actual": 57.86
+				},
+				{
+					"plan": 39.45,
+					"actual": 30.87
+				},
+				{
+					"plan": 62.17,
+					"actual": 11.36
+				},
+				{
+					"plan": 44.81,
+					"actual": 38.94
+				},
+				{
+					"plan": 50.84,
+					"actual": 44.33
+				},
+				{
+					"plan": 76.53,
+					"actual": 41.25
+				},
+				{
+					"plan": 96.08,
+					"actual": 64.83
+				},
+				{
+					"plan": 29.46,
+					"actual": 46.82
+				},
+				{
+					"plan": 88.56,
+					"actual": 75.98
+				},
+				{
+					"plan": 87.15,
+					"actual": 42.83
+				},
+				{
+					"plan": 10.26,
+					"actual": 17.01
+				},
+				{
+					"plan": 83.93,
+					"actual": 67.67
+				},
+				{
+					"plan": 91.64,
+					"actual": 60.11
+				},
+				{
+					"plan": 30.27,
+					"actual": 59.08
+				},
+				{
+					"plan": 72.1,
+					"actual": 91.01
+				},
+				{
+					"plan": 69.56,
+					"actual": 37.35
+				},
+				{
+					"plan": 3.32,
+					"actual": 33.62
+				},
+				{
+					"plan": 21.5,
+					"actual": 59.55
+				}
+			]
+		},
+		{
+			"id": "1001-011",
+			"name": "Officia sint id quis veniam duis irure culpa ipsum amet id.",
+			"weight": 23.65,
+			"gap_treshold": 5.00,
+			"start": "11/1/2020",
+			"end": "18/8/2020",
+			"progress": 47.02,
+			"level": 3,
+			"weekly_progress": [
+				{
+					"plan": 54.49,
+					"actual": 43.66
+				},
+				{
+					"plan": 41.64,
+					"actual": 95.02
+				},
+				{
+					"plan": 9.24,
+					"actual": 32.13
+				},
+				{
+					"plan": 34.71,
+					"actual": 31.75
+				},
+				{
+					"plan": 68.73,
+					"actual": 65.69
+				},
+				{
+					"plan": 46.93,
+					"actual": 23.88
+				},
+				{
+					"plan": 63.32,
+					"actual": 79.17
+				},
+				{
+					"plan": 39.72,
+					"actual": 61.46
+				},
+				{
+					"plan": 35.29,
+					"actual": 68.39
+				},
+				{
+					"plan": 88.91,
+					"actual": 28.7
+				},
+				{
+					"plan": 67.38,
+					"actual": 49.07
+				},
+				{
+					"plan": 23.86,
+					"actual": 32.97
+				},
+				{
+					"plan": 35.44,
+					"actual": 9.84
+				},
+				{
+					"plan": 51.21,
+					"actual": 29.7
+				},
+				{
+					"plan": 12.96,
+					"actual": 42.19
+				},
+				{
+					"plan": 23.37,
+					"actual": 42.23
+				},
+				{
+					"plan": 51.42,
+					"actual": 31.47
+				},
+				{
+					"plan": 89.32,
+					"actual": 75.13
+				},
+				{
+					"plan": 39.81,
+					"actual": 99.57
+				},
+				{
+					"plan": 94.33,
+					"actual": 17.65
+				},
+				{
+					"plan": 53.1,
+					"actual": 61.37
+				},
+				{
+					"plan": 67.4,
+					"actual": 50.97
+				},
+				{
+					"plan": 80.89,
+					"actual": 87.9
+				},
+				{
+					"plan": 78.42,
+					"actual": 89.47
+				},
+				{
+					"plan": 40.69,
+					"actual": 98.21
+				},
+				{
+					"plan": 5.98,
+					"actual": 53.2
+				},
+				{
+					"plan": 47.53,
+					"actual": 79.32
+				},
+				{
+					"plan": 78.59,
+					"actual": 91.42
+				},
+				{
+					"plan": 50.19,
+					"actual": 88.08
+				},
+				{
+					"plan": 41.96,
+					"actual": 25.41
+				},
+				{
+					"plan": 20.07,
+					"actual": 15.26
+				},
+				{
+					"plan": 67.87,
+					"actual": 86.64
+				},
+				{
+					"plan": 92.18,
+					"actual": 95.38
+				},
+				{
+					"plan": 40.39,
+					"actual": 48.38
+				},
+				{
+					"plan": 1.06,
+					"actual": 52.52
+				},
+				{
+					"plan": 6.27,
+					"actual": 83.28
+				},
+				{
+					"plan": 42.33,
+					"actual": 97.62
+				},
+				{
+					"plan": 18.31,
+					"actual": 84.5
+				},
+				{
+					"plan": 69.93,
+					"actual": 2.64
+				},
+				{
+					"plan": 90.56,
+					"actual": 11
+				},
+				{
+					"plan": 15.1,
+					"actual": 34.78
+				},
+				{
+					"plan": 77.47,
+					"actual": 71.72
+				},
+				{
+					"plan": 88.39,
+					"actual": 67.82
+				},
+				{
+					"plan": 24.27,
+					"actual": 62.42
+				},
+				{
+					"plan": 67.47,
+					"actual": 63.69
+				},
+				{
+					"plan": 7.53,
+					"actual": 53.16
+				},
+				{
+					"plan": 24.49,
+					"actual": 96.08
+				},
+				{
+					"plan": 93.72,
+					"actual": 93.66
+				}
+			]
+		},
+		{
+			"id": "1001-012",
+			"name": "In ea officia officia non ullamco culpa ullamco voluptate nulla proident tempor Lorem duis.",
+			"weight": 34.54,
+			"gap_treshold": 5.00,
+			"start": "8/3/2020",
+			"end": "24/4/2020",
+			"progress": 40.2,
+			"level": 4,
+			"weekly_progress": [
+				{
+					"plan": 50.93,
+					"actual": 15.38
+				},
+				{
+					"plan": 87.91,
+					"actual": 37.34
+				},
+				{
+					"plan": 79.89,
+					"actual": 80.28
+				},
+				{
+					"plan": 51.92,
+					"actual": 48.54
+				},
+				{
+					"plan": 65.76,
+					"actual": 36.66
+				},
+				{
+					"plan": 85,
+					"actual": 92.52
+				},
+				{
+					"plan": 89.32,
+					"actual": 60.08
+				},
+				{
+					"plan": 59.21,
+					"actual": 26.06
+				},
+				{
+					"plan": 91.87,
+					"actual": 60.12
+				},
+				{
+					"plan": 71.32,
+					"actual": 60.41
+				},
+				{
+					"plan": 32.54,
+					"actual": 87.43
+				},
+				{
+					"plan": 43.22,
+					"actual": 83.9
+				},
+				{
+					"plan": 20.98,
+					"actual": 46
+				},
+				{
+					"plan": 33,
+					"actual": 77.99
+				},
+				{
+					"plan": 30.55,
+					"actual": 18.41
+				},
+				{
+					"plan": 44.08,
+					"actual": 50.11
+				},
+				{
+					"plan": 36.13,
+					"actual": 88.47
+				},
+				{
+					"plan": 13.97,
+					"actual": 68.53
+				},
+				{
+					"plan": 26.59,
+					"actual": 9.05
+				},
+				{
+					"plan": 41.99,
+					"actual": 1.52
+				},
+				{
+					"plan": 39.68,
+					"actual": 96.11
+				},
+				{
+					"plan": 32.1,
+					"actual": 76.14
+				},
+				{
+					"plan": 2.73,
+					"actual": 40.02
+				},
+				{
+					"plan": 71.7,
+					"actual": 73.61
+				},
+				{
+					"plan": 20.61,
+					"actual": 72.01
+				},
+				{
+					"plan": 85.21,
+					"actual": 98.64
+				},
+				{
+					"plan": 16.81,
+					"actual": 79.61
+				},
+				{
+					"plan": 4.36,
+					"actual": 83.71
+				},
+				{
+					"plan": 20.95,
+					"actual": 29.9
+				},
+				{
+					"plan": 41.53,
+					"actual": 63.9
+				},
+				{
+					"plan": 67.14,
+					"actual": 46.8
+				},
+				{
+					"plan": 5.96,
+					"actual": 17.71
+				},
+				{
+					"plan": 68.27,
+					"actual": 17.27
+				},
+				{
+					"plan": 70.74,
+					"actual": 78.81
+				},
+				{
+					"plan": 16.28,
+					"actual": 82.52
+				},
+				{
+					"plan": 4.2,
+					"actual": 57.14
+				},
+				{
+					"plan": 94.75,
+					"actual": 61.33
+				},
+				{
+					"plan": 23.08,
+					"actual": 99.55
+				},
+				{
+					"plan": 41.35,
+					"actual": 39.09
+				},
+				{
+					"plan": 44.81,
+					"actual": 30.69
+				},
+				{
+					"plan": 36.8,
+					"actual": 34.89
+				},
+				{
+					"plan": 74.82,
+					"actual": 9.09
+				},
+				{
+					"plan": 75.62,
+					"actual": 7.95
+				},
+				{
+					"plan": 99.28,
+					"actual": 21.63
+				},
+				{
+					"plan": 59.67,
+					"actual": 90.31
+				},
+				{
+					"plan": 17.33,
+					"actual": 2.75
+				},
+				{
+					"plan": 99.9,
+					"actual": 0.49
+				},
+				{
+					"plan": 16.98,
+					"actual": 70.61
+				}
+			]
+		},
+		{
+			"id": "1001-013",
+			"name": "Magna elit do laborum cupidatat laboris sint sit pariatur irure consequat officia.",
+			"weight": 25.41,
+			"gap_treshold": 5.00,
+			"start": "6/12/2020",
+			"end": "17/5/2020",
+			"progress": 54.66,
+			"level": 4,
+			"weekly_progress": [
+				{
+					"plan": 82.64,
+					"actual": 86.59
+				},
+				{
+					"plan": 84.57,
+					"actual": 52.45
+				},
+				{
+					"plan": 21.76,
+					"actual": 3.07
+				},
+				{
+					"plan": 12.07,
+					"actual": 48.49
+				},
+				{
+					"plan": 81.44,
+					"actual": 6.36
+				},
+				{
+					"plan": 41.21,
+					"actual": 79.4
+				},
+				{
+					"plan": 90.35,
+					"actual": 96.4
+				},
+				{
+					"plan": 54.38,
+					"actual": 37.42
+				},
+				{
+					"plan": 48.51,
+					"actual": 73.4
+				},
+				{
+					"plan": 31.87,
+					"actual": 33.09
+				},
+				{
+					"plan": 58.64,
+					"actual": 39.04
+				},
+				{
+					"plan": 33.08,
+					"actual": 77.42
+				},
+				{
+					"plan": 76.99,
+					"actual": 7.83
+				},
+				{
+					"plan": 90.56,
+					"actual": 25.64
+				},
+				{
+					"plan": 19.12,
+					"actual": 22.98
+				},
+				{
+					"plan": 71.53,
+					"actual": 72
+				},
+				{
+					"plan": 9.03,
+					"actual": 71.04
+				},
+				{
+					"plan": 87.58,
+					"actual": 47.89
+				},
+				{
+					"plan": 10.73,
+					"actual": 78.46
+				},
+				{
+					"plan": 47.54,
+					"actual": 61.69
+				},
+				{
+					"plan": 12.77,
+					"actual": 89.13
+				},
+				{
+					"plan": 74.36,
+					"actual": 33.19
+				},
+				{
+					"plan": 95.69,
+					"actual": 49.92
+				},
+				{
+					"plan": 99.47,
+					"actual": 20.1
+				},
+				{
+					"plan": 64.93,
+					"actual": 84.17
+				},
+				{
+					"plan": 88.69,
+					"actual": 52.96
+				},
+				{
+					"plan": 2.45,
+					"actual": 70.24
+				},
+				{
+					"plan": 7.21,
+					"actual": 19.09
+				},
+				{
+					"plan": 9.84,
+					"actual": 22.25
+				},
+				{
+					"plan": 2.4,
+					"actual": 80.12
+				},
+				{
+					"plan": 94.61,
+					"actual": 19.87
+				},
+				{
+					"plan": 58.67,
+					"actual": 12
+				},
+				{
+					"plan": 21.36,
+					"actual": 37.56
+				},
+				{
+					"plan": 81.52,
+					"actual": 75.62
+				},
+				{
+					"plan": 29.92,
+					"actual": 38.62
+				},
+				{
+					"plan": 44.08,
+					"actual": 46.67
+				},
+				{
+					"plan": 55.97,
+					"actual": 3.75
+				},
+				{
+					"plan": 91.36,
+					"actual": 20.73
+				},
+				{
+					"plan": 1.6,
+					"actual": 82.03
+				},
+				{
+					"plan": 37.79,
+					"actual": 44.51
+				},
+				{
+					"plan": 35.21,
+					"actual": 68.31
+				},
+				{
+					"plan": 68.74,
+					"actual": 63.69
+				},
+				{
+					"plan": 68.89,
+					"actual": 80.58
+				},
+				{
+					"plan": 81.72,
+					"actual": 69.01
+				},
+				{
+					"plan": 26.62,
+					"actual": 19.76
+				},
+				{
+					"plan": 75.65,
+					"actual": 45.23
+				},
+				{
+					"plan": 48.72,
+					"actual": 60.04
+				},
+				{
+					"plan": 24.54,
+					"actual": 97.06
+				}
+			]
+		},
+		{
+			"id": "1001-014",
+			"name": "Incididunt adipisicing qui quis veniam labore laborum qui sit.",
+			"weight": 93.63,
+			"gap_treshold": 5.00,
+			"start": "3/4/2020",
+			"end": "21/8/2020",
+			"progress": 56.82,
+			"level": 5,
+			"weekly_progress": [
+				{
+					"plan": 2.12,
+					"actual": 61.29
+				},
+				{
+					"plan": 47.88,
+					"actual": 83.56
+				},
+				{
+					"plan": 80.53,
+					"actual": 11.44
+				},
+				{
+					"plan": 73.89,
+					"actual": 48.15
+				},
+				{
+					"plan": 79.38,
+					"actual": 85.11
+				},
+				{
+					"plan": 73.72,
+					"actual": 58.78
+				},
+				{
+					"plan": 47.56,
+					"actual": 88.91
+				},
+				{
+					"plan": 99.83,
+					"actual": 59.24
+				},
+				{
+					"plan": 56.11,
+					"actual": 57.75
+				},
+				{
+					"plan": 61.62,
+					"actual": 83.9
+				},
+				{
+					"plan": 36.6,
+					"actual": 36.08
+				},
+				{
+					"plan": 55.14,
+					"actual": 96.98
+				},
+				{
+					"plan": 27.27,
+					"actual": 78.8
+				},
+				{
+					"plan": 92.45,
+					"actual": 2.08
+				},
+				{
+					"plan": 32.95,
+					"actual": 4.74
+				},
+				{
+					"plan": 59.1,
+					"actual": 81.45
+				},
+				{
+					"plan": 96.13,
+					"actual": 19.12
+				},
+				{
+					"plan": 22.73,
+					"actual": 91.73
+				},
+				{
+					"plan": 72.32,
+					"actual": 38.17
+				},
+				{
+					"plan": 11.98,
+					"actual": 74.19
+				},
+				{
+					"plan": 11.53,
+					"actual": 0.05
+				},
+				{
+					"plan": 26.61,
+					"actual": 46.75
+				},
+				{
+					"plan": 77.98,
+					"actual": 45.91
+				},
+				{
+					"plan": 76.14,
+					"actual": 71.66
+				},
+				{
+					"plan": 94.71,
+					"actual": 20.29
+				},
+				{
+					"plan": 2.09,
+					"actual": 85.11
+				},
+				{
+					"plan": 69.62,
+					"actual": 98.74
+				},
+				{
+					"plan": 52.43,
+					"actual": 15.82
+				},
+				{
+					"plan": 16.29,
+					"actual": 94.41
+				},
+				{
+					"plan": 40.12,
+					"actual": 77.04
+				},
+				{
+					"plan": 94.92,
+					"actual": 43.63
+				},
+				{
+					"plan": 76.72,
+					"actual": 83.89
+				},
+				{
+					"plan": 85.94,
+					"actual": 69.79
+				},
+				{
+					"plan": 79.59,
+					"actual": 9.98
+				},
+				{
+					"plan": 81.12,
+					"actual": 39.62
+				},
+				{
+					"plan": 38.62,
+					"actual": 88.26
+				},
+				{
+					"plan": 83.27,
+					"actual": 59.16
+				},
+				{
+					"plan": 74.72,
+					"actual": 92.35
+				},
+				{
+					"plan": 92.58,
+					"actual": 17.47
+				},
+				{
+					"plan": 36.08,
+					"actual": 58.41
+				},
+				{
+					"plan": 92.48,
+					"actual": 37.94
+				},
+				{
+					"plan": 74.61,
+					"actual": 39.77
+				},
+				{
+					"plan": 47.55,
+					"actual": 6.52
+				},
+				{
+					"plan": 77.58,
+					"actual": 29.22
+				},
+				{
+					"plan": 74.46,
+					"actual": 30.15
+				},
+				{
+					"plan": 24.54,
+					"actual": 95.98
+				},
+				{
+					"plan": 0.86,
+					"actual": 82.83
+				},
+				{
+					"plan": 69.95,
+					"actual": 10.35
+				}
+			]
+		},
+		{
+			"id": "1001-015",
+			"name": "Amet exercitation id cupidatat nulla ut tempor.",
+			"weight": 10.77,
+			"gap_treshold": 5.00,
+			"start": "7/11/2020",
+			"end": "26/4/2020",
+			"progress": 86.9,
+			"level": 5,
+			"weekly_progress": [
+				{
+					"plan": 73.09,
+					"actual": 68.95
+				},
+				{
+					"plan": 65.57,
+					"actual": 15.39
+				},
+				{
+					"plan": 17.66,
+					"actual": 87.94
+				},
+				{
+					"plan": 19.87,
+					"actual": 3.91
+				},
+				{
+					"plan": 26.91,
+					"actual": 63.5
+				},
+				{
+					"plan": 74.26,
+					"actual": 50.5
+				},
+				{
+					"plan": 94.16,
+					"actual": 53.93
+				},
+				{
+					"plan": 89.32,
+					"actual": 83.95
+				},
+				{
+					"plan": 8.88,
+					"actual": 28.81
+				},
+				{
+					"plan": 76.04,
+					"actual": 58.32
+				},
+				{
+					"plan": 12.78,
+					"actual": 77.11
+				},
+				{
+					"plan": 93.74,
+					"actual": 83.65
+				},
+				{
+					"plan": 0.57,
+					"actual": 3.84
+				},
+				{
+					"plan": 44.94,
+					"actual": 2.76
+				},
+				{
+					"plan": 83.86,
+					"actual": 32.93
+				},
+				{
+					"plan": 56.87,
+					"actual": 89.78
+				},
+				{
+					"plan": 37.07,
+					"actual": 77.42
+				},
+				{
+					"plan": 30.38,
+					"actual": 75.17
+				},
+				{
+					"plan": 59.25,
+					"actual": 9.75
+				},
+				{
+					"plan": 69.03,
+					"actual": 55.43
+				},
+				{
+					"plan": 81.97,
+					"actual": 70.12
+				},
+				{
+					"plan": 68.07,
+					"actual": 58.16
+				},
+				{
+					"plan": 53.88,
+					"actual": 3.89
+				},
+				{
+					"plan": 72.83,
+					"actual": 57.43
+				},
+				{
+					"plan": 34.48,
+					"actual": 45.47
+				},
+				{
+					"plan": 65.39,
+					"actual": 49.88
+				},
+				{
+					"plan": 75.66,
+					"actual": 59.58
+				},
+				{
+					"plan": 61.43,
+					"actual": 7.36
+				},
+				{
+					"plan": 68.74,
+					"actual": 35.11
+				},
+				{
+					"plan": 92.72,
+					"actual": 43.71
+				},
+				{
+					"plan": 89.34,
+					"actual": 8.11
+				},
+				{
+					"plan": 69.22,
+					"actual": 17.6
+				},
+				{
+					"plan": 3.72,
+					"actual": 43.67
+				},
+				{
+					"plan": 76.61,
+					"actual": 19.01
+				},
+				{
+					"plan": 6.62,
+					"actual": 83.92
+				},
+				{
+					"plan": 37.45,
+					"actual": 37.04
+				},
+				{
+					"plan": 16.76,
+					"actual": 33.24
+				},
+				{
+					"plan": 53.85,
+					"actual": 71.88
+				},
+				{
+					"plan": 29.55,
+					"actual": 1.84
+				},
+				{
+					"plan": 73.75,
+					"actual": 23.54
+				},
+				{
+					"plan": 39.78,
+					"actual": 46.42
+				},
+				{
+					"plan": 9.8,
+					"actual": 26.21
+				},
+				{
+					"plan": 40.37,
+					"actual": 49.54
+				},
+				{
+					"plan": 27.64,
+					"actual": 95.02
+				},
+				{
+					"plan": 21.71,
+					"actual": 5.93
+				},
+				{
+					"plan": 85.08,
+					"actual": 40.65
+				},
+				{
+					"plan": 64.66,
+					"actual": 56.25
+				},
+				{
+					"plan": 12.35,
+					"actual": 33.77
+				}
+			]
+		},
+		{
+			"id": "1001-016",
+			"name": "Exercitation amet culpa qui amet est sint velit est enim in.",
+			"weight": 97.36,
+			"gap_treshold": 5.00,
+			"start": "14/8/2020",
+			"end": "18/10/2020",
+			"progress": 90.58,
+			"level": 6,
+			"weekly_progress": [
+				{
+					"plan": 0.07,
+					"actual": 14.49
+				},
+				{
+					"plan": 64.71,
+					"actual": 99.89
+				},
+				{
+					"plan": 97.97,
+					"actual": 6.33
+				},
+				{
+					"plan": 62.92,
+					"actual": 82.04
+				},
+				{
+					"plan": 48.02,
+					"actual": 25.71
+				},
+				{
+					"plan": 90.46,
+					"actual": 60.59
+				},
+				{
+					"plan": 96.21,
+					"actual": 38.71
+				},
+				{
+					"plan": 61.05,
+					"actual": 54.86
+				},
+				{
+					"plan": 82.28,
+					"actual": 78.77
+				},
+				{
+					"plan": 86.89,
+					"actual": 11.72
+				},
+				{
+					"plan": 30.82,
+					"actual": 41.38
+				},
+				{
+					"plan": 38.2,
+					"actual": 9.78
+				},
+				{
+					"plan": 59.61,
+					"actual": 92.71
+				},
+				{
+					"plan": 90.64,
+					"actual": 5.33
+				},
+				{
+					"plan": 81.35,
+					"actual": 59.83
+				},
+				{
+					"plan": 54.14,
+					"actual": 23.42
+				},
+				{
+					"plan": 48.55,
+					"actual": 18.07
+				},
+				{
+					"plan": 47.25,
+					"actual": 75.98
+				},
+				{
+					"plan": 52.65,
+					"actual": 72.04
+				},
+				{
+					"plan": 24.46,
+					"actual": 28.18
+				},
+				{
+					"plan": 59.52,
+					"actual": 90.53
+				},
+				{
+					"plan": 5.27,
+					"actual": 87.86
+				},
+				{
+					"plan": 4.82,
+					"actual": 98.67
+				},
+				{
+					"plan": 83.7,
+					"actual": 58.53
+				},
+				{
+					"plan": 39.53,
+					"actual": 9.76
+				},
+				{
+					"plan": 10,
+					"actual": 45.1
+				},
+				{
+					"plan": 33.34,
+					"actual": 86.28
+				},
+				{
+					"plan": 54.73,
+					"actual": 76.8
+				},
+				{
+					"plan": 28.73,
+					"actual": 30.17
+				},
+				{
+					"plan": 50.62,
+					"actual": 72.16
+				},
+				{
+					"plan": 15.12,
+					"actual": 63.82
+				},
+				{
+					"plan": 77.32,
+					"actual": 7.31
+				},
+				{
+					"plan": 31.8,
+					"actual": 14.43
+				},
+				{
+					"plan": 28.52,
+					"actual": 73.66
+				},
+				{
+					"plan": 57.01,
+					"actual": 81.29
+				},
+				{
+					"plan": 77.27,
+					"actual": 37.35
+				},
+				{
+					"plan": 63.16,
+					"actual": 72.41
+				},
+				{
+					"plan": 56.65,
+					"actual": 63.21
+				},
+				{
+					"plan": 39.08,
+					"actual": 75.81
+				},
+				{
+					"plan": 43.87,
+					"actual": 48.15
+				},
+				{
+					"plan": 88.27,
+					"actual": 15.65
+				},
+				{
+					"plan": 47.76,
+					"actual": 81.92
+				},
+				{
+					"plan": 71.72,
+					"actual": 97.4
+				},
+				{
+					"plan": 53.13,
+					"actual": 11.95
+				},
+				{
+					"plan": 2.02,
+					"actual": 23.05
+				},
+				{
+					"plan": 26.35,
+					"actual": 4.63
+				},
+				{
+					"plan": 72.67,
+					"actual": 34.15
+				},
+				{
+					"plan": 50.73,
+					"actual": 70.66
+				}
+			]
+		},
+		{
+			"id": "1001-017",
+			"name": "Aliquip incididunt consectetur minim Lorem enim occaecat.",
+			"weight": 33.32,
+			"gap_treshold": 5.00,
+			"start": "11/3/2020",
+			"end": "25/5/2020",
+			"progress": 57.33,
+			"level": 5,
+			"weekly_progress": [
+				{
+					"plan": 58.69,
+					"actual": 10.72
+				},
+				{
+					"plan": 42.12,
+					"actual": 51.32
+				},
+				{
+					"plan": 73.12,
+					"actual": 84.99
+				},
+				{
+					"plan": 78.47,
+					"actual": 43.96
+				},
+				{
+					"plan": 84.89,
+					"actual": 70.61
+				},
+				{
+					"plan": 67.44,
+					"actual": 18.37
+				},
+				{
+					"plan": 54.82,
+					"actual": 87.19
+				},
+				{
+					"plan": 69.83,
+					"actual": 32.27
+				},
+				{
+					"plan": 34.16,
+					"actual": 49.72
+				},
+				{
+					"plan": 29.82,
+					"actual": 3.12
+				},
+				{
+					"plan": 35.87,
+					"actual": 68.17
+				},
+				{
+					"plan": 89.49,
+					"actual": 50.22
+				},
+				{
+					"plan": 60.08,
+					"actual": 54.56
+				},
+				{
+					"plan": 41.65,
+					"actual": 86.43
+				},
+				{
+					"plan": 90.66,
+					"actual": 40.04
+				},
+				{
+					"plan": 94.73,
+					"actual": 21.13
+				},
+				{
+					"plan": 40.78,
+					"actual": 67.89
+				},
+				{
+					"plan": 50.55,
+					"actual": 45.97
+				},
+				{
+					"plan": 97.31,
+					"actual": 40.07
+				},
+				{
+					"plan": 67.32,
+					"actual": 14.35
+				},
+				{
+					"plan": 46.6,
+					"actual": 71.18
+				},
+				{
+					"plan": 50.55,
+					"actual": 45.42
+				},
+				{
+					"plan": 9.75,
+					"actual": 4.38
+				},
+				{
+					"plan": 78.41,
+					"actual": 17.35
+				},
+				{
+					"plan": 24.79,
+					"actual": 19.71
+				},
+				{
+					"plan": 5.24,
+					"actual": 37.43
+				},
+				{
+					"plan": 45.24,
+					"actual": 6.04
+				},
+				{
+					"plan": 63.6,
+					"actual": 42.91
+				},
+				{
+					"plan": 6.86,
+					"actual": 94.36
+				},
+				{
+					"plan": 21.62,
+					"actual": 66.33
+				},
+				{
+					"plan": 43.17,
+					"actual": 55.5
+				},
+				{
+					"plan": 9.27,
+					"actual": 38.53
+				},
+				{
+					"plan": 86.89,
+					"actual": 76.45
+				},
+				{
+					"plan": 24.03,
+					"actual": 72
+				},
+				{
+					"plan": 42.92,
+					"actual": 14.56
+				},
+				{
+					"plan": 89.1,
+					"actual": 41.74
+				},
+				{
+					"plan": 47.64,
+					"actual": 55.82
+				},
+				{
+					"plan": 49.76,
+					"actual": 16.26
+				},
+				{
+					"plan": 73.37,
+					"actual": 59.22
+				},
+				{
+					"plan": 59.66,
+					"actual": 35.25
+				},
+				{
+					"plan": 88.29,
+					"actual": 34.57
+				},
+				{
+					"plan": 51.52,
+					"actual": 35.17
+				},
+				{
+					"plan": 25.75,
+					"actual": 37.16
+				},
+				{
+					"plan": 49.94,
+					"actual": 14.37
+				},
+				{
+					"plan": 95.69,
+					"actual": 71.06
+				},
+				{
+					"plan": 83.18,
+					"actual": 55.53
+				},
+				{
+					"plan": 93.45,
+					"actual": 60.62
+				},
+				{
+					"plan": 44.28,
+					"actual": 68.34
+				}
+			]
+		},
+		{
+			"id": "1001-018",
+			"name": "Cupidatat enim excepteur esse eiusmod officia consectetur minim.",
+			"weight": 90.09,
+			"gap_treshold": 5.00,
+			"start": "2/2/2020",
+			"end": "17/3/2020",
+			"progress": 37.98,
+			"level": 6,
+			"weekly_progress": [
+				{
+					"plan": 11.85,
+					"actual": 57.51
+				},
+				{
+					"plan": 83.31,
+					"actual": 20.89
+				},
+				{
+					"plan": 34.69,
+					"actual": 47.45
+				},
+				{
+					"plan": 52.83,
+					"actual": 4.04
+				},
+				{
+					"plan": 33.41,
+					"actual": 4.22
+				},
+				{
+					"plan": 20.19,
+					"actual": 41.99
+				},
+				{
+					"plan": 41.64,
+					"actual": 50.98
+				},
+				{
+					"plan": 3.13,
+					"actual": 43.33
+				},
+				{
+					"plan": 17.88,
+					"actual": 15.98
+				},
+				{
+					"plan": 61.89,
+					"actual": 62.62
+				},
+				{
+					"plan": 81.97,
+					"actual": 50.36
+				},
+				{
+					"plan": 20.45,
+					"actual": 52.33
+				},
+				{
+					"plan": 87.84,
+					"actual": 18.99
+				},
+				{
+					"plan": 37.85,
+					"actual": 2.52
+				},
+				{
+					"plan": 65,
+					"actual": 67.72
+				},
+				{
+					"plan": 48.46,
+					"actual": 61.32
+				},
+				{
+					"plan": 31.88,
+					"actual": 33.1
+				},
+				{
+					"plan": 48.68,
+					"actual": 47.49
+				},
+				{
+					"plan": 54.39,
+					"actual": 40.74
+				},
+				{
+					"plan": 53.09,
+					"actual": 99.21
+				},
+				{
+					"plan": 32.65,
+					"actual": 96.01
+				},
+				{
+					"plan": 74.58,
+					"actual": 5.45
+				},
+				{
+					"plan": 48.59,
+					"actual": 43.87
+				},
+				{
+					"plan": 22.28,
+					"actual": 10.32
+				},
+				{
+					"plan": 90.02,
+					"actual": 73.4
+				},
+				{
+					"plan": 13.84,
+					"actual": 69.26
+				},
+				{
+					"plan": 32.44,
+					"actual": 10.68
+				},
+				{
+					"plan": 6.65,
+					"actual": 9.16
+				},
+				{
+					"plan": 38.7,
+					"actual": 69.61
+				},
+				{
+					"plan": 60.07,
+					"actual": 22.35
+				},
+				{
+					"plan": 10.11,
+					"actual": 45.47
+				},
+				{
+					"plan": 88.29,
+					"actual": 66.18
+				},
+				{
+					"plan": 95.48,
+					"actual": 68.35
+				},
+				{
+					"plan": 47.81,
+					"actual": 24.41
+				},
+				{
+					"plan": 72.38,
+					"actual": 94.19
+				},
+				{
+					"plan": 45.21,
+					"actual": 77.42
+				},
+				{
+					"plan": 36.66,
+					"actual": 94.56
+				},
+				{
+					"plan": 3.87,
+					"actual": 77.52
+				},
+				{
+					"plan": 75.47,
+					"actual": 36.51
+				},
+				{
+					"plan": 48.41,
+					"actual": 90.03
+				},
+				{
+					"plan": 29.81,
+					"actual": 79.05
+				},
+				{
+					"plan": 39.59,
+					"actual": 71.97
+				},
+				{
+					"plan": 26.96,
+					"actual": 22.5
+				},
+				{
+					"plan": 59.87,
+					"actual": 61.43
+				},
+				{
+					"plan": 32.67,
+					"actual": 61.02
+				},
+				{
+					"plan": 42.55,
+					"actual": 52.43
+				},
+				{
+					"plan": 9.02,
+					"actual": 98.33
+				},
+				{
+					"plan": 8.06,
+					"actual": 29.24
+				}
+			]
+		},
+		{
+			"id": "1001-019",
+			"name": "Amet eu eu ut proident sit sint aute irure reprehenderit sunt labore fugiat.",
+			"weight": 34.38,
+			"gap_treshold": 5.00,
+			"start": "1/11/2020",
+			"end": "19/7/2020",
+			"progress": 53.32,
+			"level": 7,
+			"weekly_progress": [
+				{
+					"plan": 7.81,
+					"actual": 12.43
+				},
+				{
+					"plan": 3.81,
+					"actual": 11.52
+				},
+				{
+					"plan": 43.04,
+					"actual": 60.82
+				},
+				{
+					"plan": 35.9,
+					"actual": 91.65
+				},
+				{
+					"plan": 33.8,
+					"actual": 36.09
+				},
+				{
+					"plan": 35.41,
+					"actual": 90.9
+				},
+				{
+					"plan": 46.58,
+					"actual": 22.34
+				},
+				{
+					"plan": 19.24,
+					"actual": 46.07
+				},
+				{
+					"plan": 68.43,
+					"actual": 58.83
+				},
+				{
+					"plan": 11.12,
+					"actual": 64.46
+				},
+				{
+					"plan": 16.87,
+					"actual": 90.88
+				},
+				{
+					"plan": 76.44,
+					"actual": 99.61
+				},
+				{
+					"plan": 25.56,
+					"actual": 92.75
+				},
+				{
+					"plan": 36.74,
+					"actual": 86.44
+				},
+				{
+					"plan": 24.46,
+					"actual": 29.82
+				},
+				{
+					"plan": 72.01,
+					"actual": 94.72
+				},
+				{
+					"plan": 60.99,
+					"actual": 48.46
+				},
+				{
+					"plan": 31.52,
+					"actual": 54.58
+				},
+				{
+					"plan": 48,
+					"actual": 60.68
+				},
+				{
+					"plan": 3.12,
+					"actual": 93.33
+				},
+				{
+					"plan": 69.67,
+					"actual": 25.58
+				},
+				{
+					"plan": 11.63,
+					"actual": 39.97
+				},
+				{
+					"plan": 72.01,
+					"actual": 23.38
+				},
+				{
+					"plan": 4.63,
+					"actual": 23.21
+				},
+				{
+					"plan": 80.92,
+					"actual": 70.88
+				},
+				{
+					"plan": 21.67,
+					"actual": 43.17
+				},
+				{
+					"plan": 27.89,
+					"actual": 46.36
+				},
+				{
+					"plan": 60.74,
+					"actual": 30.39
+				},
+				{
+					"plan": 4.71,
+					"actual": 35.03
+				},
+				{
+					"plan": 96.92,
+					"actual": 60
+				},
+				{
+					"plan": 7.55,
+					"actual": 78.68
+				},
+				{
+					"plan": 64.81,
+					"actual": 74.77
+				},
+				{
+					"plan": 19.83,
+					"actual": 17.75
+				},
+				{
+					"plan": 96.24,
+					"actual": 26.65
+				},
+				{
+					"plan": 69.89,
+					"actual": 10.1
+				},
+				{
+					"plan": 7.86,
+					"actual": 71.97
+				},
+				{
+					"plan": 29.16,
+					"actual": 76.03
+				},
+				{
+					"plan": 91.53,
+					"actual": 96.2
+				},
+				{
+					"plan": 81.97,
+					"actual": 57.92
+				},
+				{
+					"plan": 66.44,
+					"actual": 26.83
+				},
+				{
+					"plan": 8.8,
+					"actual": 46.79
+				},
+				{
+					"plan": 39.56,
+					"actual": 15.97
+				},
+				{
+					"plan": 89.33,
+					"actual": 45.89
+				},
+				{
+					"plan": 55.78,
+					"actual": 18.49
+				},
+				{
+					"plan": 53.74,
+					"actual": 47.33
+				},
+				{
+					"plan": 8.09,
+					"actual": 71.37
+				},
+				{
+					"plan": 61.88,
+					"actual": 70.5
+				},
+				{
+					"plan": 75.52,
+					"actual": 64.44
 				}
 			]
 		},
 		{
 			"id": "1900123-020",
 			"name": "Construction",
-			"isParent": true
-		},
-		{
-			"id": "1900123-021",
-			"name": "Ex excepteur duis veniam nulla mollit labore voluptate consequat Lorem quis dolore do pariatur nisi.",
-			"weight": 53.51,
-			"start": "14/11/2020",
-			"end": "24/7/2020",
-			"progress": 47.47,
+			"weight": 26.04,
+			"gap_treshold": 5.00,
+			"start": "10/3/2020",
+			"end": "21/5/2020",
+			"progress": 87.38,
+			"level": 0,
 			"weekly_progress": [
 				{
-					"plan": 93.92,
-					"actual": 2.89
+					"plan": 64.64,
+					"actual": 31.85
 				},
 				{
-					"plan": 28.76,
-					"actual": 82.91
+					"plan": 57.34,
+					"actual": 71.75
 				},
 				{
-					"plan": 18.87,
-					"actual": 15.24
+					"plan": 20.91,
+					"actual": 50.95
 				},
 				{
-					"plan": 29.11,
-					"actual": 70.3
+					"plan": 41,
+					"actual": 51.27
 				},
 				{
-					"plan": 74.02,
-					"actual": 24.02
+					"plan": 48.64,
+					"actual": 22.67
 				},
 				{
-					"plan": 10.7,
-					"actual": 40.78
+					"plan": 7.95,
+					"actual": 69.13
 				},
 				{
-					"plan": 5.84,
-					"actual": 5.13
+					"plan": 80.85,
+					"actual": 95.11
 				},
 				{
-					"plan": 12.44,
-					"actual": 14.31
+					"plan": 87.33,
+					"actual": 0.81
 				},
 				{
-					"plan": 51.97,
-					"actual": 24.78
+					"plan": 22.14,
+					"actual": 40.19
 				},
 				{
-					"plan": 76.1,
-					"actual": 58.91
+					"plan": 49.23,
+					"actual": 64.88
 				},
 				{
-					"plan": 84.47,
-					"actual": null
+					"plan": 34.42,
+					"actual": 69.98
 				},
 				{
-					"plan": 96.31,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-022",
-			"name": "Dolore in adipisicing ut ullamco.",
-			"weight": 74.82,
-			"start": "2/5/2020",
-			"end": "21/9/2020",
-			"progress": 14.08,
-			"weekly_progress": [
-				{
-					"plan": 54.36,
-					"actual": 63.63
-				},
-				{
-					"plan": 56.83,
-					"actual": 68.56
-				},
-				{
-					"plan": 86.27,
-					"actual": 83.14
-				},
-				{
-					"plan": 25.3,
-					"actual": 10.17
-				},
-				{
-					"plan": 29.95,
-					"actual": 9.41
-				},
-				{
-					"plan": 64.98,
-					"actual": 23.27
-				},
-				{
-					"plan": 3.93,
-					"actual": 60.76
-				},
-				{
-					"plan": 23.35,
-					"actual": 3.48
-				},
-				{
-					"plan": 37.69,
-					"actual": 6.82
-				},
-				{
-					"plan": 65.53,
-					"actual": 93.66
-				},
-				{
-					"plan": 49.62,
-					"actual": null
-				},
-				{
-					"plan": 98.53,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-023",
-			"name": "Minim cupidatat enim reprehenderit velit eiusmod amet anim.",
-			"weight": 59.88,
-			"start": "7/9/2020",
-			"end": "29/10/2020",
-			"progress": 91.69,
-			"weekly_progress": [
-				{
-					"plan": 11.03,
-					"actual": 73.83
-				},
-				{
-					"plan": 26.37,
-					"actual": 63.4
-				},
-				{
-					"plan": 63.13,
-					"actual": 29.67
-				},
-				{
-					"plan": 37.46,
-					"actual": 6.13
-				},
-				{
-					"plan": 14.77,
-					"actual": 87.41
-				},
-				{
-					"plan": 10.8,
-					"actual": 94.83
-				},
-				{
-					"plan": 52.91,
-					"actual": 29.43
-				},
-				{
-					"plan": 20.84,
-					"actual": 63.93
-				},
-				{
-					"plan": 11.99,
-					"actual": 94.82
-				},
-				{
-					"plan": 54.55,
-					"actual": 29.65
-				},
-				{
-					"plan": 69.51,
-					"actual": null
-				},
-				{
-					"plan": 62.47,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-024",
-			"name": "Ut fugiat ad irure minim dolore.",
-			"weight": 0.67,
-			"start": "11/5/2020",
-			"end": "29/6/2020",
-			"progress": 64.91,
-			"weekly_progress": [
-				{
-					"plan": 91.91,
-					"actual": 70.39
-				},
-				{
-					"plan": 73.35,
-					"actual": 78.11
-				},
-				{
-					"plan": 19.6,
-					"actual": 90.09
-				},
-				{
-					"plan": 84.89,
-					"actual": 82.55
-				},
-				{
-					"plan": 70.91,
-					"actual": 21.71
-				},
-				{
-					"plan": 35.66,
-					"actual": 61.77
-				},
-				{
-					"plan": 32.54,
-					"actual": 5.48
-				},
-				{
-					"plan": 19.66,
-					"actual": 71.19
-				},
-				{
-					"plan": 65.96,
-					"actual": 5.44
-				},
-				{
-					"plan": 94.98,
-					"actual": 28.86
-				},
-				{
-					"plan": 60.82,
-					"actual": null
-				},
-				{
-					"plan": 25.86,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-025",
-			"name": "Veniam proident nisi ullamco Lorem.",
-			"weight": 2.26,
-			"start": "1/7/2020",
-			"end": "26/3/2020",
-			"progress": 14.8,
-			"weekly_progress": [
-				{
-					"plan": 3.47,
-					"actual": 8.12
-				},
-				{
-					"plan": 68.9,
-					"actual": 99.85
-				},
-				{
-					"plan": 2.88,
-					"actual": 44.91
-				},
-				{
-					"plan": 23.13,
-					"actual": 75.96
-				},
-				{
-					"plan": 36.57,
-					"actual": 47.9
-				},
-				{
-					"plan": 86.54,
-					"actual": 47
-				},
-				{
-					"plan": 66.34,
-					"actual": 3.3
-				},
-				{
-					"plan": 24.2,
-					"actual": 73.24
-				},
-				{
-					"plan": 86.1,
-					"actual": 38.15
-				},
-				{
-					"plan": 92.1,
-					"actual": 31.92
-				},
-				{
-					"plan": 64.55,
-					"actual": null
-				},
-				{
-					"plan": 95.1,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-026",
-			"name": "Amet laboris minim occaecat voluptate veniam ut dolore consequat quis.",
-			"weight": 7.26,
-			"start": "15/6/2020",
-			"end": "21/8/2020",
-			"progress": 94.78,
-			"weekly_progress": [
-				{
-					"plan": 78.78,
-					"actual": 39.09
-				},
-				{
-					"plan": 96.77,
-					"actual": 75.64
-				},
-				{
-					"plan": 46.77,
-					"actual": 15.79
-				},
-				{
-					"plan": 6.82,
-					"actual": 91.18
-				},
-				{
-					"plan": 22.8,
-					"actual": 90.59
-				},
-				{
-					"plan": 79.11,
-					"actual": 51.56
-				},
-				{
-					"plan": 78.6,
-					"actual": 76.52
-				},
-				{
-					"plan": 62.04,
-					"actual": 26.03
-				},
-				{
-					"plan": 44.42,
-					"actual": 44.84
-				},
-				{
-					"plan": 80.22,
-					"actual": 40.91
-				},
-				{
-					"plan": 41.71,
-					"actual": null
-				},
-				{
-					"plan": 99.2,
-					"actual": null
-				}
-			]
-		},
-		{
-			"id": "1900123-027",
-			"name": "Est adipisicing elit laborum commodo qui ut et ad ex consectetur officia.",
-			"weight": 66.08,
-			"start": "14/3/2020",
-			"end": "17/3/2020",
-			"progress": 1.29,
-			"weekly_progress": [
-				{
-					"plan": 73.37,
-					"actual": 1.28
-				},
-				{
-					"plan": 62.56,
-					"actual": 23.52
+					"plan": 86.44,
+					"actual": 43.49
 				},
 				{
-					"plan": 24.92,
-					"actual": 38.34
+					"plan": 67.85,
+					"actual": 83.13
 				},
 				{
-					"plan": 89.79,
+					"plan": 70.55,
 					"actual": 25.77
 				},
 				{
-					"plan": 22.37,
-					"actual": 40.13
+					"plan": 53.2,
+					"actual": 81.19
 				},
 				{
-					"plan": 83.64,
-					"actual": 11.77
+					"plan": 80.6,
+					"actual": 60.89
 				},
 				{
-					"plan": 58.73,
-					"actual": 84.33
+					"plan": 83.94,
+					"actual": 0.37
 				},
 				{
-					"plan": 30.48,
-					"actual": 38.08
+					"plan": 5.58,
+					"actual": 75.14
 				},
 				{
-					"plan": 87.21,
-					"actual": 78.76
+					"plan": 97.47,
+					"actual": 67.21
 				},
 				{
-					"plan": 11.58,
-					"actual": 84.21
+					"plan": 40.52,
+					"actual": 87.64
 				},
 				{
-					"plan": 55.05,
-					"actual": null
+					"plan": 41.52,
+					"actual": 6.08
 				},
 				{
-					"plan": 95.72,
-					"actual": null
+					"plan": 1.16,
+					"actual": 84.89
+				},
+				{
+					"plan": 98.58,
+					"actual": 2.41
+				},
+				{
+					"plan": 49.05,
+					"actual": 4.31
+				},
+				{
+					"plan": 53.11,
+					"actual": 47.75
+				},
+				{
+					"plan": 50.4,
+					"actual": 53.88
+				},
+				{
+					"plan": 74.58,
+					"actual": 41.04
+				},
+				{
+					"plan": 0.63,
+					"actual": 41.22
+				},
+				{
+					"plan": 90.1,
+					"actual": 91.99
+				},
+				{
+					"plan": 26.48,
+					"actual": 58.91
+				},
+				{
+					"plan": 96.89,
+					"actual": 57.86
+				},
+				{
+					"plan": 39.45,
+					"actual": 30.87
+				},
+				{
+					"plan": 62.17,
+					"actual": 11.36
+				},
+				{
+					"plan": 44.81,
+					"actual": 38.94
+				},
+				{
+					"plan": 50.84,
+					"actual": 44.33
+				},
+				{
+					"plan": 76.53,
+					"actual": 41.25
+				},
+				{
+					"plan": 96.08,
+					"actual": 64.83
+				},
+				{
+					"plan": 29.46,
+					"actual": 46.82
+				},
+				{
+					"plan": 88.56,
+					"actual": 75.98
+				},
+				{
+					"plan": 87.15,
+					"actual": 42.83
+				},
+				{
+					"plan": 10.26,
+					"actual": 17.01
+				},
+				{
+					"plan": 83.93,
+					"actual": 67.67
+				},
+				{
+					"plan": 91.64,
+					"actual": 60.11
+				},
+				{
+					"plan": 30.27,
+					"actual": 59.08
+				},
+				{
+					"plan": 72.1,
+					"actual": 91.01
+				},
+				{
+					"plan": 69.56,
+					"actual": 37.35
+				},
+				{
+					"plan": 3.32,
+					"actual": 33.62
+				},
+				{
+					"plan": 21.5,
+					"actual": 59.55
 				}
 			]
 		},
 		{
-			"id": "1900123-028",
-			"name": "Aliqua laborum eiusmod reprehenderit elit ea.",
-			"weight": 5.58,
-			"start": "3/12/2020",
-			"end": "24/1/2020",
-			"progress": 16.78,
+			"id": "1001-021",
+			"name": "Ea eiusmod eu amet nostrud mollit amet mollit amet.",
+			"weight": 3.36,
+			"gap_treshold": 5.00,
+			"start": "10/6/2020",
+			"end": "16/12/2020",
+			"progress": 5.69,
+			"level": 1,
 			"weekly_progress": [
 				{
-					"plan": 79.03,
-					"actual": 44.98
+					"plan": 98.86,
+					"actual": 12.47
 				},
 				{
-					"plan": 71.16,
-					"actual": 8.1
+					"plan": 69.66,
+					"actual": 3.51
 				},
 				{
-					"plan": 65.33,
-					"actual": 23.82
+					"plan": 89.35,
+					"actual": 5.42
 				},
 				{
-					"plan": 71.36,
-					"actual": 84.7
+					"plan": 46.56,
+					"actual": 90.33
 				},
 				{
-					"plan": 97.46,
-					"actual": 55.97
+					"plan": 50.39,
+					"actual": 7.14
 				},
 				{
-					"plan": 65.46,
-					"actual": 56.61
+					"plan": 33.61,
+					"actual": 33.93
 				},
 				{
-					"plan": 17.89,
-					"actual": 81.26
+					"plan": 80.41,
+					"actual": 97.46
 				},
 				{
-					"plan": 100,
-					"actual": 5.2
+					"plan": 2.74,
+					"actual": 12.43
 				},
 				{
-					"plan": 60.33,
-					"actual": 38.71
+					"plan": 90.12,
+					"actual": 43.12
 				},
 				{
-					"plan": 97.33,
-					"actual": 8.71
+					"plan": 8.6,
+					"actual": 43.02
 				},
 				{
-					"plan": 80.77,
-					"actual": null
+					"plan": 24.96,
+					"actual": 58.96
 				},
 				{
-					"plan": 33.59,
-					"actual": null
+					"plan": 58.74,
+					"actual": 77.98
+				},
+				{
+					"plan": 75.49,
+					"actual": 55.66
+				},
+				{
+					"plan": 45.22,
+					"actual": 4.66
+				},
+				{
+					"plan": 23.92,
+					"actual": 48.33
+				},
+				{
+					"plan": 18.95,
+					"actual": 18.53
+				},
+				{
+					"plan": 3.96,
+					"actual": 95.62
+				},
+				{
+					"plan": 55.14,
+					"actual": 58.81
+				},
+				{
+					"plan": 77.14,
+					"actual": 2.15
+				},
+				{
+					"plan": 60.46,
+					"actual": 20.33
+				},
+				{
+					"plan": 50.51,
+					"actual": 12.74
+				},
+				{
+					"plan": 33.05,
+					"actual": 48.42
+				},
+				{
+					"plan": 71.92,
+					"actual": 98.05
+				},
+				{
+					"plan": 68.69,
+					"actual": 9.76
+				},
+				{
+					"plan": 4.51,
+					"actual": 65.01
+				},
+				{
+					"plan": 92.49,
+					"actual": 4.41
+				},
+				{
+					"plan": 19.61,
+					"actual": 46.97
+				},
+				{
+					"plan": 45.36,
+					"actual": 56.19
+				},
+				{
+					"plan": 34.01,
+					"actual": 83.73
+				},
+				{
+					"plan": 61.48,
+					"actual": 92.04
+				},
+				{
+					"plan": 85.62,
+					"actual": 66.98
+				},
+				{
+					"plan": 58.91,
+					"actual": 44.14
+				},
+				{
+					"plan": 65.39,
+					"actual": 4.19
+				},
+				{
+					"plan": 86.87,
+					"actual": 25.87
+				},
+				{
+					"plan": 66.03,
+					"actual": 62.95
+				},
+				{
+					"plan": 24.27,
+					"actual": 58.96
+				},
+				{
+					"plan": 47.01,
+					"actual": 61.67
+				},
+				{
+					"plan": 78.14,
+					"actual": 41.67
+				},
+				{
+					"plan": 47.17,
+					"actual": 96.27
+				},
+				{
+					"plan": 42.16,
+					"actual": 47.38
+				},
+				{
+					"plan": 13.88,
+					"actual": 98.76
+				},
+				{
+					"plan": 95.81,
+					"actual": 22.44
+				},
+				{
+					"plan": 75.94,
+					"actual": 76.69
+				},
+				{
+					"plan": 47.86,
+					"actual": 10.19
+				},
+				{
+					"plan": 63.92,
+					"actual": 71.46
+				},
+				{
+					"plan": 77.34,
+					"actual": 15.6
+				},
+				{
+					"plan": 89.66,
+					"actual": 17.08
+				},
+				{
+					"plan": 90.68,
+					"actual": 76.49
+				}
+			]
+		},
+		{
+			"id": "1001-022",
+			"name": "Nulla dolore nisi cillum id est in aute quis ad id qui id anim.",
+			"weight": 77.95,
+			"gap_treshold": 5.00,
+			"start": "14/7/2020",
+			"end": "28/4/2020",
+			"progress": 70.57,
+			"level": 2,
+			"weekly_progress": [
+				{
+					"plan": 24.21,
+					"actual": 8.82
+				},
+				{
+					"plan": 17.88,
+					"actual": 35.32
+				},
+				{
+					"plan": 88.25,
+					"actual": 68.9
+				},
+				{
+					"plan": 91.15,
+					"actual": 79.64
+				},
+				{
+					"plan": 6.58,
+					"actual": 15.43
+				},
+				{
+					"plan": 68.52,
+					"actual": 22.26
+				},
+				{
+					"plan": 12.21,
+					"actual": 90.56
+				},
+				{
+					"plan": 63.46,
+					"actual": 7.27
+				},
+				{
+					"plan": 47.63,
+					"actual": 46.21
+				},
+				{
+					"plan": 43.84,
+					"actual": 73.15
+				},
+				{
+					"plan": 9.72,
+					"actual": 10.94
+				},
+				{
+					"plan": 16.17,
+					"actual": 59.58
+				},
+				{
+					"plan": 63.04,
+					"actual": 72.16
+				},
+				{
+					"plan": 89.16,
+					"actual": 55.36
+				},
+				{
+					"plan": 17.71,
+					"actual": 34.67
+				},
+				{
+					"plan": 36.88,
+					"actual": 12.57
+				},
+				{
+					"plan": 83.62,
+					"actual": 89.46
+				},
+				{
+					"plan": 35.69,
+					"actual": 33.88
+				},
+				{
+					"plan": 36.14,
+					"actual": 92.96
+				},
+				{
+					"plan": 16.64,
+					"actual": 27.91
+				},
+				{
+					"plan": 35.52,
+					"actual": 27.21
+				},
+				{
+					"plan": 74.38,
+					"actual": 37.14
+				},
+				{
+					"plan": 1.96,
+					"actual": 71.95
+				},
+				{
+					"plan": 81.88,
+					"actual": 49.91
+				},
+				{
+					"plan": 54.32,
+					"actual": 50.62
+				},
+				{
+					"plan": 7.31,
+					"actual": 54.51
+				},
+				{
+					"plan": 47.59,
+					"actual": 5.68
+				},
+				{
+					"plan": 91.02,
+					"actual": 68.11
+				},
+				{
+					"plan": 61.09,
+					"actual": 45.5
+				},
+				{
+					"plan": 69.24,
+					"actual": 75.76
+				},
+				{
+					"plan": 9.87,
+					"actual": 71.96
+				},
+				{
+					"plan": 57.61,
+					"actual": 20.47
+				},
+				{
+					"plan": 20.3,
+					"actual": 88.23
+				},
+				{
+					"plan": 4.06,
+					"actual": 7.98
+				},
+				{
+					"plan": 29.64,
+					"actual": 13.75
+				},
+				{
+					"plan": 9.06,
+					"actual": 47.89
+				},
+				{
+					"plan": 61.59,
+					"actual": 25.3
+				},
+				{
+					"plan": 86.5,
+					"actual": 67.4
+				},
+				{
+					"plan": 30.96,
+					"actual": 58.44
+				},
+				{
+					"plan": 43.47,
+					"actual": 56.47
+				},
+				{
+					"plan": 17.67,
+					"actual": 21.31
+				},
+				{
+					"plan": 82.92,
+					"actual": 23.99
+				},
+				{
+					"plan": 63.8,
+					"actual": 20.28
+				},
+				{
+					"plan": 27.95,
+					"actual": 24.08
+				},
+				{
+					"plan": 18.27,
+					"actual": 61.97
+				},
+				{
+					"plan": 15.79,
+					"actual": 42.47
+				},
+				{
+					"plan": 55.21,
+					"actual": 93.86
+				},
+				{
+					"plan": 7.56,
+					"actual": 44.41
+				}
+			]
+		},
+		{
+			"id": "1001-023",
+			"name": "Incididunt officia elit eiusmod velit nisi officia.",
+			"weight": 81.4,
+			"gap_treshold": 5.00,
+			"start": "1/12/2020",
+			"end": "27/9/2020",
+			"progress": 70.63,
+			"level": 3,
+			"weekly_progress": [
+				{
+					"plan": 0.27,
+					"actual": 95.38
+				},
+				{
+					"plan": 58.27,
+					"actual": 13.58
+				},
+				{
+					"plan": 75.61,
+					"actual": 16.11
+				},
+				{
+					"plan": 4.21,
+					"actual": 27.49
+				},
+				{
+					"plan": 42.42,
+					"actual": 62.1
+				},
+				{
+					"plan": 85.57,
+					"actual": 39.76
+				},
+				{
+					"plan": 33.52,
+					"actual": 50.6
+				},
+				{
+					"plan": 63.6,
+					"actual": 49.97
+				},
+				{
+					"plan": 57.64,
+					"actual": 99.62
+				},
+				{
+					"plan": 44.43,
+					"actual": 92.86
+				},
+				{
+					"plan": 94.64,
+					"actual": 35.22
+				},
+				{
+					"plan": 51.14,
+					"actual": 52.98
+				},
+				{
+					"plan": 50.21,
+					"actual": 25.9
+				},
+				{
+					"plan": 54.1,
+					"actual": 73.89
+				},
+				{
+					"plan": 65.1,
+					"actual": 43.49
+				},
+				{
+					"plan": 15.73,
+					"actual": 20.95
+				},
+				{
+					"plan": 42,
+					"actual": 10.96
+				},
+				{
+					"plan": 37.59,
+					"actual": 21.94
+				},
+				{
+					"plan": 2.81,
+					"actual": 76.15
+				},
+				{
+					"plan": 18.87,
+					"actual": 21.65
+				},
+				{
+					"plan": 55.79,
+					"actual": 95.53
+				},
+				{
+					"plan": 94.04,
+					"actual": 85.61
+				},
+				{
+					"plan": 91.84,
+					"actual": 43.53
+				},
+				{
+					"plan": 8.6,
+					"actual": 31.41
+				},
+				{
+					"plan": 77.69,
+					"actual": 35.23
+				},
+				{
+					"plan": 66.58,
+					"actual": 99.38
+				},
+				{
+					"plan": 1.02,
+					"actual": 88.32
+				},
+				{
+					"plan": 18.53,
+					"actual": 0.56
+				},
+				{
+					"plan": 8.8,
+					"actual": 0.63
+				},
+				{
+					"plan": 66.63,
+					"actual": 59.76
+				},
+				{
+					"plan": 69.96,
+					"actual": 42.69
+				},
+				{
+					"plan": 63.58,
+					"actual": 97.85
+				},
+				{
+					"plan": 53.07,
+					"actual": 41.38
+				},
+				{
+					"plan": 48.25,
+					"actual": 58.42
+				},
+				{
+					"plan": 39.84,
+					"actual": 36.8
+				},
+				{
+					"plan": 73.1,
+					"actual": 9.08
+				},
+				{
+					"plan": 36.36,
+					"actual": 33.66
+				},
+				{
+					"plan": 3.59,
+					"actual": 62.32
+				},
+				{
+					"plan": 49.32,
+					"actual": 80.02
+				},
+				{
+					"plan": 4.85,
+					"actual": 31.86
+				},
+				{
+					"plan": 74.57,
+					"actual": 93.6
+				},
+				{
+					"plan": 63.33,
+					"actual": 94.46
+				},
+				{
+					"plan": 47.93,
+					"actual": 37.43
+				},
+				{
+					"plan": 68.74,
+					"actual": 23.4
+				},
+				{
+					"plan": 29.42,
+					"actual": 0.03
+				},
+				{
+					"plan": 76.37,
+					"actual": 12.26
+				},
+				{
+					"plan": 14.34,
+					"actual": 72.18
+				},
+				{
+					"plan": 17.41,
+					"actual": 76.06
+				}
+			]
+		},
+		{
+			"id": "1001-024",
+			"name": "Deserunt commodo sit aliqua sint.",
+			"weight": 93.71,
+			"gap_treshold": 5.00,
+			"start": "7/7/2020",
+			"end": "26/7/2020",
+			"progress": 8.6,
+			"level": 3,
+			"weekly_progress": [
+				{
+					"plan": 52.31,
+					"actual": 45.08
+				},
+				{
+					"plan": 87.38,
+					"actual": 55.29
+				},
+				{
+					"plan": 58.72,
+					"actual": 38.42
+				},
+				{
+					"plan": 52.8,
+					"actual": 6.68
+				},
+				{
+					"plan": 49.99,
+					"actual": 72.71
+				},
+				{
+					"plan": 52.91,
+					"actual": 31.83
+				},
+				{
+					"plan": 41.44,
+					"actual": 34.65
+				},
+				{
+					"plan": 76.12,
+					"actual": 67.93
+				},
+				{
+					"plan": 17.18,
+					"actual": 60.88
+				},
+				{
+					"plan": 41.03,
+					"actual": 47.4
+				},
+				{
+					"plan": 31.77,
+					"actual": 25.85
+				},
+				{
+					"plan": 28.31,
+					"actual": 59.95
+				},
+				{
+					"plan": 26.06,
+					"actual": 80.45
+				},
+				{
+					"plan": 70.71,
+					"actual": 56.2
+				},
+				{
+					"plan": 85.51,
+					"actual": 72.38
+				},
+				{
+					"plan": 34.81,
+					"actual": 54.09
+				},
+				{
+					"plan": 91.75,
+					"actual": 19.13
+				},
+				{
+					"plan": 56.88,
+					"actual": 40.36
+				},
+				{
+					"plan": 68.38,
+					"actual": 43.38
+				},
+				{
+					"plan": 37.3,
+					"actual": 59.33
+				},
+				{
+					"plan": 25.12,
+					"actual": 81.05
+				},
+				{
+					"plan": 29.57,
+					"actual": 23.02
+				},
+				{
+					"plan": 62.48,
+					"actual": 78.17
+				},
+				{
+					"plan": 90.27,
+					"actual": 19.87
+				},
+				{
+					"plan": 0.88,
+					"actual": 34.3
+				},
+				{
+					"plan": 72.31,
+					"actual": 39.24
+				},
+				{
+					"plan": 48.53,
+					"actual": 48.21
+				},
+				{
+					"plan": 75.92,
+					"actual": 15.5
+				},
+				{
+					"plan": 82.8,
+					"actual": 85.28
+				},
+				{
+					"plan": 88.21,
+					"actual": 9.83
+				},
+				{
+					"plan": 89.96,
+					"actual": 43.53
+				},
+				{
+					"plan": 55.09,
+					"actual": 58.6
+				},
+				{
+					"plan": 70.89,
+					"actual": 24.77
+				},
+				{
+					"plan": 39.12,
+					"actual": 60.78
+				},
+				{
+					"plan": 90.21,
+					"actual": 6.14
+				},
+				{
+					"plan": 30.67,
+					"actual": 5
+				},
+				{
+					"plan": 86.05,
+					"actual": 58.53
+				},
+				{
+					"plan": 19.33,
+					"actual": 92.54
+				},
+				{
+					"plan": 48.1,
+					"actual": 73.99
+				},
+				{
+					"plan": 63.47,
+					"actual": 3
+				},
+				{
+					"plan": 74.55,
+					"actual": 47.84
+				},
+				{
+					"plan": 46.05,
+					"actual": 79.88
+				},
+				{
+					"plan": 73.38,
+					"actual": 65.02
+				},
+				{
+					"plan": 36.67,
+					"actual": 0.79
+				},
+				{
+					"plan": 35.02,
+					"actual": 83.33
+				},
+				{
+					"plan": 34.31,
+					"actual": 23.84
+				},
+				{
+					"plan": 55.97,
+					"actual": 72.32
+				},
+				{
+					"plan": 15.74,
+					"actual": 80.31
+				}
+			]
+		},
+		{
+			"id": "1001-025",
+			"name": "Nostrud elit ut nisi nostrud.",
+			"weight": 18.03,
+			"gap_treshold": 5.00,
+			"start": "14/6/2020",
+			"end": "26/2/2020",
+			"progress": 24.69,
+			"level": 4,
+			"weekly_progress": [
+				{
+					"plan": 67.31,
+					"actual": 39.16
+				},
+				{
+					"plan": 42.07,
+					"actual": 55.74
+				},
+				{
+					"plan": 33.6,
+					"actual": 49.69
+				},
+				{
+					"plan": 0.37,
+					"actual": 72.29
+				},
+				{
+					"plan": 92.44,
+					"actual": 11.07
+				},
+				{
+					"plan": 67.05,
+					"actual": 75.47
+				},
+				{
+					"plan": 20.47,
+					"actual": 42.61
+				},
+				{
+					"plan": 53.61,
+					"actual": 95.89
+				},
+				{
+					"plan": 84.08,
+					"actual": 9.39
+				},
+				{
+					"plan": 5.13,
+					"actual": 87.81
+				},
+				{
+					"plan": 63.2,
+					"actual": 32.75
+				},
+				{
+					"plan": 53.92,
+					"actual": 66.91
+				},
+				{
+					"plan": 77.73,
+					"actual": 72.01
+				},
+				{
+					"plan": 75.15,
+					"actual": 74.6
+				},
+				{
+					"plan": 52.74,
+					"actual": 0.66
+				},
+				{
+					"plan": 34.47,
+					"actual": 65.62
+				},
+				{
+					"plan": 72.98,
+					"actual": 72.18
+				},
+				{
+					"plan": 61.77,
+					"actual": 55.8
+				},
+				{
+					"plan": 67.85,
+					"actual": 2.51
+				},
+				{
+					"plan": 45.6,
+					"actual": 30.8
+				},
+				{
+					"plan": 67.94,
+					"actual": 17.33
+				},
+				{
+					"plan": 6.48,
+					"actual": 64.66
+				},
+				{
+					"plan": 53.43,
+					"actual": 79.85
+				},
+				{
+					"plan": 63.47,
+					"actual": 27.84
+				},
+				{
+					"plan": 92.08,
+					"actual": 66.54
+				},
+				{
+					"plan": 32.59,
+					"actual": 36.98
+				},
+				{
+					"plan": 44.48,
+					"actual": 55.46
+				},
+				{
+					"plan": 75.59,
+					"actual": 68.83
+				},
+				{
+					"plan": 6.11,
+					"actual": 5.03
+				},
+				{
+					"plan": 43,
+					"actual": 49.85
+				},
+				{
+					"plan": 5.12,
+					"actual": 36.81
+				},
+				{
+					"plan": 95.33,
+					"actual": 96.95
+				},
+				{
+					"plan": 74.46,
+					"actual": 2.12
+				},
+				{
+					"plan": 5.27,
+					"actual": 39.44
+				},
+				{
+					"plan": 49.08,
+					"actual": 79.41
+				},
+				{
+					"plan": 0.75,
+					"actual": 0.62
+				},
+				{
+					"plan": 19.89,
+					"actual": 4.19
+				},
+				{
+					"plan": 8.76,
+					"actual": 82.34
+				},
+				{
+					"plan": 66.49,
+					"actual": 76.73
+				},
+				{
+					"plan": 45.7,
+					"actual": 76.72
+				},
+				{
+					"plan": 7.76,
+					"actual": 6.95
+				},
+				{
+					"plan": 15.07,
+					"actual": 36.89
+				},
+				{
+					"plan": 91.6,
+					"actual": 68.64
+				},
+				{
+					"plan": 43.23,
+					"actual": 34.63
+				},
+				{
+					"plan": 91.64,
+					"actual": 52.78
+				},
+				{
+					"plan": 20.07,
+					"actual": 87.31
+				},
+				{
+					"plan": 30.67,
+					"actual": 65.2
+				},
+				{
+					"plan": 15.83,
+					"actual": 29.34
+				}
+			]
+		},
+		{
+			"id": "1001-026",
+			"name": "Lorem labore esse mollit laboris eu et et est ipsum eiusmod et mollit qui enim.",
+			"weight": 51.45,
+			"gap_treshold": 5.00,
+			"start": "6/4/2020",
+			"end": "18/12/2020",
+			"progress": 40.95,
+			"level": 5,
+			"weekly_progress": [
+				{
+					"plan": 53.53,
+					"actual": 80.23
+				},
+				{
+					"plan": 46.82,
+					"actual": 18.49
+				},
+				{
+					"plan": 39.67,
+					"actual": 11.02
+				},
+				{
+					"plan": 31.23,
+					"actual": 48.11
+				},
+				{
+					"plan": 47.17,
+					"actual": 33.52
+				},
+				{
+					"plan": 5.77,
+					"actual": 93.19
+				},
+				{
+					"plan": 74.23,
+					"actual": 89.93
+				},
+				{
+					"plan": 17.08,
+					"actual": 26.44
+				},
+				{
+					"plan": 55.15,
+					"actual": 45.76
+				},
+				{
+					"plan": 42.04,
+					"actual": 96.06
+				},
+				{
+					"plan": 15.42,
+					"actual": 19.02
+				},
+				{
+					"plan": 60.68,
+					"actual": 8.97
+				},
+				{
+					"plan": 33.26,
+					"actual": 29.74
+				},
+				{
+					"plan": 46.36,
+					"actual": 97.88
+				},
+				{
+					"plan": 64.12,
+					"actual": 54.68
+				},
+				{
+					"plan": 56.84,
+					"actual": 71.62
+				},
+				{
+					"plan": 1.1,
+					"actual": 83.52
+				},
+				{
+					"plan": 3.69,
+					"actual": 84.93
+				},
+				{
+					"plan": 32.25,
+					"actual": 66.18
+				},
+				{
+					"plan": 33.17,
+					"actual": 65.5
+				},
+				{
+					"plan": 92.45,
+					"actual": 13.58
+				},
+				{
+					"plan": 45.01,
+					"actual": 65.41
+				},
+				{
+					"plan": 46.45,
+					"actual": 20.02
+				},
+				{
+					"plan": 76.25,
+					"actual": 51.64
+				},
+				{
+					"plan": 37.23,
+					"actual": 63.41
+				},
+				{
+					"plan": 31.94,
+					"actual": 75.81
+				},
+				{
+					"plan": 54.81,
+					"actual": 74.62
+				},
+				{
+					"plan": 73.89,
+					"actual": 81.96
+				},
+				{
+					"plan": 77.7,
+					"actual": 4.24
+				},
+				{
+					"plan": 20.33,
+					"actual": 26.88
+				},
+				{
+					"plan": 82.3,
+					"actual": 7.65
+				},
+				{
+					"plan": 92.09,
+					"actual": 70.61
+				},
+				{
+					"plan": 42.33,
+					"actual": 10.37
+				},
+				{
+					"plan": 47.06,
+					"actual": 1.1
+				},
+				{
+					"plan": 23.14,
+					"actual": 12.11
+				},
+				{
+					"plan": 75.9,
+					"actual": 65.8
+				},
+				{
+					"plan": 8.85,
+					"actual": 76.38
+				},
+				{
+					"plan": 78.22,
+					"actual": 31.15
+				},
+				{
+					"plan": 39.69,
+					"actual": 51.04
+				},
+				{
+					"plan": 2.17,
+					"actual": 47.5
+				},
+				{
+					"plan": 83.53,
+					"actual": 27.21
+				},
+				{
+					"plan": 77.33,
+					"actual": 17.27
+				},
+				{
+					"plan": 40.89,
+					"actual": 90.03
+				},
+				{
+					"plan": 26.41,
+					"actual": 99.93
+				},
+				{
+					"plan": 69.4,
+					"actual": 15.82
+				},
+				{
+					"plan": 22.11,
+					"actual": 41.84
+				},
+				{
+					"plan": 12.14,
+					"actual": 45.85
+				},
+				{
+					"plan": 56.66,
+					"actual": 31.02
+				}
+			]
+		},
+		{
+			"id": "1001-027",
+			"name": "Quis consectetur exercitation cupidatat sit.",
+			"weight": 83.35,
+			"gap_treshold": 5.00,
+			"start": "10/7/2020",
+			"end": "19/10/2020",
+			"progress": 2.87,
+			"level": 6,
+			"weekly_progress": [
+				{
+					"plan": 58.69,
+					"actual": 82.52
+				},
+				{
+					"plan": 51.27,
+					"actual": 93.15
+				},
+				{
+					"plan": 17.98,
+					"actual": 54.09
+				},
+				{
+					"plan": 87.92,
+					"actual": 44.06
+				},
+				{
+					"plan": 43.6,
+					"actual": 6.82
+				},
+				{
+					"plan": 47.17,
+					"actual": 15.4
+				},
+				{
+					"plan": 3.18,
+					"actual": 73.77
+				},
+				{
+					"plan": 8.64,
+					"actual": 63.62
+				},
+				{
+					"plan": 29.94,
+					"actual": 13.67
+				},
+				{
+					"plan": 99.65,
+					"actual": 61.96
+				},
+				{
+					"plan": 94.17,
+					"actual": 39.36
+				},
+				{
+					"plan": 46.97,
+					"actual": 51.55
+				},
+				{
+					"plan": 15.16,
+					"actual": 51.22
+				},
+				{
+					"plan": 84.09,
+					"actual": 95.78
+				},
+				{
+					"plan": 9.69,
+					"actual": 89.55
+				},
+				{
+					"plan": 54.26,
+					"actual": 68.21
+				},
+				{
+					"plan": 64.06,
+					"actual": 41.39
+				},
+				{
+					"plan": 77.29,
+					"actual": 26.8
+				},
+				{
+					"plan": 27.07,
+					"actual": 47.02
+				},
+				{
+					"plan": 89.54,
+					"actual": 63.89
+				},
+				{
+					"plan": 36.17,
+					"actual": 26.05
+				},
+				{
+					"plan": 83.1,
+					"actual": 18.18
+				},
+				{
+					"plan": 24.68,
+					"actual": 18.2
+				},
+				{
+					"plan": 40.16,
+					"actual": 21.83
+				},
+				{
+					"plan": 68.09,
+					"actual": 19.11
+				},
+				{
+					"plan": 5.97,
+					"actual": 51.02
+				},
+				{
+					"plan": 50.87,
+					"actual": 46.37
+				},
+				{
+					"plan": 21.4,
+					"actual": 59.16
+				},
+				{
+					"plan": 14.15,
+					"actual": 53.21
+				},
+				{
+					"plan": 24.02,
+					"actual": 9.5
+				},
+				{
+					"plan": 34.88,
+					"actual": 45.16
+				},
+				{
+					"plan": 43.24,
+					"actual": 13.12
+				},
+				{
+					"plan": 88.74,
+					"actual": 40.2
+				},
+				{
+					"plan": 42.86,
+					"actual": 83.57
+				},
+				{
+					"plan": 93.54,
+					"actual": 53.61
+				},
+				{
+					"plan": 18.23,
+					"actual": 39.14
+				},
+				{
+					"plan": 29.25,
+					"actual": 95.61
+				},
+				{
+					"plan": 40.92,
+					"actual": 26.5
+				},
+				{
+					"plan": 1.7,
+					"actual": 68.79
+				},
+				{
+					"plan": 99.84,
+					"actual": 79.16
+				},
+				{
+					"plan": 67.79,
+					"actual": 40.58
+				},
+				{
+					"plan": 25.06,
+					"actual": 30.84
+				},
+				{
+					"plan": 99.19,
+					"actual": 50.53
+				},
+				{
+					"plan": 17.01,
+					"actual": 61.99
+				},
+				{
+					"plan": 88.63,
+					"actual": 88.66
+				},
+				{
+					"plan": 45.7,
+					"actual": 61.4
+				},
+				{
+					"plan": 65.83,
+					"actual": 95.94
+				},
+				{
+					"plan": 37.14,
+					"actual": 78.49
+				}
+			]
+		},
+		{
+			"id": "1001-028",
+			"name": "Nisi sint aute laborum nulla ut.",
+			"weight": 84.86,
+			"gap_treshold": 5.00,
+			"start": "8/4/2020",
+			"end": "19/9/2020",
+			"progress": 1.32,
+			"level": 6,
+			"weekly_progress": [
+				{
+					"plan": 31.12,
+					"actual": 52.97
+				},
+				{
+					"plan": 2.15,
+					"actual": 37.77
+				},
+				{
+					"plan": 62.8,
+					"actual": 69.62
+				},
+				{
+					"plan": 3.69,
+					"actual": 24.78
+				},
+				{
+					"plan": 60.21,
+					"actual": 52.98
+				},
+				{
+					"plan": 15.27,
+					"actual": 84.89
+				},
+				{
+					"plan": 77.4,
+					"actual": 21.65
+				},
+				{
+					"plan": 74.27,
+					"actual": 93.22
+				},
+				{
+					"plan": 8.73,
+					"actual": 47.42
+				},
+				{
+					"plan": 69.84,
+					"actual": 78.2
+				},
+				{
+					"plan": 44.63,
+					"actual": 8.42
+				},
+				{
+					"plan": 74.54,
+					"actual": 36.31
+				},
+				{
+					"plan": 11.46,
+					"actual": 37.54
+				},
+				{
+					"plan": 83.12,
+					"actual": 26.84
+				},
+				{
+					"plan": 30.56,
+					"actual": 62.03
+				},
+				{
+					"plan": 72.64,
+					"actual": 70.91
+				},
+				{
+					"plan": 96.99,
+					"actual": 26.57
+				},
+				{
+					"plan": 2.85,
+					"actual": 94.07
+				},
+				{
+					"plan": 0.76,
+					"actual": 55.73
+				},
+				{
+					"plan": 45.46,
+					"actual": 68.16
+				},
+				{
+					"plan": 45.93,
+					"actual": 44.25
+				},
+				{
+					"plan": 34.65,
+					"actual": 27.76
+				},
+				{
+					"plan": 94.4,
+					"actual": 69.34
+				},
+				{
+					"plan": 68.99,
+					"actual": 30.96
+				},
+				{
+					"plan": 48.38,
+					"actual": 45.26
+				},
+				{
+					"plan": 14.38,
+					"actual": 99.07
+				},
+				{
+					"plan": 27.09,
+					"actual": 37.17
+				},
+				{
+					"plan": 63.26,
+					"actual": 33.73
+				},
+				{
+					"plan": 53.66,
+					"actual": 70.11
+				},
+				{
+					"plan": 48.32,
+					"actual": 23.73
+				},
+				{
+					"plan": 76.1,
+					"actual": 27.74
+				},
+				{
+					"plan": 22.53,
+					"actual": 59.88
+				},
+				{
+					"plan": 85.43,
+					"actual": 98.33
+				},
+				{
+					"plan": 73.07,
+					"actual": 46.03
+				},
+				{
+					"plan": 17.6,
+					"actual": 29.32
+				},
+				{
+					"plan": 33.76,
+					"actual": 50.76
+				},
+				{
+					"plan": 28.59,
+					"actual": 95.58
+				},
+				{
+					"plan": 32.53,
+					"actual": 15.48
+				},
+				{
+					"plan": 32.11,
+					"actual": 65.85
+				},
+				{
+					"plan": 66.25,
+					"actual": 11.62
+				},
+				{
+					"plan": 79.89,
+					"actual": 52.56
+				},
+				{
+					"plan": 69.31,
+					"actual": 35.09
+				},
+				{
+					"plan": 56.64,
+					"actual": 25.87
+				},
+				{
+					"plan": 68.6,
+					"actual": 17.86
+				},
+				{
+					"plan": 37.57,
+					"actual": 2.43
+				},
+				{
+					"plan": 15.3,
+					"actual": 95.75
+				},
+				{
+					"plan": 21.79,
+					"actual": 93.36
+				},
+				{
+					"plan": 36.21,
+					"actual": 35.69
 				}
 			]
 		},
 		{
 			"id": "1900123-029",
 			"name": "Testing",
-			"isParent": true
-		},
-		{
-			"id": "1900123-030",
-			"name": "Sit ipsum cillum occaecat eiusmod magna sint.",
-			"weight": 43.48,
-			"start": "2/1/2020",
-			"end": "23/3/2020",
-			"progress": 17.85,
+			"weight": 26.04,
+			"gap_treshold": 5.00,
+			"start": "10/3/2020",
+			"end": "21/5/2020",
+			"progress": 87.38,
+			"level": 7,
 			"weekly_progress": [
 				{
-					"plan": 95.27,
-					"actual": 10.87
+					"plan": 64.64,
+					"actual": 31.85
 				},
 				{
-					"plan": 34.77,
-					"actual": 66.8
+					"plan": 57.34,
+					"actual": 71.75
 				},
 				{
-					"plan": 31.6,
-					"actual": 32.06
+					"plan": 20.91,
+					"actual": 50.95
 				},
 				{
-					"plan": 26.05,
-					"actual": 89.35
+					"plan": 41,
+					"actual": 51.27
 				},
 				{
-					"plan": 94.4,
-					"actual": 87.26
+					"plan": 48.64,
+					"actual": 22.67
 				},
 				{
-					"plan": 98.74,
-					"actual": 38.01
+					"plan": 7.95,
+					"actual": 69.13
 				},
 				{
-					"plan": 39.7,
-					"actual": 58.75
+					"plan": 80.85,
+					"actual": 95.11
 				},
 				{
-					"plan": 50.57,
-					"actual": 98.43
+					"plan": 87.33,
+					"actual": 0.81
 				},
 				{
-					"plan": 89.42,
-					"actual": 36.04
+					"plan": 22.14,
+					"actual": 40.19
 				},
 				{
-					"plan": 82.59,
-					"actual": 53.86
+					"plan": 49.23,
+					"actual": 64.88
 				},
 				{
-					"plan": 11.03,
-					"actual": null
+					"plan": 34.42,
+					"actual": 69.98
 				},
 				{
-					"plan": 76.19,
-					"actual": null
+					"plan": 86.44,
+					"actual": 43.49
+				},
+				{
+					"plan": 67.85,
+					"actual": 83.13
+				},
+				{
+					"plan": 70.55,
+					"actual": 25.77
+				},
+				{
+					"plan": 53.2,
+					"actual": 81.19
+				},
+				{
+					"plan": 80.6,
+					"actual": 60.89
+				},
+				{
+					"plan": 83.94,
+					"actual": 0.37
+				},
+				{
+					"plan": 5.58,
+					"actual": 75.14
+				},
+				{
+					"plan": 97.47,
+					"actual": 67.21
+				},
+				{
+					"plan": 40.52,
+					"actual": 87.64
+				},
+				{
+					"plan": 41.52,
+					"actual": 6.08
+				},
+				{
+					"plan": 1.16,
+					"actual": 84.89
+				},
+				{
+					"plan": 98.58,
+					"actual": 2.41
+				},
+				{
+					"plan": 49.05,
+					"actual": 4.31
+				},
+				{
+					"plan": 53.11,
+					"actual": 47.75
+				},
+				{
+					"plan": 50.4,
+					"actual": 53.88
+				},
+				{
+					"plan": 74.58,
+					"actual": 41.04
+				},
+				{
+					"plan": 0.63,
+					"actual": 41.22
+				},
+				{
+					"plan": 90.1,
+					"actual": 91.99
+				},
+				{
+					"plan": 26.48,
+					"actual": 58.91
+				},
+				{
+					"plan": 96.89,
+					"actual": 57.86
+				},
+				{
+					"plan": 39.45,
+					"actual": 30.87
+				},
+				{
+					"plan": 62.17,
+					"actual": 11.36
+				},
+				{
+					"plan": 44.81,
+					"actual": 38.94
+				},
+				{
+					"plan": 50.84,
+					"actual": 44.33
+				},
+				{
+					"plan": 76.53,
+					"actual": 41.25
+				},
+				{
+					"plan": 96.08,
+					"actual": 64.83
+				},
+				{
+					"plan": 29.46,
+					"actual": 46.82
+				},
+				{
+					"plan": 88.56,
+					"actual": 75.98
+				},
+				{
+					"plan": 87.15,
+					"actual": 42.83
+				},
+				{
+					"plan": 10.26,
+					"actual": 17.01
+				},
+				{
+					"plan": 83.93,
+					"actual": 67.67
+				},
+				{
+					"plan": 91.64,
+					"actual": 60.11
+				},
+				{
+					"plan": 30.27,
+					"actual": 59.08
+				},
+				{
+					"plan": 72.1,
+					"actual": 91.01
+				},
+				{
+					"plan": 69.56,
+					"actual": 37.35
+				},
+				{
+					"plan": 3.32,
+					"actual": 33.62
+				},
+				{
+					"plan": 21.5,
+					"actual": 59.55
 				}
 			]
 		},
 		{
-			"id": "1900123-031",
-			"name": "Eiusmod anim proident ut ut voluptate excepteur laboris ipsum commodo.",
-			"weight": 20.31,
-			"start": "8/7/2020",
-			"end": "24/12/2020",
-			"progress": 7.18,
+			"id": "1001-030",
+			"name": "Non ipsum aute non nostrud culpa veniam veniam.",
+			"weight": 76.65,
+			"gap_treshold": 5.00,
+			"start": "4/6/2020",
+			"end": "28/2/2020",
+			"progress": 89.58,
+			"level": 8,
 			"weekly_progress": [
 				{
-					"plan": 52.97,
-					"actual": 70.27
+					"plan": 42.2,
+					"actual": 8.49
 				},
 				{
-					"plan": 21.37,
-					"actual": 80.2
+					"plan": 99.85,
+					"actual": 98.58
 				},
 				{
-					"plan": 87.05,
-					"actual": 22.31
+					"plan": 21.79,
+					"actual": 95.45
 				},
 				{
-					"plan": 11.62,
-					"actual": 17.38
+					"plan": 6.07,
+					"actual": 36.94
 				},
 				{
-					"plan": 68.55,
-					"actual": 16.68
+					"plan": 47.88,
+					"actual": 59.78
 				},
 				{
-					"plan": 3.27,
-					"actual": 74.9
+					"plan": 78.16,
+					"actual": 83.43
 				},
 				{
-					"plan": 72.44,
-					"actual": 0.52
+					"plan": 56.9,
+					"actual": 26.33
 				},
 				{
-					"plan": 40.65,
-					"actual": 33.15
+					"plan": 18.2,
+					"actual": 87.3
 				},
 				{
-					"plan": 4.07,
-					"actual": 82.56
+					"plan": 84.91,
+					"actual": 89.99
 				},
 				{
-					"plan": 17.45,
-					"actual": 66.05
+					"plan": 93.02,
+					"actual": 7.48
 				},
 				{
-					"plan": 92.13,
-					"actual": null
+					"plan": 3.89,
+					"actual": 30.07
 				},
 				{
-					"plan": 79.92,
-					"actual": null
+					"plan": 40.46,
+					"actual": 43.54
+				},
+				{
+					"plan": 44.66,
+					"actual": 35.17
+				},
+				{
+					"plan": 26.43,
+					"actual": 36.89
+				},
+				{
+					"plan": 27.67,
+					"actual": 93.7
+				},
+				{
+					"plan": 0.15,
+					"actual": 46.84
+				},
+				{
+					"plan": 78.86,
+					"actual": 62.68
+				},
+				{
+					"plan": 3.77,
+					"actual": 60.04
+				},
+				{
+					"plan": 92.78,
+					"actual": 29.66
+				},
+				{
+					"plan": 77.81,
+					"actual": 62
+				},
+				{
+					"plan": 54.59,
+					"actual": 11.97
+				},
+				{
+					"plan": 83.88,
+					"actual": 19.25
+				},
+				{
+					"plan": 15.4,
+					"actual": 30.9
+				},
+				{
+					"plan": 82.95,
+					"actual": 94.75
+				},
+				{
+					"plan": 44.08,
+					"actual": 15.56
+				},
+				{
+					"plan": 6.68,
+					"actual": 1.17
+				},
+				{
+					"plan": 48.79,
+					"actual": 59.89
+				},
+				{
+					"plan": 21.66,
+					"actual": 67.14
+				},
+				{
+					"plan": 29.76,
+					"actual": 34.09
+				},
+				{
+					"plan": 79.61,
+					"actual": 55.52
+				},
+				{
+					"plan": 34.93,
+					"actual": 92.11
+				},
+				{
+					"plan": 66.1,
+					"actual": 71.77
+				},
+				{
+					"plan": 25.61,
+					"actual": 33.99
+				},
+				{
+					"plan": 78.97,
+					"actual": 58.95
+				},
+				{
+					"plan": 52.3,
+					"actual": 88.17
+				},
+				{
+					"plan": 47.49,
+					"actual": 17.47
+				},
+				{
+					"plan": 93.62,
+					"actual": 47.45
+				},
+				{
+					"plan": 81.76,
+					"actual": 45.94
+				},
+				{
+					"plan": 76.72,
+					"actual": 98.46
+				},
+				{
+					"plan": 30.6,
+					"actual": 30.03
+				},
+				{
+					"plan": 6.97,
+					"actual": 30.8
+				},
+				{
+					"plan": 52.85,
+					"actual": 90.93
+				},
+				{
+					"plan": 95.43,
+					"actual": 99.55
+				},
+				{
+					"plan": 1.36,
+					"actual": 18.55
+				},
+				{
+					"plan": 26.03,
+					"actual": 35.58
+				},
+				{
+					"plan": 25.71,
+					"actual": 56.8
+				},
+				{
+					"plan": 70.43,
+					"actual": 45.72
+				},
+				{
+					"plan": 34.54,
+					"actual": 14.36
 				}
 			]
 		},
 		{
-			"id": "1900123-032",
-			"name": "Commodo aliqua excepteur duis excepteur incididunt velit.",
-			"weight": 19.62,
-			"start": "10/9/2020",
-			"end": "28/9/2020",
-			"progress": 7.51,
+			"id": "1001-031",
+			"name": "Ullamco velit aliquip minim exercitation occaecat tempor do pariatur quis in irure exercitation.",
+			"weight": 52.69,
+			"gap_treshold": 5.00,
+			"start": "4/6/2020",
+			"end": "21/5/2020",
+			"progress": 63.2,
+			"level": 9,
 			"weekly_progress": [
 				{
-					"plan": 47.11,
-					"actual": 99.47
+					"plan": 20.88,
+					"actual": 33.82
 				},
 				{
-					"plan": 11.65,
-					"actual": 87.04
+					"plan": 77.88,
+					"actual": 60.94
 				},
 				{
-					"plan": 52.23,
-					"actual": 6.95
+					"plan": 87.48,
+					"actual": 39.64
 				},
 				{
-					"plan": 28.63,
-					"actual": 1.76
+					"plan": 88.5,
+					"actual": 33.69
 				},
 				{
-					"plan": 42.36,
-					"actual": 51.23
+					"plan": 95.01,
+					"actual": 9.83
 				},
 				{
-					"plan": 34.2,
-					"actual": 1.9
+					"plan": 20.01,
+					"actual": 46.25
 				},
 				{
-					"plan": 2.03,
-					"actual": 13.09
+					"plan": 96.74,
+					"actual": 78.46
 				},
 				{
-					"plan": 36.27,
-					"actual": 94.88
+					"plan": 13.15,
+					"actual": 7.99
 				},
 				{
-					"plan": 31.17,
-					"actual": 7.91
+					"plan": 70.43,
+					"actual": 92.96
 				},
 				{
-					"plan": 2.16,
-					"actual": 45.93
+					"plan": 2.63,
+					"actual": 14.29
 				},
 				{
-					"plan": 30.92,
-					"actual": null
+					"plan": 79.55,
+					"actual": 24.62
 				},
 				{
-					"plan": 72.41,
-					"actual": null
+					"plan": 81.79,
+					"actual": 42.88
+				},
+				{
+					"plan": 58.68,
+					"actual": 15.21
+				},
+				{
+					"plan": 47.31,
+					"actual": 43.62
+				},
+				{
+					"plan": 82.61,
+					"actual": 77.35
+				},
+				{
+					"plan": 16.95,
+					"actual": 91.24
+				},
+				{
+					"plan": 84.42,
+					"actual": 70.19
+				},
+				{
+					"plan": 49.21,
+					"actual": 24.82
+				},
+				{
+					"plan": 15.49,
+					"actual": 34.08
+				},
+				{
+					"plan": 63.43,
+					"actual": 8.97
+				},
+				{
+					"plan": 98.25,
+					"actual": 81.09
+				},
+				{
+					"plan": 78.82,
+					"actual": 85.04
+				},
+				{
+					"plan": 30.5,
+					"actual": 51.79
+				},
+				{
+					"plan": 51.81,
+					"actual": 2.73
+				},
+				{
+					"plan": 90.97,
+					"actual": 81.07
+				},
+				{
+					"plan": 3.05,
+					"actual": 45.63
+				},
+				{
+					"plan": 38.62,
+					"actual": 44.73
+				},
+				{
+					"plan": 8.54,
+					"actual": 7.5
+				},
+				{
+					"plan": 48.27,
+					"actual": 31.91
+				},
+				{
+					"plan": 79.94,
+					"actual": 98.61
+				},
+				{
+					"plan": 56.45,
+					"actual": 67.33
+				},
+				{
+					"plan": 41.08,
+					"actual": 84.3
+				},
+				{
+					"plan": 6.89,
+					"actual": 51.35
+				},
+				{
+					"plan": 51.67,
+					"actual": 78.68
+				},
+				{
+					"plan": 65.38,
+					"actual": 14.18
+				},
+				{
+					"plan": 53.52,
+					"actual": 53.11
+				},
+				{
+					"plan": 76.36,
+					"actual": 84.33
+				},
+				{
+					"plan": 0.82,
+					"actual": 8.77
+				},
+				{
+					"plan": 37.01,
+					"actual": 83.89
+				},
+				{
+					"plan": 52.33,
+					"actual": 35.62
+				},
+				{
+					"plan": 30.7,
+					"actual": 64.08
+				},
+				{
+					"plan": 76.49,
+					"actual": 48.69
+				},
+				{
+					"plan": 70.53,
+					"actual": 23.17
+				},
+				{
+					"plan": 41.83,
+					"actual": 16.45
+				},
+				{
+					"plan": 21.92,
+					"actual": 68.34
+				},
+				{
+					"plan": 72.24,
+					"actual": 40.6
+				},
+				{
+					"plan": 94.64,
+					"actual": 55.31
+				},
+				{
+					"plan": 28.65,
+					"actual": 47.43
+				}
+			]
+		},
+		{
+			"id": "1001-032",
+			"name": "Consectetur do cupidatat occaecat excepteur nulla est elit ullamco nisi.",
+			"weight": 32.42,
+			"gap_treshold": 5.00,
+			"start": "10/6/2020",
+			"end": "19/5/2020",
+			"progress": 45.35,
+			"level": 10,
+			"weekly_progress": [
+				{
+					"plan": 87.27,
+					"actual": 31.02
+				},
+				{
+					"plan": 27.17,
+					"actual": 23.34
+				},
+				{
+					"plan": 10.34,
+					"actual": 84.2
+				},
+				{
+					"plan": 85.31,
+					"actual": 28.23
+				},
+				{
+					"plan": 76.47,
+					"actual": 4.73
+				},
+				{
+					"plan": 78.88,
+					"actual": 56.89
+				},
+				{
+					"plan": 61.4,
+					"actual": 2.84
+				},
+				{
+					"plan": 93.65,
+					"actual": 45.1
+				},
+				{
+					"plan": 53.29,
+					"actual": 84.08
+				},
+				{
+					"plan": 69.57,
+					"actual": 97.4
+				},
+				{
+					"plan": 17.94,
+					"actual": 80.9
+				},
+				{
+					"plan": 44.25,
+					"actual": 53.23
+				},
+				{
+					"plan": 67.01,
+					"actual": 67.95
+				},
+				{
+					"plan": 95.05,
+					"actual": 62.05
+				},
+				{
+					"plan": 57.73,
+					"actual": 89.41
+				},
+				{
+					"plan": 50.51,
+					"actual": 10.85
+				},
+				{
+					"plan": 40.37,
+					"actual": 57.41
+				},
+				{
+					"plan": 1.81,
+					"actual": 90.06
+				},
+				{
+					"plan": 57.51,
+					"actual": 52.04
+				},
+				{
+					"plan": 98.02,
+					"actual": 72.63
+				},
+				{
+					"plan": 31.68,
+					"actual": 26.1
+				},
+				{
+					"plan": 56.92,
+					"actual": 13.56
+				},
+				{
+					"plan": 83.02,
+					"actual": 66.86
+				},
+				{
+					"plan": 55.87,
+					"actual": 50.32
+				},
+				{
+					"plan": 16.92,
+					"actual": 81.54
+				},
+				{
+					"plan": 55.04,
+					"actual": 63.48
+				},
+				{
+					"plan": 92.35,
+					"actual": 8.91
+				},
+				{
+					"plan": 58.69,
+					"actual": 38.83
+				},
+				{
+					"plan": 57.92,
+					"actual": 67.01
+				},
+				{
+					"plan": 27.06,
+					"actual": 11.78
+				},
+				{
+					"plan": 22.79,
+					"actual": 93.38
+				},
+				{
+					"plan": 10.26,
+					"actual": 95.31
+				},
+				{
+					"plan": 3.59,
+					"actual": 13.61
+				},
+				{
+					"plan": 27.7,
+					"actual": 61.34
+				},
+				{
+					"plan": 99.27,
+					"actual": 18
+				},
+				{
+					"plan": 59.04,
+					"actual": 96.9
+				},
+				{
+					"plan": 94.66,
+					"actual": 39.64
+				},
+				{
+					"plan": 6.1,
+					"actual": 61.47
+				},
+				{
+					"plan": 84.06,
+					"actual": 12.07
+				},
+				{
+					"plan": 61.63,
+					"actual": 43.15
+				},
+				{
+					"plan": 5.28,
+					"actual": 87.81
+				},
+				{
+					"plan": 18.57,
+					"actual": 18.03
+				},
+				{
+					"plan": 95.47,
+					"actual": 48.38
+				},
+				{
+					"plan": 7.95,
+					"actual": 61.05
+				},
+				{
+					"plan": 89.1,
+					"actual": 19.76
+				},
+				{
+					"plan": 5.78,
+					"actual": 89.51
+				},
+				{
+					"plan": 73.21,
+					"actual": 18.35
+				},
+				{
+					"plan": 56.78,
+					"actual": 97.19
+				}
+			]
+		},
+		{
+			"id": "1001-032",
+			"name": "Consectetur do cupidatat occaecat excepteur nulla est elit ullamco nisi.",
+			"weight": 32.42,
+			"gap_treshold": 5.00,
+			"start": "10/6/2020",
+			"end": "19/5/2020",
+			"progress": 45.35,
+			"level": 10,
+			"weekly_progress": [
+				{
+					"plan": 87.27,
+					"actual": 31.02
+				},
+				{
+					"plan": 27.17,
+					"actual": 23.34
+				},
+				{
+					"plan": 10.34,
+					"actual": 84.2
+				},
+				{
+					"plan": 85.31,
+					"actual": 28.23
+				},
+				{
+					"plan": 76.47,
+					"actual": 4.73
+				},
+				{
+					"plan": 78.88,
+					"actual": 56.89
+				},
+				{
+					"plan": 61.4,
+					"actual": 2.84
+				},
+				{
+					"plan": 93.65,
+					"actual": 45.1
+				},
+				{
+					"plan": 53.29,
+					"actual": 84.08
+				},
+				{
+					"plan": 69.57,
+					"actual": 97.4
+				},
+				{
+					"plan": 17.94,
+					"actual": 80.9
+				},
+				{
+					"plan": 44.25,
+					"actual": 53.23
+				},
+				{
+					"plan": 67.01,
+					"actual": 67.95
+				},
+				{
+					"plan": 95.05,
+					"actual": 62.05
+				},
+				{
+					"plan": 57.73,
+					"actual": 89.41
+				},
+				{
+					"plan": 50.51,
+					"actual": 10.85
+				},
+				{
+					"plan": 40.37,
+					"actual": 57.41
+				},
+				{
+					"plan": 1.81,
+					"actual": 90.06
+				},
+				{
+					"plan": 57.51,
+					"actual": 52.04
+				},
+				{
+					"plan": 98.02,
+					"actual": 72.63
+				},
+				{
+					"plan": 31.68,
+					"actual": 26.1
+				},
+				{
+					"plan": 56.92,
+					"actual": 13.56
+				},
+				{
+					"plan": 83.02,
+					"actual": 66.86
+				},
+				{
+					"plan": 55.87,
+					"actual": 50.32
+				},
+				{
+					"plan": 16.92,
+					"actual": 81.54
+				},
+				{
+					"plan": 55.04,
+					"actual": 63.48
+				},
+				{
+					"plan": 92.35,
+					"actual": 8.91
+				},
+				{
+					"plan": 58.69,
+					"actual": 38.83
+				},
+				{
+					"plan": 57.92,
+					"actual": 67.01
+				},
+				{
+					"plan": 27.06,
+					"actual": 11.78
+				},
+				{
+					"plan": 22.79,
+					"actual": 93.38
+				},
+				{
+					"plan": 10.26,
+					"actual": 95.31
+				},
+				{
+					"plan": 3.59,
+					"actual": 13.61
+				},
+				{
+					"plan": 27.7,
+					"actual": 61.34
+				},
+				{
+					"plan": 99.27,
+					"actual": 18
+				},
+				{
+					"plan": 59.04,
+					"actual": 96.9
+				},
+				{
+					"plan": 94.66,
+					"actual": 39.64
+				},
+				{
+					"plan": 6.1,
+					"actual": 61.47
+				},
+				{
+					"plan": 84.06,
+					"actual": 12.07
+				},
+				{
+					"plan": 61.63,
+					"actual": 43.15
+				},
+				{
+					"plan": 5.28,
+					"actual": 87.81
+				},
+				{
+					"plan": 18.57,
+					"actual": 18.03
+				},
+				{
+					"plan": 95.47,
+					"actual": 48.38
+				},
+				{
+					"plan": 7.95,
+					"actual": 61.05
+				},
+				{
+					"plan": 89.1,
+					"actual": 19.76
+				},
+				{
+					"plan": 5.78,
+					"actual": 89.51
+				},
+				{
+					"plan": 73.21,
+					"actual": 18.35
+				},
+				{
+					"plan": 56.78,
+					"actual": 97.19
 				}
 			]
 		},
@@ -1864,57 +7380,203 @@
 			"id": "1900123-033",
 			"name": "Deployment",
 			"weight": 5.00,
+			"gap_treshold": 5.00,
 			"start": "03/04/2019",
 			"end": "03/20/2019",
 			"progress": 0.00,
+			"level": 0,
 			"weekly_progress": [
 				{
-					"plan": 87.55,
-					"actual": 96.5
+					"plan": 53.09,
+					"actual": 5.13
 				},
 				{
-					"plan": 39.53,
-					"actual": 74.64
+					"plan": 70.09,
+					"actual": 62.42
 				},
 				{
-					"plan": 59.32,
-					"actual": 25.52
+					"plan": 80.94,
+					"actual": 74.75
 				},
 				{
-					"plan": 33.85,
-					"actual": 33.86
+					"plan": 26.54,
+					"actual": 87.12
 				},
 				{
-					"plan": 12.05,
-					"actual": 22.95
+					"plan": 7.84,
+					"actual": 13.89
 				},
 				{
-					"plan": 73.89,
-					"actual": 64.64
+					"plan": 31.72,
+					"actual": 16.2
 				},
 				{
-					"plan": 21.32,
-					"actual": 13.39
+					"plan": 91.3,
+					"actual": 33.15
 				},
 				{
-					"plan": 36.94,
-					"actual": 13.61
+					"plan": 75.86,
+					"actual": 81.33
 				},
 				{
-					"plan": 10.84,
-					"actual": 8.38
+					"plan": 81.68,
+					"actual": 68.46
 				},
 				{
-					"plan": 92.44,
-					"actual": 9.75
+					"plan": 54.31,
+					"actual": 64.53
 				},
 				{
-					"plan": 92,
-					"actual": null
+					"plan": 22.3,
+					"actual": 35.48
 				},
 				{
-					"plan": 24.8,
-					"actual": null
+					"plan": 60.51,
+					"actual": 99.2
+				},
+				{
+					"plan": 50.21,
+					"actual": 28.84
+				},
+				{
+					"plan": 8.23,
+					"actual": 20.87
+				},
+				{
+					"plan": 1.62,
+					"actual": 67.81
+				},
+				{
+					"plan": 83.27,
+					"actual": 8
+				},
+				{
+					"plan": 85.98,
+					"actual": 35.8
+				},
+				{
+					"plan": 15.81,
+					"actual": 26.22
+				},
+				{
+					"plan": 16.3,
+					"actual": 56.99
+				},
+				{
+					"plan": 70.14,
+					"actual": 84.94
+				},
+				{
+					"plan": 81.58,
+					"actual": 2.43
+				},
+				{
+					"plan": 17.26,
+					"actual": 15.43
+				},
+				{
+					"plan": 25.88,
+					"actual": 37.19
+				},
+				{
+					"plan": 92.05,
+					"actual": 27.09
+				},
+				{
+					"plan": 43.42,
+					"actual": 92.51
+				},
+				{
+					"plan": 76.88,
+					"actual": 93.31
+				},
+				{
+					"plan": 38.02,
+					"actual": 71
+				},
+				{
+					"plan": 40.11,
+					"actual": 57.22
+				},
+				{
+					"plan": 75.02,
+					"actual": 75.51
+				},
+				{
+					"plan": 70.77,
+					"actual": 94.26
+				},
+				{
+					"plan": 4.77,
+					"actual": 60.18
+				},
+				{
+					"plan": 38.38,
+					"actual": 98.13
+				},
+				{
+					"plan": 72.93,
+					"actual": 9.47
+				},
+				{
+					"plan": 16.94,
+					"actual": 68.19
+				},
+				{
+					"plan": 99.17,
+					"actual": 49.97
+				},
+				{
+					"plan": 81.74,
+					"actual": 17.92
+				},
+				{
+					"plan": 93.86,
+					"actual": 16.18
+				},
+				{
+					"plan": 67.8,
+					"actual": 66.7
+				},
+				{
+					"plan": 55.84,
+					"actual": 86.86
+				},
+				{
+					"plan": 42.08,
+					"actual": 39.51
+				},
+				{
+					"plan": 93.3,
+					"actual": 78.48
+				},
+				{
+					"plan": 48.33,
+					"actual": 19.05
+				},
+				{
+					"plan": 13.61,
+					"actual": 13.23
+				},
+				{
+					"plan": 58.91,
+					"actual": 44.66
+				},
+				{
+					"plan": 76.43,
+					"actual": 61.89
+				},
+				{
+					"plan": 82.86,
+					"actual": 93.91
+				},
+				{
+					"plan": 49.01,
+					"actual": 11.91
+				},
+				{
+					"plan": 87.45,
+					"actual": 67.43
 				}
 			]
 		}

@@ -222,3 +222,15 @@ module.exports.getPIndexChart = (project_id, task_id) => {
 			return response.data;
 		})
 }
+
+/**
+ * Get Performance Index Falling Task Data
+ *
+ * @param {*} project_id: Project ID
+ * @param {*} task_id: task ID
+ * @returns Axios Promise Instance
+ */
+module.exports.getPIndexFalling = (project_id, task_id, week) => {
+	const bundle = { project_id, task_id, week };
+	return request.get(parseURL("getPIndexFalling", bundle));
+}
