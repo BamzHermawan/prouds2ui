@@ -42,12 +42,18 @@ export default {
 		},
 		series: {
 			required: true
+		},
+		tooltipFormat: {
+			default: undefined
 		}
 	},
 	data() {
 		return {
 			chart: undefined,
 			config: {
+				chart: {
+					zoomType: "x"
+				},
 				title: {
 					text: ""
 				},
@@ -62,6 +68,16 @@ export default {
 			this.config.series = series;
 			this.chart = Highcharts.chart(this.id, this.config);
 		}
+		// parseTooltip() {
+		// 	let link = this.tooltipFormat;
+		// 	let bundle = {
+		// 		x:
+		// 	}
+		// 	return link.replace(/\{\w*\}/g, function (prop) {
+		// 		let val = prop.replace(/\{|\}/g, "");
+		// 		return bundle[val];
+		// 	});
+		// }
 	},
 	computed: {
 		style() {
@@ -73,6 +89,12 @@ export default {
 		}
 	},
 	mounted() {
+		if (this.tooltipFormat !== undefined) {
+			this.config.tooltip = {
+				formatter: this.tooltipFormat
+			};
+		}
+
 		this.chart = Highcharts.chart(this.id, this.config);
 	}
 };

@@ -136,7 +136,15 @@ module.exports = {
 		 * - project_id
 		 * - task_id
 		 */
-		getPIndexChart: 'performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}'
+		getPIndexChart: 'performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}',
+		
+		/**
+		 * get data performance Index chart by project id & task id
+		 * Send Data:
+		 * - project_id
+		 * - task_id
+		 */
+		getPIndexFalling: 'performanceIndex.php?get=falling&project_id={project_id}&task_id={task_id}&week={week}'
 	}
 
 }

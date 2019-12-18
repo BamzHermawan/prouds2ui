@@ -1,6 +1,19 @@
+$levelPadding: (
+	"1": calc(1em + 15px) 1em,
+	"2": calc(2em + 15px) 2em,
+	"3": calc(3em + 15px) 3em,
+	"4": calc(4em + 15px) 4em,
+	"5": calc(5em + 15px) 5em,
+	"6": calc(6em + 15px) 6em,
+	"7": calc(7em + 15px) 7em,
+	"8": calc(8em + 15px) 8em,
+	"9": calc(9em + 15px) 9em,
+	"10": calc(10em + 15px) 10em
+);
+
 .pindex-table-container {
 	display: grid;
-	grid-template-columns: 70% 30%;
+	grid-template-columns: 70% 1fr;
 
 	.pindex-table-right {
 		width: 100%;
@@ -18,6 +31,27 @@
 		font-size: .75em !important;
 	}
 
+	.has-border-right-bold {
+		border-right-color: $grey;
+		border-right-style: outset;
+    	border-right-width: 2px !important;
+	}
+
+	tr {
+		td:first-child > span.mdi-toggle-folder {
+			margin: 0px !important;
+			&::before {
+				content: "\F76F";
+			}
+		}
+
+		&.is-folded {
+			td:first-child > span.mdi-toggle-folder::before {
+				content: "\F24B";
+			}
+		}
+	}
+
 	tr.is-hover {
 		background-color: #cbe5f6 !important;
 	}
@@ -27,13 +61,20 @@
 		vertical-align: middle;
 	}
 
-	&.add-max-height {
-		max-height: calc(100vh - 175px);
-		overflow-y: scroll;
-	}
+	// &.add-max-height {
+	// 	max-height: calc(100vh - 175px);
+	// 	overflow-y: scroll;
+	// }
 
-	.is-child {
-		padding-left: 1.5em !important;
+	@each $name, $level in $levelPadding {
+		.is-level-#{$name} {
+			$iconGap: 12px;
+			padding-left: nth($level, 1) !important;
+
+			&.has-children {
+				padding-left: nth($level, 2) !important;
+			}
+		}
 	}
 
 	.is-parent {
@@ -41,18 +82,123 @@
 	}
 
 	.is-task-name {
-		width: 500px;
-		max-width: 500px;
+		width: 350px;
+		max-width: 350px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		text-decoration: none !important;
 		cursor: pointer;
 	}
+
+	.is-fall-behind {
+		color: $danger;
+		cursor: pointer;
+		font-weight: bold;
+		background-color: lighten($danger, 30%);
+	}
+
+	.is-fall-behind-warning {
+		color: $danger;
+		cursor: pointer;
+		font-weight: bold;
+		background-color: lighten($warning, 5%);
+	}
+
+	.mdi.mdi-folder-open, .mdi.mdi-folder, .mdi.mdi-file-outline {
+		margin: 0px !important;
+	}
 }
 
-@media screen and (min-width: 1216px) {
+.modal-card-pIndex {
+	max-height: 540px !important;
+	overflow-y: hidden !important;
+
+	.member-list {
+		overflow-y: scroll !important;
+		max-height: 450px;
+	}
+
+	.info-card-pIndex {
+		border-bottom-color: $grey-lighter;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+
+	.last-activity {
+		.activity-toggle {
+			color: $grey;
+			cursor: pointer;
+			font-size: .85em;
+
+			& > span.toggle-chevron {
+				margin: 0px !important;
+				&::before { 
+					content: "\F142";
+				}
+			}
+		}
+
+		.activity-detail {
+			padding: 0px 1em;
+			display: none;
+		}
+
+		&.is-active {
+			.activity-toggle > span.toggle-chevron {
+				margin: 0px !important;
+				&::before { 
+					content: "\F140";
+				}
+			}
+
+			.activity-detail {
+				display: block;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1359px) {
 	.pindex-table-container {
-		grid-template-columns: 60% 40%;
+		grid-template-columns: 65% 1fr;
+
+		.is-task-name {
+			width: 200px;
+			max-width: 200px;
+		}
+	}
+}
+
+@media screen and (min-width: 1360px) and (max-width: 1399px) {
+	.pindex-table-container {
+		grid-template-columns: 75% 1fr;
+
+		.is-task-name {
+			width: 500px;
+			max-width: 500px;
+		}
+	}
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1679px) {
+	.pindex-table-container {
+		grid-template-columns: 70% 1fr;
+
+		.is-task-name {
+			width: 500px;
+			max-width: 500px;
+		}
+	}
+}
+
+@media screen and (min-width: 1680px) {
+	.pindex-table-container {
+		grid-template-columns: 60% 1fr;
+
+		.is-task-name {
+			width: 500px;
+			max-width: 500px;
+		}
 	}
 }

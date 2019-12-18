@@ -1,0 +1,20 @@
+// fade animation
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+// slide animation
+.slide-enter-active {
+  transition: all .3s ease;
+}
+.slide-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-enter, .slide-leave-to {
+  transform: translate3d(0, -100%, 0);
+  visibility: visible;
+  opacity: 0;
+}

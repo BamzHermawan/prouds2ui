@@ -7,13 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
 	<title>PROJECT | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
-	<link rel="stylesheet" href="../../../styles/style.scss">
+	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+	<link rel="stylesheet" href="../../src/style.min.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 				<span>PROUDS</span>
 			</div>
 			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
+				<a href="../notification.html" class="parent-list">
 					<div class="list-title">
 						<label>
 							<span class="mdi mdi-bell-outline in-left"></span>
@@ -42,12 +42,12 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item href="./list.html" active>Project List</side-item>
+				<side-item href="./list.html" active="">Project List</side-item>
 				<side-item href="./projectAssignment.html">Project Assignment</side-item>
 				<side-item href="./projectRequest.html">Project Request</side-item>
 				<side-item href="./timesheetList.html">My Task</side-item>
 				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
-				<side-item href="../rebaseline.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
 				<side-item href="#no-edit">Closing</side-item>
 			</side-list>
 
@@ -83,12 +83,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="http://" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="../setting/authorization.html" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -98,8 +98,8 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../profile.html" class="navbar-item">Account Profile</a>
-							<a href="#help" class="navbar-item">Need Help ?</a>
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -134,7 +134,7 @@
 					<!-- * Breadcrumb page -->
 					<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 						<ul class="is-marginless">
-							<li><a href="list.html">Project List</a></li>
+							<li><a href="./list.html">Project List</a></li>
 							<li class="is-active"><a href="#" aria-current="page">Performance Index</a></li>
 						</ul>
 					</nav>
@@ -146,27 +146,27 @@
 								Awesome
 								App Mantap Super Jaya
 								Semua Suka Sampai Mendunia</h3>
-							<b-field grouped>
-								<div v-cloak class="control">
+							<b-field grouped="">
+								<div v-cloak="" class="control">
 									<div class="tags has-addons">
 										<span class="tag is-dark">ID</span>
 										<span ref="project_id" class="tag is-info">1900123</span>
 									</div>
 								</div>
-								<div v-cloak class="control">
-									<b-taglist v-once attached size="are-medium">
+								<div v-cloak="" class="control">
+									<b-taglist v-once="" attached="" size="are-medium">
 										<b-tag type="is-dark">IWO</b-tag>
 										<b-tag type="is-info">P-1909-TTES0481</b-tag>
 									</b-taglist>
 								</div>
-								<div v-cloak class="control">
-									<b-taglist v-once attached size="are-medium">
+								<div v-cloak="" class="control">
+									<b-taglist v-once="" attached="" size="are-medium">
 										<b-tag type="is-dark">PM</b-tag>
 										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
 									</b-taglist>
 								</div>
-								<div v-cloak class="control">
-									<b-taglist v-once attached size="are-medium">
+								<div v-cloak="" class="control">
+									<b-taglist v-once="" attached="" size="are-medium">
 										<b-tag type="is-dark">
 											<span class="mdi mdi-account-tie is-marginless"></span>
 										</b-tag>
@@ -177,12 +177,7 @@
 						</div>
 						<div class="column is-4 is-paddingless">
 							<div class="buttons is-right">
-								<b-button 
-									v-cloak
-									@click="openChart('total')" 
-									:loading="toggleIsLoading"
-									:type="chartIsOpen ? 'is-danger':'is-success'" 
-									icon-left="chart-bell-curve">
+								<b-button v-cloak="" @click="openChart('total')" :loading="toggleIsLoading" :type="chartIsOpen ? 'is-danger':'is-success'" icon-left="chart-bell-curve">
 									{{ chartIsOpen ? 'Close chart':'Open Chart'}}
 								</b-button>
 							</div>
@@ -191,49 +186,29 @@
 
 					<span class="white-space is-medium"></span>
 
-					<div v-cloak v-show="!chartIsOpen" class="animated fadeIn faster">
-						<b-message v-once type="is-info" size="is-small">
+					<div v-cloak="" v-show="!chartIsOpen" class="animated fadeIn faster">
+						<b-message v-once="" type="is-info" size="is-small">
 							<b class="has-text-dark">*click task name to open chart per task specifically. to check total progress chart click green button "open chart"</b>
 						</b-message>
 						<pindex-table :project-id="project_id" @rowclicked="openChart" @redclicked="openFallBehind"></pindex-table>
 					</div>
 
-					<div v-cloak v-show="chartIsOpen" class="pindex-chart-container animated fadeIn faster">
+					<div v-cloak="" v-show="chartIsOpen" class="pindex-chart-container animated fadeIn faster">
 						<b-message v-if="task !== 'total'" type="is-dark">
 							<label class="has-text-white has-text-weight-bold">Task Name</label>
-							<p v-once class="has-text-white has-text-weight-light">{{ task.name }}</p>
+							<p v-once="" class="has-text-white has-text-weight-light">{{ task.name }}</p>
 						</b-message>
 
-						<h-chart 
-							ref="spiChart" 
-							id="spiChart" 
-							width="100%" 
-							height="300px" 
-							title="S-Curve"
-							:point-start="1"
-							:tooltip-format="function (){
+						<h-chart ref="spiChart" id="spiChart" width="100%" height="300px" title="S-Curve" :point-start="1" :tooltip-format="function (){
 								return this.series.name + ' [Week #' + this.x + ']<br><b>' + this.y + '%</b>';
-							}"
-							:x-axis="spiChart.xAxis" 
-							:y-axis="spiChart.yAxis" 
-							:series="spiChart.series">
+							}" :x-axis="spiChart.xAxis" :y-axis="spiChart.yAxis" :series="spiChart.series">
 						</h-chart>
 
 						<span class="white-space"></span>
 
-						<h-chart 
-							ref="pvrChart" 
-							id="pvrChart" 
-							width="100%" 
-							height="300px" 
-							title="Plan VS Realization"
-							:tooltip-format="function (){
+						<h-chart ref="pvrChart" id="pvrChart" width="100%" height="300px" title="Plan VS Realization" :tooltip-format="function (){
 								return this.series.name + ' [Week #' + this.x + ']<br><b>' + this.y + '%</b>';
-							}"
-							:point-start="1"
-							:x-axis="pvrChart.xAxis" 
-							:y-axis="pvrChart.yAxis" 
-							:series="pvrChart.series">
+							}" :point-start="1" :x-axis="pvrChart.xAxis" :y-axis="pvrChart.yAxis" :series="pvrChart.series">
 						</h-chart>
 					</div>
 
@@ -245,15 +220,15 @@
 								<p class="card-header-title">{{ modal.task.name }}</p>
 							</header>
 							<div class="card-content info-card-pIndex">
-								<b-field grouped>
-									<div v-cloak class="control">
-										<b-taglist attached size="are-medium">
+								<b-field grouped="">
+									<div v-cloak="" class="control">
+										<b-taglist attached="" size="are-medium">
 											<b-tag type="is-dark">Weight</b-tag>
 											<b-tag type="is-info">{{ modal.task.weight }}</b-tag>
 										</b-taglist>
 									</div>
-									<div v-cloak class="control">
-										<b-taglist attached size="are-medium">
+									<div v-cloak="" class="control">
+										<b-taglist attached="" size="are-medium">
 											<b-tag type="is-dark">Progress</b-tag>
 											<b-tag type="is-danger">{{ modal.task.progress }}</b-tag>
 										</b-taglist>
@@ -270,7 +245,7 @@
 														<span class="mdi mdi-alert"></span>
 														<span>{{ member.name }}</span>
 													</h4>
-													<h4 v-else class="is-small is-marginless">{{ member.name }}</h4>
+													<h4 v-else="" class="is-small is-marginless">{{ member.name }}</h4>
 													<p class="is-marginless">{{ member.nik }} | {{ member.role.name }}</p>
 												</div>
 												<div class="column is-4">
@@ -305,8 +280,7 @@
 		</section>
 
 		<section id="infoFooter">
-			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
-				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
 	</div>
@@ -355,8 +329,8 @@
 		</api-test>
 	</div>
 
-	<script src="../../scripts/layout/controller.js"></script>
-	<script src="../../scripts/project/performanceIndex/performanceIndex.js"></script>
+	<script src="../../src/main.min.js"></script>
+	<script src="../../src/projects/performanceIndex.min.js"></script>
 </body>
 
 </html>
