@@ -73,6 +73,7 @@
 						input-style="margin-bottom:1em;"
 						required
 					>
+						<option selected style="display: none;"></option>
 						<option
 							v-for="(val, idx) in dataRole"
 							:key="idx"
