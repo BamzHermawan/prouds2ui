@@ -349,7 +349,7 @@
 					</add-task>
 
 					<edit-task v-if="toggleForm.editTask" id="editTask" class="animated fadeIn faster" project-id="1"
-						show-integration="true" :task="selectedTask"
+						show-integration :task="selectedTask"
 						api-get-duration="http://localhost:5501/demo/getDuration.php"
 						action-event="http://localhost:5501/demo/post_detect.php">
 						<template slot="wbs-option">
@@ -530,7 +530,7 @@
 				"integration": "",
 				"mandays": "0",
 				"roleId": 2,
-				"roleName": "Desaigner Web"
+				"roleName": "Desaigner Web",
 			}
 			,
 			{
@@ -611,7 +611,8 @@
 				"integration": "",
 				"mandays": "0",
 				"roleId": 1,
-				"roleName": "Programer Analyst"
+				"roleName": "Programer Analyst",
+				"deleteTask": "https://www.google.com/"
 			}
 			,
 			{

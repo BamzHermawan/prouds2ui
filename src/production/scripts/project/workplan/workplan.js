@@ -223,8 +223,8 @@ new Vue({
 		},
 		deleteTask() {
 			if (
-				this.selectedTask.hasOwnProperty('deleteTask') == null ||
-				!this.selectedTask.deleteTask
+				!this.selectedTask.hasOwnProperty('deleteTask') ||
+				this.selectedTask.deleteTask === null
 			) {
 				this.$dialog.alert({
 					message: 'Sorry, but you cannot delete <b>' + this.selectedTask.pName + "</b>.",

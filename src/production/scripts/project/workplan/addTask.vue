@@ -277,8 +277,8 @@ export default {
 			required: true
 		},
 		showIntegration: {
-			type: String,
-			required: true
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {

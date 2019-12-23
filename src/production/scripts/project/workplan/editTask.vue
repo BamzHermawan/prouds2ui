@@ -276,8 +276,8 @@ export default {
 			required: true
 		},
 		showIntegration: {
-			type: String,
-			required: true
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -286,7 +286,7 @@ export default {
 			dataRole: ROLE,
 			taskName: this.task.pName,
 			workdays: this.task.workdays,
-			duration: 20,
+			duration: this.task.duration,
 			checkboxPredecessor: "true",
 			predecessor: null,
 			subtask: null,
@@ -423,6 +423,12 @@ export default {
 		this.predecessor = this.task.pDepend ? this.task.pDepend : null;
 		this.getParent;
 		this.getProcessGroup();
+
+		if (this.task.hasOwnProperty("duration")) {
+			this.duration = this.task.duration;
+		} else {
+			this.getDuration(this.start, this.finish, this.workdays);
+		}
 	}
 };
 </script>
