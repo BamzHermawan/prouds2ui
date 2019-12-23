@@ -75,7 +75,11 @@
 							</b-field>
 						</div>
 					</div>
-
+					<b-input
+						type="hidden"
+						name="progressCalculation"
+						v-model="progressCalculation"
+					></b-input>
 					<b-field label="Progress Calculation">
 						<div class="block">
 							<b-checkbox v-model="progressCalculation">
