@@ -5,7 +5,7 @@
 	"scripts": {
 		"bersih": "rm -rf dist && rm -rf src/production/pages/dist && rm -rf src/development/pages/dist",
 		"demo": "cd release && php -S localhost:5501",
-		"ngoding": "yarn run bersih && parcel src/development/pages/**/*.html -p 5500",
+		"ngoding": "yarn run bersih && parcel src/development/**/*.html -p 5500",
 		"ngoding:pro": "yarn run bersih && parcel src/production/pages/**/*.html -p 5500",
 		"ngoding:pick": "yarn run bersih && parcel -p 5500",
 		"mantap": "node bundler.js -o release/page -s release/src src/production/pages/**/*.html",
@@ -45,7 +45,7 @@
 		"axios": "^0.19.0",
 		"buefy": "0.7.10",
 		"highcharts": "^7.1.2",
-		"jsgantt-improved": "^2.2.11",
+		"jsgantt-improved": "^2.5.5",
 		"loader.js": "^4.7.0",
 		"moment": "^2.24.0",
 		"perfect-scrollbar": "^1.4.0",

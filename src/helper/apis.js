@@ -43,6 +43,10 @@ const parseURL = (key, bundle) => {
 		return bundle[val];
 	});
 }
+
+module.exports.parsedURL = parseURL;
+module.exports.rawURL = $api;
+
 //? ----------------------------------------------------------------------------
 //? ----------------------------------------------------------------------------
 
@@ -195,6 +199,16 @@ module.exports.getPIndexTable = project_id => {
 
 			return prep;
 		})
+}
+
+/**
+ * Get Performance Index Table Data
+ *
+ * @param {*} project_id: Project ID
+ * @returns Axios Promise Instance
+ */
+module.exports.projectTasks = project_id => {
+	return request.get(parseURL("getProjectTasks", { project_id }));
 }
 
 /**

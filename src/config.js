@@ -144,7 +144,25 @@ module.exports = {
 		 * - project_id
 		 * - task_id
 		 */
-		getPIndexFalling: 'performanceIndex.php?get=falling&project_id={project_id}&task_id={task_id}&week={week}'
+		getPIndexFalling: 'performanceIndex.php?get=falling&project_id={project_id}&task_id={task_id}&week={week}',
+
+		/**
+		 * [get/post] data tasks by projects
+		 * Send Data:
+		 * - project_id [GET]
+		 * - parent [POST]
+		 */
+		getProjectTasks: 'performanceIndex.php?get=tasks&project_id={project_id}&limit=50',
+
+		/**
+		 * get data tasks by projects
+		 * Send Data:
+		 * - project_id: string project id [GET]
+		 * - task_id: array of task id [POSt]
+		 * - week_start: int from 1 [POST]
+		 * - week_limit: int default 10
+		 */
+		getTasksProgress: 'performanceIndex.php?get=weekly&project_id={project_id}',
 	}
 
 }

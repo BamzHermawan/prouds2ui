@@ -1,0 +1,2353 @@
+{
+	"total_weekly_progress": [
+		{
+			"plan": 28.9,
+			"actual": 15.41
+		},
+		{
+			"plan": 75.28,
+			"actual": 72.87
+		},
+		{
+			"plan": 26.9,
+			"actual": 58.56
+		},
+		{
+			"plan": 81.85,
+			"actual": 89.51
+		},
+		{
+			"plan": 4.11,
+			"actual": 25.35
+		},
+		{
+			"plan": 38.5,
+			"actual": 98.49
+		},
+		{
+			"plan": 61.76,
+			"actual": 37.55
+		},
+		{
+			"plan": 60.81,
+			"actual": 89.14
+		},
+		{
+			"plan": 70.2,
+			"actual": 91.39
+		},
+		{
+			"plan": 52.12,
+			"actual": 15.34
+		}
+	],
+	"delta_progress": [
+		17.24,
+		89.02,
+		30.85,
+		71.62,
+		81.9,
+		9.74,
+		77.43,
+		46.75,
+		32.27,
+		7.63
+	],
+	"sigma_progress": [
+		{
+			"plan": 49.71,
+			"actual": 41.88
+		},
+		{
+			"plan": 6.68,
+			"actual": 68.69
+		},
+		{
+			"plan": 79.7,
+			"actual": 94.68
+		},
+		{
+			"plan": 91.69,
+			"actual": 42.6
+		},
+		{
+			"plan": 13.71,
+			"actual": 40.67
+		},
+		{
+			"plan": 68.94,
+			"actual": 70.99
+		},
+		{
+			"plan": 6.94,
+			"actual": 39.25
+		},
+		{
+			"plan": 2.93,
+			"actual": 40.66
+		},
+		{
+			"plan": 84.83,
+			"actual": 74.44
+		},
+		{
+			"plan": 69.76,
+			"actual": 77.05
+		}
+	],
+	"week_count": 10,
+	"week_start": 0,
+	"week_end": 10,
+	"task": [
+		{
+			"id": "1001-0",
+			"weekly_progress": [
+				{
+					"plan": 36.31,
+					"actual": 43.56
+				},
+				{
+					"plan": 82.67,
+					"actual": 1.09
+				},
+				{
+					"plan": 25.75,
+					"actual": 35.98
+				},
+				{
+					"plan": 91.87,
+					"actual": 66.6
+				},
+				{
+					"plan": 41.17,
+					"actual": 94.46
+				},
+				{
+					"plan": 5.59,
+					"actual": 28.87
+				},
+				{
+					"plan": 85.05,
+					"actual": 95.17
+				},
+				{
+					"plan": 78.69,
+					"actual": 78.44
+				},
+				{
+					"plan": 30.2,
+					"actual": 9.15
+				},
+				{
+					"plan": 83.72,
+					"actual": 64.83
+				}
+			]
+		},
+		{
+			"id": "1001-1",
+			"weekly_progress": [
+				{
+					"plan": 52.24,
+					"actual": 57.82
+				},
+				{
+					"plan": 80.87,
+					"actual": 24.68
+				},
+				{
+					"plan": 33.68,
+					"actual": 29.21
+				},
+				{
+					"plan": 6.59,
+					"actual": 6.92
+				},
+				{
+					"plan": 60.54,
+					"actual": 69.17
+				},
+				{
+					"plan": 79.43,
+					"actual": 87.42
+				},
+				{
+					"plan": 10.06,
+					"actual": 88.68
+				},
+				{
+					"plan": 2.44,
+					"actual": 27.18
+				},
+				{
+					"plan": 91.19,
+					"actual": 78.85
+				},
+				{
+					"plan": 10.15,
+					"actual": 57.07
+				}
+			]
+		},
+		{
+			"id": "1001-2",
+			"weekly_progress": [
+				{
+					"plan": 15.71,
+					"actual": 4.81
+				},
+				{
+					"plan": 43.94,
+					"actual": 97.4
+				},
+				{
+					"plan": 46.35,
+					"actual": 50.98
+				},
+				{
+					"plan": 69.36,
+					"actual": 12.66
+				},
+				{
+					"plan": 28.25,
+					"actual": 89.08
+				},
+				{
+					"plan": 51.23,
+					"actual": 50.79
+				},
+				{
+					"plan": 30.04,
+					"actual": 75.98
+				},
+				{
+					"plan": 45.22,
+					"actual": 73.6
+				},
+				{
+					"plan": 81.03,
+					"actual": 7.88
+				},
+				{
+					"plan": 12.11,
+					"actual": 37.42
+				}
+			]
+		},
+		{
+			"id": "1001-3",
+			"weekly_progress": [
+				{
+					"plan": 7.37,
+					"actual": 98
+				},
+				{
+					"plan": 77.34,
+					"actual": 90.37
+				},
+				{
+					"plan": 50.1,
+					"actual": 26.49
+				},
+				{
+					"plan": 31.98,
+					"actual": 1.28
+				},
+				{
+					"plan": 15.67,
+					"actual": 81.35
+				},
+				{
+					"plan": 27.53,
+					"actual": 29.62
+				},
+				{
+					"plan": 8.8,
+					"actual": 53.9
+				},
+				{
+					"plan": 35.6,
+					"actual": 95.85
+				},
+				{
+					"plan": 15.55,
+					"actual": 76.25
+				},
+				{
+					"plan": 33.29,
+					"actual": 31.36
+				}
+			]
+		},
+		{
+			"id": "1001-4",
+			"weekly_progress": [
+				{
+					"plan": 34.96,
+					"actual": 26.07
+				},
+				{
+					"plan": 25.99,
+					"actual": 60.73
+				},
+				{
+					"plan": 85.41,
+					"actual": 52.7
+				},
+				{
+					"plan": 3.02,
+					"actual": 46.57
+				},
+				{
+					"plan": 90.05,
+					"actual": 40.81
+				},
+				{
+					"plan": 89.56,
+					"actual": 53.51
+				},
+				{
+					"plan": 18.51,
+					"actual": 14.63
+				},
+				{
+					"plan": 70.47,
+					"actual": 20.95
+				},
+				{
+					"plan": 15.51,
+					"actual": 75.67
+				},
+				{
+					"plan": 76.67,
+					"actual": 29.03
+				}
+			]
+		},
+		{
+			"id": "1001-5",
+			"weekly_progress": [
+				{
+					"plan": 19.65,
+					"actual": 15.19
+				},
+				{
+					"plan": 19.66,
+					"actual": 72.48
+				},
+				{
+					"plan": 55.86,
+					"actual": 67.37
+				},
+				{
+					"plan": 78.55,
+					"actual": 49.25
+				},
+				{
+					"plan": 4.98,
+					"actual": 30.11
+				},
+				{
+					"plan": 13.89,
+					"actual": 50.88
+				},
+				{
+					"plan": 9.93,
+					"actual": 40.83
+				},
+				{
+					"plan": 36.13,
+					"actual": 32.96
+				},
+				{
+					"plan": 37.26,
+					"actual": 38.26
+				},
+				{
+					"plan": 27.5,
+					"actual": 6.49
+				}
+			]
+		},
+		{
+			"id": "1001-6",
+			"weekly_progress": [
+				{
+					"plan": 74.9,
+					"actual": 84.27
+				},
+				{
+					"plan": 95.57,
+					"actual": 21.07
+				},
+				{
+					"plan": 83.02,
+					"actual": 35.7
+				},
+				{
+					"plan": 48.8,
+					"actual": 39.67
+				},
+				{
+					"plan": 13.55,
+					"actual": 13.45
+				},
+				{
+					"plan": 98.67,
+					"actual": 25.68
+				},
+				{
+					"plan": 26.88,
+					"actual": 87.82
+				},
+				{
+					"plan": 59.34,
+					"actual": 85.43
+				},
+				{
+					"plan": 35.37,
+					"actual": 64.49
+				},
+				{
+					"plan": 68.01,
+					"actual": 96.43
+				}
+			]
+		},
+		{
+			"id": "1001-7",
+			"weekly_progress": [
+				{
+					"plan": 89.27,
+					"actual": 97.37
+				},
+				{
+					"plan": 65.79,
+					"actual": 14.33
+				},
+				{
+					"plan": 74.09,
+					"actual": 97.9
+				},
+				{
+					"plan": 61.04,
+					"actual": 42.89
+				},
+				{
+					"plan": 3.1,
+					"actual": 23.67
+				},
+				{
+					"plan": 40.32,
+					"actual": 48.71
+				},
+				{
+					"plan": 74.31,
+					"actual": 83.94
+				},
+				{
+					"plan": 1.03,
+					"actual": 75.17
+				},
+				{
+					"plan": 71.57,
+					"actual": 83.45
+				},
+				{
+					"plan": 58.33,
+					"actual": 78.81
+				}
+			]
+		},
+		{
+			"id": "1001-8",
+			"weekly_progress": [
+				{
+					"plan": 77.37,
+					"actual": 64.13
+				},
+				{
+					"plan": 88.4,
+					"actual": 53.34
+				},
+				{
+					"plan": 38.18,
+					"actual": 43.44
+				},
+				{
+					"plan": 44.18,
+					"actual": 40.77
+				},
+				{
+					"plan": 7.6,
+					"actual": 5.91
+				},
+				{
+					"plan": 74.11,
+					"actual": 55.35
+				},
+				{
+					"plan": 67.55,
+					"actual": 54.37
+				},
+				{
+					"plan": 42.83,
+					"actual": 65.65
+				},
+				{
+					"plan": 38.41,
+					"actual": 24.4
+				},
+				{
+					"plan": 72.53,
+					"actual": 27.08
+				}
+			]
+		},
+		{
+			"id": "1001-9",
+			"weekly_progress": [
+				{
+					"plan": 56.05,
+					"actual": 97.47
+				},
+				{
+					"plan": 64.18,
+					"actual": 92.13
+				},
+				{
+					"plan": 4.22,
+					"actual": 72.2
+				},
+				{
+					"plan": 13.67,
+					"actual": 49.46
+				},
+				{
+					"plan": 89.17,
+					"actual": 41.53
+				},
+				{
+					"plan": 71.82,
+					"actual": 57.84
+				},
+				{
+					"plan": 93.32,
+					"actual": 81.56
+				},
+				{
+					"plan": 83.15,
+					"actual": 3.84
+				},
+				{
+					"plan": 75.77,
+					"actual": 62.55
+				},
+				{
+					"plan": 96.18,
+					"actual": 4.83
+				}
+			]
+		},
+		{
+			"id": "1001-10",
+			"weekly_progress": [
+				{
+					"plan": 71.88,
+					"actual": 97.45
+				},
+				{
+					"plan": 56.72,
+					"actual": 23.95
+				},
+				{
+					"plan": 95.87,
+					"actual": 42.41
+				},
+				{
+					"plan": 78.9,
+					"actual": 48.89
+				},
+				{
+					"plan": 75.41,
+					"actual": 5.06
+				},
+				{
+					"plan": 95.35,
+					"actual": 77.23
+				},
+				{
+					"plan": 89.08,
+					"actual": 53.94
+				},
+				{
+					"plan": 63.26,
+					"actual": 23.73
+				},
+				{
+					"plan": 35.51,
+					"actual": 40.38
+				},
+				{
+					"plan": 97.35,
+					"actual": 4.22
+				}
+			]
+		},
+		{
+			"id": "1001-11",
+			"weekly_progress": [
+				{
+					"plan": 57.09,
+					"actual": 37.3
+				},
+				{
+					"plan": 40.08,
+					"actual": 4.17
+				},
+				{
+					"plan": 12.94,
+					"actual": 91.66
+				},
+				{
+					"plan": 69.36,
+					"actual": 35.42
+				},
+				{
+					"plan": 30.87,
+					"actual": 77.47
+				},
+				{
+					"plan": 27.65,
+					"actual": 71.96
+				},
+				{
+					"plan": 15.26,
+					"actual": 28.4
+				},
+				{
+					"plan": 36.41,
+					"actual": 35.81
+				},
+				{
+					"plan": 53.93,
+					"actual": 22.72
+				},
+				{
+					"plan": 5.12,
+					"actual": 31.2
+				}
+			]
+		},
+		{
+			"id": "1001-12",
+			"weekly_progress": [
+				{
+					"plan": 14.22,
+					"actual": 97.24
+				},
+				{
+					"plan": 59.84,
+					"actual": 78.84
+				},
+				{
+					"plan": 64.92,
+					"actual": 18.56
+				},
+				{
+					"plan": 22.05,
+					"actual": 48.03
+				},
+				{
+					"plan": 5.79,
+					"actual": 81.76
+				},
+				{
+					"plan": 1.29,
+					"actual": 6.2
+				},
+				{
+					"plan": 1.87,
+					"actual": 13.97
+				},
+				{
+					"plan": 71.95,
+					"actual": 31.59
+				},
+				{
+					"plan": 98.24,
+					"actual": 55.59
+				},
+				{
+					"plan": 27.83,
+					"actual": 90.47
+				}
+			]
+		},
+		{
+			"id": "1001-13",
+			"weekly_progress": [
+				{
+					"plan": 73,
+					"actual": 62.07
+				},
+				{
+					"plan": 50.97,
+					"actual": 70.93
+				},
+				{
+					"plan": 58.24,
+					"actual": 21.27
+				},
+				{
+					"plan": 44.84,
+					"actual": 30.61
+				},
+				{
+					"plan": 51.32,
+					"actual": 18.14
+				},
+				{
+					"plan": 67.46,
+					"actual": 57.3
+				},
+				{
+					"plan": 61.04,
+					"actual": 98.57
+				},
+				{
+					"plan": 58.45,
+					"actual": 20.73
+				},
+				{
+					"plan": 85.46,
+					"actual": 66.94
+				},
+				{
+					"plan": 40.75,
+					"actual": 22.17
+				}
+			]
+		},
+		{
+			"id": "1001-14",
+			"weekly_progress": [
+				{
+					"plan": 8.56,
+					"actual": 13.87
+				},
+				{
+					"plan": 18.49,
+					"actual": 16.82
+				},
+				{
+					"plan": 64.99,
+					"actual": 89.21
+				},
+				{
+					"plan": 22.3,
+					"actual": 44.56
+				},
+				{
+					"plan": 32.66,
+					"actual": 10.75
+				},
+				{
+					"plan": 83.66,
+					"actual": 90.17
+				},
+				{
+					"plan": 80.9,
+					"actual": 30.56
+				},
+				{
+					"plan": 26.25,
+					"actual": 86.15
+				},
+				{
+					"plan": 49.58,
+					"actual": 27.87
+				},
+				{
+					"plan": 1.79,
+					"actual": 50.91
+				}
+			]
+		},
+		{
+			"id": "1001-15",
+			"weekly_progress": [
+				{
+					"plan": 63.64,
+					"actual": 20.36
+				},
+				{
+					"plan": 2.49,
+					"actual": 79
+				},
+				{
+					"plan": 41.93,
+					"actual": 15.99
+				},
+				{
+					"plan": 95.28,
+					"actual": 95.26
+				},
+				{
+					"plan": 13.22,
+					"actual": 85.83
+				},
+				{
+					"plan": 27.81,
+					"actual": 13.99
+				},
+				{
+					"plan": 48.29,
+					"actual": 59.06
+				},
+				{
+					"plan": 95.38,
+					"actual": 96.13
+				},
+				{
+					"plan": 75.78,
+					"actual": 37.69
+				},
+				{
+					"plan": 7.56,
+					"actual": 80.08
+				}
+			]
+		},
+		{
+			"id": "1001-16",
+			"weekly_progress": [
+				{
+					"plan": 94.96,
+					"actual": 88.2
+				},
+				{
+					"plan": 23.86,
+					"actual": 20.03
+				},
+				{
+					"plan": 75.45,
+					"actual": 60.57
+				},
+				{
+					"plan": 7.05,
+					"actual": 31.85
+				},
+				{
+					"plan": 80.37,
+					"actual": 50.22
+				},
+				{
+					"plan": 52.58,
+					"actual": 99.74
+				},
+				{
+					"plan": 30.73,
+					"actual": 75.47
+				},
+				{
+					"plan": 54.32,
+					"actual": 80.14
+				},
+				{
+					"plan": 24.34,
+					"actual": 41.04
+				},
+				{
+					"plan": 64.02,
+					"actual": 13.32
+				}
+			]
+		},
+		{
+			"id": "1001-17",
+			"weekly_progress": [
+				{
+					"plan": 12.02,
+					"actual": 48.13
+				},
+				{
+					"plan": 48.4,
+					"actual": 1.25
+				},
+				{
+					"plan": 91.95,
+					"actual": 83.12
+				},
+				{
+					"plan": 23.89,
+					"actual": 59.01
+				},
+				{
+					"plan": 5.75,
+					"actual": 73.41
+				},
+				{
+					"plan": 7.2,
+					"actual": 49.98
+				},
+				{
+					"plan": 55.03,
+					"actual": 77.86
+				},
+				{
+					"plan": 20.55,
+					"actual": 79.92
+				},
+				{
+					"plan": 4.51,
+					"actual": 28.32
+				},
+				{
+					"plan": 85.65,
+					"actual": 96.32
+				}
+			]
+		},
+		{
+			"id": "1001-18",
+			"weekly_progress": [
+				{
+					"plan": 30.19,
+					"actual": 28.93
+				},
+				{
+					"plan": 82.13,
+					"actual": 17.59
+				},
+				{
+					"plan": 7.46,
+					"actual": 32.27
+				},
+				{
+					"plan": 33.7,
+					"actual": 29.72
+				},
+				{
+					"plan": 6.26,
+					"actual": 67.3
+				},
+				{
+					"plan": 66.53,
+					"actual": 58.21
+				},
+				{
+					"plan": 69.21,
+					"actual": 11.35
+				},
+				{
+					"plan": 19.06,
+					"actual": 1.65
+				},
+				{
+					"plan": 32.94,
+					"actual": 45.85
+				},
+				{
+					"plan": 87.56,
+					"actual": 81.42
+				}
+			]
+		},
+		{
+			"id": "1001-19",
+			"weekly_progress": [
+				{
+					"plan": 30.57,
+					"actual": 36.68
+				},
+				{
+					"plan": 90.04,
+					"actual": 98.72
+				},
+				{
+					"plan": 22.32,
+					"actual": 16.91
+				},
+				{
+					"plan": 77.11,
+					"actual": 67.05
+				},
+				{
+					"plan": 43.06,
+					"actual": 10.7
+				},
+				{
+					"plan": 41.13,
+					"actual": 37.58
+				},
+				{
+					"plan": 74.97,
+					"actual": 96.37
+				},
+				{
+					"plan": 57.42,
+					"actual": 3.93
+				},
+				{
+					"plan": 80.83,
+					"actual": 17.24
+				},
+				{
+					"plan": 65.36,
+					"actual": 37.24
+				}
+			]
+		},
+		{
+			"id": "1001-20",
+			"weekly_progress": [
+				{
+					"plan": 82.34,
+					"actual": 72.16
+				},
+				{
+					"plan": 7.16,
+					"actual": 7.41
+				},
+				{
+					"plan": 15.38,
+					"actual": 43.18
+				},
+				{
+					"plan": 34.02,
+					"actual": 61.52
+				},
+				{
+					"plan": 84.86,
+					"actual": 62.22
+				},
+				{
+					"plan": 85.3,
+					"actual": 17.02
+				},
+				{
+					"plan": 17.87,
+					"actual": 90.88
+				},
+				{
+					"plan": 84.22,
+					"actual": 2.51
+				},
+				{
+					"plan": 74.31,
+					"actual": 52.9
+				},
+				{
+					"plan": 28.95,
+					"actual": 59.03
+				}
+			]
+		},
+		{
+			"id": "1001-21",
+			"weekly_progress": [
+				{
+					"plan": 49.05,
+					"actual": 46.54
+				},
+				{
+					"plan": 85.54,
+					"actual": 52.14
+				},
+				{
+					"plan": 50.53,
+					"actual": 65.97
+				},
+				{
+					"plan": 42.56,
+					"actual": 71.39
+				},
+				{
+					"plan": 12.54,
+					"actual": 76.62
+				},
+				{
+					"plan": 55.13,
+					"actual": 71.07
+				},
+				{
+					"plan": 41.43,
+					"actual": 68.84
+				},
+				{
+					"plan": 23.51,
+					"actual": 54.92
+				},
+				{
+					"plan": 12.52,
+					"actual": 30.23
+				},
+				{
+					"plan": 71.07,
+					"actual": 43.64
+				}
+			]
+		},
+		{
+			"id": "1001-22",
+			"weekly_progress": [
+				{
+					"plan": 98.85,
+					"actual": 27.61
+				},
+				{
+					"plan": 27.74,
+					"actual": 58.26
+				},
+				{
+					"plan": 70.29,
+					"actual": 7.1
+				},
+				{
+					"plan": 15.13,
+					"actual": 42.3
+				},
+				{
+					"plan": 35.28,
+					"actual": 90.32
+				},
+				{
+					"plan": 12.39,
+					"actual": 20
+				},
+				{
+					"plan": 61.68,
+					"actual": 49.13
+				},
+				{
+					"plan": 36.27,
+					"actual": 51.32
+				},
+				{
+					"plan": 77.89,
+					"actual": 25.32
+				},
+				{
+					"plan": 48.22,
+					"actual": 79.92
+				}
+			]
+		},
+		{
+			"id": "1001-23",
+			"weekly_progress": [
+				{
+					"plan": 31.86,
+					"actual": 66.12
+				},
+				{
+					"plan": 16.69,
+					"actual": 64.46
+				},
+				{
+					"plan": 24.75,
+					"actual": 62.6
+				},
+				{
+					"plan": 51.41,
+					"actual": 30.45
+				},
+				{
+					"plan": 74.92,
+					"actual": 58.89
+				},
+				{
+					"plan": 50.63,
+					"actual": 65.8
+				},
+				{
+					"plan": 41.58,
+					"actual": 24.43
+				},
+				{
+					"plan": 10.72,
+					"actual": 93.65
+				},
+				{
+					"plan": 34.59,
+					"actual": 21.14
+				},
+				{
+					"plan": 21.82,
+					"actual": 61.28
+				}
+			]
+		},
+		{
+			"id": "1001-24",
+			"weekly_progress": [
+				{
+					"plan": 71.97,
+					"actual": 34.82
+				},
+				{
+					"plan": 24.97,
+					"actual": 4.33
+				},
+				{
+					"plan": 58.96,
+					"actual": 17.09
+				},
+				{
+					"plan": 62.23,
+					"actual": 16.07
+				},
+				{
+					"plan": 24.36,
+					"actual": 14.33
+				},
+				{
+					"plan": 53.61,
+					"actual": 36.68
+				},
+				{
+					"plan": 47.75,
+					"actual": 92.38
+				},
+				{
+					"plan": 95.67,
+					"actual": 90.6
+				},
+				{
+					"plan": 92.33,
+					"actual": 32.96
+				},
+				{
+					"plan": 42.32,
+					"actual": 95.22
+				}
+			]
+		},
+		{
+			"id": "1001-25",
+			"weekly_progress": [
+				{
+					"plan": 39.19,
+					"actual": 10.07
+				},
+				{
+					"plan": 26.21,
+					"actual": 42.13
+				},
+				{
+					"plan": 79.16,
+					"actual": 13.26
+				},
+				{
+					"plan": 56,
+					"actual": 88.77
+				},
+				{
+					"plan": 71.43,
+					"actual": 43.87
+				},
+				{
+					"plan": 83.4,
+					"actual": 77
+				},
+				{
+					"plan": 85.04,
+					"actual": 44.91
+				},
+				{
+					"plan": 39.78,
+					"actual": 25.18
+				},
+				{
+					"plan": 52.99,
+					"actual": 32.83
+				},
+				{
+					"plan": 70.03,
+					"actual": 42.14
+				}
+			]
+		},
+		{
+			"id": "1001-26",
+			"weekly_progress": [
+				{
+					"plan": 17.37,
+					"actual": 90.05
+				},
+				{
+					"plan": 7.45,
+					"actual": 89.71
+				},
+				{
+					"plan": 78.6,
+					"actual": 90.11
+				},
+				{
+					"plan": 63.4,
+					"actual": 38.97
+				},
+				{
+					"plan": 49.58,
+					"actual": 93.37
+				},
+				{
+					"plan": 13.93,
+					"actual": 80.04
+				},
+				{
+					"plan": 3.18,
+					"actual": 61.88
+				},
+				{
+					"plan": 11.4,
+					"actual": 21.61
+				},
+				{
+					"plan": 38.98,
+					"actual": 6.74
+				},
+				{
+					"plan": 99.39,
+					"actual": 47.11
+				}
+			]
+		},
+		{
+			"id": "1001-27",
+			"weekly_progress": [
+				{
+					"plan": 17.49,
+					"actual": 98.94
+				},
+				{
+					"plan": 91.84,
+					"actual": 73.69
+				},
+				{
+					"plan": 63.28,
+					"actual": 66.58
+				},
+				{
+					"plan": 61.6,
+					"actual": 49.66
+				},
+				{
+					"plan": 84.3,
+					"actual": 45.02
+				},
+				{
+					"plan": 32.83,
+					"actual": 61.96
+				},
+				{
+					"plan": 4.48,
+					"actual": 95.45
+				},
+				{
+					"plan": 97.45,
+					"actual": 7.74
+				},
+				{
+					"plan": 32.75,
+					"actual": 16.33
+				},
+				{
+					"plan": 2.6,
+					"actual": 54.98
+				}
+			]
+		},
+		{
+			"id": "1001-28",
+			"weekly_progress": [
+				{
+					"plan": 70.26,
+					"actual": 61.25
+				},
+				{
+					"plan": 92.6,
+					"actual": 1.41
+				},
+				{
+					"plan": 46.05,
+					"actual": 63.57
+				},
+				{
+					"plan": 72.06,
+					"actual": 33.45
+				},
+				{
+					"plan": 22.24,
+					"actual": 50.26
+				},
+				{
+					"plan": 23.93,
+					"actual": 26.07
+				},
+				{
+					"plan": 19.24,
+					"actual": 53.92
+				},
+				{
+					"plan": 55.37,
+					"actual": 34.15
+				},
+				{
+					"plan": 21.51,
+					"actual": 56.82
+				},
+				{
+					"plan": 59.15,
+					"actual": 52.43
+				}
+			]
+		},
+		{
+			"id": "1001-29",
+			"weekly_progress": [
+				{
+					"plan": 83.89,
+					"actual": 9.42
+				},
+				{
+					"plan": 67.33,
+					"actual": 66.18
+				},
+				{
+					"plan": 18.74,
+					"actual": 3.11
+				},
+				{
+					"plan": 76.6,
+					"actual": 93.55
+				},
+				{
+					"plan": 55.7,
+					"actual": 90.19
+				},
+				{
+					"plan": 66.42,
+					"actual": 75.42
+				},
+				{
+					"plan": 68.29,
+					"actual": 10.52
+				},
+				{
+					"plan": 31.49,
+					"actual": 67.13
+				},
+				{
+					"plan": 13.42,
+					"actual": 58.49
+				},
+				{
+					"plan": 44.47,
+					"actual": 42.43
+				}
+			]
+		},
+		{
+			"id": "1001-30",
+			"weekly_progress": [
+				{
+					"plan": 93.17,
+					"actual": 80.98
+				},
+				{
+					"plan": 19.19,
+					"actual": 34.49
+				},
+				{
+					"plan": 10.35,
+					"actual": 33.76
+				},
+				{
+					"plan": 84.82,
+					"actual": 66.34
+				},
+				{
+					"plan": 47.38,
+					"actual": 6.24
+				},
+				{
+					"plan": 53.54,
+					"actual": 31.62
+				},
+				{
+					"plan": 71.83,
+					"actual": 48.09
+				},
+				{
+					"plan": 43.8,
+					"actual": 86.08
+				},
+				{
+					"plan": 95.61,
+					"actual": 5.32
+				},
+				{
+					"plan": 74.12,
+					"actual": 51.02
+				}
+			]
+		},
+		{
+			"id": "1001-31",
+			"weekly_progress": [
+				{
+					"plan": 92.79,
+					"actual": 39.87
+				},
+				{
+					"plan": 77.3,
+					"actual": 27.89
+				},
+				{
+					"plan": 20.66,
+					"actual": 64.11
+				},
+				{
+					"plan": 89.31,
+					"actual": 26.05
+				},
+				{
+					"plan": 67.05,
+					"actual": 15.6
+				},
+				{
+					"plan": 3.3,
+					"actual": 5.02
+				},
+				{
+					"plan": 50.47,
+					"actual": 17.7
+				},
+				{
+					"plan": 7.44,
+					"actual": 90.65
+				},
+				{
+					"plan": 7.62,
+					"actual": 24.14
+				},
+				{
+					"plan": 80.18,
+					"actual": 35.59
+				}
+			]
+		},
+		{
+			"id": "1001-32",
+			"weekly_progress": [
+				{
+					"plan": 21.17,
+					"actual": 65.14
+				},
+				{
+					"plan": 67.31,
+					"actual": 97.71
+				},
+				{
+					"plan": 58.6,
+					"actual": 56.91
+				},
+				{
+					"plan": 15.45,
+					"actual": 16.04
+				},
+				{
+					"plan": 10.45,
+					"actual": 87.66
+				},
+				{
+					"plan": 64.1,
+					"actual": 14.92
+				},
+				{
+					"plan": 11.7,
+					"actual": 61.19
+				},
+				{
+					"plan": 55.24,
+					"actual": 11.54
+				},
+				{
+					"plan": 42.64,
+					"actual": 3.55
+				},
+				{
+					"plan": 64.37,
+					"actual": 68.49
+				}
+			]
+		},
+		{
+			"id": "1001-33",
+			"weekly_progress": [
+				{
+					"plan": 48.66,
+					"actual": 78.06
+				},
+				{
+					"plan": 89.97,
+					"actual": 4.55
+				},
+				{
+					"plan": 43.55,
+					"actual": 56.47
+				},
+				{
+					"plan": 50.99,
+					"actual": 89.52
+				},
+				{
+					"plan": 35.13,
+					"actual": 16.19
+				},
+				{
+					"plan": 79.12,
+					"actual": 48.97
+				},
+				{
+					"plan": 17.97,
+					"actual": 14.79
+				},
+				{
+					"plan": 85.41,
+					"actual": 17.06
+				},
+				{
+					"plan": 19.42,
+					"actual": 59.62
+				},
+				{
+					"plan": 60.87,
+					"actual": 36.68
+				}
+			]
+		},
+		{
+			"id": "1001-34",
+			"weekly_progress": [
+				{
+					"plan": 99.15,
+					"actual": 71.6
+				},
+				{
+					"plan": 51.49,
+					"actual": 8.39
+				},
+				{
+					"plan": 56.49,
+					"actual": 57.87
+				},
+				{
+					"plan": 79.13,
+					"actual": 24.8
+				},
+				{
+					"plan": 11.3,
+					"actual": 37.73
+				},
+				{
+					"plan": 70.19,
+					"actual": 80.2
+				},
+				{
+					"plan": 76.21,
+					"actual": 94
+				},
+				{
+					"plan": 44.59,
+					"actual": 6.22
+				},
+				{
+					"plan": 76.22,
+					"actual": 73.18
+				},
+				{
+					"plan": 57.65,
+					"actual": 63.17
+				}
+			]
+		},
+		{
+			"id": "1001-35",
+			"weekly_progress": [
+				{
+					"plan": 67.24,
+					"actual": 3.5
+				},
+				{
+					"plan": 6.79,
+					"actual": 31.03
+				},
+				{
+					"plan": 77.26,
+					"actual": 3.9
+				},
+				{
+					"plan": 31.86,
+					"actual": 36.42
+				},
+				{
+					"plan": 48.04,
+					"actual": 27.97
+				},
+				{
+					"plan": 68,
+					"actual": 88.93
+				},
+				{
+					"plan": 71.36,
+					"actual": 64.51
+				},
+				{
+					"plan": 52.16,
+					"actual": 17.17
+				},
+				{
+					"plan": 62.39,
+					"actual": 11.95
+				},
+				{
+					"plan": 76.52,
+					"actual": 46.94
+				}
+			]
+		},
+		{
+			"id": "1001-36",
+			"weekly_progress": [
+				{
+					"plan": 87.35,
+					"actual": 68.45
+				},
+				{
+					"plan": 15.67,
+					"actual": 16.32
+				},
+				{
+					"plan": 12.32,
+					"actual": 83.07
+				},
+				{
+					"plan": 41.41,
+					"actual": 65.69
+				},
+				{
+					"plan": 21.77,
+					"actual": 27.08
+				},
+				{
+					"plan": 53.07,
+					"actual": 94.47
+				},
+				{
+					"plan": 92.65,
+					"actual": 8.16
+				},
+				{
+					"plan": 12.2,
+					"actual": 32.29
+				},
+				{
+					"plan": 46.12,
+					"actual": 61.11
+				},
+				{
+					"plan": 77.72,
+					"actual": 80.01
+				}
+			]
+		},
+		{
+			"id": "1001-37",
+			"weekly_progress": [
+				{
+					"plan": 4.27,
+					"actual": 38.04
+				},
+				{
+					"plan": 67.27,
+					"actual": 56.7
+				},
+				{
+					"plan": 25.92,
+					"actual": 95.45
+				},
+				{
+					"plan": 19.69,
+					"actual": 81.62
+				},
+				{
+					"plan": 84.42,
+					"actual": 49.43
+				},
+				{
+					"plan": 78.97,
+					"actual": 77.76
+				},
+				{
+					"plan": 89.5,
+					"actual": 37.63
+				},
+				{
+					"plan": 85.23,
+					"actual": 16.45
+				},
+				{
+					"plan": 16.23,
+					"actual": 55.74
+				},
+				{
+					"plan": 38.12,
+					"actual": 15.08
+				}
+			]
+		},
+		{
+			"id": "1001-38",
+			"weekly_progress": [
+				{
+					"plan": 26.94,
+					"actual": 79.15
+				},
+				{
+					"plan": 27.04,
+					"actual": 51.53
+				},
+				{
+					"plan": 42.24,
+					"actual": 69.38
+				},
+				{
+					"plan": 93.95,
+					"actual": 66.9
+				},
+				{
+					"plan": 61.54,
+					"actual": 59.81
+				},
+				{
+					"plan": 95.32,
+					"actual": 78.31
+				},
+				{
+					"plan": 23.19,
+					"actual": 45.72
+				},
+				{
+					"plan": 11.6,
+					"actual": 63.24
+				},
+				{
+					"plan": 52.33,
+					"actual": 6.75
+				},
+				{
+					"plan": 27.74,
+					"actual": 80.26
+				}
+			]
+		},
+		{
+			"id": "1001-39",
+			"weekly_progress": [
+				{
+					"plan": 27.19,
+					"actual": 65.9
+				},
+				{
+					"plan": 6.36,
+					"actual": 50.68
+				},
+				{
+					"plan": 74.44,
+					"actual": 59.46
+				},
+				{
+					"plan": 1.87,
+					"actual": 81.74
+				},
+				{
+					"plan": 72.84,
+					"actual": 73.04
+				},
+				{
+					"plan": 63.47,
+					"actual": 33.85
+				},
+				{
+					"plan": 28.99,
+					"actual": 41.59
+				},
+				{
+					"plan": 5.29,
+					"actual": 63.4
+				},
+				{
+					"plan": 43.52,
+					"actual": 26.2
+				},
+				{
+					"plan": 87.94,
+					"actual": 60.58
+				}
+			]
+		},
+		{
+			"id": "1001-40",
+			"weekly_progress": [
+				{
+					"plan": 36.76,
+					"actual": 86.44
+				},
+				{
+					"plan": 92.13,
+					"actual": 45.99
+				},
+				{
+					"plan": 11.34,
+					"actual": 58.29
+				},
+				{
+					"plan": 21.84,
+					"actual": 21.91
+				},
+				{
+					"plan": 21.78,
+					"actual": 2.08
+				},
+				{
+					"plan": 91.97,
+					"actual": 51.2
+				},
+				{
+					"plan": 57.34,
+					"actual": 13.7
+				},
+				{
+					"plan": 3.2,
+					"actual": 98.05
+				},
+				{
+					"plan": 11.58,
+					"actual": 20.54
+				},
+				{
+					"plan": 6.31,
+					"actual": 8.79
+				}
+			]
+		},
+		{
+			"id": "1001-41",
+			"weekly_progress": [
+				{
+					"plan": 9.46,
+					"actual": 79.92
+				},
+				{
+					"plan": 32.71,
+					"actual": 48.14
+				},
+				{
+					"plan": 99.97,
+					"actual": 16.21
+				},
+				{
+					"plan": 27.37,
+					"actual": 37.79
+				},
+				{
+					"plan": 85.39,
+					"actual": 12.47
+				},
+				{
+					"plan": 3.6,
+					"actual": 44.25
+				},
+				{
+					"plan": 19.24,
+					"actual": 36.44
+				},
+				{
+					"plan": 8.07,
+					"actual": 62.21
+				},
+				{
+					"plan": 8.83,
+					"actual": 31.14
+				},
+				{
+					"plan": 74.7,
+					"actual": 22.93
+				}
+			]
+		},
+		{
+			"id": "1001-42",
+			"weekly_progress": [
+				{
+					"plan": 26.21,
+					"actual": 63.34
+				},
+				{
+					"plan": 78.87,
+					"actual": 65.51
+				},
+				{
+					"plan": 97.89,
+					"actual": 56.3
+				},
+				{
+					"plan": 37.13,
+					"actual": 80.62
+				},
+				{
+					"plan": 73.39,
+					"actual": 65.14
+				},
+				{
+					"plan": 72.56,
+					"actual": 45.46
+				},
+				{
+					"plan": 7.74,
+					"actual": 5.67
+				},
+				{
+					"plan": 13.08,
+					"actual": 63.06
+				},
+				{
+					"plan": 21.45,
+					"actual": 76.16
+				},
+				{
+					"plan": 1.26,
+					"actual": 72.89
+				}
+			]
+		},
+		{
+			"id": "1001-43",
+			"weekly_progress": [
+				{
+					"plan": 75.71,
+					"actual": 19.39
+				},
+				{
+					"plan": 8.72,
+					"actual": 86.39
+				},
+				{
+					"plan": 64.12,
+					"actual": 27.93
+				},
+				{
+					"plan": 24.98,
+					"actual": 10.32
+				},
+				{
+					"plan": 69.31,
+					"actual": 62.89
+				},
+				{
+					"plan": 65.89,
+					"actual": 96.73
+				},
+				{
+					"plan": 7.53,
+					"actual": 81.82
+				},
+				{
+					"plan": 43.73,
+					"actual": 94.77
+				},
+				{
+					"plan": 77.01,
+					"actual": 18.32
+				},
+				{
+					"plan": 7.91,
+					"actual": 55.91
+				}
+			]
+		},
+		{
+			"id": "1001-44",
+			"weekly_progress": [
+				{
+					"plan": 65.02,
+					"actual": 18.74
+				},
+				{
+					"plan": 32.03,
+					"actual": 19.49
+				},
+				{
+					"plan": 23.45,
+					"actual": 30.31
+				},
+				{
+					"plan": 90.93,
+					"actual": 28.74
+				},
+				{
+					"plan": 6.3,
+					"actual": 87.89
+				},
+				{
+					"plan": 14.15,
+					"actual": 91.54
+				},
+				{
+					"plan": 34.03,
+					"actual": 8.39
+				},
+				{
+					"plan": 19.59,
+					"actual": 41.77
+				},
+				{
+					"plan": 69.26,
+					"actual": 31.67
+				},
+				{
+					"plan": 90.18,
+					"actual": 66.81
+				}
+			]
+		},
+		{
+			"id": "1001-45",
+			"weekly_progress": [
+				{
+					"plan": 54.24,
+					"actual": 63.99
+				},
+				{
+					"plan": 21.12,
+					"actual": 13.86
+				},
+				{
+					"plan": 2.09,
+					"actual": 77.85
+				},
+				{
+					"plan": 61.67,
+					"actual": 32.19
+				},
+				{
+					"plan": 81.28,
+					"actual": 2.06
+				},
+				{
+					"plan": 39.94,
+					"actual": 91.78
+				},
+				{
+					"plan": 98.44,
+					"actual": 58.25
+				},
+				{
+					"plan": 97.1,
+					"actual": 3.1
+				},
+				{
+					"plan": 46.54,
+					"actual": 11.73
+				},
+				{
+					"plan": 16.97,
+					"actual": 55.87
+				}
+			]
+		},
+		{
+			"id": "1001-46",
+			"weekly_progress": [
+				{
+					"plan": 50.7,
+					"actual": 83.22
+				},
+				{
+					"plan": 98.42,
+					"actual": 6.52
+				},
+				{
+					"plan": 23.54,
+					"actual": 16.3
+				},
+				{
+					"plan": 77.65,
+					"actual": 54.05
+				},
+				{
+					"plan": 92.49,
+					"actual": 72.4
+				},
+				{
+					"plan": 38.58,
+					"actual": 87.41
+				},
+				{
+					"plan": 55.42,
+					"actual": 80.14
+				},
+				{
+					"plan": 59.07,
+					"actual": 22.41
+				},
+				{
+					"plan": 100,
+					"actual": 89.93
+				},
+				{
+					"plan": 89.2,
+					"actual": 3
+				}
+			]
+		},
+		{
+			"id": "1001-47",
+			"weekly_progress": [
+				{
+					"plan": 24.18,
+					"actual": 97.15
+				},
+				{
+					"plan": 66.35,
+					"actual": 40.1
+				},
+				{
+					"plan": 53.38,
+					"actual": 3.31
+				},
+				{
+					"plan": 70.31,
+					"actual": 22.33
+				},
+				{
+					"plan": 14.7,
+					"actual": 22.91
+				},
+				{
+					"plan": 38.56,
+					"actual": 48.1
+				},
+				{
+					"plan": 74.07,
+					"actual": 13.78
+				},
+				{
+					"plan": 28.85,
+					"actual": 80.4
+				},
+				{
+					"plan": 37.43,
+					"actual": 99.15
+				},
+				{
+					"plan": 79.46,
+					"actual": 4.05
+				}
+			]
+		},
+		{
+			"id": "1001-48",
+			"weekly_progress": [
+				{
+					"plan": 42.83,
+					"actual": 55.18
+				},
+				{
+					"plan": 69.7,
+					"actual": 73.95
+				},
+				{
+					"plan": 57.33,
+					"actual": 44.68
+				},
+				{
+					"plan": 61.15,
+					"actual": 68.01
+				},
+				{
+					"plan": 71.16,
+					"actual": 2.48
+				},
+				{
+					"plan": 78.99,
+					"actual": 77.49
+				},
+				{
+					"plan": 99.07,
+					"actual": 60.14
+				},
+				{
+					"plan": 66.92,
+					"actual": 34.15
+				},
+				{
+					"plan": 64.67,
+					"actual": 40.73
+				},
+				{
+					"plan": 27.07,
+					"actual": 24.17
+				}
+			]
+		},
+		{
+			"id": "1001-49",
+			"weekly_progress": [
+				{
+					"plan": 39.12,
+					"actual": 76.05
+				},
+				{
+					"plan": 55.41,
+					"actual": 4.05
+				},
+				{
+					"plan": 90.82,
+					"actual": 20.56
+				},
+				{
+					"plan": 23.38,
+					"actual": 45.59
+				},
+				{
+					"plan": 28.15,
+					"actual": 81.94
+				},
+				{
+					"plan": 27.57,
+					"actual": 54.55
+				},
+				{
+					"plan": 68.19,
+					"actual": 70.66
+				},
+				{
+					"plan": 42.98,
+					"actual": 92.46
+				},
+				{
+					"plan": 64.2,
+					"actual": 58.97
+				},
+				{
+					"plan": 82.96,
+					"actual": 4.84
+				}
+			]
+		}
+	]
+}
