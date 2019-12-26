@@ -287,7 +287,7 @@ export default {
 			dataRole: ROLE,
 			taskName: this.task.pName,
 			workdays: this.task.workdays,
-			duration: 20,
+			duration: this.task.duration,
 			checkboxPredecessor: "true",
 			predecessor: null,
 			subtask: null,

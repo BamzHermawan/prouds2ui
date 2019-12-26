@@ -157,7 +157,7 @@
 										{{ duration }}
 									</p>
 									<p class="has-text-dark" v-else>
-										-
+										0
 									</p>
 								</b-message>
 							</div>
@@ -203,7 +203,7 @@ export default {
 			start: undefined,
 			finish: undefined,
 			workdays: null,
-			duration: "",
+			duration: this.task.duration,
 			checkboxPredecessor: "true",
 			predecessor: null,
 			processGroupName: "",

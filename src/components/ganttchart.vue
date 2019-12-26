@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import * as JSGantt from "jsgantt-improved";
 export default {
 	props: {
 		actionEvent: {
