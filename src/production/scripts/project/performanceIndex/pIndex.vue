@@ -1,6 +1,9 @@
 <template>
-	<div v-show="!loader" class="loader-container-purrfect">
-		<div class="pindex-table-container add-max-height">
+	<div class="loader-container-purrfect" style="min-height: 350px;">
+		<div
+			v-show="!tableLoading"
+			class="pindex-table-container add-max-height"
+		>
 			<div class="pindex-table-left">
 				<table class="table is-narrow is-bordered is-fullwidth">
 					<thead>
@@ -23,21 +26,21 @@
 					<tbody>
 						<tr
 							@mouseover="hoverRow"
-							@mouseout="removeRow"
-							:data-row="idx"
-							v-for="(row, idx) in task"
-							:key="'hxa-' + idx"
+							@mouseout="removeHoverRow"
+							:data-row="row.id"
+							v-for="(row, idx) in tasks"
+							:key="'row-' + idx"
 							:class="isTaskRoot(row)"
-							:data-parent="whoMyParent(row, idx)"
+							:data-parent="row.parent"
 						>
 							<td
 								@click="emitRowClick(row)"
 								:class="levelCheck(row, idx)"
 							>
 								<span
-									v-if="isTaskParent(row, idx)"
-									@click.stop="toggleParent(idx)"
+									v-if="row.hasChild"
 									class="mdi mdi-toggle-folder"
+									@click.stop="toggleChild(row.id)"
 								></span>
 								<span
 									v-else
@@ -51,9 +54,15 @@
 							<td class="has-text-right">{{ row.start }}</td>
 							<td class="has-text-right">{{ row.end }}</td>
 							<td
-								@click="isDelay(row).open()"
+								@click="
+									isDelay(row.weight, row.progress).open(idx)
+								"
 								:class="
-									'has-text-right' + isDelay(row).bg.danger()
+									'has-text-right' +
+										isDelay(
+											row.weight,
+											row.progress
+										).bg.danger()
 								"
 							>
 								{{ row.progress.toFixed(2) }}%
@@ -77,12 +86,12 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="pindex-table-right">
+			<div class="pindex-table-right" @scroll="listenScroll">
 				<table class="table is-narrow is-bordered is-fullwidth">
 					<thead>
 						<tr>
 							<th
-								v-for="n in week_count"
+								v-for="n in weekCount"
 								:key="'header-week-' + n"
 								class="has-border-right-bold"
 								colspan="2"
@@ -90,9 +99,19 @@
 							>
 								Week #{{ n }}
 							</th>
+							<td
+								id="rocketLoadProgress"
+								v-if="fetchingProgress"
+								style="border-style:none;"
+								class="has-background-light"
+							>
+								<span class="animated flash infinite slower"
+									>🚀</span
+								>
+							</td>
 						</tr>
 						<tr>
-							<template v-for="n in week_count">
+							<template v-for="n in weekCount">
 								<th align :key="'hyy-' + n">Plan</th>
 								<th
 									align
@@ -102,37 +121,64 @@
 									Actual
 								</th>
 							</template>
+							<td
+								v-if="fetchingProgress"
+								style="border-style:none;"
+								class="has-background-light"
+							>
+								<span class="animated flash infinite slower"
+									>🚀</span
+								>
+							</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr
 							@mouseover="hoverRow"
-							@mouseout="removeRow"
-							:data-row="idx"
-							v-for="(row, idx) in task"
-							:key="'ax-' + idx"
-							:class="isTaskRoot(row)"
+							@mouseout="removeHoverRow"
+							:data-row="task.id"
+							v-for="(task, idx) in progress.tasks"
+							:class="isTaskRoot(tasks[idx])"
+							:key="'week-' + idx"
 						>
-							<template
-								v-for="(progress, n) in row.weekly_progress"
-							>
-								<td align="right" :key="'dyy-' + n">
-									<b class="has-text-link">{{
-										progress.plan | stripWhenEmpty
-									}}</b>
+							<template v-for="(weekly, n) in task.weekly">
+								<td align="right" :key="'week-task-plan-' + n">
+									<b class="has-text-link">
+										{{ weekly.plan | stripWhenEmpty }}
+									</b>
 								</td>
 								<td
 									align="right"
-									@click="isDelay(row).open(false, n)"
 									class="has-border-right-bold"
-									:class="isDelay(row).bg.warning(n)"
-									:key="'hyyy-' + n"
+									:class="
+										isDelay(
+											weekly.plan,
+											weekly.actual
+										).bg.warning()
+									"
+									@click="
+										isDelay(
+											weekly.plan,
+											weekly.actual
+										).open(idx, n, false)
+									"
+									:key="'week-task-actual-' + n"
 								>
-									<b class="has-text-success">{{
-										progress.actual | stripWhenEmpty
-									}}</b>
+									<b class="has-text-success">
+										{{ weekly.actual | stripWhenEmpty }}
+									</b>
 								</td>
 							</template>
+
+							<td
+								v-if="fetchingProgress"
+								style="border-style:none;"
+								class="has-background-light"
+							>
+								<span class="animated flash infinite slower"
+									>🚀</span
+								>
+							</td>
 						</tr>
 
 						<tr class="has-background-light">
@@ -152,6 +198,16 @@
 									}}</b>
 								</td>
 							</template>
+
+							<td
+								v-if="fetchingProgress"
+								style="border-style:none;"
+								class="has-background-light"
+							>
+								<span class="animated flash infinite slower"
+									>🚀</span
+								>
+							</td>
 						</tr>
 
 						<tr class="has-background-light">
@@ -171,6 +227,16 @@
 									}}</b>
 								</td>
 							</template>
+
+							<td
+								v-if="fetchingProgress"
+								style="border-style:none;"
+								class="has-background-light"
+							>
+								<span class="animated flash infinite slower"
+									>🚀</span
+								>
+							</td>
 						</tr>
 
 						<tr class="has-background-light">
@@ -185,17 +251,30 @@
 									delta | stripWhenEmpty
 								}}</b>
 							</td>
+
+							<td
+								v-if="fetchingProgress"
+								style="border-style:none;"
+								class="has-background-light"
+							>
+								<span class="animated flash infinite slower"
+									>🚀</span
+								>
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<b-loading :is-full-page="false" :active.sync="loader"></b-loading>
+		<b-loading
+			:is-full-page="false"
+			:active.sync="tableLoading"
+		></b-loading>
 	</div>
 </template>
 
 <script>
-import { getPIndexTable } from "helper-apis";
+import Tasks from "./taskController";
 import { isEmpty } from "helper-tools";
 
 export default {
@@ -204,58 +283,106 @@ export default {
 		projectId: {
 			type: String,
 			required: true
+		},
+		weekLimit: {
+			type: Number,
+			default: 10
+		},
+		gapTreshold: {
+			type: Number,
+			default: 0
 		}
 	},
 	data() {
 		return {
-			loader: true,
-			week_count: 0,
+			weekCount: 1,
 			progress: {
 				total: [],
 				sigma: [],
-				delta: []
+				delta: [],
+				tasks: []
 			},
-			task: [],
-			childIndex: []
+			root: undefined,
+			tasks: [],
+			descendant: [],
+			fetchingProgress: false,
+			tableLoading: true
 		};
 	},
 	watch: {
-		// task(change) {
-		// 	console.log(change);
-		// },
 		projectId(change) {
 			if (!isEmpty(change)) this.fetchData(change);
 		}
 	},
 	methods: {
+		// listen to table left horizontal scroll
+		listenScroll(e) {
+			let target = e.target;
+			let maxScroll = target.scrollWidth - target.clientWidth;
+
+			if (target.scrollLeft > maxScroll - 5 && !this.fetchingProgress) {
+				if (this.progress.week_total <= this.progress.week_end) {
+					this.fetchingProgress = false;
+					return false;
+				}
+
+				this.fetchingProgress = true;
+				target.parentNode.scrollLeft = target.offsetLeft;
+				setTimeout(() => this.fetchWeekly(this.progress), 500);
+			}
+		},
+
+		// fetch weekly progress to backend
+		fetchWeekly(toMerge = null) {
+			let self = this;
+			this.root.weekly(
+				this.weekCount,
+				this.weekLimit,
+				(response, err) => {
+					if (isEmpty(response)) {
+						// ! error notification
+						console.log(err);
+					} else {
+						self.weekCount = response.week_count;
+						self.progress = response;
+						self.fetchingProgress = false;
+						self.tableLoading = false;
+					}
+				},
+				toMerge
+			);
+		},
+
+		// fetch data tasks to backend
 		fetchData(projectId) {
 			let self = this;
-			getPIndexTable(projectId)
-				.then(fetched => {
-					self.week_count = fetched.week_count;
-					self.progress.total = fetched.total_weekly_progress;
-					self.progress.sigma = fetched.sigma_progress;
-					self.progress.delta = fetched.delta_progress;
-					self.task = fetched.task;
-					self.loader = false;
-				})
-				.catch(err => console.log(err));
+			if (!isEmpty(projectId)) {
+				this.root = new Tasks(projectId);
+				this.root.fetch((tasks, err) => {
+					if (!isEmpty(err)) {
+						// ! error notification
+						console.log(err);
+					} else {
+						self.tasks = tasks.parseArray;
+						self.descendant = tasks.descendant;
+						self.fetchWeekly();
+
+						self.$emit("loaded", this);
+					}
+				});
+			}
 		},
+
+		// emit task name row clicked so parent could do something
 		emitRowClick(row) {
 			this.$emit("rowclicked", row);
 		},
-		isDelay(task) {
-			let roofGap = task.weight - task.gap_treshold;
-			const checkStatus = function(useGap = true, progressIndex = null) {
-				let plan = task.weight;
-				let actual = task.progress;
-				if (progressIndex !== null) {
-					plan = task.weekly_progress[progressIndex].plan;
-					actual = task.weekly_progress[progressIndex].actual;
-					roofGap = plan - task.gap_treshold;
-				}
 
-				if (actual === null) {
+		// method to determine wether task is delayed or not
+		isDelay(plan, actual) {
+			let roofGap = plan - this.gapTreshold;
+			const checkStatus = function(useGap = true) {
+				if (isEmpty(actual)) {
 					return false;
 				}
 
@@ -269,28 +396,35 @@ export default {
 			return {
 				status: checkStatus,
 				bg: {
-					danger: (index = null) => {
-						if (checkStatus(true, index)) {
+					danger: () => {
+						if (checkStatus()) {
 							return " is-fall-behind ";
 						}
 
 						return "";
 					},
-					warning: index => {
-						if (checkStatus(false, index)) {
+					warning: () => {
+						if (checkStatus(false)) {
 							return " is-fall-behind-warning ";
 						}
 
 						return "";
 					}
 				},
-				open: (useGap = true, index = null) => {
-					if (checkStatus(useGap, index)) {
-						this.$emit("redclicked", { task, useGap, index });
+				open: (index, week = null, useGap = true) => {
+					if (checkStatus(useGap)) {
+						console.log(week);
+						this.$emit("redclicked", {
+							task: this.tasks[index],
+							useGap: useGap,
+							week
+						});
 					}
 				}
 			};
 		},
+
+		// give hover highlight
 		hoverRow(e) {
 			let row = e.target.getAttribute("data-row");
 			if (isEmpty(row)) {
@@ -304,12 +438,16 @@ export default {
 				node.classList.add("is-hover");
 			});
 		},
-		removeRow() {
+
+		// remove hover highlight
+		removeHoverRow() {
 			let isHover = document.querySelectorAll("tr.is-hover");
 			isHover.forEach(node => {
 				node.classList.remove("is-hover");
 			});
 		},
+
+		// determine is task a root then give highlight class
 		isTaskRoot(task) {
 			if (task.level == 0) {
 				return " has-background-light ";
@@ -317,74 +455,21 @@ export default {
 
 			return "";
 		},
+
+		// check which padding level a task row needed
 		levelCheck(row, index) {
-			let kelas = "is-task-name has-text-info is-level-" + row.level;
-
-			//! Uncomment jika children tidak menggunakan icon
-			// if (this.isTaskParent(row, index)) kelas += " has-children";
-			return kelas;
+			return "is-task-name has-text-info is-level-" + row.level;
 		},
-		whoMyParent(row, index) {
-			let current = row.level;
 
-			if (current <= 0 || index <= 0) {
-				this.childIndex[index] = [];
-				return "root";
-			}
+		// toggle display descendant
+		toggleChild(taskId) {
+			let self = document.querySelector("[data-row='" + taskId + "']");
+			let isHidden = self.classList.contains("is-folded");
+			let task = this.descendant.find(task => task.id === taskId);
 
-			let parent = index;
-			let siblings = [];
-			for (let i = index; i >= 0; i--) {
-				const before = this.task[i].level;
-				if (current > before) {
-					//* Check and update siblings in this.childIndex
-					let exist = this.childIndex[i];
-					if (isEmpty(exist)) {
-						this.childIndex[i] = siblings;
-					} else {
-						siblings.forEach(id => {
-							if (!exist.includes(id)) {
-								exist.push(id);
-							}
-						});
-
-						this.childIndex[i] = exist;
-					}
-
-					//* grandparent need to know their grandkids
-					for (let j = 0; j < this.childIndex.length; j++) {
-						const parent = this.childIndex[j];
-						// if instance have parents;
-						if (parent instanceof Array) {
-							// check where about of the parent for current entity
-							if (parent.includes(i)) {
-								this.childIndex[i].forEach(grandkids => {
-									if (!parent.includes(grandkids)) {
-										this.childIndex[j].push(grandkids);
-									}
-								});
-							}
-						}
-					}
-
-					return i;
-				}
-
-				if (current == before) {
-					siblings.push(i);
-				}
-			}
-
-			return 0;
-		},
-		toggleParent(parent) {
-			let self = document.querySelector("[data-row='" + parent + "']");
-			let hidden = self.classList.contains("is-folded");
-			let childs = this.childIndex[parent];
-
-			for (let i = 0; i < childs.length; i++) {
-				const child = childs[i];
-				if (hidden) {
+			for (let i = 0; i < task.descendant.length; i++) {
+				const child = task.descendant[i];
+				if (isHidden) {
 					document
 						.querySelectorAll("[data-row='" + child + "']")
 						.forEach(node => {
@@ -400,19 +485,6 @@ export default {
 			}
 
 			self.classList.toggle("is-folded");
-		},
-		isTaskParent(row, index) {
-			let current = row.level;
-			let after = undefined;
-
-			if (index < this.task.length - 1) {
-				after = this.task[index + 1].level;
-
-				// jika level current lebih kecil dari setelahnnya, maka punya anak
-				return current < after;
-			}
-
-			return false;
 		}
 	},
 	filters: {

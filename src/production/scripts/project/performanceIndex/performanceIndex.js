@@ -1,16 +1,18 @@
 import Vue from 'vue';
 import 'helper-filter';
 import Buefy from 'buefy';
+import Loader from 'helper-loader';
 import { hChart } from "components";
 import pindexTable from './pIndex.vue';
 import { animate, checkConnection, isEmpty } from "helper-tools";
-import { getPIndexChart, getPIndexFalling } from 'helper-apis';
+import Fetch from 'helper-apis';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: { hChart, pindexTable },
 	data: {
+		tableisLoading: true,
 		chartIsOpen: false,
 		toggleIsLoading: false,
 		project_id: "",
@@ -92,7 +94,7 @@ new Vue({
 				progress: "",
 				level: ""
 			}
-		}
+		},
 	},
 	methods: {
 		fetchChart(task_id = null){
@@ -106,7 +108,7 @@ new Vue({
 			}
 
 			let self = this;
-			return getPIndexChart(this.project_id, task_id)
+			return Fetch.getPIndexChart(this.project_id, task_id)
 			.catch(err => {
 				console.log(err);
 				notified(self.$notification).error(
@@ -174,7 +176,7 @@ new Vue({
 				return false;
 			}
 
-			getPIndexFalling(project, task, week)
+			Fetch.getPIndexFalling(project, task, week)
 				.catch(err => {
 					console.log(err);
 					notified(self.$notification).error(
@@ -190,7 +192,7 @@ new Vue({
 				})
 		},
 		openFallBehind(target) {
-			this.fetchFalling(this.project_id, target.task.id, target.index)
+			this.fetchFalling(this.project_id, target.task.id, target.week)
 			this.modal.task = target.task;
 			this.modal.active = true;
 		},
@@ -203,6 +205,6 @@ new Vue({
 	},
 	mounted() {
 		this.project_id = this.$refs.project_id.innerHTML;
-		global.$loader.hide();
+		Loader.hide();
 	}
 });

@@ -1,9 +1,6 @@
 <template>
-	<div class="loader-container-purrfect" style="min-height: 350px;">
-		<div
-			v-show="!tableLoading"
-			class="pindex-table-container add-max-height"
-		>
+	<div class="loader-container-purrfect">
+		<div class="pindex-table-container add-max-height">
 			<div class="pindex-table-left">
 				<table class="table is-narrow is-bordered is-fullwidth">
 					<thead>
@@ -30,7 +27,7 @@
 							:data-row="row.id"
 							v-for="(row, idx) in tasks"
 							:key="'row-' + idx"
-							:class="isTaskRoot(row)"
+							:class="isTaskRoot(row) + hasDefaultFolded(row)"
 							:data-parent="row.parent"
 						>
 							<td
@@ -266,10 +263,6 @@
 				</table>
 			</div>
 		</div>
-		<b-loading
-			:is-full-page="false"
-			:active.sync="tableLoading"
-		></b-loading>
 	</div>
 </template>
 
@@ -305,8 +298,7 @@ export default {
 			root: undefined,
 			tasks: [],
 			descendant: [],
-			fetchingProgress: false,
-			tableLoading: true
+			fetchingProgress: false
 		};
 	},
 	watch: {
@@ -346,7 +338,6 @@ export default {
 						self.weekCount = response.week_count;
 						self.progress = response;
 						self.fetchingProgress = false;
-						self.tableLoading = false;
 					}
 				},
 				toMerge
@@ -373,6 +364,40 @@ export default {
 			}
 		},
 
+		fetchDescendant(parent) {
+			parent = this.root.tasks.find(task => task.id === parent);
+
+			let self = this;
+			this.root.fetchChild(parent.id, (tasks, err) => {
+				if (!isEmpty(err)) {
+					// ! error notification
+					console.log(err);
+				} else {
+					// let arrayed = child.parseArray;
+					// let descendant = child.descendant;
+					// let index = self.tasks.findIndex(
+					// 	task => task.id === parent.id
+					// );
+
+					// if (index) {
+					// 	self.tasks.splice(index + 1, 0, ...arrayed);
+
+					// 	index = self.descendant.findIndex(
+					// 		link => link.id === parent.id
+					// 	);
+					// 	let parentChild = descendant.shift();
+					// 	self.descendant[index] = parentChild;
+					// 	self.descendant.push(...descendant);
+					// }
+
+					console.log(tasks);
+					tasks.refresh();
+					self.tasks = tasks.parseArray;
+					self.descendant = tasks.descendant;
+				}
+			});
+		},
+
 		// emit task name row clicked so parent could do something
 		emitRowClick(row) {
 			this.$emit("rowclicked", row);
@@ -382,10 +407,6 @@ export default {
 		isDelay(plan, actual) {
 			let roofGap = plan - this.gapTreshold;
 			const checkStatus = function(useGap = true) {
-				if (isEmpty(actual)) {
-					return false;
-				}
-
 				if (useGap) {
 					return roofGap > actual;
 				} else {
@@ -461,11 +482,26 @@ export default {
 			return "is-task-name has-text-info is-level-" + row.level;
 		},
 
+		hasDefaultFolded(row) {
+			if (row.hasChild) {
+				let node = this.descendant.find(task => task.id === row.id);
+				if (node.descendant.length == 0) {
+					return " is-folded ";
+				}
+			}
+
+			return "";
+		},
+
 		// toggle display descendant
 		toggleChild(taskId) {
 			let self = document.querySelector("[data-row='" + taskId + "']");
 			let isHidden = self.classList.contains("is-folded");
 			let task = this.descendant.find(task => task.id === taskId);
+
+			if (task.descendant.length == 0 && isHidden) {
+				this.fetchDescendant(taskId);
+			}
 
 			for (let i = 0; i < task.descendant.length; i++) {
 				const child = task.descendant[i];

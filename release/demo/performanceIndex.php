@@ -3,8 +3,12 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 
-$TASK_TOTAL = 20;
-$WEEK_TOTAL = 48;
+define('TASK_TOTAL', 300);
+define('WEEK_TOTAL', 48);
+define('CURRENT_WEEK', 42);
+
+$TASK_TOTAL = TASK_TOTAL;
+$WEEK_TOTAL = WEEK_TOTAL;
 
 function randProgress($sum, $single = false) {
 	$progress = [];
@@ -13,12 +17,13 @@ function randProgress($sum, $single = false) {
 		for ($i=0; $i < $sum; $i++) { 
 			$progress[$i] = [
 				'plan' => rand(100, 10000) / 100,
-				'actual' => rand(100, 10000) / 100
+				'actual' => CURRENT_WEEK <= ($i+1) ? NULL : rand(100, 10000) / 100
 			];
 		}
 	} else {
 		for ($i=0; $i < $sum; $i++) { 
-			$progress[$i] = rand(100, 10000) / 100;
+			$nulled = CURRENT_WEEK < $i;
+			$progress[$i] = CURRENT_WEEK <= ($i+1) ? NULL : rand(100, 10000) / 100;
 		}
 	}
 
@@ -65,45 +70,44 @@ if ($_GET['get'] == 'tasks') {
 		$tasks = array_slice($tasks, 0, $TASK_TOTAL);
 	}
 
+	shuffle($tasks);
 	if (!empty($_POST['parent'])) {
-		shuffle($tasks);
-		$limiting = rand(5, count($tasks) - 1);
-
-		$cook = [];
-		for ($i=0; $i < $limiting; $i++) {
-			$tasks[$i]->id = $_POST['parent'].'-'.$i;
-			$tasks[$i]->parent = $_POST['parent'];
-			$cook[] = $tasks[$i];
-		}
-
-		$cooked['project_id'] = $project_id;
+		$limiting = rand(5, 10);
+		$root = $_POST['parent'];
 		$cooked['parent'] = $_POST['parent'];
-		$cooked['tasks'] = $cook;
 	} else {
-		$limiting = rand(4, 6);
-		$start = rand(1, 2);
-		$parent = [];
-		for ($i=0; $i < count($tasks); $i++) { 
+		$limiting = count($tasks);
+		$root = NULL;
+	}
+
+	$start = rand(1, 4);
+	$parent = []; $cook = [];
+	for ($i=0; $i < $limiting; $i++) { 
+		if (!empty($root)) {
+			$tasks[$i]->id = $root . '-' . $i;
+		} else {
 			$tasks[$i]->id = $project_id . '-' . $i;
-
-			if ($i > $start) {
-				shuffle($parent);
-				$tasks[$i]->parent = $parent[0]['id'];
-				$tasks[$parent[0]['index']]->hasChild = TRUE;
-			} else {
-				$tasks[$i]->parent = NULL;
-				$tasks[$i]->hasChild = TRUE;
-			}
-
-			$parent[] = [
-				'id' => $tasks[$i]->id,
-				'index' => $i
-			];
 		}
 
-		$cooked['project_id'] = $project_id;
-		$cooked['tasks'] = $tasks;
+		if ($i > $start) {
+			shuffle($parent);
+			$tasks[$i]->parent = $parent[0]['id'];
+			$tasks[$parent[0]['index']]->hasChild = TRUE;
+		} else {
+			$tasks[$i]->parent = $root;
+			$tasks[$i]->hasChild = FALSE;
+		}
+
+		$parent[] = [
+			'id' => $tasks[$i]->id,
+			'index' => $i
+		];
+
+		$cook[$i] = $tasks[$i];
 	}
+
+	$cooked['project_id'] = $project_id;
+	$cooked['tasks'] = $cook;
 
 	echo json_encode($cooked);
 	return 0;
