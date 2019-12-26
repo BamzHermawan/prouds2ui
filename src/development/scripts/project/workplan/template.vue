@@ -36,7 +36,6 @@
 
 <script>
 import { crudInput } from "components";
-import * as JSGantt from "jsgantt-improved";
 
 export default {
 	components: { crudInput },
