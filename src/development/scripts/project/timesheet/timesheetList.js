@@ -3,7 +3,7 @@ import Buefy from 'buefy';
 import Api from 'helper-apis';
 import Loader from 'helper-loader';
 import Moment from 'helper-moment';
-import { checkConnection, notified, isEmpty } from 'helper-tools';
+import { checkConnection, notified } from 'helper-tools';
 import { crudInput, progressBar, taskGroup, taskCard } from 'components';
 import 'helper-filter';
 
@@ -14,10 +14,8 @@ new Vue({
 	data: {
 		minDate: new Date(),
 		maxDate: new Date(),
-		workhour: {
-			value: null,
-			alert: ''
-		},
+		workhour: null,
+		workProgress: null,
 		task: {
 			ongoing: ONGOING,
 			delayed: DELAYED,
@@ -57,6 +55,32 @@ new Vue({
 			rangeDate: false
 		},
 	},
+	watch: {
+		workProgress (changed) {
+			let value = this.workProgress;
+			if (changed > 100) {
+				value = 100;
+			}
+
+			if (changed < 0) {
+				value = 0;
+			}
+
+			this.workProgress = parseInt(value);
+		},
+		workhour(changed) {
+			let value = this.workhour;
+			if (changed > 24) {
+				value = 24;
+			}
+
+			if (changed < 1) {
+				value = 1;
+			}
+
+			this.workhour = parseInt(value);
+		}
+	},
 	methods: {
 		checkForFloat(val){
 			this.workhour.value = val + 1;
@@ -92,24 +116,6 @@ new Vue({
 				let self = this;
 				setTimeout(() => {
 					self.datepicker.alert = false;
-				}, 5000);
-			}
-
-			if(this.workhour.value === null){
-				e.preventDefault();
-				this.workhour.alert = 'Please insert how much hour you work on this task';
-
-				let self = this;
-				setTimeout(() => {
-					self.workhour.alert = '';
-				}, 5000);
-			} else if (this.workhour.value > 24 || this.workhour.value < 1) {
-				e.preventDefault();
-				this.workhour.alert = 'In a day there is only 24 hour, please insert the right amount';
-
-				let self = this;
-				setTimeout(() => {
-					self.workhour.alert = '';
 				}, 5000);
 			}
 		},

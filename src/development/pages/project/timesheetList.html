@@ -265,12 +265,21 @@
 										</div>
 										<div class="level-right">
 											<!-- ^ UPDATE ####################################################################### -->
-											<div class="select is-small">
-												<select name="activity_name" required>
-													<option selected>Development</option>
-													<option>Operation</option>
-													<option>Maintenance</option>
-												</select>
+											<div class="field has-addons">
+												<div class="control">
+													<a class="button is-static is-light-blend is-small">
+														Activity Type
+													</a>
+												</div>
+												<div class="control">
+													<div class="select is-small">
+														<select name="activity_type" required>
+															<option selected>Development</option>
+															<option>Operation</option>
+															<option>Maintenance</option>
+														</select>
+													</div>
+												</div>
 											</div>
 											<!-- ^ UPDATE ####################################################################### -->
 										</div>
@@ -301,17 +310,42 @@
 										</div>
 									</nav>
 
-									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''"
-										always style="width:100%;">
-										<b-field label="Total Work Hour" style="margin-bottom: 23px;">
-											<b-numberinput controls-position="compact" name="hour" min="0" max="24"
-												expanded placeholder="0" :editable="false" v-model="workhour.value"
-												type="is-info">
-											</b-numberinput>
-										</b-field>
-									</b-tooltip>
-
 									<!-- ^ UPDATE ####################################################################### -->
+									<div class="columns">
+										<div class="column">
+											<div class="field">
+												<label class="label">Working Hour</label>
+												<div class="control">
+													<input 
+														class="input" 
+														type="number" 
+														min="1" 
+														max="24" 
+														v-model="workhour" 
+														name="hour"
+														placeholder="Total Work Hour" 
+														required />
+												</div>
+											</div>
+										</div>
+										<div class="column">
+											<div class="field">
+												<label class="label">Working Progress [%]</label>
+												<div class="control">
+													<input 
+														class="input" 
+														type="number" 
+														min="0" 
+														max="100" 
+														name="workingProgress"
+														v-model="workProgress" 
+														placeholder="Current Progress"
+														required />
+												</div>
+											</div>
+										</div>
+									</div>
+
 									<b-field label="Working Location">
 										<div class="select is-fullwidth">
 											<select name="location" required>

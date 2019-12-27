@@ -257,16 +257,28 @@
 											<label class="label">Activity</label>
 										</div>
 										<div class="level-right">
-											<b-select placeholder="Activity Type" name="activity_name" size="is-small">
-												<option value="flint">Flint</option>
-												<option value="silver">Silver</option>
-											</b-select>
+											<div class="field has-addons">
+												<div class="control">
+													<a class="button is-static is-light-blend is-small">
+														Activity Type
+													</a>
+												</div>
+												<div class="control">
+													<div class="select is-small">
+														<select name="activity_name" required="">
+															<option selected="">Development</option>
+															<option>Operation</option>
+															<option>Maintenance</option>
+														</select>
+													</div>
+												</div>
+											</div>
 										</div>
 									</nav>
 									<b-field>
 										<b-input maxlength="200" type="textarea" name="activity"
 											placeholder="Describe your activity related to this task so that your pm could understand what you do."
-											required>
+											required="">
 										</b-input>
 									</b-field>
 									<!-- ^ UPDATED ############################################################# -->
@@ -288,20 +300,39 @@
 										</div>
 									</nav>
 
-									<b-tooltip :label="workhour.alert" type="is-warning" :active="workhour.alert != ''" always="" style="width:100%;">
-										<b-field label="Total Work Hour" style="margin-bottom: 23px;">
-											<b-numberinput controls-position="compact" name="hour" min="0" max="24" expanded="" placeholder="0" :editable="false" v-model="workhour.value" type="is-info">
-											</b-numberinput>
-										</b-field>
-									</b-tooltip>
-
-									<crud-input type="select" name="location" label="Working Location" placeholder="Choose area location">
-										<option selected="" style="display: none;"></option>
-										<option value="1">Jabodetabek</option>
-										<option value="2">Non Lokal Jawa</option>
-										<option value="3">Luar Jawa Dalam Negeri</option>
-										<option value="4">Luar Negeri</option>
-									</crud-input>
+									<!-- ^ UPDATE ####################################################################### -->
+									<div class="columns">
+										<div class="column">
+											<div class="field">
+												<label class="label">Working Hour</label>
+												<div class="control">
+													<input class="input" type="number" min="1" max="24" v-model="workhour" name="hour"
+														placeholder="Total Work Hour" required="">
+												</div>
+											</div>
+										</div>
+										<div class="column">
+											<div class="field">
+												<label class="label">Working Progress [%]</label>
+												<div class="control">
+													<input class="input" type="number" min="0" max="100" name="workingProgress" v-model="workProgress"
+														placeholder="Current Progress" required="">
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<b-field label="Working Location">
+										<div class="select is-fullwidth">
+											<select name="location" required="">
+												<option selected="" value="1">Jabodetabek</option>
+												<option value="2">Non Lokal Jawa</option>
+												<option value="3">Luar Jawa Dalam Negeri</option>
+												<option value="4">Luar Negeri</option>
+											</select>
+										</div>
+									</b-field>
+									<!-- ^ UPDATE ####################################################################### -->
 
 									<button class="button is-success is-long" type="submit">
 										Submit

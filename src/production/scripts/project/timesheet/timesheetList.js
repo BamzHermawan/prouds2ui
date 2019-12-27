@@ -14,10 +14,8 @@ new Vue({
 	data: {
 		minDate: new Date(),
 		maxDate: new Date(),
-		workhour: {
-			value: null,
-			alert: ''
-		},
+		workhour: null,
+		workProgress: null,
 		task: {
 			ongoing: ONGOING,
 			delayed: DELAYED,
@@ -57,11 +55,37 @@ new Vue({
 			rangeDate: false
 		},
 	},
+	watch: {
+		workProgress(changed) {
+			let value = this.workProgress;
+			if (changed > 100) {
+				value = 100;
+			}
+
+			if (changed < 0) {
+				value = 0;
+			}
+
+			this.workProgress = parseInt(value);
+		},
+		workhour(changed) {
+			let value = this.workhour;
+			if (changed > 24) {
+				value = 24;
+			}
+
+			if (changed < 1) {
+				value = 1;
+			}
+
+			this.workhour = parseInt(value);
+		}
+	},
 	methods: {
-		checkForFloat(val){
+		checkForFloat(val) {
 			this.workhour.value = val + 1;
 		},
-		getFilled(id, start, end){
+		getFilled(id, start, end) {
 			let self = this;
 			Api.filledTimesheet(id, start, end)
 				.then(response => {
@@ -81,11 +105,11 @@ new Vue({
 					}
 				})
 		},
-		getMinDate(){
+		getMinDate() {
 			return new Date(Moment(this.dataForm.start, 'DD/MM/YYYY'));
 		},
-		submitForm(e){
-			if(this.datepicker.start.val === null){
+		submitForm(e) {
+			if (this.datepicker.start.val === null) {
 				e.preventDefault();
 				this.datepicker.alert = true;
 
@@ -94,35 +118,17 @@ new Vue({
 					self.datepicker.alert = false;
 				}, 5000);
 			}
-
-			if(this.workhour.value === null){
-				e.preventDefault();
-				this.workhour.alert = 'Please insert how much hour you work on this task';
-
-				let self = this;
-				setTimeout(() => {
-					self.workhour.alert = '';
-				}, 5000);
-			} else if (this.workhour.value > 24 || this.workhour.value < 1) {
-				e.preventDefault();
-				this.workhour.alert = 'In a day there is only 24 hour, please insert the right amount';
-
-				let self = this;
-				setTimeout(() => {
-					self.workhour.alert = '';
-				}, 5000);
-			}
 		},
-		openModalDate(){
-			if(this.rangeToggle){
+		openModalDate() {
+			if (this.rangeToggle) {
 				this.modal.rangeDate = true;
-			}else{
+			} else {
 				this.modal.singleDate = true;
 			}
 		},
 		setTimesheet(val) {
 			let maxDate = new Date();
-			if(Moment().isAfter(Moment(val.end, 'DD/MM/YYYY'))){
+			if (Moment().isAfter(Moment(val.end, 'DD/MM/YYYY'))) {
 				maxDate = new Date(Moment(val.end, 'DD/MM/YYYY'));
 			}
 
@@ -170,7 +176,7 @@ new Vue({
 
 			return size;
 		},
-		sortTask(task){
+		sortTask(task) {
 			return task.sort((a, b) => {
 				let aMom = Moment(a.start, "DD/MM/YYYY");
 				let bMom = Moment(b.start, "DD/MM/YYYY");
@@ -178,15 +184,15 @@ new Vue({
 				if (aMom.isBefore(bMom)) {
 					return -1;
 				}
-				
+
 				if (bMom.isBefore(aMom)) {
 					return 1;
 				}
-				
+
 				return 0;
 			});
 		},
-		groupByMonth(task){
+		groupByMonth(task) {
 			if (task.length <= 0) {
 				return [];
 			}
@@ -198,9 +204,9 @@ new Vue({
 			let month = Moment(task[0].start, 'DD/MM/YYYY');
 			for (let idx = 0; idx < task.length; idx++) {
 				month = Moment(task[idx].start, 'DD/MM/YYYY');
-				if(current.month() == month.month()){
+				if (current.month() == month.month()) {
 					cook.push(task[idx]);
-				}else{
+				} else {
 					cooked.push({
 						month: current.format('MMMM'),
 						list: cook
@@ -212,7 +218,7 @@ new Vue({
 				}
 			}
 
-			if(cook.length > 0){
+			if (cook.length > 0) {
 				cooked.push({
 					month: month.format('MMMM'),
 					list: cook
@@ -221,7 +227,7 @@ new Vue({
 
 			return cooked;
 		},
-		selectMonth(key){
+		selectMonth(key) {
 			this.datepicker[key].focused = new Date(Moment(this.datepicker[key].selected, 'MMMM - YYYY'));
 		},
 		changeSelectedMonth(key, tgl) {
@@ -252,21 +258,21 @@ new Vue({
 		}
 	},
 	computed: {
-		startDate(){
-			if(this.datepicker.start.val === null){
+		startDate() {
+			if (this.datepicker.start.val === null) {
 				return null;
-			}else{
+			} else {
 				return Moment(this.datepicker.start.val).format('DD/MM/YYYY');
 			}
 		},
-		endDate(){
+		endDate() {
 			if (this.datepicker.end.val === null) {
 				return this.startDate;
 			} else {
 				return Moment(this.datepicker.end.val).format('DD/MM/YYYY');
 			}
 		},
-		monthList(){
+		monthList() {
 			let today = Moment();
 			let min = Moment(this.dataForm.start, 'DD/MM/YYYY');
 			let list = [];
@@ -278,13 +284,13 @@ new Vue({
 					date: new Date(min)
 				});
 
-				if(today.format('MM/YYYY') === min.format('MM/YYYY')){
+				if (today.format('MM/YYYY') === min.format('MM/YYYY')) {
 					detector = false;
-				}else{
+				} else {
 					let endTask = Moment(this.dataForm.end, 'DD/MM/YYYY').format('MM/YYYY');
-					if(endTask === min.format('MM/YYYY')){
+					if (endTask === min.format('MM/YYYY')) {
 						detector = false;
-					}else{
+					} else {
 						min.add(1, 'M');
 					}
 				}
@@ -292,15 +298,15 @@ new Vue({
 
 			return list;
 		},
-		selectedDateList(){
+		selectedDateList() {
 			let list = [];
 			let start = this.datepicker.start.val;
 			let end = this.datepicker.end.val;
 
-			if(start !== null && end !== null){
+			if (start !== null && end !== null) {
 				start = Moment(start);
 				end = Moment(end);
-				if (start.isBefore(end)){
+				if (start.isBefore(end)) {
 					let detector = true;
 
 					while (detector) {
@@ -320,15 +326,15 @@ new Vue({
 
 			return this.datepicker.filled.concat(list);
 		},
-		timesheetDate(){
+		timesheetDate() {
 			let start = this.datepicker.start.val;
 			let end = this.datepicker.end.val;
 			let setMoment = (tgl, format = 'DD MMM YYYY') => {
 				return Moment(tgl).format(format);
 			}
 
-			if(start != null){
-				if (end === null){
+			if (start != null) {
+				if (end === null) {
 					this.changeSelectedMonth('end', this.datepicker.start.val);
 					end = this.datepicker.end.val;
 				}
@@ -338,13 +344,13 @@ new Vue({
 					end = this.datepicker.end.val;
 				}
 
-				if(this.rangeToggle){
+				if (this.rangeToggle) {
 					return setMoment(start) + ' - ' + setMoment(end)
-				}else{
+				} else {
 					this.changeSelectedMonth('end', this.datepicker.start.val);
 					return setMoment(start, 'dddd, DD MMMM YYYY');
 				}
-			}else{
+			} else {
 				return "Choose Timesheet Date";
 			}
 		},

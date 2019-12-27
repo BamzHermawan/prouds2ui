@@ -14,14 +14,21 @@
 				</div>
 				<div class="level-right">
 					<div class="level-item">
-						<div class="tags has-addons">
-							<span class="tag is-dark" style="padding:0px 6px;">
+						<b-tooltip label="Team Member" type="is-info">
+							<div class="tags has-addons">
 								<span
-									class="mdi mdi-account-tie is-marginless"
-								></span>
-							</span>
-							<span class="tag is-info">{{ task.member }}</span>
-						</div>
+									class="tag is-dark"
+									style="padding:0px 6px;"
+								>
+									<span
+										class="mdi mdi-account-tie is-marginless"
+									></span>
+								</span>
+								<span class="tag is-info">{{
+									task.member
+								}}</span>
+							</div>
+						</b-tooltip>
 					</div>
 					<div class="level-item">
 						<b-tooltip label="Your Workload" type="is-warning">
@@ -58,7 +65,10 @@
 						<span class="icon is-small">
 							<span class="mdi mdi-calendar-clock"></span>
 						</span>
-						<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
+						<span
+							>{{ task.start | moment }} -
+							{{ task.end | moment }}</span
+						>
 					</div>
 					<div class="level-right">
 						<p>{{ task.mandays }} Mandays</p>
@@ -71,7 +81,10 @@
 						<span class="icon is-small">
 							<span class="mdi mdi-calendar-clock"></span>
 						</span>
-						<span>{{ task.start | moment }} - {{ task.end | moment }}</span>
+						<span
+							>{{ task.start | moment }} -
+							{{ task.end | moment }}</span
+						>
 					</div>
 					<div class="level-right">
 						<p>{{ task.mandays }} Mandays</p>
