@@ -96,13 +96,14 @@ module.exports.saveStorage = function (key, json) {
 /**
  * Do animate DOM Element
  *
- * @param {String} selector
- * @param {String} classOption
+ * @param {String} selector String Selector
+ * @param {String} classOption Example: 'fadeIn faster delay-1s'
  * @param {Function} [callback=undefined]
  */
 module.exports.animate = function (selector, classOption, callback = undefined) {
 	const el = document.querySelector(selector);
 	const option = classOption.split(" ");
+
 	if (el !== null && el !== undefined) {
 		if (!el.classList.contains('animated')) {
 			el.classList.add('animated');

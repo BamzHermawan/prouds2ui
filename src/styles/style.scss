@@ -32,6 +32,7 @@ html {
 @import "components/panel";
 @import "components/pindex";
 @import "components/chart";
+@import "components/treetable";
 
 tr.is-child > td:first-child {
 	padding-left: 1.5rem;
@@ -43,6 +44,17 @@ tr.is-child > td:first-child {
 
 //! -----------------------------------------------------
 //* @CONTENT --------------------------------------------
+
+.add-shadow {
+	box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02) !important;
+}
+
+.text-elipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-decoration: none !important;
+}
 
 // Light Background
 @each $name, $color in $lightBG {

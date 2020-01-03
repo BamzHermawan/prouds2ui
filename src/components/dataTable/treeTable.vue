@@ -1,123 +1,174 @@
 <template>
 	<div class="container">
-		<div class="card">
-			<header v-if="title !== undefined" class="card-header">
+		<div :class="cardClass">
+			<header v-if="title !== undefined && !noCard" class="card-header">
 				<p class="card-header-title">
 					{{ title }}
 				</p>
 				<slot name="head-right"></slot>
 			</header>
 
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Nama Unit</th>
-						<th>Person in Charge</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="is-parent" data-id="1">
-						<td>Telkomsigma</td>
-						<td>Ade Wiranata Putra</td>
-						<td>Action</td>
-					</tr>
-					<tr class="is-parent is-child" data-id="2" data-parent="1">
-						<td>Solution Delivery</td>
-						<td>Ade Wiranata Putra</td>
-						<td>Action</td>
-					</tr>
-					<tr class="is-parent is-child" data-id="3" data-parent="2">
-						<td>System Integration 1 Delivery</td>
-						<td>Ade Wiranata Putra</td>
-						<td>Action</td>
-					</tr>
-					<tr class="is-child" data-id="5" data-parent="3">
-						<td>Child of Child</td>
-						<td>Ade Wiranata Putra</td>
-						<td>Action</td>
-					</tr>
-					<tr class="is-child" data-id="4" data-parent="2">
-						<td>System Integration 2 Delivery</td>
-						<td>Ade Wiranata Putra</td>
-						<td>Action</td>
-					</tr>
-					<tr class="is-child" data-id="6" data-parent="1">
-						<td>Banking Solution</td>
-						<td>Ade Wiranata Putra</td>
-						<td>Action</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="b-table">
+				<div class="table-wrapper table-container">
+					<table :class="tableClass">
+						<thead>
+							<tr>
+								<slot name="thead"></slot>
+							</tr>
+						</thead>
+						<tbody>
+							<tr
+								:key="index"
+								:data-row="row.id"
+								:data-parent="row.parent"
+								:class="rowClass(row, index)"
+								v-for="(row, index) in table"
+							>
+								<td :class="level(row.depth)">
+									<span
+										v-if="row.hasChild"
+										class="mdi mdi-toggle-folder"
+										@click.stop="toggleChild(row.id, index)"
+									></span>
+
+									<slot
+										name="labelrow"
+										:row="row"
+										:index="index"
+									>
+										{{ row.text }}
+									</slot>
+								</td>
+
+								<slot name="tbody" :row="row" :index="index" />
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import Tree from "./treeController";
 export default {
 	props: {
 		title: {
 			type: String,
 			default: undefined
+		},
+		data: {
+			type: Array,
+			required: true
+		},
+		noCard: {
+			type: Boolean,
+			default: false
+		},
+		shadow: {
+			type: Boolean,
+			default: true
+		},
+		bordered: {
+			type: Boolean,
+			default: false
+		},
+		hoverable: {
+			type: Boolean,
+			default: false
+		},
+		striped: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
 		return {
-			org: [
-				{
-					id: 1,
-					parent: null,
-					label: "Telkomsigma"
-				},
-				{
-					id: 2,
-					parent: 1,
-					label: "Solution Delivery"
-				},
-				{
-					id: 3,
-					parent: 1,
-					label: "Banking Solution Delivery"
-				},
-				{
-					id: 4,
-					parent: 2,
-					label: "System Integration 1 Delivery"
-				},
-				{
-					id: 5,
-					parent: 2,
-					label: "System Integration 2 Delivery"
-				},
-				{
-					id: 6,
-					parent: 4,
-					label: "Child of Child"
-				}
-			]
+			table: [],
+			descendant: [],
+			tree: undefined
 		};
 	},
-	computed: {
-		parsedTable() {
-			let cook = [];
-			var mapping = this.org.reduce(function(map, node) {
-				map[node.id] = node;
-				return map;
-			}, {});
+	mounted() {
+		let self = this;
+		this.tree = new Tree({
+			beforeAppend(node) {
+				if (!node.hasOwnProperty("open")) node.open = true;
+				return node;
+			},
+			persistData: ["open"]
+		});
 
-			for (let i = 0; i < this.org.length; i++) {
-				let org = this.org[i];
-				org.child = [];
+		this.tree.import(this.data, tree => {
+			self.table = tree.table;
+			self.descendant = tree.descendant;
 
-				if (org.parent === null) {
-					cook.push(org);
+			self.$emit("loaded", this);
+		});
+	},
+	methods: {
+		level(depth) {
+			return "has-depth-" + depth;
+		},
+
+		// toggle display descendant
+		toggleChild(id, index) {
+			let self = document.querySelector("[data-row='" + id + "']");
+			let isHidden = self.classList.contains("is-folded");
+			let row = this.descendant.find(node => node.id === id);
+
+			for (let i = 0; i < row.descendant.length; i++) {
+				const child = row.descendant[i];
+				if (isHidden) {
+					document
+						.querySelectorAll("[data-row='" + child + "']")
+						.forEach(node => {
+							node.classList.remove("is-hidden", "is-folded");
+						});
 				} else {
-					let parent = mapping[org.parent];
-					parent.child.push(org);
+					document
+						.querySelectorAll("[data-row='" + child + "']")
+						.forEach(node => {
+							node.classList.add("is-hidden");
+						});
 				}
 			}
 
-			return cook;
+			self.classList.toggle("is-folded");
+			document.querySelector(".contentPage").scrollTop = 0;
+		},
+
+		rowClass(row, index) {
+			let parentisFolded = this.descendant.find(node => {
+				return node.descendant.includes(row.id) && !node.open;
+			});
+
+			console.log(row, parentisFolded);
+
+			return {
+				"is-folded": !row.open,
+				"is-hidden": parentisFolded
+			};
+		}
+	},
+	computed: {
+		cardClass() {
+			return {
+				card: !this.noCard,
+				"is-shadowless": !this.shadow
+			};
+		},
+		tableClass() {
+			return {
+				table: true,
+				"is-narrow": true,
+				"is-tree-table": true,
+				"is-fullwidth": true,
+				"is-bordered": this.bordered,
+				"is-hoverable": this.hoverable,
+				"is-striped": this.striped
+			};
 		}
 	}
 };

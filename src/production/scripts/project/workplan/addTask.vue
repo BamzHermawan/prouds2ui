@@ -50,14 +50,14 @@
 						type="select"
 						label="Assigned Role"
 						placeholder="Choose Role"
-						name="roleID"
+						name="roleId"
 						input-style="margin-bottom:1em;"
 						required
 					>
 						<option
 							v-for="(val, idx) in dataRole"
 							:key="idx"
-							:value="val.roleID"
+							:value="val.roleId"
 							>{{ val.roleName }}</option
 						>
 					</crud-input>

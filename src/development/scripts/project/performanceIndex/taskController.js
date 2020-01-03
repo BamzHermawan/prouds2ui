@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import qs from 'querystring';
 import API from 'helper-apis';
-import Tree from './treeClass';
+import Tree from 'helper-tree-class';
 import { isEmpty } from 'helper-tools';
 
 const mergeProgress = ($toMerge, $fetched) => {

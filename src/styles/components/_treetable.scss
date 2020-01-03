@@ -1,0 +1,69 @@
+table.table.is-tree-table {
+
+	th {
+		height: 27px !important;
+		text-align: center;
+		font-size: .8em;
+
+		& + th {
+			border-left: 1px solid $border !important;
+		}
+	}
+
+	tr {
+		td:first-child > span.mdi-toggle-folder {
+			margin: 0px !important;
+			&::before {
+				content: "\F374";
+			}
+		}
+
+		&.is-folded {
+			td:first-child > span.mdi-toggle-folder::before {
+				content: "\F415";
+			}
+		}
+	}
+
+	td {
+		height: 25px !important;
+		font-size: 14px;
+
+		& + td {
+			border-left-style: solid !important;
+			border-left-color: $border;
+			border-left-width: 1px;
+		}
+
+		.button {
+			border-radius: 2px;
+			font-size: .65rem !important;
+			padding-bottom: 2px;
+			padding-top: 2px;
+			height: auto;
+		}
+
+		.small-tag {
+			background-color: $dark;
+			padding: 2px 5px;
+			border-radius: 3px;
+			font-size: 10px;
+			color: $light;
+
+			&.is-link {
+				background-color: $link;
+				
+				&:hover {
+					background-color: $light;
+					color: $info;
+				}
+			}
+		}
+		
+		@each $name, $level in $levelPadding {
+			&.has-depth-#{$name} {
+				padding-left: nth($level, 1) !important;
+			}
+		}
+	}
+}

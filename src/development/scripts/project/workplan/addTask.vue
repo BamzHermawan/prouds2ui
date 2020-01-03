@@ -57,7 +57,7 @@
 						<option
 							v-for="(val, idx) in dataRole"
 							:key="idx"
-							:value="val.roleID"
+							:value="val.roleId"
 							>{{ val.roleName }}</option
 						>
 					</crud-input>

@@ -12,6 +12,10 @@ import dataTable from "./dataTable/dataTable.vue";
 import treeTable from "./dataTable/treeTable.vue";
 import dataTableNoCard from "./dataTable/nocard.vue";
 
+// PAGING
+import Paging from "./paging/pages.vue";
+import PagingPage from "./paging/page.vue";
+
 // TIMESHEET
 import taskGroup from "./timesheet/taskGroup.vue";
 import taskCard from "./timesheet/task.vue";
@@ -42,6 +46,9 @@ module.exports.notificationLog = notificationLog;
 module.exports.dataTable = dataTable;
 module.exports.treeTable = treeTable;
 module.exports.dataTableNoCard = dataTableNoCard;
+
+module.exports.Paging = Paging;
+module.exports.PagingPage = PagingPage;
 
 module.exports.taskGroup = taskGroup;
 module.exports.taskCard = taskCard;

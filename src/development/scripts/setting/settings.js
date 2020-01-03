@@ -6,12 +6,21 @@ import { crudForm } from 'components';
 import { crudInput } from 'components';
 import { dataTableNoCard } from 'components';
 import VJstree from 'vue-jstree'
+import menuTable from './menuTable.vue';
+import orgTable from './organization.vue';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		treeTable, crud, crudForm, crudInput, dataTableNoCard, VJstree
+		treeTable, 
+		crud, 
+		crudForm, 
+		crudInput, 
+		dataTableNoCard, 
+		VJstree, 
+		menuTable, 
+		orgTable
 	},
 	data: {
 		userlog: {
@@ -320,55 +329,6 @@ new Vue({
 		}
 	},
 	mounted() {
-		if (this.props.ORGANIZATION != undefined) {
-			// 	this.organization = this.props.ORGANIZATION
-			var mappedArr = {},
-				arrElem,
-				mappedElem;
-
-			for (var i = 0; i < this.props.ORGANIZATION.length; i++) {
-				arrElem = this.props.ORGANIZATION[i];
-				mappedArr[arrElem.id] = arrElem;
-				mappedArr[arrElem.id]['children'] = [];
-			}
-
-			for (var id in mappedArr) {
-				if (mappedArr.hasOwnProperty(id)) {
-					mappedElem = mappedArr[id];
-					if (mappedElem.parent) {
-						mappedArr[mappedElem['parent']]['children'].push(mappedElem);
-					}
-					else {
-						this.organization.push(mappedElem);
-					}
-				}
-			}
-		}
-
-		if (this.props.MENU != undefined) {
-			this.allmenu = this.props.MENU
-			var mappedArr = {},
-				arrElem,
-				mappedElem;
-
-			for (var i = 0; i < this.props.MENU.length; i++) {
-				arrElem = this.props.MENU[i];
-				mappedArr[arrElem.id] = arrElem;
-				mappedArr[arrElem.id]['children'] = [];
-			}
-
-			for (var id in mappedArr) {
-				if (mappedArr.hasOwnProperty(id)) {
-					mappedElem = mappedArr[id];
-					if (mappedElem.parent) {
-						mappedArr[mappedElem['parent']]['children'].push(mappedElem);
-					}
-					else {
-						this.menu.push(mappedElem);
-					}
-				}
-			}
-		}
 
 		if (this.props.PRIVILAGE != undefined) {
 			this.data = this.props.PRIVILAGE

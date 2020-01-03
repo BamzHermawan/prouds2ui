@@ -134,249 +134,77 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container">
-					<template v-if="menuTree">
-						<b-button type="is-success is-small" @click="menuForm">Add Menu</b-button>
-						<div class="columns is-marginless is-marginless">
-							<div class="column is-2 has-text-centered" style="margin-left: 40px;">
-								<p class="label">Menu Name</p>
-							</div>
-							<div class="column is-3 has-text-centered" style="margin-left: 120px;">
-								<p class="label">Description</p>
-							</div>
-							<div class="column is-3 has-text-centered">
-								<p class="label">Link</p>
-							</div>
-							<div class="column is-2 has-text-centered" style="margin-left: 2px;">
-								<p class="label">Action</p>
-							</div>
-						</div>
-						<!-- <v-jstree id="menuTree" :data="menu" :draggable="drag" @item-drag-start="dragStart"
-												@item-drop="drop" allow-batch whole-row @item-click="itemClick">
-											</v-jstree> -->
-						<v-jstree :data="menu">
-							<template scope="_">
-								<div class="columns is-marginless">
-									<div class="column is-3 is-marginless is-paddingless">
-										<div style="display: inherit; width: 200px">
-											<i :class="_.vm.themeIconClasses" role="presentation"
-												v-if="!_.model.loading" is-marginless></i>
-											{{_.model.text}}
+					<menu-table :menu="props.MENU">
+						<template slot="form" slot-scope="{ switchTo, hasValue, value }">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+								<b-input type="hidden" name="id" :value="value.id"></b-input>
+								<div style="padding:0px 1.5rem;">
+									<b-field horizontal label="Menu Name">
+										<b-input name="name" expanded placeholder="Label Name for the Menu" :value="hasValue('text')" required></b-input>
+									</b-field>
+									<b-field horizontal label="Parent Menu">
+										<div class="control">
+											<b-select name="parent" placeholder="Select a parent menu" :value="hasValue('parent')" expanded>
+												<option :value="null">Have no Parent</option>
+												<option v-for="menu in props.MENU" :key="menu.id" :value="menu.id">{{ menu.text }}</option>
+											</b-select>
 										</div>
-									</div>
-									<div class="column is-3 is-marginless is-paddingless">
-										<div style="display: inherit; width: 200px;">
-											<div v-if="_.model.parent===0" style="margin-left: 30px;">
-												{{_.model.desc}}
+										<b-field>
+											<div class="field has-addons">
+												<div class="control">
+													<span class="button is-static is-dark-blend">Menu Type</span>
+												</div>
+												<p class="control is-expanded">
+													<b-select name="type" placeholder="Select a type" :value="hasValue('type')" expanded required>
+														<option value="1">Navigation</option>
+														<option value="2">Pop Up</option>
+														<option value="3">Global Menu</option>
+													</b-select>
+												</p>
 											</div>
-											<div v-if="_.model.parent!==0">
-												{{_.model.desc}}
-											</div>
-										</div>
-									</div>
-									<div class="column is-3 is-marginless is-paddingless" style="margin-left: 30px;">
-										<div style="display: inherit; width: 200px; margin-left:110px">
-											<div v-if="_.model.parent===0">
-												{{_.model.link}}
-											</div>
-											<div v-if="_.model.parent!==0">
-												{{_.model.link}}
+										</b-field>
+									</b-field>
+									<b-field horizontal label="Destination Link">
+										<div class="field has-addons">
+											<p class="control is-expanded">
+												<b-input name="link" expanded v-model="value.link" placeholder="Where user will be redirected at" expanded>
+												</b-input>
+											</p>
+											<div class="control">
+												<a :href="value.link" target="_blank" class="button is-link">Check Link</a>
 											</div>
 										</div>
-									</div>
-									<div class="column is-marginless is-paddingless">
-										<div style="display: inherit; width: 200px; margin-left:95px">
-											<div v-if="_.model.parent===0" style="margin-left: 30px;">
-												<button
-													style="border: 0px; background-color: transparent; color: green; cursor: pointer;"
-													@click="editMenuTree(_.model)"><i class="fa fa-edit"></i>
-												</button>
-												<button
-													style="border: 0px; background-color: transparent; color: red; cursor: pointer;"
-													@click="deleteMenuTree(_.model,'http://localhost:5501/demo/post_detect.php?')"><i
-														class="fa fa-remove"></i>
-												</button>
+									</b-field>
+									<b-field horizontal label="Icon">
+										<div class="field">
+											<div class="field has-addons">
+												<div class="control">
+													<span class="button is-static is-dark-blend">
+														<span id="mdi-checker" :class="'mdi '+value.icon"></span>
+													</span>
+												</div>
+												<p class="control is-expanded">
+													<b-input name="icon" v-model="value.icon" placeholder="Material Design Icon CSS Class. example: mdi-home" required>
+													</b-input>
+												</p>
 											</div>
-											<div v-if="_.model.parent!==0">
-												<button
-													style="border: 0px; background-color: transparent; color: green; cursor: pointer;"
-													@click="editMenuTree(_.model)"><i class="fa fa-edit"></i>
-												</button>
-												<button
-													style="border: 0px; background-color: transparent; color: red; cursor: pointer;"
-													@click="deleteMenuTree(_.model,'http://localhost:5501/demo/post_detect.php?')"><i
-														class="fa fa-remove"></i>
-												</button>
-											</div>
+											<p class="help">This system using <b><a href="https://materialdesignicons.com/">Material Design Icon</a></b> version 3.9.97. Go to <b><a href="https://cdn.materialdesignicons.com/3.9.97/">Icon List</a></b> to see what icon you can use.</p>
 										</div>
+									</b-field>
+									<b-field horizontal label="Description">
+										<b-input type="textarea" name="description" placeholder="Short description about the menu to distinguish between other menu." expanded :value="hasValue('desc')" maxlength="55" required>
+										</b-input>
+									</b-field>
+									<div class="buttons">
+										<b-button type="is-danger is-long" @click="switchTo()">Cancel</b-button>
+										<button class="button is-success pull-right is-long" type="submit">
+											Save
+										</button>
 									</div>
 								</div>
-							</template>
-						</v-jstree>
-					</template>
-
-					<div class="animated fadeIn" v-if="addMenu">
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-								<ul class="is-marginless">
-									<li><a @click="menuForm">Menu</a></li>
-									<li class="is-active"><a href="#" aria-current="page">Add Menu</a></li>
-								</ul>
-							</nav>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Name</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="menu_name" placeholder="Fill Menu Name"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Parent</p>
-								</div>
-								<div class="column">
-									<crud-input type="select" name="parent" placeholder="Choose Parent"
-										input-style="margin-bottom: 0px;" required>
-										<option value="0">Has no parent</option>
-										<option v-for="(menu, index) in allmenu" :key="index" :value="menu.id">
-											{{menu.text}}</option>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Type</p>
-								</div>
-								<div class="column">
-									<crud-input type="select" name="menu_type" placeholder="Choose Menu Type"
-										input-style="margin-bottom: 0px;" required>
-										<option value="1">Navigation</option>
-										<option value="2">Pop Up</option>
-										<option value="3">Global Menu</option>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Link</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="link" placeholder="Fill Menu Link"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Icon</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="icon" placeholder="Fill Menu Icon"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Description</p>
-								</div>
-								<div class="column">
-									<crud-input type="textarea" name="description" placeholder="Fill Menu Description"
-										input-style="margin-bottom: 0px;" :max-length="55" required>
-									</crud-input>
-								</div>
-							</div>
-							<button class="button is-success pull-right is-long" type="submit">
-								Save
-							</button>
-							<br>
-						</form>
-					</div>
-
-					<div class="animated fadeIn" v-if="editMenu">
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-								<ul class="is-marginless">
-									<li><a @click="editMenuTree">Menu</a></li>
-									<li class="is-active"><a href="#" aria-current="page">Edit Menu</a></li>
-								</ul>
-							</nav>
-							<b-input type="hidden" name="id" :value="tampung.id"></b-input>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Menu Name</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="menu_name" :value="tampung.text"
-										placeholder="Fill Menu Name" input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Parent</p>
-								</div>
-								<div class="column">
-									<crud-input type="select" name="parent" :value="tampung.parent"
-										placeholder="Choose Parent" input-style="margin-bottom:0px;" required>
-										<option value="0">Has no parent</option>
-										<option v-for="(menu, index) in allmenu" :key="index" :value="menu.id">
-											{{menu.text}}</option>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Type</p>
-								</div>
-								<div class="column">
-									<crud-input type="select" name="menu_type" :value="tampung.type"
-										placeholder="Choose Menu Type" input-style="margin-bottom:0px;" required>
-										<option value="1">Navigation</option>
-										<option value="2">Pop Up</option>
-										<option value="3">Global Menu</option>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Link</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="link" :value="tampung.link" placeholder="Fill Link"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Icon</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="icon" :value="tampung.icon" placeholder="Fill Icon"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Description</p>
-								</div>
-								<div class="column">
-									<crud-input type="textarea" name="description" :value="tampung.desc"
-										placeholder="Fill Menu Description" input-style="margin-bottom: 0px;"
-										:max-length="55" required>
-									</crud-input>
-								</div>
-							</div>
-							<button class="button is-success pull-right is-long" type="submit">
-								Save
-							</button>
-							<br>
-						</form>
-					</div>
+							</form>
+						</template>
+					</menu-table>
 				</div>
 			</section>
 		</section>
@@ -392,92 +220,74 @@
 		const VAPPS = {
 			MENU: [
 				{
-					"id": 1,
+					"id": "ABX00-0",
 					"text": "Project",
-					"link": "",
-					"desc": "Parent of Project",
-					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": true,
-					"parent": 0
+					"link": null,
+					"type": 3,
+					"desc": "Pariatur excepteur occaecat labore Lorem sint sint non et voluptate cillum minim consequat sunt minim.",
+					"icon": "mdi-folder",
+					"hasChild": true,
+					"parent": null
 				},
 				{
-					"id": 2,
-					"text": "Project List",
-					"link": "list.html",
-					"desc": "List all project",
-					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": false,
-					"parent": 1
-				},
-				{
-					"id": 3,
-					"text": "Project Assignment",
-					"link": "projectAssignment.html",
-					"desc": "List all project assignment List all project assignment",
-					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": false,
-					"parent": 1
-				},
-				{
-					"id": 4,
-					"text": "Timesheet",
-					"link": "timesheetList.html",
-					"desc": "Timesheet",
-					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": false,
-					"parent": 1
-				},
-				{
-					"id": 5,
-					"text": "Rebaseline",
-					"link": "rebaseline.html",
-					"desc": "Rebaseline",
-					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": false,
-					"parent": 1
-				},
-				{
-					"id": 6,
+					"id": "ABX00-1",
 					"text": "Setting",
-					"link": "",
-					"desc": "Parent of Setting",
-					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": true,
-					"parent": 0
+					"link": null,
+					"type": 3,
+					"desc": "Nostrud nisi pariatur cillum enim nisi nostrud excepteur id nostrud excepteur.",
+					"icon": "mdi-settings",
+					"hasChild": true,
+					"parent": null
 				},
 				{
-					"id": 7,
+					"id": "ABX00-2",
+					"text": "Project List",
+					"link": "http://localhost:5500/project/list.html",
+					"type": 1,
+					"desc": "Exercitation velit id fugiat anim anim sunt nisi reprehenderit et irure.",
+					"icon": "mdi-layers-triple",
+					"hasChild": false,
+					"parent": "ABX00-0"
+				},
+				{
+					"id": "ABX00-3",
+					"text": "Project Assignment",
+					"link": "http://localhost:5500/project/projectAssignment.html",
+					"type": 1,
+					"desc": "Sunt velit cupidatat duis aliqua eu Lorem ipsum cillum.",
+					"icon": "mdi-hand-okay",
+					"hasChild": false,
+					"parent": "ABX00-0"
+				},
+				{
+					"id": "ABX00-4",
+					"text": "My Tasks",
+					"link": "http://localhost:5500/project/timesheetList.html",
+					"type": 1,
+					"desc": "Sunt aliqua et occaecat consectetur deserunt cillum ex tempor ad dolore Lorem esse ea.",
+					"icon": "mdi-attachment",
+					"hasChild": false,
+					"parent": "ABX00-0"
+				},
+				{
+					"id": "ABX00-5",
 					"text": "Authorization",
-					"link": "authorization.html",
-					"desc": "authorization",
+					"link": "http://localhost:5500/setting/authorization.html",
 					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": false,
-					"parent": 6
+					"desc": "Aute non culpa eu cupidatat.",
+					"icon": "mdi-account-supervisor-circle",
+					"hasChild": false,
+					"parent": "ABX00-1"
 				},
 				{
-					"id": 8,
-					"text": "Baseline",
-					"link": "baseline.html",
-					"desc": "baseline",
+					"id": "ABX00-6",
+					"text": "Organization",
+					"link": "http://localhost:5500/setting/organization.html",
 					"type": 1,
-					"icon": "fa fa-meetup",
-					"isLeaf": false,
-					"opened": false,
-					"parent": 6
+					"desc": "Id magna non ea consectetur id minim amet sunt cupidatat voluptate.",
+					"icon": "mdi-office-building",
+					"hasChild": false,
+					"parent": "ABX00-1"
 				}
 			]
 		}
