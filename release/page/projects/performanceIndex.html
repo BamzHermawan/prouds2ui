@@ -290,44 +290,44 @@
 
 	<div class="api-testing" base="http://localhost:5501/demo/">
 		<!-- 
-					expected return from getNotification!
-					[{
-						"id": {String},
-						"subject": {String},
-						"content": {HTML String},
-						"dateStamp": {Date String with format DD/MM/YYYY},
-						"timeStamp": {Time String with format H:i},
-						"read": {Boolean}
-					}, ... ],
-				-->
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
 		<api-test url="getNotification.php" key="getNotification"></api-test>
 	
 		<!-- 
-					Get Performance Index Table Data [GET]
-					@param {*} project_id: Project ID
-		
-					expected return look json file release/dummy/pIndexTable.json
-				-->
-		<api-test url="performanceIndex.php?get=table&project_id={project_id}" key="getPIndexTable"></api-test>
+			Get Project Tasks for performance Index Table [GET]
+			@param {*} project_id: Project ID
+
+			expected return look json file release/dummy/pIndexTable.json
+		-->
+		<api-test url="performanceIndex.php?get=tasks&project_id={project_id}" key="getProjectTasks"></api-test>
 	
 		<!-- 
-					Get Performance Index Table Data [GET]
-					@param {*} project_id: Project ID
-					@param {*} task_id: Task ID
-		
-					expected return look json file release/dummy/pIndexTable.json
-				-->
+			Get Performance Index Table Data [GET]
+			@param {*} project_id: Project ID
+			@param {*} task_id: Task ID
+
+			expected return look json file release/dummy/pIndexTable.json
+		-->
 		<api-test url="performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}" key="getPIndexChart">
 		</api-test>
 	
 		<!-- 
-					Get Performance Index Task Falling Detail [GET]
-					@param {*} project_id: Project ID
-					@param {*} task_id: Task ID
-					@param {*} week: Week Number
-		
-					expected return look json file release/dummy/pIndexFalling.json
-				-->
+			Get Performance Index Task Falling Detail [GET]
+			@param {*} project_id: Project ID
+			@param {*} task_id: Task ID
+			@param {*} week: Week Number
+
+			expected return look json file release/dummy/pIndexFalling.json
+		-->
 		<api-test url="performanceIndex.php?get=falling&project_id={project_id}&task_id={task_id}&week={week}"
 			key="getPIndexFalling">
 		</api-test>

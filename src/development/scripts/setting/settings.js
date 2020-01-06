@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import Buefy from 'buefy'
 import Loader from 'helper-loader';
-import { crud, treeTable } from 'components';
+import { crud, treeTable, Paging, PagingPage } from 'components';
 import { crudForm } from 'components';
 import { crudInput } from 'components';
 import { dataTableNoCard } from 'components';
-import VJstree from 'vue-jstree'
 import menuTable from './menuTable.vue';
 import orgTable from './organization.vue';
 
@@ -18,9 +17,9 @@ new Vue({
 		crudForm, 
 		crudInput, 
 		dataTableNoCard, 
-		VJstree, 
 		menuTable, 
-		orgTable
+		orgTable,
+		Paging, PagingPage
 	},
 	data: {
 		userlog: {
@@ -125,79 +124,6 @@ new Vue({
 		}
 	},
 	methods: {
-		tes() {
-			console.log("ade")
-		},
-		itemClick(node) {
-			this.menuOrgTree = true;
-			this.buName = node.model.text;
-			this.buID = node.model.id;
-			this.buCode = node.model.BUCode;
-			this.buHead = node.model.BUHead;
-
-		},
-		toggleSideBar() {
-			this.menuOrgTree = !this.menuOrgTree;
-		},
-		draggable() {
-			this.drag = true;
-		},
-		addBU() {
-			this.modal.addBU = true;
-		},
-		editBU() {
-			this.modal.editBU = true;
-		},
-		saveDrag(saveLink) {
-			let self = this;
-			this.$dialog.confirm({
-				title: 'Confirm Changes',
-				message: 'Are you sure you want to <b>save</b> ?',
-				confirmText: 'Oke',
-				type: 'is-danger',
-				hasIcon: true,
-				onConfirm: () => {
-					let form = document.createElement("form");
-					form.setAttribute("action", saveLink);
-					form.setAttribute("method", "POST");
-
-					let input = document.createElement("input");
-					input.value = JSON.stringify(self.orgChanges);
-					input.setAttribute("name", "data")
-					form.appendChild(input);
-					document.getElementById("vapp").appendChild(form);
-					form.submit();
-				}
-			})
-		},
-		closeDrag() {
-			if (this.orgChanges.length > 0) {
-				location.reload()
-			} else {
-				this.drag = !this.drag
-			}
-		},
-		deleteBU(deleteLink) {
-			this.$dialog.confirm({
-				title: 'Delete BU',
-				message: 'Are you sure you want to <b>delete</b> ' + this.buName + ' ?',
-				confirmText: 'Oke',
-				type: 'is-danger',
-				hasIcon: true,
-				onConfirm: () => window.location.href = deleteLink + "id=" + this.buID
-			})
-		},
-		dragStart(node) {
-			this.isDragged = node.model
-		},
-		drop(node) {
-			let tes = {
-				parent: node.model.text,
-				child: this.isDragged.text
-			};
-			this.orgChanges.push(tes)
-			this.isDragged = undefined;
-		},
 		changeProfile(value, nik) {
 			let self = this;
 			this.$dialog.confirm({
@@ -235,15 +161,6 @@ new Vue({
 				this.checkboxGroup = []
 			}
 		},
-		menuForm() {
-			if (this.addMenu) {
-				this.addMenu = false
-				this.menuTree = true
-			} else {
-				this.addMenu = true
-				this.menuTree = false
-			}
-		},
 		privilageForm(val) {
 			if (this.privilage) {
 				this.showTable = true
@@ -279,21 +196,6 @@ new Vue({
 			} else {
 				this.data = this.dataOri
 			}
-		},
-		editMenuTree(val) {
-			this.menuTree = !this.menuTree
-			this.editMenu = !this.editMenu
-			this.tampung = val
-		},
-		deleteMenuTree(val, deleteLink) {
-			this.$dialog.confirm({
-				title: 'Delete Menu',
-				message: 'Are you sure you want to delete <b>' + val.text + '</b> ?',
-				confirmText: 'Oke',
-				type: 'is-danger',
-				hasIcon: true,
-				onConfirm: () => window.location.href = deleteLink + "id=" + val.id
-			})
 		}
 	},
 	computed: {

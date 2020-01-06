@@ -1,3 +1,32 @@
+table.table {
+	.button.is-small {
+		border-radius: 2px;
+		font-size: .65rem !important;
+		padding-bottom: 2px;
+		padding-top: 2px;
+		height: auto;
+	}
+
+	td {
+		.small-tag {
+			background-color: $dark;
+			padding: 2px 5px;
+			border-radius: 3px;
+			font-size: 10px;
+			color: $light;
+
+			&.is-link {
+				background-color: $link;
+				
+				&:hover {
+					background-color: $light;
+					color: $info;
+				}
+			}
+		}
+	}
+}
+
 table.table.is-tree-table {
 
 	th {
@@ -33,31 +62,6 @@ table.table.is-tree-table {
 			border-left-style: solid !important;
 			border-left-color: $border;
 			border-left-width: 1px;
-		}
-
-		.button {
-			border-radius: 2px;
-			font-size: .65rem !important;
-			padding-bottom: 2px;
-			padding-top: 2px;
-			height: auto;
-		}
-
-		.small-tag {
-			background-color: $dark;
-			padding: 2px 5px;
-			border-radius: 3px;
-			font-size: 10px;
-			color: $light;
-
-			&.is-link {
-				background-color: $link;
-				
-				&:hover {
-					background-color: $light;
-					color: $info;
-				}
-			}
 		}
 		
 		@each $name, $level in $levelPadding {

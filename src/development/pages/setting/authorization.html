@@ -133,140 +133,63 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container">
-
-					<div class="card">
-						<slot name="header">
-							<header class="card-header">
-								<p class="card-header-title">Authorization</p>
+					<crud ref="tables" narrowed :data="props.AUTHPROFILE.data"
+						:columns="props.AUTHPROFILE.fields" del="http://localhost:5501/demo/post_detect.php?id={id}"
+						:add="{ action: 'http://localhost:5501/demo/post_detect.php' }"
+						:edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }">
+					
+						<template slot="header">
+							<header class="card-header has-gradient-light">
+								<p class="card-header-title">Authorization Profile</p>
 							</header>
-						</slot>
-						<div class="card-content" style="padding-bottom:0.5em;">
-							<b-message type="is-info">
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum rerum
-								quae doloribus? Aperiam,
-								cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
-								molestias eius magnam illum
-								debitis.
-							</b-message>
-						</div>
-						<b-table v-if="showTable" :data="props.DATA" :paginated="paginated !== 0" :per-page="paginated"
-							pagination-position="top" pagination-simple>
-							<template slot-scope="props">
-								<b-table-column width="175" field="profile_id" label="Profile ID" sortable>
-									<span>{{ props.row.profile_id }}</span>
-								</b-table-column>
-								<b-table-column field="profil_name" label="Profile Name" sortable>
-									<span>{{ props.row.profile_name }}</span>
-								</b-table-column>
-								<b-table-column width="200" field="action" label="Action" sortable>
-									<b-button @click="privilageForm(props.row)" type="is-success" size="is-small">
-										Akses
-									</b-button>
-									<b-button @click="editForm(props.row)" type="is-info" size="is-small">Edit
-									</b-button>
-									<b-button tag="a"
-										:href="'http://localhost:5501/demo/post_detect.php?id='+props.row.id"
-										type="is-danger" size="is-small">Delete
-									</b-button>
-								</b-table-column>
-							</template>
-							<template slot="top-left">
-								<b-button @click="addform(props.row)" type="is-success">Add New</b-button>
-							</template>
-						</b-table>
-						<section class="card-content animated fadeIn" v-if="add">
-							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-field label="Profile Name">
-									<b-input expanded name="profile_name" placeholder="Fill Profile Name"></b-input>
-								</b-field>
-								<input type="hidden" name="accessMenu" v-model="checkboxGroup">
-								<b-field label="Menu Access">
-									<div class="block">
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="1">
-											Home
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="2">
-											Project
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="3">
-											Financial
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="4">
-											Opportunity
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="5">
-											Operation
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="6">
-											Setting
-										</b-checkbox>
-									</div>
-								</b-field>
-								<div style="margin-top: 28px;">
-									<b-button type="is-danger" @click="addform" style="min-width: 150px;">
-										Cancel
-									</b-button>
-									<button style="min-width: 150px;" class="button is-success" type="submit">
-										Save
-									</button>
-								</div>
-							</form>
-						</section>
-						<section class="card-content animated fadeIn" v-if="edit">
-							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-input expanded name="profil_id" :value="tampung.profile_id" type="hidden"></b-input>
-								<b-field label="Profile Name">
-									<b-input expanded name="profile_name" :value="tampung.profile_name"
-										placeholder="Fill Profile Name"></b-input>
-								</b-field>
-								<div style="margin-top: 28px;">
-									<b-button type="is-danger" @click="editForm" style="min-width: 150px;">
-										Cancel
-									</b-button>
-									<button style="min-width: 150px;" class="button is-success" type="submit">
-										Save
-									</button>
-								</div>
-							</form>
-						</section>
-						<section class="card-content animated fadeIn" v-if="privilage">
-							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-input expanded name="profil_id" :value="tampung.profile_id" type="hidden"></b-input>
-								<input type="hidden" name="accessMenu" v-model="checkboxGroup">
-								<b-field label="Menu Access">
-									<div class="block">
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="1">
-											Home
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="2">
-											Project
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="3">
-											Financial
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="4">
-											Opportunity
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="5">
-											Operation
-										</b-checkbox>
-										<b-checkbox v-model="checkboxGroup" class="have-padding" native-value="6">
-											Setting
-										</b-checkbox>
-									</div>
-								</b-field>
-								<div style="margin-top: 28px;">
-									<b-button type="is-danger" @click="privilageForm" style="min-width: 150px;">
-										Cancel
-									</b-button>
-									<button style="min-width: 150px;" class="button is-success" type="submit">
-										Save
-									</button>
-								</div>
-							</form>
-						</section>
-					</div>
+						</template>
+					
+						<template slot="message">
+							<div class="card-content" style="padding-bottom:0.5em;">
+								<b-message type="is-info">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
+									rerum
+									quae doloribus? Aperiam,
+									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+									molestias eius magnam illum
+									debitis.
+								</b-message>
+							</div>
+						</template>
+					
+						<template slot="forms" slot-scope="{ action, row, isEdit }">
+							<crud-form method="post" :action="action" @cancel="$refs.tables.showForm = false">
+								<crud-input type="text" label="Profile Name" placeholder="Label/Name for the profile" name="profile_name"
+									:value="row.name">
+								</crud-input>
 
+								<label class="label">Profile Privilage</label>
+								<input type="hidden" name="privilage" :value="row.privilage.join(',')">
+								<tree-table :data="props.MENU" :shadow="false" no-card striped hoverable>
+									<template slot="thead">
+										<th>Menu</th>
+										<th>Description</th>
+										<th>Link</th>
+										<th>Enable</th>
+									</template>
+									<template slot="labelrow" slot-scope="{ row:menu }">
+										<span :class="'mdi ' + menu.icon"></span>
+										<span>{{ menu.text }}</span>
+									</template>
+									<template slot="tbody" slot-scope="{ row:menu }">
+										<td>{{ menu.desc }}</td>
+										<td class="text-elipsis" style="max-width: 250px;">
+											<a v-if="menu.link !== null" :href="menu.link" class="small-tag is-link">{{ menu.link }}</a>
+											<span v-else class="small-tag">Empty Link</span>
+										</td>
+										<td>
+											<b-checkbox v-model="row.privilage" :native-value="menu.id"></b-checkbox>
+										</td>
+									</template>
+								</tree-table>
+							</crud-form>
+						</template>
+					</crud>
 				</div>
 			</section>
 		</section>
@@ -280,42 +203,154 @@
 
 	<script>
 		const VAPPS = {
-			DATA: [
+			AUTHPROFILE: {
+				fields: [
+					{
+						key: 'id',
+						label: 'Profile ID',
+						sortable: true,
+					},
+					{
+						key: 'name',
+						label: 'Profile Name',
+						sortable: true,
+					},
+				],
+				data: [
+					{
+						id: 1,
+						name: "PMO",
+						privilage: [
+							"MENU-0",
+							"MENU-1",
+							"MENU-2",
+							"MENU-3",
+							"MENU-4",
+							"MENU-5",
+							"MENU-6"
+						]
+					},
+					{
+						id: 2,
+						name: "PM Leader",
+						privilage: [
+							"MENU-0",
+							"MENU-2",
+							"MENU-3",
+							"MENU-4",
+						]
+					},
+					{
+						id: 3,
+						name: "PM",
+						privilage: [
+							"MENU-0",
+							"MENU-2",
+							"MENU-3",
+							"MENU-4",
+						]
+					},
+					{
+						id: 4,
+						name: "Team Member",
+						privilage: [
+							"MENU-0",
+							"MENU-2",
+							"MENU-4",
+						]
+					},
+					{
+						id: 5,
+						name: "AM",
+						privilage: [
+							"MENU-0",
+							"MENU-2",
+							"MENU-3",
+							"MENU-4",
+						]
+					},
+					{
+						id: 6,
+						name: "Purchasing",
+						privilage: [
+							"MENU-0",
+							"MENU-2",
+							"MENU-3",
+							"MENU-4",
+						]
+					}
+				]
+			},
+			MENU: [
 				{
-					profile_id: 1,
-					profile_name: "PMO",
-					privilage: "1",
-					checkBoxGroup: ["1", "2", "3"]
+					"id": "MENU-0",
+					"text": "Project",
+					"link": null,
+					"type": 3,
+					"desc": "Pariatur excepteur occaecat labore Lorem sint sint non et voluptate cillum minim consequat sunt minim.",
+					"icon": "mdi-folder",
+					"hasChild": true,
+					"parent": null
 				},
 				{
-					profile_id: 2,
-					profile_name: "PM Leader",
-					privilage: "2",
-					checkBoxGroup: ["2", "4"]
+					"id": "MENU-1",
+					"text": "Setting",
+					"link": null,
+					"type": 3,
+					"desc": "Nostrud nisi pariatur cillum enim nisi nostrud excepteur id nostrud excepteur.",
+					"icon": "mdi-settings",
+					"hasChild": true,
+					"parent": null
 				},
 				{
-					profile_id: 3,
-					profile_name: "PM",
-					privilage: "3",
-					checkBoxGroup: ["1", "2", "3"]
+					"id": "MENU-2",
+					"text": "Project List",
+					"link": "http://localhost:5500/project/list.html",
+					"type": 1,
+					"desc": "Exercitation velit id fugiat anim anim sunt nisi reprehenderit et irure.",
+					"icon": "mdi-layers-triple",
+					"hasChild": false,
+					"parent": "MENU-0"
 				},
 				{
-					profile_id: 4,
-					profile_name: "Team Member",
-					privilage: "4",
-					checkBoxGroup: ["2", "3"]
+					"id": "MENU-3",
+					"text": "Project Assignment",
+					"link": "http://localhost:5500/project/projectAssignment.html",
+					"type": 1,
+					"desc": "Sunt velit cupidatat duis aliqua eu Lorem ipsum cillum.",
+					"icon": "mdi-hand-okay",
+					"hasChild": false,
+					"parent": "MENU-0"
 				},
 				{
-					profile_id: 5,
-					profile_name: "AM",
-					privilage: "2",
-					checkBoxGroup: ["1", "2", "3"]
+					"id": "MENU-4",
+					"text": "My Tasks",
+					"link": "http://localhost:5500/project/timesheetList.html",
+					"type": 1,
+					"desc": "Sunt aliqua et occaecat consectetur deserunt cillum ex tempor ad dolore Lorem esse ea.",
+					"icon": "mdi-attachment",
+					"hasChild": false,
+					"parent": "MENU-0"
 				},
 				{
-					profile_id: 6,
-					profile_name: "Purchasing",
-					privilage: "1",
-					checkBoxGroup: ["1", "2", "3"]
+					"id": "MENU-5",
+					"text": "Authorization",
+					"link": "http://localhost:5500/setting/authorization.html",
+					"type": 1,
+					"desc": "Aute non culpa eu cupidatat.",
+					"icon": "mdi-account-supervisor-circle",
+					"hasChild": false,
+					"parent": "MENU-1"
+				},
+				{
+					"id": "MENU-6",
+					"text": "Organization",
+					"link": "http://localhost:5500/setting/organization.html",
+					"type": 1,
+					"desc": "Id magna non ea consectetur id minim amet sunt cupidatat voluptate.",
+					"icon": "mdi-office-building",
+					"hasChild": false,
+					"parent": "MENU-1"
 				}
 			]
 		}

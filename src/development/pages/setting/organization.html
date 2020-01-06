@@ -174,48 +174,6 @@
 						</template>
 					</crud>
 
-					<nav class="level">
-						<div class="level-left" v-if="menuOrgTree">
-							<span></span>
-							<b-message type="is-warning">
-								<nav class="level">
-									<div class="level-left">
-										<div class="level-item">
-											<b-button @click="addBU" type="is-success is-small">Add BU</b-button>
-										</div>
-										<div class="level-item">
-											<b-button @click="editBU" type="is-success is-small">Edit</b-button>
-										</div>
-										<div class="level-item">
-											<b-button @click="deleteBU('http://localhost:5501/demo/post_detect.php?')"
-												type="is-success is-small">
-												Delete</b-button>
-										</div>
-									</div>
-									<div class="level-right">
-										<div class="level-item">
-											<a @click="toggleSideBar()">
-												<span class="icon">
-													<i class="mdi mdi-close-box" aria-hidden="true"></i>
-												</span>
-											</a>
-										</div>
-									</div>
-								</nav>
-							</b-message>
-						</div>
-						<div class="level-right">
-							<template v-if="!drag">
-								<b-button @click="draggable" type="is-info">Active</b-button>
-							</template>
-							<template v-if="drag">
-								<b-button @click="closeDrag" type="is-danger">Cancel</b-button>
-								<b-button @click="saveDrag('http://localhost:5501/demo/post_detect.php?')"
-									type="is-success">save</b-button>
-							</template>
-						</div>
-					</nav>
-
 				</div>
 			</section>
 		</section>

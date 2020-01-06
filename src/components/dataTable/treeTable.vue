@@ -144,8 +144,6 @@ export default {
 				return node.descendant.includes(row.id) && !node.open;
 			});
 
-			console.log(row, parentisFolded);
-
 			return {
 				"is-folded": !row.open,
 				"is-hidden": parentisFolded
