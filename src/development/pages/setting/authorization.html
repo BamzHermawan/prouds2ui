@@ -164,29 +164,15 @@
 								</crud-input>
 
 								<label class="label">Profile Privilage</label>
-								<input type="hidden" name="privilage" :value="row.privilage.join(',')">
-								<tree-table :data="props.MENU" :shadow="false" no-card striped hoverable>
-									<template slot="thead">
-										<th>Menu</th>
-										<th>Description</th>
-										<th>Link</th>
-										<th>Enable</th>
-									</template>
-									<template slot="labelrow" slot-scope="{ row:menu }">
-										<span :class="'mdi ' + menu.icon"></span>
-										<span>{{ menu.text }}</span>
-									</template>
-									<template slot="tbody" slot-scope="{ row:menu }">
+								<profiler :menu="props.MENU" :value="row.privilage">
+									<template slot-scope="{ row:menu }">
 										<td>{{ menu.desc }}</td>
 										<td class="text-elipsis" style="max-width: 250px;">
 											<a v-if="menu.link !== null" :href="menu.link" class="small-tag is-link">{{ menu.link }}</a>
 											<span v-else class="small-tag">Empty Link</span>
 										</td>
-										<td>
-											<b-checkbox v-model="row.privilage" :native-value="menu.id"></b-checkbox>
-										</td>
 									</template>
-								</tree-table>
+								</profiler>
 							</crud-form>
 						</template>
 					</crud>
@@ -209,12 +195,20 @@
 						key: 'id',
 						label: 'Profile ID',
 						sortable: true,
+						width: 120,
+						centered: true
 					},
 					{
 						key: 'name',
 						label: 'Profile Name',
 						sortable: true,
 					},
+					{
+						key: 'action',
+						label: 'Action',
+						centered: true,
+						width: 175
+					}
 				],
 				data: [
 					{
@@ -339,7 +333,7 @@
 					"type": 1,
 					"desc": "Aute non culpa eu cupidatat.",
 					"icon": "mdi-account-supervisor-circle",
-					"hasChild": false,
+					"hasChild": true,
 					"parent": "MENU-1"
 				},
 				{
@@ -350,7 +344,7 @@
 					"desc": "Id magna non ea consectetur id minim amet sunt cupidatat voluptate.",
 					"icon": "mdi-office-building",
 					"hasChild": false,
-					"parent": "MENU-1"
+					"parent": "MENU-5"
 				}
 			]
 		}

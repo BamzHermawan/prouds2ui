@@ -87,7 +87,10 @@
 				</table>
 			</div>
 			<div class="pindex-table-right" @scroll="listenScroll">
-				<table class="table is-narrow is-bordered is-fullwidth">
+				<table
+					v-if="!wpTimeout"
+					class="table is-narrow is-bordered is-fullwidth"
+				>
 					<thead>
 						<tr>
 							<th
@@ -247,7 +250,7 @@
 								class="has-border-right-bold"
 								v-for="(delta, n) in progress.delta"
 							>
-								<b class="has-text-success">{{
+								<b class="has-text-danger">{{
 									delta | stripWhenEmpty
 								}}</b>
 							</td>
@@ -264,6 +267,26 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<div
+					v-if="wpTimeout"
+					class="fetch-is-timeout-wrapper animated"
+					@click="weeklyRefresh"
+				>
+					<p class="has-text-grey sticky" :style="'top:'+wpStickyTop+'px;'">
+						<span v-show="!wpReload" class="animated fadeIn fast">
+							<slot>
+								Sorry, we are having problem connecting to server and can't get related data for this table. 😔
+								<br /><b class="has-text-info">click to refresh</b>.
+							</slot>
+						</span>
+						<br />
+						<span
+							v-show="wpReload"
+							class="mdi mdi-reload mdi-48px mdi-spin-fast animated fadeIn"
+						></span>
+					</p>
+				</div>
 			</div>
 		</div>
 		<b-loading
@@ -275,7 +298,8 @@
 
 <script>
 import Tasks from "./taskController";
-import { isEmpty } from "helper-tools";
+import { isEmpty, animate } from "helper-tools";
+import { checkConnection, notified } from "helper-tools";
 
 export default {
 	name: "pindexTable",
@@ -306,7 +330,11 @@ export default {
 			tasks: [],
 			descendant: [],
 			fetchingProgress: false,
-			tableLoading: true
+			tableLoading: true,
+			wpTimeout: false,
+			wpReload: false,
+			notifiedOn: false,
+			contentScroll: 0
 		};
 	},
 	watch: {
@@ -314,7 +342,36 @@ export default {
 			if (!isEmpty(change)) this.fetchData(change);
 		}
 	},
+	computed: {
+		wpStickyTop() {
+			if (this.contentScroll > 0) {
+				return this.contentScroll - 100;
+			}
+
+			return this.contentScroll;
+		}
+	},
+	mounted() {
+		document.querySelector('.contentPage').onscroll = this.atContentScroll;
+	},
 	methods: {
+		atContentScroll(e) {
+			let target = e.target;
+			this.contentScroll = target.scrollTop;
+		},
+		catchFetch(err) {
+			if (this.notifiedOn) return 0;
+
+			if (checkConnection(this.$notification)) {
+				notified(this.$notification).error(
+					"Sorry we are encountering a problem.<br>Your connection to our server is timeout. 🙏"
+				);
+
+				this.notifiedOn = true;
+				setTimeout(() => (this.notifiedOn = false), 5000);
+			}
+		},
+
 		// listen to table left horizontal scroll
 		listenScroll(e) {
 			let target = e.target;
@@ -332,6 +389,11 @@ export default {
 			}
 		},
 
+		weeklyRefresh() {
+			this.wpReload = true;
+			this.fetchWeekly();
+		},
+
 		// fetch weekly progress to backend
 		fetchWeekly(toMerge = null) {
 			let self = this;
@@ -340,14 +402,28 @@ export default {
 				this.weekLimit,
 				(response, err) => {
 					if (isEmpty(response)) {
-						// ! error notification
-						console.log(err);
+						self.catchFetch(err);
+						self.wpReload = false;
+
+						if (toMerge === null) self.wpTimeout = true;
 					} else {
+						if (self.wpTimeout) {
+							animate(
+								".fetch-is-timeout-wrapper",
+								"fadeOut fast",
+								el => {
+									self.wpReload = false;
+								}
+							);
+						}
+						
+						self.wpTimeout = false;
 						self.weekCount = response.week_count;
 						self.progress = response;
-						self.fetchingProgress = false;
-						self.tableLoading = false;
 					}
+
+					self.fetchingProgress = false;
+					self.tableLoading = false;
 				},
 				toMerge
 			);
@@ -361,14 +437,14 @@ export default {
 				this.root.fetch((tasks, err) => {
 					if (!isEmpty(err)) {
 						// ! error notification
-						console.log(err);
+						this.catchFetch(err);
+						self.tableLoading = false;
 					} else {
 						self.tasks = tasks.parseArray;
 						self.descendant = tasks.descendant;
 						self.fetchWeekly();
-
-						self.$emit("loaded", this);
 					}
+					self.$emit("loaded", this);
 				});
 			}
 		},

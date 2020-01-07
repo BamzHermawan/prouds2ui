@@ -59,6 +59,7 @@
 					</div>
 				</nav>
 				<b-table
+					v-cloak
 					:paginated="!showAll && filteredlist.length > perPage"
 					:per-page="perPage"
 					:current-page.sync="currentPage"

@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 
-define('TASK_TOTAL', 300);
+define('TASK_TOTAL', 50);
 define('WEEK_TOTAL', 48);
 define('CURRENT_WEEK', 42);
 
@@ -114,6 +114,16 @@ if ($_GET['get'] == 'tasks') {
 }
 
 if ($_GET['get'] == 'weekly') {
+	$sum = 0;
+	for ($i=0; $i < 10000; $i++) { 
+		for ($j=0; $j < 10000; $j++) { 
+			$sum++;
+		}
+	}
+
+	// http_response_code(500);
+	// return 0;
+
 	$json = file_get_contents("./dummy/tasks.json");
 	$parsed = json_decode($json);
 

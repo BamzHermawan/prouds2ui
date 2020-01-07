@@ -7,6 +7,7 @@ import { crudInput } from 'components';
 import { dataTableNoCard } from 'components';
 import menuTable from './menuTable.vue';
 import orgTable from './organization.vue';
+import profiler from './profilePrivilage.vue';
 
 Vue.use(Buefy);
 new Vue({
@@ -19,6 +20,7 @@ new Vue({
 		dataTableNoCard, 
 		menuTable, 
 		orgTable,
+		profiler,
 		Paging, PagingPage
 	},
 	data: {

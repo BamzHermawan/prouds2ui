@@ -40,7 +40,13 @@
 									</slot>
 								</td>
 
-								<slot name="tbody" :row="row" :index="index" />
+								<slot
+									name="tbody"
+									:row="row"
+									:index="index"
+									:get-ancestor="getAncestor"
+									:get-descendant="getDescendant"
+								/>
 							</tr>
 						</tbody>
 					</table>
@@ -110,6 +116,24 @@ export default {
 	methods: {
 		level(depth) {
 			return "has-depth-" + depth;
+		},
+
+		getAncestor(id) {
+			let cooked = [];
+			let ancestor = this.descendant.filter(row =>
+				row.descendant.includes(id)
+			);
+			for (let i = 0; i < ancestor.length; i++) {
+				const node = ancestor[i];
+				cooked.push(node.id);
+			}
+
+			return cooked;
+		},
+
+		getDescendant(id) {
+			let found = this.descendant.find(row => row.id === id);
+			return found instanceof Object ? found.descendant : undefined;
 		},
 
 		// toggle display descendant

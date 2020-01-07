@@ -30,7 +30,12 @@
 					>
 						{{ props.row[col.key] }}
 					</b-table-column>
-					<b-table-column field="action" label="Action">
+					<b-table-column
+						field="action"
+						label="Action"
+						:width="getActionColumn('width')"
+						:centered="getActionColumn('centered')"
+					>
 						<slot
 							name="action-column"
 							:row="props.row"
@@ -210,6 +215,11 @@ export default {
 			selected: {
 				row: undefined,
 				index: undefined
+			},
+			actionColumn: {
+				key: "action",
+				label: "Action",
+				sortable: false
 			}
 		};
 	},
@@ -341,9 +351,28 @@ export default {
 			} else {
 				return false;
 			}
+		},
+
+		getActionColumn(key) {
+			if (this.actionColumn.hasOwnProperty(key)) {
+				return this.actionColumn[key];
+			} else {
+				return undefined;
+			}
 		}
 	},
 	mounted() {
+		let actionCol = this.columns.findIndex(col => col.key === "action");
+		if (actionCol >= 0) {
+			let action = this.columns[actionCol];
+			if (!action.hasOwnProperty("label")) {
+				action.label = this.actionColumn.label;
+			}
+
+			this.actionColumn = action;
+			this.columns.splice(actionCol, 1);
+		}
+
 		let data = this.data[0];
 		let selectedRow = {};
 		for (let key in data) {

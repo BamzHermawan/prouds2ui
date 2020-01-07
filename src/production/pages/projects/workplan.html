@@ -220,12 +220,6 @@
 														</div>
 													</b-upload>
 												</div>
-												<div class="level-item" style="margin-left: 10px;">
-													<b-button type="is-primary is-light is-small is-fullwidth"
-														@click="template('template')">
-														<b>Use Template</b>
-													</b-button>
-												</div>
 												<div class="level-item" style="margin-left:10px;">
 													<b-dropdown hoverable aria-role="list">
 														<b-button type="is-info is-light is-small is-fullwidth"
@@ -241,6 +235,19 @@
 														</b-dropdown-item>
 													</b-dropdown>
 												</div>
+												<div class="level-item" style="margin-left: 10px;">
+													<b-button type="is-primary is-light is-small is-fullwidth" @click="template('template')">
+														<b>Use Template</b>
+													</b-button>
+												</div>
+												<!-- ^ UPDATE ################################################################################# -->
+												<div class="level-item" style="margin-left: 10px;">
+													<approve-btn project-id="100000222" title="Approve Workplan" confirm-text="Yes, I am"
+														message="You are trying to approve workplan for **this project**, are you sure ?"
+														action="http://localhost:5501/demo/post_detect.php">
+													</approve-btn>
+												</div>
+												<!-- ^ UPDATE ################################################################################# -->
 											</div>
 										</form>
 									</div>

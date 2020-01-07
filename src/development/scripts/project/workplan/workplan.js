@@ -11,6 +11,7 @@ import ShowAssignment from "./showAssignment.vue"
 import SetProgress from "./setProgress.vue"
 import ChangeParentTask from "./changeParentTask.vue"
 import LinkPredecessor from "./linkPredecessor.vue"
+import approveBtn from "./approveWorkplan.vue"
 import 'helper-filter';
 
 Vue.use(Buefy);
@@ -27,7 +28,8 @@ new Vue({
 		ShowAssignment,
 		SetProgress,
 		ChangeParentTask,
-		LinkPredecessor
+		LinkPredecessor,
+		approveBtn
 	},
 	data: {
 		selectedTask: {
@@ -100,7 +102,9 @@ new Vue({
 				document.querySelector('.contentPage').scrollTop = 0;
 			});
 		},
+		approveWorkplan(project_id) {
 
+		},
 		template(idd) {
 			if (this.showWorkplan) {
 				animate('#workplan', 'fadeOut faster', (el) => {

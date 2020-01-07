@@ -6,6 +6,9 @@ module.exports = {
 	// Base URL to prouds API
 	baseAPI: 'http://localhost:5501/demo/',
 
+	// timeout is 1 minute
+	timeout: 1 * 60 * 1000,
+
 	// list of prouds API
 	listAPI: {
 

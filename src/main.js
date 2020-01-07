@@ -2,8 +2,9 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import myCore from 'myGeeg';
 import Loader from 'helper-loader';
+import Moment from 'helper-moment';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { notified, checkConnection } from 'helper-tools';
+import { notified, checkConnection, loadStorage, saveStorage } from 'helper-tools';
 import api from 'helper-apis';
 import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
 
@@ -47,18 +48,51 @@ const VueSidebar = new Vue({
 			this.notifTotal = notRead.length;
 			return this.notifTotal;
 		},
+		userActivity(different = 1) {
+			let activity = loadStorage('activity'),
+				current = new Date(),
+				last = new Date();
+
+			if (activity !== null && activity.hasOwnProperty('current')) {
+				current = activity.current;
+				last = activity.last;
+				saveStorage("activity", {
+					current: new Date(),
+					last: current
+				});
+			} else {
+				saveStorage("activity", {
+					current: current,
+					last: last
+				});
+			}
+
+			let span = Moment(current).subtract(different, 'hours');
+			return {
+				current, last, pastDifferent: Moment(last).isBefore(span)
+			}
+		},
 		checkNotification() {
 			let self = this;
+			let activity = this.userActivity();
+
 			api.getNotification()
 				.then((response) => {
 					let notif = response.data
 					let totalNotRead = notif.filter((log) => !log.read);
 					if (totalNotRead.length > self.notifTotal) {
 						self.notifTotal = totalNotRead.length;
-						notified(self.$notification).info("You have <b>" + self.notifCount + "<b> unread notification");
+
+						if (activity.pastDifferent) {
+							notified(self.$notification).info("You have <b>" + self.notifCount + "<b> unread notification");
+						}
 					}
 				})
 				.catch(function () {
+					if (activity.pastDifferent) {
+						return 0;
+					}
+
 					if (checkConnection(self.$notification)) {
 						notified(self.$notification).error(
 							"Sorry we are encountering a problem, please try again later. 🙏"

@@ -15,6 +15,11 @@
 	vertical-align: bottom !important;
 }
 
+.mdi-spin-fast::before {
+	-webkit-animation: mdi-spin 800ms infinite linear;
+    animation: mdi-spin 800ms infinite linear;
+}
+
 .hover-text {
 	& > [data-toggle="text"] {
 		display: none !important;

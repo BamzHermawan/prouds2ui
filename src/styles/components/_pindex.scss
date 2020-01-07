@@ -5,6 +5,19 @@
 	.pindex-table-right {
 		width: 100%;
 		overflow-x: scroll;
+
+		.fetch-is-timeout-wrapper {
+			text-align: center;
+			background-color: $grey-lighter;
+			height: 100%;
+			padding: 2.5rem 1rem;
+			cursor: pointer;
+			
+			.sticky {
+				position:-webkit-sticky;
+				position:sticky;
+			}
+		}
 	}
 
 	th {

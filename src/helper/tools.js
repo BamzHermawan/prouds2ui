@@ -2,7 +2,7 @@ const TIPE = [
 	{ key: "primary", class: 'is-primary', duration: 5000 },
 	{ key: "error", class: 'is-danger', duration: 5000 },
 	{ key: "success", class: 'is-success', duration: 2500 },
-	{ key: "info", class: 'is-info', duration: 5000 },
+	{ key: "info", class: 'is-info', duration: 2500 },
 	{ key: "alert", class: 'is-warning', duration: 5000 },
 	{ key: "light", class: 'is-light', duration: 2500 },
 	{ key: "dark", class: 'is-dark', duration: 2500 },
@@ -20,7 +20,10 @@ const POSITION = [
 ];
 
 const notifiedType = (typeIndex, actor, message = undefined) => {
-	var option = {};
+	var option = {
+		queue: false
+	};
+
 	if (message === undefined) {
 		var bundle = {};
 		for (let j = 0; j < POSITION.length; j++) {
@@ -64,7 +67,8 @@ module.exports.notified = (actor, message = undefined) => {
 		return actor.open({
 			duration: 3000,
 			message: message,
-			type: 'is-light'
+			type: 'is-light',
+			queue: false
 		});
 	}
 };

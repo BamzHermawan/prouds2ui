@@ -192,7 +192,7 @@
 							<b class="has-text-dark">*click task name to open chart per task specifically. to check total progress chart
 								click green button "open chart"</b>
 						</b-message>
-						<pindex-table :project-id="project_id" @rowclicked="openChart" @redclicked="openFallBehind"></pindex-table>
+						<pindex-table :project-id="project_id" @rowclicked="openChart" @redclicked="openFallBehind" :gap-treshold="5.75"></pindex-table>
 					</div>
 					
 					<div v-cloak="" v-show="chartIsOpen" class="pindex-chart-container animated fadeIn faster">
@@ -309,6 +309,14 @@
 			expected return look json file release/dummy/pIndexTable.json
 		-->
 		<api-test url="performanceIndex.php?get=tasks&project_id={project_id}" key="getProjectTasks"></api-test>
+
+		<!-- 
+			Get Project Tasks weekly progress
+			@param {*} project_id: Project ID
+
+			expected return briefly ask @ariomoklo
+		-->
+		<api-test url="performanceIndex.php?get=weekly&project_id={project_id}" key="getTasksProgress"></api-test>
 	
 		<!-- 
 			Get Performance Index Table Data [GET]

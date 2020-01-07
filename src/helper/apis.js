@@ -3,8 +3,12 @@ import $config from '../config.js';
 import qs from 'querystring';
 import request from 'axios';
 
-let $api = $config.listAPI;
-let pack = qs.stringify;
+
+const $api = $config.listAPI;
+const pack = qs.stringify;
+
+// Set default timeout
+request.defaults.timeout = $config.timeout;
 
 // set up global config if there is none
 if (global.$config === undefined) {
@@ -46,6 +50,7 @@ const parseURL = (key, bundle) => {
 
 module.exports.parsedURL = parseURL;
 module.exports.rawURL = $api;
+module.exports.axios = request;
 
 //? ----------------------------------------------------------------------------
 //? ----------------------------------------------------------------------------

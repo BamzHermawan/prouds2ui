@@ -1,6 +1,5 @@
-import Axios from 'axios';
 import qs from 'querystring';
-import API from 'helper-apis';
+import { parsedURL, axios } from 'helper-apis';
 import Tree from 'helper-tree-class';
 import { isEmpty } from 'helper-tools';
 
@@ -121,12 +120,12 @@ class Tasks {
 		} else {
 			let request = undefined;
 			if (this.parent === 'root') {
-				request = Axios.get(
-					API.parsedURL("getProjectTasks", { project_id: this.projectId })
+				request = axios.get(
+					parsedURL("getProjectTasks", { project_id: this.projectId })
 				);
 			} else {
-				request = Axios.post(
-					API.parsedURL("getProjectTasks", { project_id: this.projectId }), 
+				request = axios.post(
+					parsedURL("getProjectTasks", { project_id: this.projectId }), 
 					qs.stringify({ parent: this.parent }), 
 					{ headers: { "Content-Type": 'application/x-www-form-urlencoded' } }
 				);
@@ -134,7 +133,7 @@ class Tasks {
 
 			if (!isEmpty(request)) {
 				let self = this;
-				request.catch(err => $callback(null, err))
+				request
 					.then(res => {
 						let rootChild = [];
 						const tasks = res.data.tasks;
@@ -166,7 +165,7 @@ class Tasks {
 						}
 
 						$callback(self, null);
-					});
+					}).catch(err => $callback(null, err));
 			}
 		}
 	}
@@ -180,7 +179,7 @@ class Tasks {
 	weekly ($start, $limit, $callback, $toMerge = null) {
 		let task_id = [];
 		this.parseArray.forEach(task => task_id.push(task.id));
-		Axios.post(API.parsedURL("getTasksProgress", { project_id: this.projectId }), qs.stringify({
+		axios.post(parsedURL("getTasksProgress", { project_id: this.projectId }), qs.stringify({
 			'week_start': $start,
 			'week_limit': $limit,
 			'tasks[]': task_id
@@ -188,18 +187,12 @@ class Tasks {
 			headers: {
 				"Content-Type": 'application/x-www-form-urlencoded'
 			}
-		}).catch(err => $callback(null, err))
-			.then(response => {
-				if (response.status == 200) {
-					if ($toMerge !== null) {
-						response.data = mergeProgress($toMerge, response.data);
-					}
-					$callback(response.data, null);
+		}).then(response => {
+				if ($toMerge !== null) {
+					response.data = mergeProgress($toMerge, response.data);
 				}
-				else {
-					$callback(null, "connection lost");
-				}
-			});
+				$callback(response.data, null);
+			}).catch(err => $callback(null, err));
 	}
 }
 
