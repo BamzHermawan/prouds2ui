@@ -59,12 +59,14 @@ new Vue({
 					type: 'column',
 					name: 'Plan',
 					color: '#3298dc',
+					pointStart: 1,
 					data: []
 				},
 				{
 					type: 'column',
 					name: 'Actual',
 					color: '#48c774',
+					pointStart: 1,
 					data: []
 				}
 			],

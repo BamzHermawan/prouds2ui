@@ -201,7 +201,7 @@
 							<p class="has-text-white has-text-weight-light">{{ task.name }}</p>
 						</b-message>
 				
-						<h-chart ref="spiChart" id="spiChart" width="100%" height="300px" title="S-Curve" :point-start="1"
+						<h-chart ref="spiChart" id="spiChart" width="100%" height="300px" title="S-Curve"
 							:tooltip-format="function (){
 								return this.series.name + ' [Week #' + this.x + ']<br><b>' + this.y + '%</b>';
 							}" :x-axis="spiChart.xAxis" :y-axis="spiChart.yAxis" :series="spiChart.series">
@@ -209,9 +209,10 @@
 				
 						<span class="white-space"></span>
 				
-						<h-chart ref="pvrChart" id="pvrChart" width="100%" height="300px" title="Plan VS Realization" :tooltip-format="function (){
+						<h-chart ref="pvrChart" id="pvrChart" width="100%" height="300px" title="Plan VS Realization"
+							:tooltip-format="function (){
 								return this.series.name + ' [Week #' + this.x + ']<br><b>' + this.y + '%</b>';
-							}" :point-start="1" :x-axis="pvrChart.xAxis" :y-axis="pvrChart.yAxis" :series="pvrChart.series">
+							}" :x-axis="pvrChart.xAxis" :y-axis="pvrChart.yAxis" :series="pvrChart.series">
 						</h-chart>
 					</div>
 				

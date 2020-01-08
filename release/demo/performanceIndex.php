@@ -121,8 +121,8 @@ if ($_GET['get'] == 'weekly') {
 		}
 	}
 
-	http_response_code(500);
-	return 0;
+	// http_response_code(500);
+	// return 0;
 
 	$json = file_get_contents("./dummy/tasks.json");
 	$parsed = json_decode($json);
