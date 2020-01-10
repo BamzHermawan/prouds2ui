@@ -7,10 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
 	<title>HELP | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../styles/perfect-scrollbar.css">
 	<link rel="stylesheet" href="../../styles/style.scss">
 </head>
 
@@ -25,14 +27,14 @@
 				<span>PROUDS</span>
 			</div>
 			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
+				<a href="./notification.html" class="parent-list">
 					<div class="list-title">
 						<label>
 							<span class="mdi mdi-bell-outline in-left"></span>
 							<span>Notification</span>
 						</label>
 						<div class="action">
-							<span class="tag is-warning">100</span>
+							<span class="tag is-warning">{{notifCount}}</span>
 						</div>
 					</div>
 				</a>
@@ -50,7 +52,7 @@
 						<span class="mdi mdi-chevron-left mdi-24px"></span>
 					</a>
 
-					<a class="navbar-item">
+					<a href="./project/list.html" class="navbar-item">
 						PROJECT
 					</a>
 
@@ -72,12 +74,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="http://" class="navbar-item hover-text">
+					<a href="#maintenance" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="http://" class="navbar-item hover-text">
+					<a href="./setting/authorization.html" class="navbar-item hover-text">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -87,8 +89,8 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="#profile" class="navbar-item">Account Profile</a>
-							<a href="#help" class="navbar-item">Need Help ?</a>
+							<a href="./profile.html" class="navbar-item">Account Profile</a>
+							<a href="#" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -101,41 +103,167 @@
 		</nav>
 
 		<section id="vapp" class="contentPage">
-			<section class="hero is-light is-bold">
+			<section class="hero is-primary is-bold">
 				<div class="hero-body">
-					<div class="container">
-						<h1 class="title is-marginless">
-							<span>Help Documentation</span>
-						</h1>
-						<!-- <a @click="addFavorite">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span>Bookmark</span>
-						</a> -->
-						<a @click="addFavorite" class="hover-text">
-							<span class="mdi mdi-bookmark-plus is-marginless"></span>
-							<span data-toggle="text" class="animated fadeIn in-right faster">Bookmark</span>
-						</a>
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless">
+								<span>Brand New Prouds 🚀</span>
+							</h1>
+						</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section class="hero is-dark">
+				<div class="hero-body" style="padding:0px 1.8rem;">
+					<div class="columns is-multiline">
+						<div class="column is-6 is-offset-1-fullhd">
+							<div class="content" style="padding: 5em 2em;">
+								<h1 class="subtitle">WELCOME TO NEW <b class="has-text-primary">PROUDS</b> 🎉</h1>
+								<p>Hi, with new year has come we try to take a new step and updated Prouds. We tried to make Prouds more
+									comfortable, easy to use, and nice looking.</p>
+								<p>With this update and new
+									feature, we hope to be more helpful for you so that we never lose sight of our project.</p>
+								<p>Lastly, stay update. cause more feature will be implemented.</p>
+								<p class="has-text-right">– Team Prouds 😎</p>
+							</div>
+						</div>
+						<div class="column is-4-fullhd" style="padding:1.8rem;">
+							<figure class="image">
+								<img src="http://localhost:5501/media/launch-illust.svg">
+							</figure>
+						</div>
 					</div>
 				</div>
 			</section>
-			<section class="section">
-				<div class="container">
-					<portal src="https://www.google.com" style="width:100%;height:100%;"></portal>
-				</div>
-			</section>
+			<span class="white-space"></span>
 			<section class="section">
 				<div id="contentApp" class="container">
-					<p>Hi, <b>{{ userlog.name }}</b> 👋</p>
-					<p>Welcome to <span class="brands">PROUDS</span>!. This application will help you organize project
-						and your timesheet. Do you have any question ? Please visit out <a href="#FAQ">F.A.Q</a> bellow.
-					</p>
+					<div class="columns">
+						<div class="column is-3">
+							<nav class="panel is-shadowless">
+								<p class="panel-heading">
+									Content
+								</p>
+								<a href="#documentation" class="panel-block">
+									<span class="panel-icon">
+										<span class="mdi mdi-library-books"></span>
+									</span>
+									<span style="margin-left:.5em;">Documentations</span>
+								</a>
+								<a href="#FAQ" class="panel-block">
+									<span class="panel-icon">
+										<span class="mdi mdi-comment-question"></span>
+									</span>
+									<span style="margin-left:.5em;">FAQ</span>
+								</a>
+								<a href="#contacts" class="panel-block">
+									<span class="panel-icon">
+										<span class="mdi mdi-contacts"></span>
+									</span>
+									<span style="margin-left:.5em;">Support Contact</span>
+								</a>
+							</nav>
+						</div>
+						<div class="column" style="padding:0px 1rem;">
+							<div class="tile is-vertical">
+								<!-- * ########### Contact ########### * -->
+								<div id="documentation" class="tile is-child">
+									<div class="content">
+										<h1 class="subtitle is-marginless">Documentation</h1>
+										<hr style="margin-top:10px;">
+									</div>
+									<div class="columns is-multiline">
+										<div class="column is-6-fullhd">
+											<docs href="https://www.google.com" new-tab>
+												<p class="is-marginless"><b>Lorem ipsum dolor sit amet.pdf</b></p>
+												<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, illo.</p>
+											</docs>
+										</div>
+										<div class="column is-6-fullhd">
+											<docs href="https://www.google.com" new-tab>
+												<p class="is-marginless"><b>Lorem ipsum dolor sit amet.pdf</b></p>
+												<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, illo.</p>
+											</docs>
+										</div>
+										<div class="column is-6-fullhd">
+											<docs href="https://www.google.com" new-tab>
+												<p class="is-marginless"><b>Lorem ipsum dolor sit amet.pdf</b></p>
+												<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, illo.</p>
+											</docs>
+										</div>
+									</div>
+								</div>
+								
+								<span class="white-space"></span>
+								
+								<!-- * ########### FAQ ########### * -->
+								<div id="FAQ" class="tile is-child">
+									<div class="content">
+										<h1 class="subtitle is-marginless">FAQ</h1>
+										<hr style="margin-top:10px;">
+									</div>
+									<faq title="lalala">
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, tempore vitae consequuntur sunt harum
+											provident vel
+											quae asperiores dolor qui rem molestiae fugit veritatis quos culpa officiis voluptatum obcaecati quaerat
+											blanditiis
+											placeat. Facilis nostrum ad labore unde quisquam doloremque, voluptas reiciendis! Possimus veritatis
+											exercitationem
+											consequatur molestias dolores quia odit excepturi.</p>
+									</faq>
+									<faq title="lalala">
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, tempore vitae consequuntur sunt harum
+											provident vel
+											quae asperiores dolor qui rem molestiae fugit veritatis quos culpa officiis voluptatum obcaecati quaerat
+											blanditiis
+											placeat. Facilis nostrum ad labore unde quisquam doloremque, voluptas reiciendis! Possimus veritatis
+											exercitationem
+											consequatur molestias dolores quia odit excepturi.</p>
+									</faq>
+									<faq title="lalala">
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, tempore vitae consequuntur sunt harum
+											provident vel
+											quae asperiores dolor qui rem molestiae fugit veritatis quos culpa officiis voluptatum obcaecati quaerat
+											blanditiis
+											placeat. Facilis nostrum ad labore unde quisquam doloremque, voluptas reiciendis! Possimus veritatis
+											exercitationem
+											consequatur molestias dolores quia odit excepturi.</p>
+									</faq>
+								</div>
+								
+								<span class="white-space"></span>
+								
+								<!-- * ########### Contact ########### * -->
+								<div id="contacts" class="tile is-child">
+									<div class="content">
+										<h1 class="subtitle is-marginless">Support Contact</h1>
+										<hr style="margin-top:10px;">
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, molestias?</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
+			<span class="white-space"></span>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			</info-footer>
 		</section>
 	</div>
 
 	<script src="../scripts/layout/controller.js"></script>
-	<script src="../scripts/help/controller.js"></script>
+	<script src="../scripts/help/help.js"></script>
 </body>
 
 </html>

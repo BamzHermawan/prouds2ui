@@ -1,7 +1,19 @@
 <template>
 	<div :class="'card timesheet ' + type" @click="onClicked">
 		<div class="card-content">
-			<p class="has-text-weight-bold">{{ task.task }}</p>
+			<p class="has-text-weight-bold">
+				<b-tooltip
+					label="This Task has Issue"
+					type="is-danger"
+					:active="task.issue !== undefined"
+				>
+					<span
+						v-if="task.issue !== undefined"
+						class="mdi mdi-alert has-text-danger"
+					></span>
+					<span>{{ task.task }}</span>
+				</b-tooltip>
+			</p>
 		</div>
 		<div class="card-content content is-marginless">
 			<p>{{ task.project_name }}</p>

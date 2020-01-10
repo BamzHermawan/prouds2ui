@@ -28,7 +28,7 @@
 				<span>PROUDS</span>
 			</div>
 			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
+				<a href="../notification.html" class="parent-list">
 					<div class="list-title">
 						<label>
 							<span class="mdi mdi-bell-outline in-left"></span>
@@ -43,20 +43,20 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Setting" name="setting">
-				<side-item href="authorization.html">Authorization</side-item>
-				<side-item href="baseline.html">Baseline</side-item>
-				<side-item href="customer.html">Customer</side-item>
-				<side-item href="dayscheme.html">Days Scheme</side-item>
-				<side-item href="importdata.html">Import Data</side-item>
-				<side-item href="issue.html">Issue</side-item>
+				<side-item href="./authorization.html">Authorization</side-item>
+				<side-item href="../maintenance.html">Baseline</side-item>
+				<side-item href="../maintenance.html">Customer</side-item>
+				<side-item href="../maintenance.html">Days Scheme</side-item>
+				<side-item href="../maintenance.html">Import Data</side-item>
+				<side-item href="../maintenance.html">Issue</side-item>
 				<side-item active>Menu</side-item>
-				<side-item href="organization.html">Organization</side-item>
+				<side-item href="../maintenance.html">Organization</side-item>
 				<side-list label="Projects" name="pro">
-					<side-item href="privilage.html">Project Privilage</side-item>
-					<side-item href="typelevel.html">Type-Level</side-item>
+					<side-item href="../maintenance.html">Project Privilage</side-item>
+					<side-item href="../maintenance.html">Type-Level</side-item>
 				</side-list>
-				<side-item href="users.html">Users</side-item>
-				<side-item href="workplan.html">Workplan</side-item>
+				<side-item href="../maintenance.html">Users</side-item>
+				<side-item href="../maintenance.html">Workplan</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -69,7 +69,7 @@
 						<span class="mdi mdi-chevron-left mdi-24px"></span>
 					</a>
 
-					<a href="../project/list.html" class="navbar-item">
+					<a href="../projects/list.html" class="navbar-item">
 						PROJECT
 					</a>
 
@@ -91,12 +91,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="http://" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="http://" class="navbar-item hover-text is-active">
+					<a href="./authorization.html" class="navbar-item hover-text is-active">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -106,8 +106,8 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../profile.html" class="navbar-item">Account Profile</a>
-							<a href="#help" class="navbar-item">Need Help ?</a>
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -135,9 +135,9 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 					<menu-table :menu="props.MENU" remove-action="http://localhost:5501/demo/post_detect.php?menu_id={id}&menu={text}">
-						<template slot="form" slot-scope="{ switchTo, hasValue, value }">
+						<template slot="form" slot-scope="{ switchTo, hasValue, value, formType }">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-input type="hidden" name="id" :value="value.id"></b-input>
+								<b-input v-if="formType === 'edit'" type="hidden" name="id" :value="value.id"></b-input>
 								<div style="padding:0px 1.5rem;">
 									<b-field horizontal label="Menu Name">
 										<b-input name="name" expanded placeholder="Label Name for the Menu" :value="hasValue('text')" required></b-input>
@@ -293,7 +293,7 @@
 		}
 	</script>
 
-	<script src="../../scripts/layout/controller.js"></script>
+	<script src="../../../main.js"></script>
 	<script src="../../scripts/setting/settings.js"></script>
 </body>
 

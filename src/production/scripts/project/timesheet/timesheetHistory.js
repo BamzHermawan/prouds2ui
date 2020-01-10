@@ -21,6 +21,14 @@ new Vue({
 				start: null,
 				end: null
 			}
+		},
+		modalIssue: {
+			display: false,
+			issue: "",
+			mitigation: "",
+			target: undefined,
+			submit: undefined,
+			solved: false
 		}
 	},
 	computed: {
@@ -129,6 +137,16 @@ new Vue({
 				return task.toLowerCase().includes(query);
 			})
 		},
+		issueFound() {
+			for (const ts in this.submission) {
+				const row = this.submission[ts];
+				if (row.issue !== undefined) {
+					return true;
+				}
+			}
+
+			return false;
+		}
 	},
 	methods: {
 		moment: Moment,
@@ -150,6 +168,15 @@ new Vue({
 			}
 
 			return status;
+		},
+		showDetailIssue(row) {
+			this.modalIssue.issue = row.issue.text;
+			this.modalIssue.target = row.issue.target;
+			this.modalIssue.submit = row.issue.submit;
+			this.modalIssue.solved = row.issue.solved;
+			this.modalIssue.mitigation = row.issue.mitigation;
+
+			this.modalIssue.display = true;
 		}
 	},
 	mounted() {

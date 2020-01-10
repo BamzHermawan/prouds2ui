@@ -50,7 +50,14 @@
 
 	.card.is-#{nth($color, 1)} {
 		.card-header {
-			@include heroGradient($primeColor, darken($primeColor, 20%));
+			@if nth($color, 1) == "white" {
+				background: $light !important;
+				.icon {
+					color: $dark !important;
+				}
+			} @else {
+				@include heroGradient($primeColor, darken($primeColor, 20%));
+			}
 		}
 	}
 

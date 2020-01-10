@@ -7,14 +7,14 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
 	<title>SETTING | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
-	<link rel="stylesheet" href="../../../styles/style.scss">
+	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+	<link rel="stylesheet" href="../../src/style.min.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 				<span>PROUDS</span>
 			</div>
 			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
+				<a href="../notification.html" class="parent-list">
 					<div class="list-title">
 						<label>
 							<span class="mdi mdi-bell-outline in-left"></span>
@@ -43,20 +43,20 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Setting" name="setting">
-				<side-item href="authorization.html">Authorization</side-item>
-				<side-item href="baseline.html">Baseline</side-item>
-				<side-item href="customer.html">Customer</side-item>
-				<side-item href="dayscheme.html">Days Scheme</side-item>
-				<side-item href="importdata.html">Import Data</side-item>
-				<side-item href="issue.html">Issue</side-item>
+				<side-item href="./authorization.html">Authorization</side-item>
+				<side-item href="../maintenance.html">Baseline</side-item>
+				<side-item href="../maintenance.html">Customer</side-item>
+				<side-item href="../maintenance.html">Days Scheme</side-item>
+				<side-item href="../maintenance.html">Import Data</side-item>
+				<side-item href="../maintenance.html">Issue</side-item>
 				<side-item active>Menu</side-item>
-				<side-item href="organization.html">Organization</side-item>
+				<side-item href="../maintenance.html">Organization</side-item>
 				<side-list label="Projects" name="pro">
-					<side-item href="privilage.html">Project Privilage</side-item>
-					<side-item href="typelevel.html">Type-Level</side-item>
+					<side-item href="../maintenance.html">Project Privilage</side-item>
+					<side-item href="../maintenance.html">Type-Level</side-item>
 				</side-list>
-				<side-item href="users.html">Users</side-item>
-				<side-item href="workplan.html">Workplan</side-item>
+				<side-item href="../maintenance.html">Users</side-item>
+				<side-item href="../maintenance.html">Workplan</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -69,7 +69,7 @@
 						<span class="mdi mdi-chevron-left mdi-24px"></span>
 					</a>
 
-					<a href="../project/list.html" class="navbar-item">
+					<a href="../projects/list.html" class="navbar-item">
 						PROJECT
 					</a>
 
@@ -91,12 +91,12 @@
 				</div>
 
 				<div class="navbar-end">
-					<a href="http://" class="navbar-item hover-text">
+					<a href="../maintenance.html" class="navbar-item hover-text">
 						<span class="mdi mdi-view-dashboard-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
 					</a>
 
-					<a href="http://" class="navbar-item hover-text is-active">
+					<a href="./authorization.html" class="navbar-item hover-text is-active">
 						<span class="mdi mdi-settings-outline"></span>
 						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
 					</a>
@@ -106,8 +106,8 @@
 							<span class="mdi mdi-account-outline"></span>
 						</div>
 						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../profile.html" class="navbar-item">Account Profile</a>
-							<a href="#help" class="navbar-item">Need Help ?</a>
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -135,16 +135,16 @@
 			<section class="section">
 				<div id="contentApp" class="container">
 					<menu-table :menu="props.MENU" remove-action="http://localhost:5501/demo/post_detect.php?menu_id={id}&menu={text}">
-						<template slot="form" slot-scope="{ switchTo, hasValue, value }">
+						<template slot="form" slot-scope="{ switchTo, hasValue, value, formType }">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST">
-								<b-input type="hidden" name="id" :value="value.id"></b-input>
+								<b-input v-if="formType === 'edit'" type="hidden" name="id" :value="value.id"></b-input>
 								<div style="padding:0px 1.5rem;">
-									<b-field horizontal label="Menu Name">
-										<b-input name="name" expanded placeholder="Label Name for the Menu" :value="hasValue('text')" required></b-input>
+									<b-field horizontal="" label="Menu Name">
+										<b-input name="name" expanded="" placeholder="Label Name for the Menu" :value="hasValue('text')" required=""></b-input>
 									</b-field>
-									<b-field horizontal label="Parent Menu">
+									<b-field horizontal="" label="Parent Menu">
 										<div class="control">
-											<b-select name="parent" placeholder="Select a parent menu" :value="hasValue('parent')" expanded>
+											<b-select name="parent" placeholder="Select a parent menu" :value="hasValue('parent')" expanded="">
 												<option value="root">Have no Parent</option>
 												<option v-for="menu in props.MENU" :key="menu.id" :value="menu.id">{{ menu.text }}</option>
 											</b-select>
@@ -155,7 +155,7 @@
 													<span class="button is-static is-dark-blend">Menu Type</span>
 												</div>
 												<p class="control is-expanded">
-													<b-select name="type" placeholder="Select a type" :value="hasValue('type')" expanded required>
+													<b-select name="type" placeholder="Select a type" :value="hasValue('type')" expanded="" required="">
 														<option value="1">Navigation</option>
 														<option value="2">Pop Up</option>
 														<option value="3">Global Menu</option>
@@ -164,10 +164,10 @@
 											</div>
 										</b-field>
 									</b-field>
-									<b-field horizontal label="Destination Link">
+									<b-field horizontal="" label="Destination Link">
 										<div class="field has-addons">
 											<p class="control is-expanded">
-												<b-input name="link" expanded v-model="value.link" placeholder="Where user will be redirected at" expanded>
+												<b-input name="link" expanded="" v-model="value.link" placeholder="Where user will be redirected at">
 												</b-input>
 											</p>
 											<div class="control">
@@ -175,7 +175,7 @@
 											</div>
 										</div>
 									</b-field>
-									<b-field horizontal label="Icon">
+									<b-field horizontal="" label="Icon">
 										<div class="field">
 											<div class="field has-addons">
 												<div class="control">
@@ -184,15 +184,15 @@
 													</span>
 												</div>
 												<p class="control is-expanded">
-													<b-input name="icon" v-model="value.icon" placeholder="Material Design Icon CSS Class. example: mdi-home" required>
+													<b-input name="icon" v-model="value.icon" placeholder="Material Design Icon CSS Class. example: mdi-home" required="">
 													</b-input>
 												</p>
 											</div>
 											<p class="help">This system using <b><a href="https://materialdesignicons.com/">Material Design Icon</a></b> version 3.9.97. Go to <b><a href="https://cdn.materialdesignicons.com/3.9.97/">Icon List</a></b> to see what icon you can use.</p>
 										</div>
 									</b-field>
-									<b-field horizontal label="Description">
-										<b-input type="textarea" name="description" placeholder="Short description about the menu to distinguish between other menu." expanded :value="hasValue('desc')" maxlength="55" required>
+									<b-field horizontal="" label="Description">
+										<b-input type="textarea" name="description" placeholder="Short description about the menu to distinguish between other menu." expanded="" :value="hasValue('desc')" maxlength="55" required="">
 										</b-input>
 									</b-field>
 									<div class="buttons">
@@ -210,91 +210,80 @@
 		</section>
 
 		<section id="infoFooter">
-			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
-				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
 	</div>
 
-	<script>
-		const VAPPS = {
-			MENU: [
-				{
-					"id": "ABX00-0",
-					"text": "Project",
-					"link": null,
-					"type": 3,
-					"desc": "Pariatur excepteur occaecat labore Lorem sint sint non et voluptate cillum minim consequat sunt minim.",
-					"icon": "mdi-folder",
-					"hasChild": true,
-					"parent": null
-				},
-				{
-					"id": "ABX00-1",
-					"text": "Setting",
-					"link": null,
-					"type": 3,
-					"desc": "Nostrud nisi pariatur cillum enim nisi nostrud excepteur id nostrud excepteur.",
-					"icon": "mdi-settings",
-					"hasChild": true,
-					"parent": null
-				},
-				{
-					"id": "ABX00-2",
-					"text": "Project List",
-					"link": "http://localhost:5500/project/list.html",
-					"type": 1,
-					"desc": "Exercitation velit id fugiat anim anim sunt nisi reprehenderit et irure.",
-					"icon": "mdi-layers-triple",
-					"hasChild": false,
-					"parent": "ABX00-0"
-				},
-				{
-					"id": "ABX00-3",
-					"text": "Project Assignment",
-					"link": "http://localhost:5500/project/projectAssignment.html",
-					"type": 1,
-					"desc": "Sunt velit cupidatat duis aliqua eu Lorem ipsum cillum.",
-					"icon": "mdi-hand-okay",
-					"hasChild": false,
-					"parent": "ABX00-0"
-				},
-				{
-					"id": "ABX00-4",
-					"text": "My Tasks",
-					"link": "http://localhost:5500/project/timesheetList.html",
-					"type": 1,
-					"desc": "Sunt aliqua et occaecat consectetur deserunt cillum ex tempor ad dolore Lorem esse ea.",
-					"icon": "mdi-attachment",
-					"hasChild": false,
-					"parent": "ABX00-0"
-				},
-				{
-					"id": "ABX00-5",
-					"text": "Authorization",
-					"link": "http://localhost:5500/setting/authorization.html",
-					"type": 1,
-					"desc": "Aute non culpa eu cupidatat.",
-					"icon": "mdi-account-supervisor-circle",
-					"hasChild": false,
-					"parent": "ABX00-1"
-				},
-				{
-					"id": "ABX00-6",
-					"text": "Organization",
-					"link": "http://localhost:5500/setting/organization.html",
-					"type": 1,
-					"desc": "Id magna non ea consectetur id minim amet sunt cupidatat voluptate.",
-					"icon": "mdi-office-building",
-					"hasChild": false,
-					"parent": "ABX00-1"
-				}
-			]
-		}
-	</script>
+	<script>var VAPPS = {
+  MENU: [{
+    "id": "ABX00-0",
+    "text": "Project",
+    "link": null,
+    "type": 3,
+    "desc": "Pariatur excepteur occaecat labore Lorem sint sint non et voluptate cillum minim consequat sunt minim.",
+    "icon": "mdi-folder",
+    "hasChild": true,
+    "parent": null
+  }, {
+    "id": "ABX00-1",
+    "text": "Setting",
+    "link": null,
+    "type": 3,
+    "desc": "Nostrud nisi pariatur cillum enim nisi nostrud excepteur id nostrud excepteur.",
+    "icon": "mdi-settings",
+    "hasChild": true,
+    "parent": null
+  }, {
+    "id": "ABX00-2",
+    "text": "Project List",
+    "link": "http://localhost:5500/project/list.html",
+    "type": 1,
+    "desc": "Exercitation velit id fugiat anim anim sunt nisi reprehenderit et irure.",
+    "icon": "mdi-layers-triple",
+    "hasChild": false,
+    "parent": "ABX00-0"
+  }, {
+    "id": "ABX00-3",
+    "text": "Project Assignment",
+    "link": "http://localhost:5500/project/projectAssignment.html",
+    "type": 1,
+    "desc": "Sunt velit cupidatat duis aliqua eu Lorem ipsum cillum.",
+    "icon": "mdi-hand-okay",
+    "hasChild": false,
+    "parent": "ABX00-0"
+  }, {
+    "id": "ABX00-4",
+    "text": "My Tasks",
+    "link": "http://localhost:5500/project/timesheetList.html",
+    "type": 1,
+    "desc": "Sunt aliqua et occaecat consectetur deserunt cillum ex tempor ad dolore Lorem esse ea.",
+    "icon": "mdi-attachment",
+    "hasChild": false,
+    "parent": "ABX00-0"
+  }, {
+    "id": "ABX00-5",
+    "text": "Authorization",
+    "link": "http://localhost:5500/setting/authorization.html",
+    "type": 1,
+    "desc": "Aute non culpa eu cupidatat.",
+    "icon": "mdi-account-supervisor-circle",
+    "hasChild": false,
+    "parent": "ABX00-1"
+  }, {
+    "id": "ABX00-6",
+    "text": "Organization",
+    "link": "http://localhost:5500/setting/organization.html",
+    "type": 1,
+    "desc": "Id magna non ea consectetur id minim amet sunt cupidatat voluptate.",
+    "icon": "mdi-office-building",
+    "hasChild": false,
+    "parent": "ABX00-1"
+  }]
+};</script>
 
-	<script src="../../scripts/layout/controller.js"></script>
-	<script src="../../scripts/setting/settings.js"></script>
+	<script src="../../src/main.min.js"></script>
+	<script src="../../src/settings/settings.min.js"></script>
 </body>
 
 </html>

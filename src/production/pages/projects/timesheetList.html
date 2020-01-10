@@ -42,13 +42,13 @@
 
 			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
 			<side-list label="Project" name="project">
-				<side-item href="list.html">Project List</side-item>
-				<side-item href="projectassignment.html">Project Assignment</side-item>
-				<side-item href="projectrequest.html">Project Request</side-item>
+				<side-item href="./list.html">Project</side-item>
+				<side-item href="./projectAssignment.html">Project Assignment</side-item>
+				<side-item href="./projectRequest.html">Project Request</side-item>
 				<side-item active>My Tasks</side-item>
 				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
-				<side-item href="../maintenance.html">Rebaseline</side-item>
-				<side-item href="../maintenance.html">Closing</side-item>
+				<side-item href="../rebaseline.html">Rebaseline</side-item>
+				<side-item href="#no-edit">Closing</side-item>
 			</side-list>
 
 			<side-list label="My Workspace" name="ws"></side-list>
@@ -132,6 +132,7 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container" data-title="My Tasks">
+				
 					<div v-if="showList">
 						<nav class="level">
 							<div class="level-left">
@@ -148,7 +149,6 @@
 							</div>
 						</nav>
 				
-						<!-- ^ UPDATED ############################################################# -->
 						<task-group title="Overdue Task" type="is-delayed">
 							<div class="columns is-multiline">
 								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
@@ -231,12 +231,21 @@
 								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
 									<span style="margin-right:.35em;">Assigned as</span><b>{{ dataForm.role }}</b>
 								</span>
-								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em;">
+								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
 									<span class="icon is-small">
 										<span class="mdi mdi-calendar-clock"></span>
 									</span>
 									<span>{{ dataForm.start | moment }} - {{ dataForm.end | moment }}</span>
 								</span>
+								<!-- ^ UPDATED #################################################################### -->
+								<span v-if="dataForm.issue !== undefined" @click="modal.issueDetail = true"
+									class="button is-danger is-small" style="padding: 0px 2.5em;">
+									<span class="icon is-small">
+										<span class="mdi mdi-alert"></span>
+									</span>
+									<span>This Task has Issue</span>
+								</span>
+								<!-- ^ UPDATED #################################################################### -->
 							</div>
 							<div class="column is-clearfix is-paddingless">
 								<a class="button is-danger is-long is-pulled-right" @click="setTimesheet">
@@ -248,8 +257,10 @@
 						<!-- Add horizontal line -->
 						<hr>
 				
-						<form @submit="submitForm" action="http://localhost:5501/demo/post_detect.php" method="POST"
+						<!-- ^ UPDATED ##################################################################### -->
+						<form id="_timesheetForm" @submit="submitForm" action="http://localhost:5501/demo/post_detect.php" method="POST"
 							enctype="multipart/form-data">
+							<!-- ^ UPDATED ##################################################################### -->
 							<div class="columns">
 								<div class="column is-8-desktop add-border-right">
 									<b-message type="is-info" size="is-small" title="Task" :closable="false" class="is-normal-font">
@@ -257,7 +268,6 @@
 										<p class="has-text-weight-light">{{ dataForm.task }}</p>
 									</b-message>
 				
-									<!-- ^ UPDATED ############################################################# -->
 									<nav class="level is-field-label">
 										<div class="level-left">
 											<label class="label">Activity</label>
@@ -271,7 +281,7 @@
 												</div>
 												<div class="control">
 													<div class="select is-small">
-														<select name="activity_name" required>
+														<select name="activity_type" required>
 															<option selected>Development</option>
 															<option>Operation</option>
 															<option>Maintenance</option>
@@ -281,13 +291,54 @@
 											</div>
 										</div>
 									</nav>
-									<b-field>
+									<b-field class="is-textarea">
 										<b-input maxlength="200" type="textarea" name="activity"
-											placeholder="Describe your activity related to this task so that your pm could understand what you do."
+											placeholder="Describe your activity related to this task so that your PM could understand what you do."
 											required>
 										</b-input>
 									</b-field>
-									<!-- ^ UPDATED ############################################################# -->
+				
+									<!-- ^ UPDATED ################################################################## -->
+									<b-collapse id="_issueForm" class="panel is-interactive" :open.sync="issue.display"
+										@open="scrollToLocation('#_issueForm')" @close="scrollToLocation(0)">
+										<div slot="trigger" role="button" slot-scope="{ open }"
+											:class="'panel-heading ' + (taskHasIssue || open ? 'is-active':'')">
+											<span class="mdi mdi-alert in-left"></span>
+											<strong>Issue</strong>
+											<small class="has-text-grey" style="font-size: .75em; margin-left:3px;">should be filled
+												when necessary</small>
+										</div>
+										<div class="panel-block">
+											<div class="container" style="padding:.5em;">
+												<b-field label="Issue" class="is-marginless is-textarea">
+													<b-input maxlength="200" type="textarea" v-model="issue.value"
+														:name="taskHasIssue ? 'issue':null"
+														placeholder="Describe your problem/issue related to this task in 200 character max.">
+													</b-input>
+												</b-field>
+												<b-field label="Mitigation" class="is-marginless is-textarea">
+													<b-input maxlength="200" type="textarea" v-model="issue.mitigation"
+														:name="taskHasIssue ? 'mitigation':null"
+														placeholder="Describe your method/mitigation plan to solve this issue.">
+													</b-input>
+												</b-field>
+												<b-field id="_issueTarget" label="Target Estimation">
+													<b-tooltip :type="issue.targetAlert ? 'is-warning':''"
+														label="Please Select Target Estimation" :active="issue.targetAlert" always
+														style="width:100%;">
+														<crud-input type="datepicker"
+															:color="issue.targetAlert ? 'is-warning':'is-grey'" name="issue_target"
+															date-position="is-top-left" input-style="margin-bottom: 5px;"
+															v-model="issue.target"
+															placeholder="Pick a date when this issue will be solved">
+														</crud-input>
+													</b-tooltip>
+												</b-field>
+											</div>
+										</div>
+									</b-collapse>
+									<!-- ^ UPDATED ################################################################## -->
+				
 								</div>
 								<div class="column is-4-desktop">
 									<input type="hidden" name="startDate" :value="startDate">
@@ -309,7 +360,6 @@
 										</div>
 									</nav>
 				
-									<!-- ^ UPDATE ####################################################################### -->
 									<div class="columns">
 										<div class="column">
 											<div class="field">
@@ -324,14 +374,14 @@
 											<div class="field">
 												<label class="label">Working Progress [%]</label>
 												<div class="control">
-													<input class="input" type="number" min="0" max="100" name="workingProgress" v-model="workProgress"
-														placeholder="Current Progress" required />
+													<input class="input" type="number" min="0" max="100" name="workingProgress"
+														v-model="workProgress" placeholder="Current Progress" required />
 												</div>
 											</div>
 										</div>
 									</div>
-									
-									<b-field label="Working Location">
+				
+									<b-field label="Working Location" style="margin-bottom:1em;">
 										<div class="select is-fullwidth">
 											<select name="location" required>
 												<option selected value="1">Jabodetabek</option>
@@ -341,7 +391,14 @@
 											</select>
 										</div>
 									</b-field>
-									<!-- ^ UPDATE ####################################################################### -->
+				
+									<b-notification v-show="taskHasIssue" type="is-warning" :closable="false"
+										style="margin-bottom:1em;">
+										<p><b><span class="mdi mdi-alert in-left"></span> ISSUE FORM IS FILLED</b></p>
+										<p><small>with this you confirming that this task has issue within this timesheet. If you aren't
+												sure with the issue, please
+												emptied the issue form.</small></p>
+									</b-notification>
 				
 									<button class="button is-success is-long" type="submit">
 										Submit
@@ -350,6 +407,40 @@
 							</div>
 						</form>
 					</div>
+				
+					<!-- ^ UPDATED ################################################################### -->
+					<b-modal :active.sync="modal.issueDetail" trap-focus width="630px" class="has-hidden-scrollbar">
+						<nav class="panel is-warning is-shadowless">
+							<p class="panel-heading">
+								Detail Issue
+							</p>
+							<div class="panel-block has-background-white">
+								<div class="content" style="padding:.5em;">
+									<label class="label">Issue</label>
+									<p>{{ issueModal.text }}</p>
+								</div>
+							</div>
+							<div class="panel-block has-background-white">
+								<div class="content" style="padding:.5em;">
+									<label class="label">Mitigation</label>
+									<p>{{ issueModal.mitigation }}</p>
+								</div>
+							</div>
+							<div class="panel-block has-bg-warning-light">
+								<div class="container" style="padding:.5em 1em;">
+									<nav class="level">
+										<div class="level-item">
+											<p><b>Target Estimation:</b> {{ issueModal.target | moment }}</p>
+										</div>
+										<div class="level-item">
+											<p><b>Submit Date:</b> {{ issueModal.submit | moment }}</p>
+										</div>
+									</nav>
+								</div>
+							</div>
+						</nav>
+					</b-modal>
+					<!-- ^ UPDATED ################################################################### -->
 				
 					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
 						<b-message type="is-info">
@@ -532,6 +623,12 @@
 				"timesheet": {
 					"approved": 0,
 					"submited": 0
+				},
+				"issue": {
+					"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+					"mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+					"target": "10/01/2020",
+					"submit": "08/01/2020"
 				}
 			},
 			{
@@ -603,6 +700,12 @@
 				"timesheet": {
 					"approved": 11,
 					"submited": 16
+				},
+				"issue": {
+					"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+					"mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+					"target": "10/01/2020",
+					"submit": "08/01/2020"
 				}
 			}
 		]

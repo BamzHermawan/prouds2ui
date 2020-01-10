@@ -3,12 +3,13 @@ import Buefy from 'buefy';
 import Moment from 'helper-moment';
 import { crudInput } from 'components';
 import { isEmpty } from 'helper-tools';
+import adjustForm from './adjustSubmission.vue';
 import 'helper-filter';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
-	components: { crudInput },
+	components: { crudInput, adjustForm },
 	data: {
 		timesheet: TIMESHEET,
 		selectedRows: [],
@@ -31,7 +32,7 @@ new Vue({
 				isEmpty(this.filter.date.start) && 
 				isEmpty(this.filter.date.end)
 			) {
-					return this.timesheet;
+				return this.timesheet;
 			}
 
 			let self = this;
@@ -127,6 +128,9 @@ new Vue({
 		},
 		disableApprove(){
 			return !(this.selectedRows.length > 0);
+		},
+		issueFound(){
+			return this.submission.find(found => found.issue !== undefined);
 		}
 	},
 	methods: {

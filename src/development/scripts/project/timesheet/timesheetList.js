@@ -3,7 +3,7 @@ import Buefy from 'buefy';
 import Api from 'helper-apis';
 import Loader from 'helper-loader';
 import Moment from 'helper-moment';
-import { checkConnection, notified } from 'helper-tools';
+import { checkConnection, notified, isEmpty } from 'helper-tools';
 import { crudInput, progressBar, taskGroup, taskCard } from 'components';
 import 'helper-filter';
 
@@ -50,9 +50,23 @@ new Vue({
 			},
 			filled: []
 		},
+		issue: {
+			display: false,
+			value: null,
+			mitigation: null,
+			target: null,
+			targetAlert: false
+		},
+		issueModal: {
+			text: "",
+			mitigation: "",
+			target: undefined,
+			submit: undefined
+		},
 		modal: {
 			singleDate: false,
-			rangeDate: false
+			rangeDate: false,
+			issueDetail: false
 		},
 	},
 	watch: {
@@ -82,6 +96,23 @@ new Vue({
 		}
 	},
 	methods: {
+		scrollToLocation(loc) {
+			console.log(typeof loc);
+			if (typeof loc === 'number') {
+				console.log('is number');
+				document.querySelector('.contentPage').scrollTo = parseInt(loc);
+				global.psContent.update();
+			} else if (loc.includes('#')) {
+				console.log('is class');
+				let el = document.querySelector(loc);
+				if (el) {
+					let top = el.offsetTop;
+					console.log(top);
+					document.querySelector('.contentPage').scrollTo = top;
+					global.psContent.update();
+				};
+			}
+		},
 		checkForFloat(val){
 			this.workhour.value = val + 1;
 		},
@@ -118,6 +149,46 @@ new Vue({
 					self.datepicker.alert = false;
 				}, 5000);
 			}
+			
+			if(this.taskHasIssue && isEmpty(this.issue.target)) {
+				e.preventDefault();
+				this.issue.display = true;
+				this.issue.targetAlert = true;
+
+				setTimeout(() => {
+					document.querySelector('#_issueTarget').scrollIntoView();
+				}, 100);
+	
+				let self = this;
+				setTimeout(() => {
+					self.issue.targetAlert = false;
+				}, 5000);
+
+			} else if (this.taskHasIssue && !isEmpty(this.issue.target)) {
+				e.preventDefault();
+				this.$dialog.confirm({
+					title: 'Confirm Submit',
+					message: "With submiting this timesheet you are confirming that this task has issue within this timesheet. Are you sure ?",
+					confirmText: "Yes",
+					cancelText: "No",
+					type: "is-success",
+					onConfirm: () => {
+						let form = document.querySelector('#_timesheetForm');
+						if (form) form.submit();
+					},
+					onCancel: () => {
+						this.issue.display = true;
+						this.issue.targetAlert = true;
+
+						setTimeout(() => {
+							document.querySelector('#_issueTarget').scrollIntoView();
+						}, 100);
+					}
+				});
+			} else {
+				this.issue.value = null;
+				this.issue.mitigation = null;
+			}
 		},
 		openModalDate(){
 			if(this.rangeToggle){
@@ -150,6 +221,10 @@ new Vue({
 					selected: Moment(maxDate).format('MMMM - YYYY')
 				},
 				filled: []
+			}
+
+			if (val.issue !== undefined) {
+				this.issueModal = val.issue;
 			}
 
 			document.querySelector('.contentPage').scrollTop = 0;
@@ -258,6 +333,9 @@ new Vue({
 		}
 	},
 	computed: {
+		taskHasIssue() {
+			return !isEmpty(this.issue.value);
+		},
 		startDate(){
 			if(this.datepicker.start.val === null){
 				return null;

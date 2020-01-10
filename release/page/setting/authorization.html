@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+	<title>SETTING | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+	<link rel="stylesheet" href="../../src/style.min.css">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="../notification.html" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Setting" name="setting">
+				<side-item active>Authorization</side-item>
+				<side-item href="../maintenance.html">Baseline</side-item>
+				<side-item href="../maintenance.html">Customer</side-item>
+				<side-item href="../maintenance.html">Days Scheme</side-item>
+				<side-item href="../maintenance.html">Import Data</side-item>
+				<side-item href="../maintenance.html">Issue</side-item>
+				<side-item href="./menu.html">Menu</side-item>
+				<side-item href="../maintenance.html">Organization</side-item>
+				<side-list label="Projects" name="pro">
+					<side-item href="../maintenance.html">Project Privilage</side-item>
+					<side-item href="../maintenance.html">Type-Level</side-item>
+				</side-list>
+				<side-item href="../maintenance.html">Users</side-item>
+				<side-item href="../maintenance.html">Workplan</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws"></side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a href="../projects/list.html" class="navbar-item">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="#" class="navbar-item hover-text is-active" "="">
+						<span class=" mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-marginless">
+							<span>Authorization</span>
+						</h1>
+						<div id="bookmarkPage">
+							<bookmark-button></bookmark-button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container">
+					<crud ref="tables" narrowed="" :data="props.AUTHPROFILE.data" :paginated="10" :columns="props.AUTHPROFILE.fields" :add="{ action: 'http://localhost:5501/demo/post_detect.php' }" :edit="{ action: 'http://localhost:5501/demo/post_detect.php?edit={id}' }" :del="{
+							action: 'http://localhost:5501/demo/post_detect.php?id={id}&name={name}',
+							message: 'You are trying to delete a profile with name **{name}**, are you sure?'
+						}">
+					
+						<template slot="header">
+							<header class="card-header has-gradient-light">
+								<p class="card-header-title">Authorization Profile</p>
+							</header>
+						</template>
+					
+						<template slot="message">
+							<div class="card-content" style="padding-bottom:0.5em;">
+								<b-message type="is-info">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rem cum
+									rerum
+									quae doloribus? Aperiam,
+									cumque alias porro quisquam autem omnis officiis doloribus maxime fugit,
+									molestias eius magnam illum
+									debitis.
+								</b-message>
+							</div>
+						</template>
+					
+						<template slot="forms" slot-scope="{ action, row, isEdit }">
+							<crud-form method="post" :action="action" @cancel="$refs.tables.showForm = false">
+								<crud-input type="text" label="Profile Name" placeholder="Label/Name for the profile" name="profile_name" :value="row.name">
+								</crud-input>
+
+								<label class="label">Profile Privilage</label>
+								<profiler :menu="props.MENU" :value="row.privilage">
+									<template slot-scope="{ row:menu }">
+										<td>{{ menu.desc }}</td>
+										<td class="text-elipsis" style="max-width: 250px;">
+											<a v-if="menu.link !== null" :href="menu.link" class="small-tag is-link">{{ menu.link }}</a>
+											<span v-else="" class="small-tag">Empty Link</span>
+										</td>
+									</template>
+								</profiler>
+							</crud-form>
+						</template>
+					</crud>
+				</div>
+			</section>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			</info-footer>
+		</section>
+	</div>
+
+	<script>var VAPPS = {
+  AUTHPROFILE: {
+    fields: [{
+      key: 'id',
+      label: 'Profile ID',
+      sortable: true,
+      width: 120,
+      centered: true
+    }, {
+      key: 'name',
+      label: 'Profile Name',
+      sortable: true
+    }, {
+      key: 'action',
+      label: 'Action',
+      centered: true,
+      width: 175
+    }],
+    data: [{
+      id: 1,
+      name: "PMO",
+      privilage: ["MENU-0", "MENU-1", "MENU-2", "MENU-3", "MENU-4", "MENU-5", "MENU-6"]
+    }, {
+      id: 2,
+      name: "PM Leader",
+      privilage: ["MENU-0", "MENU-2", "MENU-3", "MENU-4"]
+    }, {
+      id: 3,
+      name: "PM",
+      privilage: ["MENU-0", "MENU-2", "MENU-3", "MENU-4"]
+    }, {
+      id: 4,
+      name: "Team Member",
+      privilage: ["MENU-0", "MENU-2", "MENU-4"]
+    }, {
+      id: 5,
+      name: "AM",
+      privilage: ["MENU-0", "MENU-2", "MENU-3", "MENU-4"]
+    }, {
+      id: 6,
+      name: "Purchasing",
+      privilage: ["MENU-0", "MENU-2", "MENU-3", "MENU-4"]
+    }]
+  },
+  MENU: [{
+    "id": "MENU-0",
+    "text": "Project",
+    "link": null,
+    "type": 3,
+    "desc": "Pariatur excepteur occaecat labore Lorem sint sint non et voluptate cillum minim consequat sunt minim.",
+    "icon": "mdi-folder-outline",
+    "hasChild": true,
+    "parent": null
+  }, {
+    "id": "MENU-1",
+    "text": "Setting",
+    "link": null,
+    "type": 3,
+    "desc": "Nostrud nisi pariatur cillum enim nisi nostrud excepteur id nostrud excepteur.",
+    "icon": null,
+    "hasChild": true,
+    "parent": null
+  }, {
+    "id": "MENU-2",
+    "text": "Project List",
+    "link": "http://localhost:5500/project/list.html",
+    "type": 1,
+    "desc": "Exercitation velit id fugiat anim anim sunt nisi reprehenderit et irure.",
+    "icon": "mdi-layers-triple",
+    "hasChild": false,
+    "parent": "MENU-0"
+  }, {
+    "id": "MENU-3",
+    "text": "Project Assignment",
+    "link": "http://localhost:5500/project/projectAssignment.html",
+    "type": 1,
+    "desc": "Sunt velit cupidatat duis aliqua eu Lorem ipsum cillum.",
+    "icon": "mdi-hand-okay",
+    "hasChild": false,
+    "parent": "MENU-0"
+  }, {
+    "id": "MENU-4",
+    "text": "My Tasks",
+    "link": "http://localhost:5500/project/timesheetList.html",
+    "type": 1,
+    "desc": "Sunt aliqua et occaecat consectetur deserunt cillum ex tempor ad dolore Lorem esse ea.",
+    "icon": "mdi-attachment",
+    "hasChild": false,
+    "parent": "MENU-0"
+  }, {
+    "id": "MENU-5",
+    "text": "Authorization",
+    "link": "http://localhost:5500/setting/authorization.html",
+    "type": 1,
+    "desc": "Aute non culpa eu cupidatat.",
+    "icon": "mdi-account-supervisor-circle",
+    "hasChild": true,
+    "parent": "MENU-1"
+  }, {
+    "id": "MENU-6",
+    "text": "Organization",
+    "link": "http://localhost:5500/setting/organization.html",
+    "type": 1,
+    "desc": "Id magna non ea consectetur id minim amet sunt cupidatat voluptate.",
+    "icon": "mdi-office-building",
+    "hasChild": false,
+    "parent": "MENU-5"
+  }]
+};</script>
+
+	<script src="../../src/main.min.js"></script>
+	<script src="../../src/settings/settings.min.js"></script>
+</body>
+
+</html>

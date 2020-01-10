@@ -40,8 +40,11 @@ if (!$config.apiTesting) {
 	}
 }
 
-const parseURL = (key, bundle) => {
-	let link = $api[key];
+const parseURL = (link, bundle) => {
+	if ($api.hasOwnProperty(link)) {
+		link = $api[link];
+	}
+	
 	return link.replace(/\{\w*\}/g, function (prop) {
 		let val = prop.replace(/\{|\}/g, "");
 		return bundle[val];

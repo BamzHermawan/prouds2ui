@@ -69,8 +69,7 @@
 								>Copy</b-button
 							>
 							<b-button
-								tag="a"
-								:href="parseActionLink(del, props.row)"
+								@click="onDelete(props.row)"
 								v-if="del !== false"
 								type="is-danger"
 								size="is-small"
@@ -161,6 +160,7 @@
 </template>
 
 <script>
+import sd from "showdown";
 import CrudForm from "./crudForm";
 export default {
 	components: { CrudForm },
@@ -175,7 +175,7 @@ export default {
 		},
 		paginated: {
 			type: Number,
-			default: 0
+			default: 10
 		},
 		narrowed: {
 			type: Boolean,
@@ -285,6 +285,40 @@ export default {
 			} else {
 				return false;
 			}
+		},
+
+		onDelete(row) {
+			let rawURL = "",
+				message = "You are trying to delete a row, are you sure ?";
+			if (this.del instanceof String) {
+				rawURL = this.del;
+			} else if (this.del instanceof Object) {
+				if (this.del.hasOwnProperty("action")) {
+					rawURL = this.del.action;
+				}
+
+				if (this.del.hasOwnProperty("message")) {
+					message = this.parseActionLink(this.del.message, row);
+				}
+			} else {
+				if (this.del === false) {
+					throw new Error(
+						"We can't find delete configuration. Please provide delete configuration first."
+					);
+				}
+			}
+
+			let link = this.parseActionLink(rawURL, row);
+			let converter = new sd.Converter();
+			this.$dialog.confirm({
+				title: "Confirm Delete",
+				message: converter.makeHtml(message),
+				confirmText: "Yes",
+				type: "is-danger",
+				onConfirm: () => {
+					window.location = link;
+				}
+			});
 		},
 
 		/**

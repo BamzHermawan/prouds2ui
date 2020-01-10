@@ -45,6 +45,21 @@ tr.is-child > td:first-child {
 //! -----------------------------------------------------
 //* @CONTENT --------------------------------------------
 
+.field.has-align-bottom {
+	position: relative;
+
+	.is-align-bottom {
+		margin-bottom: 0.75rem;
+		position: absolute;
+		bottom: 0;
+	}
+}
+
+.field.is-textarea textarea {
+	min-height: 2em !important;
+    height: 105px !important;
+}
+
 .add-shadow {
 	box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02) !important;
 }
