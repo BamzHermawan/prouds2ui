@@ -90,7 +90,7 @@ export default {
 				// console.log(e);
 				// self.modalEvent(e);
 				let taskID = e.getOriginalID();
-				self.$parent.selectedTask = self.dataBaru.find(task => {
+				let selectedTask = self.dataBaru.find(task => {
 					return task.pID == taskID;
 				});
 
@@ -104,7 +104,7 @@ export default {
 				let id_row = id_childRow.replace("childrow", "child");
 				document.querySelector("#" + id_row).classList.add("is-active");
 
-				self.$parent.showSideBar = true;
+				self.$emit("select", selectedTask);
 			});
 			this.dataBaru.forEach(d => {
 				d.pGantt = g;

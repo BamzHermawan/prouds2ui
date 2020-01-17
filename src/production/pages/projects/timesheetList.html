@@ -237,7 +237,6 @@
 									</span>
 									<span>{{ dataForm.start | moment }} - {{ dataForm.end | moment }}</span>
 								</span>
-								<!-- ^ UPDATED #################################################################### -->
 								<span v-if="dataForm.issue !== undefined" @click="modal.issueDetail = true"
 									class="button is-danger is-small" style="padding: 0px 2.5em;">
 									<span class="icon is-small">
@@ -245,11 +244,10 @@
 									</span>
 									<span>This Task has Issue</span>
 								</span>
-								<!-- ^ UPDATED #################################################################### -->
 							</div>
 							<div class="column is-clearfix is-paddingless">
 								<a class="button is-danger is-long is-pulled-right" @click="setTimesheet">
-									◀ Back
+									Back
 								</a>
 							</div>
 						</div>
@@ -257,10 +255,8 @@
 						<!-- Add horizontal line -->
 						<hr>
 				
-						<!-- ^ UPDATED ##################################################################### -->
 						<form id="_timesheetForm" @submit="submitForm" action="http://localhost:5501/demo/post_detect.php" method="POST"
 							enctype="multipart/form-data">
-							<!-- ^ UPDATED ##################################################################### -->
 							<div class="columns">
 								<div class="column is-8-desktop add-border-right">
 									<b-message type="is-info" size="is-small" title="Task" :closable="false" class="is-normal-font">
@@ -297,8 +293,6 @@
 											required>
 										</b-input>
 									</b-field>
-				
-									<!-- ^ UPDATED ################################################################## -->
 									<b-collapse id="_issueForm" class="panel is-interactive" :open.sync="issue.display"
 										@open="scrollToLocation('#_issueForm')" @close="scrollToLocation(0)">
 										<div slot="trigger" role="button" slot-scope="{ open }"
@@ -337,8 +331,6 @@
 											</div>
 										</div>
 									</b-collapse>
-									<!-- ^ UPDATED ################################################################## -->
-				
 								</div>
 								<div class="column is-4-desktop">
 									<input type="hidden" name="startDate" :value="startDate">
@@ -408,7 +400,6 @@
 						</form>
 					</div>
 				
-					<!-- ^ UPDATED ################################################################### -->
 					<b-modal :active.sync="modal.issueDetail" trap-focus width="630px" class="has-hidden-scrollbar">
 						<nav class="panel is-warning is-shadowless">
 							<p class="panel-heading">
@@ -440,7 +431,6 @@
 							</div>
 						</nav>
 					</b-modal>
-					<!-- ^ UPDATED ################################################################### -->
 				
 					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
 						<b-message type="is-info">
@@ -692,6 +682,7 @@
 				"end": "30/06/2020",
 				"member": 1,
 				"workload": 100,
+				"work_progress": 75,
 				"mandays": 59,
 				"taskProgress": {
 					"actual": 0,

@@ -1,141 +1,117 @@
 <template>
 	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="projectId" v-model="projectId" />
-		<input type="hidden" name="taskID" v-model="taskID" />
+		<input type="hidden" name="taskID" v-model="task.pID" />
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Progress Group</p>
-			</div>
-			<div class="column">
+		<b-field horizontal label="Progress Group">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ processGroupName }}</span
+			>
+		</b-field>
+
+		<b-field horizontal label="Parent Task">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ parentTask.pName }}</span
+			>
+		</b-field>
+
+		<b-field horizontal label="Task">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ task.pName }}</span
+			>
+		</b-field>
+
+		<b-field horizontal label="Start Date">
+			<b-field>
 				<span
 					class="button is-static is-fullwidth is-light-blend"
 					style="justify-content: start;"
-					>{{ processGroupName }}</span
+					>{{ start }}</span
 				>
-			</div>
-		</div>
-
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Parent Task</p>
-			</div>
-			<div class="column">
+			</b-field>
+			<b-field horizontal label="End Date" style="margin-left:2em;">
 				<span
 					class="button is-static is-fullwidth is-light-blend"
 					style="justify-content: start;"
-					>{{ task.pName }}</span
+					>{{ finish }}</span
 				>
-			</div>
-		</div>
+			</b-field>
+		</b-field>
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Task</p>
-			</div>
-			<div class="column">
-				<span
-					class="button is-static is-fullwidth is-light-blend"
-					style="justify-content: start;"
-					>{{ taskName }}</span
-				>
-			</div>
-		</div>
+		<b-field horizontal label="Duration">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ task.duration }}</span
+			>
+		</b-field>
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-6">
-				<div class="columns">
-					<div class="column is-4">
-						<p class="label">Start Date</p>
-					</div>
-					<div class="column">
-						<span
-							class="button is-static is-fullwidth is-light-blend"
-							style="justify-content: start;"
-							>{{ start }}</span
-						>
-					</div>
-				</div>
-			</div>
-			<div class="column is-6">
-				<div class="columns">
-					<div class="column is-4">
-						<p class="label">End Date</p>
-					</div>
-					<div class="column">
-						<span
-							class="button is-static is-fullwidth is-light-blend"
-							style="justify-content: start;"
-							>{{ finish }}</span
-						>
-					</div>
-				</div>
-			</div>
-		</div>
+		<input
+			type="hidden"
+			name="previous_predecessor"
+			v-model="predecessor_last"
+		/>
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Duration</p>
-			</div>
-			<div class="column is-1">
-				<span
-					class="button is-static is-fullwidth is-light-blend"
-					style="justify-content: start;"
-					>{{ task.duration }}</span
-				>
-			</div>
-		</div>
-
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Predecessor</p>
-			</div>
-			<div class="column">
-				<input
-					type="hidden"
-					name="predecessor"
-					v-model="predecessor"
-					v-if="predecessor === null || predecessor === ''"
-				/>
-				<crud-input
-					type="select"
-					name="predecessor"
+		<b-field horizontal label="Predecessor">
+			<b-field expanded>
+				<b-autocomplete
+					expanded
+					ref="selectColumn"
+					v-model="query"
 					placeholder="This Task Doesn't Have Predecessor"
-					v-model="predecessor"
-					input-style="margin-bottom:0.5em;"
+					:open-on-focus="true"
+					:data="autoComplete"
+					field="name"
+					@select="selectedParent"
+					@blur="queryChanged"
 				>
-					<option
-						v-for="(opt, name, idx) in filterPredecessor"
-						:key="idx"
-						:value="opt.pID"
-						>{{ opt.pName }}</option
+				</b-autocomplete>
+				<p class="control">
+					<a
+						class="button is-warning"
+						@click="removeLink"
+						:disabled="predecessor == null"
 					>
+						Remove Link
+					</a>
+				</p>
+			</b-field>
+		</b-field>
 
-					<template slot="addons">
-						<a
-							class="button is-warning"
-							@click="predecessor = null"
-							:disabled="predecessor == null"
-						>
-							Remove Link
-						</a>
-					</template>
-				</crud-input>
+		<b-field horizontal>
+			<div class="buttons">
+				<button
+					class="button is-success is-long"
+					type="submit"
+					:disabled="disabledBtn"
+				>
+					Save
+				</button>
+				<b-button type="is-danger is-long" @click="$emit('cancel')"
+					>Cancel</b-button
+				>
 			</div>
-		</div>
+		</b-field>
 
-		<div class="is-pulled-left">
-			<button class="button is-success" type="submit" :disabled="btn">
-				Update
-			</button>
-		</div>
-		<br />
+		<span class="white-space"></span>
 	</form>
 </template>
 
 <script>
 import moment from "helper-moment";
+import { isEmpty } from "helper-tools";
 import { crudInput } from "components";
+
+const checkPass = val => {
+	return isEmpty(val) ? null : val;
+};
+
 export default {
 	components: { crudInput },
 	props: {
@@ -155,91 +131,154 @@ export default {
 	data() {
 		return {
 			dataBaru: GANTT,
-			taskName: this.task.pName,
-			taskID: this.task.pID,
-			taskNew: "",
-			listTask: [],
-			searchTask: [],
-			searchQuery: "",
-			name: "",
-			start: moment(this.task.pStart).format("dddd, DD MMMM YYYY"),
-			finish: moment(this.task.pEnd).format("dddd, DD MMMM YYYY"),
-			processGroupName: "",
-			processGroupID: this.task.processGroupID,
-			predecessor: this.task.pDepend ? this.task.pDepend : null,
-			predecessorOri: this.task.pDepend ? this.task.pDepend : null,
-			btn: true
+			parentTask: null,
+			start: "",
+			finish: "",
+			predecessor: null,
+			predecessor_last: null,
+			selected: null,
+			query: ""
 		};
 	},
-	watch: {
-		searchQuery: function(newQuery, oldQuery) {
-			if (newQuery !== "") {
-				let self = this;
-				this.listTask = this.searchTask.filter(task =>
-					task.pName.toLowerCase().includes(newQuery.toLowerCase())
-				);
-				console.log(this.searchQuery);
-			} else {
-				this.listTask = this.listTask;
+	methods: {
+		getTreeName(taskNode) {
+			let treeName = taskNode.pName;
+			let current = taskNode.pParent;
+
+			for (let i = 0; i < 3; i++) {
+				if (current != 0) {
+					let parent = this.dataBaru.find(
+						node => node.pID === current
+					);
+
+					if (parent === undefined) {
+						console.log("error parent tidak ditemukan:", current);
+						return 0;
+					}
+
+					let name = parent.pName.split(" ");
+					if (name.length > 2) {
+						treeName =
+							name.slice(0, 2).join(" ") + "… » " + treeName;
+					} else {
+						treeName =
+							name.slice(0, 2).join(" ") + " » " + treeName;
+					}
+
+					current = parent.pParent;
+				}
+			}
+
+			return "※ " + treeName;
+		},
+		selectedParent(option) {
+			if (option) {
+				this.predecessor = option.id;
+				this.selected = option.name;
+				this.query = option.name;
 			}
 		},
-		predecessor: function(newQuery, oldQuery) {
-			if (this.predecessor === this.predecessorOri.toString()) {
-				this.btn = true;
-			} else {
-				this.btn = false;
-			}
+		queryChanged() {
+			setTimeout(() => {
+				let node = this.dataBaru.find(
+					task => task.pName == this.parseTreeName
+				);
+
+				if (node === undefined) {
+					this.query = this.selected;
+				} else {
+					this.query = this.getTreeName(node);
+				}
+			}, 100);
+		},
+		removeLink() {
+			this.predecessor = null;
+			this.selected = "";
+			this.query = "";
 		}
 	},
-	methods: {
-		getProcessGroup() {
-			if (this.processGroupID != 0 || this.processGroupID !== "") {
+	computed: {
+		parseTreeName() {
+			return this.query
+				.replace("※ ", "")
+				.replace("…", "")
+				.split(" » ")
+				.pop();
+		},
+		disabledBtn() {
+			return this.predecessor === this.predecessor_last;
+		},
+		processGroupName() {
+			if (
+				this.task.processGroupID != 0 ||
+				this.task.processGroupID !== ""
+			) {
 				let found = this.dataBaru.find(
-					task => task.pID === this.processGroupID
+					task => task.pID === this.task.processGroupID
 				);
+
 				if (found != undefined && found.hasOwnProperty("pName")) {
-					this.processGroupName = found.pName;
+					return found.pName;
 				} else {
 					return "";
 				}
 			}
-		}
-	},
-	computed: {
-		selectedOptions: {
-			get: function() {
-				return [this.taskNew];
-			},
-			set: function(newValue = []) {
-				if (newValue.length > 0) {
-					this.taskNew = newValue.shift();
-				} else {
-					this.taskNew = "";
-				}
-			}
 		},
-		filterTaskName() {
-			this.listTask = this.dataBaru.filter(option => {
+
+		autoComplete() {
+			let filtered = [];
+			let rawName = this.parseTreeName;
+			for (let i = 0; i < this.dataBaru.length; i++) {
+				const node = this.dataBaru[i];
+
 				let checkName =
-					option.pName
+					node.pName
 						.toString()
 						.toLowerCase()
-						.indexOf(this.name.toLowerCase()) >= 0;
+						.indexOf(rawName.toLowerCase()) >= 0;
 
-				return checkName && option.pID != this.taskID;
-			});
-			this.searchTask = this.listTask;
-		},
-		filterPredecessor() {
-			return this.dataBaru.filter(pre => {
-				let preFilter = pre;
-				return preFilter && pre.pID != this.taskID;
-			});
+				if (checkName && node.pID !== this.task.pID) {
+					let option = { id: node.pID };
+					if (node.hasOwnProperty("treeName")) {
+						option.name = node.treeName;
+					} else {
+						this.dataBaru[i].treeName = this.getTreeName(node);
+						option.name = this.dataBaru[i].treeName;
+					}
+
+					filtered.push(option);
+				}
+			}
+
+			return filtered;
 		}
 	},
+	beforeMount() {
+		this.start = moment(this.task.pStart).format("dddd, DD MMMM YYYY");
+		this.finish = moment(this.task.pEnd).format("dddd, DD MMMM YYYY");
+		this.predecessor = checkPass(this.task.pDepend);
+		this.predecessor_last = checkPass(this.task.pDepend);
+
+		this.parentTask = this.dataBaru.find(
+			node => node.pID === this.task.pParent
+		);
+	},
 	mounted() {
-		this.filterTaskName;
-		this.getProcessGroup();
+		let node = this.dataBaru.find(task => task.pID === this.predecessor);
+
+		if (node !== undefined) {
+			if (node.hasOwnProperty("treeName")) {
+				this.selected = node.treeName;
+			} else {
+				this.selected = this.getTreeName(node);
+			}
+
+			this.query = this.selected;
+			this.$refs.selectColumn.setSelected({
+				id: this.predecessor,
+				name: this.selected
+			});
+		}
 	}
 };
 </script>

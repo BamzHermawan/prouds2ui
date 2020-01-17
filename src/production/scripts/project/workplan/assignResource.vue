@@ -165,57 +165,76 @@
 			</template>
 			<template slot="top-right"> </template>
 			<template slot="detail" slot-scope="props">
-				<div class="columns is-multiline">
-					<div class="column is-12">
-						<div class="content">
-							<p class="title is-size-6">
-								🏆 Kemampuan (Skill)
-							</p>
-							<div style="padding:8px;">
-								<div
-									class="columns is-multiline"
-									v-if="props.row.skill.length > 0"
-								>
-									<div
-										v-for="(skill, index) in props.row
-											.skill"
-										:key="index"
-										class="column is-one-quarter"
-										style="padding: 5px;"
+				<div class="content" style="margin-bottom:.5rem;">
+					<label class="label"
+						>Skill —
+						<span class="has-text-grey has-text-weight-light">
+							<small
+								>has {{ props.row.skill.length }} skill</small
+							></span
+						>
+					</label>
+					<div
+						class="columns is-multiline"
+						style="padding-left: 1rem; margin-top:.5rem;"
+						v-if="props.row.skill.length > 0"
+					>
+						<div
+							class="column is-3"
+							style="padding:.5em; padding-bottom:0px;"
+							v-for="(skill, index) in props.row.skill"
+							:key="'skill' + props.row.user_id + index"
+						>
+							<article class="media">
+								<div class="media-left">{{ index + 1 }}.</div>
+								<div class="media-content">
+									<p class="is-marginless">
+										{{ skill.skillName }}
+									</p>
+									<p
+										class="is-marginless has-text-weight-bold"
 									>
-										{{ index + 1 }}.
-										<b>{{ skill.skillName }}</b
-										>:
-										{{ skill.skillLevel }}
-									</div>
+										<small>{{ skill.skillLevel }}</small>
+									</p>
 								</div>
-							</div>
+							</article>
 						</div>
 					</div>
-					<div class="column is-12">
-						<div class="content">
-							<p class="title is-size-6">
-								📜 Certificate
-							</p>
-							<div style="padding:8px;">
-								<div
-									class="columns is-multiline"
-									v-if="props.row.certificate.length > 0"
-								>
-									<div
-										v-for="(certificate, index) in props.row
-											.certificate"
-										:key="index"
-										class="column is-one-quarter"
-										style="padding: 5px;"
-									>
-										{{ index + 1 }}.
-										{{ certificate.certificateName }}
-									</div>
+					<b-message v-else size="is-small">
+						<p class="has-text-centered">
+							<b>SKILL DATA NOT FOUND</b>
+						</p>
+					</b-message>
+				</div>
+				<hr />
+				<div class="content" style="margin-bottom:.5rem;">
+					<label class="label">Course and Certificate</label>
+					<div
+						class="columns is-multiline"
+						style="padding-left: 1rem; margin-top:.5rem;"
+						v-if="props.row.certificate.length > 0"
+					>
+						<div
+							class="column is-3"
+							style="padding:.5em; padding-bottom:0px;"
+							v-for="(cert, index) in props.row.certificate"
+							:key="'skill' + props.row.user_id + index"
+						>
+							<article class="media">
+								<div class="media-left">{{ index + 1 }}.</div>
+								<div class="media-content">
+									<p class="is-marginless">
+										{{ cert.certificateName }}
+									</p>
 								</div>
-							</div>
+							</article>
 						</div>
 					</div>
+					<b-message v-else size="is-small">
+						<p class="has-text-centered">
+							<b>DATA NOT FOUND</b>
+						</p>
+					</b-message>
 				</div>
 			</template>
 		</b-table>

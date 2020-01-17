@@ -8,7 +8,7 @@
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
-	<title>PROJECT | PROUDS 2</title>
+	<title>PERFORMANCE INDEX | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
@@ -239,10 +239,12 @@
 									</div>
 								</b-field>
 							</div>
+
+							<!-- ^ UPDATED ########################################################### -->
 							<div class="card-content member-list">
 								<template v-if="!modal.fetchLoading">
 									<div v-for="(member, i) in modal.members" :key="i" class="media">
-										<div class="media-content">
+										<div class="media-content" :count="i">
 											<div class="columns is-multiline is-marginless">
 												<div class="column is-8 content is-marginless">
 													<h4 v-if="member.isDanger" class="is-small is-marginless has-text-danger">
@@ -264,20 +266,114 @@
 														</b-tooltip>
 													</div>
 												</div>
+
+												<div class="column is-12">
+													<b-message size="is-small">
+														<div :data-member="i" class="last-activity">
+															<p @click="toggleActivityMember(i)" class="activity-toggle">
+																<span class="mdi toggle-chevron"></span>
+																<span>Last Activity: {{member.last_activity.date | moment}}</span>
+															</p>
+															<p class="activity-detail">{{member.last_activity.activity}}</p>
+														</div>
+													</b-message>
+												</div>
+
+												<div v-if="member.issue" class="column is-12" style="padding:0px .75em;">
+													<b-collapse :open="false" class="panel is-warning is-shadowless">
+														<div slot="trigger" class="panel-heading" role="button" aria-controls="contentIdForA11y2">
+															<strong><span class="mdi mdi-alert in-left"></span> Issue</strong>
+														</div>
+														<div class="panel-block has-background-white">
+															<div class="content" style="padding:.5em;">
+																<label class="label is-marginless">
+																	<span>Issue —</span>
+																	<span v-if="member.issue.solved" class="has-text-success">
+																		solved at {{ member.issue.solved | moment }}
+																	</span>
+																	<span v-else class="has-text-danger">hasn't been solved</span>
+																</label>
+																<p>{{ member.issue.text }}</p>
+															</div>
+														</div>
+
+														<div class="panel-block has-background-white">
+															<div class="content" style="padding:.5em; width:100%;">
+																<article class="media is-paddingless" style="border-top:none;">
+																	<!-- Mitigation Content -->
+																	<div v-if="!member.issue.toggle" class="media-content">
+																		<label class="label is-marginless">Mitigation</label>
+																		<p v-if="member.issue.mitigation !== ''">{{ member.issue.mitigation }}</p>
+																		<p v-else class="has-text-grey-light">— Currently no mitigation found for this issue —</p>
+																	</div>
+																	<!-- /Mitigation Content -->
+
+																	<!-- Update Issue form -->
+																	<div v-else class="media-content">
+																		<form action="http://localhost:5501/demo/post_detect.php" method="post">
+																			<nav class="level is-field-label">
+																				<div class="level-left">
+																					<label class="label">Mitigation</label>
+																				</div>
+																				<div class="level-right">
+																					<div class="field">
+																						<b-checkbox 
+																							size="is-small" 
+																							type="is-success"
+																							v-model="member.issue.solved_val"
+																							>Mark as solved
+																						</b-checkbox>
+																					</div>
+																				</div>
+																			</nav>
+																			<input type="hidden" name="project_id" :value="project_id">
+																			<input type="hidden" name="task_id" :value="modal.task.id">
+																			<input type="hidden" name="user_id" :value="member.user_id">
+																			<input type="hidden" name="solved" :value="member.issue.solved_val">
+																			<b-field class="is-textarea">
+																				<b-input maxlength="200" type="textarea" name="mitigation" size="is-small" :has-counter="false"
+																					oninvalid="this.setCustomValidity('Mitigation should not be left empty')"
+																					placeholder="Describe your method/mitigation plan to solve this issue." required>
+																				</b-input>
+																			</b-field>
+																			<b-button type="is-success is-long" size="is-small" native-type="submit">Submit</b-button>
+																		</form>
+																	</div>
+																	<!-- /Update Issue form -->
+																	<div v-if="member.issue.solved === false" class="media-right">
+																		<b-button 
+																			size="is-small" 
+																			:type="(member.issue.toggle ? 'is-danger':'is-success')+' is-light'" 
+																			:icon-right="member.issue.toggle ? 'pencil-off-outline':'pencil-outline'" 
+																			@click="member.issue.toggle = !member.issue.toggle"/>
+																	</div>
+																</article>
+															</div>
+														</div>
+
+														<div class="panel-block has-bg-warning-light">
+															<div class="container" style="padding:.5em 1em;">
+																<nav class="level">
+																	<div class="level-item">
+																		<p><b>Target Estimation:</b> {{ member.issue.target | moment }}</p>
+																	</div>
+																	<div class="level-item">
+																		<p><b>Submit Date:</b> {{ member.issue.submit | moment }}</p>
+																	</div>
+																</nav>
+															</div>
+														</div>
+													</b-collapse>
+												</div>
 											</div>
-											<div :data-member="i" class="last-activity">
-												<p @click="toggleActivityMember(i)" class="activity-toggle">
-													<span class="mdi toggle-chevron"></span>
-													<span>Last Activity: {{member.last_activity.date | moment}}</span>
-												</p>
-												<p class="activity-detail">{{member.last_activity.activity}}</p>
-											</div>
+											<span v-if="(i+1) == modal.members.length" class="white-space is-medium"></span>
 										</div>
 									</div>
 								</template>
 				
 								<b-loading :is-full-page="false" :active.sync="modal.fetchLoading"></b-loading>
 							</div>
+							<!-- ^ UPDATED ########################################################### -->
 						</div>
 					</b-modal>
 				</div>

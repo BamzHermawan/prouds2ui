@@ -1,0 +1,26 @@
+.button.is-success:focus, .button.is-success.is-focused {
+    border-color: transparent;
+    color: #fff;
+}
+
+@each $name, $color in $colors {
+	.button.is-#{$name}.is-light:focus, .button.is-#{$name}.is-light.is-focused {
+		border-color: transparent;
+    	color: nth($color, 1);
+	}
+}
+
+table.table {
+	.button.is-small:not(.is-static) {
+		border-radius: 2px;
+		font-size: .65rem !important;
+		padding-bottom: 2px;
+		padding-top: 2px;
+		height: auto;
+	}
+
+	.button.is-normal-small {
+		border-radius: 2px;
+    	font-size: 0.75rem;
+	}
+}

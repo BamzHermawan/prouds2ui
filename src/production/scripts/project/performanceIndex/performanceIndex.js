@@ -188,6 +188,13 @@ new Vue({
 				.then(result => {
 					let json = result.data;
 					if(!isEmpty(json)) {
+						for (let i = 0; i < json.members.length; i++) {
+							if(json.members[i].hasOwnProperty('issue')) {
+								json.members[i].issue.toggle = false;
+								json.members[i].issue.solved_val = false;
+							}
+						}
+
 						self.modal.members = json.members;
 						self.modal.fetchLoading = false;
 					}

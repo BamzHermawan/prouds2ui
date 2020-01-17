@@ -205,9 +205,13 @@ new Vue({
 
 			this.getFilled(val.assignment_id, val.start, val.end);
 
-			this.showList = !this.showList
-			this.showForm = !this.showForm
-			this.dataForm = val
+			if (val.work_progress !== undefined) {
+				this.workProgress = val.work_progress;
+			}
+
+			this.showList = !this.showList;
+			this.showForm = !this.showForm;
+			this.dataForm = val;
 			this.datepicker = {
 				alert: false,
 				start: {

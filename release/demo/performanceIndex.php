@@ -114,12 +114,12 @@ if ($_GET['get'] == 'tasks') {
 }
 
 if ($_GET['get'] == 'weekly') {
-	$sum = 0;
-	for ($i=0; $i < 10000; $i++) { 
-		for ($j=0; $j < 10000; $j++) { 
-			$sum++;
-		}
-	}
+	// $sum = 0;
+	// for ($i=0; $i < 10000; $i++) { 
+	// 	for ($j=0; $j < 10000; $j++) { 
+	// 		$sum++;
+	// 	}
+	// }
 
 	// http_response_code(500);
 	// return 0;
@@ -197,7 +197,7 @@ if ($_GET['get'] == 'falling') {
 	$task_id = empty($_GET['task_id']) ? $parsed->project_id:$_GET['task_id'];
 	$list_member = [];
 
-	$member_total = 10;
+	$member_total = rand(1, 10);
 	$members = $parsed->members;
 	shuffle($members);
 

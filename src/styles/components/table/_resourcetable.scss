@@ -1,0 +1,22 @@
+.resource-table {
+	@each $name, $color in $colors {
+		th.is-#{$name}, td.is-#{$name} {
+			@if $name == 'white' { 
+				background-color: $white;
+			} @else if $name == 'light' { 
+				background-color: $light;
+			} @else { 
+				background-color: lighten(nth($color, 1), 40%) !important;
+				color: $dark !important;
+			}
+
+			&.is-bolder {
+				background-color: lighten(nth($color, 1), 30%) !important;
+			}
+
+			&.is-lighter {
+				background-color: lighten(nth($color, 1), 45%) !important;
+			}
+		}
+	}
+}

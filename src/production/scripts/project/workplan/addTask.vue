@@ -50,7 +50,7 @@
 						type="select"
 						label="Assigned Role"
 						placeholder="Choose Role"
-						name="roleId"
+						name="roleID"
 						input-style="margin-bottom:1em;"
 						required
 					>
@@ -75,11 +75,11 @@
 							</b-field>
 						</div>
 					</div>
-					<b-input
+					<input
 						type="hidden"
 						name="progressCalculation"
 						v-model="progressCalculation"
-					></b-input>
+					/>
 					<b-field label="Progress Calculation">
 						<div class="block">
 							<b-checkbox v-model="progressCalculation">
@@ -88,13 +88,23 @@
 						</div>
 					</b-field>
 
-					<button
-						class="button is-success"
-						type="submit"
-						:disabled="disableSave"
-					>
-						Save Task
-					</button>
+					<hr />
+
+					<div class="buttons">
+						<button
+							class="button is-success is-long"
+							type="submit"
+							:disabled="disableSave"
+						>
+							Save Task
+						</button>
+
+						<b-button
+							type="is-danger is-long"
+							@click="$emit('cancel')"
+							>Cancel</b-button
+						>
+					</div>
 				</div>
 			</div>
 			<div class="tile is-vertical is-parent is-5">

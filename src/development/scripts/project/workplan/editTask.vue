@@ -20,23 +20,28 @@
 						</div>
 					</b-field>
 
-					<!-- Select Parent Task -->
+					<!-- ########################## Select Parent Task -->
 					<p class="label">Parent Task</p>
 					<input
 						type="hidden"
 						name="parentTaskPrev"
-						v-model="curSubTask"
+						v-model="parent.previous"
 					/>
-					<input type="hidden" name="parentTask" v-model="subtask" />
+					<input
+						type="hidden"
+						name="parentTask"
+						v-model="parent.current"
+					/>
 					<b-autocomplete
 						style="margin-bottom:1em;"
-						v-model="name"
+						v-model="parent.name"
 						placeholder="Choose Parent Task"
 						:open-on-focus="true"
-						:data="filterTaskName"
-						field="pName"
+						:data="autoCompleteParent"
+						field="name"
 						required
-						@select="option => (selected = option)"
+						@select="selectedParent"
+						@blur="nameParentChanged"
 					>
 					</b-autocomplete>
 					<!-- Select Parent Task -->
@@ -92,28 +97,6 @@
 						name="progressCalculation"
 						v-model="progressCalculation"
 					/>
-					<crud-input
-						type="select"
-						label="WBS No."
-						name="wbsNo"
-						placeholder="Choose WBS Number"
-						v-model="wbsNo"
-						input-style="margin-bottom:1em;"
-					>
-						<slot name="wbs-option"></slot>
-					</crud-input>
-
-					<crud-input
-						type="select"
-						label="Integration Method"
-						name="integration"
-						placeholder="Choose Integration Method"
-						v-model="integration"
-						input-style="margin-bottom:1em;"
-						v-if="showIntegration === 'true'"
-					>
-						<slot name="integration-option"></slot>
-					</crud-input>
 
 					<input
 						type="hidden"
@@ -132,22 +115,17 @@
 							</b-field>
 						</div>
 						<div class="column">
-							<b-field
-								label="Weight Percent"
-								style="margin-bottom:1em;"
-							>
-								<div>
-									<input
-										type="hidden"
-										name="weightPercent"
-										v-model="weightPercent"
-									/>
-									<span
-										class="button is-static is-light-blend"
-										style="justify-content: start;"
-										>{{ weightPercent }}</span
-									>
-								</div>
+							<input
+								type="hidden"
+								name="weightPercent"
+								v-model="weightPercent"
+							/>
+							<b-field label="Weight Percent">
+								<span
+									style="min-width:125px; justify-content: left;"
+									class="button is-static is-light-blend"
+									>{{ weightPercent }} %</span
+								>
 							</b-field>
 						</div>
 					</div>
@@ -163,10 +141,18 @@
 						</div>
 					</b-field>
 
-					<div class="is-pulled-left">
-						<button class="button is-success" type="submit">
-							Save Task
+					<hr />
+
+					<div class="buttons">
+						<button class="button is-success is-long" type="submit">
+							Save
 						</button>
+						<b-button
+							@click="$emit('cancel')"
+							type="is-danger is-long"
+						>
+							Cancel
+						</b-button>
 					</div>
 				</div>
 			</div>
@@ -174,7 +160,7 @@
 				<div class="tile is-child">
 					<b-message
 						title="Task Schedule"
-						type="is-primary"
+						type="is-info"
 						:closable="false"
 					>
 						<!-- Datepicker Start Date -->
@@ -228,7 +214,7 @@
 									name="workdays"
 									placeholder="Choose Workdays Schema"
 									v-model="workdays"
-									input-style="margin-bottom:1em;"
+									input-style="margin-bottom:0px;"
 								>
 									<slot name="workdays-option"></slot>
 								</crud-input>
@@ -245,6 +231,8 @@
 						<!-- Select Workdays -->
 					</b-message>
 				</div>
+				<slot name="additional" :wbs="wbsNo" :integration="integration">
+				</slot>
 			</div>
 		</div>
 	</form>
@@ -255,8 +243,13 @@
 
 import Moment from "helper-moment";
 import { crudInput } from "components";
-import { notified, checkConnection } from "helper-tools";
+import { notified, checkConnection, isEmpty } from "helper-tools";
 import api from "helper-apis";
+
+const passValue = val => {
+	return isEmpty(val) ? null : val;
+};
+
 export default {
 	components: { crudInput },
 	props: {
@@ -275,10 +268,6 @@ export default {
 		apiGetDuration: {
 			type: String,
 			required: true
-		},
-		showIntegration: {
-			type: String,
-			required: true
 		}
 	},
 	data() {
@@ -290,15 +279,11 @@ export default {
 			duration: this.task.duration,
 			checkboxPredecessor: "true",
 			predecessor: null,
-			subtask: null,
-			curSubTask: this.task.pParent,
 			start: new Date(this.task.pStart),
 			finish: new Date(this.task.pEnd),
 			oldfinish: new Date(this.task.pEnd),
 			taskID: this.task.pID,
 			isLoading: false,
-			name: "",
-			selected: null,
 			processGroupName: "",
 			processGroupID: this.task.processGroupID,
 			progressCalculation: this.task.progressCalculation,
@@ -308,12 +293,17 @@ export default {
 			finishPrev: Moment(this.task.pEnd).format("DD/MM/YYYY"),
 			workdaysPrev: this.task.workdays,
 			weightPrev: this.task.weight,
-			wbsNo: this.task.wbsNo,
-			integration: this.task.integration,
+			wbsNo: passValue(this.task.wbsNo),
+			integration: passValue(this.task.integration),
 			weight: this.task.weight,
 			weightPercent: this.task.weightPercent,
 			roleId: this.task.roleId,
-			roleIdPrev: this.task.roleId
+			roleIdPrev: this.task.roleId,
+			parent: {
+				previous: this.task.pParent,
+				current: this.task.pParent,
+				name: ""
+			}
 		};
 	},
 	watch: {
@@ -328,13 +318,6 @@ export default {
 		},
 		workdays: function() {
 			this.getDuration(this.start, this.finish, this.workdays);
-		},
-		name: function() {
-			if (this.selected != undefined) {
-				this.subtask = this.selected.pID;
-			} else {
-				this.subtask = this.curSubTask;
-			}
 		}
 	},
 	methods: {
@@ -383,19 +366,110 @@ export default {
 					return "";
 				}
 			}
+		},
+		selectedParent(option) {
+			if (option) {
+				this.parent.current = option.id;
+				this.parent.name = option.name;
+			}
+		},
+		nameParentChanged(value) {
+			setTimeout(() => {
+				let node = this.dataBaru.find(
+					task => task.pName == this.parseTreeName
+				);
+
+				if (node === undefined) {
+					node = this.dataBaru.find(
+						task => task.pID === this.parent.current
+					);
+				}
+
+				if (node.hasOwnProperty("treeName")) {
+					this.parent.name = node.treeName;
+				} else {
+					this.parent.name = this.getTreeName(node);
+				}
+			}, 100);
+		},
+		getParent() {
+			if (this.parent.current != 0) {
+				let found = this.dataBaru.find(
+					task => task.pID === this.parent.current
+				);
+
+				if (found != undefined && found.hasOwnProperty("pName")) {
+					this.parent.name = this.getTreeName(found);
+				} else {
+					return "";
+				}
+			}
+		},
+		getTreeName(taskNode) {
+			let treeName = taskNode.pName;
+			let current = taskNode.pParent;
+
+			for (let i = 0; i < 3; i++) {
+				if (current != 0) {
+					let parent = this.dataBaru.find(
+						node => node.pID === current
+					);
+
+					if (parent === undefined) {
+						console.log("error parent tidak ditemukan:", current);
+						return 0;
+					}
+
+					let name = parent.pName.split(" ");
+					if (name.length > 2) {
+						treeName =
+							name.slice(0, 2).join(" ") + "… » " + treeName;
+					} else {
+						treeName =
+							name.slice(0, 2).join(" ") + " » " + treeName;
+					}
+
+					current = parent.pParent;
+				}
+			}
+
+			return "※ " + treeName;
 		}
 	},
 	computed: {
-		filterTaskName() {
-			return this.dataBaru.filter(option => {
+		parseTreeName() {
+			return this.parent.name
+				.replace("※ ", "")
+				.replace("…", "")
+				.split(" » ")
+				.pop();
+		},
+		autoCompleteParent() {
+			let filtered = [];
+			let rawName = this.parseTreeName;
+			for (let i = 0; i < this.dataBaru.length; i++) {
+				const node = this.dataBaru[i];
+
 				let checkName =
-					option.pName
+					node.pName
 						.toString()
 						.toLowerCase()
-						.indexOf(this.name.toLowerCase()) >= 0;
+						.indexOf(rawName.toLowerCase()) >= 0;
 
-				return checkName && option.pID != this.taskID;
-			});
+				if (checkName && node.pID !== this.taskID) {
+					let option = { id: node.pID };
+					if (node.hasOwnProperty("treeName")) {
+						option.name = node.treeName;
+					} else {
+						this.dataBaru[i].treeName = this.getTreeName(node);
+						option.name = this.dataBaru[i].treeName;
+					}
+
+					filtered.push(option);
+				}
+			}
+
+			return filtered;
 		},
 		filterPredecessor() {
 			return this.dataBaru.filter(pre => {
@@ -404,25 +478,13 @@ export default {
 				return preFilter && pre.pID != this.taskID;
 			});
 		},
-		getParent() {
-			if (this.curSubTask != 0) {
-				let found = this.dataBaru.find(
-					task => task.pID === this.curSubTask
-				);
-				if (found != undefined && found.hasOwnProperty("pName")) {
-					this.name = found.pName;
-				} else {
-					return "";
-				}
-			}
-		},
 		finishisoverflow() {
 			return this.finish > this.oldfinish;
 		}
 	},
 	mounted() {
 		this.predecessor = this.task.pDepend ? this.task.pDepend : null;
-		this.getParent;
+		this.getParent();
 		this.getProcessGroup();
 	}
 };

@@ -2,455 +2,758 @@
   "project_id": 1001,
   "task_id": "1001-00",
   "members": [
-    {
-      "nik": "S00000",
-      "user_id": 0,
-      "name": "Debra Dunlap",
-      "isDanger": false,
-      "role": {
-        "id": "role-0003",
-        "name": "Designer"
-      },
-      "last_activity": {
-        "date": "17/8/2020",
-        "activity": "Do occaecat sint deserunt est voluptate nostrud fugiat. Elit veniam aliqua consequat ullamco proident irure elit. Irure do et quis exercitation pariatur fugiat mollit consectetur."
-      },
-      "timesheet": {
-        "submited": 64,
-        "approved": 50
-      }
-    },
-    {
-      "nik": "CRS00001",
-      "user_id": 1,
-      "name": "Rosie Merrill",
-      "isDanger": false,
-      "role": {
-        "id": "role-0004",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "11/1/2020",
-        "activity": "Sunt officia in eiusmod sint velit occaecat dolor ad consequat dolore magna in velit. Ut pariatur consectetur Lorem duis tempor cillum nulla sunt excepteur. Aute aliqua reprehenderit esse et cillum ipsum deserunt quis et."
-      },
-      "timesheet": {
-        "submited": 28,
-        "approved": 16
-      }
-    },
-    {
-      "nik": "S00002",
-      "user_id": 2,
-      "name": "Wilkerson Collier",
-      "isDanger": true,
-      "role": {
-        "id": "role-0004",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "28/3/2020",
-        "activity": "Enim et pariatur laborum irure ea sint ea ea voluptate incididunt. Ut dolor adipisicing excepteur fugiat et et deserunt ex labore do ut."
-      },
-      "timesheet": {
-        "submited": 0,
-        "approved": -7
-      }
-    },
-    {
-      "nik": "P00003",
-      "user_id": 3,
-      "name": "Wiley Mason",
-      "isDanger": true,
-      "role": {
-        "id": "role-0004",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "3/4/2020",
-        "activity": "Ad duis anim cillum sit est laboris minim quis consectetur magna consequat fugiat. Laborum eu excepteur exercitation sint minim mollit reprehenderit."
-      },
-      "timesheet": {
-        "submited": 72,
-        "approved": 48
-      }
-    },
-    {
-      "nik": "S00004",
-      "user_id": 4,
-      "name": "Carson Gordon",
-      "isDanger": true,
-      "role": {
-        "id": "role-0003",
-        "name": "Analyst"
-      },
-      "last_activity": {
-        "date": "28/4/2020",
-        "activity": "Deserunt non consequat labore eiusmod magna in. Velit proident enim ex magna. Amet amet cillum elit eiusmod magna ad sunt."
-      },
-      "timesheet": {
-        "submited": 3,
-        "approved": 3
-      }
-    },
-    {
-      "nik": "CRS00005",
-      "user_id": 5,
-      "name": "Lorrie Jimenez",
-      "isDanger": false,
-      "role": {
-        "id": "role-0001",
-        "name": "Analyst"
-      },
-      "last_activity": {
-        "date": "26/8/2020",
-        "activity": "Esse magna laboris voluptate nulla nisi pariatur. Incididunt laboris minim laboris aute. Sunt cupidatat nulla exercitation aliquip aliquip ipsum qui irure nostrud non occaecat pariatur pariatur ex."
-      },
-      "timesheet": {
-        "submited": 45,
-        "approved": 9
-      }
-    },
-    {
-      "nik": "S00006",
-      "user_id": 6,
-      "name": "Lynette Mathews",
-      "isDanger": false,
-      "role": {
-        "id": "role-0003",
-        "name": "Designer"
-      },
-      "last_activity": {
-        "date": "10/11/2020",
-        "activity": "Cupidatat voluptate ea deserunt incididunt non commodo ullamco Lorem dolore est enim. Cupidatat tempor reprehenderit deserunt et duis quis aliquip."
-      },
-      "timesheet": {
-        "submited": 33,
-        "approved": 25
-      }
-    },
-    {
-      "nik": "CRS00007",
-      "user_id": 7,
-      "name": "Lolita Miles",
-      "isDanger": false,
-      "role": {
-        "id": "role-0002",
-        "name": "Programmer"
-      },
-      "last_activity": {
-        "date": "10/5/2020",
-        "activity": "Dolor aute reprehenderit sit excepteur et velit amet ea aliquip. Adipisicing amet eiusmod culpa et esse ullamco ipsum."
-      },
-      "timesheet": {
-        "submited": 52,
-        "approved": 12
-      }
-    },
-    {
-      "nik": "P00008",
-      "user_id": 8,
-      "name": "Ashlee Pollard",
-      "isDanger": true,
-      "role": {
-        "id": "role-0003",
-        "name": "Designer"
-      },
-      "last_activity": {
-        "date": "14/9/2020",
-        "activity": "Laboris aliqua est occaecat eu magna irure commodo sint adipisicing. Eiusmod ea qui sit labore amet. Labore cillum sit commodo minim."
-      },
-      "timesheet": {
-        "submited": 73,
-        "approved": 57
-      }
-    },
-    {
-      "nik": "S00009",
-      "user_id": 9,
-      "name": "Alice Harvey",
-      "isDanger": false,
-      "role": {
-        "id": "role-0003",
-        "name": "Programmer"
-      },
-      "last_activity": {
-        "date": "8/3/2020",
-        "activity": "Sunt adipisicing officia excepteur sint aliquip ipsum nisi culpa magna consequat ut. Adipisicing non consectetur eiusmod duis do Lorem fugiat adipisicing tempor mollit. Tempor duis consequat pariatur fugiat duis ex mollit labore amet."
-      },
-      "timesheet": {
-        "submited": 16,
-        "approved": 15
-      }
-    },
-    {
-      "nik": "P000010",
-      "user_id": 10,
-      "name": "Margaret Cross",
-      "isDanger": true,
-      "role": {
-        "id": "role-0001",
-        "name": "Programmer"
-      },
-      "last_activity": {
-        "date": "23/11/2020",
-        "activity": "Labore anim velit aute adipisicing nulla cillum sint duis aliqua proident veniam. Do est aliquip pariatur tempor. Labore voluptate esse officia cupidatat excepteur anim exercitation."
-      },
-      "timesheet": {
-        "submited": 57,
-        "approved": 49
-      }
-    },
-    {
-      "nik": "S000011",
-      "user_id": 11,
-      "name": "Dale Hayden",
-      "isDanger": true,
-      "role": {
-        "id": "role-0001",
-        "name": "Designer"
-      },
-      "last_activity": {
-        "date": "23/10/2020",
-        "activity": "Duis sint eu incididunt deserunt. Velit anim minim ipsum officia ex laborum anim eu non id."
-      },
-      "timesheet": {
-        "submited": 29,
-        "approved": 15
-      }
-    },
-    {
-      "nik": "S000012",
-      "user_id": 12,
-      "name": "Henderson Gillespie",
-      "isDanger": false,
-      "role": {
-        "id": "role-0002",
-        "name": "Programmer"
-      },
-      "last_activity": {
-        "date": "29/4/2020",
-        "activity": "Ea anim consectetur tempor ipsum labore sit eiusmod sit culpa laborum. Nulla esse officia duis commodo irure dolore do anim occaecat. Labore nostrud laboris laboris incididunt."
-      },
-      "timesheet": {
-        "submited": 1,
-        "approved": 1
-      }
-    },
-    {
-      "nik": "CRS000013",
-      "user_id": 13,
-      "name": "Hooper Hewitt",
-      "isDanger": false,
-      "role": {
-        "id": "role-0004",
-        "name": "Programmer"
-      },
-      "last_activity": {
-        "date": "28/11/2020",
-        "activity": "Quis ipsum eiusmod cupidatat cillum minim. Quis adipisicing dolor labore sint aliqua."
-      },
-      "timesheet": {
-        "submited": 45,
-        "approved": 6
-      }
-    },
-    {
-      "nik": "S000014",
-      "user_id": 14,
-      "name": "Cross Knapp",
-      "isDanger": false,
-      "role": {
-        "id": "role-0001",
-        "name": "Designer"
-      },
-      "last_activity": {
-        "date": "18/1/2020",
-        "activity": "Laborum elit occaecat reprehenderit consequat culpa. Cupidatat cupidatat voluptate elit qui. Aliqua aliqua enim magna Lorem amet veniam irure cillum sint et ex."
-      },
-      "timesheet": {
-        "submited": 55,
-        "approved": 5
-      }
-    },
-    {
-      "nik": "CRS000015",
-      "user_id": 15,
-      "name": "Wilma Vincent",
-      "isDanger": false,
-      "role": {
-        "id": "role-0004",
-        "name": "Programmer"
-      },
-      "last_activity": {
-        "date": "25/7/2020",
-        "activity": "Amet occaecat consectetur sint amet. Reprehenderit eiusmod tempor est magna culpa voluptate cillum. Et minim velit cupidatat sint commodo nisi nostrud culpa laboris in."
-      },
-      "timesheet": {
-        "submited": 91,
-        "approved": 73
-      }
-    },
-    {
-      "nik": "CRS000016",
-      "user_id": 16,
-      "name": "Cash Hardy",
-      "isDanger": false,
-      "role": {
-        "id": "role-0002",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "14/4/2020",
-        "activity": "Fugiat incididunt consectetur ad adipisicing consequat ad cillum sit. Dolore aliqua elit laboris cupidatat commodo exercitation aliqua. Proident ullamco proident est duis irure velit excepteur eu cillum laborum."
-      },
-      "timesheet": {
-        "submited": 64,
-        "approved": 26
-      }
-    },
-    {
-      "nik": "CRS000017",
-      "user_id": 17,
-      "name": "Marcia Mayo",
-      "isDanger": true,
-      "role": {
-        "id": "role-0003",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "24/2/2020",
-        "activity": "Ut minim laboris commodo elit. Enim ut sunt ex occaecat aliqua culpa qui labore nostrud."
-      },
-      "timesheet": {
-        "submited": 62,
-        "approved": 55
-      }
-    },
-    {
-      "nik": "CRS000018",
-      "user_id": 18,
-      "name": "Kaufman Ballard",
-      "isDanger": true,
-      "role": {
-        "id": "role-0003",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "13/10/2020",
-        "activity": "Aute adipisicing ullamco sit excepteur velit cupidatat tempor. Et sunt aliqua duis duis. Duis qui consectetur duis nostrud nostrud pariatur labore Lorem labore pariatur culpa anim."
-      },
-      "timesheet": {
-        "submited": 82,
-        "approved": 54
-      }
-    },
-    {
-      "nik": "CRS000019",
-      "user_id": 19,
-      "name": "Franklin Edwards",
-      "isDanger": true,
-      "role": {
-        "id": "role-0001",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "5/4/2020",
-        "activity": "Eu culpa Lorem et magna elit eu nostrud aliquip. Tempor irure adipisicing laborum commodo proident aliquip irure eu."
-      },
-      "timesheet": {
-        "submited": 38,
-        "approved": 12
-      }
-    },
-    {
-      "nik": "P000020",
-      "user_id": 20,
-      "name": "Krystal Rasmussen",
-      "isDanger": false,
-      "role": {
-        "id": "role-0003",
-        "name": "Designer"
-      },
-      "last_activity": {
-        "date": "1/9/2020",
-        "activity": "Cillum laboris mollit qui id. Magna voluptate minim mollit eiusmod tempor et ad ea quis magna nisi. Amet culpa tempor laboris occaecat eu sit do."
-      },
-      "timesheet": {
-        "submited": 43,
-        "approved": 22
-      }
-    },
-    {
-      "nik": "S000021",
-      "user_id": 21,
-      "name": "Hewitt Salazar",
-      "isDanger": false,
-      "role": {
-        "id": "role-0002",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "24/1/2020",
-        "activity": "Enim elit non ex sint. Consequat nostrud mollit nulla sunt mollit anim minim elit reprehenderit irure commodo culpa anim. Dolore quis et incididunt cupidatat sint consectetur deserunt aliqua aute magna ullamco commodo irure."
-      },
-      "timesheet": {
-        "submited": 12,
-        "approved": 1
-      }
-    },
-    {
-      "nik": "S000022",
-      "user_id": 22,
-      "name": "Flossie Wood",
-      "isDanger": false,
-      "role": {
-        "id": "role-0002",
-        "name": "Typewriter"
-      },
-      "last_activity": {
-        "date": "21/9/2020",
-        "activity": "Id et eu sint do amet enim cupidatat exercitation nulla qui tempor qui minim. Sunt ex nostrud consequat qui enim esse laboris voluptate tempor cupidatat in ea."
-      },
-      "timesheet": {
-        "submited": 14,
-        "approved": 9
-      }
-    },
-    {
-      "nik": "P000023",
-      "user_id": 23,
-      "name": "Pacheco Alston",
-      "isDanger": true,
-      "role": {
-        "id": "role-0003",
-        "name": "Designer"
-      },
-      "last_activity": {
-        "date": "6/12/2020",
-        "activity": "Commodo eu elit excepteur ut id esse incididunt sunt sint labore eu deserunt. Velit culpa est culpa consectetur aliquip mollit magna veniam exercitation enim occaecat id adipisicing."
-      },
-      "timesheet": {
-        "submited": 26,
-        "approved": 0
-      }
-    },
-    {
-      "nik": "CRS000024",
-      "user_id": 24,
-      "name": "Dixie Sullivan",
-      "isDanger": true,
-      "role": {
-        "id": "role-0003",
-        "name": "Programmer"
-      },
-      "last_activity": {
-        "date": "2/9/2020",
-        "activity": "Adipisicing Lorem incididunt et nostrud id fugiat labore dolore eu deserunt veniam enim. Sit velit ad exercitation laborum minim ad exercitation. Dolor est tempor elit nostrud."
-      },
-      "timesheet": {
-        "submited": 73,
-        "approved": 33
-      }
-    }
-  ]
+		{
+			"nik": "CRS00000",
+			"user_id": 0,
+			"name": "Victoria Blackburn",
+			"isDanger": false,
+			"role": {
+				"id": "role-001",
+				"name": "Programmer"
+			},
+			"last_activity": {
+				"date": "24/7/2020",
+				"activity": "Nisi id mollit eu exercitation est duis reprehenderit aute. Nulla mollit consequat veniam ipsum consectetur anim cupidatat fugiat anim consectetur et. Laboris est Lorem pariatur excepteur nisi commodo Lorem officia consectetur aute mollit ut proident minim. Commodo ullamco sunt non culpa laborum id eiusmod qui ad deserunt sit. Eiusmod reprehenderit nulla ad culpa laboris est commodo cupidatat aliqua consequat elit minim esse.\r\n"
+			},
+			"timesheet": {
+				"submited": 20,
+				"approved": 15
+			},
+			"issue": {
+				"text": "Voluptate eiusmod do nostrud velit incididunt occaecat proident aliquip pariatur do reprehenderit et fugiat.",
+				"mitigation": "",
+				"target": "19/10/2020",
+				"submit": "8/10/2020",
+				"solved": "29/10/2020"
+			}
+		},
+		{
+			"nik": "CRS00001",
+			"user_id": 1,
+			"name": "Meagan Becker",
+			"isDanger": true,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "26/3/2020",
+				"activity": "Duis irure ipsum irure nisi in. Nisi nostrud est voluptate culpa magna est. Dolor sit anim magna ad ipsum. Do irure incididunt reprehenderit ullamco. Ea duis commodo dolore dolor nisi elit consectetur qui cillum excepteur nostrud.\r\n"
+			},
+			"timesheet": {
+				"submited": 82,
+				"approved": 64
+			},
+			"issue": {
+				"text": "Ea ut veniam ut magna aliquip nostrud.",
+				"mitigation": "",
+				"target": "15/4/2020",
+				"submit": "13/4/2020",
+				"solved": "28/4/2020"
+			}
+		},
+		{
+			"nik": "CRS00002",
+			"user_id": 2,
+			"name": "Bowen Odonnell",
+			"isDanger": true,
+			"role": {
+				"id": "role-001",
+				"name": "Programmer"
+			},
+			"last_activity": {
+				"date": "17/3/2020",
+				"activity": "Elit amet consequat proident cillum adipisicing occaecat aute voluptate nostrud mollit cillum nisi cillum dolore. Do tempor duis sunt dolor do cillum laborum cillum commodo esse labore voluptate. Amet eu ea anim do amet dolor esse labore proident. Ea deserunt do non est.\r\n"
+			},
+			"timesheet": {
+				"submited": 41,
+				"approved": 26
+			}
+		},
+		{
+			"nik": "CRS00003",
+			"user_id": 3,
+			"name": "Oneill Foley",
+			"isDanger": true,
+			"role": {
+				"id": "role-004",
+				"name": "UI/UX Designer"
+			},
+			"last_activity": {
+				"date": "12/4/2020",
+				"activity": "Enim nostrud duis labore officia Lorem sint officia reprehenderit. Dolore aliquip proident pariatur laborum nulla anim. Enim laboris est enim reprehenderit ad ut amet exercitation ad eu minim esse. Exercitation consectetur irure est exercitation sunt eiusmod veniam in et occaecat.\r\n"
+			},
+			"timesheet": {
+				"submited": 70,
+				"approved": 24
+			},
+			"issue": {
+				"text": "Occaecat deserunt elit magna Lorem pariatur ut esse deserunt aliquip.",
+				"mitigation": "Ullamco enim nulla tempor laboris id consectetur reprehenderit.",
+				"target": "15/5/2020",
+				"submit": "9/5/2020",
+				"solved": false
+			}
+		},
+		{
+			"nik": "CRS00004",
+			"user_id": 4,
+			"name": "Fleming Gordon",
+			"isDanger": true,
+			"role": {
+				"id": "role-001",
+				"name": "Programmer"
+			},
+			"last_activity": {
+				"date": "14/1/2020",
+				"activity": "Amet aliqua elit eiusmod consequat non veniam dolore enim ut sit. Officia laboris nostrud ad proident sint proident non eu ullamco do occaecat sit. Anim magna nulla tempor anim enim id aute duis mollit laborum aliquip est id consequat. Occaecat cillum fugiat culpa enim quis dolore id voluptate cillum.\r\n"
+			},
+			"timesheet": {
+				"submited": 33,
+				"approved": 2
+			},
+			"issue": {
+				"text": "Dolore deserunt enim dolore non consectetur fugiat eiusmod.",
+				"mitigation": "",
+				"target": "18/5/2020",
+				"submit": "5/5/2020",
+				"solved": "27/5/2020"
+			}
+		},
+		{
+			"nik": "CRS00005",
+			"user_id": 5,
+			"name": "Mcintosh Greene",
+			"isDanger": true,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "10/9/2020",
+				"activity": "Dolore do reprehenderit aliquip in cupidatat veniam deserunt officia sunt do enim exercitation. Minim commodo eiusmod excepteur nisi aliqua fugiat duis dolor reprehenderit est. Ipsum aliqua adipisicing culpa aliqua consectetur ut. Cillum consequat exercitation Lorem exercitation aliqua. Ex cillum id consectetur adipisicing ut. Irure incididunt eu esse sit consectetur.\r\n"
+			},
+			"timesheet": {
+				"submited": 95,
+				"approved": 66
+			},
+			"issue": {
+				"text": "Cupidatat in excepteur sunt aliqua laborum aliquip dolore occaecat excepteur dolore laborum in.",
+				"mitigation": "Velit consequat aliquip adipisicing laboris.",
+				"target": "15/4/2020",
+				"submit": "2/4/2020",
+				"solved": false
+			}
+		},
+		{
+			"nik": "CRS00006",
+			"user_id": 6,
+			"name": "Kristin Rowland",
+			"isDanger": true,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "27/5/2020",
+				"activity": "Ipsum quis consequat elit exercitation fugiat ea id. Eiusmod aute labore et eu non aliquip veniam amet incididunt consequat nisi. Do aliqua anim est ullamco nostrud eu velit laboris quis. Deserunt non veniam dolore exercitation eiusmod quis officia nisi. Adipisicing dolore ipsum labore nostrud.\r\n"
+			},
+			"timesheet": {
+				"submited": 33,
+				"approved": 0
+			},
+			"issue": {
+				"text": "Anim pariatur dolor et in aliqua eiusmod minim nisi.",
+				"mitigation": "Non qui officia cillum reprehenderit mollit sint.",
+				"target": "17/1/2020",
+				"submit": "11/1/2020",
+				"solved": false
+			}
+		},
+		{
+			"nik": "CRS00007",
+			"user_id": 7,
+			"name": "Bertie Cole",
+			"isDanger": false,
+			"role": {
+				"id": "role-001",
+				"name": "Programmer"
+			},
+			"last_activity": {
+				"date": "6/7/2020",
+				"activity": "Ad enim ullamco et esse magna nulla id dolore reprehenderit. Nostrud qui quis elit enim officia amet nisi duis consectetur nulla. Quis quis culpa ipsum do voluptate cupidatat ad consequat dolore occaecat. Ipsum dolore tempor duis excepteur irure laboris eiusmod do nisi fugiat. Aliquip do ut consectetur ullamco irure laborum ullamco veniam excepteur.\r\n"
+			},
+			"timesheet": {
+				"submited": 5,
+				"approved": 0
+			}
+		},
+		{
+			"nik": "CRS00008",
+			"user_id": 8,
+			"name": "Lewis Daniels",
+			"isDanger": false,
+			"role": {
+				"id": "role-003",
+				"name": "DevOps"
+			},
+			"last_activity": {
+				"date": "21/2/2020",
+				"activity": "Veniam minim proident elit veniam fugiat cillum qui pariatur Lorem officia exercitation officia aliqua. Quis aliqua aliqua mollit minim amet dolor exercitation nulla esse consectetur anim. Labore enim labore deserunt id nulla ut elit id amet cupidatat laboris duis amet. Ipsum nulla et officia incididunt duis ipsum aute dolore sit cupidatat magna adipisicing consectetur irure. Culpa laborum deserunt mollit dolore consectetur irure exercitation. Irure magna in velit incididunt.\r\n"
+			},
+			"timesheet": {
+				"submited": 62,
+				"approved": 49
+			}
+		},
+		{
+			"nik": "CRS00009",
+			"user_id": 9,
+			"name": "Mercedes Kline",
+			"isDanger": true,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "24/11/2020",
+				"activity": "Ad incididunt id proident velit tempor ullamco ex. Culpa fugiat labore magna dolore amet mollit quis minim consequat esse sit eu sint. Ad laboris dolor dolor labore officia occaecat consequat reprehenderit velit tempor magna aliquip. Occaecat esse incididunt fugiat duis sit consectetur ex est quis officia mollit officia sit.\r\n"
+			},
+			"timesheet": {
+				"submited": 72,
+				"approved": 7
+			}
+		},
+		{
+			"nik": "CRS000010",
+			"user_id": 10,
+			"name": "Good Carney",
+			"isDanger": true,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "28/1/2020",
+				"activity": "Laborum reprehenderit aliquip do consequat aute commodo incididunt voluptate eiusmod aliquip. Consequat voluptate officia tempor laboris in id cupidatat sit. Est mollit fugiat in officia magna laborum dolor laborum tempor aliquip et. Anim ipsum sit eu aute laborum ea ipsum nulla proident laborum enim laborum pariatur.\r\n"
+			},
+			"timesheet": {
+				"submited": 95,
+				"approved": 56
+			},
+			"issue": {
+				"text": "Irure duis adipisicing dolor qui pariatur adipisicing tempor incididunt magna irure laborum.",
+				"mitigation": "",
+				"target": "20/3/2020",
+				"submit": "9/3/2020",
+				"solved": "21/3/2020"
+			}
+		},
+		{
+			"nik": "CRS000011",
+			"user_id": 11,
+			"name": "Doreen Erickson",
+			"isDanger": true,
+			"role": {
+				"id": "role-001",
+				"name": "Programmer"
+			},
+			"last_activity": {
+				"date": "3/8/2020",
+				"activity": "Aliqua enim nostrud ad excepteur qui aliquip et consectetur enim cupidatat velit irure ad. Ut esse magna nisi sint ullamco esse. Cillum est fugiat exercitation cupidatat aute ipsum enim. Esse nulla aute laborum exercitation ex nulla commodo et proident cupidatat amet. Commodo sit non proident minim non. Cupidatat aute incididunt velit nisi. Dolore cupidatat commodo consectetur dolore adipisicing quis in.\r\n"
+			},
+			"timesheet": {
+				"submited": 51,
+				"approved": 34
+			},
+			"issue": {
+				"text": "Exercitation adipisicing aliquip ex eiusmod Lorem eiusmod occaecat amet id qui ipsum dolore.",
+				"mitigation": "Aliqua reprehenderit aliqua nulla velit id elit veniam officia sint tempor.",
+				"target": "19/8/2020",
+				"submit": "15/8/2020",
+				"solved": "24/8/2020"
+			}
+		},
+		{
+			"nik": "CRS000012",
+			"user_id": 12,
+			"name": "Irwin Dawson",
+			"isDanger": false,
+			"role": {
+				"id": "role-004",
+				"name": "UI/UX Designer"
+			},
+			"last_activity": {
+				"date": "29/4/2020",
+				"activity": "Aute esse culpa deserunt cupidatat commodo irure incididunt cupidatat. Occaecat ullamco excepteur Lorem pariatur. Sit velit reprehenderit est nisi. Occaecat labore minim tempor excepteur culpa exercitation adipisicing quis. Nulla nulla minim ad et. Anim dolor ut esse esse id ut laboris pariatur labore commodo tempor. Laboris Lorem cillum duis non.\r\n"
+			},
+			"timesheet": {
+				"submited": 96,
+				"approved": 68
+			}
+		},
+		{
+			"nik": "CRS000013",
+			"user_id": 13,
+			"name": "Tia Curtis",
+			"isDanger": true,
+			"role": {
+				"id": "role-004",
+				"name": "UI/UX Designer"
+			},
+			"last_activity": {
+				"date": "12/12/2020",
+				"activity": "Voluptate occaecat qui cupidatat qui laboris ullamco laboris irure cillum. Veniam do est voluptate officia officia veniam reprehenderit minim ullamco et. Deserunt eu ut enim in non commodo. Veniam ad adipisicing fugiat do id laborum adipisicing qui quis. Nulla do eiusmod magna eu mollit enim officia quis ut. Consequat ullamco ipsum dolore aliquip anim tempor non culpa consectetur dolore voluptate. Pariatur incididunt amet esse minim consequat elit amet.\r\n"
+			},
+			"timesheet": {
+				"submited": 35,
+				"approved": 17
+			},
+			"issue": {
+				"text": "Tempor consectetur excepteur anim fugiat excepteur.",
+				"mitigation": "Ut elit enim nostrud quis tempor esse nostrud deserunt ea enim sint ipsum irure do.",
+				"target": "17/7/2020",
+				"submit": "9/7/2020",
+				"solved": "20/7/2020"
+			}
+		},
+		{
+			"nik": "CRS000014",
+			"user_id": 14,
+			"name": "Duke Grimes",
+			"isDanger": false,
+			"role": {
+				"id": "role-003",
+				"name": "DevOps"
+			},
+			"last_activity": {
+				"date": "5/10/2020",
+				"activity": "Duis aliquip amet veniam sint id qui elit mollit non adipisicing. Deserunt in id enim nostrud exercitation ipsum dolor commodo. Duis et excepteur ipsum sit deserunt quis proident eu non ipsum sunt. Culpa ad fugiat commodo ipsum. Mollit eu et incididunt in nostrud. Ad ad excepteur reprehenderit velit ipsum cillum duis. Ullamco pariatur velit aliqua elit proident ipsum velit.\r\n"
+			},
+			"timesheet": {
+				"submited": 41,
+				"approved": 1
+			}
+		},
+		{
+			"nik": "CRS000015",
+			"user_id": 15,
+			"name": "Sharp Martinez",
+			"isDanger": true,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "17/10/2020",
+				"activity": "Occaecat in eiusmod ex culpa cupidatat officia eiusmod adipisicing officia id. Proident eu non cillum qui cillum. Enim laborum cillum et ut eu nostrud anim magna. Deserunt nulla ea adipisicing aliquip do nostrud eu voluptate eiusmod ad pariatur. Ullamco duis deserunt ea mollit exercitation in amet veniam laborum incididunt exercitation magna. Aute ea exercitation cillum consectetur enim. Aute sit laborum ipsum in tempor ullamco.\r\n"
+			},
+			"timesheet": {
+				"submited": 14,
+				"approved": 2
+			}
+		},
+		{
+			"nik": "CRS000016",
+			"user_id": 16,
+			"name": "Hillary Ellison",
+			"isDanger": true,
+			"role": {
+				"id": "role-003",
+				"name": "DevOps"
+			},
+			"last_activity": {
+				"date": "13/11/2020",
+				"activity": "Reprehenderit sit est irure aliqua laboris Lorem et anim cillum commodo ullamco. Tempor deserunt ipsum incididunt esse. Quis ex ad exercitation labore ea qui qui ipsum magna voluptate esse occaecat nulla sunt. Ad sit Lorem Lorem cupidatat qui anim do adipisicing do cupidatat deserunt. Ad est aute eu adipisicing sit irure cillum elit.\r\n"
+			},
+			"timesheet": {
+				"submited": 71,
+				"approved": 54
+			},
+			"issue": {
+				"text": "Ex anim dolor esse ea occaecat duis elit et occaecat exercitation.",
+				"mitigation": "Consequat minim elit amet ex aliquip non amet aliquip laboris sunt exercitation.",
+				"target": "17/7/2020",
+				"submit": "9/7/2020",
+				"solved": "18/7/2020"
+			}
+		},
+		{
+			"nik": "CRS000017",
+			"user_id": 17,
+			"name": "Compton Ryan",
+			"isDanger": false,
+			"role": {
+				"id": "role-003",
+				"name": "DevOps"
+			},
+			"last_activity": {
+				"date": "10/4/2020",
+				"activity": "Nisi qui nostrud proident nisi. Veniam nulla cupidatat velit cupidatat consequat ea minim do amet laboris. Quis in proident veniam cillum magna magna elit ullamco nostrud exercitation cillum.\r\n"
+			},
+			"timesheet": {
+				"submited": 16,
+				"approved": 6
+			}
+		},
+		{
+			"nik": "CRS000018",
+			"user_id": 18,
+			"name": "Angeline Wilson",
+			"isDanger": false,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "27/10/2020",
+				"activity": "Eu do incididunt consequat cillum sint minim. Aliqua in Lorem voluptate cillum eu minim qui laboris aliquip eu mollit elit eiusmod sit. Ea laborum adipisicing id officia culpa cupidatat aliquip cupidatat voluptate est ut eiusmod non magna.\r\n"
+			},
+			"timesheet": {
+				"submited": 14,
+				"approved": 10
+			}
+		},
+		{
+			"nik": "CRS000019",
+			"user_id": 19,
+			"name": "Castaneda Sellers",
+			"isDanger": false,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "22/2/2020",
+				"activity": "Eu fugiat laborum in adipisicing quis elit consequat fugiat proident esse sit ad sunt. Consectetur commodo aliquip Lorem aliqua eu minim esse. Commodo irure reprehenderit nisi laborum duis quis mollit sit.\r\n"
+			},
+			"timesheet": {
+				"submited": 26,
+				"approved": 22
+			}
+		},
+		{
+			"nik": "CRS000020",
+			"user_id": 20,
+			"name": "Marisol Tillman",
+			"isDanger": true,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "22/6/2020",
+				"activity": "Nulla Lorem aliquip voluptate Lorem amet. Adipisicing reprehenderit id deserunt sint consequat duis duis nostrud nostrud cupidatat tempor laboris velit incididunt. Commodo aliquip non aliqua adipisicing aute sunt occaecat esse occaecat sit mollit magna. Eiusmod proident in et occaecat laboris commodo aute id adipisicing eiusmod consectetur. Enim ex commodo sint consequat enim.\r\n"
+			},
+			"timesheet": {
+				"submited": 5,
+				"approved": 5
+			}
+		},
+		{
+			"nik": "CRS000021",
+			"user_id": 21,
+			"name": "Sara Foreman",
+			"isDanger": false,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "11/11/2020",
+				"activity": "Sit fugiat aute fugiat nostrud. Magna consectetur ullamco tempor aute fugiat consectetur in. Reprehenderit voluptate occaecat ea quis magna ut cillum nulla officia pariatur sunt commodo. Incididunt adipisicing nostrud enim voluptate eiusmod aliquip sint. Laborum nulla ad dolor ad culpa veniam Lorem consequat est ex quis cupidatat ipsum. Aliquip est nulla id et duis exercitation irure id.\r\n"
+			},
+			"timesheet": {
+				"submited": 47,
+				"approved": 0
+			},
+			"issue": {
+				"text": "Ea non cupidatat duis minim ad deserunt nostrud.",
+				"mitigation": "",
+				"target": "20/10/2020",
+				"submit": "7/10/2020",
+				"solved": "22/10/2020"
+			}
+		},
+		{
+			"nik": "CRS000022",
+			"user_id": 22,
+			"name": "Torres Pitts",
+			"isDanger": false,
+			"role": {
+				"id": "role-001",
+				"name": "Programmer"
+			},
+			"last_activity": {
+				"date": "29/1/2020",
+				"activity": "Pariatur do consequat enim et consequat et Lorem aliquip est eu laborum dolor magna proident. Anim ullamco nulla qui voluptate laborum sint non elit laboris est. Duis Lorem fugiat laborum labore ex.\r\n"
+			},
+			"timesheet": {
+				"submited": 22,
+				"approved": 2
+			}
+		},
+		{
+			"nik": "CRS000023",
+			"user_id": 23,
+			"name": "Pennington Sloan",
+			"isDanger": true,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "19/8/2020",
+				"activity": "Lorem enim nisi sint quis aliquip commodo. Do commodo laborum sint officia. Enim reprehenderit dolor consectetur magna et fugiat labore incididunt nisi. Velit incididunt qui mollit nostrud laboris sunt velit aliqua dolor. Tempor mollit cillum nostrud voluptate aliquip ipsum culpa ullamco officia incididunt nulla duis occaecat. Commodo qui pariatur id excepteur eiusmod id dolor dolore pariatur dolore nisi. Nostrud laboris do et fugiat fugiat et consectetur minim ea sunt.\r\n"
+			},
+			"timesheet": {
+				"submited": 49,
+				"approved": 17
+			}
+		},
+		{
+			"nik": "CRS000024",
+			"user_id": 24,
+			"name": "Carson Walters",
+			"isDanger": false,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "20/7/2020",
+				"activity": "Elit nisi officia ut enim. Amet do laborum sit nulla esse cupidatat duis nulla magna ea voluptate. Ullamco exercitation sit esse cupidatat eiusmod. Do reprehenderit aliquip esse Lorem ex. Esse do consequat elit aliquip deserunt excepteur enim officia ut laboris.\r\n"
+			},
+			"timesheet": {
+				"submited": 97,
+				"approved": 21
+			},
+			"issue": {
+				"text": "Minim elit occaecat excepteur fugiat labore.",
+				"mitigation": "",
+				"target": "15/8/2020",
+				"submit": "9/8/2020",
+				"solved": "23/8/2020"
+			}
+		},
+		{
+			"nik": "CRS000025",
+			"user_id": 25,
+			"name": "Vargas Roach",
+			"isDanger": false,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "9/1/2020",
+				"activity": "Dolore nisi fugiat in deserunt eu ex sint quis magna occaecat irure laborum labore. Labore proident commodo ad sunt incididunt labore. Culpa qui cillum sunt esse. Velit qui nisi pariatur laboris velit ut Lorem. Et aute tempor officia occaecat cillum.\r\n"
+			},
+			"timesheet": {
+				"submited": 26,
+				"approved": 21
+			}
+		},
+		{
+			"nik": "CRS000026",
+			"user_id": 26,
+			"name": "Brigitte Gaines",
+			"isDanger": false,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "20/8/2020",
+				"activity": "Reprehenderit ea proident pariatur ipsum deserunt pariatur dolor. Mollit pariatur labore laborum exercitation voluptate eiusmod est. Irure non sint ex et ipsum labore deserunt in. Est aliquip dolore consequat anim veniam ipsum. Ea laboris aute ex consectetur ut pariatur voluptate. Ullamco consectetur eiusmod laborum sint non ut non occaecat.\r\n"
+			},
+			"timesheet": {
+				"submited": 28,
+				"approved": 7
+			}
+		},
+		{
+			"nik": "CRS000027",
+			"user_id": 27,
+			"name": "Pam King",
+			"isDanger": true,
+			"role": {
+				"id": "role-004",
+				"name": "UI/UX Designer"
+			},
+			"last_activity": {
+				"date": "2/4/2020",
+				"activity": "Amet ad qui ex sint labore. Tempor incididunt dolore in ea id ad duis anim cillum tempor. Nostrud enim excepteur Lorem aliquip non magna. Mollit ad enim labore proident velit aliquip dolor tempor dolor ullamco nulla officia.\r\n"
+			},
+			"timesheet": {
+				"submited": 9,
+				"approved": 0
+			}
+		},
+		{
+			"nik": "CRS000028",
+			"user_id": 28,
+			"name": "Pate Mayer",
+			"isDanger": true,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "29/8/2020",
+				"activity": "Sunt nulla do veniam consequat ex esse. Voluptate occaecat commodo magna consequat ullamco ullamco non nulla. Mollit consectetur cillum tempor Lorem. Est occaecat duis sunt et consequat commodo amet ut occaecat aliquip occaecat occaecat. Velit consectetur sunt adipisicing nostrud proident dolor labore incididunt eiusmod culpa. Ad officia eiusmod qui adipisicing consequat ea irure et cupidatat aliquip.\r\n"
+			},
+			"timesheet": {
+				"submited": 85,
+				"approved": 38
+			}
+		},
+		{
+			"nik": "CRS000029",
+			"user_id": 29,
+			"name": "Nguyen Montoya",
+			"isDanger": true,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "18/6/2020",
+				"activity": "Consequat magna exercitation aute ad do consectetur velit in aliquip sit elit amet. Velit aliquip cupidatat commodo est et ullamco qui nisi elit amet eiusmod ullamco. Anim consectetur dolore irure nostrud laborum sunt reprehenderit aute mollit dolor. Aliquip elit sint sint deserunt ullamco quis do magna labore sunt ex exercitation amet adipisicing. Quis nisi sunt laboris nulla enim elit velit magna ipsum nostrud ullamco incididunt eiusmod sunt.\r\n"
+			},
+			"timesheet": {
+				"submited": 2,
+				"approved": 1
+			}
+		},
+		{
+			"nik": "CRS000030",
+			"user_id": 30,
+			"name": "Willie Herrera",
+			"isDanger": false,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "29/1/2020",
+				"activity": "Ad culpa culpa sunt ut nulla. Sint voluptate elit veniam cupidatat Lorem velit. In duis exercitation sit cillum nulla proident quis. Exercitation aute incididunt in minim fugiat occaecat culpa fugiat eiusmod nulla. Culpa magna consectetur commodo velit magna. Laborum incididunt minim nisi ipsum sunt dolor minim do sint incididunt adipisicing anim.\r\n"
+			},
+			"timesheet": {
+				"submited": 58,
+				"approved": 22
+			},
+			"issue": {
+				"text": "Occaecat aliqua incididunt ut commodo anim quis ea ea tempor ea proident ipsum.",
+				"mitigation": "Minim quis enim deserunt enim voluptate.",
+				"target": "18/1/2020",
+				"submit": "13/1/2020",
+				"solved": false
+			}
+		},
+		{
+			"nik": "CRS000031",
+			"user_id": 31,
+			"name": "Kirkland Bruce",
+			"isDanger": true,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "14/10/2020",
+				"activity": "Aliqua voluptate laboris enim nostrud id reprehenderit aliqua mollit ipsum. Labore excepteur Lorem adipisicing dolore ipsum elit. Nostrud cillum aute nostrud sint consectetur anim cupidatat cupidatat consectetur. Ut ea elit elit proident qui anim dolore.\r\n"
+			},
+			"timesheet": {
+				"submited": 5,
+				"approved": 3
+			}
+		},
+		{
+			"nik": "CRS000032",
+			"user_id": 32,
+			"name": "Rios Hunt",
+			"isDanger": true,
+			"role": {
+				"id": "role-003",
+				"name": "DevOps"
+			},
+			"last_activity": {
+				"date": "1/4/2020",
+				"activity": "Est commodo in velit in. Veniam exercitation cupidatat non qui irure reprehenderit ullamco fugiat. Dolor voluptate consectetur consequat adipisicing ullamco occaecat commodo consectetur aliquip eiusmod laboris excepteur elit nostrud. Aute velit reprehenderit sint officia cillum est cupidatat elit fugiat nulla ipsum aute cillum eu. Aliquip incididunt ad velit irure laborum laboris est labore incididunt ex adipisicing mollit. In esse ipsum mollit nisi do occaecat anim tempor dolore occaecat do eu aute.\r\n"
+			},
+			"timesheet": {
+				"submited": 53,
+				"approved": 40
+			}
+		},
+		{
+			"nik": "CRS000033",
+			"user_id": 33,
+			"name": "Ericka Mann",
+			"isDanger": false,
+			"role": {
+				"id": "role-000",
+				"name": "Typewriter"
+			},
+			"last_activity": {
+				"date": "10/6/2020",
+				"activity": "Ullamco aliquip elit sint quis ad minim officia in sit est ipsum qui non. Dolore aute est anim ex id in ut quis officia amet fugiat esse reprehenderit eiusmod. Fugiat veniam consectetur id ea tempor irure. Et amet fugiat irure veniam id elit ad tempor cupidatat aliqua occaecat. Pariatur nostrud duis consectetur dolor.\r\n"
+			},
+			"timesheet": {
+				"submited": 40,
+				"approved": 21
+			},
+			"issue": {
+				"text": "Do culpa eu in pariatur dolor.",
+				"mitigation": "",
+				"target": "16/6/2020",
+				"submit": "6/6/2020",
+				"solved": "29/6/2020"
+			}
+		},
+		{
+			"nik": "CRS000034",
+			"user_id": 34,
+			"name": "Drake Hatfield",
+			"isDanger": false,
+			"role": {
+				"id": "role-004",
+				"name": "UI/UX Designer"
+			},
+			"last_activity": {
+				"date": "8/4/2020",
+				"activity": "Eiusmod est incididunt qui aliquip anim amet cillum dolore laborum. Eiusmod ullamco laboris amet ipsum dolor. Lorem aute nulla sunt veniam aute duis sit.\r\n"
+			},
+			"timesheet": {
+				"submited": 3,
+				"approved": 2
+			}
+		},
+		{
+			"nik": "CRS000035",
+			"user_id": 35,
+			"name": "Hunt Pace",
+			"isDanger": false,
+			"role": {
+				"id": "role-002",
+				"name": "System Analyst"
+			},
+			"last_activity": {
+				"date": "27/9/2020",
+				"activity": "Magna elit cupidatat ut fugiat aliqua minim mollit laborum dolor. Do proident fugiat labore excepteur magna in nisi anim irure ipsum aliqua et. Deserunt Lorem nisi excepteur incididunt mollit commodo irure cupidatat eu. Velit est sint ut culpa irure quis occaecat adipisicing et proident officia reprehenderit consectetur magna. Aliqua id sit mollit mollit ad eiusmod. Consequat consectetur pariatur reprehenderit reprehenderit duis irure ipsum esse id occaecat. Ullamco cupidatat ullamco Lorem et eu aliqua eu.\r\n"
+			},
+			"timesheet": {
+				"submited": 57,
+				"approved": 10
+			},
+			"issue": {
+				"text": "Tempor et non id cupidatat mollit ipsum.",
+				"mitigation": "Proident proident ad fugiat ad consequat sint consequat voluptate esse culpa.",
+				"target": "20/8/2020",
+				"submit": "10/8/2020",
+				"solved": "20/8/2020"
+			}
+		}
+	]
 }

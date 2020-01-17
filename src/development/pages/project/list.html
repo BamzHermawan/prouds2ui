@@ -210,34 +210,22 @@
 										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
 										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item has-link>
-											<a @click="setInitialBaseline(props.row)">
-												<span class="mdi mdi-checkbox-marked-outline"></span>
-												Initial Baseline
+											<a @click="sync(props.row,'http://localhost:5501/demo/post_detect.php?')">
+												<span class="mdi mdi-sync"></span>
+												Sync with MIS
 											</a>
 										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a @click="setMileStone(props.row)">
-												<span class="mdi mdi-calendar-edit"></span>
-												Set Milestone
-											</a>
-										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a @click="setCost(props.row)">
-												<span class="mdi mdi-cash-usd"></span>
-												Set Cost Reallocation
-											</a>
-										</b-dropdown-item>
+										<div class="dropdown-item dropdown-label">Project Page</div>
 										<b-dropdown-item has-link>
 											<a href="./performanceIndex.html?project_id=1900123">
 												<span class="mdi mdi-chart-bell-curve"></span>
 												Performance Index
 											</a>
 										</b-dropdown-item>
-										<div class="dropdown-item dropdown-label">Project Page</div>
 										<b-dropdown-item has-link>
-											<a @click="sync(props.row,'http://localhost:5501/demo/post_detect.php?')">
-												<span class="mdi mdi-sync"></span>
-												Sync with MIS
+											<a href="./internalResources.html">
+												<span class="mdi mdi-table"></span>
+												Internal Resources
 											</a>
 										</b-dropdown-item>
 										<b-dropdown-item has-link>
@@ -249,7 +237,7 @@
 										<b-dropdown-item has-link>
 											<a href="workplan.html">
 												<span class="mdi mdi-file-document-box-multiple-outline"></span>
-												Task
+												Workplan
 											</a>
 										</b-dropdown-item>
 									</b-dropdown>
@@ -312,7 +300,7 @@
 							</div>
 							<div class="column is-clearfix is-paddingless">
 								<a class="button is-danger is-long is-pulled-right" @click="setMileStone(null)">
-									◀ Back
+									Back
 								</a>
 							</div>
 						</div>

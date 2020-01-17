@@ -1,131 +1,103 @@
 <template>
 	<form :action="actionEvent" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="projectId" v-model="projectId" />
-		<input type="hidden" name="taskID" v-model="taskID" />
+		<input type="hidden" name="taskID" v-model="this.task.pID" />
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Progress Group</p>
-			</div>
-			<div class="column">
+		<b-field horizontal label="Progress Group">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ processGroup }}</span
+			>
+		</b-field>
+
+		<b-field horizontal label="Parent Task">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ parentTask.pName }}</span
+			>
+		</b-field>
+
+		<b-field horizontal label="Task">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ task.pName }}</span
+			>
+		</b-field>
+
+		<b-field horizontal label="Start Date">
+			<b-field>
 				<span
 					class="button is-static is-fullwidth is-light-blend"
 					style="justify-content: start;"
-					>{{ processGroupName }}</span
+					>{{ start }}</span
 				>
-			</div>
-		</div>
-
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Parent Task</p>
-			</div>
-			<div class="column">
+			</b-field>
+			<b-field horizontal label="End Date" style="margin-left:2em;">
 				<span
 					class="button is-static is-fullwidth is-light-blend"
 					style="justify-content: start;"
-					>{{ task.pName }}</span
+					>{{ finish }}</span
 				>
-			</div>
-		</div>
+			</b-field>
+		</b-field>
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Task</p>
-			</div>
-			<div class="column">
-				<span
-					class="button is-static is-fullwidth is-light-blend"
-					style="justify-content: start;"
-					>{{ taskName }}</span
-				>
-			</div>
-		</div>
+		<b-field horizontal label="Duration">
+			<span
+				class="button is-static is-fullwidth is-light-blend"
+				style="justify-content: start;"
+				>{{ task.duration }}</span
+			>
+		</b-field>
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-6">
-				<div class="columns">
-					<div class="column is-4">
-						<p class="label">Start Date</p>
-					</div>
-					<div class="column">
-						<span
-							class="button is-static is-fullwidth is-light-blend"
-							style="justify-content: start;"
-							>{{ start }}</span
+		<b-field horizontal label="Progress [%]">
+			<crud-input
+				type="number"
+				name="progress"
+				color="is-info"
+				v-model="progress"
+				input-style="margin-bottom:0px;"
+				style="width:250px;"
+			>
+			</crud-input>
+			<b-field>
+				<b-field>
+					<p class="control">
+						<button class="button is-static is-info-blend">
+							Auto Calculated
+						</button>
+					</p>
+					<p class="control is-expanded">
+						<span class="button is-static is-fullwidth"
+							>{{ task.duration }}%</span
 						>
-					</div>
-				</div>
-			</div>
-			<div class="column is-6">
-				<div class="columns">
-					<div class="column is-2">
-						<p class="label">End Date</p>
-					</div>
-					<div class="column">
-						<span
-							class="button is-static is-fullwidth is-light-blend"
-							style="justify-content: start;"
-							>{{ finish }}</span
-						>
-					</div>
-				</div>
-			</div>
-		</div>
+					</p>
+				</b-field>
+			</b-field>
+		</b-field>
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-2">
-				<p class="label">Duration</p>
-			</div>
-			<div class="column is-1">
-				<span
-					class="button is-static is-fullwidth is-light-blend"
-					style="justify-content: start;"
-					>{{ task.duration }}</span
+		<b-field horizontal>
+			<hr />
+		</b-field>
+
+		<b-field horizontal>
+			<div class="buttons">
+				<button
+					type="submit"
+					class="button is-success is-long"
+					:disabled="disableButton"
 				>
+					Update
+				</button>
+				<b-button @click="$emit('cancel')" type="is-danger is-long">
+					Cancel
+				</b-button>
 			</div>
-		</div>
+		</b-field>
 
-		<div class="columns" style="margin-bottom:0.5em;">
-			<div class="column is-6">
-				<div class="columns">
-					<div class="column is-4">
-						<p class="label">Progress (%)</p>
-					</div>
-					<div class="column is-5">
-						<crud-input
-							type="number"
-							name="progress"
-							color="is-info"
-							v-model="progress"
-							input-style="margin-bottom:0px;"
-						>
-						</crud-input>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="columns">
-					<div class="column is-5">
-						<p class="label">Auto Calculated Progress</p>
-					</div>
-					<div class="column is-2">
-						<b-message type="is-dark" class="is-on-field">
-							<p class="has-text-light has-text-centered">
-								{{ task.autoCalculationProgress }}
-							</p>
-						</b-message>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="is-pulled-left">
-			<button class="button is-success" type="submit" :disabled="btn">
-				Update
-			</button>
-		</div>
-		<br />
+		<span class="white-space"></span>
 	</form>
 </template>
 
@@ -151,23 +123,22 @@ export default {
 	data() {
 		return {
 			dataBaru: GANTT,
-			taskName: this.task.pName,
-			progress: Number(this.task.pComp),
-			estProgress: this.task.estProgress,
-			taskID: this.task.pID,
-			start: moment(this.task.pStart).format("dddd, DD MMMM YYYY"),
-			finish: moment(this.task.pEnd).format("dddd, DD MMMM YYYY"),
-			processGroupName: "",
-			processGroupID: this.task.processGroupID,
-			btn: true
+			progress: 0,
+			start: "",
+			finish: "",
+			processGroup: "",
+			parentTask: null
 		};
 	},
-	watch: {
-		progress: function(newQuery) {
-			if (this.progress.toString() === this.task.pComp.toString()) {
-				this.btn = true;
+	computed: {
+		disableButton() {
+			return this.progress == this.task.pComp;
+		},
+		autoCalc() {
+			if (this.task.hasOwnProperty("autoCalculationProgress")) {
+				return this.task.autoCalculationProgress;
 			} else {
-				this.btn = false;
+				return "—";
 			}
 		}
 	},
@@ -175,15 +146,24 @@ export default {
 		getProcessGroup() {
 			if (this.processGroupID != 0 || this.processGroupID !== "") {
 				let found = this.dataBaru.find(
-					task => task.pID === this.processGroupID
+					task => task.pID === this.task.processGroupID
 				);
 				if (found != undefined && found.hasOwnProperty("pName")) {
-					this.processGroupName = found.pName;
+					this.processGroup = found.pName;
 				} else {
 					return "";
 				}
 			}
 		}
+	},
+	beforeMount() {
+		this.start = moment(this.task.pStart).format("dddd, DD MMMM YYYY");
+		this.finish = moment(this.task.pEnd).format("dddd, DD MMMM YYYY");
+		this.progress = parseInt(this.task.pComp);
+
+		this.parentTask = this.dataBaru.find(
+			node => node.pID === this.task.pParent
+		);
 	},
 	mounted() {
 		this.getProcessGroup();

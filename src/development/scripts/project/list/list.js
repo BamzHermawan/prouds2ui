@@ -200,7 +200,7 @@ new Vue({
 			this.$dialog.confirm({
 				title: 'Confirmation',
 				message: 'Are you sure to sync <b>' + val.project_name + '</b> ?',
-				confirmText: 'Ok',
+				confirmText: 'OK',
 				type: 'is-success',
 				onConfirm: value => {
 					let project_id = val.project_id

@@ -33,8 +33,7 @@ export default {
 				throw new Error("Page Section must be wrapped on Paging");
 			}
 
-			let isDefault = this.$parent.default === this.pageId;
-			this.$parent.appendPage(this.pageId, this, isDefault);
+			this.$parent.appendPage(this);
 		},
 
 		doHideAnimation(callback) {
@@ -46,6 +45,8 @@ export default {
 
 		show() {
 			this.display = true;
+
+			this.$emit("display", this);
 			return this.identity;
 		},
 
@@ -71,7 +72,7 @@ export default {
 			};
 		}
 	},
-	mounted() {
+	created() {
 		this.appendtoContainer();
 	}
 };

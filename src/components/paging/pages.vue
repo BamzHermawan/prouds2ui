@@ -1,15 +1,16 @@
 <template>
 	<div class="pages-wrapper">
 		<nav
-			v-if="!atDefault"
+			v-if="!atDefault || showBreadcrumbs"
 			class="breadcrumb has-succeeds-separator"
 			aria-label="breadcrumbs"
 		>
 			<ul class="is-marginless">
-				<li>
+				<slot name="beforeDefault"></slot>
+				<li :class="atDefault ? 'is-active' : ''">
 					<a @click="showPage()">{{ defaultLabel }}</a>
 				</li>
-				<li class="is-active">
+				<li v-if="!atDefault" class="is-active">
 					<a href="#" aria-current="page">{{ currentLabel }}</a>
 				</li>
 			</ul>
@@ -25,13 +26,18 @@ export default {
 		default: {
 			type: String,
 			required: true
+		},
+		showBreadcrumbs: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
 		return {
 			_pages: null,
+			current: undefined,
 			_default: undefined,
-			current: undefined
+			defaultLabel: this.default
 		};
 	},
 	computed: {
@@ -42,13 +48,6 @@ export default {
 				return true;
 			}
 		},
-		defaultLabel() {
-			if (this._default !== undefined) {
-				return this._default.label;
-			}
-
-			return "loading";
-		},
 		currentLabel() {
 			if (this.current !== undefined) {
 				return this.current.label;
@@ -58,18 +57,19 @@ export default {
 		}
 	},
 	methods: {
-		appendPage(id, page, isDefault = false) {
+		appendPage(page) {
 			if (this._pages !== undefined) {
-				this._pages[id] = page;
+				this._pages[page.pageId] = page;
 			} else {
-				this._pages = JSON.parse('{ "' + id + '": null }');
-				this._pages[id] = page;
+				this._pages = JSON.parse('{ "' + page.pageId + '": null }');
+				this._pages[page.pageId] = page;
 			}
 
-			if (isDefault) {
-				page.show();
+			if (this.default.trim() === page.pageId.trim()) {
+				this.defaultLabel = page.label;
 				this._default = page;
-				this.current = this._default;
+				this.current = page;
+				page.show();
 			}
 		},
 		showPage(id = null) {

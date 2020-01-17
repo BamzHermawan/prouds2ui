@@ -1,17 +1,4 @@
 table.table {
-	.button.is-small:not(.is-static) {
-		border-radius: 2px;
-		font-size: .65rem !important;
-		padding-bottom: 2px;
-		padding-top: 2px;
-		height: auto;
-	}
-
-	.button.is-normal-small {
-		border-radius: 2px;
-    	font-size: 0.75rem;
-	}
-
 	td {
 		.small-tag {
 			background-color: $dark;

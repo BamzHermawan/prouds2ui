@@ -56,32 +56,16 @@
 			</b-field>
 
 			<hr />
-			<nav class="level is-marginless">
-				<div class="level-left">
-					<b-field>
-						<b-input
-							placeholder="Search..."
-							type="search"
-							icon="magnify"
-							v-model="search"
-							style="margin-right: 10px;"
-						>
-						</b-input>
-					</b-field>
-				</div>
-			</nav>
 
 			<b-table
 				:data="dataFiltered"
 				style="font-size:11pt"
 				class="is-packed"
-				:opened-detailed="openDetail"
-				detailed
-				detail-key="user_id"
 				show-detail-icon
 				paginated
 				:per-page="10"
 				pagination-simple
+				pagination-position="top"
 			>
 				<template slot-scope="props">
 					<b-table-column field="nik" label="NIK" sortable>
@@ -158,6 +142,20 @@
 						</button>
 					</b-table-column>
 				</template>
+
+				<template slot="top-left">
+					<b-field>
+						<b-input
+							placeholder="Search..."
+							type="search"
+							icon="magnify"
+							v-model="search"
+							style="margin-right: 10px;"
+						>
+						</b-input>
+					</b-field>
+				</template>
+
 				<template slot="empty">
 					<span class="white-space"></span>
 					<b-message type="is-warning">
@@ -165,61 +163,6 @@
 							Sorry, we can't find any data related
 						</p>
 					</b-message>
-				</template>
-				<template slot="top-right"> </template>
-				<template slot="detail" slot-scope="props">
-					<div class="columns is-multiline">
-						<div class="column is-12">
-							<div class="content">
-								<p class="title is-size-6">
-									🏆 Kemampuan (Skill)
-								</p>
-								<div style="padding:8px;">
-									<div
-										class="columns is-multiline"
-										v-if="props.row.skill.length > 0"
-									>
-										<div
-											v-for="(skill, index) in props.row
-												.skill"
-											:key="index"
-											class="column is-one-quarter"
-											style="padding: 5px;"
-										>
-											{{ index + 1 }}.
-											<b>{{ skill.skillName }}</b
-											>:
-											{{ skill.skillLevel }}
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="column is-12">
-							<div class="content">
-								<p class="title is-size-6">
-									📜 Certificate
-								</p>
-								<div style="padding:8px;">
-									<div
-										class="columns is-multiline"
-										v-if="props.row.certificate.length > 0"
-									>
-										<div
-											v-for="(certificate, index) in props
-												.row.certificate"
-											:key="index"
-											class="column is-one-quarter"
-											style="padding: 5px;"
-										>
-											{{ index + 1 }}.
-											{{ certificate.certificateName }}
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</template>
 			</b-table>
 		</div>
@@ -475,7 +418,6 @@ export default {
 				message: "Are you sure to delete <b>" + val.name + "</b> ?",
 				confirmText: "Ok",
 				type: "is-danger",
-				hasIcon: true,
 				onConfirm: () =>
 					(window.location.href =
 						this.actionDelete +

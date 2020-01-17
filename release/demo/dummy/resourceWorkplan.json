@@ -1,170 +1,3530 @@
 [
 	{
-		"user_id": 1,
-		"name": "Ade Wiranata Putra",
-		"nik": "CRS2019016",
+		"user_id": 0,
+		"name": "Kristin Wright",
+		"nik": "CRS0012020",
 		"status": "Assigned",
-		"role": "Programmer Analyst",
-		"bu": "Banking & Finance ",
-		"mandaysRate": "300000",
-		"onGoing": "8",
-		"latest_assign": "01/10/2019",
+		"role": "Technical Writer",
+		"bu": "Ronelon",
+		"mandaysRate": 229000,
+		"onGoing": 8,
+		"latest_assign": "16/12/2020",
 		"skill": [
 			{
-				"skillName": "Html",
+				"skillName": "veniam ex",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "et exercitation aliqua proident",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "occaecat culpa aute",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "esse consequat proident veniam est",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eiusmod",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "officia commodo ipsum ullamco",
 				"skillLevel": "Intermediate"
 			},
 			{
-				"skillName": "Svelte",
-				"skillLevel": "Noob"
+				"skillName": "in consectetur sit",
+				"skillLevel": "Beginner"
 			},
 			{
-				"skillName": "Android",
+				"skillName": "adipisicing eu",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "irure",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "quis quis",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laborum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "enim laboris in",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "qui amet duis irure",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ad enim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "amet commodo tempor",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "labore proident aliquip ut",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "exercitation cillum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "mollit",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "esse enim"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 1,
+		"name": "Adrienne Flowers",
+		"nik": "CRS1022020",
+		"status": "Completed",
+		"role": "Programmer",
+		"bu": "Cormoran",
+		"mandaysRate": 167000,
+		"onGoing": 1,
+		"latest_assign": "14/7/2020",
+		"skill": [
+			{
+				"skillName": "quis id",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "do enim cupidatat excepteur cillum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "minim et",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "minim do aute",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ipsum enim ad",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "commodo ad deserunt fugiat est",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ut est",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "officia sit reprehenderit proident",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "incididunt quis",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laboris nostrud",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ad ullamco est do",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "minim sit cupidatat ex",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "reprehenderit enim anim commodo laboris",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "esse Lorem velit fugiat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "qui",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "id esse minim culpa voluptate",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "anim magna nulla",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "proident consectetur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ad enim voluptate magna esse",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "id minim cillum",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nulla reprehenderit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "adipisicing reprehenderit occaecat consequat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ullamco enim elit ullamco culpa",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "eiusmod amet",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "do aliqua",
 				"skillLevel": "Intermediate"
 			}
 		],
 		"certificate": [
 			{
-				"certificateName": "Pentaho"
+				"certificateName": "aliquip"
 			},
 			{
-				"certificateName": "Ade Ganteng"
+				"certificateName": "exercitation"
+			},
+			{
+				"certificateName": "excepteur"
 			}
 		],
 		"actionComplete": "http://localhost:5500/project/workplan.html"
 	},
 	{
 		"user_id": 2,
-		"name": "Stephenson Bowen",
-		"nik": "CRS2019013",
-		"status": "Completed",
-		"role": "Programmer Analyst",
-		"bu": "Banking & Finance",
-		"mandaysRate": "300000",
-		"onGoing": "8",
-		"latest_assign": "01/10/2019",
+		"name": "Dunlap Villarreal",
+		"nik": "CRS2032020",
+		"status": "Assigned",
+		"role": "UI/UX Designer",
+		"bu": "Capscreen",
+		"mandaysRate": 354000,
+		"onGoing": 10,
+		"latest_assign": "7/12/2020",
 		"skill": [
 			{
-				"skillName": "Html",
-				"skillLevel": "Intermediate"
-			},
-			{
-				"skillName": "Vue Js",
+				"skillName": "nostrud et id nostrud tempor",
 				"skillLevel": "Advance"
 			},
 			{
-				"skillName": "Android",
+				"skillName": "adipisicing culpa",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ut proident aute",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cupidatat consequat ea",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eu",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "dolore incididunt amet enim excepteur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "est anim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "fugiat laborum deserunt velit qui",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "dolore elit minim ad",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "cupidatat velit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "adipisicing eu dolore deserunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "reprehenderit sit eu mollit incididunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "quis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cupidatat elit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "quis laboris magna consequat nulla",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cillum reprehenderit et",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "dolor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eu esse occaecat nulla est",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "laboris",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "consectetur eu cupidatat minim aute",
 				"skillLevel": "Intermediate"
 			}
 		],
 		"certificate": [
 			{
-				"certificateName": "Pentaho"
+				"certificateName": "reprehenderit"
 			},
 			{
-				"certificateName": "Cisco"
+				"certificateName": "anim occaecat"
+			},
+			{
+				"certificateName": "consequat"
+			},
+			{
+				"certificateName": "cupidatat incididunt ea"
+			},
+			{
+				"certificateName": "dolore aute duis"
 			}
 		],
 		"actionComplete": "http://localhost:5500/project/workplan.html"
 	},
 	{
 		"user_id": 3,
-		"name": "Boyd Ramsey",
-		"nik": "CRS20190104",
+		"name": "Mendez Swanson",
+		"nik": "CRS3072020",
 		"status": "Assigned",
-		"role": "Desaigner Web",
-		"bu": "Banking & Finance",
-		"mandaysRate": "300000",
-		"onGoing": "8",
-		"latest_assign": "01/10/2019",
+		"role": "UI/UX Designer",
+		"bu": "Biotica",
+		"mandaysRate": 257000,
+		"onGoing": 3,
+		"latest_assign": "24/11/2020",
 		"skill": [
 			{
-				"skillName": "Html",
-				"skillLevel": "Intermediate"
-			},
-			{
-				"skillName": "Vue Js",
+				"skillName": "veniam do officia",
 				"skillLevel": "Advance"
 			},
 			{
-				"skillName": "Android",
+				"skillName": "ex velit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nostrud qui aliquip",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "veniam aliquip est occaecat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "cupidatat proident et veniam",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cillum consectetur consectetur dolore qui",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "non ipsum cillum",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ipsum pariatur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "consequat duis deserunt",
 				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "et anim voluptate",
+				"skillLevel": "Advance"
 			}
 		],
 		"certificate": [
 			{
-				"certificateName": "Pentaho"
+				"certificateName": "consequat ad ad"
 			},
 			{
-				"certificateName": "Cisco"
+				"certificateName": "voluptate"
+			},
+			{
+				"certificateName": "pariatur anim"
 			}
 		],
 		"actionComplete": "http://localhost:5500/project/workplan.html"
 	},
 	{
 		"user_id": 4,
-		"name": "Tami Duke",
-		"nik": "CRS20190105",
-		"status": "Assigned",
-		"role": "Senior Programmer",
-		"bu": "Banking & Finance",
-		"mandaysRate": "300000",
-		"onGoing": "8",
-		"latest_assign": "01/10/2019",
+		"name": "Obrien Foreman",
+		"nik": "CRS4072020",
+		"status": "Completed",
+		"role": "Technical Writer",
+		"bu": "Cognicode",
+		"mandaysRate": 218000,
+		"onGoing": 1,
+		"latest_assign": "8/1/2020",
 		"skill": [
 			{
-				"skillName": "Html",
+				"skillName": "ut veniam eiusmod velit",
 				"skillLevel": "Intermediate"
 			},
 			{
-				"skillName": "Vue Js",
+				"skillName": "laborum ad",
 				"skillLevel": "Advance"
 			},
 			{
-				"skillName": "Android",
+				"skillName": "elit voluptate",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sit mollit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "pariatur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "Lorem",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "labore reprehenderit sunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ea irure",
 				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "veniam cupidatat ut",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "quis officia tempor nostrud",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eu do ea",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ipsum",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "proident minim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ea deserunt cillum",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "irure amet cupidatat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "officia ea",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "culpa",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "minim nostrud excepteur aliquip",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "pariatur ea voluptate esse",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aute ut laboris pariatur nostrud",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "irure reprehenderit aute velit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "voluptate voluptate do",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "non dolor ad culpa",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "Lorem id occaecat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "irure et reprehenderit esse",
+				"skillLevel": "Beginner"
 			}
 		],
 		"certificate": [
 			{
-				"certificateName": "Pentaho"
-			},
-			{
-				"certificateName": "Cisco"
+				"certificateName": "excepteur eu do"
 			}
 		],
 		"actionComplete": "http://localhost:5500/project/workplan.html"
 	},
 	{
 		"user_id": 5,
-		"name": "Ava Klein",
-		"nik": "CRS201901011",
-		"status": "Assigned",
-		"role": "Analyst",
-		"bu": "Banking & Finance",
-		"mandaysRate": "300000",
-		"onGoing": "8",
-		"latest_assign": "01/10/2019",
+		"name": "Frost Macdonald",
+		"nik": "CRS5012020",
+		"status": "Completed",
+		"role": "Technical Writer",
+		"bu": "Xiix",
+		"mandaysRate": 123000,
+		"onGoing": 7,
+		"latest_assign": "8/2/2020",
 		"skill": [
 			{
-				"skillName": "Html",
+				"skillName": "id",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "culpa cupidatat minim incididunt eu",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "magna enim",
 				"skillLevel": "Intermediate"
 			},
 			{
-				"skillName": "Vue Js",
+				"skillName": "culpa",
 				"skillLevel": "Advance"
 			},
 			{
-				"skillName": "Android",
+				"skillName": "ipsum qui",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ut mollit reprehenderit qui sit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "do aliqua",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "deserunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cillum aliqua commodo dolor amet",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "exercitation",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "aliquip ex labore"
+			},
+			{
+				"certificateName": "excepteur"
+			},
+			{
+				"certificateName": "aute aute esse"
+			},
+			{
+				"certificateName": "aute qui eu"
+			},
+			{
+				"certificateName": "sint quis reprehenderit"
+			},
+			{
+				"certificateName": "sunt"
+			},
+			{
+				"certificateName": "et"
+			},
+			{
+				"certificateName": "id"
+			},
+			{
+				"certificateName": "id culpa"
+			},
+			{
+				"certificateName": "laborum"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 6,
+		"name": "Eva Kline",
+		"nik": "CRS6052020",
+		"status": "Assigned",
+		"role": "Technical Writer",
+		"bu": "Flotonic",
+		"mandaysRate": 342000,
+		"onGoing": 8,
+		"latest_assign": "29/10/2020",
+		"skill": [
+			{
+				"skillName": "esse",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "anim pariatur laboris",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "minim esse laboris eiusmod",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "consequat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "esse sit aliqua enim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "laboris aliquip voluptate consectetur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "labore eu laboris eiusmod magna",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "pariatur",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "tempor officia consequat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "cupidatat aliqua consequat pariatur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "velit amet aute",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "minim magna sint",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "amet officia",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "est commodo magna exercitation",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "dolor amet laborum dolor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "pariatur magna enim",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "cillum velit id"
+			},
+			{
+				"certificateName": "anim anim"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 7,
+		"name": "Brennan Keith",
+		"nik": "CRS7052020",
+		"status": "Assigned",
+		"role": "Data Analyst",
+		"bu": "Zolavo",
+		"mandaysRate": 297000,
+		"onGoing": 3,
+		"latest_assign": "4/11/2020",
+		"skill": [
+			{
+				"skillName": "elit dolor officia esse irure",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "id aliquip fugiat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "duis deserunt eu",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "est qui aliquip ea ipsum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "anim aute ex",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "tempor adipisicing",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nisi occaecat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ea exercitation consectetur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aute consequat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "qui eiusmod",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sint ipsum duis ea tempor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "culpa",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "enim consequat dolor veniam quis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "culpa voluptate culpa quis laboris",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "officia dolor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "occaecat minim mollit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "commodo adipisicing sit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "aliquip adipisicing do fugiat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "dolore ad quis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "deserunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "mollit ullamco",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "incididunt",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "sint laboris eu"
+			},
+			{
+				"certificateName": "sunt veniam sit"
+			},
+			{
+				"certificateName": "Lorem esse"
+			},
+			{
+				"certificateName": "incididunt adipisicing aliqua"
+			},
+			{
+				"certificateName": "qui eu"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 8,
+		"name": "Cleveland Russo",
+		"nik": "CRS8002020",
+		"status": "Assigned",
+		"role": "Data Analyst",
+		"bu": "Quarmony",
+		"mandaysRate": 187000,
+		"onGoing": 6,
+		"latest_assign": "17/3/2020",
+		"skill": [
+			{
+				"skillName": "nisi sint ullamco",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "veniam",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "consectetur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aute magna aliqua",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "mollit ex",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "nulla eiusmod velit id",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "occaecat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "et",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "proident id",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "sint proident duis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "duis eiusmod",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cupidatat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "proident dolore reprehenderit aliquip irure",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "incididunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "laborum minim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ipsum consequat et irure",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laboris amet cillum adipisicing",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "adipisicing commodo laboris sunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "velit sunt nostrud qui cupidatat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ipsum ea",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "consectetur tempor veniam mollit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "incididunt",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 9,
+		"name": "Carolyn Kaufman",
+		"nik": "CRS9052020",
+		"status": "Assigned",
+		"role": "Technical Writer",
+		"bu": "Atgen",
+		"mandaysRate": 499000,
+		"onGoing": 5,
+		"latest_assign": "3/3/2020",
+		"skill": [
+			{
+				"skillName": "excepteur",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "irure",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "minim occaecat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "nisi cillum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "irure sunt nulla dolor occaecat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laboris duis dolore elit nostrud",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "pariatur enim consequat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "elit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "incididunt excepteur nostrud",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "veniam ad",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ea cupidatat adipisicing duis",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "cupidatat adipisicing occaecat adipisicing",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "commodo tempor eu",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "duis sit fugiat exercitation labore",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ad",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "velit do sunt aute",
 				"skillLevel": "Intermediate"
 			}
 		],
 		"certificate": [
 			{
-				"certificateName": "Pentaho"
+				"certificateName": "laboris"
 			},
 			{
-				"certificateName": "Cisco"
+				"certificateName": "ea consectetur"
+			},
+			{
+				"certificateName": "nisi"
+			},
+			{
+				"certificateName": "nulla culpa eu"
+			},
+			{
+				"certificateName": "dolor qui enim"
+			},
+			{
+				"certificateName": "sint dolor ullamco"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 10,
+		"name": "Alicia Higgins",
+		"nik": "CRS10072020",
+		"status": "Completed",
+		"role": "Technical Writer",
+		"bu": "Temorak",
+		"mandaysRate": 220000,
+		"onGoing": 10,
+		"latest_assign": "8/9/2020",
+		"skill": [
+			{
+				"skillName": "laboris cupidatat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "commodo esse",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "dolor occaecat in"
+			},
+			{
+				"certificateName": "laborum"
+			},
+			{
+				"certificateName": "Lorem ex"
+			},
+			{
+				"certificateName": "anim et consectetur"
+			},
+			{
+				"certificateName": "minim amet"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 11,
+		"name": "Ilene Chambers",
+		"nik": "CRS11032020",
+		"status": "Completed",
+		"role": "Programmer",
+		"bu": "Eyewax",
+		"mandaysRate": 299000,
+		"onGoing": 0,
+		"latest_assign": "2/11/2020",
+		"skill": [
+			{
+				"skillName": "culpa dolor reprehenderit officia",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "commodo cillum",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "elit duis officia reprehenderit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "deserunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "velit culpa laboris",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aliquip veniam proident ad",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "reprehenderit enim",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "excepteur irure Lorem nisi fugiat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "magna exercitation",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eiusmod nulla officia",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aliqua commodo consequat cillum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aliqua aliqua ullamco ad",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "tempor tempor reprehenderit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "proident eu quis",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "officia ut sint velit commodo",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "non laborum"
+			},
+			{
+				"certificateName": "ex est cillum"
+			},
+			{
+				"certificateName": "sunt velit est"
+			},
+			{
+				"certificateName": "incididunt"
+			},
+			{
+				"certificateName": "et reprehenderit"
+			},
+			{
+				"certificateName": "amet incididunt sint"
+			},
+			{
+				"certificateName": "fugiat"
+			},
+			{
+				"certificateName": "est eu sunt"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 12,
+		"name": "Melba Evans",
+		"nik": "CRS12002020",
+		"status": "Completed",
+		"role": "Data Analyst",
+		"bu": "Furnitech",
+		"mandaysRate": 413000,
+		"onGoing": 0,
+		"latest_assign": "14/2/2020",
+		"skill": [
+			{
+				"skillName": "culpa amet culpa proident sint",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eu ullamco cupidatat laborum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "occaecat exercitation voluptate",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "enim laborum velit laborum magna",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ea occaecat adipisicing ullamco",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ut occaecat culpa aliqua quis",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "velit eu"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 13,
+		"name": "Leblanc Hull",
+		"nik": "CRS13092020",
+		"status": "Assigned",
+		"role": "Technical Writer",
+		"bu": "Minga",
+		"mandaysRate": 211000,
+		"onGoing": 5,
+		"latest_assign": "25/9/2020",
+		"skill": [
+			{
+				"skillName": "ea excepteur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "velit eiusmod",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "elit eiusmod occaecat minim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "adipisicing occaecat aute consequat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nulla",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "incididunt occaecat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "labore voluptate exercitation do laboris",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "reprehenderit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "sint ex anim",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "consequat aute veniam nulla",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "aute amet do nostrud non",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "mollit Lorem dolor aliquip nulla",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aliquip incididunt eiusmod amet",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "quis non"
+			},
+			{
+				"certificateName": "eiusmod dolor elit"
+			},
+			{
+				"certificateName": "aute"
+			},
+			{
+				"certificateName": "ea"
+			},
+			{
+				"certificateName": "quis"
+			},
+			{
+				"certificateName": "incididunt exercitation"
+			},
+			{
+				"certificateName": "fugiat aute laboris"
+			},
+			{
+				"certificateName": "et ipsum tempor"
+			},
+			{
+				"certificateName": "consectetur exercitation"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 14,
+		"name": "Nola Benjamin",
+		"nik": "CRS14042020",
+		"status": "Completed",
+		"role": "Technical Writer",
+		"bu": "Eplode",
+		"mandaysRate": 402000,
+		"onGoing": 7,
+		"latest_assign": "1/4/2020",
+		"skill": [
+			{
+				"skillName": "sit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "et eu dolore",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "elit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "quis incididunt laboris",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "proident consequat proident occaecat non",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ad",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "exercitation sint",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "velit minim irure sint",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "enim Lorem enim irure",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "tempor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "sunt mollit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "proident dolor consectetur eu",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "id pariatur veniam amet amet",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "cupidatat aliqua nisi aliqua",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ullamco veniam",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "nisi",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "laborum est",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laborum nisi ad",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "exercitation irure non",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "consectetur nulla adipisicing nostrud laborum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "pariatur pariatur sint veniam consectetur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ut",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "aliqua et"
+			},
+			{
+				"certificateName": "sint laborum nisi"
+			},
+			{
+				"certificateName": "laborum est"
+			},
+			{
+				"certificateName": "eu exercitation officia"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 15,
+		"name": "Frank Bates",
+		"nik": "CRS15042020",
+		"status": "Assigned",
+		"role": "Data Analyst",
+		"bu": "Scenty",
+		"mandaysRate": 224000,
+		"onGoing": 4,
+		"latest_assign": "14/7/2020",
+		"skill": [
+			{
+				"skillName": "proident",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "fugiat quis cillum id fugiat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "et",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ipsum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "fugiat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cupidatat reprehenderit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "excepteur laboris amet",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "reprehenderit deserunt ex consequat consequat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "tempor incididunt dolore labore dolore",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sint amet",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ad ea esse labore",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "consequat occaecat dolor elit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "labore eiusmod laborum Lorem exercitation",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "tempor excepteur officia culpa",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cupidatat enim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cillum exercitation",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nulla culpa",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ut fugiat nulla mollit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ea laborum consectetur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "fugiat pariatur nisi fugiat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ipsum ex deserunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eu veniam id occaecat tempor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "reprehenderit officia",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aliquip",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "deserunt"
+			},
+			{
+				"certificateName": "exercitation tempor aliquip"
+			},
+			{
+				"certificateName": "ipsum"
+			},
+			{
+				"certificateName": "cupidatat"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 16,
+		"name": "Dickerson Whitney",
+		"nik": "CRS16082020",
+		"status": "Completed",
+		"role": "Technical Writer",
+		"bu": "Bluegrain",
+		"mandaysRate": 386000,
+		"onGoing": 6,
+		"latest_assign": "21/12/2020",
+		"skill": [
+			{
+				"skillName": "aliqua dolor non",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "voluptate labore aliqua",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "quis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "quis",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "voluptate"
+			},
+			{
+				"certificateName": "anim in occaecat"
+			},
+			{
+				"certificateName": "ullamco"
+			},
+			{
+				"certificateName": "veniam"
+			},
+			{
+				"certificateName": "Lorem"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 17,
+		"name": "Ferguson Page",
+		"nik": "CRS17092020",
+		"status": "Completed",
+		"role": "Data Analyst",
+		"bu": "Peticular",
+		"mandaysRate": 409000,
+		"onGoing": 4,
+		"latest_assign": "3/7/2020",
+		"skill": [
+			{
+				"skillName": "ut occaecat ad nisi",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "amet",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "veniam irure dolore",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ut",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "voluptate officia esse",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "fugiat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "laboris",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "eiusmod minim nisi irure deserunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "fugiat anim fugiat ut excepteur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "duis eiusmod enim tempor velit",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "labore minim Lorem"
+			},
+			{
+				"certificateName": "aliqua culpa id"
+			},
+			{
+				"certificateName": "occaecat deserunt"
+			},
+			{
+				"certificateName": "non"
+			},
+			{
+				"certificateName": "reprehenderit aute"
+			},
+			{
+				"certificateName": "minim"
+			},
+			{
+				"certificateName": "cupidatat nulla magna"
+			},
+			{
+				"certificateName": "voluptate aliqua pariatur"
+			},
+			{
+				"certificateName": "laborum minim"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 18,
+		"name": "Lisa Melton",
+		"nik": "CRS18072020",
+		"status": "Completed",
+		"role": "Technical Writer",
+		"bu": "Geekol",
+		"mandaysRate": 180000,
+		"onGoing": 8,
+		"latest_assign": "4/8/2020",
+		"skill": [
+			{
+				"skillName": "tempor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ut ad commodo",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "cillum fugiat fugiat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "est sunt aliquip consectetur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eiusmod fugiat tempor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ipsum cupidatat enim amet nulla",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "laborum minim quis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "incididunt do minim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "nostrud culpa cillum dolor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "officia duis labore ullamco",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "deserunt duis non ad",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "enim reprehenderit magna velit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cupidatat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "velit aliqua",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nulla",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "do dolore magna",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "enim esse id magna",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "et Lorem est",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "incididunt veniam",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "dolore",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "id"
+			},
+			{
+				"certificateName": "veniam minim ad"
+			},
+			{
+				"certificateName": "et"
+			},
+			{
+				"certificateName": "commodo non aliqua"
+			},
+			{
+				"certificateName": "nisi"
+			},
+			{
+				"certificateName": "nisi ut elit"
+			},
+			{
+				"certificateName": "pariatur"
+			},
+			{
+				"certificateName": "pariatur"
+			},
+			{
+				"certificateName": "ut"
+			},
+			{
+				"certificateName": "laborum culpa irure"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 19,
+		"name": "Kirsten Tanner",
+		"nik": "CRS19072020",
+		"status": "Completed",
+		"role": "Programmer",
+		"bu": "Xth",
+		"mandaysRate": 405000,
+		"onGoing": 4,
+		"latest_assign": "22/2/2020",
+		"skill": [
+			{
+				"skillName": "mollit qui",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "Lorem pariatur eiusmod",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "in",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "occaecat",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "reprehenderit velit"
+			},
+			{
+				"certificateName": "adipisicing reprehenderit ea"
+			},
+			{
+				"certificateName": "non mollit"
+			},
+			{
+				"certificateName": "sint culpa"
+			},
+			{
+				"certificateName": "sit enim deserunt"
+			},
+			{
+				"certificateName": "reprehenderit"
+			},
+			{
+				"certificateName": "anim non in"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 20,
+		"name": "Hammond Crawford",
+		"nik": "CRS20062020",
+		"status": "Assigned",
+		"role": "Data Analyst",
+		"bu": "Quilch",
+		"mandaysRate": 470000,
+		"onGoing": 4,
+		"latest_assign": "15/9/2020",
+		"skill": [
+			{
+				"skillName": "cupidatat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "et et",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "enim deserunt dolor eiusmod enim",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "dolor",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "anim nulla velit dolore esse",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "esse nostrud do pariatur",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "est"
+			},
+			{
+				"certificateName": "laborum minim officia"
+			},
+			{
+				"certificateName": "ad eiusmod"
+			},
+			{
+				"certificateName": "dolor"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 21,
+		"name": "Daisy Gilmore",
+		"nik": "CRS21062020",
+		"status": "Completed",
+		"role": "Programmer",
+		"bu": "Earbang",
+		"mandaysRate": 363000,
+		"onGoing": 10,
+		"latest_assign": "15/6/2020",
+		"skill": [
+			{
+				"skillName": "nulla sit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "eu incididunt amet nostrud minim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "anim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "eiusmod anim et eu laborum",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "mollit laborum velit commodo",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nisi commodo mollit adipisicing",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "adipisicing culpa consectetur veniam deserunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "id",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aliqua ipsum cupidatat consectetur officia",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ad incididunt duis in sit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "elit ea excepteur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cillum exercitation sit consequat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "sit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "duis in",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "tempor labore",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "proident fugiat culpa proident",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "ullamco elit sit"
+			},
+			{
+				"certificateName": "do"
+			},
+			{
+				"certificateName": "enim culpa"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 22,
+		"name": "Montoya Vaughan",
+		"nik": "CRS22012020",
+		"status": "Assigned",
+		"role": "Technical Writer",
+		"bu": "Uni",
+		"mandaysRate": 331000,
+		"onGoing": 7,
+		"latest_assign": "20/4/2020",
+		"skill": [
+			{
+				"skillName": "ut",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "anim pariatur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "enim anim culpa sunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "dolore ad deserunt in",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "eu ex"
+			},
+			{
+				"certificateName": "velit"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 23,
+		"name": "Delaney Finley",
+		"nik": "CRS23002020",
+		"status": "Assigned",
+		"role": "Technical Writer",
+		"bu": "Andershun",
+		"mandaysRate": 164000,
+		"onGoing": 8,
+		"latest_assign": "3/9/2020",
+		"skill": [
+			{
+				"skillName": "non non",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "aliqua",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "irure do",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "aute eu",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "mollit in",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "voluptate laboris magna ipsum sunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "incididunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "minim cupidatat veniam",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "sint laborum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "labore",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "amet velit proident consectetur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "amet nulla ad",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "irure pariatur cillum dolore cupidatat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "labore ut reprehenderit irure",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "anim id magna sunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aliqua irure eu deserunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "fugiat ipsum culpa irure",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 24,
+		"name": "Ayers Hudson",
+		"nik": "CRS24012020",
+		"status": "Assigned",
+		"role": "Data Analyst",
+		"bu": "Fiberox",
+		"mandaysRate": 114000,
+		"onGoing": 1,
+		"latest_assign": "12/4/2020",
+		"skill": [
+			{
+				"skillName": "labore exercitation ipsum nulla pariatur",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "est in est",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "quis nulla esse eu ipsum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cupidatat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cillum cupidatat pariatur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "consectetur in proident sunt officia",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "aliquip in tempor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "officia officia proident",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "amet minim",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "voluptate",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aliqua aute adipisicing aliqua incididunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "adipisicing laboris qui ex",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ullamco magna",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "laboris velit sint"
+			},
+			{
+				"certificateName": "ad sunt et"
+			},
+			{
+				"certificateName": "excepteur excepteur sint"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 25,
+		"name": "Jeanette Bennett",
+		"nik": "CRS25012020",
+		"status": "Assigned",
+		"role": "Data Analyst",
+		"bu": "Fibrodyne",
+		"mandaysRate": 141000,
+		"onGoing": 2,
+		"latest_assign": "15/1/2020",
+		"skill": [
+			{
+				"skillName": "qui incididunt velit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "irure",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "consectetur aliqua anim et",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "fugiat est esse",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "sit eu ad",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "occaecat dolore",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "reprehenderit occaecat eu",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "commodo",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cupidatat minim est non",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "dolor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ea duis aliqua laboris",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "est officia fugiat labore",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "Lorem",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "quis ullamco incididunt sint",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "amet excepteur laborum enim deserunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "culpa culpa commodo voluptate aliquip",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "non aliqua id",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "magna ea",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aute pariatur do irure aliquip",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "officia sit incididunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "veniam sint do nisi et",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aute eu qui cillum laboris",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "occaecat ad nulla",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "nisi cupidatat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aliquip",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 26,
+		"name": "Grant Montoya",
+		"nik": "CRS26052020",
+		"status": "Completed",
+		"role": "UI/UX Designer",
+		"bu": "Viagrand",
+		"mandaysRate": 136000,
+		"onGoing": 4,
+		"latest_assign": "7/5/2020",
+		"skill": [
+			{
+				"skillName": "fugiat eu aliquip incididunt voluptate",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "Lorem qui aliqua",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ullamco nisi esse amet et",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "cillum",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "aliqua sunt occaecat deserunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "deserunt deserunt eu et proident",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "fugiat aliqua ut",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "duis et ullamco",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "aute est do"
+			},
+			{
+				"certificateName": "anim"
+			},
+			{
+				"certificateName": "amet eiusmod"
+			},
+			{
+				"certificateName": "esse"
+			},
+			{
+				"certificateName": "duis"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 27,
+		"name": "Acosta Best",
+		"nik": "CRS27032020",
+		"status": "Completed",
+		"role": "Technical Writer",
+		"bu": "Toyletry",
+		"mandaysRate": 489000,
+		"onGoing": 0,
+		"latest_assign": "5/11/2020",
+		"skill": [
+			{
+				"skillName": "occaecat elit do excepteur occaecat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "nulla aute do",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "dolor laborum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "culpa ex dolor fugiat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "dolore et",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "commodo nostrud anim consectetur nulla",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "non magna irure ipsum aliqua",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "et exercitation",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "esse proident Lorem",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "culpa culpa esse deserunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "sint minim ut esse",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "pariatur anim incididunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "occaecat excepteur aute amet",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sunt laboris officia aliquip",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aliquip pariatur dolore exercitation aliqua",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aute et nisi",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ullamco aute",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "amet",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "qui",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "cupidatat dolore magna"
+			},
+			{
+				"certificateName": "nostrud"
+			},
+			{
+				"certificateName": "aliquip"
+			},
+			{
+				"certificateName": "minim est"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 28,
+		"name": "Caitlin Kane",
+		"nik": "CRS28052020",
+		"status": "Completed",
+		"role": "Data Analyst",
+		"bu": "Bovis",
+		"mandaysRate": 365000,
+		"onGoing": 9,
+		"latest_assign": "26/11/2020",
+		"skill": [
+			{
+				"skillName": "voluptate tempor deserunt amet",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "fugiat esse ut"
+			},
+			{
+				"certificateName": "minim ut"
+			},
+			{
+				"certificateName": "deserunt"
+			},
+			{
+				"certificateName": "qui proident anim"
+			},
+			{
+				"certificateName": "elit esse"
+			},
+			{
+				"certificateName": "sit"
+			},
+			{
+				"certificateName": "reprehenderit aliqua"
+			},
+			{
+				"certificateName": "quis proident"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 29,
+		"name": "Patty Deleon",
+		"nik": "CRS29042020",
+		"status": "Assigned",
+		"role": "UI/UX Designer",
+		"bu": "Zepitope",
+		"mandaysRate": 78000,
+		"onGoing": 2,
+		"latest_assign": "7/10/2020",
+		"skill": [
+			{
+				"skillName": "magna et laborum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "incididunt et laboris irure",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "voluptate",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "et aute magna reprehenderit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "elit qui",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "Lorem mollit aute magna ut",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "labore laboris velit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "quis",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "adipisicing officia",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "culpa est",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "velit do Lorem",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "culpa aliquip",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "adipisicing nulla eu laborum",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "veniam labore voluptate"
+			},
+			{
+				"certificateName": "do nostrud voluptate"
+			},
+			{
+				"certificateName": "elit esse commodo"
+			},
+			{
+				"certificateName": "esse aliquip enim"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 30,
+		"name": "Chan Kelley",
+		"nik": "CRS30062020",
+		"status": "Assigned",
+		"role": "UI/UX Designer",
+		"bu": "Geekus",
+		"mandaysRate": 146000,
+		"onGoing": 4,
+		"latest_assign": "22/9/2020",
+		"skill": [
+			{
+				"skillName": "quis",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "do laboris sit ipsum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "deserunt ipsum ea",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "enim tempor nulla",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "consequat ea laboris",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "commodo pariatur duis in elit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "fugiat qui aliquip",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "incididunt dolor quis in",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "elit reprehenderit qui",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "qui",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "consectetur anim"
+			},
+			{
+				"certificateName": "proident"
+			},
+			{
+				"certificateName": "nostrud"
+			},
+			{
+				"certificateName": "occaecat"
+			},
+			{
+				"certificateName": "occaecat duis id"
+			},
+			{
+				"certificateName": "eu"
+			},
+			{
+				"certificateName": "qui non"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 31,
+		"name": "Mcdowell Morrow",
+		"nik": "CRS31042020",
+		"status": "Assigned",
+		"role": "Programmer",
+		"bu": "Micronaut",
+		"mandaysRate": 435000,
+		"onGoing": 6,
+		"latest_assign": "27/3/2020",
+		"skill": [
+			{
+				"skillName": "irure",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "veniam aliqua dolore",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "nisi eu sunt aute",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "voluptate esse aute in",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "qui",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "ad",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "est enim proident fugiat tempor",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "fugiat duis commodo anim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "excepteur minim",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "dolore esse",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "laboris",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "incididunt commodo eu",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ut ea pariatur incididunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "minim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "minim ipsum amet",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "deserunt est exercitation",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "nisi voluptate duis",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "enim",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "occaecat dolore eiusmod"
+			},
+			{
+				"certificateName": "nulla et ex"
+			},
+			{
+				"certificateName": "do"
+			},
+			{
+				"certificateName": "in"
+			},
+			{
+				"certificateName": "commodo quis commodo"
+			},
+			{
+				"certificateName": "magna cupidatat quis"
+			},
+			{
+				"certificateName": "cupidatat quis"
+			},
+			{
+				"certificateName": "incididunt exercitation dolore"
+			},
+			{
+				"certificateName": "exercitation fugiat ullamco"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 32,
+		"name": "Medina Kelly",
+		"nik": "CRS32032020",
+		"status": "Completed",
+		"role": "Data Analyst",
+		"bu": "Zaggles",
+		"mandaysRate": 284000,
+		"onGoing": 3,
+		"latest_assign": "6/12/2020",
+		"skill": [
+			{
+				"skillName": "est",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "culpa sunt tempor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "voluptate elit adipisicing",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ullamco aliqua eiusmod",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "exercitation",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "sit laborum incididunt magna",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "duis cillum minim dolor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "tempor cillum esse adipisicing deserunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "officia anim incididunt",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "consectetur laborum excepteur ipsum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "reprehenderit",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "do"
+			},
+			{
+				"certificateName": "enim occaecat"
+			},
+			{
+				"certificateName": "veniam qui proident"
+			},
+			{
+				"certificateName": "officia mollit"
+			},
+			{
+				"certificateName": "dolor eu cupidatat"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 33,
+		"name": "Doreen James",
+		"nik": "CRS33072020",
+		"status": "Assigned",
+		"role": "Technical Writer",
+		"bu": "Zilidium",
+		"mandaysRate": 420000,
+		"onGoing": 9,
+		"latest_assign": "23/2/2020",
+		"skill": [
+			{
+				"skillName": "cupidatat mollit ut",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "exercitation",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "dolore commodo ex aute ex",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "do irure proident",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "duis ea fugiat elit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cupidatat amet",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ex amet eiusmod adipisicing dolor",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "est veniam sint aliqua Lorem",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "eiusmod",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "tempor",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "reprehenderit minim sint anim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "consectetur in adipisicing proident",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cupidatat mollit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "enim exercitation elit voluptate eiusmod",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "nulla nostrud minim laboris pariatur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ad sint quis",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "id eu do sit Lorem",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aute ex",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "esse reprehenderit ex"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 34,
+		"name": "Ivy Roberts",
+		"nik": "CRS34002020",
+		"status": "Assigned",
+		"role": "Programmer",
+		"bu": "Plutorque",
+		"mandaysRate": 236000,
+		"onGoing": 3,
+		"latest_assign": "17/6/2020",
+		"skill": [
+			{
+				"skillName": "ut dolore consequat eiusmod",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aute esse reprehenderit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "non aute",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "commodo laborum esse ea reprehenderit",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "incididunt"
+			},
+			{
+				"certificateName": "excepteur fugiat"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 35,
+		"name": "Tate Burnett",
+		"nik": "CRS35092020",
+		"status": "Completed",
+		"role": "Programmer",
+		"bu": "Manglo",
+		"mandaysRate": 63000,
+		"onGoing": 7,
+		"latest_assign": "2/7/2020",
+		"skill": [
+			{
+				"skillName": "veniam exercitation deserunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "sunt sit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ullamco tempor",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ad",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ad",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "reprehenderit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laborum",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "amet veniam enim ut",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "sit commodo labore ad laborum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aliqua in et dolore sunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cillum consequat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "minim consectetur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "sint",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "est",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "esse",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "elit eiusmod cillum quis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "dolor consectetur duis anim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aliqua aute",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eiusmod cupidatat reprehenderit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "quis eiusmod adipisicing labore irure",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "duis labore duis"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 36,
+		"name": "Bettie Crosby",
+		"nik": "CRS36072020",
+		"status": "Completed",
+		"role": "Data Analyst",
+		"bu": "Centice",
+		"mandaysRate": 268000,
+		"onGoing": 10,
+		"latest_assign": "12/5/2020",
+		"skill": [
+			{
+				"skillName": "magna dolor",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "cillum magna culpa non",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "tempor nostrud excepteur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "sunt exercitation cillum",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "adipisicing ea nisi",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aute",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "cupidatat consequat"
+			},
+			{
+				"certificateName": "excepteur labore"
+			},
+			{
+				"certificateName": "nostrud aliqua"
+			},
+			{
+				"certificateName": "duis"
+			},
+			{
+				"certificateName": "enim"
+			},
+			{
+				"certificateName": "ex qui"
+			},
+			{
+				"certificateName": "officia ipsum irure"
+			},
+			{
+				"certificateName": "irure"
+			},
+			{
+				"certificateName": "esse"
+			},
+			{
+				"certificateName": "consectetur ea pariatur"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 37,
+		"name": "Cannon Bird",
+		"nik": "CRS37092020",
+		"status": "Assigned",
+		"role": "Programmer",
+		"bu": "Tropoli",
+		"mandaysRate": 165000,
+		"onGoing": 0,
+		"latest_assign": "25/3/2020",
+		"skill": [
+			{
+				"skillName": "id aliqua veniam incididunt elit",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "quis duis elit velit",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "aliqua occaecat aliqua culpa",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "incididunt amet",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "irure minim qui ullamco ullamco",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "in voluptate",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "aliquip reprehenderit",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "consequat sit veniam",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ipsum ex deserunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "esse enim sit minim",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "excepteur adipisicing",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "exercitation in eiusmod"
+			},
+			{
+				"certificateName": "elit nulla laborum"
+			},
+			{
+				"certificateName": "deserunt esse"
+			},
+			{
+				"certificateName": "sunt cupidatat ipsum"
+			},
+			{
+				"certificateName": "irure enim nulla"
+			},
+			{
+				"certificateName": "cillum sunt amet"
+			},
+			{
+				"certificateName": "consectetur ipsum"
+			},
+			{
+				"certificateName": "labore"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 38,
+		"name": "Caroline Barnett",
+		"nik": "CRS38072020",
+		"status": "Completed",
+		"role": "Programmer",
+		"bu": "Zaphire",
+		"mandaysRate": 192000,
+		"onGoing": 9,
+		"latest_assign": "29/8/2020",
+		"skill": [],
+		"certificate": [
+			{
+				"certificateName": "sit"
+			},
+			{
+				"certificateName": "ut elit nulla"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 39,
+		"name": "Stanley Horne",
+		"nik": "CRS39032020",
+		"status": "Assigned",
+		"role": "UI/UX Designer",
+		"bu": "Moreganic",
+		"mandaysRate": 180000,
+		"onGoing": 3,
+		"latest_assign": "2/3/2020",
+		"skill": [
+			{
+				"skillName": "ex elit dolor",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "proident non",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "cillum adipisicing incididunt",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "amet",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laboris",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "irure occaecat",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "amet excepteur",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "eu Lorem deserunt velit excepteur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "proident fugiat incididunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "nisi esse minim",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "et sint elit mollit eu",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "officia",
+				"skillLevel": "Intermediate"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "incididunt"
+			},
+			{
+				"certificateName": "labore qui"
+			},
+			{
+				"certificateName": "est quis"
+			},
+			{
+				"certificateName": "velit duis deserunt"
+			},
+			{
+				"certificateName": "aliquip"
+			},
+			{
+				"certificateName": "ex"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 40,
+		"name": "Wilcox Cruz",
+		"nik": "CRS40022020",
+		"status": "Completed",
+		"role": "UI/UX Designer",
+		"bu": "Kiosk",
+		"mandaysRate": 110000,
+		"onGoing": 2,
+		"latest_assign": "16/11/2020",
+		"skill": [
+			{
+				"skillName": "qui consequat ut",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "consequat sint elit nulla pariatur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "incididunt enim laboris mollit esse",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "ea",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "elit aliqua qui proident veniam",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "velit est do",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "elit fugiat deserunt",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "laborum cillum eiusmod",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "non eiusmod qui tempor pariatur",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "excepteur nisi",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "quis adipisicing elit ad",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "labore ullamco exercitation minim",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "duis",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "consequat quis consectetur id adipisicing",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "dolor quis",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "qui duis excepteur",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sint",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "commodo adipisicing",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "sunt officia fugiat nulla",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "Lorem",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "irure enim et",
+				"skillLevel": "Advance"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "consequat est"
+			},
+			{
+				"certificateName": "reprehenderit"
+			},
+			{
+				"certificateName": "voluptate ad"
+			},
+			{
+				"certificateName": "minim"
+			},
+			{
+				"certificateName": "occaecat"
+			},
+			{
+				"certificateName": "excepteur eiusmod voluptate"
+			},
+			{
+				"certificateName": "adipisicing in"
+			},
+			{
+				"certificateName": "exercitation"
+			},
+			{
+				"certificateName": "et"
+			},
+			{
+				"certificateName": "sint eu"
+			}
+		],
+		"actionComplete": "http://localhost:5500/project/workplan.html"
+	},
+	{
+		"user_id": 41,
+		"name": "Hodge Wilson",
+		"nik": "CRS41082020",
+		"status": "Assigned",
+		"role": "UI/UX Designer",
+		"bu": "Chillium",
+		"mandaysRate": 180000,
+		"onGoing": 3,
+		"latest_assign": "11/10/2020",
+		"skill": [
+			{
+				"skillName": "cupidatat",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "irure deserunt veniam",
+				"skillLevel": "Beginner"
+			},
+			{
+				"skillName": "Lorem labore consectetur veniam",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "nisi est",
+				"skillLevel": "Intermediate"
+			},
+			{
+				"skillName": "fugiat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "enim et commodo cupidatat",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "ex nisi",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "excepteur reprehenderit occaecat et commodo",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "eiusmod nostrud et ullamco pariatur",
+				"skillLevel": "Advance"
+			},
+			{
+				"skillName": "anim",
+				"skillLevel": "Beginner"
+			}
+		],
+		"certificate": [
+			{
+				"certificateName": "ipsum dolore occaecat"
+			},
+			{
+				"certificateName": "quis reprehenderit enim"
 			}
 		],
 		"actionComplete": "http://localhost:5500/project/workplan.html"

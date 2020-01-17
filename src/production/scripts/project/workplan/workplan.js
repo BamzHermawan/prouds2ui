@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Buefy from 'buefy'
-import { dataTableNoCard, crudInput, ganttchart } from 'components';
+import { Paging, PagingPage, ganttchart, crudInput } from 'components';
 import Loader from 'helper-loader';
 import { animate, parseURLRoute, isEmpty } from 'helper-tools';
 import EditTask from "./editTask.vue"
@@ -18,9 +18,10 @@ Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
 	components: {
-		dataTableNoCard,
-		crudInput,
+		Paging,
+		PagingPage,
 		ganttchart,
+		crudInput,
 		EditTask,
 		AddTask,
 		Tmp,
@@ -47,6 +48,8 @@ new Vue({
 			deleteTask: null,
 			resource: null,
 			phase: null,
+			wbsNo: null,
+			integration: null
 		},
 		tampungSelectedTask: {},
 		toggleForm: {
@@ -71,11 +74,26 @@ new Vue({
 	},
 	methods: {
 		isEmpty: isEmpty,
+		getPageTitle(id) {
+			let 
+		},
 		addFavorite(title, link) {
 			global.$sidebar.ws.addList(title, link);
 		},
-		toggleSideBar() {
+		changePage(pageId = null) {
+			this.$refs.paging.showPage(pageId);
+		},
+		selectTask(task) {
+			this.selectedTask = task;
+			this.showSideBar = true;
+		},
+		toggleSideBar(action = null) {
 			let self = this;
+			if (action !== null) {
+				this.showSideBar = action;
+				return action;
+			}
+
 			if (this.showSideBar) {
 				let lastActive = document.querySelector("tr.gname.is-active");
 				if (lastActive !== null) {
@@ -91,7 +109,8 @@ new Vue({
 				self.showSideBar = true;
 			}
 		},
-		actionTask(idd) {
+		closeTask(idd) {
+			console.log(idd);
 			document.querySelector('#' + idd).classList.remove('fadeIn', 'faster');
 			animate('#' + idd, 'fadeOut faster', (el) => {
 				this.showWorkplan = !this.showWorkplan;
@@ -101,129 +120,6 @@ new Vue({
 
 				document.querySelector('.contentPage').scrollTop = 0;
 			});
-		},
-		approveWorkplan(project_id) {
-
-		},
-		template(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Template"
-
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-			}
-		},
-		addTask(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Add Task"
-
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-			}
-		},
-		editTask(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Edit Task"
-
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-
-			}
-		},
-		assignTeam(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Assign Team"
-
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-
-			}
-		},
-		showAssign(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Show Assignment"
-					// if (!isEmpty(this.selectedTask)) {
-					// 	this.tampungSelectedTask = this.selectedTask
-					// }
-					// console.log(this.tampungSelectedTask)
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-			} else {
-				console.log("Ga masuk")
-			}
-		},
-		updateProgress(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Update Progress"
-
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-
-			}
-		},
-		changeParentTask(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Change Parent"
-
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-			}
-		},
-		linkPredecessor(idd) {
-			if (this.showWorkplan) {
-				animate('#workplan', 'fadeOut faster', (el) => {
-					this.idd = idd
-					this.showWorkplan = !this.showWorkplan;
-					this.toggleForm[idd] = !this.toggleForm[idd]
-					this.titleActive = "Set Predecessor"
-
-					el.classList.add('fadeIn');
-					document.querySelector('.contentPage').scrollTop = 0;
-					global.psContent.update();
-				});
-			}
 		},
 		deleteTask() {
 			if (
@@ -237,11 +133,11 @@ new Vue({
 			} else {
 				this.$dialog.confirm({
 					title: 'Delete task',
-					message: 'Are you sure to <b>delete</b> ' + this.selectedTask.pName + ' ?',
-					confirmText: 'Ok',
+					message: 'Are you sure to delete <b>' + this.selectedTask.pName + '</b> ?',
+					confirmText: 'Delete',
 					type: 'is-danger',
-					hasIcon: true,
-					onConfirm: () => window.location.href = this.selectedTask.deleteTask
+					onConfirm: () => window.location.href = this.selectedTask.deleteTask,
+					onCancel: () => this.toggleSideBar(false)
 				})
 			}
 		},
@@ -275,6 +171,9 @@ new Vue({
 		}
 	},
 	computed: {
+		parentisEmpty() {
+			return this.selectedTask.pParent == 0;
+		},
 		documentName() {
 			if (this.selectedDocument !== null) {
 				let size = this.formatSizeString(this.selectedDocument.size);

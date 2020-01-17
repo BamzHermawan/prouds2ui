@@ -198,60 +198,50 @@
 									</b-tooltip>
 								</b-table-column>
 
+								<!-- ^ UPDATED ############################################# -->
 								<b-table-column field="action" label="Action" width="75" centered class="align-middle">
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PMO -->
-									<span class="mdi mdi-square-edit-outline mdi-24px has-text-info"
-										style="cursor: pointer !important;" @click="editProject(props.row)">
+									<span class="mdi mdi-square-edit-outline mdi-24px has-text-info" style="cursor: pointer !important;"
+										@click="editProject(props.row)">
 									</span>
 									<!-- Ini untuk action PMO -->
-
+								
 									<!-- TODO: Faishol -->
 									<!-- Ini untuk action PM -->
 									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
 										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
 										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item has-link>
-											<a @click="setInitialBaseline(props.row)">
-												<span class="mdi mdi-checkbox-marked-outline"></span>
-												Initial Baseline
-											</a>
-										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a @click="setMileStone(props.row)">
-												<span class="mdi mdi-calendar-edit"></span>
-												Set Milestone
-											</a>
-										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a @click="setCost(props.row)">
-												<span class="mdi mdi-cash-usd"></span>
-												Set Cost Reallocation
-											</a>
-										</b-dropdown-item>
-										<div class="dropdown-item dropdown-label">Project Page</div>
-										<b-dropdown-item has-link>
 											<a @click="sync(props.row,'http://localhost:5501/demo/post_detect.php?')">
 												<span class="mdi mdi-sync"></span>
 												Sync with MIS
 											</a>
 										</b-dropdown-item>
+										<div class="dropdown-item dropdown-label">Project Page</div>
 										<b-dropdown-item has-link>
-											<a href="http://localhost:5501/page/project/allocation.html">
-												<span class="mdi mdi-account-group"></span>
-												Team Member
+											<a href="./performanceIndex.html?project_id=1900123">
+												<span class="mdi mdi-chart-bell-curve"></span>
+												Performance Index
+											</a>
+										</b-dropdown-item>
+										<b-dropdown-item has-link>
+											<a href="./internalResources.html">
+												<span class="mdi mdi-table"></span>
+												Internal Resources
 											</a>
 										</b-dropdown-item>
 										<b-dropdown-item has-link>
 											<a href="workplan.html">
 												<span class="mdi mdi-file-document-box-multiple-outline"></span>
-												Task
+												Workplan
 											</a>
 										</b-dropdown-item>
 									</b-dropdown>
 									<!-- Ini untuk action PM -->
-
+								
 								</b-table-column>
+								<!-- ^ UPDATED ############################################# -->
 							</template>
 							<template slot="top-right">
 								<div class="navbar-menu">

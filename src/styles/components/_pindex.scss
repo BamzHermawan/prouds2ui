@@ -128,7 +128,7 @@
 		.activity-toggle {
 			color: $grey;
 			cursor: pointer;
-			font-size: .85em;
+			font-size: .85rem !important;
 
 			& > span.toggle-chevron {
 				margin: 0px !important;
@@ -140,6 +140,7 @@
 
 		.activity-detail {
 			padding: 0px 1em;
+			font-size: .85rem !important;
 			display: none;
 		}
 
