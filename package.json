@@ -5,7 +5,7 @@
 	"scripts": {
 		"bersih": "rm -rf dist && rm -rf src/production/pages/dist && rm -rf src/development/pages/dist",
 		"demo": "cd release && php -S localhost:5501",
-		"ngoding": "yarn run bersih && parcel src/development/pages/**/*.html -p 5500",
+		"ngoding": "parcel src/development/pages/**/*.html -p 5500",
 		"ngoding:pro": "yarn run bersih && parcel src/production/pages/**/*.html -p 5500",
 		"ngoding:pick": "yarn run bersih && parcel -p 5500",
 		"mantap": "node bundler.js -o release/page -s release/src src/production/pages/**/*.html",

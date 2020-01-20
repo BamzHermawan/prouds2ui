@@ -444,7 +444,7 @@
 											Timesheet Start Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()"
 										:focused-date="datepicker.start.focused" :events="selectedDateList">
 										<template slot="header">
 											<b-field>
@@ -470,7 +470,7 @@
 											Timesheet End Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.end.val" :max-date="new Date()"
+									<b-datepicker inline v-model="datepicker.end.val" :max-date="datepicker.start.max"
 										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused"
 										:events="selectedDateList">
 										<template slot="header">
@@ -502,7 +502,7 @@
 											Timesheet Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()" :min-date="getMinDate()"
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()"
 										:focused-date="datepicker.start.focused" :events="datepicker.filled">
 										<template slot="header">
 											<b-field>

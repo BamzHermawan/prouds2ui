@@ -216,11 +216,13 @@ new Vue({
 				alert: false,
 				start: {
 					val: null,
+					max: maxDate,
 					focused: maxDate,
 					selected: Moment(maxDate).format('MMMM - YYYY')
 				},
 				end: {
 					val: null,
+					max: maxDate,
 					focused: maxDate,
 					selected: Moment(maxDate).format('MMMM - YYYY')
 				},

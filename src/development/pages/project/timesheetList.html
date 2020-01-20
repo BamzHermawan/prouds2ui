@@ -467,6 +467,7 @@
 						</nav>
 					</b-modal>
 
+					<!-- * DOUBLE DATEPICKER MODAL -->
 					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
 						<b-message type="is-info">
 							Pick Timesheet Date
@@ -479,7 +480,7 @@
 											Timesheet Start Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()"
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.end.max"
 										:min-date="getMinDate()" :focused-date="datepicker.start.focused"
 										:events="selectedDateList">
 										<template slot="header">
@@ -507,7 +508,7 @@
 											Timesheet End Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.end.val" :max-date="new Date()"
+									<b-datepicker inline v-model="datepicker.end.val" :max-date="datepicker.end.max"
 										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused"
 										:events="selectedDateList">
 										<template slot="header">
@@ -531,6 +532,7 @@
 						</div>
 					</b-modal>
 
+					<!-- * SINGLE DATEPICKER MODAL -->
 					<b-modal :active.sync="modal.singleDate" trap-focus width="302px" class="has-hidden-scrollbar">
 						<div class="columns is-multiline">
 							<div class="column">
@@ -540,7 +542,7 @@
 											Timesheet Date
 										</p>
 									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="new Date()"
+									<b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.end.max"
 										:min-date="getMinDate()" :focused-date="datepicker.start.focused"
 										:events="datepicker.filled">
 										<template slot="header">
@@ -698,8 +700,8 @@
 					"pm_name": "MO IT Infrastructure 2019",
 					"role": "Junior Consultant",
 					"task": "Day to day Sysadmin Non Prod Leader",
-					"start": "02/07/2019",
-					"end": "30/06/2020",
+					"start": "02/12/2019",
+					"end": "10/01/2020",
 					"member": 1,
 					"workload": 100,
 					"work_progress": 75,
