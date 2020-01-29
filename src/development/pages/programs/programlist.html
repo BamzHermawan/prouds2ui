@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+    <meta name="description" content="HOME for PROUDS 2 Web Application">
+    <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+    <title>PROGRAMS | PROUDS 2</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+    <div class="loader-wrapper animated fadeIn">
+        <img src="http://localhost:5501/media/loader.gif">
+    </div>
+
+    <div id="main-layout" class="wrapper open-first">
+        <section id="side-main" class="sidebar">
+            <div class="brand animated slideInLeft fast">
+                <span>PROUDS</span>
+            </div>
+            <div class="side-list animated slideInLeft faster">
+                <a href="#notification" class="parent-list">
+                    <div class="list-title">
+                        <label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+                        <div class="action">
+                            <span class="tag is-warning">{{notifCount}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+            <side-list label="Programs" name="project">
+                <side-item href="http://localhost:5501/maintenance.html">Hand-over</side-item>
+                <side-item active>Support Activity</side-item>
+                <side-item href="http://localhost:5501/maintenance.html">Operations</side-item>
+                <side-item href="http://localhost:5501/maintenance.html">Product Development</side-item>
+            </side-list>
+
+            <side-list label="My Workspace" name="ws"></side-list>
+        </section>
+
+        <nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu main-navbar">
+                <div class="navbar-start">
+                    <a id="toggle-sidebar" class="navbar-item">
+                        <span class="mdi mdi-chevron-left mdi-24px"></span>
+                    </a>
+
+                    <a class="navbar-item">
+						PROJECTS
+					</a>
+
+                    <a class="navbar-item">
+						Resource
+					</a>
+
+                    <a class="navbar-item">
+						Monitoring
+					</a>
+
+                    <a class="navbar-item is-active">
+						PROGRAMS
+					</a>
+
+                    <a class="navbar-item">
+						Reports
+					</a>
+                </div>
+
+                <div class="navbar-end">
+                    <a href="http://localhost:5501/maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-view-dashboard-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+                    </a>
+
+                    <a href="../setting/authorization.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-settings-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-link is-arrowless">
+                            <span class="mdi mdi-account-outline"></span>
+                        </div>
+                        <div class="navbar-dropdown is-boxed is-right">
+                            <a href="../profile.html" class="navbar-item">Account Profile</a>
+                            <a href="#help" class="navbar-item">Need Help ?</a>
+                            <hr class="navbar-divider">
+                            <a href="#" class="navbar-item">
+                                <span>Sign Out</span>
+                                <span class="mdi mdi-logout-variant"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section id="vapp" class="contentPage">
+            <section class="hero is-light is-bold">
+                <div class="hero-body">
+                    <nav class="level">
+                        <div class="level-left">
+                            <h1 class="title is-marginless">
+                                <span>Support Activity</span>
+                            </h1>
+                        </div>
+                        <div class="level-right">
+                            <div id="bookmarkPage">
+                                <bookmark-button></bookmark-button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+            <section class="section">
+                <div id="contentApp" class="container" data-title="Project List">
+
+                    <paging ref="paging" default="table">
+                        <paging-page page-id="table" label="Support Activity">
+                            <program-table :programs="programs" name-link="http://localhost:5501/page/projects/detail.html?id={id}">
+                                <template slot="top-right">
+									<div class="level-item">
+										<b-button type="is-info" @click="changePage('forms')">Register New Program</b-button>
+									</div>
+								</template>
+                                <template slot="filter-status">
+									<option>New</option>
+									<option>Closed</option>
+									<option>Dropped</option>
+									<option>On Hold</option>
+									<option>Completed</option>
+									<option>In Progress</option>
+									<option>Waiting to Rebaseline</option>
+									<option>Waiting to Initial Baseline</option>
+								</template>
+                                <template slot="status" slot-scope="{ row }">
+									<status-tooltip :status="row.status" icon="mdi mdi-24px" :options="[
+										{ label: 'New', icon: 'mdi-file-plus-outline has-text-info' },
+										{ label: 'In Progress', icon: 'mdi-timer has-text-success' },
+										{ label: 'On Hold', icon: 'mdi-alert-outline has-text-warning' },
+										{ label: 'Completed', icon: 'mdi-checkbox-marked-circle-outline has-text-success' },
+										{ label: 'Closed', icon: 'mdi-file-cancel-outline has-text-danger' },
+										{ label: 'Dropped', icon: 'mdi-file-remove has-text-danger' },
+										{ label: 'On Goind Operation', icon: 'mdi-progress-wrench has-text-success' },
+										{ label: 'Waiting to Initial Baseline', icon: 'mdi-timer-sand has-text-warning' },
+										{ label: 'Waiting to Initial Rebaseline', icon: 'mdi-timer-sand has-text-warning' },
+									]"></status-tooltip>
+								</template>
+                                <template slot="action" slot-scope="{ row }">
+									<!-- TODO: Faishol -->
+									<!-- Ini untuk action PM -->
+									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
+										<div class="dropdown-item dropdown-label">Program Action</div>
+										<!-- Ini untuk action PMO -->
+										<b-dropdown-item has-link>
+											<a @click="changePage('forms', row)">
+												<span class="mdi mdi-square-edit-outline"></span>
+												Edit Program
+											</a>
+										</b-dropdown-item>
+										<!-- Ini untuk action PMO -->
+									
+										<div class="dropdown-item dropdown-label">Project Page</div>
+										<b-dropdown-item has-link>
+											<a>
+												<span class="mdi mdi-file-document-box-multiple-outline"></span>
+												Workplan
+											</a>
+										</b-dropdown-item>
+										<b-dropdown-item has-link>
+											<a>
+												<span class="mdi mdi-table"></span>
+												Internal Resources
+											</a>
+										</b-dropdown-item>
+									</b-dropdown>
+									<!-- Ini untuk action PM -->
+								</template>
+                            </program-table>
+                        </paging-page>
+                        <paging-page page-id="forms" label="Program Form">
+                            <program-form @cancel="changePage('table')" :program="program" :units="units" :managers="managers" action="http://localhost:5501/demo/post_detect.php?id={id}">
+                            </program-form>
+                        </paging-page>
+                    </paging>
+
+                </div>
+            </section>
+        </section>
+
+        <section id="infoFooter">
+            <info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+            </info-footer>
+        </section>
+    </div>
+
+    <script id="implantedJSON" type="application/json">
+        {
+            "managers": [{
+                "nik": "SGM00002019",
+                "name": "Margery Fulton"
+            }, {
+                "nik": "SGM00012019",
+                "name": "Mae Dennis"
+            }, {
+                "nik": "SGM00022019",
+                "name": "Marla Castillo"
+            }, {
+                "nik": "SGM00032019",
+                "name": "Peterson Adkins"
+            }, {
+                "nik": "SGM00042019",
+                "name": "Taylor Hansen"
+            }, {
+                "nik": "SGM00052019",
+                "name": "Roberts Guerra"
+            }, {
+                "nik": "SGM00062019",
+                "name": "Wolf Marquez"
+            }, {
+                "nik": "SGM00072019",
+                "name": "Cleveland Navarro"
+            }, {
+                "nik": "SGM00082019",
+                "name": "Alexander Solomon"
+            }, {
+                "nik": "SGM00092019",
+                "name": "Rosemarie Haney"
+            }, {
+                "nik": "SGM00102019",
+                "name": "Wilder Shaw"
+            }, {
+                "nik": "SGM00112019",
+                "name": "Keller Black"
+            }, {
+                "nik": "SGM00122019",
+                "name": "Liza Fisher"
+            }, {
+                "nik": "SGM00132019",
+                "name": "Knapp Hensley"
+            }, {
+                "nik": "SGM00142019",
+                "name": "Lyons Wade"
+            }, {
+                "nik": "SGM00152019",
+                "name": "Moses Weiss"
+            }, {
+                "nik": "SGM00162019",
+                "name": "Hazel Farley"
+            }, {
+                "nik": "SGM00172019",
+                "name": "Allison Conway"
+            }, {
+                "nik": "SGM00182019",
+                "name": "Kristie Mccullough"
+            }, {
+                "nik": "SGM00192019",
+                "name": "April Delacruz"
+            }, {
+                "nik": "SGM00202019",
+                "name": "Lucinda Berg"
+            }, {
+                "nik": "SGM00212019",
+                "name": "Mercer Sweet"
+            }, {
+                "nik": "SGM00222019",
+                "name": "Stefanie Mccormick"
+            }, {
+                "nik": "SGM00232019",
+                "name": "Townsend Cherry"
+            }, {
+                "nik": "SGM00242019",
+                "name": "Mccarthy Harmon"
+            }],
+            "units": [{
+                "id": "U2000",
+                "name": "Ontagene sunt labore"
+            }, {
+                "id": "U2001",
+                "name": "Pasturia id fugiat"
+            }, {
+                "id": "U2002",
+                "name": "Immunics est est"
+            }, {
+                "id": "U2003",
+                "name": "Turnabout exercitation amet"
+            }, {
+                "id": "U2004",
+                "name": "Mondicil duis est"
+            }, {
+                "id": "U2005",
+                "name": "Cormoran minim consectetur"
+            }, {
+                "id": "U2006",
+                "name": "Thredz laboris deserunt"
+            }, {
+                "id": "U2007",
+                "name": "Plasmos mollit cupidatat"
+            }, {
+                "id": "U2008",
+                "name": "Waab reprehenderit eu"
+            }, {
+                "id": "U2009",
+                "name": "Parleynet ut nisi"
+            }],
+            "programs": [{
+                "id": "P092019",
+                "name": "Quis qui laborum Lorem non velit non est.",
+                "unit": {
+                    "id": "U2004",
+                    "name": "Mondicil duis est"
+                },
+                "pm": {
+                    "nik": "SGM00082019",
+                    "name": "Alexander Solomon"
+                },
+                "start": "29/10/2019",
+                "end": "17/05/2019",
+                "description": "Exercitation mollit nulla deserunt officia labore laboris tempor quis ipsum ullamco officia. Incididunt deserunt dolor labore cillum. Nostrud in occaecat ex Lorem. Id proident esse cillum eiusmod occaecat tempor ex pariatur occaecat ad excepteur adipisicing minim.",
+                "status": "Completed",
+                "type": {
+                    "id": 4,
+                    "label": "Type A"
+                }
+            }, {
+                "id": "P012010",
+                "name": "Aliquip id laborum aute ea.",
+                "unit": {
+                    "id": "U2004",
+                    "name": "Mondicil duis est"
+                },
+                "pm": {
+                    "nik": "SGM00152019",
+                    "name": "Moses Weiss"
+                },
+                "start": "13/04/2019",
+                "end": "26/11/2019",
+                "description": "Anim excepteur et Lorem laborum reprehenderit mollit pariatur culpa exercitation nostrud aute. Laboris ad pariatur nulla irure. Commodo elit deserunt aliqua dolor eu velit aliqua aliquip consectetur. Eiusmod cillum cillum proident ex deserunt tempor nulla irure velit aliqua reprehenderit. Exercitation nulla duis est anim enim dolor excepteur in aliquip velit ullamco laboris ipsum. Non Lorem duis ullamco consequat. Magna culpa proident sunt dolor deserunt Lorem.",
+                "status": "New",
+                "type": {
+                    "id": 2,
+                    "label": "Implementation"
+                }
+            }, {
+                "id": "P022004",
+                "name": "Id culpa proident non pariatur cillum duis.",
+                "unit": {
+                    "id": "U2009",
+                    "name": "Parleynet ut nisi"
+                },
+                "pm": {
+                    "nik": "SGM00222019",
+                    "name": "Stefanie Mccormick"
+                },
+                "start": "13/03/2019",
+                "end": "15/04/2019",
+                "description": "Ut qui minim amet nostrud reprehenderit labore incididunt commodo cupidatat adipisicing in. Lorem tempor cupidatat dolor minim veniam ullamco ea enim velit cupidatat duis Lorem velit. Pariatur cillum ex duis minim id esse veniam cupidatat consequat cillum anim. Deserunt cupidatat aliqua ad aliquip aliquip ad ea laboris est consectetur dolore magna pariatur. Ullamco officia exercitation quis excepteur qui duis irure cillum minim sit est ut. Deserunt magna non nisi cillum quis.",
+                "status": "Completed",
+                "type": {
+                    "id": 4,
+                    "label": "Type A"
+                }
+            }, {
+                "id": "P032013",
+                "name": "Elit aute sit eiusmod adipisicing consectetur cillum proident cupidatat ad eiusmod enim excepteur voluptate.",
+                "unit": {
+                    "id": "U2007",
+                    "name": "Plasmos mollit cupidatat"
+                },
+                "pm": {
+                    "nik": "SGM00242019",
+                    "name": "Mccarthy Harmon"
+                },
+                "start": "28/06/2019",
+                "end": "23/10/2019",
+                "description": "Exercitation adipisicing esse enim culpa incididunt nulla aliqua non veniam exercitation adipisicing culpa. Nulla laborum ut eu ut eu Lorem sint ea qui Lorem. Commodo pariatur qui fugiat velit sunt ex consequat sit reprehenderit sint est mollit mollit cupidatat.",
+                "status": "Completed",
+                "type": {
+                    "id": 2,
+                    "label": "Implementation"
+                }
+            }, {
+                "id": "P042019",
+                "name": "Eu veniam aliquip mollit tempor do ex voluptate ad quis.",
+                "unit": {
+                    "id": "U2004",
+                    "name": "Mondicil duis est"
+                },
+                "pm": {
+                    "nik": "SGM00012019",
+                    "name": "Mae Dennis"
+                },
+                "start": "17/03/2019",
+                "end": "23/08/2019",
+                "description": "Aute elit deserunt cupidatat cupidatat veniam non exercitation duis dolor fugiat sit. Commodo fugiat velit non mollit esse duis consectetur laboris cillum minim ad. Enim duis qui ea minim ea officia esse. Ipsum nisi et cillum non occaecat nisi. Deserunt ullamco sunt nisi nisi enim consequat. Irure commodo aliquip est aliqua enim sit.",
+                "status": "Completed",
+                "type": {
+                    "id": 1,
+                    "label": "Managed Services"
+                }
+            }, {
+                "id": "P052020",
+                "name": "Exercitation occaecat commodo dolore cillum amet officia nisi aute nostrud eu irure ut cupidatat in.",
+                "unit": {
+                    "id": "U2007",
+                    "name": "Plasmos mollit cupidatat"
+                },
+                "pm": {
+                    "nik": "SGM00162019",
+                    "name": "Hazel Farley"
+                },
+                "start": "25/02/2019",
+                "end": "11/10/2019",
+                "description": "Lorem ex dolore amet sunt cillum culpa enim aliquip minim. Sunt eiusmod non reprehenderit dolore veniam laboris sit excepteur mollit dolore minim voluptate. Commodo voluptate deserunt qui adipisicing ea duis mollit officia amet irure quis. Reprehenderit eu ea enim aliquip ipsum. Occaecat velit proident velit incididunt occaecat minim ipsum dolore culpa qui tempor et laborum. Enim nulla cillum quis nostrud nostrud nostrud adipisicing et eu cillum. Est enim labore reprehenderit irure culpa ea reprehenderit dolor.",
+                "status": "On Hold",
+                "type": {
+                    "id": 3,
+                    "label": "Research and Development"
+                }
+            }, {
+                "id": "P062002",
+                "name": "Aliquip proident veniam pariatur voluptate minim consectetur dolor veniam mollit ex aliqua reprehenderit.",
+                "unit": {
+                    "id": "U2005",
+                    "name": "Cormoran minim consectetur"
+                },
+                "pm": {
+                    "nik": "SGM00172019",
+                    "name": "Allison Conway"
+                },
+                "start": "18/06/2019",
+                "end": "22/03/2019",
+                "description": "Ad duis reprehenderit minim dolore tempor ad qui. Eu tempor amet veniam consequat qui mollit eu ut proident cupidatat adipisicing cupidatat. Mollit dolor Lorem nisi duis Lorem deserunt dolor ullamco sunt occaecat dolore aliquip voluptate qui. Labore deserunt consectetur commodo aliqua ad commodo quis Lorem quis.",
+                "status": "On Hold",
+                "type": {
+                    "id": 5,
+                    "label": "Type B"
+                }
+            }, {
+                "id": "P072002",
+                "name": "Id nulla mollit ut Lorem Lorem sint dolore fugiat anim do ipsum aliquip elit minim.",
+                "unit": {
+                    "id": "U2008",
+                    "name": "Waab reprehenderit eu"
+                },
+                "pm": {
+                    "nik": "SGM00172019",
+                    "name": "Allison Conway"
+                },
+                "start": "26/02/2019",
+                "end": "05/03/2019",
+                "description": "Culpa officia sit irure eu cillum excepteur. Magna eiusmod cillum sint officia nisi dolor excepteur ullamco commodo ipsum ut aute. Fugiat adipisicing minim tempor do id irure ea ex elit veniam in nulla tempor aliqua. Consectetur nulla Lorem adipisicing sunt irure proident fugiat cupidatat pariatur anim est deserunt. Dolore non labore sunt et laboris laboris aliquip ad commodo eu dolore quis consectetur aliqua.",
+                "status": "New",
+                "type": {
+                    "id": 4,
+                    "label": "Type A"
+                }
+            }, {
+                "id": "P082010",
+                "name": "Ea non voluptate commodo fugiat proident magna laborum mollit in labore.",
+                "unit": {
+                    "id": "U2006",
+                    "name": "Thredz laboris deserunt"
+                },
+                "pm": {
+                    "nik": "SGM00112019",
+                    "name": "Keller Black"
+                },
+                "start": "25/04/2019",
+                "end": "29/07/2019",
+                "description": "Duis laborum duis dolor incididunt cillum Lorem excepteur enim sunt incididunt proident. Labore dolor minim ad nostrud aliquip sit occaecat elit pariatur. Aute quis commodo non deserunt. Nulla culpa eiusmod non adipisicing non consequat duis ullamco occaecat occaecat culpa.",
+                "status": "In Progress",
+                "type": {
+                    "id": 2,
+                    "label": "Implementation"
+                }
+            }, {
+                "id": "P092015",
+                "name": "Velit qui laboris excepteur occaecat anim dolor culpa irure incididunt.",
+                "unit": {
+                    "id": "U2002",
+                    "name": "Immunics est est"
+                },
+                "pm": {
+                    "nik": "SGM00042019",
+                    "name": "Taylor Hansen"
+                },
+                "start": "05/09/2019",
+                "end": "03/02/2019",
+                "description": "Occaecat mollit laboris qui aute. Voluptate cupidatat culpa esse ex qui sit aliquip quis excepteur. Aliqua sit occaecat deserunt fugiat sit aliqua labore id aliquip minim veniam qui ipsum. Ex Lorem aliquip exercitation velit officia nisi elit pariatur eiusmod. Veniam aliqua occaecat voluptate ut eu. Sunt ea consequat sunt ullamco Lorem elit nisi deserunt nostrud nisi occaecat laborum quis. Commodo nisi aliquip aliquip consequat deserunt non dolor quis labore nulla commodo.",
+                "status": "Completed",
+                "type": {
+                    "id": 1,
+                    "label": "Managed Services"
+                }
+            }, {
+                "id": "P102006",
+                "name": "Sit consectetur amet ut elit nostrud adipisicing aliqua laboris quis nostrud officia eiusmod do.",
+                "unit": {
+                    "id": "U2003",
+                    "name": "Turnabout exercitation amet"
+                },
+                "pm": {
+                    "nik": "SGM00222019",
+                    "name": "Stefanie Mccormick"
+                },
+                "start": "20/10/2019",
+                "end": "16/03/2019",
+                "description": "Ut ut eu elit consequat ullamco occaecat culpa amet eu. Quis ex velit magna consectetur adipisicing ea. In ipsum do voluptate laboris excepteur. Qui laborum laboris minim ullamco elit ullamco anim elit proident aliqua duis magna aliquip.",
+                "status": "On Hold",
+                "type": {
+                    "id": 5,
+                    "label": "Type B"
+                }
+            }, {
+                "id": "P112018",
+                "name": "Minim eiusmod est tempor magna do culpa velit cupidatat mollit cupidatat eiusmod sint.",
+                "unit": {
+                    "id": "U2006",
+                    "name": "Thredz laboris deserunt"
+                },
+                "pm": {
+                    "nik": "SGM00212019",
+                    "name": "Mercer Sweet"
+                },
+                "start": "19/12/2019",
+                "end": "27/02/2019",
+                "description": "Tempor deserunt sit sunt quis officia commodo irure ad dolor eiusmod deserunt. Velit nostrud aliqua elit eiusmod mollit laboris aute dolor quis esse velit. Minim culpa do sit pariatur ad velit labore sint. Commodo et eiusmod quis consectetur velit laboris consectetur excepteur cupidatat laboris laboris est.",
+                "status": "New",
+                "type": {
+                    "id": 5,
+                    "label": "Type B"
+                }
+            }]
+        }
+    </script>
+
+    <script src="../../scripts/layout/controller.js"></script>
+    <script src="../../scripts/programs/program_list/program_list.js"></script>
+</body>
+
+</html>

@@ -45,11 +45,29 @@
 		</b-field>
 
 		<b-field horizontal label="Duration">
-			<span
-				class="button is-static is-fullwidth is-light-blend"
-				style="justify-content: start;"
-				>{{ task.duration }}</span
-			>
+			<div class="buttons">
+				<span
+					class="button is-static is-light-blend"
+					style="justify-content: start; min-width: 200px; margin-right:.7rem;"
+					>{{ task.duration }}</span
+				>
+				<b-field>
+					<p class="control">
+						<button class="button is-static is-info-blend">
+							Auto Calculated
+						</button>
+					</p>
+					<p class="control">
+						<span
+							class="button is-static is-light-blend is-fullwidth"
+							style="min-width: 115px;"
+							>{{
+								parseValue(task.autoCalculationProgress, 0)
+							}}%</span
+						>
+					</p>
+				</b-field>
+			</div>
 		</b-field>
 
 		<b-field horizontal label="Progress [%]">
@@ -62,20 +80,6 @@
 				style="width:250px;"
 			>
 			</crud-input>
-			<b-field>
-				<b-field>
-					<p class="control">
-						<button class="button is-static is-info-blend">
-							Auto Calculated
-						</button>
-					</p>
-					<p class="control is-expanded">
-						<span class="button is-static is-fullwidth"
-							>{{ task.duration }}%</span
-						>
-					</p>
-				</b-field>
-			</b-field>
 		</b-field>
 
 		<b-field horizontal>
@@ -104,6 +108,8 @@
 <script>
 import moment from "helper-moment";
 import { crudInput } from "components";
+import { isEmpty } from "helper-tools";
+
 export default {
 	components: { crudInput },
 	props: {
@@ -143,6 +149,14 @@ export default {
 		}
 	},
 	methods: {
+		parseValue(val, defults) {
+			if (isEmpty(val)) {
+				return defaults;
+			} else {
+				return val;
+			}
+		},
+
 		getProcessGroup() {
 			if (this.processGroupID != 0 || this.processGroupID !== "") {
 				let found = this.dataBaru.find(

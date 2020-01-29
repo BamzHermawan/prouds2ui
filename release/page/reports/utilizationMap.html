@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+    <meta name="description" content="HOME for PROUDS 2 Web Application">
+    <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+    <title>UTILIZATION MAP | PROUDS 2</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="../../src/style.min.css">
+</head>
+
+<body>
+    <div class="loader-wrapper animated fadeIn">
+        <img src="http://localhost:5501/media/loader.gif">
+    </div>
+
+    <div id="main-layout" class="wrapper open-first">
+        <section id="side-main" class="sidebar">
+            <div class="brand animated slideInLeft fast">
+                <span>PROUDS</span>
+            </div>
+            <div class="side-list animated slideInLeft faster">
+                <a href="#notification" class="parent-list">
+                    <div class="list-title">
+                        <label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+                        <div class="action">
+                            <span class="tag is-warning">{{notifCount}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+            <side-list label="Project" name="project">
+                <side-item href="#" active="">Utilization Map</side-item>
+            </side-list>
+
+            <side-list label="My Workspace" name="ws"></side-list>
+        </section>
+
+        <nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu main-navbar">
+                <div class="navbar-start">
+                    <a id="toggle-sidebar" class="navbar-item">
+                        <span class="mdi mdi-chevron-left mdi-24px"></span>
+                    </a>
+
+                    <a href="http://localhost:5501/page/projects/list.html" class="navbar-item">
+						PROJECT
+					</a>
+
+                    <a class="navbar-item">
+						Resource
+					</a>
+
+                    <a class="navbar-item">
+						Monitoring
+					</a>
+
+                    <a href="http://localhost:5501/page/programs/programlist.html" class="navbar-item">
+						Programs
+					</a>
+
+                    <a class="navbar-item is-active">
+						Reports
+					</a>
+                </div>
+
+                <div class="navbar-end">
+                    <a href="http://localhost:5501/page/maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-view-dashboard-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+                    </a>
+
+                    <a href="http://localhost:5501/page/setting/authorization.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-settings-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-link is-arrowless">
+                            <span class="mdi mdi-account-outline"></span>
+                        </div>
+                        <div class="navbar-dropdown is-boxed is-right">
+                            <a href="http://localhost:5501/page/maintenance.html" class="navbar-item">Account Profile</a>
+                            <a href="http://localhost:5501/page/maintenance.html" class="navbar-item">Need Help ?</a>
+                            <hr class="navbar-divider">
+                            <a href="#" class="navbar-item">
+                                <span>Sign Out</span>
+                                <span class="mdi mdi-logout-variant"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section id="vapp" class="contentPage">
+            <section class="hero is-light is-bold">
+                <div class="hero-body">
+                    <nav class="level">
+                        <div class="level-left">
+                            <h1 class="title is-marginless">
+                                <span>Utilization Map</span>
+                            </h1>
+                        </div>
+                        <div class="level-right">
+                            <div id="bookmarkPage">
+                                <bookmark-button></bookmark-button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+            <section class="section">
+                <div id="contentApp" class="container" data-title="Utilization Map">
+                    <nav class="level" style="margin-bottom: 1rem;">
+                        <div class="level-left">
+
+                            <!-- <unit-form @input="selectUnit" v-model="unitID" export-link="http://localhost:5501/demo/post_detect.php?unit={unit_id}&start={start}&end={end}">
+                                <option value="pmo">Project Management Office</option>
+                                <option value="bsd">Business Solution Delivery</option>
+                            </unit-form> -->
+
+                            <unit-form @input="selectUnit" export-link="http://localhost:5501/demo/post_detect.php?unit={unit_id}&start={start}&end={end}" unit-id="pmo">
+                                Project Management Office
+                            </unit-form>
+
+                        </div>
+                        <div class="level-right">
+                            <b-field grouped="" style="padding-right: 100px;">
+                                <b-field>
+                                    <template slot="label">
+										<b-tooltip dashed="" label="Select which month to filter data" type="is-info">
+											Filter on Month
+										</b-tooltip>
+									</template>
+                                    <b-datepicker type="month" :max-date="maxStart" v-model="filterStart" placeholder="Select month/year to filter" icon="calendar-today">
+                                    </b-datepicker>
+                                </b-field>
+                                <b-field>
+                                    <template slot="label">
+										<b-tooltip dashed="" label="If selected, the system will filter data based on date range picked" type="is-info">
+											by Month
+										</b-tooltip>
+									</template>
+                                    <b-datepicker type="month" :min-date="minEnd" :max-date="maxEnd" v-model="filterEnd" placeholder="Select end range of month/year to filter" position="is-bottom-left" icon="calendar-today">
+                                        <b-button type="is-warning" size="is-small" class="is-fullwidth" v-show="filterEnd !== null" @click="filterEnd = null">Clear Range</b-button>
+                                    </b-datepicker>
+                                </b-field>
+                                <b-field class="has-align-bottom">
+                                    <b-button type="is-info is-align-bottom" style="width:100px;" @click="filterMap">Filter</b-button>
+                                </b-field>
+                            </b-field>
+                        </div>
+                    </nav>
+
+                    <b-message type="is-info" size="is-small" style="margin-bottom: 1rem;">
+                        <div class="columns">
+                            <div class="column" style="padding: 6px;">
+                                <p style="font-size: .7rem;" class="has-text-dark">
+                                    <span class="has-bg-warning-light" style="margin:0px 5px; padding:1px 5px; border: solid 1px grey;">8</span>
+                                    <span>Marked Yellow means that submited timesheet is not fully approved</span>
+                                </p>
+                            </div>
+                            <div class="column" style="padding: 6px;">
+                                <p style="font-size: .7rem;" class="has-text-dark">
+                                    <span class="has-background-white has-text-danger" style="margin:0px 5px; padding:1px 5px; border: solid 1px grey;">
+										<b>4</b>
+									</span>
+                                    <span>Red Bold means that user's workhour still under utilized</span>
+                                </p>
+                            </div>
+                        </div>
+                    </b-message>
+
+                    <map-table ref="mapTable" @warningclick="displayDetailModal">
+                        <template slot="whenEmpty">
+							<p class="has-text-centered">Please Select Business Unit 🔍</p>
+						</template>
+                    </map-table>
+
+                    <b-modal :active.sync="modal_act.display" :width="640" scroll="keep">
+                        <div class="card modal-card-pIndex">
+                            <header class="card-header">
+                                <div class="container">
+                                    <nav class="level">
+                                        <div class="level-left content is-marginless">
+                                            <p class="card-header-title">
+                                                <span>{{ modal_act.user.name }}</span>
+                                                <span style="margin:0px 5px;">—</span>
+                                                <span class="has-text-grey">{{ modal_act.user.nik }}</span>
+                                            </p>
+                                        </div>
+                                        <div class="level-right">
+                                            <p class="card-header-title">Activity at {{ modal_act.date | moment }}</p>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </header>
+
+                            <div class="card-content member-list">
+                                <template v-if="!modal_act.loading">
+									<div v-for="(row, i) in modal_act.timesheet" :key="'modal-act-'+i" class="media">
+										<div class="media-content">
+											<div class="content is-marginless">
+												<p class="is-small has-text-grey is-marginless">
+													<span>Task Name</span>
+													<span style="margin:0px 5px;">—</span>
+													<small v-if="row.status" class="has-text-success">
+														<span class="mdi mdi-checkbox-marked-circle-outline in-left"></span>
+														Approved
+													</small>
+													<small v-else="" class="has-text-danger">
+														<span class="mdi mdi-timer in-left"></span>
+														Waiting Approval
+													</small>
+												</p>
+												<p>{{ row.task }}</p>
+												<p class="is-small has-text-grey is-marginless">Project Name</p>
+												<p>{{ row.project }}</p>
+
+												<b-message size="is-small" :type="row.status ? 'is-light':'is-warning'">
+													<p class="has-text-weight-bold" style="margin-bottom:5px;">
+														<span class="has-text-info">Activity — {{ row.activity_type }}:</span>
+														<span>{{ row.workhour }} Hours</span>
+													</p>
+													<p class="activity-detail has-text-dark">{{ row.activity }}</p>
+												</b-message>
+											</div>
+											<span v-if="(i+1) == modal_act.timesheet.length && modal_act.timesheet > 1" class="white-space is-medium"></span>
+										</div>
+									</div>
+								</template>
+
+                                <b-loading :is-full-page="false" :active.sync="modal_act.loading"></b-loading>
+                            </div>
+                        </div>
+                    </b-modal>
+                </div>
+            </section>
+        </section>
+
+        <section id="infoFooter">
+            <info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+            </info-footer>
+        </section>
+    </div>
+
+    <div class="api-testing" base="http://localhost:5501/demo/">
+        <!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
+        <api-test url="getNotification.php" key="getNotification"></api-test>
+
+        <!-- 
+			Get User Utilization Map Detail list by Nik and date
+			Send Data:
+			- nik: String User NIK [POST]
+			- date: Activity Date with format DD/MM/YYYY [POST]
+		 -->
+        <api-test url="getUtilMap.php?get=detail" key="userActivityByDate"></api-test>
+
+        <!-- 
+			Get User list by Unit ID
+         	Send Data:
+         	- unit_id: string project id [GET]
+		-->
+        <api-test url="getUtilMap.php?get=users&total=25&unit={unit_id}" key="userByUnit"></api-test>
+
+        <!-- 
+			Get User Utilization Map list by Unit ID
+			Send Data:
+			- unit_id: string project id [GET]
+			- start: start date range (MM/YYYY) or null [POST]
+			- end: end date range (MM/YYYY) or null [POST]
+		-->
+        <api-test url="getUtilMap.php?get=map&total=25&unit={unit_id}" key="userMapByUnit"></api-test>
+    </div>
+
+    <script src="../../src/main.min.js"></script>
+    <script src="../../src/reports/utilizationMap.min.js"></script>
+</body>
+
+</html>

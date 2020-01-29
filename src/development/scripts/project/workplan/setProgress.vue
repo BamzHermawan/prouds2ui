@@ -71,7 +71,7 @@
 					</p>
 					<p class="control is-expanded">
 						<span class="button is-static is-fullwidth"
-							>{{ task.duration }}%</span
+							>{{ parseValue(task.autoCalculationProgress, 0) }}%</span
 						>
 					</p>
 				</b-field>
@@ -104,6 +104,8 @@
 <script>
 import moment from "helper-moment";
 import { crudInput } from "components";
+import { isEmpty } from "helper-tools";
+
 export default {
 	components: { crudInput },
 	props: {
@@ -143,6 +145,14 @@ export default {
 		}
 	},
 	methods: {
+		parseValue(val, defults){
+			if (isEmpty(val)) {
+				return defaults;
+			} else {
+				return val;
+			}
+		},
+
 		getProcessGroup() {
 			if (this.processGroupID != 0 || this.processGroupID !== "") {
 				let found = this.dataBaru.find(

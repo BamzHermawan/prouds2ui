@@ -16,6 +16,9 @@ import dataTableNoCard from "./dataTable/nocard.vue";
 import Paging from "./paging/pages.vue";
 import PagingPage from "./paging/page.vue";
 
+// Status Tooltip
+import statusTooltip from "./statusTooltip/status.vue";
+
 // TIMESHEET
 import taskGroup from "./timesheet/taskGroup.vue";
 import taskCard from "./timesheet/task.vue";
@@ -46,6 +49,8 @@ module.exports.notificationLog = notificationLog;
 module.exports.dataTable = dataTable;
 module.exports.treeTable = treeTable;
 module.exports.dataTableNoCard = dataTableNoCard;
+
+module.exports.statusTooltip = statusTooltip;
 
 module.exports.Paging = Paging;
 module.exports.PagingPage = PagingPage;
