@@ -90,7 +90,6 @@ export default {
 	},
 	methods: {
 		pushRow(row) {
-			console.log(row);
 			this.row.push(row);
 		}
 	},

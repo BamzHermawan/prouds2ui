@@ -2,247 +2,329 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
-	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
-	<title>INTERNAL RESOURCES | PROUDS 2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+    <meta name="description" content="HOME for PROUDS 2 Web Application">
+    <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+    <title>INTERNAL RESOURCES | PROUDS 2</title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
-	<link rel="stylesheet" href="../../../styles/style.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
 <body>
-	<div class="loader-wrapper animated fadeIn">
-		<img src="http://localhost:5501/media/loader.gif">
-	</div>
+    <div class="loader-wrapper animated fadeIn">
+        <img src="http://localhost:5501/media/loader.gif">
+    </div>
 
-	<div id="main-layout" class="wrapper open-first">
-		<section id="side-main" class="sidebar">
-			<div class="brand animated slideInLeft fast">
-				<span>PROUDS</span>
-			</div>
-			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
-					<div class="list-title">
-						<label>
+    <div id="main-layout" class="wrapper open-first">
+        <section id="side-main" class="sidebar">
+            <div class="brand animated slideInLeft fast">
+                <span>PROUDS</span>
+            </div>
+            <div class="side-list animated slideInLeft faster">
+                <a href="#notification" class="parent-list">
+                    <div class="list-title">
+                        <label>
 							<span class="mdi mdi-bell-outline in-left"></span>
 							<span>Notification</span>
 						</label>
-						<div class="action">
-							<span class="tag is-warning">{{notifCount}}</span>
-						</div>
-					</div>
-				</a>
-			</div>
+                        <div class="action">
+                            <span class="tag is-warning">{{notifCount}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
-			<side-list label="Project" name="project">
-				<side-item href="./list.html" active>Project List</side-item>
-				<side-item href="./projectAssignment.html">Project Assignment</side-item>
-				<side-item href="./projectRequest.html">Project Request</side-item>
-				<side-item href="./timesheetList.html">My Task</side-item>
-				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
-				<side-item href="../maintenance.html">Rebaseline</side-item>
-				<side-item href="#no-edit">Closing</side-item>
-			</side-list>
+            <!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+            <side-list label="Project" name="project">
+                <side-item href="./list.html" active>Project List</side-item>
+                <side-item href="./projectAssignment.html">Project Assignment</side-item>
+                <side-item href="./projectRequest.html">Project Request</side-item>
+                <side-item href="./timesheetList.html">My Task</side-item>
+                <side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
+                <side-item href="../maintenance.html">Rebaseline</side-item>
+                <side-item href="#no-edit">Closing</side-item>
+            </side-list>
 
-			<side-list label="My Workspace" name="ws"></side-list>
-		</section>
+            <side-list label="My Workspace" name="ws"></side-list>
+        </section>
 
-		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
-			<div class="navbar-menu main-navbar">
-				<div class="navbar-start">
-					<a id="toggle-sidebar" class="navbar-item">
-						<span class="mdi mdi-chevron-left mdi-24px"></span>
-					</a>
+        <nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu main-navbar">
+                <div class="navbar-start">
+                    <a id="toggle-sidebar" class="navbar-item">
+                        <span class="mdi mdi-chevron-left mdi-24px"></span>
+                    </a>
 
-					<a class="navbar-item is-active">
+                    <a class="navbar-item is-active">
 						PROJECT
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Resource
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Monitoring
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Operations
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Reports
 					</a>
-				</div>
+                </div>
 
-				<div class="navbar-end">
-					<a href="../maintenance.html" class="navbar-item hover-text">
-						<span class="mdi mdi-view-dashboard-outline"></span>
-						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
-					</a>
+                <div class="navbar-end">
+                    <a href="../maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-view-dashboard-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+                    </a>
 
-					<a href="../maintenance.html" class="navbar-item hover-text">
-						<span class="mdi mdi-settings-outline"></span>
-						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
-					</a>
+                    <a href="../maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-settings-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+                    </a>
 
-					<div class="navbar-item has-dropdown is-hoverable">
-						<div class="navbar-link is-arrowless">
-							<span class="mdi mdi-account-outline"></span>
-						</div>
-						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
-							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
-							<hr class="navbar-divider">
-							<a href="#" class="navbar-item">
-								<span>Sign Out</span>
-								<span class="mdi mdi-logout-variant"></span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-link is-arrowless">
+                            <span class="mdi mdi-account-outline"></span>
+                        </div>
+                        <div class="navbar-dropdown is-boxed is-right">
+                            <a href="../maintenance.html" class="navbar-item">Account Profile</a>
+                            <a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+                            <hr class="navbar-divider">
+                            <a href="#" class="navbar-item">
+                                <span>Sign Out</span>
+                                <span class="mdi mdi-logout-variant"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-		<section id="vapp" class="contentPage">
-			<section class="hero is-light is-bold">
-				<div class="hero-body">
-					<nav class="level">
-						<div class="level-left">
-							<h1 class="title is-marginless">
-								<span>Internal Resources</span>
-							</h1>
-						</div>
-						<div class="level-right">
-							<div id="bookmarkPage">
-								<bookmark-button></bookmark-button>
-							</div>
-						</div>
-					</nav>
-				</div>
-			</section>
-			<section class="section">
-				<div id="contentApp" class="container" data-title="Internal Resources">
-				
-					<!-- * Breadcrumb page -->
-					<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-						<ul class="is-marginless">
-							<li><a href="list.html">Project List</a></li>
-							<li class="is-active"><a href="#" aria-current="page">Internal Resources</a></li>
-						</ul>
-					</nav>
-				
-					<!-- * Project Detail Title Format -->
-					<div class="columns is-marginless">
-						<div class="column is-8-desktop content is-marginless is-paddingless">
-							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery
-								Awesome
-								App Mantap Super Jaya
-								Semua Suka Sampai Mendunia</h3>
-							<b-field grouped>
-								<div v-cloak class="control">
-									<div class="tags has-addons">
-										<span class="tag is-dark">ID</span>
-										<span ref="project_id" class="tag is-info">1900123</span>
-									</div>
-								</div>
-								<div v-cloak class="control">
-									<b-taglist v-once attached size="are-medium">
-										<b-tag type="is-dark">IWO</b-tag>
-										<b-tag type="is-info">P-1909-TTES0481</b-tag>
-									</b-taglist>
-								</div>
-								<div v-cloak class="control">
-									<b-taglist v-once attached size="are-medium">
-										<b-tag type="is-dark">PM</b-tag>
-										<b-tag type="is-info">Ade Wiranata Putra</b-tag>
-									</b-taglist>
-								</div>
-								<div v-cloak class="control">
-									<b-taglist v-once attached size="are-medium">
-										<b-tag type="is-dark">
-											<span class="mdi mdi-account-tie is-marginless"></span>
-										</b-tag>
-										<b-tag type="is-info">2</b-tag>
-									</b-taglist>
-								</div>
-							</b-field>
-						</div>
-					</div>
-				
-					<span class="white-space is-medium"></span>
-				
-					<div class="animated fadeIn">
-						<b-message id="is-alert-message" class="animated" type="is-danger">
-							<span style="margin-right:5px;">⚠</span> Your allocated budget is more than your plan <br>
-						</b-message>
-				
-						<b-collapse class="card is-shadowless is-grey" :open="true">
-							<div slot="trigger" slot-scope="props" class="card-header" role="button">
-								<p class="card-header-title has-text-light">
-									Resource Plan / BoQ
-								</p>
-								<a class="card-header-icon">
-									<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
-									</b-icon>
-								</a>
-							</div>
-							<resource-table v-once type="is-info">
-								<template>
+        <section id="vapp" class="contentPage">
+            <section class="hero is-light is-bold">
+                <div class="hero-body">
+                    <nav class="level">
+                        <div class="level-left">
+                            <h1 class="title is-marginless">
+                                <span>Internal Resources</span>
+                            </h1>
+                        </div>
+                        <div class="level-right">
+                            <div id="bookmarkPage">
+                                <bookmark-button></bookmark-button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+            <section class="section">
+                <div id="contentApp" class="container" data-title="Internal Resources">
+
+                    <!-- * Breadcrumb page -->
+                    <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+                        <ul class="is-marginless">
+                            <li><a href="list.html">Project List</a></li>
+                            <li class="is-active"><a href="#" aria-current="page">Internal Resources</a></li>
+                        </ul>
+                    </nav>
+
+                    <!-- * Project Detail Title Format -->
+                    <div class="columns is-marginless">
+                        <div class="column is-8-desktop content is-marginless is-paddingless">
+                            <h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome App Mantap Super Jaya Semua Suka Sampai Mendunia</h3>
+                            <b-field grouped>
+                                <div v-cloak class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">ID</span>
+                                        <span ref="project_id" class="tag is-info">1900123</span>
+                                    </div>
+                                </div>
+                                <div v-cloak class="control">
+                                    <b-taglist v-once attached size="are-medium">
+                                        <b-tag type="is-dark">IWO</b-tag>
+                                        <b-tag type="is-info">P-1909-TTES0481</b-tag>
+                                    </b-taglist>
+                                </div>
+                                <div v-cloak class="control">
+                                    <b-taglist v-once attached size="are-medium">
+                                        <b-tag type="is-dark">PM</b-tag>
+                                        <b-tag type="is-info">Ade Wiranata Putra</b-tag>
+                                    </b-taglist>
+                                </div>
+                                <div v-cloak class="control">
+                                    <b-taglist v-once attached size="are-medium">
+                                        <b-tag type="is-dark">
+                                            <span class="mdi mdi-account-tie is-marginless"></span>
+                                        </b-tag>
+                                        <b-tag type="is-info">2</b-tag>
+                                    </b-taglist>
+                                </div>
+                            </b-field>
+                        </div>
+                    </div>
+
+                    <span class="white-space is-medium"></span>
+
+                    <div class="animated fadeIn">
+                        <b-message id="is-alert-message" class="animated" type="is-danger">
+                            <span style="margin-right:5px;">⚠</span> Your allocated budget is more than your plan <br>
+                        </b-message>
+
+                        <b-collapse class="card is-shadowless is-grey" :open="true">
+                            <div slot="trigger" slot-scope="props" class="card-header" role="button">
+                                <p class="card-header-title has-text-light">
+                                    Resource Plan / BoQ
+                                </p>
+                                <a class="card-header-icon">
+                                    <b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+                                    </b-icon>
+                                </a>
+                            </div>
+                            <resource-table v-once type="is-info">
+                                <template>
 									<!-- Looping baris dengan php -->
 									<resource-row qty="7" days="80" rate="750000">Senior Programmer</resource-row>
-									<resource-row qty="5" days="50" rate="600000">Senior Programmer</resource-row>
+									<resource-row qty="5" days="50" rate="600000">Junior Programmer</resource-row>
 									<!-- Looping baris dengan php -->
 								</template>
-								<template slot="after">
+                                <template slot="after">
 									<tr>
 										<th class="has-text-centered is-grey">Internal Resources - Indirect</th>
 										<td colspan="5" class="is-info is-bolder has-text-right">150,000,000</td>
 									</tr>
 								</template>
-							</resource-table>
-						</b-collapse>
-				
-						<span class="white-space is-medium"></span>
-				
-						<b-collapse class="card is-shadowless is-grey" :open="true">
-							<div slot="trigger" slot-scope="props" class="card-header" role="button">
-								<p class="card-header-title has-text-light">
-									Assigned by PM
-								</p>
-								<a class="card-header-icon">
-									<b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
-									</b-icon>
-								</a>
-							</div>
-							<resource-table v-once type="is-success">
-								<!-- Looping baris dengan php -->
-								<resource-row qty="7" days="80" rate="750000">Senior Programmer</resource-row>
-								<resource-row qty="5" days="50" rate="600000">Senior Programmer</resource-row>
-								<!-- Looping baris dengan php -->
-							</resource-table>
-						</b-collapse>
-					</div>
-				</div>
-			</section>
-		</section>
+                            </resource-table>
+                        </b-collapse>
 
-		<section id="infoFooter">
-			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
-				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
-			</info-footer>
-		</section>
-	</div>
+                        <span class="white-space is-medium"></span>
 
-	<div class="api-testing" base="http://localhost:5501/demo/">
-		<!-- 
+                        <b-collapse class="card is-shadowless is-grey" :open="true">
+                            <div slot="trigger" slot-scope="props" class="card-header" role="button">
+                                <p class="card-header-title has-text-light">
+                                    Assigned by PM
+                                </p>
+                                <a class="card-header-icon">
+                                    <b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+                                    </b-icon>
+                                </a>
+                            </div>
+                            <resource-table v-once type="is-success">
+                                <!-- Looping baris dengan php -->
+                                <resource-row qty="7" days="80" rate="750000">Senior Programmer</resource-row>
+                                <resource-row qty="5" days="50" rate="600000">Junior Programmer</resource-row>
+                                <!-- Looping baris dengan php -->
+                            </resource-table>
+                        </b-collapse>
+
+                        <span class="white-space is-medium"></span>
+
+                        <b-collapse class="card is-light" :open="true">
+                            <div slot="trigger" slot-scope="props" class="card-header" role="button">
+                                <p class="card-header-title">
+                                    Resources
+                                </p>
+                                <a class="card-header-icon">
+                                    <b-icon :icon="props.open ? 'menu-down' : 'menu-up'">
+                                    </b-icon>
+                                </a>
+                            </div>
+                            <div class="card-content" style="padding:10px;">
+                                <nav class="level">
+                                    <div class="level-left">
+                                        <b-field>
+                                            <b-input placeholder="Search..." type="search" icon="magnify" v-model="resources.query">
+                                            </b-input>
+                                        </b-field>
+                                    </div>
+                                    <div class="level-right">
+                                        <div class="level-item">
+                                            <b-field>
+                                                <p class="control">
+                                                    <button class="button is-static is-dark-blend">
+														Resource Plan
+													</button>
+                                                </p>
+                                                <p class="control">
+                                                    <span class="button is-static is-info-blend">4</span>
+                                                </p>
+                                            </b-field>
+                                        </div>
+                                        <div class="level-item">
+                                            <b-field>
+                                                <p class="control">
+                                                    <button class="button is-static is-dark-blend">
+														Allocated
+													</button>
+                                                </p>
+                                                <p class="control">
+                                                    <span class="button is-static is-info-blend">{{ resources.raw.length }}</span>
+                                                </p>
+                                            </b-field>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <b-table :data="filtered" paginated pagination-simple per-page="5">
+                                    <template slot-scope="{ row }">
+										<b-table-column field="nik" label="NIK" sortable>
+											{{ row.nik }}
+										</b-table-column>
+										<b-table-column field="name" label="User" sortable>
+											{{ row.name }}
+										</b-table-column>
+										<b-table-column field="unit" label="Business Unit" sortable>
+											{{ row.unit }}
+										</b-table-column>
+										<b-table-column field="role" label="Assigned Role" sortable>
+											{{ row.role }}
+										</b-table-column>
+										<b-table-column field="start" label="Assign From" sortable centered>
+											{{ row.start | moment }}
+										</b-table-column>
+										<b-table-column field="end" label="Assign To" sortable centered>
+											{{ row.end | moment }}
+										</b-table-column>
+										<b-table-column field="duration" label="Duration (days)" sortable centered>
+											{{ row.duration }}
+										</b-table-column>
+										<b-table-column field="workload" label="Workload" sortable centered>
+											{{ row.workload }}%
+										</b-table-column>
+									</template>
+                                    <template slot="empty">
+										<span class="white-space"></span>
+										<b-message type="is-warning">
+											<p class="has-text-centered">
+												Sorry, we can't find any data related
+											</p>
+										</b-message>
+									</template>
+                                </b-table>
+                            </div>
+                        </b-collapse>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="infoFooter">
+            <info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+            </info-footer>
+        </section>
+    </div>
+
+    <div class="api-testing" base="http://localhost:5501/demo/">
+        <!-- 
 				expected return from getNotification!
 				[{
 					"id": {String},
@@ -253,11 +335,96 @@
 					"read": {Boolean}
 				}, ... ],
 			-->
-		<api-test url="getNotification.php" key="getNotification"></api-test>
-	</div>
+        <api-test url="getNotification.php" key="getNotification"></api-test>
+    </div>
 
-	<script src="../../../main.js"></script>
-	<script src="../../scripts/project/internalResources/internalResources.js"></script>
+    <script id="implantedJSON" type="application/json">
+        [{
+            "nik": "SGM22019",
+            "name": "Christian Peters",
+            "unit": "Isoplex Zork",
+            "role": "Junior Programmer",
+            "start": "12/1/2019",
+            "end": "18/3/2019",
+            "duration": 61,
+            "workload": 57
+        }, {
+            "nik": "SGM12019",
+            "name": "Vaughn Cooley",
+            "unit": "Geologix Inquala",
+            "role": "Junior Programmer",
+            "start": "7/2/2019",
+            "end": "17/3/2019",
+            "duration": 88,
+            "workload": 51
+        }, {
+            "nik": "SGM22019",
+            "name": "Patrick Abbott",
+            "unit": "Veraq Delphide",
+            "role": "Senior Programmer",
+            "start": "19/4/2019",
+            "end": "28/3/2019",
+            "duration": 75,
+            "workload": 35
+        }, {
+            "nik": "SGM32019",
+            "name": "Casandra Ayala",
+            "unit": "Bezal Zytrex",
+            "role": "Junior Programmer",
+            "start": "15/7/2019",
+            "end": "13/9/2019",
+            "duration": 80,
+            "workload": 95
+        }, {
+            "nik": "SGM42019",
+            "name": "Daphne Hendrix",
+            "unit": "Nimon Unia",
+            "role": "Senior Programmer",
+            "start": "23/1/2019",
+            "end": "8/12/2019",
+            "duration": 127,
+            "workload": 61
+        }, {
+            "nik": "SGM52019",
+            "name": "Evelyn Pacheco",
+            "unit": "Isopop Hawkster",
+            "role": "Junior Programmer",
+            "start": "21/7/2019",
+            "end": "29/10/2019",
+            "duration": 133,
+            "workload": 95
+        }, {
+            "nik": "SGM62019",
+            "name": "Cindy Malone",
+            "unit": "Lumbrex Ontagene",
+            "role": "Senior Programmer",
+            "start": "27/12/2019",
+            "end": "9/7/2019",
+            "duration": 174,
+            "workload": 36
+        }, {
+            "nik": "SGM72019",
+            "name": "Love Rice",
+            "unit": "Bitendrex Printspan",
+            "role": "Senior Programmer",
+            "start": "26/8/2019",
+            "end": "10/3/2019",
+            "duration": 69,
+            "workload": 33
+        }, {
+            "nik": "SGM82019",
+            "name": "Alisha Puckett",
+            "unit": "Temorak Fortean",
+            "role": "Senior Programmer",
+            "start": "26/9/2019",
+            "end": "24/9/2019",
+            "duration": 71,
+            "workload": 15
+        }]
+    </script>
+
+    <script src="../../../main.js"></script>
+    <script src="../../scripts/project/internalResources/internalResources.js"></script>
 </body>
 
 </html>

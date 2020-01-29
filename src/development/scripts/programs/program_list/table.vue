@@ -38,7 +38,13 @@
 			</div>
 		</nav>
 
-		<b-table :data="filtered" striped>
+		<b-table
+			:data="filtered"
+			striped
+			paginated
+			pagination-simple
+			per-page="10"
+		>
 			<template slot-scope="{ row }">
 				<b-table-column width="110" field="id" label="ID" sortable>
 					{{ row.id }}
