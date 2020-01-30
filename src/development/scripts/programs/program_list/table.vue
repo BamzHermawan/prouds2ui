@@ -206,7 +206,9 @@ export default {
 				return programs;
 			}
 
-			return programs.filter(program => this.filter.status == program);
+			return programs.filter(
+				program => this.filter.status == program.status
+			);
 		},
 		parseLink(row) {
 			return parsedURL(this.nameLink, row);

@@ -2,451 +2,438 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
-	<meta name="description" content="HOME for PROUDS 2 Web Application">
-	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
-	<title>TIMESHEET | PROUDS 2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+    <meta name="description" content="HOME for PROUDS 2 Web Application">
+    <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+    <title>TIMESHEET | PROUDS 2</title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
-	<link rel="stylesheet" href="../../../styles/style.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../../../styles/style.scss">
 </head>
 
 <body>
-	<div class="loader-wrapper animated fadeIn">
-		<img src="http://localhost:5501/media/loader.gif">
-	</div>
+    <div class="loader-wrapper animated fadeIn">
+        <img src="http://localhost:5501/media/loader.gif">
+    </div>
 
-	<div id="main-layout" class="wrapper open-first">
-		<section id="side-main" class="sidebar">
-			<div class="brand animated slideInLeft fast">
-				<span>PROUDS</span>
-			</div>
-			<div class="side-list animated slideInLeft faster">
-				<a href="#notification" class="parent-list">
-					<div class="list-title">
-						<label>
+    <div id="main-layout" class="wrapper open-first">
+        <section id="side-main" class="sidebar">
+            <div class="brand animated slideInLeft fast">
+                <span>PROUDS</span>
+            </div>
+            <div class="side-list animated slideInLeft faster">
+                <a href="#notification" class="parent-list">
+                    <div class="list-title">
+                        <label>
 							<span class="mdi mdi-bell-outline in-left"></span>
 							<span>Notification</span>
 						</label>
-						<div class="action">
-							<span class="tag is-warning">{{notifCount}}</span>
-						</div>
-					</div>
-				</a>
-			</div>
+                        <div class="action">
+                            <span class="tag is-warning">{{notifCount}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
-			<side-list label="Project" name="project">
-				<side-item href="./list.html">Project List</side-item>
-				<side-item href="./projectAssignment.html">Project Assignment</side-item>
-				<side-item href="./projectRequest.html">Project Request</side-item>
-				<side-item active>My Tasks</side-item>
-				<side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
-				<side-item href="../rebaseline.html">Rebaseline</side-item>
-				<side-item href="#no-edit">Closing</side-item>
-			</side-list>
+            <!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+            <side-list label="Project" name="project">
+                <side-item href="./list.html">Project List</side-item>
+                <side-item href="./projectAssignment.html">Project Assignment</side-item>
+                <side-item href="./projectRequest.html">Project Request</side-item>
+                <side-item active>My Tasks</side-item>
+                <side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
+                <side-item href="../rebaseline.html">Rebaseline</side-item>
+                <side-item href="#no-edit">Closing</side-item>
+            </side-list>
 
-			<side-list label="My Workspace" name="ws"></side-list>
-		</section>
+            <side-list label="My Workspace" name="ws"></side-list>
+        </section>
 
-		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
-			<div class="navbar-menu main-navbar">
-				<div class="navbar-start">
-					<a id="toggle-sidebar" class="navbar-item">
-						<span class="mdi mdi-chevron-left mdi-24px"></span>
-					</a>
+        <nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu main-navbar">
+                <div class="navbar-start">
+                    <a id="toggle-sidebar" class="navbar-item">
+                        <span class="mdi mdi-chevron-left mdi-24px"></span>
+                    </a>
 
-					<a class="navbar-item is-active">
+                    <a class="navbar-item is-active">
 						PROJECT
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Resource
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Monitoring
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Operations
 					</a>
 
-					<a class="navbar-item">
+                    <a class="navbar-item">
 						Reports
 					</a>
-				</div>
+                </div>
 
-				<div class="navbar-end">
-					<a href="../maintenance.html" class="navbar-item hover-text">
-						<span class="mdi mdi-view-dashboard-outline"></span>
-						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
-					</a>
+                <div class="navbar-end">
+                    <a href="../maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-view-dashboard-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+                    </a>
 
-					<a href="../maintenance.html" class="navbar-item hover-text">
-						<span class="mdi mdi-settings-outline"></span>
-						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
-					</a>
+                    <a href="../maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-settings-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+                    </a>
 
-					<div class="navbar-item has-dropdown is-hoverable">
-						<div class="navbar-link is-arrowless">
-							<span class="mdi mdi-account-outline"></span>
-						</div>
-						<div class="navbar-dropdown is-boxed is-right">
-							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
-							<a href="#help" class="navbar-item">Need Help ?</a>
-							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
-								class="navbar-item">Acting As</a>
-							<hr class="navbar-divider">
-							<a href="#" class="navbar-item">
-								<span>Sign Out</span>
-								<span class="mdi mdi-logout-variant"></span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-link is-arrowless">
+                            <span class="mdi mdi-account-outline"></span>
+                        </div>
+                        <div class="navbar-dropdown is-boxed is-right">
+                            <a href="../maintenance.html" class="navbar-item">Account Profile</a>
+                            <a href="#help" class="navbar-item">Need Help ?</a>
+                            <a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php" class="navbar-item">Acting As</a>
+                            <hr class="navbar-divider">
+                            <a href="#" class="navbar-item">
+                                <span>Sign Out</span>
+                                <span class="mdi mdi-logout-variant"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-		<section id="vapp" class="contentPage">
-			<section class="hero is-light is-bold">
-				<div class="hero-body">
-					<nav class="level">
-						<div class="level-left">
-							<h1 class="title is-marginless has-text-right">
-								<span>My Tasks</span>
-							</h1>
-						</div>
-						<div class="level-right">
-							<div id="bookmarkPage">
-								<bookmark-button></bookmark-button>
-							</div>
-						</div>
-					</nav>
-				</div>
-			</section>
-			<section class="section">
-				<div id="contentApp" class="container" data-title="My Tasks">
-				
-					<div v-if="showList">
-						<nav class="level">
-							<div class="level-left">
-								<span class="button is-static">You had task until <span style="margin-right:5px;"></span>
-									<b>{{ endWorkload }}</b></span>
-							</div>
-							<div class="level-right">
-								<b-button tag="a" href="./historyTimesheet.html" type="is-info is-light">
-									<span class="icon">
-										<span class="mdi mdi-history"></span>
-									</span>
-									<span>History Timesheet</span>
-								</b-button>
-							</div>
-						</nav>
-				
-						<task-group title="Overdue Task" type="is-delayed">
-							<div class="columns is-multiline">
-								<div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
-									<task-card @clicked="setTimesheet(ts)" type="is-delayed" :task="ts"></task-card>
-								</div>
-							</div>
-				
-							<b-message v-if="task.delayed.length <= 0" type="is-success">
-								<p class="has-text-centered">Hooray, you have no delayed task 🎉</p>
-							</b-message>
-						</task-group>
-				
-						<task-group title="On Going Task" always-show>
-							<div class="columns is-multiline">
-								<div v-for="(ts, idx) in task.ongoing" :key="idx" class="column is-4-desktop is-6">
-									<task-card @clicked="setTimesheet(ts)" :task="ts"></task-card>
-								</div>
-							</div>
-				
-							<b-message v-if="task.ongoing.length <= 0" type="is-info">
-								<p class="has-text-centered">Today you have no task, please stand by 🚀</p>
-							</b-message>
-						</task-group>
-				
-						<task-group title="Scheduled Task" type="is-scheduled">
-							<div v-for="(group, i) in task.scheduled" :key="i">
-								<div :class="'task-divider' + (i==0?' no-top-margin':'')">
-									<p>Task Starting in <b>{{ group.month }}</b></p>
-								</div>
-								<div class="columns is-multiline">
-									<div v-for="(ts, idx) in group.list" :key="idx" class="column is-4-desktop is-6">
-										<task-card type="is-scheduled" :task="ts"></task-card>
-									</div>
-								</div>
-							</div>
-				
-							<b-message v-if="task.scheduled.length <= 0" type="is-light">
-								<p class="has-text-centered">There is currently no scheduled task</p>
-							</b-message>
-						</task-group>
-					</div>
-				
-					<div v-if="showForm" class="animated fadeIn faster">
-						<div class="columns is-marginless">
-							<div class="column is-8-desktop content is-marginless is-paddingless">
-								<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">
-									{{ dataForm.project_name }}</h3>
-								<b-field grouped>
-									<div class="control">
-										<b-taglist attached>
-											<b-tag type="is-dark">ID</b-tag>
-											<b-tag type="is-info">{{ dataForm.project_id }}</b-tag>
-										</b-taglist>
-									</div>
-									<div class="control">
-										<b-taglist attached size="are-medium">
-											<b-tag type="is-dark">IWO</b-tag>
-											<b-tag type="is-info">{{ dataForm.iwo }}</b-tag>
-										</b-taglist>
-									</div>
-									<div class="control">
-										<b-taglist attached size="are-medium">
-											<b-tag type="is-dark">Project Manager</b-tag>
-											<b-tag type="is-info">{{ dataForm.pm_name }}</b-tag>
-										</b-taglist>
-									</div>
-									<div class="control">
-										<b-taglist attached size="are-medium">
-											<b-tag type="is-dark">Member</b-tag>
-											<b-tag type="is-info">{{ dataForm.member }}</b-tag>
-										</b-taglist>
-									</div>
-									<div class="control">
-										<b-taglist attached size="are-medium">
-											<b-tag type="is-dark">Workload</b-tag>
-											<b-tag type="is-info">{{ dataForm.workload }}%</b-tag>
-										</b-taglist>
-									</div>
-								</b-field>
-								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
+        <section id="vapp" class="contentPage">
+            <section class="hero is-light is-bold">
+                <div class="hero-body">
+                    <nav class="level">
+                        <div class="level-left">
+                            <h1 class="title is-marginless has-text-right">
+                                <span>My Tasks</span>
+                            </h1>
+                        </div>
+                        <div class="level-right">
+                            <div id="bookmarkPage">
+                                <bookmark-button></bookmark-button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+            <section class="section">
+                <div id="contentApp" class="container" data-title="My Tasks">
+
+                    <div v-if="showList">
+                        <nav class="level">
+                            <div class="level-left">
+                                <span class="button is-static">You had task until <span style="margin-right:5px;"></span>
+                                <b>{{ endWorkload }}</b></span>
+                            </div>
+                            <div class="level-right">
+                                <div class="level-item">
+                                    <b-button tag="a" href="./outrangeTimesheet.html" type="is-warning is-light">
+                                        <span class="icon">
+											<span class="mdi mdi-clock-alert-outline"></span>
+                                        </span>
+                                        <span>Out Range Timesheet</span>
+                                    </b-button>
+                                </div>
+                                <div class="level-item">
+                                    <b-button tag="a" href="./historyTimesheet.html" type="is-info is-light">
+                                        <span class="icon">
+											<span class="mdi mdi-history"></span>
+                                        </span>
+                                        <span>History Timesheet</span>
+                                    </b-button>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <task-group title="Overdue Task" type="is-delayed">
+                            <div class="columns is-multiline">
+                                <div v-for="(ts, idx) in task.delayed" :key="idx" class="column is-4-desktop is-6">
+                                    <task-card @clicked="setTimesheet(ts)" type="is-delayed" :task="ts"></task-card>
+                                </div>
+                            </div>
+
+                            <b-message v-if="task.delayed.length <= 0" type="is-success">
+                                <p class="has-text-centered">Hooray, you have no delayed task 🎉</p>
+                            </b-message>
+                        </task-group>
+
+                        <task-group title="On Going Task" always-show>
+                            <div class="columns is-multiline">
+                                <div v-for="(ts, idx) in task.ongoing" :key="idx" class="column is-4-desktop is-6">
+                                    <task-card @clicked="setTimesheet(ts)" :task="ts"></task-card>
+                                </div>
+                            </div>
+
+                            <b-message v-if="task.ongoing.length <= 0" type="is-info">
+                                <p class="has-text-centered">Today you have no task, please stand by 🚀</p>
+                            </b-message>
+                        </task-group>
+
+                        <task-group title="Scheduled Task" type="is-scheduled">
+                            <div v-for="(group, i) in task.scheduled" :key="i">
+                                <div :class="'task-divider' + (i==0?' no-top-margin':'')">
+                                    <p>Task Starting in <b>{{ group.month }}</b></p>
+                                </div>
+                                <div class="columns is-multiline">
+                                    <div v-for="(ts, idx) in group.list" :key="idx" class="column is-4-desktop is-6">
+                                        <task-card type="is-scheduled" :task="ts"></task-card>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <b-message v-if="task.scheduled.length <= 0" type="is-light">
+                                <p class="has-text-centered">There is currently no scheduled task</p>
+                            </b-message>
+                        </task-group>
+                    </div>
+
+                    <div v-if="showForm" class="animated fadeIn faster">
+                        <div class="columns is-marginless">
+                            <div class="column is-8-desktop content is-marginless is-paddingless">
+                                <h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">
+                                    {{ dataForm.project_name }}</h3>
+                                <b-field grouped>
+                                    <div class="control">
+                                        <b-taglist attached>
+                                            <b-tag type="is-dark">ID</b-tag>
+                                            <b-tag type="is-info">{{ dataForm.project_id }}</b-tag>
+                                        </b-taglist>
+                                    </div>
+                                    <div class="control">
+                                        <b-taglist attached size="are-medium">
+                                            <b-tag type="is-dark">IWO</b-tag>
+                                            <b-tag type="is-info">{{ dataForm.iwo }}</b-tag>
+                                        </b-taglist>
+                                    </div>
+                                    <div class="control">
+                                        <b-taglist attached size="are-medium">
+                                            <b-tag type="is-dark">Project Manager</b-tag>
+                                            <b-tag type="is-info">{{ dataForm.pm_name }}</b-tag>
+                                        </b-taglist>
+                                    </div>
+                                    <div class="control">
+                                        <b-taglist attached size="are-medium">
+                                            <b-tag type="is-dark">Member</b-tag>
+                                            <b-tag type="is-info">{{ dataForm.member }}</b-tag>
+                                        </b-taglist>
+                                    </div>
+                                    <div class="control">
+                                        <b-taglist attached size="are-medium">
+                                            <b-tag type="is-dark">Workload</b-tag>
+                                            <b-tag type="is-info">{{ dataForm.workload }}%</b-tag>
+                                        </b-taglist>
+                                    </div>
+                                </b-field>
+                                <span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
 									<span style="margin-right:.35em;">Assigned as</span><b>{{ dataForm.role }}</b>
-								</span>
-								<span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
+                                </span>
+                                <span class="button is-warning-blend is-static is-small" style="padding: 0px 2.5em; margin-right: 1em;">
 									<span class="icon is-small">
 										<span class="mdi mdi-calendar-clock"></span>
-									</span>
-									<span>{{ dataForm.start | moment }} - {{ dataForm.end | moment }}</span>
-								</span>
-								<span v-if="dataForm.issue !== undefined" @click="modal.issueDetail = true"
-									class="button is-danger is-small" style="padding: 0px 2.5em;">
+                                </span>
+                                <span>{{ dataForm.start | moment }} - {{ dataForm.end | moment }}</span>
+                                </span>
+                                <span v-if="dataForm.issue !== undefined" @click="modal.issueDetail = true" class="button is-danger is-small" style="padding: 0px 2.5em;">
 									<span class="icon is-small">
 										<span class="mdi mdi-alert"></span>
-									</span>
-									<span>This Task has Issue</span>
-								</span>
-							</div>
-							<div class="column is-clearfix is-paddingless">
-								<a class="button is-danger is-long is-pulled-right" @click="setTimesheet">
+                                </span>
+                                <span>This Task has Issue</span>
+                                </span>
+                            </div>
+                            <div class="column is-clearfix is-paddingless">
+                                <a class="button is-danger is-long is-pulled-right" @click="setTimesheet">
 									Back
 								</a>
-							</div>
-						</div>
-				
-						<!-- Add horizontal line -->
-						<hr>
-				
-						<form id="_timesheetForm" @submit="submitForm" action="http://localhost:5501/demo/post_detect.php" method="POST"
-							enctype="multipart/form-data">
-							<div class="columns">
-								<div class="column is-8-desktop add-border-right">
-									<b-message type="is-info" size="is-small" title="Task" :closable="false" class="is-normal-font">
-										<b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
-										<p class="has-text-weight-light">{{ dataForm.task }}</p>
-									</b-message>
-				
-									<nav class="level is-field-label">
-										<div class="level-left">
-											<label class="label">Activity</label>
-										</div>
-										<div class="level-right">
-											<div class="field has-addons">
-												<div class="control">
-													<a class="button is-static is-light-blend is-small">
+                            </div>
+                        </div>
+
+                        <!-- Add horizontal line -->
+                        <hr>
+
+                        <form id="_timesheetForm" @submit="submitForm" action="http://localhost:5501/demo/post_detect.php" method="POST" enctype="multipart/form-data">
+                            <div class="columns">
+                                <div class="column is-8-desktop add-border-right">
+                                    <b-message type="is-info" size="is-small" title="Task" :closable="false" class="is-normal-font">
+                                        <b-input type="hidden" name="task_id" :value="dataForm.task_id"></b-input>
+                                        <p class="has-text-weight-light">{{ dataForm.task }}</p>
+                                    </b-message>
+
+                                    <nav class="level is-field-label">
+                                        <div class="level-left">
+                                            <label class="label">Activity</label>
+                                        </div>
+                                        <div class="level-right">
+                                            <div class="field has-addons">
+                                                <div class="control">
+                                                    <a class="button is-static is-light-blend is-small">
 														Activity Type
 													</a>
-												</div>
-												<div class="control">
-													<div class="select is-small">
-														<select name="activity_type" required>
+                                                </div>
+                                                <div class="control">
+                                                    <div class="select is-small">
+                                                        <select name="activity_type" required>
 															<option selected>Development</option>
 															<option>Operation</option>
 															<option>Maintenance</option>
 														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-									</nav>
-									<b-field class="is-textarea">
-										<b-input maxlength="200" type="textarea" name="activity"
-											placeholder="Describe your activity related to this task so that your PM could understand what you do."
-											required>
-										</b-input>
-									</b-field>
-									<b-collapse id="_issueForm" class="panel is-interactive" :open.sync="issue.display"
-										@open="scrollToLocation('#_issueForm')" @close="scrollToLocation(0)">
-										<div slot="trigger" role="button" slot-scope="{ open }"
-											:class="'panel-heading ' + (taskHasIssue || open ? 'is-active':'')">
-											<span class="mdi mdi-alert in-left"></span>
-											<strong>Issue</strong>
-											<small class="has-text-grey" style="font-size: .75em; margin-left:3px;">should be filled
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                    <b-field class="is-textarea">
+                                        <b-input maxlength="200" type="textarea" name="activity" placeholder="Describe your activity related to this task so that your PM could understand what you do." required>
+                                        </b-input>
+                                    </b-field>
+                                    <b-collapse id="_issueForm" class="panel is-interactive" :open.sync="issue.display" @open="scrollToLocation('#_issueForm')" @close="scrollToLocation(0)">
+                                        <div slot="trigger" role="button" slot-scope="{ open }" :class="'panel-heading ' + (taskHasIssue || open ? 'is-active':'')">
+                                            <span class="mdi mdi-alert in-left"></span>
+                                            <strong>Issue</strong>
+                                            <small class="has-text-grey" style="font-size: .75em; margin-left:3px;">should be filled
 												when necessary</small>
-										</div>
-										<div class="panel-block">
-											<div class="container" style="padding:.5em;">
-												<b-field label="Issue" class="is-marginless is-textarea">
-													<b-input maxlength="200" type="textarea" v-model="issue.value"
-														:name="taskHasIssue ? 'issue':null"
-														placeholder="Describe your problem/issue related to this task in 200 character max.">
-													</b-input>
-												</b-field>
-												<b-field label="Mitigation" class="is-marginless is-textarea">
-													<b-input maxlength="200" type="textarea" v-model="issue.mitigation"
-														:name="taskHasIssue ? 'mitigation':null"
-														placeholder="Describe your method/mitigation plan to solve this issue.">
-													</b-input>
-												</b-field>
-												<b-field id="_issueTarget" label="Target Estimation">
-													<b-tooltip :type="issue.targetAlert ? 'is-warning':''"
-														label="Please Select Target Estimation" :active="issue.targetAlert" always
-														style="width:100%;">
-														<crud-input type="datepicker"
-															:color="issue.targetAlert ? 'is-warning':'is-grey'" name="issue_target"
-															date-position="is-top-left" input-style="margin-bottom: 5px;"
-															v-model="issue.target"
-															placeholder="Pick a date when this issue will be solved">
-														</crud-input>
-													</b-tooltip>
-												</b-field>
-											</div>
-										</div>
-									</b-collapse>
-								</div>
-								<div class="column is-4-desktop">
-									<input type="hidden" name="startDate" :value="startDate">
-									<input type="hidden" name="endDate" :value="endDate">
-									<input type="hidden" name="dateIsRange" :value="rangeToggle">
-									<b-field label="Timesheet Date">
-										<b-tooltip label="Please Select Timesheet Date" type="is-warning" :active="datepicker.alert"
-											always style="width:100%;">
-											<b-button type="is-success" outlined icon-left="calendar" class="is-fullwidth"
-												@click="openModalDate">
-												<span>{{ timesheetDate }}</span>
-											</b-button>
-										</b-tooltip>
-									</b-field>
-									<nav class="level">
-										<div class="level-left">
-											<b-switch size="is-small" type="is-info" v-model="rangeToggle">Pick date as
-												range</b-switch>
-										</div>
-									</nav>
-				
-									<div class="columns">
-										<div class="column">
-											<div class="field">
-												<label class="label">Working Hour</label>
-												<div class="control">
-													<input class="input" type="number" min="1" max="24" v-model="workhour" name="hour"
-														placeholder="Total Work Hour" required />
-												</div>
-											</div>
-										</div>
-										<div class="column">
-											<div class="field">
-												<label class="label">Working Progress [%]</label>
-												<div class="control">
-													<input class="input" type="number" min="0" max="100" name="workingProgress"
-														v-model="workProgress" placeholder="Current Progress" required />
-												</div>
-											</div>
-										</div>
-									</div>
-				
-									<b-field label="Working Location" style="margin-bottom:1em;">
-										<div class="select is-fullwidth">
-											<select name="location" required>
+                                        </div>
+                                        <div class="panel-block">
+                                            <div class="container" style="padding:.5em;">
+                                                <b-field label="Issue" class="is-marginless is-textarea">
+                                                    <b-input maxlength="200" type="textarea" v-model="issue.value" :name="taskHasIssue ? 'issue':null" placeholder="Describe your problem/issue related to this task in 200 character max.">
+                                                    </b-input>
+                                                </b-field>
+                                                <b-field label="Mitigation" class="is-marginless is-textarea">
+                                                    <b-input maxlength="200" type="textarea" v-model="issue.mitigation" :name="taskHasIssue ? 'mitigation':null" placeholder="Describe your method/mitigation plan to solve this issue.">
+                                                    </b-input>
+                                                </b-field>
+                                                <b-field id="_issueTarget" label="Target Estimation">
+                                                    <b-tooltip :type="issue.targetAlert ? 'is-warning':''" label="Please Select Target Estimation" :active="issue.targetAlert" always style="width:100%;">
+                                                        <crud-input type="datepicker" :color="issue.targetAlert ? 'is-warning':'is-grey'" name="issue_target" date-position="is-top-left" input-style="margin-bottom: 5px;" v-model="issue.target" placeholder="Pick a date when this issue will be solved">
+                                                        </crud-input>
+                                                    </b-tooltip>
+                                                </b-field>
+                                            </div>
+                                        </div>
+                                    </b-collapse>
+                                </div>
+                                <div class="column is-4-desktop">
+                                    <input type="hidden" name="startDate" :value="startDate">
+                                    <input type="hidden" name="endDate" :value="endDate">
+                                    <input type="hidden" name="dateIsRange" :value="rangeToggle">
+                                    <b-field label="Timesheet Date">
+                                        <b-tooltip label="Please Select Timesheet Date" type="is-warning" :active="datepicker.alert" always style="width:100%;">
+                                            <b-button type="is-success" outlined icon-left="calendar" class="is-fullwidth" @click="openModalDate">
+                                                <span>{{ timesheetDate }}</span>
+                                            </b-button>
+                                        </b-tooltip>
+                                    </b-field>
+                                    <nav class="level">
+                                        <div class="level-left">
+                                            <b-switch size="is-small" type="is-info" v-model="rangeToggle">Pick date as range
+                                            </b-switch>
+                                        </div>
+                                    </nav>
+
+                                    <div class="columns">
+                                        <div class="column">
+                                            <div class="field">
+                                                <label class="label">Working Hour</label>
+                                                <div class="control">
+                                                    <input class="input" type="number" min="1" max="24" v-model="workhour" name="hour" placeholder="Total Work Hour" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <div class="field">
+                                                <label class="label">Working Progress [%]</label>
+                                                <div class="control">
+                                                    <input class="input" type="number" min="0" max="100" name="workingProgress" v-model="workProgress" placeholder="Current Progress" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <b-field label="Working Location" style="margin-bottom:1em;">
+                                        <div class="select is-fullwidth">
+                                            <select name="location" required>
 												<option selected value="1">Jabodetabek</option>
 												<option value="2">Non Lokal Jawa</option>
 												<option value="3">Luar Jawa Dalam Negeri</option>
 												<option value="4">Luar Negeri</option>
 											</select>
-										</div>
-									</b-field>
-				
-									<b-notification v-show="taskHasIssue" type="is-warning" :closable="false"
-										style="margin-bottom:1em;">
-										<p><b><span class="mdi mdi-alert in-left"></span> ISSUE FORM IS FILLED</b></p>
-										<p><small>with this you confirming that this task has issue within this timesheet. If you aren't
+                                        </div>
+                                    </b-field>
+
+                                    <b-notification v-show="taskHasIssue" type="is-warning" :closable="false" style="margin-bottom:1em;">
+                                        <p><b><span class="mdi mdi-alert in-left"></span> ISSUE FORM IS FILLED</b></p>
+                                        <p><small>with this you confirming that this task has issue within this timesheet. If you aren't
 												sure with the issue, please
 												emptied the issue form.</small></p>
-									</b-notification>
-				
-									<button class="button is-success is-long" type="submit">
+                                    </b-notification>
+
+                                    <button class="button is-success is-long" type="submit">
 										Submit
 									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				
-					<b-modal :active.sync="modal.issueDetail" trap-focus width="630px" class="has-hidden-scrollbar">
-						<nav class="panel is-warning is-shadowless">
-							<p class="panel-heading">
-								Detail Issue
-							</p>
-							<div class="panel-block has-background-white">
-								<div class="content" style="padding:.5em;">
-									<label class="label">Issue</label>
-									<p>{{ issueModal.text }}</p>
-								</div>
-							</div>
-							<div class="panel-block has-background-white">
-								<div class="content" style="padding:.5em;">
-									<label class="label">Mitigation</label>
-									<p>{{ issueModal.mitigation }}</p>
-								</div>
-							</div>
-							<div class="panel-block has-bg-warning-light">
-								<div class="container" style="padding:.5em 1em;">
-									<nav class="level">
-										<div class="level-item">
-											<p><b>Target Estimation:</b> {{ issueModal.target | moment }}</p>
-										</div>
-										<div class="level-item">
-											<p><b>Submit Date:</b> {{ issueModal.submit | moment }}</p>
-										</div>
-									</nav>
-								</div>
-							</div>
-						</nav>
-					</b-modal>
-				
-					<b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
-						<b-message type="is-info">
-							Pick Timesheet Date
-						</b-message>
-						<div class="columns">
-							<div class="column">
-								<div class="card is-inline-datepicker">
-									<header class="card-header">
-										<p class="card-header-title">
-											Timesheet Start Date
-										</p>
-									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()"
-										:focused-date="datepicker.start.focused" :events="selectedDateList">
-										<template slot="header">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <b-modal :active.sync="modal.issueDetail" trap-focus width="630px" class="has-hidden-scrollbar">
+                        <nav class="panel is-warning is-shadowless">
+                            <p class="panel-heading">
+                                Detail Issue
+                            </p>
+                            <div class="panel-block has-background-white">
+                                <div class="content" style="padding:.5em;">
+                                    <label class="label">Issue</label>
+                                    <p>{{ issueModal.text }}</p>
+                                </div>
+                            </div>
+                            <div class="panel-block has-background-white">
+                                <div class="content" style="padding:.5em;">
+                                    <label class="label">Mitigation</label>
+                                    <p>{{ issueModal.mitigation }}</p>
+                                </div>
+                            </div>
+                            <div class="panel-block has-bg-warning-light">
+                                <div class="container" style="padding:.5em 1em;">
+                                    <nav class="level">
+                                        <div class="level-item">
+                                            <p><b>Target Estimation:</b> {{ issueModal.target | moment }}</p>
+                                        </div>
+                                        <div class="level-item">
+                                            <p><b>Submit Date:</b> {{ issueModal.submit | moment }}</p>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </nav>
+                    </b-modal>
+
+                    <b-modal :active.sync="modal.rangeDate" trap-focus width="630px" class="has-hidden-scrollbar">
+                        <b-message type="is-info">
+                            Pick Timesheet Date
+                        </b-message>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="card is-inline-datepicker">
+                                    <header class="card-header">
+                                        <p class="card-header-title">
+                                            Timesheet Start Date
+                                        </p>
+                                    </header>
+                                    <b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="selectedDateList">
+                                        <template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.start.selected"
 													@input="selectMonth('start')" expanded>
@@ -460,20 +447,18 @@
 												<span>Timesheet has been submited</span>
 											</small>
 										</template>
-									</b-datepicker>
-								</div>
-							</div>
-							<div class="column">
-								<div class="card is-inline-datepicker">
-									<header class="card-header">
-										<p class="card-header-title">
-											Timesheet End Date
-										</p>
-									</header>
-									<b-datepicker inline v-model="datepicker.end.val" :max-date="datepicker.start.max"
-										:min-date="datepicker.start.val" :focused-date="datepicker.end.focused"
-										:events="selectedDateList">
-										<template slot="header">
+                                    </b-datepicker>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="card is-inline-datepicker">
+                                    <header class="card-header">
+                                        <p class="card-header-title">
+                                            Timesheet End Date
+                                        </p>
+                                    </header>
+                                    <b-datepicker inline v-model="datepicker.end.val" :max-date="datepicker.start.max" :min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
+                                        <template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.end.selected"
 													@input="selectMonth('end')" expanded>
@@ -487,24 +472,23 @@
 												<span>Timesheet has been submited</span>
 											</small>
 										</template>
-									</b-datepicker>
-								</div>
-							</div>
-						</div>
-					</b-modal>
-				
-					<b-modal :active.sync="modal.singleDate" trap-focus width="302px" class="has-hidden-scrollbar">
-						<div class="columns is-multiline">
-							<div class="column">
-								<div class="card is-inline-datepicker">
-									<header class="card-header">
-										<p class="card-header-title">
-											Timesheet Date
-										</p>
-									</header>
-									<b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()"
-										:focused-date="datepicker.start.focused" :events="datepicker.filled">
-										<template slot="header">
+                                    </b-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </b-modal>
+
+                    <b-modal :active.sync="modal.singleDate" trap-focus width="302px" class="has-hidden-scrollbar">
+                        <div class="columns is-multiline">
+                            <div class="column">
+                                <div class="card is-inline-datepicker">
+                                    <header class="card-header">
+                                        <p class="card-header-title">
+                                            Timesheet Date
+                                        </p>
+                                    </header>
+                                    <b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="datepicker.filled">
+                                        <template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.start.selected"
 													@input="selectMonth('start')" expanded>
@@ -518,24 +502,23 @@
 												<span>Timesheet has been submited</span>
 											</small>
 										</template>
-									</b-datepicker>
-								</div>
-							</div>
-						</div>
-					</b-modal>
-				</div>
-			</section>
-		</section>
+                                    </b-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </b-modal>
+                </div>
+            </section>
+        </section>
 
-		<section id="infoFooter">
-			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
-				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
-			</info-footer>
-		</section>
-	</div>
+        <section id="infoFooter">
+            <info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+            </info-footer>
+        </section>
+    </div>
 
-	<div class="api-testing" base="http://localhost:5501/demo/">
-		<!-- 
+    <div class="api-testing" base="http://localhost:5501/demo/">
+        <!-- 
 				expected return from getNotification!
 				[{
 					"id": {String},
@@ -546,9 +529,9 @@
 					"read": {Boolean}
 				}, ... ],
 			 -->
-		<api-test url="getNotification.php" key="getNotification"></api-test>
+        <api-test url="getNotification.php" key="getNotification"></api-test>
 
-		<!-- 
+        <!-- 
 				Get List of Filled Timesheet Date
 				@param {*} id: Assignment ID
 				@param {*} start: Task Start Date (DD/MM/YYYY)
@@ -557,154 +540,147 @@
 				expected return List of Filled Timesheet Date
 				[ 'DD/MM/YYYY', 'DD/MM/YYYY', 'DD/MM/YYYY', ... ]
 			-->
-		<api-test url="getTimesheetDate.php" key="filledTimesheet"></api-test>
-	</div>
+        <api-test url="getTimesheetDate.php" key="filledTimesheet"></api-test>
+    </div>
 
-	<script>
-		// for testing only. boleh dihapus pas di CI nya
-		const today = new Date().getDate();
-		const month = new Date().getMonth() + 1;
-		const randomNumber = () => Math.floor(Math.random() * Math.floor(100));
-		// for testing only. boleh dihapus pas di CI nya
+    <script>
+        // for testing only. boleh dihapus pas di CI nya
+        const today = new Date().getDate();
+        const month = new Date().getMonth() + 1;
+        const randomNumber = () => Math.floor(Math.random() * Math.floor(100));
+        // for testing only. boleh dihapus pas di CI nya
 
-		//! yang ngurutin jadinya frontend 😭
-		const ONGOING = [
-			{
-				"assignment_id": "100015154",
-				"iwo": "P-1808SCC-TSEL0860",
-				"project_id": 104443,
-				"task_id": 304039,
-				"project_name": "MANAGED OPERATION IT INFRASTRUCTURE",
-				"pm_name": "MANAGED OPERATION IT INFRASTRUCTURE",
-				"role": "Junior Consultant",
-				"task": "Day to day Sysadmin Non Prod Engineer",
-				"start": "02/07/2018",
-				"end": "30/06/2019",
-				"member": 1,
-				"workload": 100,
-				"mandays": 100,
-				"taskProgress": {
-					"actual": 0,
-					"plan": 0
-				},
-				"timesheet": {
-					"approved": 53,
-					"submited": 58
-				}
-			},
-			{
-				"assignment_id": "100106469",
-				"iwo": "P-1907SCC-TSEL0897",
-				"project_id": 105647,
-				"task_id": 415522,
-				"project_name": "VMware Upgrade License Vsom to Cloud BRN",
-				"pm_name": "VMware Upgrade License Vsom to Cloud BRN",
-				"role": "Junior Consultant",
-				"task": "Inject vCloud Suite Standard 2017 License",
-				"start": "22/07/2019",
-				"end": "01/09/2019",
-				"member": 2,
-				"workload": 100,
-				"mandays": 120,
-				"taskProgress": {
-					"actual": 0,
-					"plan": 0
-				},
-				"timesheet": {
-					"approved": 0,
-					"submited": 0
-				},
-				"issue": {
-					"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
-					"mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
-					"target": "10/01/2020",
-					"submit": "08/01/2020"
-				}
-			},
-			{
-				"assignment_id": "100106467",
-				"iwo": "P-1907SCC-TSEL0897",
-				"project_id": 105647,
-				"task_id": 415521,
-				"project_name": "VMware Upgrade License Vsom to Cloud BRN",
-				"pm_name": "VMware Upgrade License Vsom to Cloud BRN",
-				"role": "Junior Consultant",
-				"task": "Upgrade Esx 6.0 to 6.5 Version",
-				"start": "22/07/2019",
-				"end": "01/09/2019",
-				"member": 8,
-				"workload": 100,
-				"mandays": 320,
-				"taskProgress": {
-					"actual": 0,
-					"plan": 0
-				},
-				"timesheet": {
-					"approved": 36,
-					"submited": 41
-				}
-			}
-		]
-		const DELAYED = [
-			{
-				"assignment_id": "100073388",
-				"iwo": "P-1908SCC-TSEL1007",
-				"project_id": 105766,
-				"task_id": 384036,
-				"project_name": "MO IT Infrastructure 2019",
-				"pm_name": "MO IT Infrastructure 2019",
-				"role": "Junior Consultant",
-				"task": "Day to day Sysadmin Non Prod Leader",
-				"start": "02/07/2019",
-				"end": "30/06/2020",
-				"member": 1,
-				"workload": 100,
-				"mandays": 250,
-				"taskProgress": {
-					"actual": 0,
-					"plan": 0
-				},
-				"timesheet": {
-					"approved": 18,
-					"submited": 23
-				}
-			},
-			{
-				"assignment_id": "100110476",
-				"iwo": "P-1907SCC-TSEL0810",
-				"project_id": 105525,
-				"task_id": 419002,
-				"project_name": "Manage Operation Vmware HP Server",
-				"pm_name": "Manage Operation Vmware HP Server",
-				"role": "Junior Consultant",
-				"task": "Day to day VMWare Engineer Leader",
-				"start": "08/09/2019",
-				"end": "30/06/2020",
-				"member": 1,
-				"workload": 100,
-				"work_progress": 75,
-				"mandays": 59,
-				"taskProgress": {
-					"actual": 0,
-					"plan": 0
-				},
-				"timesheet": {
-					"approved": 11,
-					"submited": 16
-				},
-				"issue": {
-					"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
-					"mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
-					"target": "10/01/2020",
-					"submit": "08/01/2020"
-				}
-			}
-		]
-		const PLANNED = []
-	</script>
+        //! yang ngurutin jadinya frontend 😭
+        const ONGOING = [{
+            "assignment_id": "100015154",
+            "iwo": "P-1808SCC-TSEL0860",
+            "project_id": 104443,
+            "task_id": 304039,
+            "project_name": "MANAGED OPERATION IT INFRASTRUCTURE",
+            "pm_name": "MANAGED OPERATION IT INFRASTRUCTURE",
+            "role": "Junior Consultant",
+            "task": "Day to day Sysadmin Non Prod Engineer",
+            "start": "02/07/2018",
+            "end": "30/06/2019",
+            "member": 1,
+            "workload": 100,
+            "mandays": 100,
+            "taskProgress": {
+                "actual": 0,
+                "plan": 0
+            },
+            "timesheet": {
+                "approved": 53,
+                "submited": 58
+            }
+        }, {
+            "assignment_id": "100106469",
+            "iwo": "P-1907SCC-TSEL0897",
+            "project_id": 105647,
+            "task_id": 415522,
+            "project_name": "VMware Upgrade License Vsom to Cloud BRN",
+            "pm_name": "VMware Upgrade License Vsom to Cloud BRN",
+            "role": "Junior Consultant",
+            "task": "Inject vCloud Suite Standard 2017 License",
+            "start": "22/07/2019",
+            "end": "01/09/2019",
+            "member": 2,
+            "workload": 100,
+            "mandays": 120,
+            "taskProgress": {
+                "actual": 0,
+                "plan": 0
+            },
+            "timesheet": {
+                "approved": 0,
+                "submited": 0
+            },
+            "issue": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "target": "10/01/2020",
+                "submit": "08/01/2020"
+            }
+        }, {
+            "assignment_id": "100106467",
+            "iwo": "P-1907SCC-TSEL0897",
+            "project_id": 105647,
+            "task_id": 415521,
+            "project_name": "VMware Upgrade License Vsom to Cloud BRN",
+            "pm_name": "VMware Upgrade License Vsom to Cloud BRN",
+            "role": "Junior Consultant",
+            "task": "Upgrade Esx 6.0 to 6.5 Version",
+            "start": "22/07/2019",
+            "end": "01/09/2019",
+            "member": 8,
+            "workload": 100,
+            "mandays": 320,
+            "taskProgress": {
+                "actual": 0,
+                "plan": 0
+            },
+            "timesheet": {
+                "approved": 36,
+                "submited": 41
+            }
+        }]
+        const DELAYED = [{
+            "assignment_id": "100073388",
+            "iwo": "P-1908SCC-TSEL1007",
+            "project_id": 105766,
+            "task_id": 384036,
+            "project_name": "MO IT Infrastructure 2019",
+            "pm_name": "MO IT Infrastructure 2019",
+            "role": "Junior Consultant",
+            "task": "Day to day Sysadmin Non Prod Leader",
+            "start": "02/07/2019",
+            "end": "30/06/2020",
+            "member": 1,
+            "workload": 100,
+            "mandays": 250,
+            "taskProgress": {
+                "actual": 0,
+                "plan": 0
+            },
+            "timesheet": {
+                "approved": 18,
+                "submited": 23
+            }
+        }, {
+            "assignment_id": "100110476",
+            "iwo": "P-1907SCC-TSEL0810",
+            "project_id": 105525,
+            "task_id": 419002,
+            "project_name": "Manage Operation Vmware HP Server",
+            "pm_name": "Manage Operation Vmware HP Server",
+            "role": "Junior Consultant",
+            "task": "Day to day VMWare Engineer Leader",
+            "start": "08/09/2019",
+            "end": "30/06/2020",
+            "member": 1,
+            "workload": 100,
+            "work_progress": 75,
+            "mandays": 59,
+            "taskProgress": {
+                "actual": 0,
+                "plan": 0
+            },
+            "timesheet": {
+                "approved": 11,
+                "submited": 16
+            },
+            "issue": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "target": "10/01/2020",
+                "submit": "08/01/2020"
+            }
+        }]
+        const PLANNED = []
+    </script>
 
-	<script src="../../../main.js"></script>
-	<script src="../../scripts/project/timesheet/timesheetList.js"></script>
+    <script src="../../../main.js"></script>
+    <script src="../../scripts/project/timesheet/timesheetList.js"></script>
 </body>
 
 </html>

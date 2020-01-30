@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+    <meta name="description" content="HOME for PROUDS 2 Web Application">
+    <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+    <title>TIMESHEET | PROUDS 2</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="../../src/style.min.css">
+</head>
+
+<body>
+    <div class="loader-wrapper animated fadeIn">
+        <img src="http://localhost:5501/media/loader.gif">
+    </div>
+
+    <div id="main-layout" class="wrapper open-first">
+        <section id="side-main" class="sidebar">
+            <div class="brand animated slideInLeft fast">
+                <span>PROUDS</span>
+            </div>
+            <div class="side-list animated slideInLeft faster">
+                <a href="../notification.html" class="parent-list">
+                    <div class="list-title">
+                        <label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+                        <div class="action">
+                            <span class="tag is-warning">{{notifCount}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+            <side-list label="Project" name="project">
+                <side-item href="./list.html">Project</side-item>
+                <side-item href="./projectAssignment.html">Project Assignment</side-item>
+                <side-item href="./projectRequest.html">Project Request</side-item>
+                <side-item active="">My Tasks</side-item>
+                <side-item href="./timesheetApproval.html">Timesheet Approval</side-item>
+                <side-item href="../rebaseline.html">Rebaseline</side-item>
+                <side-item href="#no-edit">Closing</side-item>
+            </side-list>
+
+            <side-list label="My Workspace" name="ws"></side-list>
+        </section>
+
+        <nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu main-navbar">
+                <div class="navbar-start">
+                    <a id="toggle-sidebar" class="navbar-item">
+                        <span class="mdi mdi-chevron-left mdi-24px"></span>
+                    </a>
+
+                    <a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+                    <a class="navbar-item">
+						Resource
+					</a>
+
+                    <a class="navbar-item">
+						Monitoring
+					</a>
+
+                    <a class="navbar-item">
+						Operations
+					</a>
+
+                    <a class="navbar-item">
+						Reports
+					</a>
+                </div>
+
+                <div class="navbar-end">
+                    <a href="../maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-view-dashboard-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+                    </a>
+
+                    <a href="../maintenance.html" class="navbar-item hover-text">
+                        <span class="mdi mdi-settings-outline"></span>
+                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-link is-arrowless">
+                            <span class="mdi mdi-account-outline"></span>
+                        </div>
+                        <div class="navbar-dropdown is-boxed is-right">
+                            <a href="../maintenance.html" class="navbar-item">Account Profile</a>
+                            <a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+                            <a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php" class="navbar-item">Acting As</a>
+                            <hr class="navbar-divider">
+                            <a href="#" class="navbar-item">
+                                <span>Sign Out</span>
+                                <span class="mdi mdi-logout-variant"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section id="vapp" class="contentPage">
+            <section class="hero is-light is-bold">
+                <div class="hero-body">
+                    <nav class="level">
+                        <div class="level-left">
+                            <h1 class="title is-marginless">
+                                <span>Out Range Timesheet</span>
+                            </h1>
+                        </div>
+                        <div class="level-right">
+                            <div id="bookmarkPage">
+                                <bookmark-button></bookmark-button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+            <section class="section">
+                <div id="contentApp" class="container" data-title="Out Range Timesheet">
+                    <nav class="breadcrumb" aria-label="breadcrumbs">
+                        <ul class="is-marginless">
+                            <li>
+                                <a href="/src/projects\timesheetList.html" aria-current="page">My Task</a>
+                            </li>
+                            <li class="is-active">
+                                <a aria-current="page">Out Range Timesheet</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <b-message title="Filter Submission" type="is-info" :closable="false">
+                        <div class="columns">
+                            <div class="column is-4">
+                                <b-field>
+                                    <p class="control">
+                                        <span class="button is-static is-info-blend" style="min-width:140px;">Project
+											Manager</span>
+                                    </p>
+                                    <b-autocomplete expanded="" v-model="filter.pm_name" placeholder="Budi, Dina, etc." open-on-focus="" :data="pmList">
+                                    </b-autocomplete>
+                                </b-field>
+                                <b-field>
+                                    <p class="control">
+                                        <span class="button is-static is-info-blend" style="min-width:140px;">Assigned
+											Role</span>
+                                    </p>
+                                    <b-autocomplete expanded="" v-model="filter.role" placeholder="Programmer, Analyst, etc." open-on-focus="" :data="roleList">
+                                    </b-autocomplete>
+                                </b-field>
+                                <b-field>
+                                    <p class="control">
+                                        <span class="button is-static is-info-blend" style="min-width:140px;">Status</span>
+                                    </p>
+                                    <b-select v-model="filter.status" expanded="">
+                                        <option value="">Show All</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Waiting Approval">Waiting Approval</option>
+                                    </b-select>
+                                </b-field>
+                            </div>
+                            <div class="column is-8">
+                                <b-field>
+                                    <p class="control">
+                                        <span class="button is-static is-info-blend" style="min-width:140px;">Project
+											Name</span>
+                                    </p>
+                                    <b-autocomplete expanded="" v-model="filter.project_name" placeholder="Delivery App, etc." open-on-focus="" :data="projectList">
+                                    </b-autocomplete>
+                                </b-field>
+                                <b-field>
+                                    <p class="control">
+                                        <span class="button is-static is-info-blend" style="min-width:140px;">Search by
+											Task</span>
+                                    </p>
+                                    <b-autocomplete expanded="" v-model="filter.task" placeholder="Find task name.." open-on-focus="" :data="taskList">
+                                    </b-autocomplete>
+                                </b-field>
+                                <b-field grouped="">
+                                    <b-field expanded="" style="margin-bottom:0px;">
+                                        <p class="control">
+                                            <span class="button is-static is-info-blend" style="min-width:140px;">Timesheet
+												Date</span>
+                                        </p>
+                                        <crud-input type="datepicker" input-style="margin-bottom:0px;" name="start" placeholder="Filter Date After" v-model="filter.date.start"></crud-input>
+                                    </b-field>
+                                    <p class="control" style="padding-top: .5em;">
+                                        <span class="mdi mdi-arrow-right-bold"></span>
+                                    </p>
+                                    <b-field expanded="">
+                                        <crud-input type="datepicker" input-style="margin-bottom:0px;" name="end" placeholder="Filter Date Before" :min-date="filter.date.start" v-model="filter.date.end">
+                                        </crud-input>
+                                    </b-field>
+                                </b-field>
+                            </div>
+                        </div>
+                    </b-message>
+
+                    <b-notification v-show="issueFound" type="is-warning">
+                        Row that <span class="has-bg-warning-light">highlighted in yellow</span> mean that task has issue in it.
+                    </b-notification>
+
+                    <b-table :data="submission" style="font-size:11pt" class="is-packed" paginated="" :row-class="(row) => row.issue !== undefined && 'has-bg-warning-light'" detailed="" show-detail-icon="" pagination-simple="">
+                        <template slot-scope="props">
+							<b-table-column width="160" field="iwo" label="IWO / Project ID">
+								<p>{{ props.row.iwo }}</p>
+								<p>{{ props.row.project_id }}</p>
+							</b-table-column>
+		
+							<b-table-column field="project_name" label="Project Name">
+								<p>{{ props.row.project_name }}</p>
+							</b-table-column>
+		
+							<b-table-column field="task" label="Task">
+								<p class="has-text-weight-light">{{ props.row.task }}</p>
+							</b-table-column>
+		
+							<b-table-column width="90" field="hour" label="Workhours" centered="">
+								<p>{{ props.row.hour }}</p>
+							</b-table-column>
+		
+							<b-table-column width="120" field="timesheet_date" label="Timesheet Date" centered="">
+								<p>{{ moment(props.row.timesheet_date, 'DD/MM/YYYY').format('DD MMM YYYY') }}</p>
+							</b-table-column>
+		
+							<b-table-column field="status" label="Status" width="75" centered="">
+								<status-tooltip :status="props.row.status" icon="mdi mdi-24px" :options="[
+															{ label: 'Approved', icon: 'mdi-checkbox-marked-circle-outline has-text-success' },
+															{ label: 'Waiting Approval', icon: 'mdi-timer-sand has-text-grey-lighter' }
+														]"></status-tooltip>
+							</b-table-column>
+		
+							<b-table-column field="action" label="Action">
+								<out-range-form
+									action="http://localhost:5501/demo/post_detect.php?timesheet={timesheet_id}&task={task_id}"
+									:data="props.row">
+								</out-range-form>
+							</b-table-column>
+						</template>
+
+                        <template slot="detail" slot-scope="props">
+							<b-message v-if="props.row.issue !== undefined" type="is-warning" size="is-small">
+								<nav class="level">
+									<div class="level-left">
+										<p class="level-item">
+											<span style="margin-right: 3px;">This task has issue submited at
+												<b>{{ props.row.issue.submit | moment }}</b></span>
+											<span v-if="props.row.issue.solved">and solved by PM in
+												<b>{{ props.row.issue.solved | moment}}</b></span>
+										</p>
+									</div>
+									<div class="level-right">
+										<b-button type="is-info" size="is-small" @click="showDetailIssue(props.row)">Issue
+											Detail
+										</b-button>
+									</div>
+								</nav>
+							</b-message>
+							<div class="columns">
+								<div class="column is-3 content is-marginless">
+									<p class="is-small has-text-grey is-marginless">Assigned Role</p>
+									<p>{{ props.row.role }}</p>
+									<p class="is-small has-text-grey is-marginless">Assigned Member</p>
+									<p>{{ props.row.member }} people assigned in this task</p>
+									<p class="is-small has-text-grey is-marginless">Project Manager</p>
+									<p>{{ props.row.pm_name }}</p>
+									<p class="is-small has-text-grey is-marginless">Work Location</p>
+									<p class="is-marginless">{{ props.row.location }}</p>
+								</div>
+								<div class="column is-8">
+									<div class="media">
+										<div class="media-content content">
+											<p class="is-small has-text-grey is-marginless">Task Timeline</p>
+											<p>
+												<span class="icon is-small">
+													<span class="mdi mdi-calendar-clock"></span>
+												</span>
+												<span>{{ props.row.start | moment }} - {{ props.row.end | moment }}</span>
+											</p>
+										</div>
+									</div>
+									<div class="media">
+										<div class="media-content content">
+											<p class="is-small has-text-grey is-marginless">Submited Date</p>
+											<p>{{ moment(props.row.submit_at, 'DD/MM/YYYY').format('dddd, DD MMMM YYYY') }}</p>
+										</div>
+									</div>
+									<div class="media">
+										<div class="media-content content">
+											<p class="is-small has-text-grey" style="margin-bottom:.5em;">
+												<span>Activity — </span>
+												<span class="has-text-info">[ {{ props.row.activity_type }} ]</span>
+											</p>
+											<p>{{ props.row.activity }}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</template>
+
+                        <template slot="empty">
+							<span class="white-space"></span>
+							<b-message type="is-warning">
+								<p class="has-text-centered">Sorry, we can't find any related data</p>
+							</b-message>
+						</template>
+                    </b-table>
+
+                    <b-modal :active.sync="modalIssue.display" trap-focus="" width="630px" class="has-hidden-scrollbar">
+                        <nav class="panel is-warning is-shadowless">
+                            <p class="panel-heading">
+                                Detail Issue
+                            </p>
+                            <div class="panel-block has-background-white">
+                                <div class="content" style="padding:.5em;">
+                                    <label class="label">
+										<span>Issue —</span>
+										<span v-if="modalIssue.solved" class="has-text-success">
+											solved at {{ modalIssue.solved | moment }}
+										</span>
+										<span v-else="" class="has-text-danger">hasn't been solved</span>
+									</label>
+                                    <p>{{ modalIssue.issue }}</p>
+                                </div>
+                            </div>
+                            <div class="panel-block has-background-white">
+                                <div class="content" style="padding:.5em;">
+                                    <label class="label">Mitigation</label>
+                                    <p>{{ modalIssue.mitigation }}</p>
+                                </div>
+                            </div>
+                            <div class="panel-block has-bg-warning-light">
+                                <div class="container" style="padding:.5em 1em;">
+                                    <nav class="level">
+                                        <div class="level-item">
+                                            <p><b>Target Estimation:</b> {{ modalIssue.target | moment }}</p>
+                                        </div>
+                                        <div class="level-item">
+                                            <p><b>Submit Date:</b> {{ modalIssue.submit | moment }}</p>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </nav>
+                    </b-modal>
+                </div>
+            </section>
+        </section>
+
+        <section id="infoFooter">
+            <info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+            </info-footer>
+        </section>
+    </div>
+
+    <div class="api-testing" base="http://localhost:5501/demo/">
+        <!-- 
+				expected return from getNotification!
+				[{
+					"id": {String},
+					"subject": {String},
+					"content": {HTML String},
+					"dateStamp": {Date String with format DD/MM/YYYY},
+					"timeStamp": {Time String with format H:i},
+					"read": {Boolean}
+				}, ... ],
+			 -->
+        <api-test url="getNotification.php" key="getNotification"></api-test>
+
+        <!-- 
+				Get List of Filled Timesheet Date
+				@param {*} id: Assignment ID
+				@param {*} start: Task Start Date (DD/MM/YYYY)
+				@param {*} end: Task End Date (DD/MM/YYYY)
+
+				expected return List of Filled Timesheet Date
+				[ 'DD/MM/YYYY', 'DD/MM/YYYY', 'DD/MM/YYYY', ... ]
+			-->
+        <api-test url="getTimesheetDate.php" key="filledTimesheet"></api-test>
+    </div>
+
+    <script id="implantedJSON" type="application/json">
+        [{
+            "iwo": "P-1909SCC-TTES1000",
+            "project_id": 1000,
+            "task_id": 1000,
+            "timesheet_id": 1000,
+            "role": "Programmer",
+            "pm_name": "Sandra Rodriquez",
+            "project_name": "Ex irure reprehenderit dolor reprehenderit.",
+            "task": "Exercitation in dolore sit irure laboris eu ullamco proident consectetur.",
+            "start": "30/11/2019",
+            "end": "17/10/2020",
+            "submit_at": "26/09/2020",
+            "timesheet_date": "18/10/2020",
+            "hour": 24,
+            "status": "Approved",
+            "activity": "Sunt ea duis officia voluptate eiusmod qui aliqua labore aute aliqua non.",
+            "activity_type": "Development",
+            "location": "Jabodetabek",
+            "member": 2,
+            "workload": 70
+        }, {
+            "iwo": "P-1909SCC-TTES1001",
+            "project_id": 1001,
+            "task_id": 1001,
+            "timesheet_id": 1001,
+            "role": "System Analyst",
+            "pm_name": "Holman Haynes",
+            "project_name": "Ex pariatur exercitation elit velit nisi voluptate ad reprehenderit et ea cillum cillum proident culpa.",
+            "task": "Culpa veniam eiusmod officia pariatur commodo deserunt anim sit elit aliqua.",
+            "start": "29/11/2019",
+            "end": "04/09/2020",
+            "submit_at": "12/01/2020",
+            "timesheet_date": "18/02/2020",
+            "hour": 21,
+            "status": "Approved",
+            "activity": "Excepteur mollit quis anim pariatur deserunt elit ex irure cillum ullamco occaecat commodo. Anim pariatur ea dolor ex cillum ea occaecat velit pariatur aliqua nisi nostrud aliqua. Voluptate nulla cupidatat aliqua eu pariatur cillum velit consectetur sit Lorem veniam.",
+            "activity_type": "Development",
+            "location": "Jabodetabek",
+            "member": 3,
+            "workload": 69,
+            "issue": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "target": "10/01/2020",
+                "solved": "11/01/2020",
+                "submit": "08/01/2020"
+            }
+        }, {
+            "iwo": "P-1909SCC-TTES1002",
+            "project_id": 1002,
+            "task_id": 1002,
+            "timesheet_id": 1002,
+            "role": "Data Analyst",
+            "pm_name": "Lakeisha Riggs",
+            "project_name": "Tempor sunt esse est excepteur nulla non magna.",
+            "task": "Cillum consectetur dolor sit sint quis.",
+            "start": "28/11/2019",
+            "end": "13/09/2020",
+            "submit_at": "15/06/2020",
+            "timesheet_date": "21/06/2020",
+            "hour": 13,
+            "status": "Approved",
+            "activity": "Labore id est culpa eiusmod velit anim adipisicing proident proident elit et deserunt pariatur nostrud.",
+            "activity_type": "Development",
+            "location": "Non Lokal Jawa",
+            "member": 1,
+            "workload": 71
+        }, {
+            "iwo": "P-1909SCC-TTES1003",
+            "project_id": 1003,
+            "task_id": 1003,
+            "timesheet_id": 1003,
+            "role": "Data Analyst",
+            "pm_name": "Beth Gray",
+            "project_name": "Deserunt incididunt aute ullamco sit aliqua irure do ut ex dolore elit.",
+            "task": "Incididunt consectetur anim in commodo sunt nostrud.",
+            "start": "30/11/2019",
+            "end": "18/08/2020",
+            "submit_at": "23/04/2020",
+            "timesheet_date": "18/02/2020",
+            "hour": 15,
+            "status": "Waiting Approval",
+            "activity": "Ullamco cupidatat irure duis voluptate.",
+            "activity_type": "Development",
+            "location": "Jabodetabek",
+            "member": 4,
+            "workload": 90,
+            "issue": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "mitigation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa mollitia dolores.",
+                "target": "10/01/2020",
+                "submit": "08/01/2020",
+                "solved": false
+            }
+        }, {
+            "iwo": "P-1909SCC-TTES1004",
+            "project_id": 1004,
+            "task_id": 1004,
+            "timesheet_id": 1004,
+            "role": "System Analyst",
+            "pm_name": "Deann Salazar",
+            "project_name": "Consectetur esse fugiat consectetur cillum quis aliquip fugiat ad pariatur fugiat do et magna irure.",
+            "task": "Culpa commodo et est irure nostrud dolor.",
+            "start": "29/11/2019",
+            "end": "21/07/2020",
+            "submit_at": "26/03/2020",
+            "timesheet_date": "03/12/2019",
+            "hour": 19,
+            "status": "Waiting Approval",
+            "activity": "Ut ut ex non consequat adipisicing ex.",
+            "activity_type": "Development",
+            "location": "Luar Jawa Dalam Negri",
+            "member": 4,
+            "workload": 49
+        }, {
+            "iwo": "P-1909SCC-TTES1005",
+            "project_id": 1005,
+            "task_id": 1005,
+            "timesheet_id": 1005,
+            "role": "Programmer",
+            "pm_name": "Bobbie Bass",
+            "project_name": "Elit incididunt velit non cupidatat nulla ipsum culpa.",
+            "task": "Ea enim sint quis dolore ea qui commodo enim culpa.",
+            "start": "29/11/2019",
+            "end": "30/08/2020",
+            "submit_at": "14/11/2020",
+            "timesheet_date": "23/09/2020",
+            "hour": 17,
+            "status": "Approved",
+            "activity": "Dolore magna aliqua pariatur dolor mollit. Deserunt eiusmod laboris ea deserunt dolore ad incididunt. In occaecat dolore eu amet est laboris labore sunt.",
+            "activity_type": "Development",
+            "location": "Non Lokal Jawa",
+            "member": 2,
+            "workload": 64
+        }, {
+            "iwo": "P-1909SCC-TTES1006",
+            "project_id": 1006,
+            "task_id": 1006,
+            "timesheet_id": 1006,
+            "role": "Programmer",
+            "pm_name": "Gutierrez Hester",
+            "project_name": "Consequat deserunt in laborum exercitation aute.",
+            "task": "Consequat non aliqua labore enim ad exercitation laborum labore.",
+            "start": "30/11/2019",
+            "end": "17/09/2020",
+            "submit_at": "16/06/2020",
+            "timesheet_date": "17/01/2020",
+            "hour": 15,
+            "status": "Waiting Approval",
+            "activity": "Duis labore consectetur exercitation et et cupidatat ex. Quis ipsum proident ullamco deserunt cupidatat. Esse adipisicing mollit elit ullamco id est non sint qui id sint voluptate.",
+            "activity_type": "Development",
+            "location": "Luar Jawa Dalam Negri",
+            "member": 4,
+            "workload": 63
+        }, {
+            "iwo": "P-1909SCC-TTES1007",
+            "project_id": 1007,
+            "task_id": 1007,
+            "timesheet_id": 1007,
+            "role": "Data Analyst",
+            "pm_name": "Betty Donovan",
+            "project_name": "Commodo qui nostrud ipsum commodo aliqua est nisi eu do amet eiusmod culpa labore.",
+            "task": "Eu eu in ad ipsum eiusmod voluptate proident elit anim pariatur aliquip deserunt reprehenderit quis.",
+            "start": "27/11/2019",
+            "end": "29/07/2020",
+            "submit_at": "24/05/2020",
+            "timesheet_date": "21/12/2019",
+            "hour": 3,
+            "status": "Waiting Approval",
+            "activity": "Adipisicing anim pariatur consectetur esse minim ea aute adipisicing officia elit. Veniam sit proident velit Lorem sint mollit laborum duis consectetur deserunt voluptate.",
+            "activity_type": "Development",
+            "location": "Jabodetabek",
+            "member": 1,
+            "workload": 60
+        }, {
+            "iwo": "P-1909SCC-TTES1008",
+            "project_id": 1008,
+            "task_id": 1008,
+            "timesheet_id": 1008,
+            "role": "Data Analyst",
+            "pm_name": "Cole Trevino",
+            "project_name": "Occaecat labore reprehenderit est exercitation esse eiusmod reprehenderit eu sint reprehenderit in elit eu.",
+            "task": "Proident aliquip consectetur reprehenderit deserunt anim mollit consectetur et ut cupidatat officia.",
+            "start": "28/11/2019",
+            "end": "26/07/2020",
+            "submit_at": "03/10/2020",
+            "timesheet_date": "19/12/2019",
+            "hour": 24,
+            "status": "Waiting Approval",
+            "activity": "Aute tempor Lorem elit proident ex esse esse proident magna ad anim et anim. Sunt adipisicing cillum et tempor ea aliqua occaecat incididunt veniam cillum. Magna Lorem ea non duis enim ut nisi commodo magna officia ipsum.",
+            "activity_type": "Development",
+            "location": "Jabodetabek",
+            "member": 1,
+            "workload": 92
+        }]
+    </script>
+
+    <script src="../../src/main.min.js"></script>
+    <script src="../../src/projects/timesheetOutrange.min.js"></script>
+</body>
+
+</html>

@@ -1,18 +1,18 @@
 // @charset "utf-8";
 @import "../../node_modules/bulma/sass/utilities/_all";
 @import "../../node_modules/bulma/bulma.sass";
-
 // Mixins ---------------------------------------------
 @import "mixins/gradient";
 @import "mixins/text";
-
-*, *:before, *:after {
-  box-sizing: border-box;
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
 }
 
 //? Pastikan ke mas papang mau pake infobar
 html {
-	overflow: hidden !important;
+    overflow: hidden !important;
 }
 
 @import "components/variables";
@@ -34,433 +34,423 @@ html {
 @import "components/chart";
 @import "components/table/main";
 @import "components/button";
-
-tr.is-child > td:first-child {
-	padding-left: 1.5rem;
+tr.is-child>td:first-child {
+    padding-left: 1.5rem;
 }
 
 [v-cloak] {
-  display: none;
+    display: none;
 }
 
 //! -----------------------------------------------------
 //* @CONTENT --------------------------------------------
+.datepicker {
+    &.is-shadowless {
+        .dropdown-content {
+            box-shadow: none !important;
+        }
+    }
+    &.is-marginless {
+        .dropdown-menu {
+            margin: 0px !important;
+        }
+    }
+    .dropdown.is-disabled {
+        opacity: 1;
+    }
+}
 
 .field.has-align-bottom {
-	position: relative;
-
-	.is-align-bottom {
-		margin-bottom: 0.75rem;
-		position: absolute;
-		bottom: 0;
-	}
+    position: relative;
+    .is-align-bottom {
+        margin-bottom: 0.75rem;
+        position: absolute;
+        bottom: 0;
+    }
 }
 
 .field.is-textarea textarea {
-	min-height: 2em !important;
+    min-height: 2em !important;
     height: 105px !important;
 }
 
 .add-shadow {
-	box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02) !important;
+    box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02) !important;
 }
 
 .text-elipsis {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	text-decoration: none !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none !important;
 }
 
 // Light Background
-@each $name, $color in $lightBG {
-	.has-bg-#{$name}-light {
-		background-color: lighten(nth($color, 1), nth($color, 2)) !important;
-	}
-
-	.has-bg-#{$name}-lighter {
-		background-color: lighten(nth($color, 1), nth($color, 3)) !important;
-	}
+@each $name,
+$color in $lightBG {
+    .has-bg-#{$name}-light {
+        background-color: lighten(nth($color, 1), nth($color, 2)) !important;
+    }
+    .has-bg-#{$name}-lighter {
+        background-color: lighten(nth($color, 1), nth($color, 3)) !important;
+    }
 }
 
 .is-fullheight-container {
-	min-height: 100%;
+    min-height: 100%;
 }
 
 .white-space {
-	display: block;
-	width: 100%;
-	height: 1rem;
-
-	&.is-small {
-		height: 0.5rem;
-	}
-
-	&.is-medium {
-		height: 2.5rem;
-	}
-
-	&.is-large {
-		height: 5rem;
-	}
-
-	&.is-xxl {
-		height: 150px;
-	}
+    display: block;
+    width: 100%;
+    height: 1rem;
+    &.is-small {
+        height: 0.5rem;
+    }
+    &.is-medium {
+        height: 2.5rem;
+    }
+    &.is-large {
+        height: 5rem;
+    }
+    &.is-xxl {
+        height: 150px;
+    }
 }
 
 .contentPage li {
-	margin-top: 0.25em !important;
+    margin-top: 0.25em !important;
 }
 
-@each $name, $size in $brand-sizes {
-  .brand-is-#{$name} {
-    @include brand(nth($size, 1), nth($size, 2), false, $crete);
-  }
-}
-
-.breadcrumb { 
-	background-color: $info-light;
-    padding: .5em 1em;
-    border-style: dotted;
-    border-color: lighten($info, 25%);
-	border-radius: .5em;
-	
-	li {
-		margin-top: 0px !important;
-
-		&.brand {
-			@include brand(1rem, -.5px);
-			background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
-			-webkit-text-fill-color: transparent;
-			-webkit-background-clip: text;
-			background-clip: text;
-
-			&:hover {
-				background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
-				-webkit-text-fill-color: transparent;
-				-webkit-background-clip: text;
-				background-clip: text;
-			}
-		}
-
-		a:hover {
-			background: linear-gradient(0deg, rgb(238, 4, 44),rgb(202, 203, 40));
-			-webkit-text-fill-color: transparent;
-			-webkit-background-clip: text;
-			background-clip: text;
-		}
-
-		&.is-active a {
-			color: $dark;
-		}
-	}
+@each $name,
+$size in $brand-sizes {
+    .brand-is-#{$name} {
+        @include brand(nth($size, 1), nth($size, 2), false, $crete);
+    }
 }
 
 .breadcrumb {
-	li + li::before {
-		content: "/" !important;
-	}
+    background-color: $info-light;
+    padding: .5em 1em;
+    border-style: dotted;
+    border-color: lighten($info, 25%);
+    border-radius: .5em;
+    li {
+        margin-top: 0px !important;
+        &.brand {
+            @include brand(1rem, -.5px);
+            background: linear-gradient(135deg, rgb(32, 186, 230), rgb(110, 6, 173));
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            &:hover {
+                background: linear-gradient(0deg, rgb(238, 4, 44), rgb(202, 203, 40));
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+        }
+        a:hover {
+            background: linear-gradient(0deg, rgb(238, 4, 44), rgb(202, 203, 40));
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        &.is-active a {
+            color: $dark;
+        }
+    }
+}
 
-	&.has-succeeds-separator li + li::before {
-		content: "/" !important;
-	}
+.breadcrumb {
+    li+li::before {
+        content: "/" !important;
+    }
+    &.has-succeeds-separator li+li::before {
+        content: "/" !important;
+    }
 }
 
 // Vertical align td to middle
 td.align-middle {
-	vertical-align: middle !important;
+    vertical-align: middle !important;
 }
 
 .dropdown {
-	.dropdown-trigger > .mdi.mdi-menu-custom {
-		cursor: pointer;
-		color: $info;
-
-		&::before {
-    		content: "\F35C";
-		}
-	}
-
-	&.is-active {
-		.dropdown-trigger > .mdi.mdi-menu-custom::before {
-			content: "\FB87";
-		}
-	}
+    .dropdown-trigger>.mdi.mdi-menu-custom {
+        cursor: pointer;
+        color: $info;
+        &::before {
+            content: "\F35C";
+        }
+    }
+    &.is-active {
+        .dropdown-trigger>.mdi.mdi-menu-custom::before {
+            content: "\FB87";
+        }
+    }
 }
 
 .dropdown-label {
-	font-size: 0.8rem !important;
-	font-weight: bold;
-	text-align: left;
+    font-size: 0.8rem !important;
+    font-weight: bold;
+    text-align: left;
 }
 
 .button.is-bookmark {
-	font-size: 0.75rem;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-	margin-top: 8px;
-
-	.mdi {
-		margin: 0px;
-	}
-
-	span[data-toggle="text"] {
-		margin-left: 5px;
-	}
+    font-size: 0.75rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: 8px;
+    .mdi {
+        margin: 0px;
+    }
+    span[data-toggle="text"] {
+        margin-left: 5px;
+    }
 }
 
 .b-table {
-	.table th {
-		vertical-align: middle;
-	}
-
-	.level:not(.top) {
+    .table th {
+        vertical-align: middle;
+    }
+    .level:not(.top) {
         padding-bottom: 0px !important;
-	}	
+    }
 }
 
 .card.crud .card-content {
-	padding-bottom: 0.5em;
-	padding-left: 15px;
-	padding-right: 15px;
+    padding-bottom: 0.5em;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .crudInput {
-	width: 100%;
+    width: 100%;
 }
 
 .modal.has-hidden-scrollbar {
-	.modal-content {
-		overflow: visible !important;
-	}
+    .modal-content {
+        overflow: visible !important;
+    }
 }
 
 .message.is-modal {
-	height: 100vh;
-
-	.message-body {
-		overflow-y:scroll;
-		height: calc(100% - 56px);
-	}
+    height: 100vh;
+    .message-body {
+        overflow-y: scroll;
+        height: calc(100% - 56px);
+    }
 }
 
 .message.is-normal-font {
-	.message-body {
-		font-size: 1rem !important;
-		padding: .5em .75em;
-	}
+    .message-body {
+        font-size: 1rem !important;
+        padding: .5em .75em;
+    }
 }
 
-.is-packed > .table-wrapper > .table {
-	td {
-		padding: 5px 0.75em !important;
-		vertical-align: middle;
-	}
+.is-packed>.table-wrapper>.table {
+    td {
+        padding: 5px 0.75em !important;
+        vertical-align: middle;
+    }
 }
 
 .card {
-	.b-table {
-		.table.is-narrow {
-			th {
-				padding: 0.5em 0.75em !important;
-			}
-		}
-
-		.top {
-			margin: 15px !important;
-		}
-	}
+    .b-table {
+        .table.is-narrow {
+            th {
+                padding: 0.5em 0.75em !important;
+            }
+        }
+        .top {
+            margin: 15px !important;
+        }
+    }
 }
 
 .searchFilter {
-	@include noSelect;
-	cursor: pointer;
-
-	&.is-active {
-		background-color: lighten($info, 35%);
-	}
+    @include noSelect;
+    cursor: pointer;
+    &.is-active {
+        background-color: lighten($info, 35%);
+    }
 }
 
 // Vertical Lines Left
 .add-border-left {
-	border-left-color: whitesmoke;
-	border-left-style: solid;
-	border-left-width: 2px;
+    border-left-color: whitesmoke;
+    border-left-style: solid;
+    border-left-width: 2px;
 }
 
 // Vertical Lines Right
 .add-border-right {
-	border-right-color: whitesmoke;
-	border-right-style: solid;
-	border-right-width: 2px;
+    border-right-color: whitesmoke;
+    border-right-style: solid;
+    border-right-width: 2px;
 }
 
 p.add-divider-bellow {
-	border-bottom: solid #dadada 1px;
+    border-bottom: solid #dadada 1px;
     margin-bottom: 5px !important;
     padding-bottom: 5px;
 }
 
 p.add-divider-top {
-	border-top: solid #dadada 1px;
+    border-top: solid #dadada 1px;
     margin-top: 5px !important;
     padding-top: 5px;
 }
 
 .button.is-long {
-	min-width: 150px;
-	padding-left: 2rem;
-	padding-right: 2rem;
+    min-width: 150px;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .is-username {
-	margin: 0px !important;
-	font-size: 3.5rem;
-	line-height: 1.2em;
-	font-family: $staat;
-	color: $primary;
-	text-shadow: 3px 3px 0px darken($warning, 20%);
+    margin: 0px !important;
+    font-size: 3.5rem;
+    line-height: 1.2em;
+    font-family: $staat;
+    color: $primary;
+    text-shadow: 3px 3px 0px darken($warning, 20%);
 }
 
 .datepicker {
-	.datepicker-table .datepicker-body {
-		.datepicker-cell.is-selected {
-			background-color: $info !important;
-		}
-
-		.datepicker-cell.is-today {
-			border-color: rgba($info, 0.5) !important;
-			border-width: 2px !important;
-		}
-	}
+    .datepicker-table .datepicker-body {
+        .datepicker-cell.is-selected {
+            background-color: $info !important;
+        }
+        .datepicker-cell.is-today {
+            border-color: rgba($info, 0.5) !important;
+            border-width: 2px !important;
+        }
+    }
 }
 
 .is-inline-datepicker {
-	.datepicker .dropdown-menu {
-		margin-bottom: 0px;
-	}
+    .datepicker .dropdown-menu {
+        margin-bottom: 0px;
+    }
 }
 
 .api-testing {
-	display: none !important;
+    display: none !important;
 }
 
 .button.is-static {
-
-	@each $name, $color in $colors {
-		&.is-#{$name} {
-			background-color: nth($color, 1) !important;
-			border-color: transparent;
-			color: nth($color, 2) !important;
-		}
-
-		&.is-#{$name}-blend {
-			@include gradientMagic(nth($color, 1));
-			border-color: transparent;
-			color: nth($color, 2) !important;
-		}
-	}
+    @each $name,
+    $color in $colors {
+        &.is-#{$name} {
+            background-color: nth($color, 1) !important;
+            border-color: transparent;
+            color: nth($color, 2) !important;
+        }
+        &.is-#{$name}-blend {
+            @include gradientMagic(nth($color, 1));
+            border-color: transparent;
+            color: nth($color, 2) !important;
+        }
+    }
 }
 
 .field.is-horizontal {
-	label.label {
-		text-align: left;
-	}
+    label.label {
+        text-align: left;
+    }
 }
 
 .level.is-field-label {
-	margin-bottom: 8px !important;
+    margin-bottom: 8px !important;
 }
 
 //! -----------------------------------------------------
 //* @PADDING - @MARGIN ----------------------------------
-
 p.is-low-bottom {
-	margin-bottom: 0.5em !important;
+    margin-bottom: 0.5em !important;
 }
 
 p.has-top-margin {
-	margin-top: 1em !important;
+    margin-top: 1em !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	&.is-reduced-margin {
-		margin-bottom: .3rem !important;
-	}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    &.is-reduced-margin {
+        margin-bottom: .3rem !important;
+    }
 }
 
 .has-no-left-padding {
-	padding-left: 0px !important;
+    padding-left: 0px !important;
 }
 
 .has-no-right-padding {
-	padding-right: 0px !important;
+    padding-right: 0px !important;
 }
 
 .has-buff-padding {
-	padding: 2em;
+    padding: 2em;
 }
 
 .has-min-margin-bottom {
-	margin-bottom: 1em !important;
+    margin-bottom: 1em !important;
 }
 
 .has-half-margin-bottom {
-	margin-bottom: .5em !important;
+    margin-bottom: .5em !important;
 }
 
 //! -----------------------------------------------------
 //* @404 ------------------------------------------------
-
 .is-404-content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: ghostwhite;
-
-	h1 {
-		font-size: 10rem;
-		line-height: 10rem;
-		font-family: $staat;
-		color: darkseagreen;
-		text-shadow: 4px 4px 0px rgb(110, 124, 206);
-	}
-
-	p {
-		font-weight: bolder;
-		font-family: $crete;
-	}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ghostwhite;
+    h1 {
+        font-size: 10rem;
+        line-height: 10rem;
+        font-family: $staat;
+        color: darkseagreen;
+        text-shadow: 4px 4px 0px rgb(110, 124, 206);
+    }
+    p {
+        font-weight: bolder;
+        font-family: $crete;
+    }
 }
 
 //! -----------------------------------------------------
 //* @PROFILE --------------------------------------------
-
 .profile-picture {
-	cursor: pointer;
-	position: absolute;
+    cursor: pointer;
+    position: absolute;
     right: 2em;
-	margin-top: -4em;
-	
-	.image {
-		height: 164px !important;
-		width: 164px !important;
-		
-		img {
-			border-radius: 12px;
-		}
-	}
-
-	&:hover {
-		img {
-			filter: blur(5px);
-			filter: grayscale(50%);
-		}
-
-		.middle {
-			opacity: 1;
-		}
-	}
+    margin-top: -4em;
+    .image {
+        height: 164px !important;
+        width: 164px !important;
+        img {
+            border-radius: 12px;
+        }
+    }
+    &:hover {
+        img {
+            filter: blur(5px);
+            filter: grayscale(50%);
+        }
+        .middle {
+            opacity: 1;
+        }
+    }
 }
 
 @import "~bulma";
