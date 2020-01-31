@@ -38,6 +38,7 @@ if ($_GET['get'] == "map") {
 	$end = explode('/', $_POST['end']);
 
 	$temp = [];
+	$week = 1;
 	if (intval($start[1]) < intval($end[1])) {
 		for ($y=intval($start[1]); $y <= intval($end[1]); $y++) { 
 			for ($m=intval($start[0]); $m <= intval($end[0]) ; $m++) { 
@@ -45,6 +46,7 @@ if ($_GET['get'] == "map") {
 				for ($d=1; $d <= $days; $d++) { 
 					$temp[] = (Object) [
 						"date" => date("d/m/Y", mktime(0,0,0, $m, $d, $y)),
+						"alertWeek" => date("W", mktime(0,0,0, $m, $d, $y)),
 						"isWarning" => false,
 						"underUtil" => false,
 						"value" => 0,
@@ -58,6 +60,7 @@ if ($_GET['get'] == "map") {
 			for ($d=1; $d <= $days; $d++) { 
 				$temp[] = [
 					"date" => date("d/m/Y", mktime(0,0,0, $m, $d, intval($end[1]))),
+					"alertWeek" => date("W", mktime(0,0,0, $m, $d, intval($end[1]))),
 					"isWarning" => false,
 					"underUtil" => false,
 					"value" => 0,
@@ -68,6 +71,7 @@ if ($_GET['get'] == "map") {
 
 	$cooked = [];
 	for ($i=0; $i < $total; $i++) { 
+		$alertWeek = "0" + rand(1, 3);
 		for ($j=0; $j < count($temp); $j++) { 
 			$hour = 8;
 			$randomize = rand(0, 9);
@@ -80,6 +84,7 @@ if ($_GET['get'] == "map") {
 			$temp[$j]['value'] = $hour;
 			$temp[$j]['isWarning'] = rand(0, 9) > 7;
 			$temp[$j]['underUtil'] = $hour < UNDER;
+			$temp[$j]['alertWeek'] = $temp[$j]['alertWeek'] == $alertWeek;
 		}
 
 		$cooked[$i] = [

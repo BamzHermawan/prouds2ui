@@ -1,8 +1,8 @@
 <template>
 	<tr>
 		<td class="is-grey is-lighter"><slot></slot></td>
-		<td :class="rowClass + ' has-text-centered'">{{ days }}</td>
 		<td :class="rowClass + ' has-text-centered'">{{ qty }}</td>
+		<td :class="rowClass + ' has-text-centered'">{{ days }}</td>
 		<td :class="rowClass + ' has-text-right'">{{ mandays }}</td>
 		<td :class="rowClass + ' has-text-right'">{{ rate | currency }}</td>
 		<td :class="rowClass + ' has-text-right'">{{ cost | currency }}</td>
@@ -20,6 +20,10 @@ export default {
 			type: String,
 			default: "0"
 		},
+		mandays: {
+			type: String,
+			default: "0"
+		},
 		rate: {
 			type: String,
 			default: "0"
@@ -31,9 +35,6 @@ export default {
 		};
 	},
 	computed: {
-		mandays() {
-			return parseInt(this.qty) * parseInt(this.days);
-		},
 		cost() {
 			return parseInt(this.rate) * this.mandays;
 		},
@@ -53,7 +54,7 @@ export default {
 			qty: parseInt(this.qty),
 			days: parseInt(this.days),
 			rate: parseInt(this.rate),
-			mandays: this.mandays,
+			mandays: parseInt(this.mandays),
 			cost: this.cost
 		});
 	}
