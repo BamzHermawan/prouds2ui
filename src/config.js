@@ -184,6 +184,15 @@ module.exports = {
         userMapByUnit: 'getUtilMap.php?get=map&total=50&unit={unit_id}',
 
         /**
+         * Get Timesheet Complience by Unit ID
+         * Send Data:
+         * - unit_id: string project id [GET]
+         * - start: start date range (MM/YYYY) or null [POST]
+         * - end: end date range (MM/YYYY) or null [POST]
+         */
+        timesheetComplience: 'getUtilMap.php?get=complience&total=50&unit={unit_id}',
+
+        /**
          * Get User Utilization Map Detail list by Nik and date
          * Send Data:
          * - nik: String User NIK [POST]

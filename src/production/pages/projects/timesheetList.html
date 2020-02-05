@@ -354,7 +354,11 @@
                                         </div>
                                         <div class="column">
                                             <div class="field">
-                                                <label class="label">Working Progress [%]</label>
+                                                <!-- ^ UPDATED ################################################### -->
+                                                <label class="label">
+													<abbr title="Last progress result of this assignment">Working Progress [%]</abbr>
+												</label>
+                                                <!-- ^ UPDATED ################################################### -->
                                                 <div class="control">
                                                     <input class="input" type="number" min="0" max="100" name="workingProgress" v-model="workProgress" placeholder="Current Progress" required />
                                                 </div>
@@ -432,11 +436,12 @@
                                             Timesheet Start Date
                                         </p>
                                     </header>
-                                    <b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="selectedDateList">
+                                    <!-- ^ UPDATED ####################################################### -->
+                                    <b-datepicker inline :first-day-of-week="1" v-model="datepicker.start.val" :max-date="datepicker.end.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="selectedDateList">
                                         <template slot="header">
 											<b-field>
-												<b-select placeholder="Select Month" v-model="datepicker.start.selected"
-													@input="selectMonth('start')" expanded>
+												<b-select placeholder="Select Month" v-model="datepicker.start.selected" @input="selectMonth('start')"
+													expanded>
 													<option :key="i" v-for="(item, i) in monthList">
 														{{ item.label }}
 													</option>
@@ -448,6 +453,7 @@
 											</small>
 										</template>
                                     </b-datepicker>
+                                    <!-- ^ UPDATED ####################################################### -->
                                 </div>
                             </div>
                             <div class="column">
@@ -457,11 +463,11 @@
                                             Timesheet End Date
                                         </p>
                                     </header>
-                                    <b-datepicker inline v-model="datepicker.end.val" :max-date="datepicker.start.max" :min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
+                                    <!-- ^ UPDATED ####################################################### -->
+                                    <b-datepicker inline :first-day-of-week="1" v-model="datepicker.end.val" :max-date="datepicker.end.max" :min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
                                         <template slot="header">
 											<b-field>
-												<b-select placeholder="Select Month" v-model="datepicker.end.selected"
-													@input="selectMonth('end')" expanded>
+												<b-select placeholder="Select Month" v-model="datepicker.end.selected" @input="selectMonth('end')" expanded>
 													<option :key="i" v-for="(item, i) in monthList">
 														{{ item.label }}
 													</option>
@@ -473,6 +479,7 @@
 											</small>
 										</template>
                                     </b-datepicker>
+                                    <!-- ^ UPDATED ####################################################### -->
                                 </div>
                             </div>
                         </div>
@@ -487,11 +494,12 @@
                                             Timesheet Date
                                         </p>
                                     </header>
-                                    <b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.start.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="datepicker.filled">
+                                    <!-- ^ UPDATED ###################################################### -->
+                                    <b-datepicker inline :first-day-of-week="1" v-model="datepicker.start.val" :max-date="datepicker.end.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="datepicker.filled">
                                         <template slot="header">
 											<b-field>
-												<b-select placeholder="Select Month" v-model="datepicker.start.selected"
-													@input="selectMonth('start')" expanded>
+												<b-select placeholder="Select Month" v-model="datepicker.start.selected" @input="selectMonth('start')"
+													expanded>
 													<option :key="i" v-for="(item, i) in monthList">
 														{{ item.label }}
 													</option>
@@ -503,6 +511,7 @@
 											</small>
 										</template>
                                     </b-datepicker>
+                                    <!-- ^ UPDATED ###################################################### -->
                                 </div>
                             </div>
                         </div>

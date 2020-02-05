@@ -20,6 +20,7 @@
 					expanded
 					:icon="iconPicker()"
 					:month-names="monthList()"
+					:first-day-of-week="1"
 					:date-formatter="dateFormater"
 					:placeholder="placeholder"
 					v-model="model"

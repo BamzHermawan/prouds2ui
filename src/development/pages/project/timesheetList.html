@@ -355,7 +355,9 @@
                                         </div>
                                         <div class="column">
                                             <div class="field">
-                                                <label class="label">Working Progress [%]</label>
+                                                <label class="label">
+													<abbr title="Last progress result of this assignment">Working Progress [%]</abbr>
+												</label>
                                                 <div class="control">
                                                     <input class="input" type="number" min="0" max="100" name="workingProgress" v-model="workProgress" placeholder="Current Progress" required />
                                                 </div>
@@ -433,7 +435,7 @@
                                             Timesheet Start Date
                                         </p>
                                     </header>
-                                    <b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.end.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="selectedDateList">
+                                    <b-datepicker inline :first-day-of-week="1" v-model="datepicker.start.val" :max-date="datepicker.end.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="selectedDateList">
                                         <template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.start.selected"
@@ -459,7 +461,7 @@
                                             Timesheet End Date
                                         </p>
                                     </header>
-                                    <b-datepicker inline v-model="datepicker.end.val" :max-date="datepicker.end.max" :min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
+                                    <b-datepicker inline :first-day-of-week="1" v-model="datepicker.end.val" :max-date="datepicker.end.max" :min-date="datepicker.start.val" :focused-date="datepicker.end.focused" :events="selectedDateList">
                                         <template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.end.selected"
@@ -491,7 +493,7 @@
                                             Timesheet Date
                                         </p>
                                     </header>
-                                    <b-datepicker inline v-model="datepicker.start.val" :max-date="datepicker.end.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="datepicker.filled">
+                                    <b-datepicker inline :first-day-of-week="1" v-model="datepicker.start.val" :max-date="datepicker.end.max" :min-date="getMinDate()" :focused-date="datepicker.start.focused" :events="datepicker.filled">
                                         <template slot="header">
 											<b-field>
 												<b-select placeholder="Select Month" v-model="datepicker.start.selected"

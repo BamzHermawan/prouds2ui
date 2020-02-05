@@ -1,5 +1,6 @@
 <template>
 	<b-dropdown
+		@active-change="dropdowned"
 		aria-role="list"
 		position="is-bottom-left"
 		class="is-small"
@@ -9,6 +10,7 @@
 		<b-dropdown-item :focusable="false" custom>
 			<form :action="endPoint" method="post">
 				<input type="hidden" name="auto" v-model="auto" />
+				<input type="hidden" name="date" v-model="date" />
 				<b-field label="Adjust Timesheet Date">
 					<b-checkbox v-model="auto_select" type="is-info">
 						<b-tooltip
@@ -32,7 +34,9 @@
 						:focused-date="minDate"
 						:min-date="minDate"
 						:max-date="maxDate"
-						name="date"
+						:events="filledDate"
+						v-model="rawDate"
+						:date-formatter="dateFormater"
 					></b-datepicker>
 				</b-field>
 				<b-field>
@@ -46,7 +50,8 @@
 </template>
 
 <script>
-import { parsedURL } from "helper-apis";
+import { parsedURL, filledTimesheet } from "helper-apis";
+import { checkConnection, notified } from "helper-tools";
 import Moment from "helper-moment";
 export default {
 	props: {
@@ -61,6 +66,8 @@ export default {
 	},
 	data() {
 		return {
+			rawDate: null,
+			filledDate: [],
 			auto_select: true
 		};
 	},
@@ -91,6 +98,48 @@ export default {
 		},
 		auto() {
 			return this.auto_select ? "TRUE" : "FALSE";
+		},
+		date() {
+			if (this.rawDate !== null) {
+				return Moment(this.rawDate).format("DD/MM/YYYY");
+			}
+
+			return "";
+		}
+	},
+	methods: {
+		getFilled(id, start, end) {
+			let self = this;
+			filledTimesheet(id, start, end)
+				.then(response => {
+					let filled = response.data;
+					for (let i = 0; i < filled.length; i++) {
+						let tsDate = filled[i];
+						self.filledDate.push({
+							date: new Date(Moment(tsDate, "DD/MM/YYYY")),
+							type: "is-warning"
+						});
+					}
+				})
+				.catch(() => {
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem, please try again later. 🙏"
+						);
+					}
+				});
+		},
+		dropdowned(isDisplay) {
+			if (isDisplay) {
+				this.getFilled(
+					this.data.assignment_id,
+					this.data.start,
+					this.data.end
+				);
+			}
+		},
+		dateFormater(date) {
+			return Moment(date).format("DD / MM / YYYY");
 		}
 	}
 };

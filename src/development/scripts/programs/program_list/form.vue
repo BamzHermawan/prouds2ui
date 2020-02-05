@@ -60,6 +60,17 @@
 				</crud-input>
 			</b-field>
 		</b-field>
+
+		<b-field v-if="isEdit" horizontal label="Status Program">
+			<b-select
+				name="status"
+				v-model="status"
+				placeholder="Select Program Status"
+			>
+				<slot name="status-option"></slot>
+			</b-select>
+		</b-field>
+
 		<b-field label="Summary">
 			<b-input
 				name="description"
@@ -113,12 +124,14 @@ export default {
 	},
 	data() {
 		return {
+			isEdit: false,
 			name: null,
 			unit: null,
 			manager: null,
 			start: null,
 			end: null,
 			description: null,
+			status: null,
 			model: {
 				unit: "",
 				manager: ""
@@ -173,9 +186,11 @@ export default {
 			this.start = new Date(Moment(program.start, "DD/MM/YYYY"));
 			this.end = new Date(Moment(program.end, "DD/MM/YYYY"));
 			this.description = program.description;
+			this.status = program.status;
 
 			this.model.unit = program.unit.name;
 			this.model.manager = program.pm.name;
+			this.isEdit = true;
 		},
 		selectUnit(opt) {
 			this.unit = opt.id;
@@ -187,6 +202,7 @@ export default {
 	beforeMount() {
 		this.start = new Date();
 		this.end = new Date();
+		this.isEdit = false;
 
 		if (this.program !== undefined) {
 			this.setProgram(this.program);

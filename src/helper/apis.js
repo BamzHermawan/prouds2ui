@@ -292,6 +292,21 @@ module.exports.getUserMapByUnit = (unitID, bundle) => {
 }
 
 /**
+ * Get Timesheet Complience by Unit ID
+ *
+ * @param {*} unitID: Business Unit ID
+ * @param {*} bundle: Data to send
+ * @returns Axios Promise Instance
+ */
+module.exports.timesheetComplience = (unitID, bundle) => {
+    return request.post(parseURL("timesheetComplience", { unit_id: unitID }), pack(bundle), {
+        headers: {
+            "Content-Type": 'application/x-www-form-urlencoded'
+        }
+    });
+}
+
+/**
  * Get User Utilization Map Detail list by Nik and date
  *
  * @param {*} nik: String User NIK

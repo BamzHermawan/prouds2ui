@@ -3,7 +3,7 @@ import Buefy from 'buefy';
 import Moment from 'helper-moment';
 import outRangeForm from './outRangeForm.vue';
 import { crudInput, statusTooltip } from 'components';
-import { isEmpty } from 'helper-tools';
+import { isEmpty, checkConnection, notified } from 'helper-tools';
 import 'helper-filter';
 
 const implantTag = document.querySelector('#implantedJSON');
@@ -181,7 +181,7 @@ new Vue({
             this.modalIssue.mitigation = row.issue.mitigation;
 
             this.modalIssue.display = true;
-        }
+        },
     },
     mounted() {
         this.timesheet = implantData;
