@@ -24,14 +24,7 @@
 						</p>
 						<b-select v-model="filter.status">
 							<option value="#allStatus">All</option>
-							<slot name="filter-status">
-								<option>New</option>
-								<option>Closed</option>
-								<option>Dropped</option>
-								<option>On Hold</option>
-								<option>Completed</option>
-								<option>In Progress</option>
-							</slot>
+							<slot name="filter-status"></slot>
 						</b-select>
 					</b-field>
 				</div>
@@ -207,7 +200,7 @@ export default {
 			}
 
 			return programs.filter(
-				program => this.filter.status == program.status
+				program => this.filter.status == program.status.id
 			);
 		},
 		parseLink(row) {

@@ -186,7 +186,7 @@ export default {
 			this.start = new Date(Moment(program.start, "DD/MM/YYYY"));
 			this.end = new Date(Moment(program.end, "DD/MM/YYYY"));
 			this.description = program.description;
-			this.status = program.status;
+			this.status = program.status.id;
 
 			this.model.unit = program.unit.name;
 			this.model.manager = program.pm.name;
