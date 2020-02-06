@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../../styles/main.scss">
+	<link rel="stylesheet" href="../../styles/main.scss">
 </head>
 
 <body>
@@ -68,7 +68,7 @@
 		<b-message v-if="top.status" type="is-info">
 			<p class="subtitle" style="margin-bottom: 8px;"><span class="mdi mdi-information has-text-info"></span>
 				Information</p>
-			<p><span class="tag is-warning">YELLOW</span>  Highlight Term of Payment (TOP)</p>
+			<p><span class="tag is-warning">YELLOW</span> Highlight Term of Payment (TOP)</p>
 		</b-message>
 
 		<nav v-if="showPMONav" class="level sub-nav is-info animated fadeIn" style="margin-top:25px;">
@@ -94,8 +94,7 @@
 
 		<b-table ref="dTable" :header-checkable="false" :data="delivery" class="is-packed" checkbox-position="right"
 			:checked-rows.sync="selected" :row-class="(row, index) => row.topStatus && 'has-background-warning'"
-			:paginated="isPaginated" per-page="10" pagination-simple
-			detailed detail-key="id" show-detail-icon>
+			:paginated="isPaginated" per-page="10" pagination-simple detailed detail-key="id" show-detail-icon>
 			<template slot-scope="props">
 				<b-table-column field="period" label="Period" width="120" centered>
 					{{ props.row.period }}
@@ -115,7 +114,7 @@
 						:class="'tag is-small ' + (parseInt(props.row.actual.progress) < parseInt(props.row.plan) ? 'is-danger':'is-info')">{{ props.row.actual.progress }}%</span>
 					<span v-else class="tag is-small">---</span>
 				</b-table-column>
-				<b-table-column field="actual.doctype" label="Doc Type"  width="110" centered>
+				<b-table-column field="actual.doctype" label="Doc Type" width="110" centered>
 					<p v-if="props.row.actual !== undefined && props.actual !== '' && props.row.actual !== null">
 						{{props.row.actual.doctype}}</p>
 					<span v-else class="tag is-small">---</span>
@@ -278,7 +277,7 @@
 				}
 			];
 	</script>
-	<script src="../../scripts/project/deliveryPlan/deliveryPlan.js"></script>
+	<script src="../scripts/project/deliveryPlan/deliveryPlan.js"></script>
 </body>
 
 </html>
