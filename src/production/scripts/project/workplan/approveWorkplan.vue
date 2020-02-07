@@ -1,5 +1,5 @@
 <template>
-	<b-button type="is-primary is-light is-small is-fullwidth" @click="confirm">
+	<b-button type="is-success is-light is-small is-fullwidth" @click="confirm">
 		<b>Approve Workplan</b>
 	</b-button>
 </template>

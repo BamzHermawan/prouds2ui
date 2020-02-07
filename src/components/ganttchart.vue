@@ -1,16 +1,51 @@
 <template>
-	<div class="container">
-		<h1>
-			<div
-				style="position:relative"
-				class="gantt"
-				id="GanttChartDIV"
-			></div>
-		</h1>
-	</div>
+	<div ref="container" style="position:relative" class="gantt"></div>
 </template>
 
 <script>
+const initGANTT = (el, onclick) => {
+	const gchart = new JSGantt.GanttChart(el, "day");
+
+	gchart.setOptions({
+		vCaptionType: "Complete",
+		vQuarterColWidth: 36,
+		vDateTaskDisplayFormat: "day dd month yyyy",
+		vDayMajorDateDisplayFormat: "mon yyyy - Week ww",
+		vWeekMinorDateDisplayFormat: "dd mon",
+		vLang: "en",
+		vShowTaskInfoLink: 1,
+		vShowEndWeekDate: 0,
+		vAdditionalHeaders: {
+			duration: {
+				title: "Duration"
+			},
+			mandays: {
+				title: "Mandays"
+			},
+			weightPercent: {
+				title: "Weight (%)"
+			},
+			pComp: {
+				title: "Progress (%)"
+			},
+			roleName: {
+				title: "Role"
+			}
+		},
+		vUseSingleCell: 10000,
+		vFormatArr: ["Day", "Week", "Month", "Quarter"]
+	});
+
+	gchart.setShowRes(0);
+	gchart.setShowComp(0);
+	gchart.setShowDur(0);
+	gchart.setUseToolTip(0);
+	gchart.setShowComp(0);
+	gchart.setEventClickRow(onclick);
+
+	return gchart;
+};
+
 export default {
 	props: {
 		actionEvent: {
@@ -20,114 +55,64 @@ export default {
 	},
 	data() {
 		return {
-			dataBaru: GANTT
+			tasks: []
 		};
 	},
 	methods: {
-		getChart() {
-			let self = this;
-			const g = new JSGantt.GanttChart(
-				document.getElementById("GanttChartDIV"),
-				"day"
-			);
-			g.setOptions({
-				vCaptionType: "Complete",
-				vQuarterColWidth: 36,
-				vDateTaskDisplayFormat: "day dd month yyyy",
-				vDayMajorDateDisplayFormat: "mon yyyy - Week ww",
-				vWeekMinorDateDisplayFormat: "dd mon",
-				vLang: "en",
-				vShowTaskInfoLink: 1,
-				vShowEndWeekDate: 0,
-				vAdditionalHeaders: {
-					duration: {
-						title: "Duration"
-					},
-					mandays: {
-						title: "Mandays"
-					},
-					weightPercent: {
-						title: "Weight (%)"
-					},
-					pComp: {
-						title: "Progress (%)"
-					},
-					roleName: {
-						title: "Role"
-					}
-				},
-				vUseSingleCell: 10000,
-				vFormatArr: ["Day", "Week", "Month", "Quarter"]
+		chartClickEvent(event) {
+			let taskID = event.getOriginalID();
+			let selectedTask = this.tasks.find(task => {
+				return task.pID == taskID;
 			});
-			g.setShowRes(0);
-			g.setShowComp(0);
-			g.setShowDur(0);
-			g.setUseToolTip(0);
-			g.setShowComp(0);
-			// g.setUseSort(0);
-			// g.setEditable(1);
-			// g.AddTaskItem(
-			// 	new JSGantt.TaskItem(
-			// 		12,
-			// 		"Define Chart API",
-			// 		"2019-08-19",
-			// 		"2019-10-31",
-			// 		"gtaskgreen",
-			// 		"",
-			// 		0,
-			// 		"Brian",
-			// 		0,
-			// 		0,
-			// 		1,
-			// 		1,
-			// 		"",
-			// 		"",
-			// 		"",
-			// 		g
-			// 	)
-			// );
-			g.setEventClickRow(function(e) {
-				// console.log(e);
-				// self.modalEvent(e);
-				let taskID = e.getOriginalID();
-				let selectedTask = self.dataBaru.find(task => {
-					return task.pID == taskID;
-				});
 
-				let lastActive = document.querySelector("tr.gname.is-active");
-				if (lastActive !== null) {
-					lastActive.classList.remove("is-active");
-				}
+			let lastActive = document.querySelector("tr.gname.is-active");
+			if (lastActive !== null) {
+				lastActive.classList.remove("is-active");
+			}
 
-				let childRow = e.getChildRow();
-				let id_childRow = childRow.getAttribute("id");
-				let id_row = id_childRow.replace("childrow", "child");
-				document.querySelector("#" + id_row).classList.add("is-active");
+			let childRow = event.getChildRow();
+			let id_childRow = childRow.getAttribute("id");
+			let id_row = id_childRow.replace("childrow", "child");
+			document.querySelector("#" + id_row).classList.add("is-active");
 
-				self.$emit("select", selectedTask);
-			});
-			this.dataBaru.forEach(d => {
-				d.pGantt = g;
-				g.AddTaskItemObject(d);
-			});
-			g.Draw();
+			this.$emit("select", selectedTask);
 		},
-		modalEvent(e) {
-			this.modal.display = true;
-			this.modal.title = "Edit " + e.getName();
-			this.modal.StartDate = e.getStart();
-			this.modal.EndDate = e.getEnd();
-			this.modal.duration = e.getDuration();
-			let eventID = e.getOriginalID();
 
-			this.modal.data = this.dataBaru.find(task => {
-				console.log(task);
-				return task.pID == eventID;
-			});
+		loadChart(tasks) {
+			const gantt = initGANTT(this.$refs.container, this.chartClickEvent);
+
+			for (let i = 0; i < tasks.length; i++) {
+				const task = tasks[i];
+				task.pGantt = gantt;
+				gantt.AddTaskItemObject(task);
+			}
+
+			gantt.Draw();
+			this.tasks = tasks;
 		}
+
+		// modalEvent(e) {
+		// 	this.modal.display = true;
+		// 	this.modal.title = "Edit " + e.getName();
+		// 	this.modal.StartDate = e.getStart();
+		// 	this.modal.EndDate = e.getEnd();
+		// 	this.modal.duration = e.getDuration();
+		// 	let eventID = e.getOriginalID();
+
+		// 	this.modal.data = this.workplan.find(task => {
+		// 		return task.pID == eventID;
+		// 	});
+		// }
 	},
 	mounted() {
-		this.getChart();
+		let implantTag = document.querySelector("#GanttJSON");
+		if (implantTag == null) {
+			implantTag = document.querySelector("#implantedJSON");
+			const bulk = JSON.parse(implantTag.innerHTML);
+			this.loadChart(bulk.GANTT);
+		} else {
+			this.loadChart(JSON.parse(implantTag.innerHTML));
+		}
 	}
 };
 </script>

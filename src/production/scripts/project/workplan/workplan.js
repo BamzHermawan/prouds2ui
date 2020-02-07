@@ -5,7 +5,6 @@ import Loader from 'helper-loader';
 import { animate, parseURLRoute, isEmpty } from 'helper-tools';
 import EditTask from "./editTask.vue"
 import AddTask from "./addTask.vue"
-import Tmp from "./template.vue"
 import AssignResource from "./assignResource.vue"
 import ShowAssignment from "./showAssignment.vue"
 import SetProgress from "./setProgress.vue"
@@ -13,6 +12,9 @@ import ChangeParentTask from "./changeParentTask.vue"
 import LinkPredecessor from "./linkPredecessor.vue"
 import approveBtn from "./approveWorkplan.vue"
 import 'helper-filter';
+
+const implantTag = document.querySelector('#implantedJSON');
+const implantData = JSON.parse(implantTag.innerHTML);
 
 Vue.use(Buefy);
 new Vue({
@@ -24,7 +26,6 @@ new Vue({
 		crudInput,
 		EditTask,
 		AddTask,
-		Tmp,
 		AssignResource,
 		ShowAssignment,
 		SetProgress,
@@ -65,17 +66,16 @@ new Vue({
 		titleActive: "",
 		idd: "",
 		showWorkplan: true,
-		dataBaru: GANTT,
-		dataRole: ROLE,
-		dataWorkdays: WORKDAYS,
-		dataTemplate: TEMPLATE,
+		dataBaru: [],
+		dataRole: [],
+		dataWorkdays: [],
 		selectedDocument: null,
 		showSideBar: false
 	},
 	methods: {
 		isEmpty: isEmpty,
 		getPageTitle(id) {
-			let 
+			let
 		},
 		addFavorite(title, link) {
 			global.$sidebar.ws.addList(title, link);
@@ -168,6 +168,9 @@ new Vue({
 			}
 
 			return size;
+		},
+		hasnotCalcMethID(id) {
+			return this.selectedTask.calcMethod.id != id;
 		}
 	},
 	computed: {
@@ -206,6 +209,10 @@ new Vue({
 		}
 	},
 	mounted() {
+		this.dataBaru = implantData.GANTT;
+		this.dataRole = implantData.ROLE;
+		this.dataWorkdays = implantData.WORKDAYS;
+
 		let routes = parseURLRoute();
 		if (routes !== false) {
 			if (routes.args.length > 0) {

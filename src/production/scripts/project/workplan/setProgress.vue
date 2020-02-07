@@ -54,7 +54,7 @@
 				<b-field>
 					<p class="control">
 						<button class="button is-static is-info-blend">
-							Auto Calculated
+							Auto by timesheet hours
 						</button>
 					</p>
 					<p class="control">
@@ -70,7 +70,7 @@
 			</div>
 		</b-field>
 
-		<b-field horizontal label="Progress [%]">
+		<b-field horizontal label="Progress Adjustment [%]">
 			<crud-input
 				type="number"
 				name="progress"
@@ -110,6 +110,9 @@ import moment from "helper-moment";
 import { crudInput } from "components";
 import { isEmpty } from "helper-tools";
 
+const implantTag = document.querySelector("#implantedJSON");
+const implantData = JSON.parse(implantTag.innerHTML);
+
 export default {
 	components: { crudInput },
 	props: {
@@ -128,7 +131,7 @@ export default {
 	},
 	data() {
 		return {
-			dataBaru: GANTT,
+			dataBaru: [],
 			progress: 0,
 			start: "",
 			finish: "",
@@ -171,6 +174,8 @@ export default {
 		}
 	},
 	beforeMount() {
+		this.dataBaru = implantData.GANTT;
+
 		this.start = moment(this.task.pStart).format("dddd, DD MMMM YYYY");
 		this.finish = moment(this.task.pEnd).format("dddd, DD MMMM YYYY");
 		this.progress = parseInt(this.task.pComp);

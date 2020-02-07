@@ -62,6 +62,20 @@
 						>
 					</crud-input>
 
+					<b-field
+						label="Calculation Method*"
+						style="margin-bottom:1em"
+					>
+						<b-select
+							expanded
+							name="calc_method"
+							v-model="calcMethod"
+							placeholder="Choose Calculation Method for Task Progress"
+						>
+							<slot name="calc-meth-option"></slot>
+						</b-select>
+					</b-field>
+
 					<div class="columns">
 						<div class="column is-6">
 							<b-field label="Weight Index">
@@ -75,18 +89,6 @@
 							</b-field>
 						</div>
 					</div>
-					<input
-						type="hidden"
-						name="progressCalculation"
-						v-model="progressCalculation"
-					/>
-					<b-field label="Progress Calculation">
-						<div class="block">
-							<b-checkbox v-model="progressCalculation">
-								Auto by Timesheet
-							</b-checkbox>
-						</div>
-					</b-field>
 
 					<hr />
 
@@ -180,12 +182,14 @@
 </template>
 
 <script>
-// TODO: Selesaikan Halaman Modal!
-
 import Moment from "helper-moment";
 import { crudInput } from "components";
 import { notified, checkConnection, isEmpty } from "helper-tools";
 import api from "helper-apis";
+
+const implantTag = document.querySelector("#implantedJSON");
+const implantData = JSON.parse(implantTag.innerHTML);
+
 export default {
 	components: { crudInput },
 	props: {
@@ -208,8 +212,8 @@ export default {
 	},
 	data() {
 		return {
-			dataBaru: GANTT,
-			dataRole: ROLE,
+			dataBaru: [],
+			dataRole: [],
 			start: undefined,
 			finish: undefined,
 			workdays: null,
@@ -222,7 +226,7 @@ export default {
 			isLoading: false,
 			name: "",
 			selected: null,
-			progressCalculation: true,
+			calcMethod: null,
 			weight: 1,
 			taskName: ""
 		};
@@ -315,6 +319,10 @@ export default {
 			}
 			return false;
 		}
+	},
+	beforeMount() {
+		this.dataBaru = implantData.GANTT;
+		this.dataRole = implantData.ROLE;
 	},
 	mounted() {
 		this.getProcessGroup();

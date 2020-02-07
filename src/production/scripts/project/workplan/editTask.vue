@@ -89,14 +89,23 @@
 
 					<input
 						type="hidden"
-						name="progressCalculationPrev"
-						v-model="progressCalculationPrev"
+						name="calc_method_prev"
+						v-model="calcMethodPrev"
 					/>
-					<input
-						type="hidden"
-						name="progressCalculation"
-						v-model="progressCalculation"
-					/>
+
+					<b-field
+						label="Calculation Method*"
+						style="margin-bottom:1em"
+					>
+						<b-select
+							expanded
+							name="calc_method"
+							v-model="calcMethod"
+							placeholder="Choose Auto Calculation Method"
+						>
+							<slot name="calc-meth-option"></slot>
+						</b-select>
+					</b-field>
 
 					<input
 						type="hidden"
@@ -129,17 +138,6 @@
 							</b-field>
 						</div>
 					</div>
-
-					<b-field
-						label="Progress Calculation"
-						style="margin-bottom:1em"
-					>
-						<div class="block">
-							<b-checkbox v-model="progressCalculation">
-								Auto by Timesheet
-							</b-checkbox>
-						</div>
-					</b-field>
 
 					<hr />
 
@@ -239,12 +237,13 @@
 </template>
 
 <script>
-// TODO: Selesaikan Halaman Modal!
-
 import Moment from "helper-moment";
 import { crudInput } from "components";
 import { notified, checkConnection, isEmpty } from "helper-tools";
 import api from "helper-apis";
+
+const implantTag = document.querySelector("#implantedJSON");
+const implantData = JSON.parse(implantTag.innerHTML);
 
 const passValue = val => {
 	return isEmpty(val) ? null : val;
@@ -272,8 +271,8 @@ export default {
 	},
 	data() {
 		return {
-			dataBaru: GANTT,
-			dataRole: ROLE,
+			dataBaru: [],
+			dataRole: [],
 			taskName: this.task.pName,
 			workdays: this.task.workdays,
 			duration: this.task.duration,
@@ -286,9 +285,9 @@ export default {
 			isLoading: false,
 			processGroupName: "",
 			processGroupID: this.task.processGroupID,
-			progressCalculation: this.task.progressCalculation,
 			taskNamePrev: this.task.pName,
-			progressCalculationPrev: this.task.progressCalculation,
+			calcMethod: this.task.calcMethod.id,
+			calcMethodPrev: this.task.calcMethod.id,
 			startPrev: Moment(this.task.pStart).format("DD/MM/YYYY"),
 			finishPrev: Moment(this.task.pEnd).format("DD/MM/YYYY"),
 			workdaysPrev: this.task.workdays,
@@ -481,6 +480,10 @@ export default {
 		finishisoverflow() {
 			return this.finish > this.oldfinish;
 		}
+	},
+	beforeMount() {
+		this.dataBaru = implantData.GANTT;
+		this.dataRole = implantData.ROLE;
 	},
 	mounted() {
 		this.predecessor = this.task.pDepend ? this.task.pDepend : null;

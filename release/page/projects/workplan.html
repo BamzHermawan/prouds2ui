@@ -2,150 +2,151 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
-    <meta name="description" content="HOME for PROUDS 2 Web Application">
-    <link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
-    <title>WORKPLAN | PROUDS 2</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon">
+	<title>WORKPLAN | PROUDS 2</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../src/style.min.css">
-    <link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../src/style.min.css">
+	<link rel="stylesheet" href="../../src/perfect-scrollbar.min.css">
 
-    <!-- JSGanttChart -->
-    <link href="http://localhost:5501/plugins/jsgantt-improved/jsgantt.css" rel="stylesheet" type="text/css">
-    <script src="http://localhost:5501/plugins/jsgantt-improved/jsgantt.js" type="text/javascript"></script>
+	<!-- JSGanttChart -->
+	<link href="http://localhost:5501/plugins/jsgantt-improved/jsgantt.css" rel="stylesheet" type="text/css">
+	<script src="http://localhost:5501/plugins/jsgantt-improved/jsgantt.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <div class="loader-wrapper animated fadeIn">
-        <img src="http://localhost:5501/media/loader.gif">
-    </div>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
 
-    <div id="main-layout" class="wrapper open-first">
-        <section id="side-main" class="sidebar">
-            <div class="brand animated slideInLeft fast">
-                <span>PROUDS</span>
-            </div>
-            <div class="side-list animated slideInLeft faster">
-                <a href="#notification" class="parent-list">
-                    <div class="list-title">
-                        <label>
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
 							<span class="mdi mdi-bell-outline in-left"></span>
 							<span>Notification</span>
 						</label>
-                        <div class="action">
-                            <span class="tag is-warning">{{notifCount}}</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
 
-            <!-- Sidebar disesuaikan dengan halaman yang dibuka -->
-            <side-list label="Project" name="project">
-                <side-item href="list.html" active="">Project List</side-item>
-                <side-item href="../maintenance.html">Project Assignment</side-item>
-                <side-item href="../maintenance.html">Timesheet</side-item>
-                <side-item href="../maintenance.html">Rebaseline</side-item>
-                <side-item href="../maintenance.html">Closing</side-item>
-            </side-list>
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="list.html" active="">Project List</side-item>
+				<side-item href="../maintenance.html">Project Assignment</side-item>
+				<side-item href="../maintenance.html">Timesheet</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Closing</side-item>
+			</side-list>
 
-            <side-list label="My Workspace" name="ws">
-                <side-item href="../maintenance.html">Help [default]</side-item>
-            </side-list>
-        </section>
+			<side-list label="My Workspace" name="ws">
+				<side-item href="../maintenance.html">Help [default]</side-item>
+			</side-list>
+		</section>
 
-        <nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
-            <div class="navbar-menu main-navbar">
-                <div class="navbar-start">
-                    <a id="toggle-sidebar" class="navbar-item">
-                        <span class="mdi mdi-chevron-left mdi-24px"></span>
-                    </a>
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
 
-                    <a class="navbar-item is-active">
+					<a class="navbar-item is-active">
 						PROJECT
 					</a>
 
-                    <a class="navbar-item">
+					<a class="navbar-item">
 						Resource
 					</a>
 
-                    <a class="navbar-item">
+					<a class="navbar-item">
 						Monitoring
 					</a>
 
-                    <a class="navbar-item">
+					<a class="navbar-item">
 						Operations
 					</a>
 
-                    <a class="navbar-item">
+					<a class="navbar-item">
 						Reports
 					</a>
-                </div>
+				</div>
 
-                <div class="navbar-end">
-                    <a href="../maintenance.html" class="navbar-item hover-text">
-                        <span class="mdi mdi-view-dashboard-outline"></span>
-                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
-                    </a>
+				<div class="navbar-end">
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
 
-                    <a href="../maintenance.html" class="navbar-item hover-text">
-                        <span class="mdi mdi-settings-outline"></span>
-                        <span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
-                    </a>
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
 
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <div class="navbar-link is-arrowless">
-                            <span class="mdi mdi-account-outline"></span>
-                        </div>
-                        <div class="navbar-dropdown is-boxed is-right">
-                            <a href="../maintenance.html" class="navbar-item">Account Profile</a>
-                            <a href="../maintenance.html" class="navbar-item">Need Help ?</a>
-                            <a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php" class="navbar-item">Acting As</a>
-                            <hr class="navbar-divider">
-                            <a href="#" class="navbar-item">
-                                <span>Sign Out</span>
-                                <span class="mdi mdi-logout-variant"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
+								class="navbar-item">Acting As</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
 
-        <section id="vapp" class="contentPage">
-            <section class="hero is-light is-bold">
-                <div class="hero-body">
-                    <nav class="level">
-                        <div class="level-left">
-                            <h1 class="title is-marginless has-text-right">
-                                <span>Workplan</span>
-                            </h1>
-                        </div>
-                        <div class="level-right">
-                            <div id="bookmarkPage">
-                                <bookmark-button></bookmark-button>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </section>
-            <section class="section">
-                <!-- ^ UPDATED ################################################### -->
-                <div id="contentApp" class="container" data-title="Workplan">
-                    <paging ref="paging" default="workplan" show-breadcrumbs>
-                        <template slot="beforeDefault">
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless has-text-right">
+								<span>Workplan</span>
+							</h1>
+						</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container" data-title="Workplan">
+					<paging ref="paging" default="workplan" show-breadcrumbs>
+						<template slot="beforeDefault">
 							<li><a href="list.html">Project List</a></li>
 						</template>
 
-                        <template>
+						<template>
 							<paging-page page-id="workplan" label="Workplan" @display="toggleSideBar(false)">
 								<div class="columns is-marginless">
 									<div class="column is-8-desktop content is-marginless is-paddingless">
-										<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery
+										<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">
+											Delivery
 											Awesome
 											App Mantap Super Jaya
 											Semua Suka Sampai Mendunia</h3>
@@ -179,9 +180,9 @@
 										</b-field>
 									</div>
 								</div>
-				
+
 								<span class="white-space"></span>
-				
+
 								<div class="container">
 									<div class="card">
 										<header class="card-header">
@@ -190,10 +191,11 @@
 													enctype="multipart/form-data">
 													<div class="level">
 														<div class="level-item">
-															<b-upload v-model="selectedDocument" name="evidDoc" native required
-																style="width:100%;" accept=".xml">
+															<b-upload v-model="selectedDocument" name="evidDoc" native
+																required style="width:100%;" accept=".xml">
 																<div v-if="selectedDocument==null">
-																	<a class="button is-small is-info is-light is-fullwidth">
+																	<a
+																		class="button is-small is-info is-light is-fullwidth">
 																		<span class="mdi mdi-upload in-left"></span>
 																		<span>Upload XML</span>
 																	</a>
@@ -201,12 +203,14 @@
 																<div v-if="selectedDocument != null"
 																	class="field has-addons is-marginless">
 																	<div class="control">
-																		<span v-if="selectedDocument" class="button is-static is-small">
+																		<span v-if="selectedDocument"
+																			class="button is-static is-small">
 																			{{ selectedDocument.name }}
 																		</span>
 																	</div>
 																	<div class="control">
-																		<button class="button is-success is-fullwidth is-small"
+																		<button
+																			class="button is-success is-fullwidth is-small"
 																			type="submit">
 																			📬 Send File
 																		</button>
@@ -220,7 +224,7 @@
 																	icon-right="menu-down" slot="trigger">
 																	<b>Export</b>
 																</b-button>
-				
+
 																<b-dropdown-item aria-role="listitem">
 																	<a href="#">to .mpp</a>
 																</b-dropdown-item>
@@ -229,12 +233,16 @@
 																</b-dropdown-item>
 															</b-dropdown>
 														</div>
-														<div class="level-item" style="margin-left: 10px;">
-															<b-button type="is-primary is-light is-small is-fullwidth"
-																@click="template('template')">
-																<b>Use Template</b>
-															</b-button>
-														</div>
+
+														<!-- ^ UPDATED ################################################### -->
+														<!-- WORKPLAN TEMPLATE -->
+														<!-- <div class="level-item" style="margin-left: 10px;">
+																					<b-button type="is-success is-light is-small is-fullwidth"
+																						@click="template('template')">
+																						<b>Use Template</b>
+																					</b-button>
+																				</div> -->
+
 														<div class="level-item" style="margin-left: 10px;">
 															<approve-btn project-id="100000222" title="Approve Workplan"
 																confirm-text="Yes, I am"
@@ -242,18 +250,20 @@
 																action="http://localhost:5501/demo/post_detect.php">
 															</approve-btn>
 														</div>
+														<!-- ^ UPDATED ################################################### -->
 													</div>
 												</form>
 											</div>
 										</header>
 										<section class="card-content" style="padding: .75em 0px 0px 0px;">
 											<!-- <div style="position:relative" class="gantt" id="GanttChartDIV"></div> -->
-											<ganttchart action-event="http://localhost:5501/demo/post_detect.php" @select="selectTask">
+											<ganttchart action-event="http://localhost:5501/demo/post_detect.php"
+												@select="selectTask">
 											</ganttchart>
 										</section>
 									</div>
 								</div>
-				
+
 								<div class="floating-taskbar animated fadeInRight" v-if="showSideBar">
 									<div class="card">
 										<header class="card-header">
@@ -277,21 +287,26 @@
 													<b-menu-item label="Assign Team" @click="changePage('assignTeam')"
 														:disabled="parentisEmpty">
 													</b-menu-item>
-													<b-menu-item label="Show Assignment" @click="changePage('showAssign')"
-														:disabled="parentisEmpty">
+													<b-menu-item label="Show Assignment"
+														@click="changePage('showAssign')" :disabled="parentisEmpty">
 													</b-menu-item>
-													<b-menu-item label="Update Progress" @click="changePage('updateProgress')"
-														:disabled="parentisEmpty">
+													<!-- ^ UPDATED ################################################### -->
+													<b-menu-item label="Update Progress"
+														@click="changePage('updateProgress')"
+														:disabled="parentisEmpty || hasnotCalcMethID(1)">
 													</b-menu-item>
+													<!-- ^ UPDATED ################################################### -->
 												</b-menu-list>
 												<b-menu-list label="Quick Action">
-													<b-menu-item label="Change Parent Task" @click="changePage('changeParent')"
+													<b-menu-item label="Change Parent Task"
+														@click="changePage('changeParent')" :disabled="parentisEmpty">
+													</b-menu-item>
+													<b-menu-item label="Set Predecessor"
+														@click="changePage('linkPredecessor')"
 														:disabled="parentisEmpty">
 													</b-menu-item>
-													<b-menu-item label="Set Predecessor" @click="changePage('linkPredecessor')"
+													<b-menu-item label="Delete Task" @click="deleteTask"
 														:disabled="parentisEmpty">
-													</b-menu-item>
-													<b-menu-item label="Delete Task" @click="deleteTask" :disabled="parentisEmpty">
 													</b-menu-item>
 												</b-menu-list>
 											</b-menu>
@@ -308,29 +323,39 @@
 										<template v-for="(val, idx) in dataWorkdays">
 											<option :value="val.workdaysID">{{ val.workdaysName }}</option>
 										</template>
-                        </template>
-                        </add-task>
-                        </paging-page>
-                        <paging-page page-id="edit" label="Edit Task">
-                            <edit-task id="editTask" project-id="1" :task="selectedTask" @cancel="changePage()" api-get-duration="http://localhost:5501/demo/getDuration.php" action-event="http://localhost:5501/demo/post_detect.php">
-                                <template slot="workdays-option">
+									</template>
+
+									<!-- ^ UPDATED ################################################### -->
+									<template slot="calc-meth-option">
+										<option value="1">Manual by PM</option>
+										<option value="2">Auto by Working Progress</option>
+										<option value="3">Auto by Timesheet Hours</option>
+									</template>
+									<!-- ^ UPDATED ################################################### -->
+								</add-task>
+							</paging-page>
+							<paging-page page-id="edit" label="Edit Task">
+								<edit-task id="editTask" project-id="1" :task="selectedTask" @cancel="changePage()"
+									api-get-duration="http://localhost:5501/demo/getDuration.php"
+									action-event="http://localhost:5501/demo/post_detect.php">
+									<template slot="workdays-option">
 										<option selected style="display: none;"></option>
 										<template v-for="(val, idx) in dataWorkdays">
 											<option :value="val.workdaysID">{{ val.workdaysName }}</option>
 										</template>
-                                </template>
+									</template>
 
-                                <!-- WBS & Integration -->
-                                <template slot="additional" slot-scope="{ wbs, integration }">
+									<!-- WBS & Integration -->
+									<template slot="additional" slot-scope="{ wbs, integration }">
 										<div class="tile is-child">
 											<b-message title="Integration" type="is-success" :closable="false">
-												<crud-input type="select" label="WBS No." name="wbsNo" placeholder="Choose WBS Number"
-													v-model="wbs">
+												<crud-input type="select" label="WBS No." name="wbsNo"
+													placeholder="Choose WBS Number" v-model="wbs">
 													<option selected style="display: none;"></option>
 													<option value="1">WBS 1</option>
 													<option value="2">WBS 2</option>
 												</crud-input>
-				
+
 												<crud-input type="select" label="Integration Method" name="integration"
 													placeholder="Choose Integration Method" v-model="integration"
 													input-style="margin-bottom:0px;">
@@ -341,13 +366,22 @@
 											</b-message>
 										</div>
 									</template>
-                                <!-- WBS & Integration -->
+									<!-- WBS & Integration -->
 
-                            </edit-task>
-                        </paging-page>
-                        <paging-page page-id="assignTeam" label="Assign Team">
-                            <assign-resource id="assignTeam" :task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
-                                <template slot="role-option">
+									<!-- ^ UPDATED ################################################### -->
+									<template slot="calc-meth-option">
+										<option value="1">Manual by PM</option>
+										<option value="2">Auto by Working Progress</option>
+										<option value="3">Auto by Timesheet Hours</option>
+									</template>
+									<!-- ^ UPDATED ################################################### -->
+								</edit-task>
+							</paging-page>
+							<paging-page page-id="assignTeam" label="Assign Team">
+								<!-- ^ UPDATED ################################################### -->
+								<assign-resource id="assignTeam" :task="selectedTask" project-id="1"
+									action-event="http://localhost:5501/demo/post_detect.php?task_id={pID}">
+									<template slot="role-option">
 										<option selected style="display: none;"></option>
 										<option>Programmer Analyst Analyst</option>
 										<option>Programmer Analyst</option>
@@ -358,90 +392,94 @@
 										<option>Database Administrator</option>
 										<option>Technical Writer</option>
 									</template>
-                            </assign-resource>
-                        </paging-page>
-                        <paging-page page-id="showAssign" label="Show Assignment">
-                            <show-assignment :show-rate="false" id="showAssign" :task="selectedTask" project-id="1" action-event="http://localhost:5501/demo/post_detect.php" action-delete="http://localhost:5501/demo/post_detect.php?">
-                            </show-assignment>
-                        </paging-page>
-                        <paging-page page-id="updateProgress" label="Update Progress">
-                            <set-progress id="updateProgress" :task="selectedTask" @cancel="changePage()" project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
-                            </set-progress>
-                        </paging-page>
-                        <paging-page page-id="changeParent" label="Change Parent">
-                            <change-parent-task id="changeParent" :task="selectedTask" project-id="1" @cancel="changePage()" action-event="http://localhost:5501/demo/post_detect.php">
-                            </change-parent-task>
-                        </paging-page>
-                        <paging-page page-id="linkPredecessor" label="Set Predecessor">
-                            <link-predecessor id="linkPredecessor" :task="selectedTask" project-id="1" @cancel="changePage()" action-event="http://localhost:5501/demo/post_detect.php">
-                            </link-predecessor>
-                        </paging-page>
-                        <paging-page page-id="template" label="template">
-                            <tmp id="template" project-id="1" api-get-duration="http://localhost:5501/demo/getDuration.php" action-event="http://localhost:5501/demo/post_detect.php">
-                                <template slot="template-option">
-										<option selected style="display: none;"></option>
-										<option value="1">New Prouds Development Phase I</option>
-										<option value="2">Development</option>
+
+									<template slot="workload-option">
+										<option value="100" selected>100%</option>
+										<option value="75">75%</option>
+										<option value="50">50%</option>
+										<option value="25">25%</option>
+										<option value="10">10%</option>
 									</template>
-                            </tmp>
-                        </paging-page>
-                        </template>
-                    </paging>
-                </div>
-                <!-- ^ UPDATED ################################################### -->
-            </section>
+								</assign-resource>
+								<!-- ^ UPDATED ################################################### -->
+							</paging-page>
+							<paging-page page-id="showAssign" label="Show Assignment">
+								<show-assignment :show-rate="false" id="showAssign" :task="selectedTask" project-id="1"
+									action-event="http://localhost:5501/demo/post_detect.php"
+									action-delete="http://localhost:5501/demo/post_detect.php?">
+								</show-assignment>
+							</paging-page>
+							<paging-page page-id="updateProgress" label="Update Progress">
+								<set-progress id="updateProgress" :task="selectedTask" @cancel="changePage()"
+									project-id="1" action-event="http://localhost:5501/demo/post_detect.php">
+								</set-progress>
+							</paging-page>
+							<paging-page page-id="changeParent" label="Change Parent">
+								<change-parent-task id="changeParent" :task="selectedTask" project-id="1"
+									@cancel="changePage()" action-event="http://localhost:5501/demo/post_detect.php">
+								</change-parent-task>
+							</paging-page>
+							<paging-page page-id="linkPredecessor" label="Set Predecessor">
+								<link-predecessor id="linkPredecessor" :task="selectedTask" project-id="1"
+									@cancel="changePage()" action-event="http://localhost:5501/demo/post_detect.php">
+								</link-predecessor>
+							</paging-page>
 
-            <span class="white-space"></span>
-        </section>
+							<!-- ^ UPDATED ################################################### -->
+							<!-- WORKPLAN TEMPLATING -->
+							<!-- <paging-page page-id="template" label="template">
+														<tmp id="template" project-id="1"
+															api-get-duration="http://localhost:5501/demo/getDuration.php"
+															action-event="http://localhost:5501/demo/post_detect.php">
+															<template slot="template-option">
+																<option selected style="display: none;"></option>
+																<option value="1">New Prouds Development Phase I</option>
+																<option value="2">Development</option>
+															</template>
+														</tmp>
+													</paging-page> -->
+							<!-- ^ UPDATED ################################################### -->
 
-        <section id="infoFooter">
-            <info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
-            </info-footer>
-        </section>
-    </div>
+						</template>
+					</paging>
+				</div>
+			</section>
 
-    <div class="api-testing" base="http://localhost:5501/demo/">
-        <!-- 
-				expected return from getNotification!
-				[{
-					"id": {String},
-					"subject": {String},
-					"content": {HTML String},
-					"dateStamp": {Date String with format DD/MM/YYYY},
-					"timeStamp": {Time String with format H:i},
-					"read": {Boolean}
-				}, ... ],
-			 -->
-        <api-test url="getNotification.php" key="getNotification"></api-test>
+			<span class="white-space"></span>
+		</section>
 
-        <!-- 
+		<section id="infoFooter">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			</info-footer>
+		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+
+		<!-- 
 			expected return from getNotification!
 			{
 				
 				"duration": {Number} 
 			},
 			post : {start, finish, workdays}
-			-->
-        <api-test url="getDuration.php" key="getDuration"></api-test>
+		-->
+		<api-test url="getDuration.php" key="getDuration"></api-test>
 
-        <!-- 
-				[{
-					"user_id": {String},
-					"name": {String},
-					"status": {String},
-					"role": {String},
-					"bu": {String},
-					"mandaysRate": {String},
-					"onGoing": {String},
-					"start": {Date String with format DD/MM/YYYY},
-					"finish": {Date String with format DD/MM/YYYY},
-					"actionComplete": "{String url}"
-				}, ... ],
-					post : {task_id}
-					-->
-        <api-test url="getTeamWorkplan.php?task_id={task_id}" key="getTeamWorkplan"></api-test>
-
-        <!-- 
+		<!-- 
 			[{
 				"user_id": {String},
 				"name": {String},
@@ -454,370 +492,441 @@
 				"finish": {Date String with format DD/MM/YYYY},
 				"actionComplete": "{String url}"
 			}, ... ],
-				post : {task_id}
-				-->
-        <api-test url="getResourceWorkplan.php?task_id={task_id}" key="getResourceWorkplan"></api-test>
+			post : {task_id}
+		-->
+		<api-test url="getTeamWorkplan.php?task_id={task_id}" key="getTeamWorkplan"></api-test>
 
-    </div>
+		<!-- 
+			[{
+				"user_id": {String},
+				"name": {String},
+				"status": {String},
+				"role": {String},
+				"bu": {String},
+				"mandaysRate": {String},
+				"onGoing": {String},
+				"start": {Date String with format DD/MM/YYYY},
+				"finish": {Date String with format DD/MM/YYYY},
+				"actionComplete": "{String url}"
+			}, ... ],
+			post : {task_id}
+		-->
+		<api-test url="getResourceWorkplan.php?task_id={task_id}" key="getResourceWorkplan"></api-test>
 
-    <script>
-        const GANTT = [{
-            "pID": "P1",
-            "pName": "Initiating",
-            "pStart": "",
-            "pEnd": "",
-            "duration": 0,
-            "pClass": "gtaskred",
-            "pMile": 1,
-            "pComp": "0",
-            "pGroup": 1,
-            "pParent": "0",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P1",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }, {
-            "pID": "P2",
-            "pName": "Planning",
-            "pStart": "",
-            "pEnd": "",
-            "duration": 0,
-            "pClass": "gtaskred",
-            "pMile": 1,
-            "pComp": "0",
-            "pGroup": 1,
-            "pParent": "0",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P2",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Desaigner Web",
-            "roleName": "Desaigner Web"
-        }, {
-            "pID": "P3",
-            "pName": "Executing",
-            "pStart": "",
-            "pEnd": "",
-            "duration": 0,
-            "pClass": "gtaskred",
-            "pMile": 1,
-            "pComp": "0",
-            "pGroup": 1,
-            "pParent": "0",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P3",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Senior Programer",
-            "roleName": "Senior Programer"
-        }, {
-            "pID": "418871",
-            "pName": "Manage Operation Vmware HP Server",
-            "pClass": "gtaskred",
-            "pMile": 0,
-            "pStart": "2019-07-01",
-            "pEnd": "2020-06-30",
-            "duration": 0,
-            "pComp": "0",
-            "pGroup": 1,
-            "pParent": "P3",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P3",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Analyst",
-            "roleName": "Analyst"
-        }, {
-            "pID": "419002",
-            "pName": "Day to day VMWare Engineer Leader",
-            "pClass": "gtaskred",
-            "pMile": 0,
-            "pStart": "2019-09-08",
-            "pEnd": "2020-06-30",
-            "duration": 10,
-            "pComp": "0",
-            "pGroup": 0,
-            "pParent": "418871",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P3",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "70",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst",
-            "deleteTask": "https://www.google.com"
-        }, {
-            "pID": "418873",
-            "pName": "Day to day MO VM TC-CRM Storage Leader",
-            "pClass": "gtaskred",
-            "pMile": 0,
-            "pStart": "2019-08-01",
-            "pEnd": "2020-04-13",
-            "duration": 0,
-            "pComp": "0",
-            "pGroup": 0,
-            "pParent": "418871",
-            "pOpen": 1,
-            "pDepend": "419003",
-            "estProgress": 0,
-            "processGroupID": "P3",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }, {
-            "pID": "418872",
-            "pName": "Day to day VMWare Senior Leader",
-            "pClass": "gtaskred",
-            "pMile": 0,
-            "pStart": "2019-08-01",
-            "pEnd": "2020-04-13",
-            "duration": 0,
-            "pComp": "0",
-            "pGroup": 0,
-            "pParent": "418871",
-            "pOpen": 1,
-            "pDepend": "426175",
-            "estProgress": 0,
-            "processGroupID": "P3",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }, {
-            "pID": "426175",
-            "pName": "Day to day Admin",
-            "pClass": "gtaskred",
-            "pMile": 0,
-            "pStart": "2019-07-01",
-            "pEnd": "2019-07-29",
-            "duration": 0,
-            "pComp": "0",
-            "pGroup": 0,
-            "pParent": "418871",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P3",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }, {
-            "pID": "419003",
-            "pName": "Project Management",
-            "pClass": "gtaskred",
-            "pMile": 0,
-            "pStart": "2019-07-01",
-            "pEnd": "2019-07-29",
-            "duration": 0,
-            "pComp": "0",
-            "pGroup": 0,
-            "pParent": "418871",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P3",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }, {
-            "pID": "P4",
-            "pName": "Monitoring and Controlling",
-            "pStart": "",
-            "pEnd": "",
-            "duration": 0,
-            "pClass": "gtaskred",
-            "pMile": 1,
-            "pComp": "0",
-            "pGroup": 1,
-            "pParent": "0",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P4",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }, {
-            "pID": "P5",
-            "pName": "Closing",
-            "pStart": "",
-            "pEnd": "",
-            "duration": 0,
-            "pClass": "gtaskred",
-            "pMile": 1,
-            "pComp": "0",
-            "pGroup": 1,
-            "pParent": "0",
-            "pOpen": 1,
-            "pDepend": "",
-            "estProgress": 0,
-            "processGroupID": "P5",
-            "progressCalculation": false,
-            "workdays": "1",
-            "autoCalculationProgress": "0",
-            "wbsNo": "",
-            "weight": 1,
-            "weightPercent": 0,
-            "integration": "",
-            "mandays": "0",
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }]
-        TEMPLATE = {
-            1: [{
-                pID: 1,
-                pName: "New Prouds Development Phase I",
-                pGroup: 1,
-                pParent: 0,
-                pOpen: 1,
-                pDepend: 0
-            }, {
-                pID: 2,
-                pName: "Desaign",
-                pGroup: 0,
-                pParent: 1,
-                pOpen: 1,
-                pDepend: 0
-            }],
-            2: [{
-                pID: 1,
-                pName: "New Prouds Development Phase II",
-                pGroup: 1,
-                pParent: 0,
-                pOpen: 1,
-                pDepend: 0
-            }, {
-                pID: 2,
-                pName: "Design",
-                pGroup: 0,
-                pParent: 1,
-                pOpen: 1,
-                pDepend: 0
-            }, {
-                pID: 3,
-                pName: "Development",
-                pGroup: 0,
-                pParent: 1,
-                pOpen: 1,
-                pDepend: 0
-            }, {
-                pID: 4,
-                pName: "Testing",
-                pGroup: 0,
-                pParent: 1,
-                pOpen: 1,
-                pDepend: 0
-            }]
-        }
-        WORKDAYS = [{
-            "workdaysID": 1,
-            "workdaysName": "Normal : 5 Business days"
-        }, {
-            "workdaysID": 2,
-            "workdaysName": "Medium : 10 Business days"
-        }]
-        ROLE = [{
-            "roleId": "Programer Analyst",
-            "roleName": "Programer Analyst"
-        }, {
-            "roleId": "Desaigner Web",
-            "roleName": "Desaigner Web"
-        }, {
-            "roleId": "Senior Programmer",
-            "roleName": "Senior Programmer"
-        }, {
-            "roleId": "Analyst",
-            "roleName": "Analyst"
-        }]
-        WORKLOAD_EFFORT = [{
-            "workloadId": 1,
-            "workloadName": "100 %"
-        }, {
-            "workloadId": 2,
-            "workloadName": "50 %"
-        }, {
-            "workloadId": 3,
-            "workloadName": "30 %"
-        }]
-    </script>
+	</div>
 
-    <script src="../../src/main.min.js"></script>
-    <script src="../../src/projects/workplan.min.js"></script>
+	<!-- ^ UPDATED ################################################### -->
+	<script id="implantedJSON" type="application/json">
+		{
+			"GANTT": [
+				{
+					"pID": "P1",
+					"pName": "Initiating",
+					"pStart": "",
+					"pEnd": "",
+					"duration": 0,
+					"pClass": "gtaskred",
+					"pMile": 1,
+					"pComp": "0",
+					"pGroup": 1,
+					"pParent": "0",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P1",
+					"calcMethod": {
+						"id": "1",
+						"label": "Manual by PM"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				},
+				{
+					"pID": "P2",
+					"pName": "Planning",
+					"pStart": "",
+					"pEnd": "",
+					"duration": 0,
+					"pClass": "gtaskred",
+					"pMile": 1,
+					"pComp": "0",
+					"pGroup": 1,
+					"pParent": "0",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P2",
+					"calcMethod": {
+						"id": "2",
+						"label": "Manual by Working Progress"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Desaigner Web",
+					"roleName": "Desaigner Web"
+				},
+				{
+					"pID": "P3",
+					"pName": "Executing",
+					"pStart": "",
+					"pEnd": "",
+					"duration": 0,
+					"pClass": "gtaskred",
+					"pMile": 1,
+					"pComp": "0",
+					"pGroup": 1,
+					"pParent": "0",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P3",
+					"calcMethod": {
+						"id": "3",
+						"label": "Manual by Timesheet Hours"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Senior Programer",
+					"roleName": "Senior Programer"
+				},
+				{
+					"pID": "418871",
+					"pName": "Manage Operation Vmware HP Server",
+					"pClass": "gtaskred",
+					"pMile": 0,
+					"pStart": "2019-07-01",
+					"pEnd": "2020-06-30",
+					"duration": 0,
+					"pComp": "0",
+					"pGroup": 1,
+					"pParent": "P3",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P3",
+					"calcMethod": {
+						"id": "3",
+						"label": "Manual by Timesheet Hours"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Analyst",
+					"roleName": "Analyst"
+				},
+				{
+					"pID": "419002",
+					"pName": "Day to day VMWare Engineer Leader",
+					"pClass": "gtaskred",
+					"pMile": 0,
+					"pStart": "2019-09-08",
+					"pEnd": "2020-06-30",
+					"duration": 10,
+					"pComp": "0",
+					"pGroup": 0,
+					"pParent": "418871",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P3",
+					"calcMethod": {
+						"id": "2",
+						"label": "Manual by Working Progress"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "70",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst",
+					"deleteTask": "https://www.google.com"
+				},
+				{
+					"pID": "418873",
+					"pName": "Day to day MO VM TC-CRM Storage Leader",
+					"pClass": "gtaskred",
+					"pMile": 0,
+					"pStart": "2019-08-01",
+					"pEnd": "2020-04-13",
+					"duration": 0,
+					"pComp": "0",
+					"pGroup": 0,
+					"pParent": "418871",
+					"pOpen": 1,
+					"pDepend": "419003",
+					"estProgress": 0,
+					"processGroupID": "P3",
+					"calcMethod": {
+						"id": "1",
+						"label": "Manual by PM"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				},
+				{
+					"pID": "418872",
+					"pName": "Day to day VMWare Senior Leader",
+					"pClass": "gtaskred",
+					"pMile": 0,
+					"pStart": "2019-08-01",
+					"pEnd": "2020-04-13",
+					"duration": 0,
+					"pComp": "0",
+					"pGroup": 0,
+					"pParent": "418871",
+					"pOpen": 1,
+					"pDepend": "426175",
+					"estProgress": 0,
+					"processGroupID": "P3",
+					"calcMethod": {
+						"id": "1",
+						"label": "Manual by PM"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				},
+				{
+					"pID": "426175",
+					"pName": "Day to day Admin",
+					"pClass": "gtaskred",
+					"pMile": 0,
+					"pStart": "2019-07-01",
+					"pEnd": "2019-07-29",
+					"duration": 0,
+					"pComp": "0",
+					"pGroup": 0,
+					"pParent": "418871",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P3",
+					"calcMethod": {
+						"id": "1",
+						"label": "Manual by PM"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				},
+				{
+					"pID": "419003",
+					"pName": "Project Management",
+					"pClass": "gtaskred",
+					"pMile": 0,
+					"pStart": "2019-07-01",
+					"pEnd": "2019-07-29",
+					"duration": 0,
+					"pComp": "0",
+					"pGroup": 0,
+					"pParent": "418871",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P3",
+					"calcMethod": {
+						"id": "1",
+						"label": "Manual by PM"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				},
+				{
+					"pID": "P4",
+					"pName": "Monitoring and Controlling",
+					"pStart": "",
+					"pEnd": "",
+					"duration": 0,
+					"pClass": "gtaskred",
+					"pMile": 1,
+					"pComp": "0",
+					"pGroup": 1,
+					"pParent": "0",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P4",
+					"calcMethod": {
+						"id": "1",
+						"label": "Manual by PM"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				},
+				{
+					"pID": "P5",
+					"pName": "Closing",
+					"pStart": "",
+					"pEnd": "",
+					"duration": 0,
+					"pClass": "gtaskred",
+					"pMile": 1,
+					"pComp": "0",
+					"pGroup": 1,
+					"pParent": "0",
+					"pOpen": 1,
+					"pDepend": "",
+					"estProgress": 0,
+					"processGroupID": "P5",
+					"calcMethod": {
+						"id": "1",
+						"label": "Manual by PM"
+					},
+					"workdays": "1",
+					"autoCalculationProgress": "0",
+					"wbsNo": "",
+					"weight": 1,
+					"weightPercent": 0,
+					"integration": "",
+					"mandays": "0",
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				}
+			],
+			"TEMPLATE": {
+				"1": [
+					{
+						"pID": 1,
+						"pName": "New Prouds Development Phase I",
+						"pGroup": 1,
+						"pParent": 0,
+						"pOpen": 1,
+						"pDepend": 0
+					},
+					{
+						"pID": 2,
+						"pName": "Desaign",
+						"pGroup": 0,
+						"pParent": 1,
+						"pOpen": 1,
+						"pDepend": 0
+					}
+				],
+				"2": [
+					{
+						"pID": 1,
+						"pName": "New Prouds Development Phase II",
+						"pGroup": 1,
+						"pParent": 0,
+						"pOpen": 1,
+						"pDepend": 0
+					},
+					{
+						"pID": 2,
+						"pName": "Design",
+						"pGroup": 0,
+						"pParent": 1,
+						"pOpen": 1,
+						"pDepend": 0
+					},
+					{
+						"pID": 3,
+						"pName": "Development",
+						"pGroup": 0,
+						"pParent": 1,
+						"pOpen": 1,
+						"pDepend": 0
+					},
+					{
+						"pID": 4,
+						"pName": "Testing",
+						"pGroup": 0,
+						"pParent": 1,
+						"pOpen": 1,
+						"pDepend": 0
+					}
+				]
+			},
+			"WORKDAYS": [
+				{
+					"workdaysID": 1,
+					"workdaysName": "Normal : 5 Business days"
+				},
+				{
+					"workdaysID": 2,
+					"workdaysName": "Medium : 10 Business days"
+				}
+			],
+			"ROLE": [
+				{
+					"roleId": "Programer Analyst",
+					"roleName": "Programer Analyst"
+				},
+				{
+					"roleId": "Desaigner Web",
+					"roleName": "Desaigner Web"
+				},
+				{
+					"roleId": "Senior Programmer",
+					"roleName": "Senior Programmer"
+				},
+				{
+					"roleId": "Analyst",
+					"roleName": "Analyst"
+				}
+			]
+		}
+	</script>
+
+	<script src="../../src/main.min.js"></script>
+	<script src="../../src/projects/workplan.min.js"></script>
 </body>
 
 </html>

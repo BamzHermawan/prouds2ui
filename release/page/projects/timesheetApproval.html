@@ -100,7 +100,8 @@
 						<div class="navbar-dropdown is-boxed is-right">
 							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
 							<a href="#help" class="navbar-item">Need Help ?</a>
-							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php" class="navbar-item">Acting As</a>
+							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
+								class="navbar-item">Acting As</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -135,8 +136,8 @@
 										<span class="button is-static is-info-blend" style="min-width:140px;">Member
 											Name</span>
 									</p>
-									<b-autocomplete expanded="" v-model="filter.member" placeholder="Budi, Dina, etc." open-on-focus=""
-										:data="memberList">
+									<b-autocomplete expanded="" v-model="filter.member" placeholder="Budi, Dina, etc."
+										open-on-focus="" :data="memberList">
 									</b-autocomplete>
 								</b-field>
 								<b-field>
@@ -144,8 +145,8 @@
 										<span class="button is-static is-info-blend" style="min-width:140px;">Member
 											Role</span>
 									</p>
-									<b-autocomplete expanded="" v-model="filter.role" placeholder="Programmer, Analyst, etc."
-										open-on-focus="" :data="roleList">
+									<b-autocomplete expanded="" v-model="filter.role"
+										placeholder="Programmer, Analyst, etc." open-on-focus="" :data="roleList">
 									</b-autocomplete>
 								</b-field>
 							</div>
@@ -155,14 +156,15 @@
 										<span class="button is-static is-info-blend" style="min-width:140px;">Project
 											Name</span>
 									</p>
-									<b-autocomplete expanded="" v-model="filter.project" placeholder="Delivery App, etc."
-										open-on-focus="" :data="projectList">
+									<b-autocomplete expanded="" v-model="filter.project"
+										placeholder="Delivery App, etc." open-on-focus="" :data="projectList">
 									</b-autocomplete>
 								</b-field>
 								<b-field grouped="">
 									<b-field expanded="" style="margin-bottom:0px;">
 										<p class="control">
-											<span class="button is-static is-info-blend" style="min-width:140px;">Timesheet Date</span>
+											<span class="button is-static is-info-blend"
+												style="min-width:140px;">Timesheet Date</span>
 										</p>
 										<crud-input type="datepicker" input-style="margin-bottom:0px;" name="start"
 											placeholder="Filter Date After" v-model="filter.date.start"></crud-input>
@@ -172,14 +174,15 @@
 									</p>
 									<b-field expanded="">
 										<crud-input type="datepicker" input-style="margin-bottom:0px;" name="end"
-											placeholder="Filter Date Before" :min-date="filter.date.start" v-model="filter.date.end">
+											placeholder="Filter Date Before" :min-date="filter.date.start"
+											v-model="filter.date.end">
 										</crud-input>
 									</b-field>
 								</b-field>
 							</div>
 						</div>
 					</b-message>
-				
+
 					<b-message type="is-success">
 						<nav class="level">
 							<div class="level-left">
@@ -197,51 +200,53 @@
 								</div>
 							</div>
 							<div class="level-right">
-								<form action="http://localhost:5501/demo/post_detect.php" method="post" @submit="approveSelected">
-									<b-button native-type="submit" type="is-success" inverted="" :disabled="disableApprove">Approve
+								<form action="http://localhost:5501/demo/post_detect.php" method="post"
+									@submit="approveSelected">
+									<b-button native-type="submit" type="is-success" inverted=""
+										:disabled="disableApprove">Approve
 										Selected</b-button>
 								</form>
 							</div>
 						</nav>
 					</b-message>
-				
+
 					<b-notification v-show="issueFound" type="is-warning">
-						Row that <span class="has-bg-warning-light">highlighted in yellow</span> mean that task has issue in it.
+						Row that <span class="has-bg-warning-light">highlighted in yellow</span> mean that task has
+						issue in it.
 					</b-notification>
-				
-					<!-- ^ UPDATED ############################################################# -->
-					<b-table :data="submission" style="font-size:11pt" class="is-packed" paginated="" detailed="" checkable=""
-						:row-class="(row) => row.issue !== undefined && 'has-bg-warning-light'" checkbox-position="right"
-						:checked-rows.sync="selectedRows" show-detail-icon="" pagination-simple="">
-						<!-- ^ UPDATED ############################################################# -->
+
+					<b-table :data="submission" style="font-size:11pt" class="is-packed" paginated="" detailed=""
+						checkable="" :row-class="(row) => row.issue !== undefined && 'has-bg-warning-light'"
+						checkbox-position="right" :checked-rows.sync="selectedRows" show-detail-icon=""
+						pagination-simple="">
 						<template slot-scope="props">
 							<b-table-column width="150" field="role" label="Member">
 								<p class="has-text-weight-bold">{{ props.row.member_name }}</p>
 								<p>{{ props.row.role }}</p>
 							</b-table-column>
-				
+
 							<b-table-column width="160" field="iwo" label="IWO / Project ID">
 								<p>{{ props.row.iwo }}</p>
 								<p>{{ props.row.project_id }}</p>
 							</b-table-column>
-				
+
 							<b-table-column field="project_name" label="Project Name">
 								<p>{{ props.row.project_name }}</p>
 							</b-table-column>
-				
+
 							<b-table-column width="90" field="hour" label="Workhours" centered="">
 								<p>{{ props.row.hour }}</p>
 							</b-table-column>
-				
+
 							<b-table-column width="120" field="submit_at" label="Submit Date" centered="">
 								<p>{{ moment(props.row.submit_at, 'DD/MM/YYYY').format('DD MMM YYYY') }}</p>
 							</b-table-column>
-				
+
 							<b-table-column width="120" field="timesheet_date" label="Timesheet Date" centered="">
 								<p>{{ moment(props.row.timesheet_date, 'DD/MM/YYYY').format('DD MMM YYYY') }}</p>
 							</b-table-column>
 						</template>
-				
+
 						<template slot="detail" slot-scope="{ row }">
 							<div class="container">
 								<div class="buttons is-marginless">
@@ -257,27 +262,40 @@
 									</span>
 								</div>
 								<span class="white-space"></span>
-								<!-- ^ UPDATED ############################################################# -->
-								<div class="columns is-vcentered">
+								<!-- ^ UPDATED: Remove Class is-vcentered -->
+								<div class="columns">
 									<div class="column">
-										<b-field label="Task">
+										<!-- ^ UPDATED ############################################################ -->
+										<b-field label="Task" class="is-marginless">
 											<p class="has-text-weight-light">{{ row.task }}</p>
 										</b-field>
+										<b-field>
+											<p class="has-text-weight-light"><b>Location</b>: {{ row.location }}</p>
+										</b-field>
+
 										<div class="field">
 											<label class="label">
 												<span>Activity — </span>
-												<span class="has-text-info">[ {{ row.activity_type }} ]</span>
+												<span class="has-text-info">[ {{ row.activity_type.label }} ]</span>
 											</label>
 											<div class="control">
 												<p class="has-text-weight-light">{{ row.activity }}</p>
 											</div>
 										</div>
-										<b-field>
-											<p class="has-text-weight-light"><b>Location</b>: {{ row.location }}</p>
-										</b-field>
+
+										<hr style="margin:.75rem 0px;" />
+
 										<adjust-form action="http://localhost:5501/demo/post_detect.php"
-											:timesheet-id="row.timesheet_id" :progress="row.work_progress" :hour="row.hour">
+											:timesheet-id="row.timesheet_id.toString()"
+											:activity-type="row.activity_type" :progress="row.work_progress"
+											:hour="row.hour">
+											<template slot="type-option">
+												<option value="1">implementation</option>
+												<option value="2">Development</option>
+												<option value="3">Operation</option>
+											</template>
 										</adjust-form>
+										<!-- ^ UPDATED ############################################################ -->
 									</div>
 									<div v-if="row.issue !== undefined" class="column">
 										<div class="field">
@@ -312,10 +330,9 @@
 										</div>
 									</div>
 								</div>
-								<!-- ^ UPDATED ############################################################# -->
 							</div>
 						</template>
-				
+
 						<template slot="empty">
 							<span class="white-space"></span>
 							<b-message type="is-warning">
@@ -328,7 +345,8 @@
 		</section>
 
 		<section id="infoFooter">
-			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry" api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
+			<info-footer api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization" entry="100" utilization="100">
 			</info-footer>
 		</section>
 	</div>
@@ -359,11 +377,13 @@
 		<api-test url="getTimesheetDate.php" key="filledTimesheet"></api-test>
 	</div>
 
-	<script>var TIMESHEET = [{
+	<!-- ^ UPDATED ##################################### -->
+	<script id="implantedJSON" type="application/json">
+		[{
 			"iwo": "P-1909SCC-TTES1000",
-			"project_id": "1000",
-			"task_id": "1000",
-			"timesheet_id": "1000",
+			"project_id": 1000,
+			"task_id": 1000,
+			"timesheet_id": 1000,
 			"role": "System Analyst",
 			"member_name": "Bond Sanchez",
 			"project_name": "Officia cupidatat deserunt ipsum irure incididunt commodo eu ullamco fugiat deserunt nostrud deserunt tempor tempor.",
@@ -373,16 +393,19 @@
 			"submit_at": "27/04/2020",
 			"timesheet_date": "02/11/2020",
 			"hour": 12,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Cillum eu ipsum tempor occaecat elit nostrud anim esse sit quis pariatur in commodo.",
 			"location": "Non Lokal Jawa",
 			"member": 2,
 			"work_progress": 70
 		}, {
 			"iwo": "P-1909SCC-TTES1001",
-			"project_id": "1001",
-			"task_id": "1001",
-			"timesheet_id": "1001",
+			"project_id": 1001,
+			"task_id": 1001,
+			"timesheet_id": 1001,
 			"role": "UI/UX Designer",
 			"member_name": "Booker Shelton",
 			"project_name": "Sint commodo veniam dolore est voluptate nisi qui sit.",
@@ -392,7 +415,10 @@
 			"submit_at": "12/09/2020",
 			"timesheet_date": "01/08/2020",
 			"hour": 12,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Exercitation consectetur veniam consequat occaecat amet dolore consectetur laboris aute magna nostrud aliqua nisi. Labore id consectetur non est sunt aute duis elit ad qui reprehenderit.",
 			"location": "Non Lokal Jawa",
 			"member": 5,
@@ -406,9 +432,9 @@
 			}
 		}, {
 			"iwo": "P-1909SCC-TTES1002",
-			"project_id": "1002",
-			"task_id": "1002",
-			"timesheet_id": "1002",
+			"project_id": 1002,
+			"task_id": 1002,
+			"timesheet_id": 1002,
 			"role": "Programmer",
 			"member_name": "Palmer Maynard",
 			"project_name": "Sint sunt esse occaecat amet labore voluptate duis nisi duis dolor culpa cupidatat.",
@@ -418,16 +444,19 @@
 			"submit_at": "17/01/2020",
 			"timesheet_date": "18/11/2020",
 			"hour": 18,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Amet culpa ullamco do amet cillum.",
 			"location": "Luar Jawa Dalam Negri",
 			"member": 3,
 			"work_progress": 26
 		}, {
 			"iwo": "P-1909SCC-TTES1003",
-			"project_id": "1003",
-			"task_id": "1003",
-			"timesheet_id": "1003",
+			"project_id": 1003,
+			"task_id": 1003,
+			"timesheet_id": 1003,
 			"role": "Data Analyst",
 			"member_name": "Fleming Watson",
 			"project_name": "Ad occaecat exercitation mollit deserunt duis sit quis consequat.",
@@ -437,7 +466,10 @@
 			"submit_at": "10/09/2020",
 			"timesheet_date": "04/08/2020",
 			"hour": 6,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Do proident et consectetur voluptate incididunt cupidatat ipsum laborum excepteur sint eu. Exercitation aute tempor incididunt id voluptate pariatur sit nulla pariatur laborum velit tempor ipsum incididunt.",
 			"location": "Non Lokal Jawa",
 			"member": 5,
@@ -451,9 +483,9 @@
 			}
 		}, {
 			"iwo": "P-1909SCC-TTES1004",
-			"project_id": "1004",
-			"task_id": "1004",
-			"timesheet_id": "1004",
+			"project_id": 1004,
+			"task_id": 1004,
+			"timesheet_id": 1004,
 			"role": "Data Analyst",
 			"member_name": "Faye Sandoval",
 			"project_name": "Aliqua occaecat irure excepteur anim velit.",
@@ -463,16 +495,19 @@
 			"submit_at": "27/02/2020",
 			"timesheet_date": "26/05/2020",
 			"hour": 22,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Anim esse incididunt ad sint ex reprehenderit officia fugiat reprehenderit dolor laborum est sint duis. Ex duis veniam minim esse est tempor adipisicing culpa proident do non aliqua adipisicing ex. Ad proident qui culpa consectetur sint consectetur sit do tempor nostrud irure consectetur consequat.",
 			"location": "Luar Jawa Dalam Negri",
 			"member": 4,
 			"work_progress": 45
 		}, {
 			"iwo": "P-1909SCC-TTES1005",
-			"project_id": "1005",
-			"task_id": "1005",
-			"timesheet_id": "1005",
+			"project_id": 1005,
+			"task_id": 1005,
+			"timesheet_id": 1005,
 			"role": "Programmer",
 			"member_name": "Josie Acevedo",
 			"project_name": "Labore aliqua irure proident dolor.",
@@ -482,16 +517,19 @@
 			"submit_at": "11/04/2020",
 			"timesheet_date": "06/01/2020",
 			"hour": 1,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Ut enim sit adipisicing consectetur cupidatat.",
 			"location": "Jabodetabek",
 			"member": 1,
 			"work_progress": 29
 		}, {
 			"iwo": "P-1909SCC-TTES1006",
-			"project_id": "1006",
-			"task_id": "1006",
-			"timesheet_id": "1006",
+			"project_id": 1006,
+			"task_id": 1006,
+			"timesheet_id": 1006,
 			"role": "Data Analyst",
 			"member_name": "Earline Hayes",
 			"project_name": "Consequat veniam ullamco fugiat minim pariatur velit magna ipsum.",
@@ -501,16 +539,19 @@
 			"submit_at": "25/11/2020",
 			"timesheet_date": "22/06/2020",
 			"hour": 7,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Non laboris ad incididunt laboris sit eu tempor est dolore ea magna eu quis veniam.",
 			"location": "Non Lokal Jawa",
 			"member": 5,
 			"work_progress": 29
 		}, {
 			"iwo": "P-1909SCC-TTES1007",
-			"project_id": "1007",
-			"task_id": "1007",
-			"timesheet_id": "1007",
+			"project_id": 1007,
+			"task_id": 1007,
+			"timesheet_id": 1007,
 			"role": "Data Analyst",
 			"member_name": "Ortiz Sparks",
 			"project_name": "Ea et non ipsum mollit pariatur id ad non irure tempor sunt mollit aliquip.",
@@ -520,13 +561,17 @@
 			"submit_at": "30/09/2020",
 			"timesheet_date": "04/02/2020",
 			"hour": 16,
-			"activity_type": "Implementation",
+			"activity_type": {
+				"id": 1,
+				"label": "Implementation"
+			},
 			"activity": "Nisi ex commodo dolore do voluptate fugiat. Nisi ullamco mollit aute aute sint.",
 			"location": "Non Lokal Jawa",
 			"member": 2,
 			"work_progress": 88
-		}];</script>
-	
+		}]
+	</script>
+
 	<script src="../../src/main.min.js"></script>
 	<script src="../../src/projects/timesheetApproval.min.js"></script>
 </body>

@@ -321,6 +321,10 @@ import {
 } from "helper-tools";
 import { crudInput, dataTableNoCard } from "components";
 import api from "helper-apis";
+
+const implantTag = document.querySelector("#implantedJSON");
+const implantData = JSON.parse(implantTag.innerHTML);
+
 export default {
 	components: { crudInput, dataTableNoCard },
 	props: {
@@ -348,7 +352,7 @@ export default {
 	data() {
 		return {
 			selectedRows: [],
-			dataBaru: GANTT,
+			dataBaru: [],
 			name: "",
 			curSubTask: this.task.pParent,
 			start: this.task.pStart,
@@ -452,6 +456,9 @@ export default {
 		dataFiltered() {
 			return searchTree(this.listTeam, this.search);
 		}
+	},
+	beforeMount() {
+		this.dataBaru = implantData.GANTT;
 	},
 	mounted() {
 		this.getParent;

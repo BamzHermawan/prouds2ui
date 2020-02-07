@@ -108,6 +108,9 @@ import moment from "helper-moment";
 import { isEmpty } from "helper-tools";
 import { crudInput } from "components";
 
+const implantTag = document.querySelector("#implantedJSON");
+const implantData = JSON.parse(implantTag.innerHTML);
+
 const checkPass = val => {
 	return isEmpty(val) ? null : val;
 };
@@ -130,7 +133,7 @@ export default {
 	},
 	data() {
 		return {
-			dataBaru: GANTT,
+			dataBaru: [],
 			parentTask: null,
 			start: "",
 			finish: "",
@@ -254,6 +257,8 @@ export default {
 		}
 	},
 	beforeMount() {
+		this.dataBaru = implantData.GANTT;
+
 		this.start = moment(this.task.pStart).format("dddd, DD MMMM YYYY");
 		this.finish = moment(this.task.pEnd).format("dddd, DD MMMM YYYY");
 		this.predecessor = checkPass(this.task.pDepend);
