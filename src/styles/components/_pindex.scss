@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 70% 1fr;
     &.map-table-reuse {
-        grid-template-columns: 60% 1fr;
+        grid-template-columns: 45% 1fr;
         .add-green-border {
             border-right: solid 2px darkseagreen !important;
         }

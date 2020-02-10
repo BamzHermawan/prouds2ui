@@ -1,16 +1,16 @@
 module.exports = {
 
-    // Use API TESTING
-    apiTesting: true,
+	// Use API TESTING
+	apiTesting: true,
 
-    // Base URL to prouds API
-    baseAPI: 'http://localhost:5501/demo/',
+	// Base URL to prouds API
+	baseAPI: 'http://localhost:5501/demo/',
 
-    // timeout is 1 minute
-    timeout: 1 * 60 * 1000,
+	// timeout is 1 minute
+	timeout: 1 * 60 * 1000,
 
-    // list of prouds API
-    listAPI: {
+	// list of prouds API
+	listAPI: {
 
         /**
          * Get User Session [POST]
@@ -18,7 +18,7 @@ module.exports = {
          * Received Data:
          *  - semua data yang bisa di kasih ke frontend, misal : nama atau nik
          */
-        userLogin: 'userLog.php',
+		userLogin: 'userLog.php',
 
         /**
          * Set Initial Baseline [POST]
@@ -27,7 +27,7 @@ module.exports = {
          * Received Data:
          *  - message: pesan kalau ada error atau data tidak lengkap
          */
-        setInitialBaseline: 'getNotifInitial.php',
+		setInitialBaseline: 'getNotifInitial.php',
 
         /**
          * Send Initial Baseline [POST]
@@ -35,7 +35,7 @@ module.exports = {
          * 	- project_id
          * Received Data: -
          */
-        sendInitialBaseline: 'axios_check.php',
+		sendInitialBaseline: 'axios_check.php',
 
         /**
          * Send Bookmark [POST]
@@ -45,7 +45,7 @@ module.exports = {
          *  - user_id
          * Received Data: -
          */
-        sendBookmark: 'axios_check.php',
+		sendBookmark: 'axios_check.php',
 
         /**
          * Get Duration [POST]
@@ -56,7 +56,7 @@ module.exports = {
          * Received Data: 
          *  - Duration
          */
-        getDuration: 'getDuration.php',
+		getDuration: 'getDuration.php',
 
         /**
          * Send Photo [POST]
@@ -64,7 +64,7 @@ module.exports = {
          * - file
          * Received Data: -
          */
-        uploadFoto: 'axios_check.php',
+		uploadFoto: 'axios_check.php',
 
         /**
          * get Notification List [GET]
@@ -72,7 +72,7 @@ module.exports = {
          * Received Data: 
          *  - list notification
          */
-        getNotification: 'getNotification.php',
+		getNotification: 'getNotification.php',
 
         /**
          * get Team Workplan List [GET]
@@ -80,7 +80,7 @@ module.exports = {
          * Received Data: 
          *  - list team
          */
-        getTeamWorkplan: 'getTeamWorkplan.php?task_id={task_id}',
+		getTeamWorkplan: 'getTeamWorkplan.php?task_id={task_id}',
 
         /**
          * get Resource Workplan List [GET]
@@ -88,14 +88,14 @@ module.exports = {
          * Received Data: 
          *  - list team
          */
-        getResourceWorkplan: 'getResourceWorkplan.php?task_id={task_id}',
+		getResourceWorkplan: 'getResourceWorkplan.php?task_id={task_id}',
 
         /**
          * open Notification Log [POST]
          * Send Data:  List of id
          * Received Data: -
          */
-        openNotification: 'axios_check.php',
+		openNotification: 'axios_check.php',
 
         /**
          * Get List of Filled Timesheet Date [POST]
@@ -106,7 +106,7 @@ module.exports = {
          * Received Data: 
          * - List of Filled Timesheet Date
          */
-        filledTimesheet: 'getTimesheetDate.php',
+		filledTimesheet: 'getTimesheetDate.php',
 
         /**
          * Delete File [POST]
@@ -115,7 +115,7 @@ module.exports = {
          * Received Data:
          *  - success
          */
-        deleteFile: 'axios_check.php',
+		deleteFile: 'axios_check.php',
 
         /**
          * Set Complete Assign Resource [POST]
@@ -124,14 +124,14 @@ module.exports = {
          * Received Data:
          *  - success
          */
-        setComplete: 'axios_check.php',
+		setComplete: 'axios_check.php',
 
         /**
          * get data performance Index by project id
          * Send Data:
          * - project_id
          */
-        getPIndexTable: 'performanceIndex.php?get=table&project_id={project_id}',
+		getPIndexTable: 'performanceIndex.php?get=table&project_id={project_id}',
 
         /**
          * get data performance Index chart by project id & task id
@@ -139,7 +139,7 @@ module.exports = {
          * - project_id
          * - task_id
          */
-        getPIndexChart: 'performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}',
+		getPIndexChart: 'performanceIndex.php?get=chart&project_id={project_id}&task_id={task_id}',
 
         /**
          * get data performance Index chart by project id & task id
@@ -147,7 +147,7 @@ module.exports = {
          * - project_id
          * - task_id
          */
-        getPIndexFalling: 'performanceIndex.php?get=falling&project_id={project_id}&task_id={task_id}&week={week}',
+		getPIndexFalling: 'performanceIndex.php?get=falling&project_id={project_id}&task_id={task_id}&week={week}',
 
         /**
          * [get/post] data tasks by projects
@@ -155,7 +155,7 @@ module.exports = {
          * - project_id [GET]
          * - parent [POST]
          */
-        getProjectTasks: 'performanceIndex.php?get=tasks&project_id={project_id}&limit=50',
+		getProjectTasks: 'performanceIndex.php?get=tasks&project_id={project_id}&limit=50',
 
         /**
          * get data tasks by projects
@@ -165,14 +165,14 @@ module.exports = {
          * - week_start: int from 1 [POST]
          * - week_limit: int default 10
          */
-        getTasksProgress: 'performanceIndex.php?get=weekly&project_id={project_id}',
+		getTasksProgress: 'performanceIndex.php?get=weekly&project_id={project_id}',
 
         /**
          * Get User list by Unit ID
          * Send Data:
          * - unit_id: string project id [GET]
          */
-        userByUnit: 'getUtilMap.php?get=users&total=50&unit={unit_id}',
+		userByUnit: 'getUtilMap.php?get=users&total=50&unit={unit_id}',
 
         /**
          * Get User Utilization Map list by Unit ID
@@ -181,7 +181,7 @@ module.exports = {
          * - start: start date range (MM/YYYY) or null [POST]
          * - end: end date range (MM/YYYY) or null [POST]
          */
-        userMapByUnit: 'getUtilMap.php?get=map&total=50&unit={unit_id}',
+		userMapByUnit: 'getUtilMap.php?get=map&total=50&unit={unit_id}',
 
         /**
          * Get Timesheet Complience by Unit ID
@@ -190,7 +190,14 @@ module.exports = {
          * - start: start date range (MM/YYYY) or null [POST]
          * - end: end date range (MM/YYYY) or null [POST]
          */
-        timesheetComplience: 'getUtilMap.php?get=complience&total=50&unit={unit_id}',
+		timesheetComplience: 'getUtilMap.php?get=complience&total=50&unit={unit_id}',
+
+		/**
+         * Get Timesheet Complience Week Map by Year
+         * Send Data:
+         * - year: string year [GET]
+         */
+		getWeekMonthMapping: 'getUtilMap.php?get=weekMap&year={year}',
 
         /**
          * Get User Utilization Map Detail list by Nik and date
@@ -198,7 +205,7 @@ module.exports = {
          * - nik: String User NIK [POST]
          * - date: Activity Date with format DD/MM/YYYY [POST]
          */
-        userActivityByDate: 'getUtilMap.php?get=detail',
-    }
+		userActivityByDate: 'getUtilMap.php?get=detail',
+	}
 
 }

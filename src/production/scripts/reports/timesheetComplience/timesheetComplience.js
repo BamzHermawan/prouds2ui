@@ -4,6 +4,7 @@ import Buefy from 'buefy';
 import Moment from 'helper-moment';
 import Loader from 'helper-loader';
 import mapTable from './mapTable.vue';
+import weekpicker from './weekpicker.vue';
 import unitForm from './../selectUnit.vue';
 import { getUserActivityByDate } from 'helper-apis';
 import { checkConnection, notified } from "helper-tools";
@@ -11,7 +12,7 @@ import { checkConnection, notified } from "helper-tools";
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
-	components: { mapTable, unitForm },
+	components: { mapTable, unitForm, weekpicker },
 	data: {
 		filterStart: null,
 		filterEnd: null,
@@ -28,33 +29,13 @@ new Vue({
 			timesheet: []
 		}
 	},
-	computed: {
-		maxStart() {
-			return new Date(Moment().endOf("year"));
-		},
-		minEnd() {
-			if (this.filterStart !== null) {
-				return this.filterStart;
-			} else {
-				return undefined;
-			}
-		},
-		maxEnd() {
-			if (this.filterStart !== null) {
-				let limit = Moment(this.filterStart).add(1, 'years').add(6, "months");
-				return new Date(limit);
-			} else {
-				return new Date(Moment().endOf("year"));
-			}
-		}
-	},
 	methods: {
 		getRange() {
-			let start = Moment(this.filterStart).format("MM/YYYY");
+			const start = this.filterStart.start;
+			let end = this.filterStart.end;
 
-			let end = start;
 			if (this.filterEnd !== null) {
-				end = Moment(this.filterEnd).format("MM/YYYY");
+				end = this.filterEnd.end;
 			}
 
 			return { start, end };
@@ -99,16 +80,18 @@ new Vue({
 						setTimeout(() => (self.errorFetch = false), 5000);
 					}
 				}).finally(() => self.modal_act.loading = false);
+		},
+		startTable(startWeek) {
+			this.filterStart = startWeek;
+
+			if (this.unitID !== null) {
+				this.$refs.mapTable.reloadTable(
+					this.unitID, this.getRange()
+				);
+			}
 		}
 	},
 	mounted() {
-		this.filterStart = new Date(Moment());
-		if (this.unitID !== null) {
-			this.$refs.mapTable.reloadTable(
-				this.unitID, this.getRange()
-			);
-		}
-
 		Loader.hide();
 	}
 });
