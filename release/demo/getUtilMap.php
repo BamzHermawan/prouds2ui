@@ -100,9 +100,9 @@ if ($_GET['get'] == "complience") {
 
 	$temp = [];
 	$week = 1;
-	if (intval($start[1]) < intval($end[1])) {
-		for ($y=intval($start[1]); $y <= intval($end[1]); $y++) { 
-			for ($m=intval($start[0]); $m <= intval($end[0]) ; $m++) { 
+	if (intval($start[2]) < intval($end[2])) {
+		for ($y=intval($start[2]); $y <= intval($end[2]); $y++) { 
+			for ($m=intval($start[1]); $m <= intval($end[1]) ; $m++) { 
 				$days = date("t", mktime(0, 0, 0, $m, 1, $y));
 				for ($d=1; $d <= $days; $d++) { 
 					$temp[] = (Object) [
@@ -114,12 +114,12 @@ if ($_GET['get'] == "complience") {
 			}
 		}
 	} else {
-		for ($m=intval($start[0]); $m <= intval($end[0]) ; $m++) { 
-			$days = date("t", mktime(0, 0, 0, $m, 1, intval($end[1])));
+		for ($m=intval($start[1]); $m <= intval($end[1]) ; $m++) { 
+			$days = date("t", mktime(0, 0, 0, $m, 1, intval($end[2])));
 			for ($d=1; $d <= $days; $d++) { 
 				$temp[] = [
-					"date" => date("d/m/Y", mktime(0,0,0, $m, $d, intval($end[1]))),
-					"week" => date("W", mktime(0,0,0, $m, $d, intval($end[1]))),
+					"date" => date("d/m/Y", mktime(0,0,0, $m, $d, intval($end[2]))),
+					"week" => date("W", mktime(0,0,0, $m, $d, intval($end[2]))),
 					"alert" => false,
 					"value" => 0,
 				];
@@ -129,6 +129,9 @@ if ($_GET['get'] == "complience") {
 
 	$cooked = [];
 	$weekly = [];
+
+	$endTime = mktime(0,0,0, intval($end[1]), intval($end[0]), intval($end[2]));
+	$startTime = mktime(0,0,0, intval($start[1]), intval($start[0]), intval($start[2]));
 	for ($i=0; $i < $total; $i++) { 
 		for ($j=0; $j < count($temp); $j++) { 
 			$hour = 8;
@@ -148,21 +151,48 @@ if ($_GET['get'] == "complience") {
 			$temp[$j]['value'] = $hour;
 		}
 
+		$cook = [];
 		for ($j=0; $j < count($temp); $j++) { 
-			$sum = $weekly[$temp[$j]['week']]['sum'] < 40;
-			$count = $weekly[$temp[$j]['week']]['count'];
-			$temp[$j]['alert'] = $sum && ($count == 7);
+			$thisDate = explode('/', $temp[$j]["date"]);
+			$thisTime = mktime(0,0,0, intval($thisDate[1]), intval($thisDate[0]), intval($thisDate[2]));
+
+			if ($endTime >= $thisTime && $thisTime >= $startTime) {
+				$sum = $weekly[$temp[$j]['week']]['sum'] < 40;
+				$count = $weekly[$temp[$j]['week']]['count'];
+				$temp[$j]['alert'] = $sum && ($count == 7);
+
+				$cook[] = $temp[$j];
+			}
 		}
 
 		$cooked[$i] = [
 			"nik" => $data[$i]->nik,
-			"score" => $temp
+			"score" => $cook
 		];
 
 		$weekly = [];
 	}
 
 	echo json_encode($cooked);
+}
+
+// Timesheet Week Map
+if ($_GET['get'] == "weekMap") {
+	$json = file_get_contents("./dummy/timesheetComplience.json");
+	$weekMap = json_decode($json);
+
+	$year = $_GET['year'];
+	for ($i=0; $i < count($weekMap); $i++) { 
+		$month = explode("/", $weekMap[$i]->month);
+		$start = explode("/", $weekMap[$i]->start);
+		$end = explode("/", $weekMap[$i]->end);
+
+		$weekMap[$i]->month = implode("/", [$month[0], $year]);
+		$weekMap[$i]->start = implode("/", [$start[0], $start[1], $year]);
+		$weekMap[$i]->end = implode("/", [$end[0], $end[1], $year]);
+	}
+
+	echo json_encode($weekMap);
 }
 
 if ($_GET['get'] == "detail") {

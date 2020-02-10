@@ -4,6 +4,7 @@ import Buefy from 'buefy';
 import Moment from 'helper-moment';
 import Loader from 'helper-loader';
 import mapTable from './mapTable.vue';
+import weekpicker from './weekpicker.vue';
 import unitForm from './../selectUnit.vue';
 import { getUserActivityByDate } from 'helper-apis';
 import { checkConnection, notified } from "helper-tools";
@@ -11,7 +12,7 @@ import { checkConnection, notified } from "helper-tools";
 Vue.use(Buefy);
 new Vue({
     el: '#contentApp',
-    components: { mapTable, unitForm },
+    components: { mapTable, unitForm, weekpicker },
     data: {
         filterStart: null,
         filterEnd: null,
