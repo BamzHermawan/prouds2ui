@@ -39,6 +39,18 @@ export default {
 		exportLink: {
 			type: String,
 			required: true
+		},
+		start: {
+			type: Date,
+			required: true
+		},
+		end: {
+			type: Date,
+			required: true
+		},
+		dateFormat: {
+			type: String,
+			default: "DD.MM.YYYY"
 		}
 	},
 	data() {
@@ -49,24 +61,13 @@ export default {
 	},
 	computed: {
 		downloadLink() {
-			let start = this.$parent.$data.filterStart;
-			let end = this.$parent.$data.filterEnd;
+			let bundle = {
+				start: Moment(this.start).format(this.dateFormat),
+				end: Moment(this.end).format(this.dateFormat),
+				unit_id: this.unitId
+			};
 
-			if (start instanceof Date) {
-				if (!(end instanceof Date)) {
-					end = start;
-				}
-
-				let bundle = {
-					start: Moment(start).format("MM.YYYY"),
-					end: Moment(end).format("MM.YYYY"),
-					unit_id: this.unitId
-				};
-
-				return parsedURL(this.exportLink, bundle);
-			} else {
-				return "#";
-			}
+			return parsedURL(this.exportLink, bundle);
 		}
 	},
 	methods: {

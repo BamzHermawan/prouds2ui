@@ -16,6 +16,11 @@ if (empty($_GET)) {
 if ($_GET['get'] == 'users') {
 	$total = $_GET['total'];
 	$cooked = [];
+
+	if($_GET['unit'] == '{unit_id}') {
+		echo "Unit Should not be empty";
+		return 0;
+	}
 	
 	if (empty($_GET['complience'])) {
 		for ($i=0; $i < $total; $i++) { 

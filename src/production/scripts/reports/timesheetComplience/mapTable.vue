@@ -210,22 +210,54 @@ import Moment from "helper-moment";
 import { isEmpty, checkConnection, notified } from "helper-tools";
 
 export default {
+	props: {
+		unitId: {
+			type: String,
+			default: null
+		},
+		start: {
+			type: String,
+			required: true
+		},
+		end: {
+			type: String,
+			required: true
+		}
+	},
 	data() {
 		return {
 			errorFetch: false,
 			loading: true,
 			timeout: false,
 			usermap: [],
-			unitID: null,
 			contentScroll: 0,
 			monthHeader: [],
-			mapRange: {
+			range: {
 				start: null,
 				end: null
 			}
 		};
 	},
 	computed: {
+		mapRange: {
+			set(val) {
+				if (this.val !== null) {
+					this.range = val;
+				}
+			},
+			get() {
+				if (this.range instanceof Object) {
+					if (this.range.start !== null && this.range.end !== null) {
+						return this.range;
+					}
+				}
+
+				return {
+					start: this.start,
+					end: this.end
+				};
+			}
+		},
 		stickyTop() {
 			if (this.contentScroll > 0) {
 				return this.contentScroll - 100;
@@ -292,18 +324,18 @@ export default {
 				"add-green-border": endMonth
 			};
 		},
-		reloadTable(unit = null, range = null) {
-			if (unit !== null) {
-				this.unitID = unit;
-			}
-
-			if (range !== null) {
+		reloadTable(range = null) {
+			this.loading = true;
+			this.timeout = false;
+			if (range === null) {
 				this.mapRange = range;
 			}
 
-			this.loading = true;
-			this.timeout = false;
-			this.fetchUser();
+			if (!isEmpty(this.unitId)) {
+				this.fetchUser();
+			} else {
+				setTimeout(() => this.reloadTable(), 500);
+			}
 		},
 		reloadMap(range = null) {
 			if (range !== null) {
@@ -338,77 +370,74 @@ export default {
 			});
 		},
 		fetchUser() {
-			if (this.unitID !== undefined) {
-				let self = this;
-				fetch
-					.getUserByUnit(this.unitID)
-					.then(res => {
-						let users = res.data;
-						if (!isEmpty(users)) {
-							self.usermap = users;
-							self.fetchMap();
-						}
-					})
-					.catch(err => {
-						if (self.errorFetch) return 0;
+			let self = this;
+			fetch
+				.getUserByUnit(this.unitId)
+				.then(res => {
+					let users = res.data;
+					if (!isEmpty(users)) {
+						self.usermap = users;
+						self.reloadMap();
+					}
+				})
+				.catch(err => {
+					if (self.errorFetch) return 0;
 
-						if (checkConnection(self.$notification)) {
-							notified(self.$notification).error(
-								"Sorry we are encountering a problem.<br>Your connection to our server is timeout. 🙏"
-							);
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem.<br>Your connection to our server is timeout. 🙏"
+						);
 
-							self.errorFetch = true;
-							self.loading = false;
-							self.timeout = true;
-							setTimeout(() => (self.errorFetch = false), 5000);
-						}
-					});
-			}
+						self.errorFetch = true;
+						self.loading = false;
+						self.timeout = true;
+						setTimeout(() => (self.errorFetch = false), 5000);
+					}
+				});
 		},
 		fetchMap() {
-			if (this.unitID !== undefined) {
-				let self = this;
-				fetch
-					.timesheetComplience(this.unitID, this.mapRange)
-					.then(res => {
-						let map = res.data;
-						if (!isEmpty(map) && map instanceof Array) {
-							for (let i = 0; i < self.usermap.length; i++) {
-								if (self.usermap[i].hasOwnProperty("nik")) {
-									const nik = self.usermap[i].nik;
-									const item = map.find(
-										item => item.nik == nik
-									);
+			let self = this;
+			const a = this.mapRange;
+			console.log(a);
 
-									self.usermap[i].score = item.score;
+			fetch
+				.timesheetComplience(this.unitId, this.mapRange)
+				.then(res => {
+					let map = res.data;
+					if (!isEmpty(map) && map instanceof Array) {
+						for (let i = 0; i < self.usermap.length; i++) {
+							if (self.usermap[i].hasOwnProperty("nik")) {
+								const nik = self.usermap[i].nik;
+								const item = map.find(item => item.nik == nik);
 
-									if (item.hasOwnProperty("whTotalBarrier")) {
-										self.usermap[i].twhBarrier =
-											item.whTotalBarrier;
-									} else {
-										self.usermap[i].twhBarrier = 0;
-									}
+								self.usermap[i].score = item.score;
+
+								if (item.hasOwnProperty("whTotalBarrier")) {
+									self.usermap[i].twhBarrier =
+										item.whTotalBarrier;
+								} else {
+									self.usermap[i].twhBarrier = 0;
 								}
 							}
-
-							self.setMonthHeader(map[0]);
 						}
-					})
-					.catch(err => {
-						if (self.errorFetch) return 0;
 
-						if (checkConnection(self.$notification)) {
-							notified(self.$notification).error(
-								"Sorry we are encountering a problem.<br>Your connection to our server is timeout. 🙏"
-							);
+						self.setMonthHeader(map[0]);
+					}
+				})
+				.catch(err => {
+					if (self.errorFetch) return 0;
 
-							self.errorFetch = true;
-							self.timeout = true;
-							setTimeout(() => (self.errorFetch = false), 5000);
-						}
-					})
-					.finally(() => (self.loading = false));
-			}
+					if (checkConnection(self.$notification)) {
+						notified(self.$notification).error(
+							"Sorry we are encountering a problem.<br>Your connection to our server is timeout. 🙏"
+						);
+
+						self.errorFetch = true;
+						self.timeout = true;
+						setTimeout(() => (self.errorFetch = false), 5000);
+					}
+				})
+				.finally(() => (self.loading = false));
 		},
 		setMonthHeader(map) {
 			if (map.hasOwnProperty("score")) {
@@ -451,7 +480,7 @@ export default {
 		}
 	},
 	beforeMount() {
-		if (this.unitID !== null) {
+		if (this.unitId !== null) {
 			this.reloadTable();
 		} else {
 			this.loading = false;

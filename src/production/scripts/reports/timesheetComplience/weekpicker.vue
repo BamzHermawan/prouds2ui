@@ -66,6 +66,24 @@
 					>: {{ start }} — {{ end }}
 				</b-dropdown-item>
 
+				<template v-if="resetable && !isEmpty">
+					<hr class="dropdown-divider" />
+					<b-dropdown-item custom :focusable="false">
+						<div class="modal-card" style="width:225px;">
+							<section class="modal-card-body is-paddingless">
+								<b-field expanded>
+									<b-button
+										type="is-warning is-fullwidth"
+										size="is-small"
+										@click="reset"
+										>Reset</b-button
+									>
+								</b-field>
+							</section>
+						</div>
+					</b-dropdown-item>
+				</template>
+
 				<b-loading
 					:is-full-page="false"
 					:active.sync="loading"
@@ -92,6 +110,10 @@ export default {
 		min: {
 			type: Date,
 			default: undefined
+		},
+		resetable: {
+			type: Boolean,
+			default: false
 		}
 	},
 	watch: {
@@ -108,6 +130,9 @@ export default {
 		}
 	},
 	computed: {
+		isEmpty() {
+			return this.model.value.start == "";
+		},
 		years() {
 			const minYear = this.getMinDate("YYYY", 1990);
 			const today = parseInt(Moment().format("YYYY"));
@@ -275,6 +300,16 @@ export default {
 					this.changed(found);
 				}
 			}
+		},
+		reset() {
+			this.model.value = {
+				week: "",
+				month: "",
+				start: "",
+				end: ""
+			};
+
+			this.$emit("change", null);
 		},
 		changed(item) {
 			this.model.value = item;

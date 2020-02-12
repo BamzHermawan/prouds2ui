@@ -37,7 +37,7 @@ new Vue({
 
 			return undefined;
 		},
-		chartFilter() {
+		dateFilter() {
 			if (this.filterStart == null) {
 				const start = Moment().startOf('week').format('DD/MM/YYYY');
 				const end = Moment().endOf('week').format('DD/MM/YYYY');
@@ -46,6 +46,23 @@ new Vue({
 			} else {
 				return this.getRange();
 			}
+		},
+		exportFilter() {
+			if (this.filterStart == null) {
+				const start = new Date(Moment().startOf('week'));
+				const end = new Date(Moment().endOf('week'));
+
+				return { start, end };
+			} else {
+				const range = this.getRange();
+				range.start = new Date(Moment(range.start, 'DD/MM/YYYY'));
+				range.end = new Date(Moment(range.end, 'DD/MM/YYYY'));
+
+				return range;
+			}
+		},
+		isChartVisible() {
+			return this.$refs.hasOwnProperty('cmChart');
 		}
 	},
 	methods: {
@@ -60,9 +77,8 @@ new Vue({
 			return { start, end };
 		},
 		selectUnit(unit) {
-			this.$refs.mapTable.reloadTable(
-				unit, this.getRange()
-			);
+			this.unitID = unit;
+			this.$refs.mapTable.reloadTable(this.getRange());
 		},
 		filterMap() {
 			if (this.currentPage == "table") {
@@ -79,9 +95,7 @@ new Vue({
 				this.filterStart = startWeek;
 
 				if (this.unitID !== null) {
-					this.$refs.mapTable.reloadTable(
-						this.unitID, this.getRange()
-					);
+					this.$refs.mapTable.reloadTable(this.getRange());
 				}
 			}
 		},

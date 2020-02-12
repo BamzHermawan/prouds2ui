@@ -46,6 +46,13 @@ new Vue({
 			} else {
 				return new Date(Moment().endOf("year"));
 			}
+		},
+		dateFilter() {
+			if (this.filterStart === null) {
+				return { start: new Date(), end: new Date() };
+			} else {
+				return getRange();
+			}
 		}
 	},
 	methods: {

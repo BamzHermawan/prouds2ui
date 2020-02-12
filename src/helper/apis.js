@@ -84,7 +84,7 @@ module.exports.postAxios = (yu_er_el, bundle) => {
  * 
  * @returns user data. check documentation for more information
  */
-module.exports.getUserSession = request.get($api.userLogin);
+// module.exports.getUserSession = request.get($api.userLogin);
 
 /**
  * getUserData

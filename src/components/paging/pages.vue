@@ -1,7 +1,7 @@
 <template>
 	<div class="pages-wrapper">
 		<nav
-			v-if="!atDefault || showBreadcrumbs"
+			v-if="displayBreadcrumbs"
 			class="breadcrumb has-succeeds-separator"
 			aria-label="breadcrumbs"
 		>
@@ -30,6 +30,10 @@ export default {
 		showBreadcrumbs: {
 			type: Boolean,
 			default: false
+		},
+		hideBreadcrumbs: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -54,6 +58,12 @@ export default {
 			}
 
 			return "loading";
+		},
+		displayBreadcrumbs() {
+			return (
+				(!this.atDefault || this.showBreadcrumbs) &&
+				!this.hideBreadcrumbs
+			);
 		}
 	},
 	methods: {

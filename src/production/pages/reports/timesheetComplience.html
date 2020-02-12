@@ -129,20 +129,27 @@
 						<div class="level-left">
 							<div class="columns" style="align-items: flex-end;">
 								<div class="column">
-									<unit-form @input="selectUnit" v-model="unitID"
-										export-link="http://localhost:5501/demo/post_detect.php?unit={unit_id}&start={start}&end={end}">
+									<!-- <unit-form 
+											@input="selectUnit" 
+											v-model="unitID"
+											:start="exportFilter.start" :end="exportFilter.end" date-format="DD.MM.YYYY"
+											export-link="http://localhost:5501/demo/post_detect.php?unit={unit_id}&start={start}&end={end}">
 										<option value="pmo">Project Management Office</option>
 										<option value="bsd">Business Solution Delivery</option>
-									</unit-form>
-
-									<!-- <unit-form @input="selectUnit"
-										export-link="http://localhost:5501/demo/post_detect.php?unit={unit_id}&start={start}&end={end}"
-										unit-id="pmo">
-										Project Management Office
 									</unit-form> -->
+
+									<unit-form @input="selectUnit"
+										export-link="http://localhost:5501/demo/post_detect.php?unit={unit_id}&start={start}&end={end}"
+										unit-id="pmo" :start="exportFilter.start" :end="exportFilter.end"
+										date-format="DD.MM.YYYY">
+										Project Management Office
+									</unit-form>
 								</div>
 								<div class="column is-2" style="padding-left:0px;">
-									<b-button type="is-info" icon-right="chart-bar" @click="changePage('chart')">
+									<b-button v-if="currentPage == 'table'" type="is-info" icon-right="chart-bar"
+										@click="changePage('chart')">
+									</b-button>
+									<b-button v-else type="is-info" icon-right="table" @click="changePage('table')">
 									</b-button>
 								</div>
 							</div>
@@ -168,7 +175,7 @@
 										</b-tooltip>
 									</template>
 									<weekpicker placeholder="Select End Range Week to Filter" :min="minWeekEnd"
-										@change="val => filterEnd = val">
+										@change="val => filterEnd = val" resetable>
 									</weekpicker>
 								</b-field>
 								<b-field class="has-align-bottom">
@@ -180,7 +187,7 @@
 						</div>
 					</nav>
 
-					<paging ref="paging" default="table">
+					<paging ref="paging" default="table" hide-breadcrumbs>
 						<paging-page page-id="table" label="Compliance Table">
 							<b-message type="is-info" size="is-small" style="margin-bottom: 1rem;">
 								<div class="columns">
@@ -195,15 +202,21 @@
 								</div>
 							</b-message>
 
-							<map-table ref="mapTable">
+							<map-table ref="mapTable" :unit-id="unitID" :start="dateFilter.start" :end="dateFilter.end">
 								<template slot="whenEmpty">
-									<p class="has-text-centered">Please Select Business Unit 🔍</p>
+									<p v-if="unitID == null" class="has-text-centered">Please Select Business Unit 🔍
+									</p>
+									<p v-else class="has-text-centered">
+										<span>Please wait a moment, loading data ..</span>
+										<span class="mdi mdi-spin mdi-autorenew in-right"></span>
+									</p>
 								</template>
 							</map-table>
 						</paging-page>
 						<paging-page page-id="chart" label="Compliance Chart">
+							<hr style="margin-bottom:2rem;" />
 							<stacked-chart ref="cmChart" title="Timesheet Submission Compliance"
-								:start="chartFilter.start" :end="chartFilter.end"></stacked-chart>
+								:start="dateFilter.start" :end="dateFilter.end"></stacked-chart>
 						</paging-page>
 					</paging>
 				</div>
