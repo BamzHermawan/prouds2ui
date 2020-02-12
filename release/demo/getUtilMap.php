@@ -16,16 +16,28 @@ if (empty($_GET)) {
 if ($_GET['get'] == 'users') {
 	$total = $_GET['total'];
 	$cooked = [];
-
-	for ($i=0; $i < $total; $i++) { 
-		$cooked[$i] = [
-			"nik" => $data[$i]->nik,
-			"name" => $data[$i]->name,
-			"status" => $data[$i]->status,
-			"assignment" => $data[$i]->assignment,
-			"submited" => $data[$i]->submited,
-			"approved" => $data[$i]->approved
-		];
+	
+	if (empty($_GET['complience'])) {
+		for ($i=0; $i < $total; $i++) { 
+			$cooked[$i] = [
+				"nik" => $data[$i]->nik,
+				"name" => $data[$i]->name,
+				"status" => $data[$i]->status,
+				"assignment" => $data[$i]->assignment,
+				"submited" => $data[$i]->submited,
+				"approved" => $data[$i]->approved
+			];
+		}
+	} else {
+		for ($i=0; $i < $total; $i++) { 
+			$cooked[$i] = [
+				"nik" => $data[$i]->nik,
+				"name" => $data[$i]->name,
+				"status" => $data[$i]->status,
+				"role" => $data[$i]->role,
+				"join" => $data[$i]->join
+			];
+		}
 	}
 
 	echo json_encode($cooked);
@@ -167,7 +179,8 @@ if ($_GET['get'] == "complience") {
 
 		$cooked[$i] = [
 			"nik" => $data[$i]->nik,
-			"score" => $cook
+			"score" => $cook,
+			"whTotalBarrier" => intval((count($cook) / 7) * 40)
 		];
 
 		$weekly = [];
@@ -236,4 +249,20 @@ if ($_GET['get'] == "detail") {
 	}
 
 	echo json_encode($cooked);
+}
+
+if ($_GET['get'] == "comChart") {
+	$content = file_get_contents("./dummy/complienceChart.json");
+	$data = json_decode($content);
+
+	for ($i=0; $i < count($data->series); $i++) { 
+		$randomize = [];
+		for ($j=0; $j < count($data->series[$i]->data); $j++) { 
+			$randomize[] = rand(0, 100);
+		}
+
+		$data->series[$i]->data = $randomize;
+	}
+
+	echo json_encode($data);
 }

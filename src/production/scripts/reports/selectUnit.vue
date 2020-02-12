@@ -1,16 +1,15 @@
 <template>
 	<b-field label="Business Unit">
 		<div class="field is-grouped">
-			<p v-if="!hasDefault" class="control">
-				<b-select
-					placeholder="Select Business Unit"
-					@input="selectUnit"
-					v-model="unit"
-					expanded
-				>
-					<slot></slot>
-				</b-select>
-			</p>
+			<b-select
+				v-if="!hasDefault"
+				placeholder="Select Business Unit"
+				@input="selectUnit"
+				v-model="unit"
+				expanded
+			>
+				<slot></slot>
+			</b-select>
 			<p v-else class="control">
 				<b-button type="is-static is-light-blend">
 					<slot></slot>

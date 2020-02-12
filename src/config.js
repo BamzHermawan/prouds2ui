@@ -193,6 +193,14 @@ module.exports = {
 		timesheetComplience: 'getUtilMap.php?get=complience&total=50&unit={unit_id}',
 
 		/**
+         * Get Timesheet Complience Chart by Unit ID
+         * Send Data:
+         * - start: start date range (DD/MM/YYYY) or null [POST]
+         * - end: end date range (DD/MM/YYYY) or null [POST]
+         */
+		complienceChart: 'getUtilMap.php?get=comChart',
+
+		/**
          * Get Timesheet Complience Week Map by Year
          * Send Data:
          * - year: string year [GET]
@@ -206,6 +214,13 @@ module.exports = {
          * - date: Activity Date with format DD/MM/YYYY [POST]
          */
 		userActivityByDate: 'getUtilMap.php?get=detail',
+
+		/**
+         * Get Workplan Version Changelog
+         * Send Data:
+         * - id: String Workplan version id [GET]
+         */
+		wpChangelog: 'dummy/changelogTable.json?ver={id}',
 	}
 
 }

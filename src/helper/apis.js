@@ -65,6 +65,20 @@ module.exports.axios = request;
 //? ----------------------------------------------------------------------------
 
 /**
+ * Axiod Post Request Template
+ *
+ * @param {*} bundle
+ * @returns Axios Promise Instance
+ */
+module.exports.postAxios = (yu_er_el, bundle) => {
+	return request.post(yu_er_el, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}
+
+/**
  * getUserSession
  * axios promise for getting user who currently in session
  * 

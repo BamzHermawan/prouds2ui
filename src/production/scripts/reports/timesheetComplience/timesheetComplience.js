@@ -6,27 +6,46 @@ import Loader from 'helper-loader';
 import mapTable from './mapTable.vue';
 import weekpicker from './weekpicker.vue';
 import unitForm from './../selectUnit.vue';
-import { getUserActivityByDate } from 'helper-apis';
-import { checkConnection, notified } from "helper-tools";
+import stackedChart from './stackedChart.vue';
+
+import { Paging, PagingPage } from 'components';
 
 Vue.use(Buefy);
 new Vue({
 	el: '#contentApp',
-	components: { mapTable, unitForm, weekpicker },
+	components: {
+		mapTable,
+		unitForm,
+		weekpicker,
+		stackedChart,
+		Paging,
+		PagingPage
+	},
 	data: {
+		jumpStart: false,
 		filterStart: null,
 		filterEnd: null,
 		unitID: null,
-		modal_act: {
-			display: false,
-			loading: false,
-			fetchError: false,
-			date: null,
-			user: {
-				name: "-",
-				nik: "-",
-			},
-			timesheet: []
+		chartData: undefined,
+		currentPage: 'table'
+	},
+	computed: {
+		minWeekEnd() {
+			if (this.filterStart !== null) {
+				return new Date(Moment(this.filterStart.end, 'DD/MM/YYYY'));
+			}
+
+			return undefined;
+		},
+		chartFilter() {
+			if (this.filterStart == null) {
+				const start = Moment().startOf('week').format('DD/MM/YYYY');
+				const end = Moment().endOf('week').format('DD/MM/YYYY');
+
+				return { start, end };
+			} else {
+				return this.getRange();
+			}
 		}
 	},
 	methods: {
@@ -46,49 +65,29 @@ new Vue({
 			);
 		},
 		filterMap() {
-			this.$refs.mapTable.reloadMap(
-				this.getRange()
-			);
-		},
-		displayDetailModal(data) {
-			console.log(data);
-			this.modal_act.user.nik = data.user.nik;
-			this.modal_act.user.name = data.user.name;
-			this.modal_act.date = data.day.date;
-			this.fetchTimesheet(data.user.nik, data.day.date, data.day.value);
-
-			this.modal_act.display = true;
-		},
-		fetchTimesheet(nik, date, workhour) {
-			let self = this;
-			this.modal_act.loading = true;
-			getUserActivityByDate(nik, date, workhour)
-				.then(res => {
-					let ts = res.data;
-					if (ts instanceof Array) {
-						self.modal_act.timesheet = ts;
-					}
-				}).catch(err => {
-					if (self.modal_act.fetchError) return 0;
-
-					if (checkConnection(self.$notification)) {
-						notified(self.$notification).error(
-							"Sorry we are encountering a problem.<br>Your connection to our server is timeout. 🙏"
-						);
-
-						self.modal_act.fetchError = true;
-						setTimeout(() => (self.errorFetch = false), 5000);
-					}
-				}).finally(() => self.modal_act.loading = false);
+			if (this.currentPage == "table") {
+				this.$refs.mapTable.reloadMap(
+					this.getRange()
+				);
+			} else if (this.currentPage == "chart") {
+				this.$refs.cmChart.updateChart();
+			}
 		},
 		startTable(startWeek) {
-			this.filterStart = startWeek;
+			if (!this.jumpStart) {
+				this.jumpStart = true;
+				this.filterStart = startWeek;
 
-			if (this.unitID !== null) {
-				this.$refs.mapTable.reloadTable(
-					this.unitID, this.getRange()
-				);
+				if (this.unitID !== null) {
+					this.$refs.mapTable.reloadTable(
+						this.unitID, this.getRange()
+					);
+				}
 			}
+		},
+		changePage(key) {
+			this.currentPage = key;
+			this.$refs.paging.showPage(key);
 		}
 	},
 	mounted() {

@@ -2,6 +2,11 @@
 
 header("Access-Control-Allow-Origin: *");
 
+if (!empty($_GET['dum'])) {
+	echo file_get_contents("./dummy/".$_GET['dum'].".json");
+	return 1;
+}
+
 if(!empty($_GET['return'])){
 	$prep = explode("-", $_GET['return']);
 	if($prep[0] === "integer" && count($prep) == 4){

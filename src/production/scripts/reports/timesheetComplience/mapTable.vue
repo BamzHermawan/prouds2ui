@@ -2,7 +2,7 @@
 	<div class="loader-container-purrfect" style="min-height: 350px;">
 		<div
 			v-show="!loading && usermap.length > 0"
-			class="pindex-table-container add-max-height map-table-reuse"
+			class="pindex-table-container add-max-height map-table-reuse is-60-1fr"
 		>
 			<div class="pindex-table-left">
 				<table
@@ -31,6 +31,18 @@
 							</th>
 							<th
 								class="is-triple-decker has-bg-info-lighter"
+								align
+							>
+								Job Role
+							</th>
+							<th
+								class="is-triple-decker has-bg-info-lighter"
+								align
+							>
+								Join Date
+							</th>
+							<th
+								class="is-triple-decker has-bg-info-lighter"
 								style="width: 80px;"
 								align
 							>
@@ -46,10 +58,38 @@
 							v-for="(user, index) in usermap"
 							:key="user.nik + '-' + index"
 						>
-							<td>{{ user.name }}</td>
+							<td>
+								<abbr
+									:title="user.name"
+									v-if="user.name.split(' ').length > 3"
+									style="cursor:help; text-decoration:none;"
+									>{{ user.name | shortName(3) }}</abbr
+								>
+								<span v-else>{{ user.name }}</span>
+							</td>
 							<td>{{ user.nik }}</td>
-							<td class="has-text-centered">{{ user.status }}</td>
-							<td class="has-text-centered has-text-grey-dark">
+							<td class="has-text-centered">
+								<abbr
+									:title="user.status"
+									v-if="user.status.split(' ').length > 1"
+									style="cursor:help; text-decoration:none;"
+									>{{ user.status | elipsisTxt(1) }}</abbr
+								>
+								<span v-else>{{ user.status }}</span>
+							</td>
+							<td>{{ user.role }}</td>
+							<td class="has-text-centered">
+								<abbr
+									:title="user.join | fulldate"
+									style="text-decoration:none;"
+									>{{ user.join }}</abbr
+								>
+							</td>
+							<td
+								:class="
+									barrierChecker(user, 'has-text-centered')
+								"
+							>
 								<b>{{ totalWorkHour(user) }}</b>
 							</td>
 						</tr>
@@ -109,7 +149,6 @@
 								<td
 									:key="'map-day-' + n"
 									:class="weekEndClass(day)"
-									@click="warningClicked(user, day)"
 								>
 									<abbr
 										style="text-decoration:none!important;"
@@ -199,25 +238,26 @@ export default {
 		moment: Moment,
 		totalWorkHour(usermap) {
 			if (usermap.hasOwnProperty("score")) {
-				let sum = usermap.score.reduce((a, b) => {
-					return {
-						value: a.value + b.value
-					};
-				});
+				if (usermap.score.length > 0) {
+					let sum = usermap.score.reduce((a, b) => {
+						return {
+							value: a.value + b.value
+						};
+					});
 
-				return sum.value;
-			} else {
-				return 0;
+					return sum.value;
+				}
 			}
+
+			return 0;
 		},
-		warningClicked(user, day) {
-			console.log(day);
-			if (day.isWarning) {
-				this.$emit("warningclick", {
-					user: user,
-					day: day
-				});
+		barrierChecker(row, classes) {
+			const twh = this.totalWorkHour(row);
+			if (twh < row.twhBarrier) {
+				return classes + " has-bg-danger-light";
 			}
+
+			return classes;
 		},
 		getValueTooltip(user, day) {
 			let tgl = Moment(day.date, "DD/MM/YYYY").format("ddd, D MMM YYYY");
@@ -248,7 +288,7 @@ export default {
 				"has-text-centered": true,
 				"has-background-grey-lighter": weekend && !hasWarning,
 				"has-bg-success-lighter": !weekend && isHeader,
-				"has-bg-warning-light": hasWarning,
+				"has-bg-danger-light": hasWarning,
 				"add-green-border": endMonth
 			};
 		},
@@ -341,6 +381,13 @@ export default {
 									);
 
 									self.usermap[i].score = item.score;
+
+									if (item.hasOwnProperty("whTotalBarrier")) {
+										self.usermap[i].twhBarrier =
+											item.whTotalBarrier;
+									} else {
+										self.usermap[i].twhBarrier = 0;
+									}
 								}
 							}
 
@@ -375,7 +422,7 @@ export default {
 
 					let isWeekend = dd == "Su" || dd == "Sa";
 					let day = {
-						month: mDate.format("MMMM"),
+						month: mDate.format("MMMM YYYY"),
 						date: maps[i].date,
 						D: mDate.format("D"),
 						isWeekend: isWeekend,

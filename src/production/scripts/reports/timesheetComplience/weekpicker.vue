@@ -59,6 +59,7 @@
 				<b-dropdown-item
 					v-for="{ week, month, start, end } in weeks"
 					:value="{ week, month, start, end }"
+					:disabled="isWeekDisabled(start)"
 					:key="'week-' + week"
 				>
 					<b>W{{ week }}</b
@@ -87,13 +88,36 @@ export default {
 		defaultToday: {
 			type: Boolean,
 			default: false
+		},
+		min: {
+			type: Date,
+			default: undefined
+		}
+	},
+	watch: {
+		min(updated) {
+			if (updated == undefined) {
+				return 0;
+			}
+
+			this.model.month = Moment(this.min).format("MMMM");
+			if (updated.getFullYear() != this.model.year) {
+				this.model.year = Moment(this.min).format("YYYY");
+				this.fetchMap(this.model.year, true);
+			}
 		}
 	},
 	computed: {
 		years() {
-			let yearList = [];
+			const minYear = this.getMinDate("YYYY", 1990);
 			const today = parseInt(Moment().format("YYYY"));
-			for (let y = today; y >= 1989; y--) {
+			if (today == minYear) {
+				return [today];
+			}
+
+			let yearList = [];
+			let min = today > minYear ? minYear : 1990;
+			for (let y = today; y >= min; y--) {
 				yearList.push(y);
 			}
 
@@ -101,8 +125,30 @@ export default {
 		},
 		months() {
 			let monthList = [];
-			for (let m = 1; m <= 12; m++) {
-				monthList.push(Moment(m.toString(), "M").format("MMMM"));
+			const min = this.getMinDate(null, null);
+			if (min === null) {
+				for (let m = 0; m < 12; m++) {
+					const mdate = Moment([this.model.year, m, 1]).endOf(
+						"month"
+					);
+
+					if (mdate.isSameOrBefore(Moment(), "month")) {
+						monthList.push(mdate.format("MMMM"));
+					}
+				}
+			} else {
+				for (let m = 0; m < 12; m++) {
+					const mdate = Moment([this.model.year, m, 1]).endOf(
+						"month"
+					);
+
+					if (
+						mdate.isAfter(min) &&
+						mdate.isSameOrBefore(Moment(), "month")
+					) {
+						monthList.push(mdate.format("MMMM"));
+					}
+				}
 			}
 
 			return monthList;
@@ -113,7 +159,11 @@ export default {
 			for (let i = 0; i < this.mapping.length; i++) {
 				const week = this.mapping[i];
 				const month = Moment(week.month, "MM/YYYY").format("MMMM");
-				if (month == this.model.month) {
+				const start = Moment(week.start, "DD/MM/YYYY");
+				if (
+					month == this.model.month &&
+					start.isSameOrBefore(Moment())
+				) {
 					weekList.push(week);
 				}
 			}
@@ -154,14 +204,31 @@ export default {
 		this.fetchMap(this.model.year);
 	},
 	methods: {
-		fetchMap(year) {
+		getMinDate(format = null, fallback = null) {
+			if (this.min === undefined) {
+				return fallback;
+			}
+
+			if (format !== null) {
+				return Moment(this.min).format(format);
+			}
+
+			return Moment(this.min);
+		},
+		fetchMap(year, align = false) {
 			const self = this;
 			this.loading = true;
 			weekMonthMapping(year)
 				.then(resp => {
+					let initializing = self.mapping.length == 0;
 					self.mapping = resp.data;
 					self.loading = false;
-					self.setDefault();
+
+					if (initializing) {
+						self.setDefault();
+					} else if (align) {
+						self.alignSelected(self.getMinDate(null, Moment()));
+					}
 				})
 				.catch(err => {
 					if (checkConnection(self.$notification)) {
@@ -174,13 +241,9 @@ export default {
 		setDefault() {
 			if (this.defaultToday) {
 				const found = this.mapping.find(map => {
-					const today = Moment();
 					const end = Moment(map.end, "DD/MM/YYYY");
 					const start = Moment(map.start, "DD/MM/YYYY");
-					return (
-						(today.isAfter(start) || today.isSame(start)) &&
-						(today.isBefore(end) || today.isSame(end))
-					);
+					return Moment().isBetween(start, end, null, "[]");
 				});
 
 				if (found) {
@@ -197,6 +260,22 @@ export default {
 				this.fetchMap(today);
 			}
 		},
+		alignSelected(target) {
+			this.model.year = target.format("YYYY");
+			this.model.month = target.format("MMMM");
+
+			if (this.mapping.length > 0) {
+				const found = this.mapping.find(week => {
+					const end = Moment(map.end, "DD/MM/YYYY");
+					const start = Moment(map.start, "DD/MM/YYYY");
+					return target.isBetween(start, end, null, "[]");
+				});
+
+				if (found) {
+					this.changed(found);
+				}
+			}
+		},
 		changed(item) {
 			this.model.value = item;
 			this.$emit("change", item);
@@ -206,7 +285,14 @@ export default {
 				return "";
 			}
 
-			return "W" + week + Moment(month, "MM/YYYY").format(" MMMM");
+			return "W" + week + Moment(month, "MM/YYYY").format(": MMMM YYYY");
+		},
+		isWeekDisabled(weekStart) {
+			if (this.getMinDate() === null) {
+				return false;
+			}
+
+			return Moment(weekStart, "DD/MM/YYYY").isBefore(this.getMinDate());
 		}
 	}
 };

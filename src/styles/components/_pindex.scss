@@ -1,8 +1,20 @@
 .pindex-table-container {
     display: grid;
-    grid-template-columns: 70% 1fr;
+	grid-template-columns: 70% 1fr;
+	
+	&.is-halfed {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&.is-45-1fr {
+		grid-template-columns: 45% 1fr;
+	}
+
+	&.is-60-1fr {
+		grid-template-columns: 60% 1fr;
+	}
+
     &.map-table-reuse {
-        grid-template-columns: 45% 1fr;
         .add-green-border {
             border-right: solid 2px darkseagreen !important;
         }
@@ -13,7 +25,16 @@
         .is-underutilize {
             font-weight: bolder !important;
             color: $danger !important;
-        }
+		}
+		
+		.has-elipsis-status {
+			max-width: 175px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-decoration: none !important;
+			cursor: pointer;
+		}
     }
     .pindex-table-right {
         width: 100%;

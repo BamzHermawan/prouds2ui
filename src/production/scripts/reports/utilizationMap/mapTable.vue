@@ -2,7 +2,7 @@
 	<div class="loader-container-purrfect" style="min-height: 350px;">
 		<div
 			v-show="!loading && usermap.length > 0"
-			class="pindex-table-container add-max-height map-table-reuse"
+			class="pindex-table-container add-max-height map-table-reuse is-60-1fr"
 		>
 			<div class="pindex-table-left">
 				<table
@@ -67,9 +67,25 @@
 							v-for="(user, index) in usermap"
 							:key="user.nik + '-' + index"
 						>
-							<td>{{ user.name }}</td>
+							<td>
+								<abbr
+									:title="user.name"
+									v-if="user.name.split(' ').length > 2"
+									style="cursor:help; text-decoration:none;"
+									>{{ user.name | shortName(2) }}</abbr
+								>
+								<span v-else>{{ user.name }}</span>
+							</td>
 							<td>{{ user.nik }}</td>
-							<td class="has-text-centered">{{ user.status }}</td>
+							<td class="has-text-centered">
+								<abbr
+									:title="user.status"
+									v-if="user.status.split(' ').length > 1"
+									style="cursor:help; text-decoration:none;"
+									>{{ user.status | elipsisTxt(1) }}</abbr
+								>
+								<span v-else>{{ user.status }}</span>
+							</td>
 							<td class="has-text-centered has-text-grey-dark">
 								<b>{{ user.assignment }}</b>
 							</td>

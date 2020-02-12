@@ -1,0 +1,100 @@
+{
+	"category": [
+		"Memora Miraclis",
+		"Opticall Injoy",
+		"Telequiet Progenex",
+		"Xiix Optyk",
+		"Bytrex Turnabout",
+		"Obliq Visalia",
+		"Quiltigen Verbus",
+		"Bluegrain Slax",
+		"Moltonic Kangle",
+		"Tetratrex Colaire",
+		"Zentia Splinx",
+		"Limozen Flyboyz",
+		"Ovolo Syntac",
+		"Comtours Xoggle",
+		"Gaptec Pushcart",
+		"Brainclip Sentia",
+		"Ebidco Dadabase",
+		"Snacktion Accuprint",
+		"Everest Locazone"
+	],
+	"series": [
+		{
+			"name": "Not Submited",
+			"data": [
+				23,
+				11,
+				50,
+				57,
+				67,
+				88,
+				71,
+				3,
+				2,
+				54,
+				97,
+				2,
+				76,
+				91,
+				8,
+				39,
+				87,
+				100,
+				38
+			],
+			"color": "#C3C3C3"
+		},
+		{
+			"name": "Submited, Not Complience",
+			"data": [
+				6,
+				32,
+				38,
+				73,
+				17,
+				3,
+				83,
+				82,
+				88,
+				14,
+				84,
+				29,
+				90,
+				22,
+				78,
+				9,
+				26,
+				26,
+				6
+			],
+			"color": "#FFDD57"
+		},
+		{
+			"name": "Complience",
+			"data": [
+				21,
+				37,
+				90,
+				93,
+				44,
+				32,
+				39,
+				51,
+				80,
+				57,
+				86,
+				55,
+				80,
+				57,
+				37,
+				70,
+				58,
+				18,
+				5
+			],
+			"color": "#209CEE"
+		}
+	]
+}
