@@ -18,9 +18,9 @@
 						</thead>
 						<tbody>
 							<tr
-								:key="index"
-								:data-row="row.id"
-								:data-parent="row.parent"
+								:key="uniqueId + index"
+								:data-row="uniqueId + row.id"
+								:data-parent="uniqueId + row.parent"
 								:class="rowClass(row, index)"
 								v-for="(row, index) in table"
 							>
@@ -28,6 +28,7 @@
 									<span
 										v-if="row.hasChild"
 										class="mdi mdi-toggle-folder"
+										style="cursor:pointer;"
 										@click.stop="toggleChild(row.id, index)"
 									></span>
 
@@ -87,6 +88,10 @@ export default {
 		striped: {
 			type: Boolean,
 			default: false
+		},
+		uniqueId: {
+			type: String,
+			default: ""
 		}
 	},
 	data() {
@@ -136,9 +141,15 @@ export default {
 			return found instanceof Object ? found.descendant : undefined;
 		},
 
+		parseID(id) {
+			return this.uniqueId + id;
+		},
+
 		// toggle display descendant
 		toggleChild(id, index) {
-			let self = document.querySelector("[data-row='" + id + "']");
+			let self = document.querySelector(
+				"[data-row='" + this.parseID(id) + "']"
+			);
 			let isHidden = self.classList.contains("is-folded");
 			let row = this.descendant.find(node => node.id === id);
 
@@ -146,13 +157,17 @@ export default {
 				const child = row.descendant[i];
 				if (isHidden) {
 					document
-						.querySelectorAll("[data-row='" + child + "']")
+						.querySelectorAll(
+							"[data-row='" + this.parseID(child) + "']"
+						)
 						.forEach(node => {
 							node.classList.remove("is-hidden", "is-folded");
 						});
 				} else {
 					document
-						.querySelectorAll("[data-row='" + child + "']")
+						.querySelectorAll(
+							"[data-row='" + this.parseID(child) + "']"
+						)
 						.forEach(node => {
 							node.classList.add("is-hidden");
 						});

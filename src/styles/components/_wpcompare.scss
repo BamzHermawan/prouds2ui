@@ -1,0 +1,24 @@
+.workplan-compare-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	.workplan-A, .workplan-B {
+		overflow: scroll !important;
+		width: 100%;
+		height: calc(100vh - 100px);
+
+		.container {
+			min-width: 90vw;
+		}
+	}
+
+	.workplan-A {
+		border-right: solid 1px $dark;
+		margin-right: 1px;
+	}
+
+	.workplan-B {
+		border-left: solid 1px $dark;
+		margin-left: 1px;
+	}
+}

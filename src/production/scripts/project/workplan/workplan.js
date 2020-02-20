@@ -75,10 +75,7 @@ new Vue({
 	methods: {
 		isEmpty: isEmpty,
 		getPageTitle(id) {
-			let
-		},
-		addFavorite(title, link) {
-			global.$sidebar.ws.addList(title, link);
+			return id;
 		},
 		changePage(pageId = null) {
 			this.$refs.paging.showPage(pageId);

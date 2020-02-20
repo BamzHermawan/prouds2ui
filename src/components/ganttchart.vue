@@ -47,12 +47,6 @@ const initGANTT = (el, onclick) => {
 };
 
 export default {
-	props: {
-		actionEvent: {
-			type: String,
-			required: true
-		}
-	},
 	data() {
 		return {
 			tasks: []

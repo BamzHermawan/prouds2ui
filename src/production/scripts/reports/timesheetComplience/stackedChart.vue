@@ -1,8 +1,10 @@
 <template>
-	<figure class="highcharts-figure">
-		<div id="ComplienceChart"></div>
-		<slot></slot>
-	</figure>
+	<center>
+		<figure class="highcharts-figure">
+			<div id="ComplienceChart"></div>
+			<slot></slot>
+		</figure>
+	</center>
 </template>
 
 <script>
@@ -40,6 +42,10 @@ export default {
 				},
 				yAxis: {
 					min: 0
+				},
+				tooltip: {
+					pointFormat:
+						"<span>{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>"
 				},
 				plotOptions: {
 					column: {

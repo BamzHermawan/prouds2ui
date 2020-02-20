@@ -167,6 +167,14 @@ module.exports = {
          */
 		getTasksProgress: 'performanceIndex.php?get=weekly&project_id={project_id}',
 
+		/**
+         * get workplan tasks by projects and version
+         * Send Data:
+         * - project_id: string project id [GET]
+         * - version_id: workplan version id [GET]
+         */
+		workplanTasks: 'http://localhost:5501/demo/getWorkplan.php?project={project_id}&version={version_id}',
+
         /**
          * Get User list by Unit ID
          * Send Data:
