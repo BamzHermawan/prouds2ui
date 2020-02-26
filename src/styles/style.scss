@@ -32,6 +32,7 @@ html {
 @import "components/panel";
 @import "components/pindex";
 @import "components/chart";
+@import "components/modal";
 @import "components/table/main";
 @import "components/wpcompare";
 @import "components/button";
@@ -228,27 +229,6 @@ td.align-middle {
 
 .crudInput {
     width: 100%;
-}
-
-.modal.has-hidden-scrollbar {
-    .modal-content {
-        overflow: visible !important;
-    }
-}
-
-.message.is-modal {
-    height: 100vh;
-    .message-body {
-        overflow-y: scroll;
-        height: calc(100% - 56px);
-    }
-}
-
-.message.is-normal-font {
-    .message-body {
-        font-size: 1rem !important;
-        padding: .5em .75em;
-    }
 }
 
 .is-packed>.table-wrapper>.table {

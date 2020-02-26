@@ -348,3 +348,38 @@ module.exports.searchTree = (data, query) => {
 		return false;
 	});
 }
+
+/**
+ * Sorting Function for date sorting;
+ *
+ * @param {*} dateA Date String DD/MM/YYYY
+ * @param {*} dateB Date String DD/MM/YYYY
+ * @param {boolean} [isAsc=false]
+ * @returns
+ */
+module.exports.sortDate = (dateA, dateB, isAsc = false) => {
+	const aMom = Moment(dateA, "DD/MM/YYYY");
+	const bMom = Moment(dateB, "DD/MM/YYYY");
+
+	if (isAsc) {
+		if (aMom.isBefore(bMom)) {
+			return -1;
+		}
+
+		if (bMom.isBefore(aMom)) {
+			return 1;
+		}
+
+		return 0;
+	} else {
+		if (aMom.isAfter(bMom)) {
+			return -1;
+		}
+
+		if (bMom.isAfter(aMom)) {
+			return 1;
+		}
+
+		return 0;
+	}
+}

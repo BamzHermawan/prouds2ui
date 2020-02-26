@@ -24,7 +24,7 @@
 	<!-- on load Notification -->
 	<!-- Bisa dipake disemua halaman, tapi jangan ditaroh di dalem elemen dengan class contentPage. -->
 	<!-- type tersedia: is-success(ijo)|is-danger(merah)|is-warning(kuning)|is-info(biru)|is-dark(item)|is-light(putih) -->
-	<notified message="Yess this is notification!" type="is-pink"></notified>
+	<!-- <notified message="Yess this is notification!" type="is-pink"></notified> -->
 
 	<div id="main-layout" class="wrapper open-first">
 		<section id="side-main" class="sidebar">
@@ -121,7 +121,7 @@
 					<nav class="level">
 						<div class="level-left">
 							<h1 class="title is-marginless has-text-right">
-								<span>Project Request</span>
+								<span>Project Register</span>
 							</h1>
 						</div>
 						<div class="level-right">
@@ -133,354 +133,149 @@
 				</div>
 			</section>
 			<section class="section">
-				<div id="contentApp" class="container" data-title="Project Request">
-					<!-- <h2 class="subtitle">Project List</h2> -->
+				<div id="contentApp" class="container" data-title="Project Register">
+					<paging ref="paging" default="table">
+						<paging-page page-id="table" label="Project Register">
+							<data-table-no-card :data="projects" :fields="[]" ref="widget" striped>
+								<template slot-scope="props">
+									<b-table-column width="85" field="project_id" label="Project ID" sortable
+										class="align-middle">
+										<p>{{ props.row.project_id }}</p>
+									</b-table-column>
+									<b-table-column width="250" field="project_name" label="Project Name" sortable>
+										<linker :href="'detail.html#' + props.row.project_id">
+											{{ props.row.project_name }}
+										</linker>
+									</b-table-column>
+									<b-table-column field="customer" label="Customer" sortable class="align-middle">
+										<span>{{ props.row.customer.label }}</span>
+									</b-table-column>
+									<b-table-column field="project_type" label="Project Type" sortable
+										class="align-middle">
+										<span>{{ props.row.project_type.label }}</span>
+									</b-table-column>
+									<b-table-column field="unit_delivery" label="Unit Delivery" sortable
+										class="align-middle">
+										<span>{{ props.row.unit_delivery }}</span>
+									</b-table-column>
+									<b-table-column field="requester" label="Requester" sortable class="align-middle">
+										<span>{{ props.row.requester }}</span>
+									</b-table-column>
+									<b-table-column field="request_date" label="Request Date" sortable
+										class="align-middle"
+										:custom-sort="(a,b,dir) => sortDate(a.request_date, b.request_date, dir)">
+										<span>{{ props.row.request_date }}</span>
+									</b-table-column>
+									<b-table-column field="status" label="Status" sortable class="align-middle">
+										<span>{{ props.row.status }}</span>
+									</b-table-column>
+									<!-- TODO: Faishol -->
+									<!-- Ini untuk action PM -->
+									<b-table-column field="action" label="Action" width="75" centered
+										class="align-middle">
+										<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
+											<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
+											<div class="dropdown-item dropdown-label">Project Action</div>
+											<b-dropdown-item has-link>
+												<a @click="edit(props.row)">
+													<span class="mdi mdi-checkbox-marked-outline"></span>
+													Edit
+												</a>
+											</b-dropdown-item>
+											<b-dropdown-item has-link>
+												<a
+													@click="approve(props.row, 'http://localhost:5501/demo/post_detect.php?')">
+													<span class="mdi mdi-checkbox-marked-circle-outline"></span>
+													Approve
+												</a>
+											</b-dropdown-item>
+											<b-dropdown-item has-link>
+												<a
+													@click="deleteRequest(props.row,'http://localhost:5501/demo/post_detect.php?')">
+													<span class="mdi mdi-delete-outline"></span>
+													Delete
+												</a>
+											</b-dropdown-item>
+											<b-dropdown-item has-link>
+												<a
+													@click="setIWO(props.row, 'http://localhost:5501/demo/post_detect.php?')">
+													<span class="mdi mdi-file-document-edit-outline"></span>
+													Set IWO
+												</a>
+											</b-dropdown-item>
+										</b-dropdown>
+									</b-table-column>
 
-					<div v-if="showTable" id="tableProject" class="animated">
-						<data-table-no-card :data="newproject" :fields="[]" ref="widget" striped>
-							<template slot-scope="props">
-								<b-table-column width="85" field="project_id" label="Project ID" sortable
-									class="align-middle">
-									<p>{{ props.row.project_id }}</p>
-								</b-table-column>
-								<b-table-column width="250" field="project_name" label="Project Name" sortable>
-									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}
-									</linker>
-								</b-table-column>
-								<b-table-column field="customer" label="Customer" sortable class="align-middle">
-									<span>{{ props.row.customer.label }}</span>
-								</b-table-column>
-								<b-table-column field="project_type" label="Project Type" sortable class="align-middle">
-									<span>{{ props.row.project_type.label }}</span>
-								</b-table-column>
-								<b-table-column field="unit_delivery" label="Unit Delivery" sortable
-									class="align-middle">
-									<span>{{ props.row.unit_delivery }}</span>
-								</b-table-column>
-								<b-table-column field="requester" label="Requester" sortable class="align-middle">
-									<span>{{ props.row.requester }}</span>
-								</b-table-column>
-								<b-table-column field="request_date" label="Request Date" sortable class="align-middle"
-									:custom-sort="sortDate">
-									<span>{{ props.row.request_date }}</span>
-								</b-table-column>
-								<b-table-column field="status" label="Status" sortable class="align-middle">
-									<span>{{ props.row.status }}</span>
-								</b-table-column>
-								<!-- TODO: Faishol -->
-								<!-- Ini untuk action PM -->
-								<b-table-column field="action" label="Action" width="75" centered class="align-middle">
-									<b-dropdown aria-role="list" position="is-bottom-left" class="is-small">
-										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
-										<div class="dropdown-item dropdown-label">Project Action</div>
-										<b-dropdown-item has-link>
-											<a
-												@click="approve(props.row, 'http://localhost:5501/demo/post_detect.php?')">
-												<span class="mdi mdi-checkbox-marked-circle-outline"></span>
-												Approve
-											</a>
-										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a @click="edit(props.row)">
-												<span class="mdi mdi-checkbox-marked-outline"></span>
-												Edit
-											</a>
-										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a
-												@click="deleteRequest(props.row,'http://localhost:5501/demo/post_detect.php?')">
-												<span class="mdi mdi-delete-outline"></span>
-												Delete
-											</a>
-										</b-dropdown-item>
-										<b-dropdown-item has-link>
-											<a
-												@click="setIWO(props.row, 'http://localhost:5501/demo/post_detect.php?')">
-												<span class="mdi mdi-file-document-edit-outline"></span>
-												Set IWO
-											</a>
-										</b-dropdown-item>
-									</b-dropdown>
-								</b-table-column>
-
-							</template>
-							<template slot="top-right">
-								<div class="navbar-menu">
-									<div class="columns" style="margin-right: 10px; margin-top: 7px;">
-										<div class="column">
-											<b-button type="is-info is-small is-rounded" @click="newRequest">New Request
+								</template>
+								<template slot="top-right">
+									<div class="field is-grouped">
+										<p class="control">
+											<b-button type="is-info" @click="newRequest">Register New Project
 											</b-button>
-										</div>
+										</p>
+										<p class="control">
+											<div class="field has-addons">
+												<p class="control">
+													<span class="button is-static is-light-blend">Status</span>
+												</p>
+												<p class="control">
+													<b-select v-model="status">
+														<option value="">All</option>
+														<option value="Proposed">Proposed</option>
+														<option value="New Without IWO">New Without IWO</option>
+													</b-select>
+												</p>
+											</div>
+										</p>
 									</div>
-									<div class="columns" style="margin-top:2px">
-										<div class="column" style="margin-top: 5px;">
-											<p>Status :</p>
-										</div>
-										<div class="column">
-											<b-select v-model="selectedStatus">
-												<option value="">All</option>
-												<option value="Proposed">Proposed</option>
-												<option value="New Without IWO">New Without IWO</option>
-											</b-select>
-										</div>
-									</div>
-								</div>
-							</template>
-							<template slot="empty">
-								<span class="white-space"></span>
-								<b-message type="is-warning">
-									<p class="has-text-centered">Sorry, we can't find any data related</p>
-								</b-message>
-							</template>
-						</data-table-no-card>
-					</div>
+								</template>
+								<template slot="empty">
+									<span class="white-space"></span>
+									<b-message type="is-warning">
+										<p class="has-text-centered">Sorry, we can't find any data related</p>
+									</b-message>
+								</template>
+							</data-table-no-card>
+						</paging-page>
 
-					<div v-if="showAdd" class="animated fadeIn" id="add">
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
-							enctype="multipart/form-data">
-							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-								<ul class="is-marginless">
-									<li><a @click="newRequest">Project Request</a></li>
-									<li class="is-active"><a href="#" aria-current="page">New Request</a></li>
-								</ul>
-							</nav>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Project Name</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="project_name" placeholder="Fill Project Name"
-										input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Customer</p>
-								</div>
-								<div class="column">
-									<input type="hidden" name="customer_id" v-model="customer_id" />
-									<b-autocomplete v-model="customer_name" placeholder="Choose Customer"
-										:open-on-focus="true" :data="filterCustomer" field="customer_name"
-										@select="option => (selected = option)" required>
-									</b-autocomplete>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Project Type</p>
-								</div>
-								<div class="column">
-									<crud-input type="select" name="project_type" placeholder="Choose Project Type"
-										input-style="margin-bottom: 0px;" required>
+						<paging-page page-id="addForm" label="New Form">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST"
+								enctype="multipart/form-data">
+								<!-- perubahan di atributte name yang dikirim ke backend.
+									{
+										"project_name", "customer_id", "project_type", "start_date", "end_date",
+										"description", "project_background", ("evidDoc": $_FILES)
+									} 
+								-->
+								<form-project :customers="customers" is-add-form>
+									<template slot="typeSlot">
 										<option value="1">Managed Service</option>
 										<option value="2">Research and Development</option>
 										<option value="3">Implementation</option>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-6">
-									<div class="columns">
-										<div class="column is-4">
-											<p class="label">Start Date</p>
-										</div>
-										<div class="column">
-											<crud-input type="datepicker" name="start_date"
-												placeholder="Pick Start Date" date-locale="en" v-model="start_date"
-												input-style="margin-bottom: 0px;">
-											</crud-input>
-										</div>
-									</div>
-								</div>
-								<div class="column is-6">
-									<div class="columns">
-										<div class="column is-4">
-											<p class="label">End Date</p>
-										</div>
-										<div class="column">
-											<crud-input type="datepicker" :min-date="start_date" name="end_date"
-												placeholder="Pick End Date" date-locale="en"
-												input-style="margin-bottom: 0px;">
-											</crud-input>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-6">
-									<b-field label="Describe about this Project">
-										<crud-input type="textarea" name="description"
-											placeholder="Fill Project Description" input-style="margin-bottom: 0px;"
-											required>
-										</crud-input>
-									</b-field>
-									<b-field label="Project Background">
-										<crud-input type="textarea" name="project_background"
-											placeholder="Fill Project Background" input-style="margin-bottom: 0px;"
-											required>
-										</crud-input>
-									</b-field>
-									<br>
-									<button class="button is-success pull-right is-long" type="submit">
-										Save
-									</button>
-								</div>
-								<div class="column">
-									<p class="label">Document Evidence</p>
-									<b-upload v-model="selectedDocument" name="evidDoc[]" multiple required
-										style="width:100%;">
-										<a class="button is-info is-fullwidth">
-											<b-icon icon="upload"></b-icon>
-											<span>Browse File</span>
-										</a>
-									</b-upload>
-									<p :class="'help ' + determineFieldStatus">
-										File yang dibolehkan: jpg, jpeg, png, doc, docx,
-										pdf, xls, xlsx, ppt, pptx ; File size maksimal
-										20MB
-									</p>
-									<div class="white-space"></div>
-									<article class="media" v-for="(doc, idx) in selectedDocument">
-										<div class="media-content">
-											<div class="content">
-												<span class="tag is-info">
-													{{ doc.name }}
-													<button class="delete is-small" type="button"
-														@click="deleteFile(idx)">
-													</button>
-												</span>
-											</div>
-										</div>
-									</article>
-								</div>
-							</div>
-						</form>
-					</div>
+									</template>
+								</form-project>
+							</form>
+						</paging-page>
 
-					<div v-if="showEdit" id="edit" class="animated fadeIn">
-						<form action="http://localhost:5501/demo/post_detect.php" method="POST"
-							enctype="multipart/form-data">
-							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-								<ul class="is-marginless">
-									<li><a @click="edit">Project Request</a></li>
-									<li class="is-active"><a href="#" aria-current="page">Edit Request</a></li>
-								</ul>
-							</nav>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Project Name</p>
-								</div>
-								<div class="column">
-									<crud-input type="text" name="project_name" :value="tampung.project_name"
-										placeholder="Fill Project Name" input-style="margin-bottom: 0px;" required>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Customer</p>
-								</div>
-								<div class="column">
-									<input type="hidden" name="customer_id" v-model="customer_id" />
-									<b-autocomplete v-model="customer_name" placeholder="Choose Customer"
-										:open-on-focus="true" :data="filterCustomer" field="customer_name"
-										@select="option => (selected = option)" required>
-									</b-autocomplete>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-2">
-									<p class="label">Project Type</p>
-								</div>
-								<div class="column">
-									<crud-input type="select" name="menu_type" :value="tampung.project_type.id"
-										placeholder="Choose Menu Type" input-style="margin-bottom: 0px;" required>
+						<paging-page page-id="editForm" label="Edit Form">
+							<form action="http://localhost:5501/demo/post_detect.php" method="POST"
+								enctype="multipart/form-data">
+								<!-- perubahan di atributte name yang dikirim ke backend.
+									{
+										"project_name", "customer_id", "project_type", "start_date", "end_date",
+										"description", "project_background", ("evidDoc": $_FILES)
+									} 
+								-->
+								<form-project :customers="customers" :value="project">
+									<template slot="typeSlot">
 										<option value="1">Managed Service</option>
 										<option value="2">Research and Development</option>
 										<option value="3">Implementation</option>
-									</crud-input>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-6">
-									<div class="columns">
-										<div class="column is-4">
-											<p class="label">Start Date</p>
-										</div>
-										<div class="column">
-											<crud-input type="datepicker" name="start_date" v-model="tampung.start_date"
-												placeholder="Pick Start Date" date-locale="en"
-												input-style="margin-bottom: 0px;">
-											</crud-input>
-										</div>
-									</div>
-								</div>
-								<div class="column is-6">
-									<div class="columns">
-										<div class="column is-4">
-											<p class="label">End Date</p>
-										</div>
-										<div class="column">
-											<crud-input type="datepicker" :min-date="start_date" name="end_date"
-												v-model="tampung.end_date" placeholder="Pick End Date" date-locale="en"
-												input-style="margin-bottom: 0px;">
-											</crud-input>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="columns">
-								<div class="column is-6">
-									<b-field label="Describe about this Project">
-										<crud-input type="textarea" name="description" :value="tampung.desc"
-											placeholder="Fill Project Description" input-style="margin-bottom: 0px;"
-											required>
-										</crud-input>
-									</b-field>
-									<b-field label="Project Background">
-										<crud-input type="textarea" name="project_background"
-											:value="tampung.background" placeholder="Fill Project Background"
-											input-style="margin-bottom: 0px;" required>
-										</crud-input>
-									</b-field>
-									<br>
-									<button class="button is-success pull-right is-long" type="submit">
-										Save
-									</button>
-								</div>
-								<div class="column">
-									<p class="label">Document Evidence</p>
-									<b-upload v-model="tampungFile" name="evidDoc[]" multiple style="width:100%;">
-										<a class="button is-info is-fullwidth">
-											<b-icon icon="upload"></b-icon>
-											<span>Browse File</span>
-										</a>
-									</b-upload>
-									<p :class="'help ' + determineFieldStatus">
-										File yang dibolehkan: jpg, jpeg, png, doc, docx,
-										pdf, xls, xlsx, ppt, pptx ; File size maksimal
-										20MB
-									</p>
-									<div class="white-space"></div>
-									<article class="media" v-for="(doc, idx) in tampungFile">
-										<div class="media-content">
-											<div class="content">
-												<span class="tag is-info">
-													<a :href="doc.link" target="_blank"
-														style="color: white;">{{ doc.name }}</a>
-													<button class="delete is-small" type="button"
-														@click="deleteFile(doc,idx)">
-													</button>
-												</span>
-											</div>
-										</div>
-									</article>
-								</div>
-							</div>
-						</form>
-					</div>
-
+									</template>
+								</form-project>
+							</form>
+						</paging-page>
+					</paging>
 				</div>
 			</section>
 		</section>
@@ -495,321 +290,353 @@
 		</section>
 	</div>
 
-	<script>
-		const NEWPROJECT = [
-			{
-				"project_id": 430170,
-				"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
-				"customer": {
-					"id": 1,
-					"label": "PT. Telkom"
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+
+		<!-- 
+			Delete File [POST]
+			Send Data:
+			- file_id
+		-->
+		<api-test url="axios_check.php" key="deleteFile"></api-test>
+
+		<!-- 
+			Get project data by oppty id and year
+			Send Data:
+			- oppty_id: String Opportunity ID [GET]
+            - oppty_year: String Opportunity Year [GET]
+		-->
+		<api-test url="newProjectByOppty.php?id={oppty_id}&year={oppty_year}" key="projectByOppty"></api-test>
+	</div>
+
+	<script id="implantedJSON" type="application/json">
+		{
+			"projects": [
+				{
+					"project_id": 430170,
+					"project_name": "officia irure reprehenderit eu qui anim pariatur ex ex ex veniam nostrud mollit cupidatat minim officia aliquip cillum tempor ut",
+					"customer": {
+						"id": 1,
+						"label": "PT. Telkom"
+					},
+					"project_type": {
+						"id": 1,
+						"label": "Managed Services"
+					},
+					"unit_delivery": "PMO",
+					"requester": "Ade Wiranata Putra",
+					"request_date": "09/11/2019",
+					"start_date": "20/10/2019",
+					"end_date": "29/12/2019",
+					"status": "Proposed",
+					"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"document": [
+						{
+							"file_id": 1,
+							"link": "projectRequest.html",
+							"name": "Lorem ipsum dolor.xls"
+						},
+						{
+							"file_id": 2,
+							"link": "projectrequest.html",
+							"name": "menata kehidupan.jpg"
+						},
+						{
+							"file_id": 3,
+							"link": "projectrequest.html",
+							"name": "kuburanbasah.pdf"
+						},
+						{
+							"file_id": 4,
+							"link": "projectrequest.html",
+							"name": "menatap keindahan.doc"
+						}
+					]
 				},
-				"project_type": {
-					"id": 1,
-					"label": "Managed Services"
+				{
+					"project_id": 535051,
+					"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
+					"customer": {
+						"id": 2,
+						"label": "PT. Pertamina"
+					},
+					"project_type": {
+						"id": 2,
+						"label": "Implementation"
+					},
+					"unit_delivery": "PMO",
+					"requester": "Budi",
+					"request_date": "10/11/2019",
+					"start_date": "20/10/2019",
+					"end_date": "29/12/2019",
+					"status": "Proposed",
+					"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"document": [
+						{
+							"file_id": 1,
+							"link": "projectrequest.html",
+							"name": "Lorem ipsum dolor.xls"
+						},
+						{
+							"file_id": 2,
+							"link": "projectrequest.html",
+							"name": "menata kehidupan.jpg"
+						},
+						{
+							"file_id": 3,
+							"link": "projectrequest.html",
+							"name": "kuburanbasah.pdf"
+						},
+						{
+							"file_id": 4,
+							"link": "projectrequest.html",
+							"name": "menatap keindahan.doc"
+						}
+					]
 				},
-				"unit_delivery": "PMO",
-				"requester": "Ade Wiranata Putra",
-				"request_date": "09/11/2019",
-				"start_date": "20/10/2019",
-				"end_date": "29/12/2019",
-				"status": "Proposed",
-				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"document": [
-					{
-						"file_id": 1,
-						"link": "projectRequest.html",
-						"name": "Lorem ipsum dolor.xls"
+				{
+					"project_id": 766392,
+					"project_name": "elit aliqua irure ut sint cillum tempor fugiat culpa nostrud adipisicing qui incididunt dolore",
+					"customer": {
+						"id": 3,
+						"label": "PT. PLN"
 					},
-					{
-						"file_id": 2,
-						"link": "projectrequest.html",
-						"name": "menata kehidupan.jpg"
+					"project_type": {
+						"id": 3,
+						"label": "Research and Development"
 					},
-					{
-						"file_id": 3,
-						"link": "projectrequest.html",
-						"name": "kuburanbasah.pdf"
-					},
-					{
-						"file_id": 4,
-						"link": "projectrequest.html",
-						"name": "menatap keindahan.doc"
-					}
-				]
-			},
-			{
-				"project_id": 535051,
-				"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
-				"customer": {
-					"id": 2,
-					"label": "PT. Pertamina"
+					"unit_delivery": "PMO",
+					"requester": "Andi",
+					"request_date": "11/11/2019",
+					"start_date": "20/10/2019",
+					"end_date": "29/12/2019",
+					"status": "Proposed",
+					"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"document": [
+						{
+							"file_id": 1,
+							"link": "projectrequest.html",
+							"name": "Lorem ipsum dolor.xls"
+						},
+						{
+							"file_id": 2,
+							"link": "projectrequest.html",
+							"name": "menata kehidupan.jpg"
+						},
+						{
+							"file_id": 3,
+							"link": "projectrequest.html",
+							"name": "kuburanbasah.pdf"
+						},
+						{
+							"file_id": 4,
+							"link": "projectrequest.html",
+							"name": "menatap keindahan.doc"
+						}
+					]
 				},
-				"project_type": {
-					"id": 2,
-					"label": "Implementation"
+				{
+					"project_id": 610803,
+					"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
+					"customer": {
+						"id": 4,
+						"label": "PT. Jiwasraya"
+					},
+					"project_type": {
+						"id": 4,
+						"label": "Type A"
+					},
+					"unit_delivery": "PMO",
+					"requester": "Dudung",
+					"request_date": "22/07/2019",
+					"start_date": "20/10/2019",
+					"end_date": "29/12/2019",
+					"status": "New Without IWO",
+					"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"document": [
+						{
+							"file_id": 1,
+							"link": "projectrequest.html",
+							"name": "Lorem ipsum dolor.xls"
+						},
+						{
+							"file_id": 2,
+							"link": "projectrequest.html",
+							"name": "menata kehidupan.jpg"
+						},
+						{
+							"file_id": 3,
+							"link": "projectrequest.html",
+							"name": "kuburanbasah.pdf"
+						},
+						{
+							"file_id": 4,
+							"link": "projectrequest.html",
+							"name": "menatap keindahan.doc"
+						}
+					]
 				},
-				"unit_delivery": "PMO",
-				"requester": "Budi",
-				"request_date": "10/11/2019",
-				"start_date": "20/10/2019",
-				"end_date": "29/12/2019",
-				"status": "Proposed",
-				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"document": [
-					{
-						"file_id": 1,
-						"link": "projectrequest.html",
-						"name": "Lorem ipsum dolor.xls"
+				{
+					"project_id": 610803,
+					"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
+					"customer": {
+						"id": "4",
+						"label": "PT. Jiwasraya"
 					},
-					{
-						"file_id": 2,
-						"link": "projectrequest.html",
-						"name": "menata kehidupan.jpg"
+					"project_type": {
+						"id": "4",
+						"label": "Type A"
 					},
-					{
-						"file_id": 3,
-						"link": "projectrequest.html",
-						"name": "kuburanbasah.pdf"
-					},
-					{
-						"file_id": 4,
-						"link": "projectrequest.html",
-						"name": "menatap keindahan.doc"
-					}
-				]
-			},
-			{
-				"project_id": 766392,
-				"project_name": "elit aliqua irure ut sint cillum tempor fugiat culpa nostrud adipisicing qui incididunt dolore",
-				"customer": {
-					"id": 3,
-					"label": "PT. PLN"
+					"unit_delivery": "PMO",
+					"requester": "Dudung",
+					"request_date": "05/05/2017",
+					"start_date": "20/10/2019",
+					"end_date": "29/12/2019",
+					"status": "New Without IWO",
+					"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"document": [
+						{
+							"file_id": 1,
+							"link": "projectrequest.html",
+							"name": "Lorem ipsum dolor.xls"
+						},
+						{
+							"file_id": 2,
+							"link": "projectrequest.html",
+							"name": "menata kehidupan.jpg"
+						},
+						{
+							"file_id": 3,
+							"link": "projectrequest.html",
+							"name": "kuburanbasah.pdf"
+						},
+						{
+							"file_id": 4,
+							"link": "projectrequest.html",
+							"name": "menatap keindahan.doc"
+						}
+					]
 				},
-				"project_type": {
-					"id": 3,
-					"label": "Research and Development"
+				{
+					"project_id": 610803,
+					"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
+					"customer": {
+						"id": 4,
+						"label": "PT. Jiwasraya"
+					},
+					"project_type": {
+						"id": 4,
+						"label": "Type A"
+					},
+					"unit_delivery": "PMO",
+					"requester": "Dudung",
+					"request_date": "12/11/2019",
+					"start_date": "20/10/2019",
+					"end_date": "29/12/2019",
+					"status": "New Without IWO",
+					"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"document": [
+						{
+							"file_id": 1,
+							"link": "projectrequest.html",
+							"name": "Lorem ipsum dolor.xls"
+						},
+						{
+							"file_id": 2,
+							"link": "projectrequest.html",
+							"name": "menata kehidupan.jpg"
+						},
+						{
+							"file_id": 3,
+							"link": "projectrequest.html",
+							"name": "kuburanbasah.pdf"
+						},
+						{
+							"file_id": 4,
+							"link": "projectrequest.html",
+							"name": "menatap keindahan.doc"
+						}
+					]
 				},
-				"unit_delivery": "PMO",
-				"requester": "Andi",
-				"request_date": "11/11/2019",
-				"start_date": "20/10/2019",
-				"end_date": "29/12/2019",
-				"status": "Proposed",
-				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"document": [
-					{
-						"file_id": 1,
-						"link": "projectrequest.html",
-						"name": "Lorem ipsum dolor.xls"
+				{
+					"project_id": 610803,
+					"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
+					"customer": {
+						"id": 4,
+						"label": "PT. Jiwasraya"
 					},
-					{
-						"file_id": 2,
-						"link": "projectrequest.html",
-						"name": "menata kehidupan.jpg"
+					"project_type": {
+						"id": 4,
+						"label": "Type A"
 					},
-					{
-						"file_id": 3,
-						"link": "projectrequest.html",
-						"name": "kuburanbasah.pdf"
-					},
-					{
-						"file_id": 4,
-						"link": "projectrequest.html",
-						"name": "menatap keindahan.doc"
-					}
-				]
-			},
-			{
-				"project_id": 610803,
-				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": {
-					"id": 4,
-					"label": "PT. Jiwasraya"
+					"unit_delivery": "PMO",
+					"requester": "Dudung",
+					"request_date": "01/01/2018",
+					"start_date": "20/10/2019",
+					"end_date": "29/12/2019",
+					"status": "New Without IWO",
+					"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
+					"document": [
+						{
+							"file_id": 1,
+							"link": "projectrequest.html",
+							"name": "Lorem ipsum dolor.xls"
+						},
+						{
+							"file_id": 2,
+							"link": "projectrequest.html",
+							"name": "menata kehidupan.jpg"
+						},
+						{
+							"file_id": 3,
+							"link": "projectrequest.html",
+							"name": "kuburanbasah.pdf"
+						},
+						{
+							"file_id": 4,
+							"link": "projectrequest.html",
+							"name": "menatap keindahan.doc"
+						}
+					]
+				}
+			],
+			"customers": [
+				{
+					"customer_id": 1,
+					"customer_name": "PT. Telkom"
 				},
-				"project_type": {
-					"id": 4,
-					"label": "Type A"
+				{
+					"customer_id": 2,
+					"customer_name": "PT. Pertamina"
 				},
-				"unit_delivery": "PMO",
-				"requester": "Dudung",
-				"request_date": "22/07/2019",
-				"start_date": "20/10/2019",
-				"end_date": "29/12/2019",
-				"status": "New Without IWO",
-				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"document": [
-					{
-						"file_id": 1,
-						"link": "projectrequest.html",
-						"name": "Lorem ipsum dolor.xls"
-					},
-					{
-						"file_id": 2,
-						"link": "projectrequest.html",
-						"name": "menata kehidupan.jpg"
-					},
-					{
-						"file_id": 3,
-						"link": "projectrequest.html",
-						"name": "kuburanbasah.pdf"
-					},
-					{
-						"file_id": 4,
-						"link": "projectrequest.html",
-						"name": "menatap keindahan.doc"
-					}
-				]
-			},
-			{
-				"project_id": 610803,
-				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": {
-					"id": "4",
-					"label": "PT. Jiwasraya"
+				{
+					"customer_id": 3,
+					"customer_name": "PT. PLN"
 				},
-				"project_type": {
-					"id": "4",
-					"label": "Type A"
-				},
-				"unit_delivery": "PMO",
-				"requester": "Dudung",
-				"request_date": "05/05/2017",
-				"start_date": "20/10/2019",
-				"end_date": "29/12/2019",
-				"status": "New Without IWO",
-				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"document": [
-					{
-						"file_id": 1,
-						"link": "projectrequest.html",
-						"name": "Lorem ipsum dolor.xls"
-					},
-					{
-						"file_id": 2,
-						"link": "projectrequest.html",
-						"name": "menata kehidupan.jpg"
-					},
-					{
-						"file_id": 3,
-						"link": "projectrequest.html",
-						"name": "kuburanbasah.pdf"
-					},
-					{
-						"file_id": 4,
-						"link": "projectrequest.html",
-						"name": "menatap keindahan.doc"
-					}
-				]
-			},
-			{
-				"project_id": 610803,
-				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": {
-					"id": 4,
-					"label": "PT. Jiwasraya"
-				},
-				"project_type": {
-					"id": 4,
-					"label": "Type A"
-				},
-				"unit_delivery": "PMO",
-				"requester": "Dudung",
-				"request_date": "12/11/2019",
-				"start_date": "20/10/2019",
-				"end_date": "29/12/2019",
-				"status": "New Without IWO",
-				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"document": [
-					{
-						"file_id": 1,
-						"link": "projectrequest.html",
-						"name": "Lorem ipsum dolor.xls"
-					},
-					{
-						"file_id": 2,
-						"link": "projectrequest.html",
-						"name": "menata kehidupan.jpg"
-					},
-					{
-						"file_id": 3,
-						"link": "projectrequest.html",
-						"name": "kuburanbasah.pdf"
-					},
-					{
-						"file_id": 4,
-						"link": "projectrequest.html",
-						"name": "menatap keindahan.doc"
-					}
-				]
-			},
-			{
-				"project_id": 610803,
-				"project_name": "labore ea in ea nulla incididunt est consequat amet mollit proident sunt eiusmod sunt nostrud non consequat ad proident",
-				"customer": {
-					"id": 4,
-					"label": "PT. Jiwasraya"
-				},
-				"project_type": {
-					"id": 4,
-					"label": "Type A"
-				},
-				"unit_delivery": "PMO",
-				"requester": "Dudung",
-				"request_date": "01/01/2018",
-				"start_date": "20/10/2019",
-				"end_date": "29/12/2019",
-				"status": "New Without IWO",
-				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"background": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusamus!",
-				"document": [
-					{
-						"file_id": 1,
-						"link": "projectrequest.html",
-						"name": "Lorem ipsum dolor.xls"
-					},
-					{
-						"file_id": 2,
-						"link": "projectrequest.html",
-						"name": "menata kehidupan.jpg"
-					},
-					{
-						"file_id": 3,
-						"link": "projectrequest.html",
-						"name": "kuburanbasah.pdf"
-					},
-					{
-						"file_id": 4,
-						"link": "projectrequest.html",
-						"name": "menatap keindahan.doc"
-					}
-				]
-			}
-		]
-		CUSTOMER = [
-			{
-				"customer_id": 1,
-				"customer_name": "PT. Telkom"
-			},
-			{
-				"customer_id": 2,
-				"customer_name": "PT. Pertamina"
-			},
-			{
-				"customer_id": 3,
-				"customer_name": "PT. PLN"
-			},
-			{
-				"customer_id": 4,
-				"customer_name": "PT. Jiwasraya"
-			}
-		]
+				{
+					"customer_id": 4,
+					"customer_name": "PT. Jiwasraya"
+				}
+			]
+		}
 	</script>
 
 	<script src="../../../main.js"></script>

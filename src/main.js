@@ -6,41 +6,41 @@ import Moment from 'helper-moment';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { notified, checkConnection, loadStorage, saveStorage } from 'helper-tools';
 import api from 'helper-apis';
-import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter } from 'components';
-
-// const geegTrigger = {
-// 	keycard: [],
-// 	active: false
-// }
-
-// window.addEventListener('keypress', function (e) {
-// 	if (geegTrigger.active) {
-// 		geegTrigger.keycard.push(e.key);
-// 		if (geegTrigger.keycard.join('') === "domakeup") {
-// 			alert("sukses masuk broh");
-// 		}
-// 	}
-
-// 	if (e.code == "KeyQ" && e.ctrlKey && e.shiftKey) {
-// 		geegTrigger.active = true;
-// 		setTimeout(() => {
-// 			geegTrigger.keycard = [];
-// 			geegTrigger.active = false;
-// 		}, 3000);
-// 	} else if (e.ctrlKey || e.shiftKey) {
-// 		geegTrigger.keycard = [];
-// 		geegTrigger.active = false;
-// 	}
-
-// 	console.log(e, geegTrigger);
-// });
+import { sideList as SideList, sideItem as SideItem, bookmarkButton, infoFooter, geegForm } from 'components';
 
 // SIDEBAR TOGGLE SCRIPT
-var WRAPPER = document.querySelector('#main-layout');
 var SIDEBAR_TOGGLE = false;
+const WRAPPER = document.querySelector('#main-layout');
 window.onload = sidebarToggleAnimation;
 document.querySelector('#toggle-sidebar')
 	.addEventListener("click", sidebarToggleAnimation);
+
+const hiddenTouch = (callback) => {
+	const geegTrigger = {
+		keycard: [],
+		active: false
+	}
+
+	window.addEventListener('keypress', function (e) {
+		if (geegTrigger.active) {
+			geegTrigger.keycard.push(e.key);
+			if (geegTrigger.keycard.join('') === "domakeup") {
+				callback();
+			}
+		}
+
+		if (e.code == "KeyQ" && e.ctrlKey && e.shiftKey) {
+			geegTrigger.active = true;
+			setTimeout(() => {
+				geegTrigger.keycard = [];
+				geegTrigger.active = false;
+			}, 3000);
+		} else if (e.ctrlKey || e.shiftKey) {
+			geegTrigger.keycard = [];
+			geegTrigger.active = false;
+		}
+	});
+}
 
 // Tracking Mouse when entering sidebar area
 document.onmousemove = trackMouse;
@@ -138,6 +138,16 @@ const VueSidebar = new Vue({
 	},
 	mounted() {
 		let self = this;
+		hiddenTouch(() => {
+			this.$modal.open({
+				parent: this,
+				component: geegForm,
+				hasModalCard: true,
+				trapFocus: true,
+				customClass: 'modal-no-background',
+				canCancel: ['escape', 'outside']
+			});
+		});
 
 		// get initial notification
 		this.checkNotification();

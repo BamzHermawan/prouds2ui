@@ -229,6 +229,14 @@ module.exports = {
          * - id: String Workplan version id [GET]
          */
 		wpChangelog: 'dummy/changelogTable.json?ver={id}',
+
+		/**
+         * Get project data by oppty id and year
+         * Send Data:
+         * - oppty_id: String Opportunity ID [GET]
+         * - oppty_year: String Opportunity Year [GET]
+         */
+		projectByOppty: 'newProjectByOppty.php?id={oppty_id}&year={oppty_year}',
 	}
 
 }
