@@ -16,6 +16,41 @@ $color in $colors {
     }
 }
 
+.button.is-static {
+    @each $name,
+    $color in $colors {
+        &.is-#{$name} {
+            background-color: nth($color, 1) !important;
+            border-color: transparent;
+            color: nth($color, 2) !important;
+        }
+        &.is-#{$name}-blend {
+            @include gradientMagic(nth($color, 1));
+            border-color: transparent;
+            color: nth($color, 2) !important;
+        }
+    }
+}
+
+.button.is-long {
+    min-width: 150px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.button.is-bookmark {
+    font-size: 0.75rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: 8px;
+    .mdi {
+        margin: 0px;
+    }
+    span[data-toggle="text"] {
+        margin-left: 5px;
+    }
+}
+
 table.table {
     .button.is-small:not(.is-static) {
         border-radius: 2px;

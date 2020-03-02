@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>BAST PLAN | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="list.html">Project List</side-item>
+				<side-item active>Project Assignment</side-item>
+				<side-item href="../maintenance.html">Timesheet</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws">
+				<side-item href="../maintenance.html">Help [default]</side-item>
+			</side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless has-text-right">
+								<span>BAST PLAN</span>
+							</h1>
+						</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section class="section">
+				<div id="contentApp" class="container" data-title="BAST PLAN">
+					<div class="columns is-marginless">
+						<div class="column is-8-desktop content is-marginless is-paddingless">
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
+								App Mantap Super Jaya Semua Suka Sampai Mendunia</h3>
+							<b-field grouped>
+								<div class="control">
+									<b-taglist attached>
+										<b-tag type="is-dark">ID</b-tag>
+										<b-tag type="is-info">1900123</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">IWO</b-tag>
+										<b-tag type="is-info">P-1909-TTES0481</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">PROJECT MANAGER</b-tag>
+										<b-tag type="is-info">M. Zaid Billah</b-tag>
+									</b-taglist>
+								</div>
+							</b-field>
+						</div>
+					</div>
+
+					<hr>
+
+					<paging ref="paging" default="table">
+						<template slot="beforeDefault">
+							<li><a href="http://localhost:5501/page/projects/projectAssignment.html">Project
+									Assignment</a></li>
+						</template>
+
+						<paging-page page-id="table" label="BAST Plan">
+							<nav class="level">
+								<div class="level-left">
+									<b-button type='is-info' icon-left="checkbox-marked-outline" @click="openReview">
+										Review
+									</b-button>
+								</div>
+								<div class="level-right">
+									<div class="level-item">
+										<b-field>
+											<p class="control">
+												<b-button type='is-static is-light-blend'>Project Amount</b-button>
+											</p>
+											<p class="control">
+												<b-button type='is-static'>
+													<b>{{ 10000000000 | currency }}</b>
+												</b-button>
+											</p>
+										</b-field>
+									</div>
+									<div class="level-item">
+										<b-field>
+											<p class="control">
+												<b-button type='is-static is-light-blend'>Total BAST</b-button>
+											</p>
+											<p class="control">
+												<b-button type='is-static'>
+													<b>{{ totalAmount | currency }}</b>
+												</b-button>
+											</p>
+										</b-field>
+									</div>
+								</div>
+							</nav>
+
+							<b-table v-cloak :data="plans" detailed hoverable custom-detail-row
+								:opened-detailed="openedPlan" detail-key="id" :show-detail-icon="false"
+								class="is-packed">
+								<template slot-scope="{row, index}">
+									<b-table-column field="sequence" label="BAST SEQ">
+										{{ row.sequence }}
+									</b-table-column>
+									<b-table-column field="title" label="Title / Description">
+										{{ row.title }}
+									</b-table-column>
+									<b-table-column field="amount" label="Nominal (IDR)">
+										{{ row.amount | currency }}
+									</b-table-column>
+									<b-table-column field="target_date" label="Target Date">
+										<b-tooltip :label="targetTooltip(row).label" position="is-left"
+											:type="targetTooltip(row).type">
+											<span :class="targetStatus(row)">{{ row.target_date }}</span>
+										</b-tooltip>
+									</b-table-column>
+									<b-table-column field="related_top" label="Related TOP">
+										<a @click="openDetail(row.related_id)">{{ row.related_id }}</a>
+									</b-table-column>
+									<b-table-column field="target_top" label="TOP Target Date">
+										{{ row.related_target }}
+									</b-table-column>
+								</template>
+
+								<template slot="detail" slot-scope="{row,index}">
+									<tr v-for="(item, index) in row.related_top" :key="'TOP_'+row.id+'_'+index">
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td><a @click="openDetail(item.id)">{{ item.id }}</a></td>
+										<td>{{ item.target_top }}</td>
+									</tr>
+								</template>
+							</b-table>
+						</paging-page>
+
+						<paging-page page-id="detail" :label="detail.plan.id">
+							<div style="padding:0px 1.5rem;margin-bottom:2rem;">
+								<div class="columns is-multiline">
+									<div class="column is-half">
+										<b-field label="TOP ID">
+											<p class='input is-static is-light-blend is-fullwidth'>
+												{{ detail.plan.id | validata }}
+											</p>
+										</b-field>
+									</div>
+									<div class="column is-one-quarter">
+										<b-field label="TOP Sequence">
+											<p class='input is-static is-light-blend is-fullwidth has-text-centered'>
+												{{ detail.plan.sequence | validata }}
+											</p>
+										</b-field>
+									</div>
+									<div class="column is-one-quarter">
+										<b-field label="Order Number">
+											<p class='input is-static is-light-blend is-fullwidth has-text-centered'>
+												{{ detail.plan.order_no | validata }}
+											</p>
+										</b-field>
+									</div>
+									<div class="column is-half">
+										<b-field label="TOP Type">
+											<p class='input is-static is-light-blend is-fullwidth'>
+												{{ detail.plan.type | validata }}
+											</p>
+										</b-field>
+									</div>
+									<div class="column is-half">
+										<b-field label="Amount">
+											<p class='input is-static is-light-blend is-fullwidth'>
+												{{ detail.plan.amount | validata | currency }}
+											</p>
+										</b-field>
+									</div>
+									<div class="column is-half">
+										<b-field label="Plan Date">
+											<p class='input is-static is-light-blend is-fullwidth'>
+												{{ detail.plan.plan_date | validata | moment('dddd, DD MMMM YYYY') }}
+											</p>
+										</b-field>
+									</div>
+									<div class="column is-half">
+										<b-field label="Last Target Date">
+											<p class='input is-static is-light-blend is-fullwidth'>
+												{{ detail.plan.last_target | validata | moment('dddd, DD MMMM YYYY') }}
+											</p>
+										</b-field>
+									</div>
+									<div class="column is-12">
+										<b-field label='Description'>
+											<p class='textarea is-static is-light-blend is-fullwidth'>
+												{{ detail.plan.description | validata }}
+											</p>
+										</b-field>
+									</div>
+								</div>
+							</div>
+						</paging-page>
+					</paging>
+
+					<b-modal :active.sync="review.display" has-modal-card trap-focus>
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+							<div class="modal-card" style="min-width:250px;">
+								<header class="modal-card-head">
+									<p class="modal-card-title">Review</p>
+								</header>
+								<section class="modal-card-body">
+
+									<!-- ^ Set data-feasible to (true:no edit) or (false: editable) -->
+									<input type="hidden" name="feasibility" v-model="review.feasibility" ref="feasible"
+										data-feasible="true">
+									<b-field label="Feasibility">
+										<b-checkbox true-value="TRUE" v-model="review.feasibility" false-value="FALSE"
+											:disabled="!review.editable">
+											Feasible
+										</b-checkbox>
+									</b-field>
+
+									<b-field label="Notes">
+										<!-- Insert notes to value attribute to set -->
+										<b-input type="textarea" name="note" :required="review.feasibility!='TRUE'"
+											:readonly="!review.editable" minlength="100"
+											value="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum, ipsam."
+											placeholder="Insert note about your review">
+										</b-input>
+									</b-field>
+
+									<b-loading :is-full-page="false" :active="review.isLoading"></b-loading>
+								</section>
+								<footer class="modal-card-foot">
+									<div class="buttons is-right" style="width:100%">
+										<button class="button is-long" type="button"
+											@click="review.display = false">Cancel</button>
+										<button class="button is-success is-long" v-if="review.editable">Submit</button>
+									</div>
+								</footer>
+							</div>
+						</form>
+					</b-modal>
+				</div>
+			</section>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer entry="100" utilization="100" api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization">
+				<marquee behavior="scroll" direction="left">Hi All, we have announcement to make! <b
+						class="has-text-warning">Ade Wiranata Putra</b> from PMO would like to treat you all. Call
+					us soon before he changed his mind. 🍖</marquee>
+			</info-footer>
+		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+
+		<!-- 
+    		Get detail data of BAST Plan
+          	Send Data:
+          	- top_id: BAST PLAN TOP ID [GET]
+		 -->
+		<api-test url="bastPlanDetail.php?id={top_id}" key="detailBASTPlan"></api-test>
+	</div>
+
+	<script id="implantedJSON" type="application/json">
+		[
+			{
+				"id": "TOP-INCID-0",
+				"sequence": 0,
+				"title": "Laborum sint magna reprehenderit adipisicing aliqua exercitation commodo exercitation nisi commodo aute.",
+				"amount": 290000000,
+				"target_date": "01/04/2019",
+				"related_top": [
+					{
+						"id": "EXDOLORVELITETAMETADIN0",
+						"target_top": "02/03/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-MOLLI-1",
+				"sequence": 1,
+				"title": "Aute sint non minim culpa officia irure exercitation sunt culpa exercitation ut dolor fugiat reprehenderit.",
+				"amount": 200000000,
+				"target_date": "12/02/2019",
+				"related_top": [
+					{
+						"id": "NISIIRURECOMMODOALIQUA0",
+						"target_top": "01/03/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-QUISE-2",
+				"sequence": 2,
+				"title": "Nostrud est voluptate consectetur voluptate qui dolor dolor enim deserunt sint occaecat laborum.",
+				"amount": 220000000,
+				"target_date": "17/03/2019",
+				"related_top": [
+					{
+						"id": "ADIPISICINGUTNULLADOLO0",
+						"target_top": "25/04/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-ESTLO-3",
+				"sequence": 3,
+				"title": "Qui tempor proident do est culpa occaecat cupidatat voluptate fugiat excepteur dolore reprehenderit.",
+				"amount": 300000000,
+				"target_date": "09/02/2019",
+				"related_top": [
+					{
+						"id": "VOLUPTATEEAAMETALIQUAC0",
+						"target_top": "23/04/2019"
+					},
+					{
+						"id": "VOLUPTATECONSECTETURDE1",
+						"target_top": "27/03/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-CONSE-4",
+				"sequence": 4,
+				"title": "Nisi ut nostrud voluptate do cillum ullamco ullamco consectetur quis exercitation.",
+				"amount": 290000000,
+				"target_date": "15/03/2019",
+				"related_top": [
+					{
+						"id": "REPREHENDERITELITPARIA0",
+						"target_top": "17/04/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-REPRE-5",
+				"sequence": 5,
+				"title": "Nulla dolore eiusmod Lorem aute voluptate quis ad est labore incididunt do dolore veniam.",
+				"amount": 120000000,
+				"target_date": "26/05/2019",
+				"related_top": [
+					{
+						"id": "IPSUMULLAMCOAUTEMINIMA0",
+						"target_top": "06/04/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-OCCAE-6",
+				"sequence": 6,
+				"title": "Dolor id nulla occaecat occaecat excepteur.",
+				"amount": 110000000,
+				"target_date": "27/02/2019",
+				"related_top": [
+					{
+						"id": "QUILABORUMCONSEQUATNUL0",
+						"target_top": "22/03/2019"
+					},
+					{
+						"id": "ULLAMCOMOLLITETDUISINC1",
+						"target_top": "12/03/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-EUESS-7",
+				"sequence": 7,
+				"title": "Commodo tempor laborum dolor consectetur fugiat ullamco.",
+				"amount": 100000000,
+				"target_date": "05/04/2019",
+				"related_top": [
+					{
+						"id": "EIUSMODIDLABOREIDCILLU0",
+						"target_top": "23/05/2019"
+					},
+					{
+						"id": "EUANIMENIMDOFUGIATIRUR1",
+						"target_top": "26/04/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-ADET-8",
+				"sequence": 8,
+				"title": "Ullamco ut incididunt voluptate adipisicing exercitation eiusmod ad pariatur Lorem mollit veniam do.",
+				"amount": 290000000,
+				"target_date": "20/02/2019",
+				"related_top": [
+					{
+						"id": "DODONISILOREMDOESTAMET0",
+						"target_top": "24/03/2019"
+					},
+					{
+						"id": "EIUSMODNONNISILABORECO1",
+						"target_top": "11/03/2019"
+					}
+				]
+			},
+			{
+				"id": "TOP-PARIA-9",
+				"sequence": 9,
+				"title": "Minim dolore nisi labore velit ullamco est amet ad minim ipsum.",
+				"amount": 270000000,
+				"target_date": "27/03/2019",
+				"related_top": [
+					{
+						"id": "UTSITEIUSMODETREPREHEN0",
+						"target_top": "05/04/2019"
+					}
+				]
+			}
+		]
+	</script>
+
+	<script src="../../../main.js"></script>
+	<script src="../../scripts/project/bastPlan/bastPlan.js"></script>
+</body>
+
+</html>

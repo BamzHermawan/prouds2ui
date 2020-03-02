@@ -237,6 +237,12 @@ module.exports = {
          * - oppty_year: String Opportunity Year [GET]
          */
 		projectByOppty: 'newProjectByOppty.php?id={oppty_id}&year={oppty_year}',
-	}
 
+		/**
+         * Get detail data of BAST Plan
+         * Send Data:
+         * - top_id: BAST PLAN TOP ID [GET]
+         */
+		detailBASTPlan: 'bastPlanDetail.php?id={top_id}',
+	}
 }

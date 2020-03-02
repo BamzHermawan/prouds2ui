@@ -36,6 +36,7 @@ html {
 @import "components/table/main";
 @import "components/wpcompare";
 @import "components/button";
+
 tr.is-child>td:first-child {
     padding-left: 1.5rem;
 }
@@ -46,6 +47,28 @@ tr.is-child>td:first-child {
 
 //! -----------------------------------------------------
 //* @CONTENT --------------------------------------------
+
+.label-middle-horizontal {
+	display: inline-block;
+	min-width: 100px;
+	margin-left: 12px;
+	text-align: center !important;
+}
+
+.input.is-static, .textarea.is-static {
+	box-shadow: none;
+	pointer-events: none;
+	padding: .5rem 1rem !important;
+	
+	@each $name, $color in $colors {
+        &.is-#{$name}-blend {
+            @include gradientMagic(nth($color, 1));
+            border-color: transparent;
+            color: nth($color, 2) !important;
+        }
+    }
+}
+
 .datepicker {
     &.is-shadowless {
         .dropdown-content {
@@ -199,19 +222,6 @@ td.align-middle {
     text-align: left;
 }
 
-.button.is-bookmark {
-    font-size: 0.75rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    margin-top: 8px;
-    .mdi {
-        margin: 0px;
-    }
-    span[data-toggle="text"] {
-        margin-left: 5px;
-    }
-}
-
 .b-table {
     .table th {
         vertical-align: middle;
@@ -285,12 +295,6 @@ p.add-divider-top {
     padding-top: 5px;
 }
 
-.button.is-long {
-    min-width: 150px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-
 .is-username {
     margin: 0px !important;
     font-size: 3.5rem;
@@ -320,22 +324,6 @@ p.add-divider-top {
 
 .api-testing {
     display: none !important;
-}
-
-.button.is-static {
-    @each $name,
-    $color in $colors {
-        &.is-#{$name} {
-            background-color: nth($color, 1) !important;
-            border-color: transparent;
-            color: nth($color, 2) !important;
-        }
-        &.is-#{$name}-blend {
-            @include gradientMagic(nth($color, 1));
-            border-color: transparent;
-            color: nth($color, 2) !important;
-        }
-    }
 }
 
 .field.is-horizontal {

@@ -100,7 +100,8 @@
 						<div class="navbar-dropdown is-boxed is-right">
 							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
 							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
-							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php" class="navbar-item">Acting As</a>
+							<a id="prouds-acting-menu" data-action="http://localhost:5501/demo/post_detect.php"
+								class="navbar-item">Acting As</a>
 							<hr class="navbar-divider">
 							<a href="#" class="navbar-item">
 								<span>Sign Out</span>
@@ -115,7 +116,7 @@
 		<!-- on load Notification -->
 		<!-- Bisa dipake disemua halaman, tapi jangan ditaroh di dalem elemen dengan class contentPage. -->
 		<!-- type tersedia: is-success(ijo)|is-danger(merah)|is-warning(kuning)|is-info(biru)|is-dark(item)|is-light(putih) -->
-		<notified message="Yess this is notification!" type="is-pink"></notified>
+		<!-- <notified message="Yess this is notification!" type="is-pink"></notified> -->
 
 		<section id="vapp" class="contentPage">
 			<section class="hero is-light is-bold">
@@ -137,7 +138,8 @@
 					<div v-if="showTable" id="tableProject" class="animated">
 						<data-table-no-card :show-all="false" :data="newproject" :fields="[]" ref="widget" striped="">
 							<template slot-scope="props">
-								<b-table-column field="opportunity" label="Opportunity" sortable="" class="align-middle">
+								<b-table-column field="opportunity" label="Opportunity" sortable=""
+									class="align-middle">
 									<span>{{ props.row.opportunity }}</span>
 									<br>
 									<span>{{ props.row.won_date }}</span>
@@ -146,7 +148,8 @@
 									<span>{{ props.row.iwo }}</span>
 								</b-table-column>
 								<b-table-column width="300" field="project_name" label="Project Name" sortable="">
-									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}</linker>
+									<linker :href="'detail.html#' + props.row.project_id">{{ props.row.project_name }}
+									</linker>
 								</b-table-column>
 								<b-table-column field="amount" label="Amount (IDR)" sortable="" class="align-middle">
 									<span>{{ props.row.amount | currency }}</span>
@@ -161,10 +164,13 @@
 									<b v-else="" class="has-text-danger">EMPTY</b>
 								</b-table-column>
 								<b-table-column width="50" field="status" label="Status" sortable="">
-									<b-tooltip v-if="props.row.status==='New'" type="is-dark" :label="props.row.status" position="is-left">
+									<b-tooltip v-if="props.row.status==='New'" type="is-dark" :label="props.row.status"
+										position="is-left">
 										<span class="mdi mdi-24px mdi-file-plus-outline has-text-info"></span>
 									</b-tooltip>
-									<b-tooltip v-if="props.row.status==='Waiting to Initial Baseline' || props.row.status==='Waiting to Rebaseline'" type="is-dark" :label="props.row.status" position="is-left">
+									<b-tooltip
+										v-if="props.row.status==='Waiting to Initial Baseline' || props.row.status==='Waiting to Rebaseline'"
+										type="is-dark" :label="props.row.status" position="is-left">
 										<span class="mdi mdi-24px mdi-timer-sand has-text-warning"></span>
 									</b-tooltip>
 								</b-table-column>
@@ -174,21 +180,48 @@
 										<span slot="trigger" class="mdi mdi-menu-custom mdi-24px"></span>
 										<div class="dropdown-item dropdown-label">Project Action</div>
 										<b-dropdown-item aria-role="listitem" has-link="">
-											<a :href="'#setpm/'+props.row.project_id" @click="assign('PM',props.row)"><span class="mdi mdi-account-plus"></span>Assign
+											<a :href="'#setpm/'+props.row.project_id"
+												@click="assign('PM',props.row)"><span
+													class="mdi mdi-account-plus"></span>Assign
 												Project Manager</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link="">
-											<a :href="'#setcopm/'+props.row.project_id" @click="assign('CoPM',props.row)"><span class="mdi mdi-account-plus"></span>Assign
+											<a :href="'#setcopm/'+props.row.project_id"
+												@click="assign('CoPM',props.row)"><span
+													class="mdi mdi-account-plus"></span>Assign
 												Co-Project Manager</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link="">
-											<a :href="'#setadmin/'+props.row.project_id" @click="assign('Adm',props.row)"><span class="mdi mdi-account-plus"></span>Assign
+											<a :href="'#setadmin/'+props.row.project_id"
+												@click="assign('Adm',props.row)"><span
+													class="mdi mdi-account-plus"></span>Assign
 												Project Admin</a>
 										</b-dropdown-item>
 										<b-dropdown-item aria-role="listitem" has-link="">
-											<a :href="'#setunit/'+props.row.project_id" @click="setUnitDelivery(props.row)"><span class="mdi mdi-briefcase"></span>Set
+											<a :href="'#setunit/'+props.row.project_id"
+												@click="setUnitDelivery(props.row)"><span
+													class="mdi mdi-briefcase"></span>Set
 												Unit
 												Delivery</a>
+										</b-dropdown-item>
+										<div class="dropdown-item dropdown-label">Feasibility</div>
+										<b-dropdown-item has-link>
+											<a href="./internalResources.html">
+												<span class="mdi mdi-projector-screen"></span>
+												Project Charter
+											</a>
+										</b-dropdown-item>
+										<b-dropdown-item has-link>
+											<a href="./internalResources.html">
+												<span class="mdi mdi-file-check"></span>
+												BAST Plan
+											</a>
+										</b-dropdown-item>
+										<b-dropdown-item has-link>
+											<a href="./internalResources.html">
+												<span class="mdi mdi-chart-gantt"></span>
+												Workplan (Initial)
+											</a>
 										</b-dropdown-item>
 									</b-dropdown>
 								</b-table-column>
@@ -227,7 +260,7 @@
 							</nav>
 						</template>
 					</assign>
-					
+
 					<assign type="Co-PM" :users="users.copm" :project="selectedProject" v-if="toggleForm.CoPM" id="CoPM"
 						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb="">
@@ -240,7 +273,7 @@
 							</nav>
 						</template>
 					</assign>
-					
+
 					<assign type="Admin" :users="users.admin" :project="selectedProject" v-if="toggleForm.Adm" id="Adm"
 						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php">
 						<template #breadcrumb="">
@@ -252,9 +285,10 @@
 							</nav>
 						</template>
 					</assign>
-					
+
 					<set-unit-delivery :unit-delivery="unitdelivery" :project="selectedProject" id="setUnitDelivery"
-						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php" v-if="showUnitDelivery">
+						class="animated fadeIn faster" action="http://localhost:5501/demo/post_detect.php"
+						v-if="showUnitDelivery">
 						<template #breadcrumb="">
 							<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 								<ul class="is-marginless">
@@ -271,7 +305,8 @@
 
 		<section id="infoFooter">
 			<info-footer entry="100" utilization="100">
-				<marquee behavior="scroll" direction="left">Hi All, we have announcement to make! <b class="has-text-warning">Ade Wiranata Putra</b> from PMO would like to treat you all. Call us
+				<marquee behavior="scroll" direction="left">Hi All, we have announcement to make! <b
+						class="has-text-warning">Ade Wiranata Putra</b> from PMO would like to treat you all. Call us
 					soon before he changed his mind. 🍖</marquee>
 			</info-footer>
 		</section>
@@ -690,7 +725,7 @@
 				"on_going_project": "1",
 				"supervisor": "Ade Wiranata Putra" //VP atau Director
 
-	}];</script>
+			}];</script>
 
 	<script src="../../src/main.min.js"></script>
 	<script src="../../src/projects/projectAssignment.min.js"></script>

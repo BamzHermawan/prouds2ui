@@ -3,7 +3,6 @@ import $config from '../config.js';
 import qs from 'querystring';
 import request from 'axios';
 
-
 const $api = $config.listAPI;
 const pack = qs.stringify;
 
@@ -343,4 +342,14 @@ module.exports.getUserActivityByDate = (nik, date, workhour) => {
 			"Content-Type": 'application/x-www-form-urlencoded'
 		}
 	});
+}
+
+/**
+ * Get detail data of BAST Plan
+ *
+ * @param {*} top_id: BAST PLAN TOP ID
+ * @returns Axios Promise Instance
+ */
+module.exports.getBASTPlanDetail = (id) => {
+	return request.get(parseURL("detailBASTPlan", { top_id: id }));
 }
