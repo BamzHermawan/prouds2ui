@@ -333,6 +333,16 @@
 										</b-input>
 									</b-field>
 
+									<!-- ^ UPDATED ########################################################### -->
+									<b-message v-show="review.feasibility == 'TRUE' && review.editable"
+										type="is-warning" size="is-small">
+										<p>
+											<span class="mdi mdi-alert"></span>
+											<span>Feasibility process (submit as checked) can not be undone!</span>
+										</p>
+									</b-message>
+									<!-- ^ UPDATED ########################################################### -->
+
 									<b-loading :is-full-page="false" :active="review.isLoading"></b-loading>
 								</section>
 								<footer class="modal-card-foot">
