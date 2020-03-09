@@ -5,6 +5,7 @@
 				<b-field message="" :type="oppty_validate.id">
 					<b-input
 						v-model="oppty.id"
+						name="oppty_id"
 						placeholder="Oppty ID"
 					></b-input>
 				</b-field>
@@ -23,6 +24,7 @@
 					</p>
 					<b-input
 						v-model="oppty.year"
+						name="oppty_year"
 						placeholder="Oppty Year"
 					></b-input>
 					<p class="control is-expanded">
