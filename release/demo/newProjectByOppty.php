@@ -31,8 +31,8 @@ if (!empty($_GET['id']) && !empty($_GET['year'])) {
 	}
 }
 
-// http_response_code(404);
-// echo json_encode([
-// 	"status" => false,
-// 	"message" => "No Data Found"
-// ]);
+http_response_code(404);
+echo json_encode([
+	"status" => false,
+	"message" => "No Data Found"
+]);

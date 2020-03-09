@@ -130,7 +130,6 @@
 			</section>
 			<section class="section">
 				<div id="contentApp" class="container" data-title="Project Register">
-					<!-- ^ UPDATED #################################################### -->
 					<paging ref="paging" default="table">
 						<paging-page page-id="table" label="Project Register">
 							<data-table-no-card :data="projects" :fields="[]" ref="widget" striped>
@@ -235,20 +234,29 @@
 							</data-table-no-card>
 						</paging-page>
 
+						<!-- ^ UPDATED #################################################### -->
 						<paging-page page-id="addForm" label="New Form">
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST"
 								enctype="multipart/form-data">
 								<!-- perubahan di atributte name yang dikirim ke backend.
-														{
-															"project_name", "customer_id", "project_type", "start_date", "end_date",
-															"description", "project_background", ("evidDoc": $_FILES)
-														} 
-													-->
-								<form-project :customers="customers" is-add-form>
+									{
+										"project_name", "customer_id", "project_type", "start_date", "end_date",
+										"description", "project_background", ("evidDoc": $_FILES)
+									} 
+								-->
+								<form-project :customers="customers" is-add-form
+									evidence-accept="jpg,.jpeg,.png,.doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx">
 									<template slot="typeSlot">
 										<option value="1">Managed Service</option>
 										<option value="2">Research and Development</option>
 										<option value="3">Implementation</option>
+									</template>
+
+									<template slot="evidenceHelp">
+										<p class="help">
+											File yang dibolehkan: jpg, jpeg, png, doc, docx, pdf, xls,
+											xlsx, ppt, pptx; File size maksimal 20MB
+										</p>
 									</template>
 								</form-project>
 							</form>
@@ -258,22 +266,28 @@
 							<form action="http://localhost:5501/demo/post_detect.php" method="POST"
 								enctype="multipart/form-data">
 								<!-- perubahan di atributte name yang dikirim ke backend.
-														{
-															"project_name", "customer_id", "project_type", "start_date", "end_date",
-															"description", "project_background", ("evidDoc": $_FILES)
-														} 
-													-->
-								<form-project :customers="customers" :value="project">
+									{
+										"project_name", "customer_id", "project_type", "start_date", "end_date",
+										"description", "project_background", ("evidDoc": $_FILES)
+									} 
+								-->
+								<form-project :customers="customers" :value="project"
+									evidence-accept="jpg,.jpeg,.png,.doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx">
 									<template slot="typeSlot">
 										<option value="1">Managed Service</option>
 										<option value="2">Research and Development</option>
 										<option value="3">Implementation</option>
 									</template>
+									<template slot="evidenceHelp">
+										<p class="help">
+											File yang dibolehkan: jpg, jpeg, png, doc, docx, pdf, xls,
+											xlsx, ppt, pptx; File size maksimal 20MB
+										</p>
+									</template>
 								</form-project>
 							</form>
 						</paging-page>
-					</paging>
-					<!-- ^ UPDATED #################################################### -->
+						<!-- ^ UPDATED #################################################### -->
 				</div>
 			</section>
 		</section>
@@ -286,7 +300,6 @@
 		</section>
 	</div>
 
-	<!-- ^ UPDATED #################################################### -->
 	<div class="api-testing" base="http://localhost:5501/demo/">
 		<!-- 
 			expected return from getNotification!
@@ -635,7 +648,6 @@
 			]
 		}
 	</script>
-	<!-- ^ UPDATED #################################################### -->
 
 	<script src="../../src/main.min.js"></script>
 	<script src="../../src/projects/projectrequest.min.js"></script>

@@ -247,11 +247,19 @@
 										"description", "project_background", ("evidDoc": $_FILES)
 									} 
 								-->
-								<form-project :customers="customers" is-add-form>
+								<form-project :customers="customers" is-add-form
+									evidence-accept="jpg,.jpeg,.png,.doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx">
 									<template slot="typeSlot">
 										<option value="1">Managed Service</option>
 										<option value="2">Research and Development</option>
 										<option value="3">Implementation</option>
+									</template>
+
+									<template slot="evidenceHelp">
+										<p class="help">
+											File yang dibolehkan: jpg, jpeg, png, doc, docx, pdf, xls,
+											xlsx, ppt, pptx; File size maksimal 20MB
+										</p>
 									</template>
 								</form-project>
 							</form>
@@ -266,11 +274,18 @@
 										"description", "project_background", ("evidDoc": $_FILES)
 									} 
 								-->
-								<form-project :customers="customers" :value="project">
+								<form-project :customers="customers" :value="project"
+									evidence-accept="jpg,.jpeg,.png,.doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx">
 									<template slot="typeSlot">
 										<option value="1">Managed Service</option>
 										<option value="2">Research and Development</option>
 										<option value="3">Implementation</option>
+									</template>
+									<template slot="evidenceHelp">
+										<p class="help">
+											File yang dibolehkan: jpg, jpeg, png, doc, docx, pdf, xls,
+											xlsx, ppt, pptx; File size maksimal 20MB
+										</p>
 									</template>
 								</form-project>
 							</form>

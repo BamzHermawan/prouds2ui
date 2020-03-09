@@ -163,7 +163,7 @@
 					@input="fileChoosed"
 					:disabled="!oppty.found"
 					:required="_upload_required"
-					accept="jpg, .jpeg, .png, .doc, .docx, .pdf, .xls, .xlsx, .ppt, .pptx"
+					:accept="evidenceAccept"
 					style="width:100%;"
 				>
 					<a
@@ -174,10 +174,7 @@
 						<span>Upload Evidence File</span>
 					</a>
 				</b-upload>
-				<p class="help">
-					File yang dibolehkan: jpg, jpeg, png, doc, docx, pdf, xls,
-					xlsx, ppt, pptx; File size maksimal 20MB
-				</p>
+				<slot name="evidenceHelp"></slot>
 				<hr style="margin-bottom: 12px;" />
 				<div
 					:key="'file-tag-evidence-' + idx"
@@ -223,6 +220,11 @@ export default {
 			type: Array,
 			required: true,
 			default: []
+		},
+		evidenceAccept: {
+			type: String,
+			default:
+				"jpg, .jpeg, .png, .doc, .docx, .pdf, .xls, .xlsx, .ppt, .pptx"
 		},
 		value: {
 			type: Object,
@@ -415,6 +417,7 @@ export default {
 					self.oppty.found = true;
 				})
 				.catch(err => {
+					console.log(err);
 					self.oppty_validate.id = "is-warning";
 					self.oppty_validate.year = "is-warning";
 					self.oppty_validate.message.push(
