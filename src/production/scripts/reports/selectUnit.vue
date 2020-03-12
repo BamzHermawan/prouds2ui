@@ -20,6 +20,7 @@
 					tag="a"
 					type="is-link"
 					icon-right="download"
+					v-show="!disableDownload"
 					:href="downloadLink"
 				></b-button>
 			</p>
@@ -60,11 +61,23 @@ export default {
 		};
 	},
 	computed: {
+		disableDownload() {
+			if (this.unitId === null) {
+				return this.unit === null;
+			} else {
+				return false;
+			}
+		},
 		downloadLink() {
+			let unitID = this.unitId;
+			if (this.unitId === null) {
+				unitID = this.unit;
+			}
+
 			let bundle = {
 				start: Moment(this.start).format(this.dateFormat),
 				end: Moment(this.end).format(this.dateFormat),
-				unit_id: this.unitId
+				unit_id: unitID
 			};
 
 			return parsedURL(this.exportLink, bundle);

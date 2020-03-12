@@ -226,6 +226,7 @@ export default {
 	},
 	data() {
 		return {
+			backupUnitID: undefined,
 			errorFetch: false,
 			loading: true,
 			timeout: false,
@@ -331,7 +332,8 @@ export default {
 				this.mapRange = range;
 			}
 
-			if (!isEmpty(this.unitId)) {
+			if (!isEmpty(this.unitId) && this.unitId !== this.backupUnitID) {
+				this.backupUnitID = this.unitId;
 				this.fetchUser();
 			} else {
 				setTimeout(() => this.reloadTable(), 500);
@@ -398,7 +400,6 @@ export default {
 		fetchMap() {
 			let self = this;
 			const a = this.mapRange;
-			console.log(a);
 
 			fetch
 				.timesheetComplience(this.unitId, this.mapRange)
