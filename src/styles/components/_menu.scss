@@ -1,0 +1,32 @@
+.menu {
+	.menu-list {
+		&.unset-cursor {
+			li > a {
+				cursor: unset !important;
+			}
+		}
+
+		&.is-bordered {
+			li + li {
+				border-top: solid 1px lightgray;
+			}
+		}
+
+		.media {
+			padding: .5em;
+			.media-left { margin-right:.5rem; }
+			.media-right { 
+				display: none;
+			}
+
+			&:hover {
+				background-color: whitesmoke;
+
+				.media-right { 
+					margin-left:.5rem; 
+					display: block;
+				}
+			}
+		}
+	}
+}

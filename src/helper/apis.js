@@ -353,3 +353,22 @@ module.exports.getUserActivityByDate = (nik, date, workhour) => {
 module.exports.getBASTPlanDetail = (id) => {
 	return request.get(parseURL("detailBASTPlan", { top_id: id }));
 }
+
+/**
+ * Add new Scope of Work in Project Charter
+ * 
+ * @param {*} project_id: Project ID
+ * @param {*} note: String of Note
+ * @returns Axios Promise Instance
+ */
+module.exports.addScopeofWork = (id, note) => {
+	const bundle = {
+		project_id: id, note
+	};
+
+	return request.post($api.addScopeofWork, pack(bundle), {
+		headers: {
+			"Content-Type": 'application/x-www-form-urlencoded'
+		}
+	});
+}

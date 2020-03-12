@@ -244,5 +244,21 @@ module.exports = {
          * - top_id: BAST PLAN TOP ID [GET]
          */
 		detailBASTPlan: 'bastPlanDetail.php?id={top_id}',
+
+		/**
+         * Add new Scope of Work in Project Charter
+         * Send Data:
+		 * - project_id: String Project Id [POST]
+         * - notes: String of notes [POST]
+         */
+		addScopeofWork: 'axios_check.php?return=200',
+
+		/**
+         * Delete Scope of Work in Project Charter
+         * Send Data:
+		 * - project_id: String Project Id [POST]
+         * - scope_id: String of notes [POST]
+         */
+		DeleteScopeofWork: 'axios_check.php?return=200',
 	}
 }

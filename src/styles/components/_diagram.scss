@@ -1,0 +1,138 @@
+.graphbox-container {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+
+	.graphbox-level {
+		width: 100%;
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		align-items: center;
+
+		.graphbox {
+			width: calc(calc(100% - 100px) / 2);
+			border: 1px solid lighten($info, 25%);
+			border-radius: 5px;
+
+			.graphbox-header {
+				font-weight: bolder;
+				@include heroGradient(lighten($info, 25%), lighten($info, 15%));
+			}
+
+			.graphbox-header, .graphbox-body {
+				width: 100%;
+				text-align: center;
+				padding: .7rem 1.5rem;
+
+				&.has-edit-on {
+					padding: 5px;
+				}
+			}
+
+			.graphbox-header > .input {
+				background-color: transparent !important;
+			}
+		}
+
+		.graph-line {
+			width: 70px;
+			margin: 0px 15px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			.line {
+				width: 100%;
+				background: lighten($info, 35%);
+				height: 3px;
+				float: left;
+			}
+		}
+	}
+
+	.graphline-divider {
+		height: 34px;
+		width: 100%;
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		align-items: center;
+
+		.graph-line {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+			width: calc(calc(100% - 100px) / 2);
+			
+			.line {
+				width: 3px;
+				height: 10px;
+				background: lighten($info, 35%);
+			}
+		}
+
+		.graph-space {
+			width: 100px;
+			text-align: center;
+		}
+	}
+
+	.graph-line {
+		.down-arrow {
+			width: 0;
+			height: 0;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 8px solid lighten($info, 35%);
+		}
+
+		.right-arrow {
+			width: 0;
+			height: 0;
+			border-top: 5px solid transparent;
+			border-bottom: 5px solid transparent;
+			border-left: 8px solid lighten($info, 35%);
+		}
+
+		.left-arrow {
+			width: 0;
+			height: 0;
+			border-top: 5px solid transparent;
+			border-bottom: 5px solid transparent;
+			border-right: 8px solid lighten($info, 35%);
+		}
+	}
+
+	.graphbox-divider {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		button.button {
+			padding: 5px 10px !important;
+			span.mdi {
+				color: $success;
+				font-weight: bolder;
+			}
+		}
+
+		hr {
+			height: 4px;
+			width: calc(100% - 44px);
+			margin: 20px 15px 20px 0px;
+		}
+	}
+}
+
+@keyframes animateline {
+	from {
+		stroke-dashoffset: 0;
+	}
+
+	to {
+		stroke-dashoffset: -5rem;
+	}
+}

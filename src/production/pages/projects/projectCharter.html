@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
+	<meta name="description" content="HOME for PROUDS 2 Web Application">
+	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
+	<title>BAST PLAN | PROUDS 2</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../../../styles/perfect-scrollbar.css">
+	<link rel="stylesheet" href="../../../styles/style.scss">
+</head>
+
+<body>
+	<div class="loader-wrapper animated fadeIn">
+		<img src="http://localhost:5501/media/loader.gif">
+	</div>
+
+	<div id="main-layout" class="wrapper open-first">
+		<section id="side-main" class="sidebar">
+			<div class="brand animated slideInLeft fast">
+				<span>PROUDS</span>
+			</div>
+			<div class="side-list animated slideInLeft faster">
+				<a href="#notification" class="parent-list">
+					<div class="list-title">
+						<label>
+							<span class="mdi mdi-bell-outline in-left"></span>
+							<span>Notification</span>
+						</label>
+						<div class="action">
+							<span class="tag is-warning">{{notifCount}}</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<!-- Sidebar disesuaikan dengan halaman yang dibuka -->
+			<side-list label="Project" name="project">
+				<side-item href="list.html">Project List</side-item>
+				<side-item active>Project Assignment</side-item>
+				<side-item href="../maintenance.html">Timesheet</side-item>
+				<side-item href="../maintenance.html">Rebaseline</side-item>
+				<side-item href="../maintenance.html">Closing</side-item>
+			</side-list>
+
+			<side-list label="My Workspace" name="ws">
+				<side-item href="../maintenance.html">Help [default]</side-item>
+			</side-list>
+		</section>
+
+		<nav id="nav-main" class="navbar main is-primary" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu main-navbar">
+				<div class="navbar-start">
+					<a id="toggle-sidebar" class="navbar-item">
+						<span class="mdi mdi-chevron-left mdi-24px"></span>
+					</a>
+
+					<a class="navbar-item is-active">
+						PROJECT
+					</a>
+
+					<a class="navbar-item">
+						Resource
+					</a>
+
+					<a class="navbar-item">
+						Monitoring
+					</a>
+
+					<a class="navbar-item">
+						Operations
+					</a>
+
+					<a class="navbar-item">
+						Reports
+					</a>
+				</div>
+
+				<div class="navbar-end">
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-view-dashboard-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">dashboard</span>
+					</a>
+
+					<a href="../maintenance.html" class="navbar-item hover-text">
+						<span class="mdi mdi-settings-outline"></span>
+						<span data-toggle="text" class="animated fadeIn is-uppercase in-right faster">setting</span>
+					</a>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<div class="navbar-link is-arrowless">
+							<span class="mdi mdi-account-outline"></span>
+						</div>
+						<div class="navbar-dropdown is-boxed is-right">
+							<a href="../maintenance.html" class="navbar-item">Account Profile</a>
+							<a href="../maintenance.html" class="navbar-item">Need Help ?</a>
+							<hr class="navbar-divider">
+							<a href="#" class="navbar-item">
+								<span>Sign Out</span>
+								<span class="mdi mdi-logout-variant"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<section id="vapp" class="contentPage">
+			<section class="hero is-light is-bold">
+				<div class="hero-body">
+					<nav class="level">
+						<div class="level-left">
+							<h1 class="title is-marginless has-text-right">
+								<span>Project Charter</span>
+							</h1>
+						</div>
+						<div class="level-right">
+							<div id="bookmarkPage">
+								<bookmark-button></bookmark-button>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section class="section">
+				<!-- 
+					To change access control in attribute view-access to:
+					- Project Manager: "editable" => user can edit and upload
+					- PMO: "readonly" => user only able to view and submit review
+				-->
+				<div id="contentApp" class="container" data-title="BAST PLAN" view-access="editable"
+					project-id="P-12345">
+					<div class="columns is-marginless">
+						<div class="column is-8-desktop content is-marginless is-paddingless">
+							<h3 class="is-small has-text-weight-light is-reduced-margin is-uppercase">Delivery Awesome
+								App Mantap Super Jaya Semua Suka Sampai Mendunia</h3>
+							<b-field grouped>
+								<div class="control">
+									<b-taglist attached>
+										<b-tag type="is-dark">ID</b-tag>
+										<b-tag type="is-info">1900123</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">IWO</b-tag>
+										<b-tag type="is-info">P-1909-TTES0481</b-tag>
+									</b-taglist>
+								</div>
+								<div class="control">
+									<b-taglist attached size="are-medium">
+										<b-tag type="is-dark">PROJECT MANAGER</b-tag>
+										<b-tag type="is-info">M. Zaid Billah</b-tag>
+									</b-taglist>
+								</div>
+							</b-field>
+						</div>
+					</div>
+
+					<hr>
+
+					<b-field v-if="viewAccess=='readonly'" style="margin-bottom: 1.5rem;">
+						<b-button type='is-info' icon-left="checkbox-marked-outline" @click="review.display = true">
+							Review
+						</b-button>
+					</b-field>
+
+					<div class="columns">
+						<div class="column is-8">
+							<form action="http://localhost:5501/demo/post_detect.php" method="post">
+								<div class="card">
+									<header class="card-header">
+										<p class="card-header-title">
+											Communication Path
+										</p>
+										<div class="buttons" style="margin-right: 9px;" v-if="viewAccess=='editable'">
+											<a @click="compath.edit = true" v-show="!compath.edit"
+												class="button is-success is-light is-small">
+												<span class="icon">
+													<i class="mdi mdi-pencil"></i>
+												</span>
+												<span>Edit</span>
+											</a>
+
+											<a @click="compath.edit = false" v-show="compath.edit"
+												class="button is-danger is-small">
+												<span class="icon">
+													<i class="mdi mdi-cancel"></i>
+												</span>
+												<span>Cancel Edit</span>
+											</a>
+
+											<a @click="revert_change" v-show="compath_has_change && !compath.edit"
+												class="button is-danger is-small">
+												<span class="icon">
+													<i class="mdi mdi-undo-variant"></i>
+												</span>
+												<span>Revert Change</span>
+											</a>
+
+											<button type="submit" v-show="compath_has_change"
+												class="button is-success is-small">
+												<span class="icon">
+													<i class="mdi mdi-content-save"></i>
+												</span>
+												<span>Save Change</span>
+											</button>
+										</div>
+									</header>
+									<div class="card-content">
+										<div class="graphbox-container">
+											<graphbox :left-title="level.left.title" :left-name="level.left.name"
+												:right-title="level.right.title" :right-name="level.right.name"
+												:index="index" :level="level.level.toString()" :edit="compath.edit"
+												@addbetween="add_between" @addtop="add_top"
+												v-for="(level,index) in compath_list" :key="'graph-level-'+index">
+											</graphbox>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="column is-4">
+							<div class="card" style="margin-bottom: 1.5rem;">
+								<header class="card-header">
+									<p class="card-header-title">
+										Scope of Work
+									</p>
+									<a @click="scopeForm.display = true" v-if="viewAccess=='editable'"
+										class="card-header-icon button is-success is-light is-small"
+										style="margin-top: 9px; margin-right: 9px; padding: 12px;">
+										<span class="icon">
+											<i class="mdi mdi-plus-circle"></i>
+										</span>
+										<span>Add</span>
+									</a>
+								</header>
+								<div class="card-content" style="padding:0px;">
+									<aside class="menu">
+										<ul class="menu-list unset-cursor is-bordered">
+											<li v-for="(scope, index) in scopes">
+												<article class="media">
+													<p class="media-left">
+														<span v-if="scope.checked" class="has-text-success">▣</span>
+														<span v-else>▢</span>
+													</p>
+													<div class="media-content">
+														{{ scope.note }}
+													</div>
+													<div class="media-right"
+														v-if="!scope.checked && viewAccess == 'editable'">
+														<button class="delete"
+															@click="delete_scope(scope.id, index, scope.note)"></button>
+													</div>
+												</article>
+											</li>
+										</ul>
+									</aside>
+								</div>
+							</div>
+
+							<div class="card">
+								<header class="card-header">
+									<p class="card-header-title">
+										Project Charter Document
+									</p>
+								</header>
+								<div class="card-content" style="padding:8px;">
+									<form action="http://localhost:5501/demo/post_detect.php" method="post"
+										enctype="multipart/form-data">
+										<template v-if="documentData">
+											<b-field>
+												<a class=" button is-fullwidth is-info" :href="documentData.link">
+													<span>Download Current Document</span>
+												</a>
+											</b-field>
+
+											<hr v-if="viewAccess=='editable'" style="margin:8px 0px;">
+										</template>
+										<b-field v-if="viewAccess=='editable'">
+											<b-upload v-model="document" :style="document ? '':'width:100%'"
+												name="project_charter" native>
+												<a
+													:class="'button ' + (document ? 'is-info':'is-success is-fullwidth')">
+													<span v-if="document === null">
+														<span>Upload New Document</span>
+													</span>
+													<span v-else>
+														<span class="mdi mdi-upload"></span>
+													</span>
+												</a>
+											</b-upload>
+											<p v-if="document" class="control is-expanded">
+												<span class="file-name" style="width:100%;">
+													{{ document.name }}
+												</span>
+											</p>
+										</b-field>
+										<b-field v-if="document">
+											<button class="button is-fullwidth is-success" type="submit">
+												Submit Document
+											</button>
+										</b-field>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<b-modal :active.sync="review.display" has-modal-card trap-focus>
+						<form action="http://localhost:5501/demo/post_detect.php" method="POST">
+							<feasibility :feasibility="true"
+								note="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem, ut. Corrupti quos, atque perferendis rerum magnam quibusdam, quisquam accusantium adipisci explicabo quaerat, enim laboriosam voluptate consectetur ipsam placeat commodi incidunt? Laudantium quos laboriosam voluptatem ipsum cum qui ipsa sint ullam laborum ipsam impedit, corrupti eum ducimus expedita dicta optio doloribus. Hic, repellat optio adipisci beatae in assumenda quasi consequuntur earum dolorum incidunt? Hic quos minus, consequuntur voluptatum non laborum facere architecto praesentium nesciunt dignissimos quae porro quidem error, reiciendis omnis tenetur. Odit fugit, quaerat deserunt corrupti a non. Perspiciatis voluptatibus ad ratione aliquam nemo dolores quo ex quae obcaecati atque!">
+							</feasibility>
+						</form>
+					</b-modal>
+
+					<b-modal :active.sync="compath.add.display" has-modal-card trap-focus>
+						<div class="modal-card" style="width: 575px;">
+							<header class="modal-card-head">
+								<p class="modal-card-title">Add New Communication Path</p>
+							</header>
+							<section class="modal-card-body graphbox-container">
+								<div class="graph-row">
+									<div class="graphbox-level">
+										<div class="graphbox">
+											<div class="graphbox-header has-edit-on">
+												<input type="text" class="input is-small has-text-centered"
+													v-model="compath.add.left.title" />
+											</div>
+											<div class="graphbox-body has-edit-on">
+												<input type="text" class="input is-small has-text-centered"
+													v-model="compath.add.left.name" />
+											</div>
+										</div>
+										<div class="graph-line">
+											<div class="left-arrow"></div>
+											<div class="line"></div>
+											<div class="right-arrow"></div>
+										</div>
+										<div class="graphbox">
+											<div class="graphbox-header has-edit-on">
+												<input type="text" class="input is-small has-text-centered"
+													v-model="compath.add.right.title" />
+											</div>
+											<div class="graphbox-body has-edit-on">
+												<input type="text" class="input is-small has-text-centered"
+													v-model="compath.add.right.name" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- <input type="hidden" name="compath[]" :value=""> -->
+							</section>
+							<footer class="modal-card-foot">
+								<button class="button is-danger" type="button"
+									@click="cancel_add_compath">Close</button>
+								<button class="button is-success" @click="reform_compath">Submit</button>
+							</footer>
+						</div>
+					</b-modal>
+
+					<b-modal :active.sync="scopeForm.display" has-modal-card trap-focus>
+						<div class="modal-card">
+							<header class="modal-card-head">
+								<p class="modal-card-title">New Scope of Work</p>
+							</header>
+							<div class="modal-card-body">
+								<b-field :type="scopeForm.status" :message="scopeForm.message">
+									<b-input type="textarea" v-model="scopeForm.scope"
+										placeholder="Sentences about this project new scope of work.">
+									</b-input>
+								</b-field>
+							</div>
+							<footer class="modal-card-foot">
+								<div class="buttons is-right" style="width:100%">
+									<button class="button is-long" type="button" @click="cancel_add_scope">
+										Cancel
+									</button>
+									<button class="button is-success is-long" @click="add_scope">
+										Submit
+									</button>
+								</div>
+							</footer>
+						</div>
+					</b-modal>
+				</div>
+			</section>
+		</section>
+
+		<section id="infoFooter">
+			<info-footer entry="100" utilization="100" api-entry-chart="http://localhost:5501/demo/chart.php?entry"
+				api-utilization-chart="http://localhost:5501/demo/chart.php?utilization"></info-footer>
+		</section>
+	</div>
+
+	<div class="api-testing" base="http://localhost:5501/demo/">
+		<!-- 
+			expected return from getNotification!
+			[{
+				"id": {String},
+				"subject": {String},
+				"content": {HTML String},
+				"dateStamp": {Date String with format DD/MM/YYYY},
+				"timeStamp": {Time String with format H:i},
+				"read": {Boolean}
+			}, ... ],
+		-->
+		<api-test url="getNotification.php" key="getNotification"></api-test>
+
+		<!-- 
+			Add new Scope of Work in Project Charter
+			Send Data:
+			- project_id: String Project Id [POST]
+			- notes: String of notes [POST]
+
+			Received Data:
+			{"status":<boolean>,"scope_id":<scope_id>}
+		 -->
+		<api-test url="axios_check.php?scopework_add=100-1000" key="addScopeofWork"></api-test>
+
+		<!--
+			Delete Scope of Work in Project Charter
+			Send Data:
+			- scope_id: String of notes [GET]
+
+			Received Data:
+			{"status":<boolean>,"message":<string>}
+		 -->
+		<api-test url="axios_check.php?return=200&scope_id={scope_id}" key="DeleteScopeofWork"></api-test>
+	</div>
+
+	<script id="implantedJSON" type="application/json">
+		{
+			"compath": [
+				{
+					"id": 0,
+					"level": 2,
+					"left": {
+						"title": "EA PROIDENT",
+						"name": "Clark Jacobs"
+					},
+					"right": {
+						"title": "ELIT EXERCITATION",
+						"name": "French Garrett"
+					}
+				},
+				{
+					"id": 1,
+					"level": 1,
+					"left": {
+						"title": "ET NON",
+						"name": "Rosario Bridges"
+					},
+					"right": {
+						"title": "ELIT CUPIDATAT",
+						"name": "Cash Elliott"
+					}
+				},
+				{
+					"id": 2,
+					"level": 3,
+					"left": {
+						"title": "EXERCITATION SINT",
+						"name": "Dominique Lane"
+					},
+					"right": {
+						"title": "VELIT LOREM",
+						"name": "Maricela Alvarez"
+					}
+				}
+			],
+			"scope": [
+				{
+					"id": 0,
+					"note": "Adipisicing sit mollit tempor labore ea qui laboris mollit ullamco ea.",
+					"checked": true
+				},
+				{
+					"id": 1,
+					"note": "Incididunt incididunt eiusmod enim irure excepteur ullamco ad officia et.",
+					"checked": false
+				},
+				{
+					"id": 2,
+					"note": "Elit et quis consequat sint culpa excepteur in magna dolor dolore.",
+					"checked": true
+				},
+				{
+					"id": 3,
+					"note": "Commodo commodo ullamco reprehenderit aliqua nulla id fugiat do aliqua nulla.",
+					"checked": false
+				},
+				{
+					"id": 4,
+					"note": "In et irure occaecat labore duis aliquip non aliquip quis veniam.",
+					"checked": false
+				}
+			]
+		}
+	</script>
+
+	<script src="../../../main.js"></script>
+	<script src="../../scripts/project/projectCharter/projectCharter.js"></script>
+</body>
+
+</html>
