@@ -231,7 +231,6 @@
 															</b-dropdown>
 														</div>
 
-														<!-- ^ UPDATED ################################################### -->
 														<!-- WORKPLAN TEMPLATE -->
 														<!-- <div class="level-item" style="margin-left: 10px;">
 															<b-button type="is-success is-light is-small is-fullwidth"
@@ -247,7 +246,6 @@
 																action="http://localhost:5501/demo/post_detect.php">
 															</approve-btn>
 														</div>
-														<!-- ^ UPDATED ################################################### -->
 													</div>
 												</form>
 											</div>
@@ -287,12 +285,10 @@
 													<b-menu-item label="Show Assignment"
 														@click="changePage('showAssign')" :disabled="parentisEmpty">
 													</b-menu-item>
-													<!-- ^ UPDATED ################################################### -->
 													<b-menu-item label="Update Progress"
 														@click="changePage('updateProgress')"
 														:disabled="parentisEmpty || hasnotCalcMethID(1)">
 													</b-menu-item>
-													<!-- ^ UPDATED ################################################### -->
 												</b-menu-list>
 												<b-menu-list label="Quick Action">
 													<b-menu-item label="Change Parent Task"
@@ -322,13 +318,23 @@
 										</template>
 									</template>
 
-									<!-- ^ UPDATED ################################################### -->
 									<template slot="calc-meth-option">
 										<option value="1">Manual by PM</option>
 										<option value="2">Auto by Working Progress</option>
 										<option value="3">Auto by Timesheet Hours</option>
 									</template>
-									<!-- ^ UPDATED ################################################### -->
+
+									<!-- ^ UPDATED ############################################################### -->
+									<template slot="additional">
+										<div class="tile is-child">
+											<b-message title="Workforce" type="is-info" :closable="false">
+												<b-field label="WFM No. (or SPK No.)">
+													<b-input name="wfm_number" placeholder="Workforce Number"></b-input>
+												</b-field>
+											</b-message>
+										</div>
+									</template>
+									<!-- ^ UPDATED ############################################################### -->
 								</add-task>
 							</paging-page>
 							<paging-page page-id="edit" label="Edit Task">
@@ -342,8 +348,20 @@
 										</template>
 									</template>
 
-									<!-- WBS & Integration -->
 									<template slot="additional" slot-scope="{ wbs, integration }">
+										<!-- ^ UPDATED ############################################################### -->
+										<!-- Workforce Card -->
+										<div class="tile is-child">
+											<b-message title="Workforce" type="is-info" :closable="false">
+												<b-field label="WFM No. (or SPK No.)">
+													<b-input name="wfm_number" placeholder="Workforce Number"></b-input>
+												</b-field>
+											</b-message>
+										</div>
+										<!-- Workforce Card -->
+										<!-- ^ UPDATED ############################################################### -->
+
+										<!-- WBS & Integration -->
 										<div class="tile is-child">
 											<b-message title="Integration" type="is-success" :closable="false">
 												<crud-input type="select" label="WBS No." name="wbsNo"
@@ -362,20 +380,17 @@
 												</crud-input>
 											</b-message>
 										</div>
+										<!-- WBS & Integration -->
 									</template>
-									<!-- WBS & Integration -->
 
-									<!-- ^ UPDATED ################################################### -->
 									<template slot="calc-meth-option">
 										<option value="1">Manual by PM</option>
 										<option value="2">Auto by Working Progress</option>
 										<option value="3">Auto by Timesheet Hours</option>
 									</template>
-									<!-- ^ UPDATED ################################################### -->
 								</edit-task>
 							</paging-page>
 							<paging-page page-id="assignTeam" label="Assign Team">
-								<!-- ^ UPDATED ################################################### -->
 								<assign-resource id="assignTeam" :task="selectedTask" project-id="1"
 									action-event="http://localhost:5501/demo/post_detect.php?task_id={pID}">
 									<template slot="role-option">
@@ -398,7 +413,6 @@
 										<option value="10">10%</option>
 									</template>
 								</assign-resource>
-								<!-- ^ UPDATED ################################################### -->
 							</paging-page>
 							<paging-page page-id="showAssign" label="Show Assignment">
 								<show-assignment :show-rate="false" id="showAssign" :task="selectedTask" project-id="1"
@@ -422,7 +436,6 @@
 								</link-predecessor>
 							</paging-page>
 
-							<!-- ^ UPDATED ################################################### -->
 							<!-- WORKPLAN TEMPLATING -->
 							<!-- <paging-page page-id="template" label="template">
 								<tmp id="template" project-id="1"
@@ -435,7 +448,6 @@
 									</template>
 								</tmp>
 							</paging-page> -->
-							<!-- ^ UPDATED ################################################### -->
 
 						</template>
 					</paging>

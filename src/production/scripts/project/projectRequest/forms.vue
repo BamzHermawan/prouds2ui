@@ -100,6 +100,18 @@
 			</b-select>
 		</b-field>
 
+		<b-field horizontal label="Synergy Channel">
+			<b-select
+				placeholder="Choose Synergy Channel"
+				:disabled="!oppty.found"
+				v-model="project.synergy"
+				expanded
+				name="synergy_channel"
+			>
+				<slot name="synergySlot"></slot>
+			</b-select>
+		</b-field>
+
 		<b-field horizontal label="Start Date">
 			<b-field>
 				<crud-input
@@ -228,6 +240,10 @@ export default {
 			default:
 				"jpg, .jpeg, .png, .doc, .docx, .pdf, .xls, .xlsx, .ppt, .pptx"
 		},
+		defaultSynergy: {
+			type: String,
+			default: undefined
+		},
 		value: {
 			type: Object,
 			default: function() {
@@ -236,6 +252,7 @@ export default {
 					description: "",
 					background: "",
 					type: undefined,
+					synergy: undefined,
 					start_date: undefined,
 					end_date: undefined,
 					document: [],
@@ -254,6 +271,12 @@ export default {
 	components: { crudInput },
 	mounted() {
 		this.oppty.found = !this.isAddForm;
+		if (this.value.synergy === undefined) {
+			this.project.synergy = this.defaultSynergy;
+		} else {
+			this.project.synergy = this.value.synergy;
+		}
+
 		if (!this.isAddForm) {
 			this.project.name = this.value.name;
 			this.project.type = this.value.type;
@@ -295,6 +318,7 @@ export default {
 			project: {
 				name: "",
 				type: undefined,
+				synergy: undefined,
 				description: "",
 				background: "",
 				date: {

@@ -176,6 +176,8 @@
 						</div>
 					</b-message>
 				</div>
+
+				<slot name="additional"></slot>
 			</div>
 		</div>
 	</form>

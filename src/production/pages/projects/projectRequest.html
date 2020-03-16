@@ -8,7 +8,7 @@
 	<meta name="author" content="PT Sigma Cipta Caraka (Telkomsigma)">
 	<meta name="description" content="HOME for PROUDS 2 Web Application">
 	<link rel="icon" href="http://localhost:5501/media/favicon.png" type="image/x-icon" />
-	<title>PROJECT | PROUDS 2</title>
+	<title>PROJECT REQUEST | PROUDS 2</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.9.97/css/materialdesignicons.min.css">
@@ -247,7 +247,9 @@
 										"description", "project_background", ("evidDoc": $_FILES)
 									} 
 								-->
-								<form-project :customers="customers" is-add-form
+
+								<!-- ^ UPDATED: Attribute default-synergy ################################### -->
+								<form-project :customers="customers" is-add-form default-synergy="NO"
 									evidence-accept="jpg,.jpeg,.png,.doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx">
 									<template slot="typeSlot">
 										<option value="1">Managed Service</option>
@@ -261,6 +263,14 @@
 											xlsx, ppt, pptx; File size maksimal 20MB
 										</p>
 									</template>
+
+									<!-- ^ UPDATED ######################################################### -->
+									<template slot="synergySlot">
+										<option value="NO">No Synergy</option>
+										<option value="TEL">Synergy Telkom Group</option>
+										<option value="BUMN">Synergy BUMN</option>
+									</template>
+									<!-- ^ UPDATED ######################################################### -->
 								</form-project>
 							</form>
 						</paging-page>
@@ -274,6 +284,7 @@
 										"description", "project_background", ("evidDoc": $_FILES)
 									} 
 								-->
+
 								<form-project :customers="customers" :value="project"
 									evidence-accept="jpg,.jpeg,.png,.doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx">
 									<template slot="typeSlot">
@@ -287,6 +298,13 @@
 											xlsx, ppt, pptx; File size maksimal 20MB
 										</p>
 									</template>
+									<!-- ^ UPDATED ######################################################### -->
+									<template slot="synergySlot">
+										<option value="NO">No Synergy</option>
+										<option value="TEL">Synergy Telkom Group</option>
+										<option value="BUMN">Synergy BUMN</option>
+									</template>
+									<!-- ^ UPDATED ######################################################### -->
 								</form-project>
 							</form>
 						</paging-page>
@@ -350,6 +368,7 @@
 						"label": "Managed Services"
 					},
 					"unit_delivery": "PMO",
+					"synergy_channel": "NO",
 					"requester": "Ade Wiranata Putra",
 					"request_date": "09/11/2019",
 					"start_date": "20/10/2019",
@@ -382,7 +401,7 @@
 				},
 				{
 					"project_id": 535051,
-					"project_name": "cupidatat reprehenderit ad cillum velit aute magna officia et id",
+					"project_name": "TEL SYNERGY cupidatat reprehenderit ad cillum velit aute magna officia et id",
 					"customer": {
 						"id": 2,
 						"label": "PT. Pertamina"
@@ -392,6 +411,7 @@
 						"label": "Implementation"
 					},
 					"unit_delivery": "PMO",
+					"synergy_channel": "TEL",
 					"requester": "Budi",
 					"request_date": "10/11/2019",
 					"start_date": "20/10/2019",
@@ -434,6 +454,7 @@
 						"label": "Research and Development"
 					},
 					"unit_delivery": "PMO",
+					"synergy_channel": "NO",
 					"requester": "Andi",
 					"request_date": "11/11/2019",
 					"start_date": "20/10/2019",
@@ -476,6 +497,7 @@
 						"label": "Type A"
 					},
 					"unit_delivery": "PMO",
+					"synergy_channel": "NO",
 					"requester": "Dudung",
 					"request_date": "22/07/2019",
 					"start_date": "20/10/2019",
@@ -518,6 +540,7 @@
 						"label": "Type A"
 					},
 					"unit_delivery": "PMO",
+					"synergy_channel": "NO",
 					"requester": "Dudung",
 					"request_date": "05/05/2017",
 					"start_date": "20/10/2019",
@@ -560,6 +583,7 @@
 						"label": "Type A"
 					},
 					"unit_delivery": "PMO",
+					"synergy_channel": "NO",
 					"requester": "Dudung",
 					"request_date": "12/11/2019",
 					"start_date": "20/10/2019",
@@ -602,6 +626,7 @@
 						"label": "Type A"
 					},
 					"unit_delivery": "PMO",
+					"synergy_channel": "NO",
 					"requester": "Dudung",
 					"request_date": "01/01/2018",
 					"start_date": "20/10/2019",

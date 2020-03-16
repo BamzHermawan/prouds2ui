@@ -47,6 +47,7 @@ new Vue({
 				description: project.desc,
 				background: project.background,
 				type: project.project_type.id,
+				synergy: project.synergy_channel,
 				start_date: project.start_date,
 				end_date: project.end_date,
 				document: project.document,

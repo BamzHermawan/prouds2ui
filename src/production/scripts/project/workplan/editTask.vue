@@ -158,7 +158,7 @@
 				<div class="tile is-child">
 					<b-message
 						title="Task Schedule"
-						type="is-info"
+						type="is-primary"
 						:closable="false"
 					>
 						<!-- Datepicker Start Date -->
